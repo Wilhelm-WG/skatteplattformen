@@ -1,0 +1,60 @@
+TILL: bestallningar@scb.se
+ÄMNE: Förfrågan om pris och handläggningstid — aggregerade tabelluttag från FASIT/NR
+
+Hej,
+
+Jag driver Skatteplattformen (skatteplattformen.se — under uppbyggnad), ett partipolitiskt oberoende
+civilt projekt som på ett vetenskapligt transparent sätt visar hur svenska skattepengar fördelas
+till individer av olika ålder. Projektet är inspirerat av NTA-metodiken (UN 2013) och bygger på
+SCB:s publicerade data.
+
+Jag skickar denna förfrågan för att ta reda på pris och handläggningstid — den är inte bindande.
+
+─────────────────────────────────────────────────────────────────
+VAD JAG BEHÖVER (aggregerade tabeller, ej mikrodata)
+─────────────────────────────────────────────────────────────────
+
+Tabell 1 — Välfärdstjänster per åldersgrupp
+  Population:   Hela befolkningen folkbokförd i Sverige 2022
+  Indelning:    5-årsåldersgrupper: 0–4, 5–9, 10–14, ..., 75–79, 80+
+  Variabler:    Genomsnittligt värde av offentliga välfärdstjänster per person (kr/år)
+  Uppdelning:   Per COFOG-kategori: (1) utbildning, (2) hälso- och sjukvård,
+                (3) social omsorg/socialt skydd, (4) övriga individuella tjänster
+  Källa:        SCB FASIT / NR individuella konsumtionsutgifter
+  Referensår:   2022
+
+Tabell 2 — Skattebetalning per åldersgrupp och inkomstkvintil
+  Population:   Förvärvsarbetande 20–64 år folkbokförda i Sverige 2022
+  Indelning:    Samma 5-årsåldersgrupper × inkomstkvintil (Q1–Q5)
+  Variabler:    Genomsnittlig total skatt (kommunalskatt + statlig + arbetsgivaravgifter) per person (kr/år)
+  Källa:        SCB HE0110 / FASIT
+  Referensår:   2022
+
+─────────────────────────────────────────────────────────────────
+BAKGRUND
+─────────────────────────────────────────────────────────────────
+
+Projektet är öppet (MIT-licens, CC0 data) och publiceras på GitHub. Metodrapporten är
+tillgänglig för granskning. Projektet drivs utan kommersiella intressen och utan
+partipolitisk finansiering.
+
+Jag har tagit del av SCB:s statistiknyhet "Offentliga välfärdstjänster 2022" (Bågling & Olin)
+och den akademiska artikeln av Andersson, Johansson & Olin (2012) i Ekonomisk Debatt, som
+beskriver FASIT-metodiken. Det är just de fördelningsdata per åldersgrupp som saknas i de
+publicerade aggregaten som jag behöver.
+
+─────────────────────────────────────────────────────────────────
+FRÅGOR
+─────────────────────────────────────────────────────────────────
+
+1. Är dessa tabelluttag möjliga att beställa som aggregerade data (ej mikrodata)?
+2. Ungefärligt pris och handläggningstid?
+3. Finns kontaktperson för FASIT-statistiken — Mattias Bågling eller Karin Olin?
+
+Tack på förhand.
+
+Med vänliga hälsningar,
+[Ditt namn]
+Skatteplattformen
+[e-post]
+[telefon]

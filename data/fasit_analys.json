@@ -1,0 +1,316 @@
+{
+  "metadata": {
+    "källa_primär": "SCB FASIT statistiknyhet 2022 + SCB COFOG NR 2022 + Skolverket 2024",
+    "kpi_faktor_2022_2024": 1.114161,
+    "kpi_2022": 370.88,
+    "kpi_2024": 413.22,
+    "befolkning_2022": 10521556,
+    "evidensnivå": {
+      "decil_data": "BEKRÄFTAD (SCB statistiknyhet 2022)",
+      "utbildning_enhetskostnader": "BEKRÄFTAD (Skolverket 2024)",
+      "sjukvård_totalt": "BEKRÄFTAD (COFOG/SCB ~430 Mdkr 2022)",
+      "sjukvård_åldersprofil": "ESTIMERAD (NTA-viktning, ej officiell SCB-tabell)",
+      "socialt_skydd_totalt": "BEKRÄFTAD (ESSPROS 2022)",
+      "socialt_skydd_åldersprofil": "ESTIMERAD (ESSPROS-fördelning + SKR)",
+      "skattebetalning": "ESTIMERAD (SCB medianbruttolön per ålder)"
+    },
+    "begränsningar": [
+      "Åldersprofil för sjukvård baseras på NTA-vikter, inte faktisk KPP-data per åldersgrupp",
+      "Skattesiffror baseras på medianbruttolön — höginkomsttagare bidrar proportionellt mer",
+      "Inkomstpension (750 Mdkr/år) ingår ej — avgiftsbaserad",
+      "Kollektiva nyttigheter fördelas lika — alternativ viktning möjlig",
+      "Basår 2022 — KPI-justerat till 2024 med KPI juni-juni"
+    ]
+  },
+  "data": {
+    "0-4": {
+      "pop": 585000,
+      "2022": {
+        "utb": 102947,
+        "sjukvård": 50611,
+        "socialt": 40389,
+        "kollektivt": 49365,
+        "totalt": 243312
+      },
+      "2024": {
+        "utb": 114700,
+        "sjukvård": 56389,
+        "socialt": 45000,
+        "kollektivt": 55001,
+        "totalt": 271090
+      }
+    },
+    "5-9": {
+      "pop": 617000,
+      "2022": {
+        "utb": 135061,
+        "sjukvård": 9662,
+        "socialt": 16156,
+        "kollektivt": 49365,
+        "totalt": 210244
+      },
+      "2024": {
+        "utb": 150480,
+        "sjukvård": 10765,
+        "socialt": 18000,
+        "kollektivt": 55001,
+        "totalt": 234246
+      }
+    },
+    "10-14": {
+      "pop": 632000,
+      "2022": {
+        "utb": 135061,
+        "sjukvård": 8742,
+        "socialt": 10770,
+        "kollektivt": 49365,
+        "totalt": 203938
+      },
+      "2024": {
+        "utb": 150480,
+        "sjukvård": 9740,
+        "socialt": 12000,
+        "kollektivt": 55001,
+        "totalt": 227221
+      }
+    },
+    "15-19": {
+      "pop": 611000,
+      "2022": {
+        "utb": 112910,
+        "sjukvård": 11963,
+        "socialt": 9873,
+        "kollektivt": 49365,
+        "totalt": 184111
+      },
+      "2024": {
+        "utb": 125800,
+        "sjukvård": 13329,
+        "socialt": 11000,
+        "kollektivt": 55001,
+        "totalt": 205130
+      }
+    },
+    "20-24": {
+      "pop": 641000,
+      "2022": {
+        "utb": 75393,
+        "sjukvård": 12653,
+        "socialt": 21541,
+        "kollektivt": 49365,
+        "totalt": 158952
+      },
+      "2024": {
+        "utb": 84000,
+        "sjukvård": 14097,
+        "socialt": 24000,
+        "kollektivt": 55001,
+        "totalt": 177098
+      }
+    },
+    "25-29": {
+      "pop": 699000,
+      "2022": {
+        "utb": 25849,
+        "sjukvård": 16564,
+        "socialt": 37697,
+        "kollektivt": 49365,
+        "totalt": 129475
+      },
+      "2024": {
+        "utb": 28800,
+        "sjukvård": 18455,
+        "socialt": 42001,
+        "kollektivt": 55001,
+        "totalt": 144257
+      }
+    },
+    "30-34": {
+      "pop": 754000,
+      "2022": {
+        "utb": 8616,
+        "sjukvård": 19554,
+        "socialt": 52057,
+        "kollektivt": 49365,
+        "totalt": 129592
+      },
+      "2024": {
+        "utb": 9600,
+        "sjukvård": 21786,
+        "socialt": 58000,
+        "kollektivt": 55001,
+        "totalt": 144387
+      }
+    },
+    "35-39": {
+      "pop": 722000,
+      "2022": {
+        "utb": 6462,
+        "sjukvård": 21855,
+        "socialt": 46672,
+        "kollektivt": 49365,
+        "totalt": 124354
+      },
+      "2024": {
+        "utb": 7200,
+        "sjukvård": 24350,
+        "socialt": 52000,
+        "kollektivt": 55001,
+        "totalt": 138551
+      }
+    },
+    "40-44": {
+      "pop": 714000,
+      "2022": {
+        "utb": 4308,
+        "sjukvård": 25306,
+        "socialt": 37697,
+        "kollektivt": 49365,
+        "totalt": 116676
+      },
+      "2024": {
+        "utb": 4800,
+        "sjukvård": 28195,
+        "socialt": 42001,
+        "kollektivt": 55001,
+        "totalt": 129997
+      }
+    },
+    "45-49": {
+      "pop": 664000,
+      "2022": {
+        "utb": 3231,
+        "sjukvård": 31057,
+        "socialt": 34106,
+        "kollektivt": 49365,
+        "totalt": 117759
+      },
+      "2024": {
+        "utb": 3600,
+        "sjukvård": 34602,
+        "socialt": 38000,
+        "kollektivt": 55001,
+        "totalt": 131203
+      }
+    },
+    "50-54": {
+      "pop": 665000,
+      "2022": {
+        "utb": 2154,
+        "sjukvård": 37958,
+        "socialt": 34106,
+        "kollektivt": 49365,
+        "totalt": 123583
+      },
+      "2024": {
+        "utb": 2400,
+        "sjukvård": 42291,
+        "socialt": 38000,
+        "kollektivt": 55001,
+        "totalt": 137692
+      }
+    },
+    "55-59": {
+      "pop": 637000,
+      "2022": {
+        "utb": 1508,
+        "sjukvård": 46010,
+        "socialt": 35901,
+        "kollektivt": 49365,
+        "totalt": 132784
+      },
+      "2024": {
+        "utb": 1680,
+        "sjukvård": 51263,
+        "socialt": 39999,
+        "kollektivt": 55001,
+        "totalt": 147943
+      }
+    },
+    "60-64": {
+      "pop": 601000,
+      "2022": {
+        "utb": 862,
+        "sjukvård": 58663,
+        "socialt": 37697,
+        "kollektivt": 49365,
+        "totalt": 146587
+      },
+      "2024": {
+        "utb": 960,
+        "sjukvård": 65360,
+        "socialt": 42001,
+        "kollektivt": 55001,
+        "totalt": 163322
+      }
+    },
+    "65-69": {
+      "pop": 537000,
+      "2022": {
+        "utb": 431,
+        "sjukvård": 73616,
+        "socialt": 46672,
+        "kollektivt": 49365,
+        "totalt": 170084
+      },
+      "2024": {
+        "utb": 480,
+        "sjukvård": 82020,
+        "socialt": 52000,
+        "kollektivt": 55001,
+        "totalt": 189501
+      }
+    },
+    "70-74": {
+      "pop": 525000,
+      "2022": {
+        "utb": 215,
+        "sjukvård": 94321,
+        "socialt": 76291,
+        "kollektivt": 49365,
+        "totalt": 220192
+      },
+      "2024": {
+        "utb": 240,
+        "sjukvård": 105089,
+        "socialt": 85000,
+        "kollektivt": 55001,
+        "totalt": 245330
+      }
+    },
+    "75-79": {
+      "pop": 405000,
+      "2022": {
+        "utb": 0,
+        "sjukvård": 119626,
+        "socialt": 166044,
+        "kollektivt": 49365,
+        "totalt": 335035
+      },
+      "2024": {
+        "utb": 0,
+        "sjukvård": 133283,
+        "socialt": 185000,
+        "kollektivt": 55001,
+        "totalt": 373284
+      }
+    },
+    "80+": {
+      "pop": 418000,
+      "2022": {
+        "utb": 0,
+        "sjukvård": 156434,
+        "socialt": 345552,
+        "kollektivt": 49365,
+        "totalt": 551351
+      },
+      "2024": {
+        "utb": 0,
+        "sjukvård": 174293,
+        "socialt": 385001,
+        "kollektivt": 55001,
+        "totalt": 614295
+      }
+    }
+  }
+}

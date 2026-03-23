@@ -1,0 +1,12 @@
+# Lokala filer — ej i repo
+skatteplattformen_data.xlsx
+skatteplattformen.html
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/

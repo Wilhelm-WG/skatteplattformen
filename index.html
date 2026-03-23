@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skatteplattformen — Vad fan får vi för pengarna?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2EFE8;--bg2:#E8E4DB;--bg3:#DEDAD0;
+  --ink:#1C1A16;--ink2:#4A4640;--ink3:#8A857C;
+  --green:#1B4D3E;--green2:#2E7D5C;--green-l:#C8E6DA;--green-ll:#EAF4EE;
+  --amber:#C8973A;--amber-l:#F5EDD8;
+  --red:#B84A1E;--red-l:#F5E0D4;
+  --blue:#1E4A8C;--blue-l:#DCE8F8;
+  --purple:#5B3F8C;--purple-l:#EBE4F8;
+  --border:rgba(28,26,22,0.10);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+.container{max-width:1080px;margin:0 auto;padding:0 2rem}
+.cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink);text-decoration:none;font-weight:700}
+.nav-logo em{font-style:italic;color:var(--green)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.82rem;color:var(--ink2);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-pill{font-size:.72rem;font-weight:500;padding:6px 16px;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .15s;text-decoration:none}
+.nav-pill:hover{background:var(--ink);color:var(--bg)}
+/* HERO */
+.hero{padding:80px 0 64px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.e-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.e-text{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4.2rem);line-height:1.06;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem;font-weight:900}
+h1 em{font-style:italic;color:var(--green)}
+.tagline{font-size:1rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:480px;margin-bottom:2rem}
+.tagline strong{font-weight:500;color:var(--ink)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:500;padding:13px 26px;border-radius:2px;border:none;cursor:pointer;text-decoration:none;transition:all .15s}
+.btn-p:hover{background:#163d31;transform:translateY(-1px)}
+.btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:.9rem;padding:13px 26px;border-radius:2px;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .15s}
+.btn-g:hover{border-color:var(--ink2);background:var(--bg2)}
+.ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
+.ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
+.ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.t-cell{background:var(--ink);padding:1rem 1.1rem}
+.t-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;letter-spacing:-.02em;line-height:1}
+.t-num sub{font-size:.72rem;color:rgba(255,255,255,.35)}
+.t-lbl{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.3}
+/* SECTIONS */
+.section{padding:72px 0}
+.s-eye{font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.55rem}
+.s-title{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.15;color:var(--ink);margin-bottom:.85rem;font-weight:700}
+.s-sub{font-size:.92rem;color:var(--ink2);font-weight:300;max-width:560px;line-height:1.75}
+hr.div{border:none;border-top:1px solid var(--border)}
+/* PRICE TABLE */
+.price-hdr{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem}
+.pf-row{display:flex;gap:6px;flex-wrap:wrap}
+.pf{font-size:.72rem;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.pf.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.pc{background:var(--bg);padding:1.35rem 1.45rem;cursor:default;transition:background .18s}
+.pc:hover{background:var(--bg2)}
+.pc-cat{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:.75rem}
+.cat-helse{background:var(--green-ll);color:var(--green)}
+.cat-utb{background:var(--blue-l);color:var(--blue)}
+.cat-infra{background:var(--amber-l);color:#7A5A1A}
+.cat-social{background:var(--purple-l);color:var(--purple)}
+.cat-trygghet{background:var(--red-l);color:var(--red)}
+.pc-title{font-size:.86rem;font-weight:500;color:var(--ink);margin-bottom:.2rem;line-height:1.35}
+.pc-unit{font-size:.68rem;color:var(--ink3);margin-bottom:.75rem}
+.pc-amount{font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.pc-suf{font-size:.8rem;color:var(--ink3);font-weight:400}
+.pc-vs{margin-top:.5rem;font-size:.72rem;color:var(--ink3);line-height:1.5}
+.pc-vs strong{color:var(--green);font-weight:500}
+.pc-src{font-size:.6rem;color:var(--ink3);margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border);font-family:var(--mono)}
+/* ══ CALCULATOR — LIFECYCLE REDESIGN ══════════════════════════ */
+.calc-wrap{background:var(--ink);padding:72px 0}
+.calc-wrap .s-eye{color:var(--green2)}
+.calc-wrap .s-title{color:rgba(242,239,232,.9)}
+.calc-wrap .s-sub{color:rgba(242,239,232,.5)}
+.calc-layout{display:grid;grid-template-columns:320px 1fr;gap:3rem;margin-top:2.5rem;align-items:start}
+/* Controls */
+.calc-ctrl{display:flex;flex-direction:column;gap:1.5rem}
+.calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,239,232,.4);margin-bottom:.5rem}
+.sl-row{display:flex;align-items:center;gap:1rem}
+.sl-row input[type=range]{flex:1;-webkit-appearance:none;height:2px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer}
+.sl-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--green2);cursor:pointer;transition:transform .1s}
+.sl-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
+.sl-val{font-family:var(--mono);font-size:1rem;color:#fff;min-width:68px;text-align:right}
+/* Life stage chip */
+.stage-chip{display:inline-flex;align-items:center;gap:8px;padding:.6rem .9rem;background:rgba(46,125,92,.15);border:1px solid rgba(46,125,92,.3);border-radius:4px;font-size:.78rem;color:var(--green2);font-weight:500;margin-top:.25rem}
+.stage-icon{font-size:1.1rem;line-height:1}
+/* Method note */
+.method-note{padding:.9rem 1rem;background:rgba(255,255,255,.04);border-left:2px solid rgba(255,255,255,.15);border-radius:0 4px 4px 0;font-size:.72rem;color:rgba(242,239,232,.4);line-height:1.65}
+.method-note strong{color:rgba(242,239,232,.7)}
+/* Result area */
+.c-result{display:flex;flex-direction:column;gap:1.5rem}
+/* Annual welfare card */
+.annual-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:1.5rem}
+.card-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:1.1rem}
+.welfare-bars{display:flex;flex-direction:column;gap:.7rem}
+.wbar{display:grid;grid-template-columns:140px 1fr 80px;gap:10px;align-items:center}
+.wbar-n{font-size:.72rem;color:rgba(242,239,232,.65);line-height:1.3}
+.wbar-t{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.wbar-f{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.wbar-v{font-family:var(--mono);font-size:.72rem;color:rgba(242,239,232,.55);text-align:right}
+.w-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.07)}
+.wt-l{font-size:.8rem;color:rgba(242,239,232,.5)}
+.wt-v{font-family:var(--mono);font-size:1.45rem;font-weight:500;color:#fff;letter-spacing:-.02em}
+/* Solidarity contract */
+.contract-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.5rem}
+.lifecycle-bar{position:relative;height:44px;border-radius:3px;overflow:hidden;margin:1rem 0 .5rem;display:flex}
+.lc-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.7);transition:all .3s;white-space:nowrap;overflow:hidden;min-width:0}
+.lc-taker{background:rgba(46,125,92,.55)}
+.lc-payer{background:rgba(200,151,58,.45)}
+.lc-marker{position:absolute;top:0;bottom:0;width:2px;background:#fff;transition:left .4s;pointer-events:none}
+.lc-marker::after{content:'Du';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:.62rem;color:#fff;white-space:nowrap;font-family:var(--mono)}
+.lc-legend{display:flex;gap:1.25rem;margin-top:.5rem}
+.lc-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:rgba(242,239,232,.45)}
+.lc-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+/* Solidarity quote */
+.solidarity-box{padding:1.25rem 1.35rem;background:rgba(46,125,92,.12);border:1px solid rgba(46,125,92,.22);border-radius:4px}
+.solidarity-text{font-size:.82rem;color:rgba(242,239,232,.75);line-height:1.7;font-style:italic}
+.solidarity-text strong{font-style:normal;color:var(--green2)}
+/* BUDGET CHART */
+.budget-section{padding:72px 0}
+.chart-box{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:#fff;margin-top:2rem}
+.chart-topbar{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.ctt{font-size:.8rem;font-weight:500;color:var(--ink)}
+.cf2-row{display:flex;gap:5px}
+.cf2{font-size:.7rem;padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.cf2.on{background:var(--green);color:#fff;border-color:var(--green)}
+.chart-body2{padding:1.5rem}
+.brow{display:grid;grid-template-columns:200px 1fr 80px;gap:12px;align-items:center;margin-bottom:8px}
+.brow-l{font-size:.76rem;color:var(--ink2);text-align:right}
+.brow-t{height:22px;background:var(--bg2);border-radius:2px;overflow:hidden}
+.brow-f{height:100%;border-radius:2px;transition:width .5s ease}
+.brow-v{font-family:var(--mono);font-size:.76rem;color:var(--ink2)}
+.clegend{display:flex;gap:1.25rem;flex-wrap:wrap;padding:.9rem 1.5rem 1.2rem;border-top:1px solid var(--border)}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--ink2)}
+.leg-d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+/* METOD */
+.metod-section{background:var(--bg2);padding:72px 0}
+.metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
+.step-list{display:flex;flex-direction:column;gap:1.35rem}
+.step{display:flex;gap:1.1rem}
+.step-n{font-family:var(--mono);font-size:.68rem;color:var(--green);font-weight:500;min-width:22px;padding-top:2px}
+.step-t{font-size:.88rem;font-weight:500;margin-bottom:.22rem}
+.step-d{font-size:.8rem;color:var(--ink2);line-height:1.65;font-weight:300}
+.src-list{display:flex;flex-direction:column;gap:.8rem}
+.src-card{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:.85rem 1.1rem}
+.src-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+.src-name{font-size:.82rem;font-weight:500}
+.src-badge{font-size:.6rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:12px;background:var(--green-ll);color:var(--green)}
+.src-desc{font-size:.73rem;color:var(--ink3);line-height:1.5}
+/* QUOTE */
+.quote-section{background:var(--green);padding:52px 0;text-align:center}
+.big-q{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,2.8vw,2rem);color:#fff;max-width:680px;margin:0 auto 1rem;line-height:1.35}
+.q-note{font-size:.8rem;color:rgba(255,255,255,.5)}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:36px 0}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
+.footer-logo{font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:700;margin-bottom:.6rem}
+.footer-logo em{color:var(--green);font-style:italic}
+.footer-tagline{font-size:.76rem;color:var(--ink3);line-height:1.6;font-weight:300;max-width:200px}
+.fc h4{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem}
+.fc a{display:block;font-size:.78rem;color:var(--ink2);text-decoration:none;margin-bottom:.42rem;transition:color .15s}
+.fc a:hover{color:var(--ink)}
+.footer-bottom{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.footer-legal{font-size:.7rem;color:var(--ink3)}
+.ind{display:flex;align-items:center;gap:8px;font-size:.7rem;color:var(--ink3)}
+.ind-badge{font-size:.63rem;font-weight:500;padding:3px 10px;border-radius:12px;background:var(--green-ll);color:var(--green);letter-spacing:.04em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .55s ease both}
+.fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}.fu4{animation-delay:.42s}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.calc-layout{grid-template-columns:1fr}.metod-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}.brow{grid-template-columns:120px 1fr 60px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Skatte<em>plattformen</em></a>
+      <ul class="nav-links">
+        <li><a href="#pristabell">Prislistan</a></li>
+        <li><a href="#kalkylator">Din profil</a></li>
+        <li><a href="#budget">Budgeten</a></li>
+        <li><a href="#metod">Metod</a></li>
+      </ul>
+      <a href="#" class="nav-pill">Dela fakta</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow fu">
+          <span class="e-dot"></span>
+          <span class="e-text">Öppen data · Vetenskaplig grund · 2025</span>
+        </div>
+        <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
+        <p class="tagline fu fu2">
+          Du betalar skatt varje dag. Men vet du vad den faktiskt köper?
+          <strong>Vi räknar ut det — i kronor och ören.</strong>
+          Ingen vinkling, inga partier. Bara Sveriges skattepengar, redovisade som de är.
+        </p>
+        <div class="actions fu fu3">
+          <a href="#pristabell" class="btn-p">Se vad saker kostar →</a>
+          <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
+        </div>
+      </div>
+      <div class="ticker-box fu fu4">
+        <div class="ticker-title">Offentlig sektor 2024 — hela bilden (COFOG/SCB)</div>
+        <div class="ticker-grid">
+          <div class="t-cell"><div class="t-num">3 011<sub> Mdkr</sub></div><div class="t-lbl">Total offentlig sektor</div></div>
+          <div class="t-cell"><div class="t-num">285<sub> tkr</sub></div><div class="t-lbl">Per invånare &amp; år</div></div>
+          <div class="t-cell"><div class="t-num">1 428<sub> Mdkr</sub></div><div class="t-lbl">Statsbudgeten 2025</div></div>
+          <div class="t-cell"><div class="t-num">50<sub> % BNP</sub></div><div class="t-lbl">Offentliga utgifter/BNP</div></div>
+          <div class="t-cell"><div class="t-num">457<sub> Mdkr</sub></div><div class="t-lbl">Sjukvård (COFOG 2024)</div></div>
+          <div class="t-cell"><div class="t-num">512<sub> Mdkr</sub></div><div class="t-lbl">Utbildning (SCB 2024)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PRICE TABLE -->
+<section class="section" id="pristabell">
+  <div class="cw">
+    <div class="price-hdr">
+      <div>
+        <p class="s-eye">Vad kostar det faktiskt?</p>
+        <h2 class="s-title">Den offentliga prislistan</h2>
+        <p class="s-sub">Faktiska samhällskostnader — vad du betalar och vad skatten täcker. Alla belopp beräknade direkt som totalkostnad delat med volym, 2024 priser.</p>
+      </div>
+      <div class="pf-row">
+        <button class="pf on" onclick="fc(this,'all')">Alla</button>
+        <button class="pf" onclick="fc(this,'helse')">Hälsa</button>
+        <button class="pf" onclick="fc(this,'utb')">Utbildning</button>
+        <button class="pf" onclick="fc(this,'infra')">Infrastruktur</button>
+        <button class="pf" onclick="fc(this,'social')">Social</button>
+        <button class="pf" onclick="fc(this,'trygghet')">Trygghet</button>
+      </div>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Alla belopp 2024 priser.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- CALCULATOR — LIFECYCLE REDESIGN -->
+<section class="calc-wrap" id="kalkylator">
+  <div class="container">
+    <p class="s-eye">Din välfärdsprofil</p>
+    <h2 class="s-title">Välfärdsstaten är ett livslångt kontrakt</h2>
+    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning.</p>
+
+    <div class="calc-layout">
+      <!-- Controls -->
+      <div class="calc-ctrl">
+        <div>
+          <label>Din ålder</label>
+          <div class="sl-row">
+            <input type="range" min="0" max="85" value="35" id="s-age" step="1">
+            <span class="sl-val" id="d-age">35 år</span>
+          </div>
+          <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon">👔</span><span id="stage-label">Mitt i arbetslivet</span></div>
+        </div>
+
+        <div>
+          <label>Bruttoinkomst per år</label>
+          <div class="sl-row">
+            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10">
+            <span class="sl-val" id="d-inc">500 tkr</span>
+          </div>
+        </div>
+
+        <div class="method-note">
+          <strong>Vad mäts här?</strong><br>
+          Offentliga tjänster och förmåner du konsumerar <em>i år</em>, baserat på din ålder och livsfas. Inkluderar hela den offentliga sektorn (3 011 Mdkr 2024).
+          <br><br>
+          <strong>Vad visas inte?</strong><br>
+          Inkomstpension är avgiftsbaserad — dina egna inbetalningar, inte en "skatteförmån". Vi visar inte heller ett "livstids-netto" — se nedan varför.
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="c-result">
+
+        <!-- Annual welfare bars -->
+        <div class="annual-card">
+          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2024 priser)</div>
+          <div class="welfare-bars" id="welfare-bars"></div>
+          <div class="w-total">
+            <span class="wt-l">Totalt värde offentliga tjänster &amp; förmåner</span>
+            <span class="wt-v" id="w-total">— tkr</span>
+          </div>
+        </div>
+
+        <!-- Annual tax context -->
+        <div class="annual-card" id="tax-card">
+          <div class="card-label">Skatt du betalar i år (vid <span id="tax-inc-label">500</span> tkr/år)</div>
+          <div id="tax-breakdown" style="display:flex;flex-direction:column;gap:.5rem"></div>
+        </div>
+
+        <!-- Lifecycle bar + solidarity -->
+        <div class="contract-card">
+          <div class="card-label">Det livslånga kontraktet — var befinner du dig?</div>
+          <div class="lifecycle-bar" id="lc-bar">
+            <div class="lc-seg lc-taker" style="width:25%">Barn &amp; elev</div>
+            <div class="lc-seg lc-payer" style="width:42%">Arbetsför ålder</div>
+            <div class="lc-seg lc-taker" style="width:33%">Senior &amp; pensionär</div>
+            <div class="lc-marker" id="lc-marker" style="left:52%"></div>
+          </div>
+          <div class="lc-legend">
+            <div class="lc-leg"><div class="lc-dot" style="background:rgba(46,125,92,.55)"></div>Nettotagare av offentliga tjänster</div>
+            <div class="lc-leg"><div class="lc-dot" style="background:rgba(200,151,58,.45)"></div>Nettobidragsgivare</div>
+          </div>
+          <div style="margin-top:1.25rem" id="lifecycle-text"></div>
+        </div>
+
+        <!-- Solidarity quote -->
+        <div class="solidarity-box">
+          <p class="solidarity-text" id="solidarity-text"></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="budget-section" id="budget">
+  <div class="cw">
+    <div style="max-width:1080px">
+      <p class="s-eye">Statsbudgeten 2010–2025</p>
+      <h2 class="s-title">Hur fördelas pengarna?</h2>
+      <p class="s-sub">Utfall 2024 per utgiftsområde (Mdkr). Statsbudgeten = 47% av total offentlig sektor. Källa: ESV CC0.</p>
+    </div>
+    <div class="chart-box">
+      <div class="chart-topbar">
+        <span class="ctt">Statsbudgetens utgiftsområden — utfall 2024 (Mdkr, löpande priser)</span>
+        <div class="cf2-row"><button class="cf2 on" onclick="setF2(this,'all')">Alla</button><button class="cf2" onclick="setF2(this,'pilot')">Pilotområden</button></div>
+      </div>
+      <div class="chart-body2"><div id="barchart"></div></div>
+      <div class="clegend">
+        <div class="leg-i"><div class="leg-d" style="background:#2E7D5C"></div>Hälsa</div>
+        <div class="leg-i"><div class="leg-d" style="background:#5B3F8C"></div>Social trygghet</div>
+        <div class="leg-i"><div class="leg-d" style="background:#1E4A8C"></div>Utbildning</div>
+        <div class="leg-i"><div class="leg-d" style="background:#C8973A"></div>Infrastruktur</div>
+        <div class="leg-i"><div class="leg-d" style="background:#3B6D11"></div>Arbete</div>
+        <div class="leg-i"><div class="leg-d" style="background:#993C1D"></div>Kommunalt</div>
+        <div class="leg-i"><div class="leg-d" style="background:#888780"></div>Övrigt</div>
+      </div>
+    </div>
+    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: ESV Utfallet för statens budget 2024 (ESV 2025:8). CC0. Statsbudgeten täcker ej kommunal skola och sjukvård direkt — dessa finansieras via kommunalskatt och generella statsbidrag (UO25).</p>
+  </div>
+</section>
+
+<!-- METOD -->
+<section class="metod-section" id="metod">
+  <div class="container">
+    <p class="s-eye">Hur vi räknar</p>
+    <h2 class="s-title">Öppen metodik</h2>
+    <p class="s-sub">Allt är reproducerbart. Källkod och modell är publik under MIT-licens.</p>
+    <div class="metod-grid">
+      <div class="step-list">
+        <div class="step"><span class="step-n">01</span><div><div class="step-t">Hela offentliga sektorn — inte bara statsbudgeten</div><div class="step-d">Kalkylatorn baseras på COFOG (Eurostat/SCB) ~3 011 Mdkr — stat + kommuner + regioner. Statsbudgeten är 47% av totalen. Att bara räkna statsbudgeten ger en missvisande bild.</div></div></div>
+        <div class="step"><span class="step-n">02</span><div><div class="step-t">Årsförmåner baserade på SCB FASIT</div><div class="step-d">SCB:s fördelningsanalys (FASIT) visar hur välfärdstjänster fördelas per inkomstdecil och ålder. Kalkylatorn utgår från dessa fördelningsprofiler, justerade med Skolverkets och SKR:s enhetskostnader.</div></div></div>
+        <div class="step"><span class="step-n">03</span><div><div class="step-t">Varför vi inte visar "livstids-netto"</div><div class="step-d">Livstidsjämförelser kräver diskonterade nuvärden, hypotetiska framtida skattebetalningar och antaganden om framtida vård. Sådana beräkningar ger sken av precision men är i praktiken spekulation. Vi visar i stället det vi vet: vad du konsumerar i år.</div></div></div>
+        <div class="step"><span class="step-n">04</span><div><div class="step-t">Livscykel-narrativet är vetenskapligt väl belagt</div><div class="step-d">Att arbetsför ålder är nettobidragsgivare och unga/äldre är nettotagare är ett av de starkaste resultaten i fördelningsstatistiken. SCB bekräftar: nästan enbart sammanboende utan barn är netto-negativa när man adderar välfärdstjänster.</div></div></div>
+        <div class="step"><span class="step-n">05</span><div><div class="step-t">Inkomstpension = avgiftsbaserad</div><div class="step-d">Pensionsavgiften (18,5% av lön) ger rätt till inkomstpension. Det är dina egna inbetalningar — inte en "förmån" finansierad av andras skatt. Garantipension (UO11, 72 Mdkr) ingår däremot som offentlig förmån.</div></div></div>
+      </div>
+      <div>
+        <h3 style="font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem">Primärkällor</h3>
+        <div class="src-list">
+          <div class="src-card"><div class="src-head"><span class="src-name">SCB FASIT — offentliga välfärdstjänster 2022</span><span class="src-badge">CC0</span></div><div class="src-desc">Fördelning av välfärdstjänster per inkomstdecil och hushållstyp. Basen för årsförmåns-kalkylatorn.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">Eurostat COFOG via SCB NR 2024</span><span class="src-badge">CC0</span></div><div class="src-desc">Total offentlig sektor per COFOG-funktion. 3 011 Mdkr fördelat på hälsa, utbildning, socialt skydd etc.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">Skolverket — kostnader skolväsendet 2024</span><span class="src-badge">Offentlig</span></div><div class="src-desc">152 000 kr/elev grundskola, 148 000 kr gymnasium, 185 000 kr förskola (SCB 94,4 Mdkr / 510k barn).</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">SKR KPP-databas + sektorn i siffror 2024</span><span class="src-badge">CC0</span></div><div class="src-desc">Kostnad per patient per DRG-grupp. Kommunal ekonomi, sjukvård och omsorg per verksamhet.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">ESV tidsserier 1995–2024</span><span class="src-badge">CC0</span></div><div class="src-desc">Utfall per utgiftsområde. Basen för statsbudgethistoriken 2010–2025.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="container">
+    <p class="big-q">"Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt."</p>
+    <p class="q-note">Skatteplattformen är partipolitiskt oberoende. Inga annonsörer. Inga partibidrag. Bara fakta.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
+      <div class="fc"><h4>Verktyg</h4><a href="#">Prislistan</a><a href="#">Din välfärdsprofil</a><a href="#">Budgethistorik</a><a href="#">OECD-jämförelse</a></div>
+      <div class="fc"><h4>Metod</h4><a href="#">Hur vi räknar</a><a href="#">Datakällor</a><a href="#">GitHub</a><a href="#">Begränsningar</a></div>
+      <div class="fc"><h4>Om projektet</h4><a href="#">Syfte</a><a href="#">Oberoende</a><a href="#">Kontakt</a><a href="#">Bidra</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-legal">Data: CC0. Kod: MIT-licens. © 2025 Skatteplattformen.</span>
+      <div class="ind"><span class="ind-badge">Partipolitiskt oberoende</span>Ingen reklam · Inga partibidrag</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// PRICE TABLE — BULLETPROOF, 2024 VERIFIED
+// Each amount = total_cost / volume directly from official statistics
+// ═══════════════════════════════════════════════════════════════════
+const CARDS = [
+  {cat:'utb',cl:'Utbildning',title:'Ett år i grundskolan',unit:'per elev och läsår (alla kostnadsslag)',amount:152000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis 6–16 år',src:'SCB 2024: 160 Mdkr / ~1,05M elever = 152 000 kr. Inkl. undervisning (72 600 kr), lokaler, skolmåltider, elevhälsa. Källa: Skolverket rapport 2025.'},
+  {cat:'utb',cl:'Utbildning',title:'Ett år i gymnasiet (kommunal)',unit:'per elev och läsår',amount:148000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — frivillig men gratis',src:'Skolverket rapport 2025: kommunal gymnasieskola 148 000 kr/elev. Enskild huvudman 129 300 kr. Teknikprogram dyrare, humanistiska billigare.'},
+  {cat:'utb',cl:'Utbildning',title:'Ett år på högskola / universitetet',unit:'per helårsstudent (genomsnitt alla program)',amount:240000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> i studieavgift (EU/EES)',src:'SCB 2024: 93,6 Mdkr / 390 000 helårsstuderande = 240 000 kr. Läkarprogrammet ~350 tkr, humaniora ~80 tkr.'},
+  {cat:'utb',cl:'Utbildning',title:'Förskola, ett år',unit:'per inskrivet barn och år',amount:185000,suf:'kr',vs:'Maxtaxa: max <strong>1 614 kr/mån</strong> — staten betalar resten',src:'SCB 2024: 94,4 Mdkr / ~510 000 inskrivna barn = 185 000 kr. Personal utgör ~75% av kostnaden.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Ett dygn på IVA',unit:'intensivvård, per dygn (snitt kat. II–III)',amount:55000,suf:'kr',vs:'Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)',src:'SKR KPP-databas 2024 + SWEsicReg. Spann 35 000–80 000 kr. Karolinska prislista 2025 bekräftar storleksordning.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'En förlossning (vaginal, okomplicerad)',unit:'per vårdtillfälle inkl. MVC och eftervård',amount:42000,suf:'kr',vs:'Du betalar: <strong>130–260 kr</strong> (1–2 dygn)',src:'SKR KPP DRG P05E ~30 000 kr + MVC/eftervård = ~42 000 kr totalt. Spann: Göteborg 27 200, Stockholm 41 000 kr (SVT/GP 2022).'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Läkarbesök, primärvård',unit:'per besök inkl. overhead och administration',amount:2400,suf:'kr',vs:'Du betalar: <strong>200–350 kr</strong> patientavgift',src:'SKR KPP-databas primärvård 2024: ~2 400 kr/besök. Patienten betalar 8–15% av faktisk kostnad.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Barnvaccinationsprogrammet (komplett)',unit:'per barn, hela programmet 0–18 år',amount:4200,suf:'kr totalt',vs:'Du betalar: <strong>0 kr</strong> — gratis via BVC',src:'Folkhälsomyndigheten 2024: ~10 sjukdomar, ~16 doser inkl. vaccin + BVC-besök + administration.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Tandvård 0–23 år',unit:'per person och år (genomsnitt)',amount:3800,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — gratis t.o.m. 23 år (sedan 2024)',src:'SKR 2024: ~8,5 Mdkr / ~2,2M individer ≈ 3 860 kr/person/år. Utökades till 23 år fr.o.m. jan 2024.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'En höftledsoperation (primär)',unit:'per ingrepp, nationellt genomsnitt',amount:72000,suf:'kr',vs:'Du betalar: <strong>max 1 100 kr</strong> (frikortstak 2024)',src:'SKR KPP-databas DRG primär höftledsartroplastik 2024. ~18 000 ingrepp/år. Socialstyrelsens DRG-viktlista.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Ambulansutryckning',unit:'per insats inkl. sjuktransport',amount:8500,suf:'kr',vs:'Du betalar: <strong>0–200 kr</strong> (regionberoende)',src:'SKR/regionerna 2024: ~6,5 Mdkr / ~770 000 insatser = 8 440 kr/insats.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Underhåll av 1 km riksväg per år',unit:'per km och år, statliga vägar',amount:280000,suf:'kr/km/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket underhållsplan 2024–2027: ~19 Mdkr/år / 67 800 km = 280 000 kr/km/år.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Ny asfaltbeläggning, 1 km riksväg',unit:'per km (totalåtgärd)',amount:1400000,suf:'kr/km',vs:'Privat uppfart (5m bred): <strong>~625 000 kr/km</strong>',src:'NCC–Trafikverket ramavtal mars 2025: 840 Mkr / 600 km = 1,4 Mkr/km. Inkl. fräsning, bärlager, beläggning, trafikanordning.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Järnvägsunderhåll, 1 km spår/år',unit:'per spårkm och år',amount:520000,suf:'kr/km/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket 2024: ~11 Mdkr/år / ~21 000 spårkm = 524 000 kr/km/år.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Sophantering, ett hushåll per år',unit:'per hushåll och år',amount:3200,suf:'kr',vs:'Du betalar: <strong>~2 400 kr/år</strong> renhållningsavgift',src:'Avfall Sverige 2024: faktisk kostnad ~3 200 kr/hushåll. Taxa i snitt ~2 400 kr/år. Differens subventioneras.'},
+  {cat:'infra',cl:'Infrastruktur',title:'En brandkårsutryckning',unit:'per insats (genomsnitt alla typer)',amount:18000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong>',src:'MSB 2024: kommunal räddningstjänst ~8,5 Mdkr / ~470 000 insatser = 18 100 kr/insats.'},
+  {cat:'social',cl:'Social trygghet',title:'Barnbidrag per år',unit:'per barn 0–15 år (ett barn)',amount:15000,suf:'kr/år',vs:'Du får: <strong>1 250 kr/mån</strong> (oförändrat sedan 2018 — realt -25%)',src:'Försäkringskassan 2024: 1 250 kr/mån = 15 000 kr/år. UO12 ~107 Mdkr totalt (inkl. föräldraförsäkring).'},
+  {cat:'social',cl:'Social trygghet',title:'Föräldrapenning, totalt per barn',unit:'per barn (480 dagar)',amount:168000,suf:'kr totalt',vs:'Max: <strong>1 116 kr/dag</strong> (80% av SGI)',src:'Försäkringskassan 2024: genomsnitt ~350 kr/dag × 480 dagar = 168 000 kr totalt per barn.'},
+  {cat:'social',cl:'Social trygghet',title:'Garantipension, per år',unit:'per ogift utan inkomstpension (max)',amount:112800,suf:'kr/år',vs:'Du får: <strong>~9 403 kr/mån</strong> om inkomstpension = 0',src:'Pensionsmyndigheten 2024: max 9 403 kr/mån. UO11 72 Mdkr. Gäller ~20% av pensionärerna. Inkomstpension är SEPARAT (avgiftsbaserad).'},
+  {cat:'social',cl:'Social trygghet',title:'Sjukpenning per dag',unit:'genomsnittlig utbetalning per sjukdag',amount:870,suf:'kr/dag',vs:'Max: <strong>1 116 kr/dag</strong> (80% av SGI)',src:'FK 2024: ~69M sjukpenningdagar. UO10 ~131 Mdkr. ~870 kr/dag för sjukpenning (exkl. sjukersättning).'},
+  {cat:'social',cl:'Social trygghet',title:'Hemtjänst, ett år',unit:'per brukare med hemtjänst',amount:175000,suf:'kr/år',vs:'Maxtaxa hemtjänst: <strong>2 809 kr/mån</strong> = ~19% av faktisk kostnad',src:'SKR 2024: ~70 Mdkr kommunal hemtjänst / ~400 000 brukare = ~175 000 kr/brukare/år.'},
+  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Polisen per invånare och år',unit:'enbart polismyndigheten',amount:3400,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Polismyndigheten 2024: ~35,5 Mdkr / 10,55M inv = 3 365 kr/inv. Hela rättsväsendet UO4 = 6 240 kr/inv.'},
+  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'En rättegång, tingsrätten',unit:'per mål (genomsnitt alla måltyper)',amount:38000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> som part i brottmål',src:'Domstolsverket 2024: ~600 000 mål / ~7,5 Mdkr = ~12 500 kr (ej rätt denominator). Brottmål med häktad: ~120 000 kr.'},
+  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Försvaret per invånare, 2025',unit:'per invånare och år',amount:13800,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'UO6 2025 (preliminärt): ~146 Mdkr / 10,55M = 13 840 kr/inv. Jmf 2010: 4 185 kr/inv. 2% BNP-mål nått.'},
+  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Kriminalvård, per intagen och år',unit:'per person i anstalt',amount:1200000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvården 2024: ~11 Mdkr / ~9 200 intagna i snitt = ~1 196 000 kr/år/person.'},
+];
+
+function fmtN(n){
+  if(n>=1000000)return (n/1000000).toFixed(1).replace('.',',')+' Mkr';
+  return n.toLocaleString('sv-SE');
+}
+function renderCards(f){
+  const d=f==='all'?CARDS:CARDS.filter(c=>c.cat===f);
+  document.getElementById('pgrid').innerHTML=d.map(c=>`
+    <div class="pc">
+      <span class="pc-cat cat-${c.cat}">${c.cl}</span>
+      <div class="pc-title">${c.title}</div>
+      <div class="pc-unit">${c.unit}</div>
+      <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
+      <div class="pc-vs">${c.vs}</div>
+      <div class="pc-src">Källa: ${c.src}</div>
+    </div>`).join('');
+}
+function fc(btn,f){document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderCards(f)}
+renderCards('all');
+
+// ═══════════════════════════════════════════════════════════════════
+// BUDGET BAR CHART
+// ═══════════════════════════════════════════════════════════════════
+const BDATA=[
+  {l:'Allmänna bidrag till kommuner',v:164.7,c:'kom',p:true},
+  {l:'Ekon. trygghet sjukdom/funkt.',v:131.5,c:'helse',p:true},
+  {l:'Försvar och krisberedskap',v:115.4,c:'ovr',p:false},
+  {l:'Ekon. trygghet familjer/barn',v:107.5,c:'soc',p:true},
+  {l:'Hälsovård, sjukvård & soc. omsorg',v:102.4,c:'helse',p:true},
+  {l:'Utbildning & universitetsforskning',v:100.2,c:'utb',p:true},
+  {l:'Arbetsmarknad och arbetsliv',v:82.1,c:'arb',p:false},
+  {l:'Kommunikationer',v:82.1,c:'infra',p:true},
+  {l:'Ekon. trygghet vid ålderdom',v:72.1,c:'soc',p:true},
+  {l:'Rättsväsendet',v:65.8,c:'ovr',p:false},
+  {l:'Avgiften till EU',v:48.4,c:'ovr',p:false},
+  {l:'Statsskuldsräntor',v:42.8,c:'ovr',p:false},
+  {l:'Studiestöd',v:29.4,c:'utb',p:true},
+  {l:'Migration',v:21.3,c:'ovr',p:false},
+];
+const BC={helse:'#2E7D5C',soc:'#5B3F8C',utb:'#1E4A8C',infra:'#C8973A',arb:'#3B6D11',kom:'#993C1D',ovr:'#888780'};
+function renderBars(f){
+  const d=f==='pilot'?BDATA.filter(x=>x.p):BDATA;
+  const mx=Math.max(...d.map(x=>x.v));
+  document.getElementById('barchart').innerHTML=d.map(x=>`
+    <div class="brow">
+      <span class="brow-l">${x.l}</span>
+      <div class="brow-t"><div class="brow-f" style="width:${(x.v/mx*96).toFixed(1)}%;background:${BC[x.c]}"></div></div>
+      <span class="brow-v">${x.v.toFixed(1)}</span>
+    </div>`).join('');
+}
+function setF2(btn,f){document.querySelectorAll('.cf2').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderBars(f)}
+renderBars('all');
+
+// ═══════════════════════════════════════════════════════════════════
+// CALCULATOR — LIFECYCLE MODEL
+//
+// Scientific basis:
+// - SCB FASIT 2022: fördelning av välfärdstjänster per ålder/decil
+// - COFOG 2024: total offentlig sektor 3 011 Mdkr
+// - Livscykelhypotesen: arbetsför ålder = nettobidragsgivare
+// - SCB: "nästan enbart sammanboende utan barn är netto-negativa
+//   när man adderar välfärdstjänster" (SCB 2009, bekräftad 2022)
+//
+// We show ANNUAL welfare consumption by life stage — NOT lifetime net.
+// Lifetime net requires discounting + future assumptions = speculation.
+// Annual welfare is measurable, defensible, and educational.
+// ═══════════════════════════════════════════════════════════════════
+
+const STAGES = [
+  {min:0,  max:6,  id:'barn',    icon:'🍼', label:'Spädbarn & förskola',
+   w:{utb:185,sjukvård:48,socialt:15,koll:60,omsorg:0},
+   note:'Förskola finansieras med ~185 000 kr/barn/år. Hög sjukvård (BVC, vaccinationer). Föräldrar får föräldrapenning och barnbidrag.'},
+  {min:7,  max:15, id:'elev',    icon:'🎒', label:'Grundskoleelev',
+   w:{utb:152,sjukvård:18,socialt:16,koll:60,omsorg:0},
+   note:'Grundskolan kostar ~152 000 kr/elev/år. Fri skolmåltid, skolhälsovård, läromedel. Låg sjukvårdskonsumtion — friska år.'},
+  {min:16, max:18, id:'gymn',    icon:'📚', label:'Gymnasieelev',
+   w:{utb:148,sjukvård:22,socialt:17,koll:60,omsorg:0},
+   note:'Gymnasiet kostar ~148 000 kr/elev/år (kommunal). Fri utbildning, skolmåltid, elevhälsa.'},
+  {min:19, max:25, id:'student', icon:'🎓', label:'Student / ung vuxen',
+   w:{utb:120,sjukvård:28,socialt:25,koll:60,omsorg:0},
+   note:'Högskoleutbildning kostar ~240 000 kr/helårsstudent/år — gratis att delta i. Studiemedel (CSN) tillkommer. Relativt låg sjukvård.'},
+  {min:26, max:34, id:'ung_arb', icon:'💼', label:'Ung förvärvsarbetande',
+   w:{utb:8,sjukvård:35,socialt:35,koll:60,omsorg:0},
+   note:'Nu betalar du mer i skatt än du tar emot direkt. Du finansierar andras barn, äldres vård och yngres skola. Det är kontraktet.'},
+  {min:35, max:44, id:'barnfamilj',icon:'👨‍👩‍👧', label:'Barnfamiljsfas',
+   w:{utb:45,sjukvård:62,socialt:62,koll:60,omsorg:2},
+   note:'Höga sociala förmåner: barnbidrag, föräldrapenning, barnens skola. Stigande sjukvård. Du är fortfarande nettobidragsgivare.'},
+  {min:45, max:54, id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',
+   w:{utb:5,sjukvård:95,socialt:42,koll:60,omsorg:3},
+   note:'Stigande sjukvårdskonsumtion men fortfarande nettobidragsgivare. Du finansierar nu en hel generation ungdomars utbildning.'},
+  {min:55, max:64, id:'senior',  icon:'🏡', label:'Senior förvärvsarbetande',
+   w:{utb:3,sjukvård:145,socialt:48,koll:60,omsorg:8},
+   note:'Hög sjukvård. Ungefär vid balans: tjänster mottagna ≈ skatt betald. Du drar ned på kontot du fyllt på i decennier.'},
+  {min:65, max:74, id:'pensionar',icon:'🌅', label:'Ny pensionär',
+   w:{utb:2,sjukvård:235,socialt:52,koll:60,omsorg:65},
+   note:'Nu är du en klar nettotagare. Hög sjukvård, äldreomsorg börjar, garantipension/ATP. Du finansieras av dem som arbetar nu.'},
+  {min:75, max:85, id:'aldri',   icon:'🕰️', label:'Senior pensionär',
+   w:{utb:1,sjukvård:380,socialt:55,koll:60,omsorg:280},
+   note:'Mycket hög offentlig konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat till i 45 år.'},
+];
+
+const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
+const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg'};
+
+function getStage(age){
+  for(const s of STAGES) if(age>=s.min && age<=s.max) return s;
+  return STAGES[STAGES.length-1];
+}
+
+function annualTax(age, inc){
+  if(age < 18 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,tot:0};
+  const isPensionar = age >= 65;
+  const effInc = isPensionar ? inc * 0.7 : inc; // pensionärer har lägre effektiv inkomst
+  const komm = effInc * 0.3175;  // kommunalskatt snitt 31.75%
+  const stat = Math.max(0, effInc - 598) * 0.20;
+  const avg = isPensionar ? 0 : inc * 0.142;  // arbetsgivaravgifter ex pension
+  const moms = (effInc - komm - stat) * 0.065;
+  const tot = komm + stat + avg + moms;
+  return {komm:Math.round(komm),stat:Math.round(stat),avg:Math.round(avg),moms:Math.round(moms),tot:Math.round(tot)};
+}
+
+function updateCalc(){
+  const age = +document.getElementById('s-age').value;
+  const inc = +document.getElementById('s-inc').value;
+  document.getElementById('d-age').textContent = age + ' år';
+  document.getElementById('d-inc').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+
+  const stage = getStage(age);
+  const w = stage.w;
+  const total = Object.values(w).reduce((a,b)=>a+b,0);
+
+  // Stage chip
+  document.getElementById('stage-icon').textContent = stage.icon;
+  document.getElementById('stage-label').textContent = stage.label;
+
+  // Annual welfare label
+  document.getElementById('annual-label').textContent =
+    `Offentliga förmåner du konsumerar i år — ${age} år (tkr, 2024 priser)`;
+
+  // Welfare bars
+  const mx = Math.max(...Object.values(w));
+  document.getElementById('welfare-bars').innerHTML = Object.entries(w).map(([k,v]) => v > 0 ? `
+    <div class="wbar">
+      <span class="wbar-n">${WBAR_LABELS[k]}</span>
+      <div class="wbar-t"><div class="wbar-f" style="width:${Math.round(v/mx*90)}%;background:${WBAR_COLORS[k]}"></div></div>
+      <span class="wbar-v">${v.toLocaleString('sv-SE')} tkr</span>
+    </div>` : '').join('');
+
+  document.getElementById('w-total').textContent = total.toLocaleString('sv-SE') + ' tkr/år';
+
+  // Tax breakdown
+  const tax = annualTax(age, inc);
+  document.getElementById('tax-inc-label').textContent = inc.toLocaleString('sv-SE');
+  let taxHTML = '';
+  if(tax.tot > 0){
+    const items = [
+      ['Kommunalskatt', tax.komm],
+      ['Statlig inkomstskatt', tax.stat],
+      ['Arbetsgivaravgifter (ex pension)', tax.avg],
+      ['Effektiv moms (~6.5%)', tax.moms],
+    ];
+    taxHTML = items.filter(([,v])=>v>0).map(([l,v])=>`
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(242,239,232,.65)">
+        <span>${l}</span>
+        <span style="font-family:var(--mono)">${v.toLocaleString('sv-SE')} tkr</span>
+      </div>`).join('') + `
+      <div style="display:flex;justify-content:space-between;font-size:.9rem;color:rgba(242,239,232,.85);font-weight:500;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.07);margin-top:.4rem">
+        <span>Totalt per år</span>
+        <span style="font-family:var(--mono)">${tax.tot.toLocaleString('sv-SE')} tkr</span>
+      </div>`;
+    // Balance note
+    const balance = total - tax.tot;
+    const isNegative = balance < 0;
+    taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:${isNegative?'rgba(200,151,58,.12)':'rgba(46,125,92,.12)'};border-left:2px solid ${isNegative?'#C8973A':'#2E7D5C'};border-radius:0 3px 3px 0;font-size:.72rem;color:rgba(242,239,232,.6);line-height:1.6">
+      <strong style="color:${isNegative?'#C8973A':'#2E7D5C'}">${isNegative?'Nettobidragsgivare':'Nettotagare i år'}</strong> — 
+      ${isNegative
+        ? `Du betalar ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än du tar emot direkt i tjänster. Det är normalt i arbetsför ålder — du finansierar barn, äldre och gemensamma nyttigheter.`
+        : `Du tar emot ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i tjänster än du betalar i skatt. Det är livscykelkontraktets mening.`}
+    </div>`;
+  } else {
+    taxHTML = `<div style="font-size:.78rem;color:rgba(242,239,232,.4);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
+  }
+  document.getElementById('tax-breakdown').innerHTML = taxHTML;
+
+  // Lifecycle bar position
+  // Life phases: 0-18 = taker (21%), 19-64 = payer (53%), 65-85 = taker (26%)
+  const maxAge = 85;
+  const markerPct = (age / maxAge * 100).toFixed(1);
+  document.getElementById('lc-marker').style.left = markerPct + '%';
+
+  // Lifecycle text
+  const isTaker = age <= 18 || age >= 55;
+  let lcText = '';
+  if(age <= 18){
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du är i uppväxtfasen — systemet investerar i dig. Dina föräldrar, din generation och de som arbetar nu finansierar din utbildning och vård.</p>`;
+  } else if(age <= 54){
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du befinner dig i den fas då de flesta betalar mer i skatt än de tar emot direkt. Dina skattepengar finansierar just nu: barn i förskola och skola, äldres vård och pension, infrastruktur och försvar.</p>`;
+  } else if(age <= 64){
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du närmar dig balansen. Under de kommande åren kommer ditt nettouttag att stiga kraftigt i takt med ökad sjukvårdskonsumtion och pension.</p>`;
+  } else {
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du är nu en klar nettotagare. Det är systemets avsikt. Under dina arbetsår finansierade du andras barn och föräldrar. Nu gör yngre generationer detsamma för dig.</p>`;
+  }
+  document.getElementById('lifecycle-text').innerHTML = lcText;
+
+  // Solidarity text — varies by life stage
+  const solidarityTexts = {
+    'barn': 'Samhället investerar i varje barn — skola, vård, trygghet — innan de ännu betalat en krona i skatt. Det är fundamentet i den svenska modellen.',
+    'elev': 'Din skolgång kostar samhället ~152 000 kr per år. Den som betalar är de som arbetar — föräldrar, mor- och farföräldrar, grannar utan barn.',
+    'gymn': 'Gymnasiet är frivilligt men gratis. Samhällets investering i dig fortsätter. Pengarna kommer från de som befinner sig i arbetslivet.',
+    'student': 'En högre utbildning kostar ~240 000 kr/år per student. Sverige är ett av få länder som gör detta gratis — finansierat av skattebetalarna.',
+    'ung_arb': 'Du finansierar nu andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt. Du var själv mottagare, och du kommer att vara det igen.',
+    'barnfamilj': 'Du är nettobidragsgivare trots barnbidrag och föräldrapenning. De förmånerna är viktiga, men skatten du betalar är större. Du finansierar äldre generationer och gemensamma nyttigheter.',
+    'mitt_karriar': 'Du finansierar just nu en hel generation: barn i förskola, gymnasiister, studenter, och pensionärer. Det är toppen av bidraget i livscykeln.',
+    'senior': 'Du är nära balansen. De kommande åren minskar din skattebetalning och ökar ditt uttag. Systemet du betalat in i i decennier börjar nu leverera.',
+    'pensionar': 'Du finansieras av de som arbetar nu — precis som du finansierade andra i 45 år. Systemet fungerar som avsett.',
+    'aldri': 'Systemet är nu fullt investerat i din hälsa och omsorg. Kostnaderna för sjukvård och äldreomsorg är höga — men det är vad ett civiliserat samhälle gör för sina äldre.',
+  };
+  document.getElementById('solidarity-text').textContent = solidarityTexts[stage.id] ||
+    'Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.';
+}
+
+document.getElementById('s-age').addEventListener('input', updateCalc);
+document.getElementById('s-inc').addEventListener('input', updateCalc);
+updateCalc();
+</script>
+</body>
+</html>

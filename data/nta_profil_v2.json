@@ -1,0 +1,375 @@
+{
+  "basår": 2024,
+  "befolkning": 10550000,
+  "per_capita_tkr": {
+    "sjukvård": 56.2,
+    "sjukforsakr": 12.5,
+    "pension_g": 6.8,
+    "familj": 10.2,
+    "studiemedel": 2.8,
+    "hogskola": 9.5,
+    "skola_k": 35.1,
+    "infra": 7.8,
+    "kom_bidrag": 15.6,
+    "aldreomsorg": 13.7
+  },
+  "vikter": {
+    "sjukvård": [
+      0.2401,
+      0.3002,
+      0.5317,
+      1.012,
+      2.916
+    ],
+    "sjukforsakr": [
+      0.0862,
+      0.5172,
+      1.2069,
+      2.4138,
+      0.7759
+    ],
+    "pension_g": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      5.0
+    ],
+    "familj": [
+      0.1316,
+      1.1842,
+      2.3684,
+      1.1842,
+      0.1316
+    ],
+    "studiemedel": [
+      2.2523,
+      2.5225,
+      0.1802,
+      0.045,
+      0.0
+    ],
+    "hogskola": [
+      1.6216,
+      2.1622,
+      0.6757,
+      0.4054,
+      0.1351
+    ],
+    "skola_k": [
+      2.7559,
+      0.6299,
+      0.9449,
+      0.6299,
+      0.0394
+    ],
+    "infra": [
+      0.7609,
+      0.9783,
+      1.1957,
+      1.1957,
+      0.8696
+    ],
+    "kom_bidrag": [
+      0.5155,
+      0.7216,
+      0.9278,
+      0.9794,
+      1.8557
+    ],
+    "aldreomsorg": [
+      0.0,
+      0.0,
+      0.0,
+      0.0549,
+      4.9451
+    ]
+  },
+  "poster": [
+    {
+      "namn": "Sjukvård (stat + region)",
+      "key": "sjukvård",
+      "källa": "UO9 + SKR regionsjukvård"
+    },
+    {
+      "namn": "Sjukförsäkring",
+      "key": "sjukforsakr",
+      "källa": "UO10 ekonomisk trygghet sjukdom"
+    },
+    {
+      "namn": "Barnbidrag & föräldraförs.",
+      "key": "familj",
+      "källa": "UO12 familjer och barn"
+    },
+    {
+      "namn": "Studiemedel (CSN)",
+      "key": "studiemedel",
+      "källa": "UO15 studiestöd"
+    },
+    {
+      "namn": "Högskoleutbildning",
+      "key": "hogskola",
+      "källa": "UO16 utbildning & forskning"
+    },
+    {
+      "namn": "Grundskola & gymnasium",
+      "key": "skola_k",
+      "källa": "SKR kommunal skola"
+    },
+    {
+      "namn": "Vägar & järnvägar",
+      "key": "infra",
+      "källa": "UO22 kommunikationer"
+    },
+    {
+      "namn": "Kommunal service",
+      "key": "kom_bidrag",
+      "källa": "UO25 + SKR kommunal service"
+    },
+    {
+      "namn": "Äldreomsorg",
+      "key": "aldreomsorg",
+      "källa": "SKR kommunal äldreomsorg"
+    },
+    {
+      "namn": "Garantipension",
+      "key": "pension_g",
+      "källa": "UO11 ekonomisk trygghet ålderdom"
+    }
+  ],
+  "age_profiles": [
+    {
+      "label": "18 år",
+      "age": 18,
+      "årsförmåner": {
+        "Sjukvård (stat + region)": 13.5,
+        "Sjukförsäkring": 1.1,
+        "Barnbidrag & föräldraförs.": 1.3,
+        "Studiemedel (CSN)": 6.3,
+        "Högskoleutbildning": 15.4,
+        "Grundskola & gymnasium": 96.7,
+        "Vägar & järnvägar": 5.9,
+        "Kommunal service": 8.0,
+        "Äldreomsorg": 0.0,
+        "Garantipension": 0.0,
+        "TOTALT": 148.2
+      },
+      "livstid_tkr": 2556,
+      "skatt_500tkr": 0
+    },
+    {
+      "label": "25 år",
+      "age": 25,
+      "årsförmåner": {
+        "Sjukvård (stat + region)": 16.9,
+        "Sjukförsäkring": 6.5,
+        "Barnbidrag & föräldraförs.": 12.1,
+        "Studiemedel (CSN)": 7.1,
+        "Högskoleutbildning": 20.5,
+        "Grundskola & gymnasium": 22.1,
+        "Vägar & järnvägar": 7.6,
+        "Kommunal service": 11.3,
+        "Äldreomsorg": 0.0,
+        "Garantipension": 0.0,
+        "TOTALT": 104.1
+      },
+      "livstid_tkr": 3196,
+      "skatt_500tkr": 1696
+    },
+    {
+      "label": "35 år",
+      "age": 35,
+      "årsförmåner": {
+        "Sjukvård (stat + region)": 29.9,
+        "Sjukförsäkring": 15.1,
+        "Barnbidrag & föräldraförs.": 24.2,
+        "Studiemedel (CSN)": 0.5,
+        "Högskoleutbildning": 6.4,
+        "Grundskola & gymnasium": 33.2,
+        "Vägar & järnvägar": 9.3,
+        "Kommunal service": 14.5,
+        "Äldreomsorg": 0.0,
+        "Garantipension": 0.0,
+        "TOTALT": 133.1
+      },
+      "livstid_tkr": 4090,
+      "skatt_500tkr": 5088
+    },
+    {
+      "label": "45 år",
+      "age": 45,
+      "årsförmåner": {
+        "Sjukvård (stat + region)": 56.9,
+        "Sjukförsäkring": 30.2,
+        "Barnbidrag & föräldraförs.": 12.1,
+        "Studiemedel (CSN)": 0.1,
+        "Högskoleutbildning": 3.9,
+        "Grundskola & gymnasium": 22.1,
+        "Vägar & järnvägar": 9.3,
+        "Kommunal service": 15.3,
+        "Äldreomsorg": 0.8,
+        "Garantipension": 0.0,
+        "TOTALT": 150.7
+      },
+      "livstid_tkr": 4959,
+      "skatt_500tkr": 8480
+    },
+    {
+      "label": "65 år",
+      "age": 65,
+      "årsförmåner": {
+        "Sjukvård (stat + region)": 163.9,
+        "Sjukförsäkring": 9.7,
+        "Barnbidrag & föräldraförs.": 1.3,
+        "Studiemedel (CSN)": 0.0,
+        "Högskoleutbildning": 1.3,
+        "Grundskola & gymnasium": 1.4,
+        "Vägar & järnvägar": 6.8,
+        "Kommunal service": 28.9,
+        "Äldreomsorg": 67.7,
+        "Garantipension": 34.0,
+        "TOTALT": 315.0
+      },
+      "livstid_tkr": 7433,
+      "skatt_500tkr": 15264
+    }
+  ],
+  "livsfaser": [
+    {
+      "label": "Spädbarn & förskola",
+      "start": 0,
+      "end": 5,
+      "årsvals": {
+        "sjukvård": 70,
+        "sjukforsakr": 0,
+        "familj": 45,
+        "studiemedel": 0,
+        "hogskola": 0,
+        "skola_k": 0,
+        "infra": 4,
+        "kom_bidrag": 12,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Grundskola",
+      "start": 6,
+      "end": 15,
+      "årsvals": {
+        "sjukvård": 18,
+        "sjukforsakr": 0,
+        "familj": 15,
+        "studiemedel": 0,
+        "hogskola": 0,
+        "skola_k": 95,
+        "infra": 5,
+        "kom_bidrag": 14,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Gymnasium",
+      "start": 16,
+      "end": 19,
+      "årsvals": {
+        "sjukvård": 12,
+        "sjukforsakr": 0,
+        "familj": 8,
+        "studiemedel": 4,
+        "hogskola": 0,
+        "skola_k": 58,
+        "infra": 6,
+        "kom_bidrag": 12,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Högskolestudier",
+      "start": 20,
+      "end": 24,
+      "årsvals": {
+        "sjukvård": 14,
+        "sjukforsakr": 3,
+        "familj": 2,
+        "studiemedel": 18,
+        "hogskola": 34,
+        "skola_k": 0,
+        "infra": 7,
+        "kom_bidrag": 12,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Barnfamilj-fas",
+      "start": 25,
+      "end": 34,
+      "årsvals": {
+        "sjukvård": 20,
+        "sjukforsakr": 12,
+        "familj": 28,
+        "studiemedel": 1,
+        "hogskola": 8,
+        "skola_k": 0,
+        "infra": 8,
+        "kom_bidrag": 13,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Mitt-karriär",
+      "start": 35,
+      "end": 44,
+      "årsvals": {
+        "sjukvård": 35,
+        "sjukforsakr": 14,
+        "familj": 10,
+        "studiemedel": 0,
+        "hogskola": 2,
+        "skola_k": 0,
+        "infra": 9,
+        "kom_bidrag": 14,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Senior (45–64)",
+      "start": 45,
+      "end": 64,
+      "årsvals": {
+        "sjukvård": 67,
+        "sjukforsakr": 21,
+        "familj": 2,
+        "studiemedel": 0,
+        "hogskola": 0,
+        "skola_k": 0,
+        "infra": 8,
+        "kom_bidrag": 15,
+        "aldreomsorg": 0,
+        "pension_g": 0
+      }
+    },
+    {
+      "label": "Pensionär (65–80)",
+      "start": 65,
+      "end": 80,
+      "årsvals": {
+        "sjukvård": 195,
+        "sjukforsakr": 8,
+        "familj": 0,
+        "studiemedel": 0,
+        "hogskola": 0,
+        "skola_k": 0,
+        "infra": 7,
+        "kom_bidrag": 18,
+        "aldreomsorg": 65,
+        "pension_g": 34
+      }
+    }
+  ]
+}
