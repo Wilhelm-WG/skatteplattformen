@@ -4,8 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Skatteplattformen — Vad fan får vi för pengarna?</title>
+<meta name="description" content="Oberoende, politiskt neutral faktasajt om svenska skatter och välfärd. Se exakt vad du betalar, vad du får tillbaka, och hur Sverige jämförs med OECD. Data från SCB, OECD, SKR.">
+<meta name="keywords" content="skatt, Sverige, välfärd, statsbudget, OECD, skattekvitto, transparens, 2025, val 2026">
+<meta name="author" content="Skatteplattformen">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://wilhelm-wg.github.io/skatteplattformen/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
+<meta property="og:description" content="Oberoende faktasajt: se exakt vart dina skattepengar går, jämfört med Norden och OECD. 3 011 Mdkr i offentlig sektor — fördelat per tjänst och livsfas.">
+<meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
+<meta property="og:site_name" content="Skatteplattformen">
+<meta property="og:locale" content="sv_SE">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
+<meta name="twitter:description" content="Se exakt vart dina skattepengar går. Oberoende, politiskt neutral. Data från SCB, OECD, SKR.">
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Skatteplattformen",
+  "url": "https://wilhelm-wg.github.io/skatteplattformen/",
+  "description": "Oberoende, politiskt neutral faktasajt om svenska skatter och välfärd inför valet 2026.",
+  "applicationCategory": "GovernmentApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "sv",
+  "isAccessibleForFree": true,
+  "creator": {
+    "@type": "Organization",
+    "name": "Skatteplattformen"
+  },
+  "about": [
+    {"@type": "Thing", "name": "Skatter i Sverige"},
+    {"@type": "Thing", "name": "Välfärd"},
+    {"@type": "Thing", "name": "Statsbudgeten 2025"}
+  ]
+}
+</script>
+<!-- Performance: preconnect + font swap -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Theme color for mobile browsers -->
+<meta name="theme-color" content="#F2EFE8">
 <style>
 :root{
   --bg:#F2EFE8;--bg2:#E8E4DB;--bg3:#DEDAD0;
@@ -22,7 +65,14 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+/* A11y: focus visible */
+:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:2px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+/* A11y: skip link */
+.skip-link{position:absolute;top:-100%;left:1rem;background:var(--green);color:#fff;padding:.5rem 1rem;border-radius:0 0 4px 4px;z-index:9999;font-size:.82rem;text-decoration:none;transition:top .15s}
+.skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
 /* NAV */
@@ -35,6 +85,8 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .nav-links a:hover{color:var(--ink)}
 .nav-pill{font-size:.72rem;font-weight:500;padding:6px 16px;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .15s;text-decoration:none}
 .nav-pill:hover{background:var(--ink);color:var(--bg)}
+.nav-hamburger{display:none;background:none;border:1px solid var(--border);border-radius:3px;padding:6px 8px;cursor:pointer;color:var(--ink);font-size:1.1rem;line-height:1}
+.nav-links.open{display:flex;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.5rem;gap:.75rem;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 /* HERO */
 .hero{padding:80px 0 64px}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -58,6 +110,17 @@ h1 em{font-style:italic;color:var(--green)}
 .t-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;letter-spacing:-.02em;line-height:1}
 .t-num sub{font-size:.72rem;color:rgba(255,255,255,.35)}
 .t-lbl{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.3}
+/* VISSTE DU ATT — hero fact ticker */
+.vda-strip{background:var(--ink);padding:18px 0;overflow:hidden;position:relative}
+.vda-inner{display:flex;align-items:center;gap:1.2rem;max-width:1080px;margin:0 auto;padding:0 2rem}
+.vda-badge{flex-shrink:0;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(200,151,58,.3);padding:4px 12px;border-radius:2px;white-space:nowrap}
+.vda-fact{color:rgba(255,255,255,.88);font-size:.88rem;font-weight:300;line-height:1.5;min-height:1.5em;position:relative}
+.vda-fact span{display:inline;animation:vdaFade 0.5s ease}
+.vda-fact strong{color:#fff;font-weight:500}
+.vda-dots{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
+.vda-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s}
+.vda-dot.on{background:var(--amber)}
+@keyframes vdaFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 /* SECTIONS */
 .section{padding:72px 0}
 .s-eye{font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:.55rem}
@@ -85,6 +148,37 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .pc-vs{margin-top:.5rem;font-size:.72rem;color:var(--ink3);line-height:1.5}
 .pc-vs strong{color:var(--green);font-weight:500}
 .pc-src{font-size:.6rem;color:var(--ink3);margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border);font-family:var(--mono)}
+.pc{cursor:pointer;position:relative}
+.pc::after{content:'Klicka för mer →';position:absolute;bottom:8px;right:12px;font-size:.58rem;color:var(--green);opacity:0;transition:opacity .2s}
+.pc:hover::after{opacity:1}
+/* DETAIL MODAL */
+.detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,26,22,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
+.detail-overlay.open{opacity:1;pointer-events:all}
+.detail-panel{position:fixed;top:0;right:0;bottom:0;width:min(560px,92vw);background:var(--bg);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,.12)}
+.detail-panel.open{transform:translateX(0)}
+.dp-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--ink2);transition:all .15s;z-index:1}
+.dp-close:hover{background:var(--bg2);color:var(--ink)}
+.dp-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border)}
+.dp-cat{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:.75rem}
+.dp-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;line-height:1.25}
+.dp-amount{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--green);margin-bottom:.15rem}
+.dp-unit{font-size:.76rem;color:var(--ink3)}
+.dp-body{padding:1.5rem 2rem 3rem}
+.dp-section{margin-bottom:1.75rem}
+.dp-section-title{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.65rem}
+.dp-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.dp-bar-label{font-size:.72rem;color:var(--ink2);min-width:100px;text-align:right}
+.dp-bar-track{flex:1;height:14px;background:var(--bg2);border-radius:2px;overflow:hidden}
+.dp-bar-fill{height:100%;border-radius:2px;background:var(--green);transition:width .5s ease}
+.dp-bar-val{font-family:var(--mono);font-size:.72rem;color:var(--ink2);min-width:55px}
+.dp-fact{padding:.75rem 1rem;background:var(--bg2);border-radius:4px;margin-bottom:.5rem;font-size:.8rem;color:var(--ink);line-height:1.6}
+.dp-fact strong{color:var(--green)}
+.dp-oecd-mini{display:grid;grid-template-columns:80px 1fr 50px;gap:8px;align-items:center;margin-bottom:4px}
+.dp-oecd-flag{font-size:.72rem;color:var(--ink2);text-align:right}
+.dp-oecd-bar{height:12px;background:var(--bg2);border-radius:2px;overflow:hidden}
+.dp-oecd-fill{height:100%;border-radius:2px}
+.dp-oecd-val{font-family:var(--mono);font-size:.68rem;color:var(--ink2)}
+.dp-source{font-size:.62rem;color:var(--ink3);font-family:var(--mono);line-height:1.5;margin-top:.5rem}
 /* ══ CALCULATOR — LIFECYCLE REDESIGN ══════════════════════════ */
 .calc-wrap{background:var(--ink);padding:72px 0}
 .calc-wrap .s-eye{color:var(--green2)}
@@ -152,6 +246,27 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .leg-i{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--ink2)}
 .leg-d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 /* METOD */
+/* FRAMTID */
+.framtid-section{padding:72px 0}
+.ft-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:1.5rem 0}
+.ft-tab{font-size:.72rem;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.ft-tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ft-panel{display:none}
+.ft-panel.on{display:block}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
+.ft-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:1.2rem}
+.ft-card-title{font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
+.ft-big{font-family:var(--mono);font-size:1.6rem;font-weight:500;color:var(--ink);line-height:1}
+.ft-big sub{font-size:.65rem;color:var(--ink3)}
+.ft-desc{font-size:.72rem;color:var(--ink2);line-height:1.6;margin-top:.5rem}
+.ft-bar-wrap{margin-top:1.5rem}
+.ft-bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
+.ft-bar-label{font-size:.7rem;color:var(--ink2);width:120px;flex-shrink:0}
+.ft-bar-track{flex:1;height:18px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.ft-bar-fill{height:100%;border-radius:2px;transition:width .4s}
+.ft-bar-val{font-size:.68rem;font-family:var(--mono);color:var(--ink);width:60px;text-align:right;flex-shrink:0}
+.ft-quote{margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg2);border-left:3px solid var(--amber);border-radius:0 3px 3px 0;font-size:.78rem;color:var(--ink2);line-height:1.7}
+.ft-source{font-size:.65rem;color:var(--ink3);margin-top:1rem;line-height:1.5}
 .metod-section{background:var(--bg2);padding:72px 0}
 .metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
 .step-list{display:flex;flex-direction:column;gap:1.35rem}
@@ -185,28 +300,97 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .fu{animation:fadeUp .55s ease both}
 .fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}.fu4{animation-delay:.42s}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.calc-layout{grid-template-columns:1fr}.metod-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}}
-@media(max-width:520px){.footer-grid{grid-template-columns:1fr}.brow{grid-template-columns:120px 1fr 60px}}
+/* ══ OECD COMPARISON ══════════════════════════════════ */
+.oecd-section{padding:72px 0;background:var(--bg2)}
+.oecd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2rem 0 1.5rem}
+.oecd-tab{font-size:.72rem;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.oecd-tab.on{background:var(--green);color:#fff;border-color:var(--green)}
+.oecd-panel{display:none}
+.oecd-panel.active{display:block}
+.oecd-card{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1.5rem;margin-bottom:1rem}
+.oecd-card-title{font-size:.88rem;font-weight:500;color:var(--ink);margin-bottom:.25rem}
+.oecd-card-sub{font-size:.7rem;color:var(--ink3);margin-bottom:1rem}
+.oecd-row{display:grid;grid-template-columns:90px 1fr 70px;gap:10px;align-items:center;margin-bottom:6px}
+.oecd-country{font-size:.74rem;color:var(--ink2);text-align:right}
+.oecd-bar-bg{height:20px;background:var(--bg2);border-radius:2px;overflow:hidden;position:relative}
+.oecd-bar-fill{height:100%;border-radius:2px;transition:width .6s ease}
+.oecd-bar-fill.se{background:var(--green)}
+.oecd-bar-fill.dk{background:#1E4A8C}
+.oecd-bar-fill.no{background:#C8973A}
+.oecd-bar-fill.fi{background:#5B3F8C}
+.oecd-bar-fill.avg{background:#888780}
+.oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
+.oecd-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
+.oecd-verdict{margin-top:.5rem;padding:.65rem .85rem;border-radius:4px;font-size:.76rem;line-height:1.6}
+.oecd-verdict.good{background:var(--green-ll);color:var(--green)}
+.oecd-verdict.mixed{background:var(--amber-l);color:#7A5A1A}
+.oecd-verdict.bad{background:var(--red-l);color:var(--red)}
+.oecd-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.oecd-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--ink2)}
+.oecd-leg-d{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .calc-layout{grid-template-columns:1fr}
+  .metod-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  nav .container{position:relative}
+  .oecd-row{grid-template-columns:70px 1fr 55px}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .s-title{font-size:1.5rem}
+  section{padding:48px 0}
+  .container,.cw{padding:0 16px}
+}
+@media(max-width:600px){
+  .ft-grid{grid-template-columns:1fr}
+  .ft-tabs{gap:4px}
+  .ft-tab{font-size:.65rem;padding:6px 12px}
+  .oecd-tabs{gap:4px}
+  .oecd-tab{font-size:.65rem;padding:6px 10px}
+  .ft-big{font-size:1.3rem}
+  .ft-bar-label{width:90px;font-size:.62rem}
+  .s-title{font-size:1.25rem}
+  .s-sub{font-size:.78rem}
+  .hero-section{padding:48px 0 32px}
+  .hero-section h1{font-size:1.8rem}
+  .vda-strip{font-size:.72rem;padding:10px 0}
+  .card-label{font-size:.72rem}
+  .annual-card{padding:.85rem}
+  .contract-card{padding:.85rem}
+  #receipt-card .ft-source{font-size:.6rem}
+}
+@media(max-width:520px){
+  .footer-grid{grid-template-columns:1fr}
+  .brow{grid-template-columns:120px 1fr 60px}
+}
 </style>
 </head>
 <body>
 
-<nav>
+<a href="#kalkylator" class="skip-link">Hoppa till innehåll</a>
+
+<nav role="navigation" aria-label="Huvudnavigering">
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">Skatte<em>plattformen</em></a>
-      <ul class="nav-links">
+      <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Meny">☰</button>
+      <ul class="nav-links" onclick="this.classList.remove('open')">
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
         <li><a href="#budget">Budgeten</a></li>
+        <li><a href="#oecd">OECD</a></li>
+        <li><a href="#framtid">Framtid</a></li>
+        <li><a href="#historik">Historik</a></li>
         <li><a href="#metod">Metod</a></li>
       </ul>
-      <a href="#" class="nav-pill">Dela fakta</a>
+      <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela fakta</a>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<main role="main">
+<section class="hero" aria-label="Introduktion">
   <div class="container">
     <div class="hero-grid">
       <div>
@@ -230,7 +414,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="ticker-grid">
           <div class="t-cell"><div class="t-num">3 011<sub> Mdkr</sub></div><div class="t-lbl">Total offentlig sektor</div></div>
           <div class="t-cell"><div class="t-num">285<sub> tkr</sub></div><div class="t-lbl">Per invånare &amp; år</div></div>
-          <div class="t-cell"><div class="t-num">1 428<sub> Mdkr</sub></div><div class="t-lbl">Statsbudgeten 2025</div></div>
+          <div class="t-cell"><div class="t-num">1 442<sub> Mdkr</sub></div><div class="t-lbl">Statsbudgeten 2025</div></div>
           <div class="t-cell"><div class="t-num">50<sub> % BNP</sub></div><div class="t-lbl">Offentliga utgifter/BNP</div></div>
           <div class="t-cell"><div class="t-num">457<sub> Mdkr</sub></div><div class="t-lbl">Sjukvård (COFOG 2024)</div></div>
           <div class="t-cell"><div class="t-num">512<sub> Mdkr</sub></div><div class="t-lbl">Utbildning (SCB 2024)</div></div>
@@ -240,10 +424,19 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   </div>
 </section>
 
+<!-- VISSTE DU ATT — rotating fact strip -->
+<div class="vda-strip" id="vdaStrip">
+  <div class="vda-inner">
+    <span class="vda-badge">Visste du att</span>
+    <div class="vda-fact" id="vdaFact"></div>
+    <div class="vda-dots" id="vdaDots"></div>
+  </div>
+</div>
+
 <hr class="div">
 
 <!-- PRICE TABLE -->
-<section class="section" id="pristabell">
+<section class="section" id="pristabell" aria-label="Den offentliga prislistan">
   <div class="cw">
     <div class="price-hdr">
       <div>
@@ -280,7 +473,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Din ålder</label>
           <div class="sl-row">
-            <input type="range" min="0" max="85" value="35" id="s-age" step="1">
+            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35">
             <span class="sl-val" id="d-age">35 år</span>
           </div>
           <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon">👔</span><span id="stage-label">Mitt i arbetslivet</span></div>
@@ -289,7 +482,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Bruttoinkomst per år</label>
           <div class="sl-row">
-            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10">
+            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="500">
             <span class="sl-val" id="d-inc">500 tkr</span>
           </div>
         </div>
@@ -322,6 +515,15 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <div id="tax-breakdown" style="display:flex;flex-direction:column;gap:.5rem"></div>
         </div>
 
+        <!-- Ditt skattekvitto -->
+        <div class="annual-card" id="receipt-card" style="display:none">
+          <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
+          <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
+          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.35);line-height:1.5">
+            Fördelningen baseras på COFOG 2024 (hela offentliga sektorn 3 011 Mdkr). Alla skatter (kommunal, statlig, moms, arbetsgivaravgifter minus jobbskatteavdrag) fördelas proportionellt.
+          </div>
+        </div>
+
         <!-- Lifecycle bar + solidarity -->
         <div class="contract-card">
           <div class="card-label">Det livslånga kontraktet — var befinner du dig?</div>
@@ -343,22 +545,43 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <p class="solidarity-text" id="solidarity-text"></p>
         </div>
 
+        <!-- Jämförelse -->
+        <div style="text-align:center;margin-top:1rem">
+          <button onclick="toggleCompare()" style="font-size:.72rem;padding:6px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s">Jämför med en annan profil</button>
+        </div>
+        <div id="compare-panel" style="display:none;margin-top:1rem">
+          <div class="annual-card">
+            <div class="card-label">Jämför — ange en annan profil</div>
+            <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem">
+              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+                Ålder <span id="d-age2" style="font-family:var(--mono);color:var(--amber)">65 år</span>
+                <input type="range" id="s-age2" min="0" max="85" value="65" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
+              </label>
+              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+                Inkomst <span id="d-inc2" style="font-family:var(--mono);color:var(--amber)">300 tkr</span>
+                <input type="range" id="s-inc2" min="0" max="1500" step="10" value="300" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
+              </label>
+            </div>
+            <div id="compare-result"></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <!-- BUDGET -->
-<section class="budget-section" id="budget">
+<section class="budget-section" id="budget" aria-label="Statsbudgeten">
   <div class="cw">
     <div style="max-width:1080px">
-      <p class="s-eye">Statsbudgeten 2010–2025</p>
+      <p class="s-eye">Statsbudgeten 2025 — alla 27 utgiftsområden</p>
       <h2 class="s-title">Hur fördelas pengarna?</h2>
-      <p class="s-sub">Utfall 2024 per utgiftsområde (Mdkr). Statsbudgeten = 47% av total offentlig sektor. Källa: ESV CC0.</p>
+      <p class="s-sub">Statsbudgeten 2025: ~1 442 Mdkr fördelat på 27 utgiftsområden (UO). Statsbudgeten = 47% av total offentlig sektor (3 011 Mdkr COFOG). Källa: Budgetpropositionen 2025/26:1, ESV.</p>
     </div>
     <div class="chart-box">
       <div class="chart-topbar">
-        <span class="ctt">Statsbudgetens utgiftsområden — utfall 2024 (Mdkr, löpande priser)</span>
+        <span class="ctt">Statsbudgeten 2025 — alla 27 UO (Mdkr)</span>
         <div class="cf2-row"><button class="cf2 on" onclick="setF2(this,'all')">Alla</button><button class="cf2" onclick="setF2(this,'pilot')">Pilotområden</button></div>
       </div>
       <div class="chart-body2"><div id="barchart"></div></div>
@@ -368,16 +591,534 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="leg-i"><div class="leg-d" style="background:#1E4A8C"></div>Utbildning</div>
         <div class="leg-i"><div class="leg-d" style="background:#C8973A"></div>Infrastruktur</div>
         <div class="leg-i"><div class="leg-d" style="background:#3B6D11"></div>Arbete</div>
-        <div class="leg-i"><div class="leg-d" style="background:#993C1D"></div>Kommunalt</div>
+        <div class="leg-i"><div class="leg-d" style="background:#4A6741"></div>Försvar</div>
+        <div class="leg-i"><div class="leg-d" style="background:#B84A1E"></div>Trygghet</div>
+        <div class="leg-i"><div class="leg-d" style="background:#2E8B57"></div>Miljö</div>
+        <div class="leg-i"><div class="leg-d" style="background:#993C1D"></div>Kommunbidrag</div>
         <div class="leg-i"><div class="leg-d" style="background:#888780"></div>Övrigt</div>
       </div>
     </div>
-    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: ESV Utfallet för statens budget 2024 (ESV 2025:8). CC0. Statsbudgeten täcker ej kommunal skola och sjukvård direkt — dessa finansieras via kommunalskatt och generella statsbidrag (UO25).</p>
+    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: Budgetpropositionen 2025/26:1, ESV. Statsbudgeten täcker ej kommunal skola och sjukvård direkt — dessa finansieras via kommunalskatt och generella statsbidrag (UO25).</p>
+
+    <!-- SKATTEUTGIFTER -->
+    <div style="margin-top:3rem">
+      <p class="s-eye">Den dolda budgeten</p>
+      <h2 class="s-title" style="font-size:clamp(1.3rem,2.5vw,1.8rem)">Skatteutgifter — subventioner via skattesystemet</h2>
+      <p class="s-sub">Utöver statsbudgeten finns ~385 Mdkr i <strong>skatteutgifter</strong> — intäkter staten avstår genom avdrag, reduktioner och nedsatt moms. De syns inte i budgeten men kostar lika mycket.</p>
+    </div>
+    <div class="chart-box" style="margin-top:1.5rem">
+      <div class="chart-topbar">
+        <span class="ctt">Skatteutgifter 2025 (Mdkr) — Skr. 2024/25:98</span>
+      </div>
+      <div class="chart-body2"><div id="skatteChart"></div></div>
+      <div class="clegend">
+        <div class="leg-i"><div class="leg-d" style="background:#3B6D11"></div>Arbete/inkomst</div>
+        <div class="leg-i"><div class="leg-d" style="background:#8B6914"></div>Bostad</div>
+        <div class="leg-i"><div class="leg-d" style="background:#6B5B8D"></div>Nedsatt moms</div>
+        <div class="leg-i"><div class="leg-d" style="background:#888780"></div>Övrigt</div>
+      </div>
+    </div>
+    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: Skr. 2024/25:98 Redovisning av skatteutgifter 2025. Skatteutgifter = intäkter staten avstår genom avdrag och nedsatta skattesatser. Jobbskatteavdraget (152 Mdkr) är den största enskilda posten.</p>
+
+    <!-- HELHETSBILD -->
+    <div style="margin-top:3rem;padding:1.5rem;background:var(--bg2);border-radius:4px;border:1px solid var(--border)">
+      <p style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Hela bilden — offentlig sektor 2024 (COFOG/SCB)</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">3 011 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Total offentlig sektor</div>
+        </div>
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">1 442 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Statsbudgeten (47%)</div>
+        </div>
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">892 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Kommunerna (30%)</div>
+        </div>
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">496 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Regionerna (16%)</div>
+        </div>
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">385 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Skatteutgifter (dolda)</div>
+        </div>
+        <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">122 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Företagsstöd (minst)</div>
+        </div>
+      </div>
+      <p style="font-size:.68rem;color:var(--ink3);margin-top:.75rem;line-height:1.6">
+        COFOG = FN:s klassificering av offentliga utgifter. Total inkluderar stat, kommun, region och socialförsäkringar.
+        Skatteutgifter = intäkter staten avstår (jobbskatteavdrag, ROT/RUT, ränteavdrag, nedsatt moms m.m.).
+        Företagsstöd = direkta bidrag + skattesubventioner till näringslivet (Tillväxtanalys 2024).
+        <br>Källor: SCB COFOG 2024, Budgetpropositionen 2025/26:1, Skr. 2024/25:98, Tillväxtanalys.
+      </p>
+    </div>
   </div>
 </section>
 
+<!-- OECD JÄMFÖRELSE -->
+<section class="oecd-section" id="oecd" aria-label="OECD-jämförelse">
+  <div class="container">
+    <p class="s-eye">Nordisk jämförelse</p>
+    <h2 class="s-title">Vad får vi för pengarna?</h2>
+    <p class="s-sub">Sverige jämfört med Norden och OECD-snittet — inte bara vad vi spenderar, utan vilka utfall vi uppnår.</p>
+
+    <div class="oecd-tabs">
+      <button class="oecd-tab on" onclick="showOecd(this,'sjukvard')">Sjukvård</button>
+      <button class="oecd-tab" onclick="showOecd(this,'utbildning')">Utbildning</button>
+      <button class="oecd-tab" onclick="showOecd(this,'aldreomsorg')">Äldreomsorg & socialt</button>
+      <button class="oecd-tab" onclick="showOecd(this,'infrastruktur')">Infrastruktur</button>
+      <button class="oecd-tab" onclick="showOecd(this,'miljo')">Miljö</button>
+    </div>
+
+    <div class="oecd-legend">
+      <div class="oecd-leg"><div class="oecd-leg-d" style="background:var(--green)"></div>Sverige</div>
+      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#1E4A8C"></div>Danmark</div>
+      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#C8973A"></div>Norge</div>
+      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#5B3F8C"></div>Finland</div>
+      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#888780"></div>OECD-snitt</div>
+    </div>
+
+    <div id="oecd-panels"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- FRAMTIDENS UTMANINGAR -->
+<section class="framtid-section" id="framtid" aria-label="Framtidens utmaningar">
+  <div class="container">
+    <p class="s-eye">2025–2035</p>
+    <h2 class="s-title">Framtidens utmaningar</h2>
+    <p class="s-sub">Investeringsbehov, finansieringsgap och personalbrist — vad krävs för att upprätthålla välfärden det kommande decenniet?</p>
+
+    <div class="ft-tabs">
+      <button class="ft-tab on" onclick="showFt(this,'finansgap')">Finansieringsgapet</button>
+      <button class="ft-tab" onclick="showFt(this,'infra')">Investeringsbehov</button>
+      <button class="ft-tab" onclick="showFt(this,'personal')">Personalbrist</button>
+      <button class="ft-tab" onclick="showFt(this,'demo')">Demografi</button>
+      <button class="ft-tab" onclick="showFt(this,'forsvar')">Försvar & säkerhet</button>
+    </div>
+
+    <!-- FINANSIERINGSGAPET -->
+    <div class="ft-panel on" id="ft-finansgap">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Skattekvoten har fallit</div>
+          <div class="ft-big">−5,3<sub> procentenheter</sub></div>
+          <div class="ft-desc">Skattekvoten (skatt/BNP) har sjunkit från 46,7% (2010) till 41,4% (2024). Det motsvarar ~350 Mdkr/år i lägre skatteintäkter vid oförändrad BNP-nivå.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Regionernas underskott</div>
+          <div class="ft-big">−9<sub> Mdkr (2024)</sub></div>
+          <div class="ft-desc">Regionerna redovisade ett samlat underskott på 9 Mdkr 2024. Sjukvården utgör ~80% av regionernas budget. Kostnaderna ökar snabbare än intäkterna.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Lönekostnader vs inflation</div>
+          <div class="ft-big">+12<sub> pp snabbare</sub></div>
+          <div class="ft-desc">Löner i offentlig sektor (LPIK) steg 27% under 2009–2021, medan KPI steg 15%. Sjukvården är 65% personalintensiv — varje procents löneökning kostar miljarder.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">163 riktade statsbidrag</div>
+          <div class="ft-big">163<sub> separata bidrag</sub></div>
+          <div class="ft-desc">Istället för permanent basfinansiering styrs välfärden genom 163 olika riktade statsbidrag (Statskontoret 2024), administrerade av ~40 myndigheter. Det försvårar långsiktig planering.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Skattekvot (skatt/BNP) — Sverige 2010–2024</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2010</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:93%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">46,7%</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2015</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:86%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">43,3%</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2020</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:86%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">43,1%</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2024</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:83%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">41,4%</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">OECD-snitt 2024</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:68%;background:var(--ink3)"></div></div>
+          <span class="ft-bar-val">34,1%</span>
+        </div>
+      </div>
+
+      <div class="ft-quote">
+        <strong>Strukturproblemet:</strong> Sjukvårdens kostnader drivs av medicinsk teknikutveckling, demografi och löner (LPIK) som ökar 4–6 procentenheter snabbare per år än den finansiering som följer KPI/inflation. Mellanskillnaden ackumuleras som ett strukturellt finansieringsgap — oavsett vem som styr.
+      </div>
+
+      <p class="ft-source">Källor: SCB Skattekvot 2024, SKR Ekonomirapporten 2024, Statskontoret Riktade statsbidrag 2024, Svenskt Näringsliv LPIK/KPI-analys 2023.</p>
+    </div>
+
+    <!-- INVESTERINGSBEHOV -->
+    <div class="ft-panel" id="ft-infra">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Järnväg (2026–2037)</div>
+          <div class="ft-big">500<sub> Mdkr</sub></div>
+          <div class="ft-desc">Trafikverkets nationella plan: 210 Mdkr underhåll + 290 Mdkr utveckling. Underhållsskuld: 91 Mdkr. Planerad avveckling senast 2050.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Vägar (2026–2037)</div>
+          <div class="ft-big">961<sub> Mdkr</sub></div>
+          <div class="ft-desc">354 Mdkr underhåll + 607 Mdkr nyinvesteringar. Underhållsskulden beräknas växa till 76,5 Mdkr till 2033 vid nuvarande tempo.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Vatten & avlopp</div>
+          <div class="ft-big">310<sub> Mdkr (10 år)</sub></div>
+          <div class="ft-desc">Svenskt Vatten: underinvestering 10 Mdkr/år. VA-taxorna behöver fördubblas till 2040. Ledningsnätet tar 200 år att byta ut i nuvarande takt.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Elnät (till 2045)</div>
+          <div class="ft-big">945<sub> Mdkr</sub></div>
+          <div class="ft-desc">Klimatomställning och elektrifiering kräver massiv utbyggnad. Svenska kraftnät investerar ~10 Mdkr/år nu — behöver tredubbla till ~60 Mdkr/år.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Bostäder (10 år)</div>
+          <div class="ft-big">450<sub> Mdkr</sub></div>
+          <div class="ft-desc">Boverket: 52 300 nya bostäder behövs per år. Ackumulerad brist: ~150 000 enheter. Byggkostnad: 35 000–45 000 kr/m².</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Kommunal infrastruktur/år</div>
+          <div class="ft-big">230<sub> Mdkr/år</sub></div>
+          <div class="ft-desc">SKR: skolor, äldreboenden, idrottsanläggningar, klimatanpassning. 10-årstotal: ~2 300 Mdkr — den största posten men minst uppmärksammad.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Investeringsbehov per sektor, 10 år (Mdkr)</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Kommunalt</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:96%;background:#993C1D"></div></div>
+          <span class="ft-bar-val">2 300</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Vägar</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:40%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">961</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Elnät</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:25%;background:#2E8B57"></div></div>
+          <span class="ft-bar-val">600</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Järnväg</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:21%;background:var(--blue)"></div></div>
+          <span class="ft-bar-val">500</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Bostäder</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:19%;background:#8B6914"></div></div>
+          <span class="ft-bar-val">450</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">VA-nät</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:13%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">310</span>
+        </div>
+      </div>
+
+      <p class="ft-source">Källor: Trafikverket NTP 2026–2037, Svenskt Vatten Investeringsrapport 2023, Energiföretagen Sverige 2023, Boverket Bostadsmarknadsenkäten 2025, SKR.</p>
+    </div>
+
+    <!-- PERSONALBRIST -->
+    <div class="ft-panel" id="ft-personal">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Lärarbrist till 2038</div>
+          <div class="ft-big">10 600<sub> saknas</sub></div>
+          <div class="ft-desc">Skolverket: behov 23 700 lärare/år, utbildar bara 15 300. Störst brist: förskollärare (+10 500), speciallärare (+80%), yrkeslärare (+70%).</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Sjuksköterskor utanför yrket</div>
+          <div class="ft-big">13 000<sub> arbetar ej i vården</sub></div>
+          <div class="ft-desc">Alla 21 regioner rapporterar sjuksköterskebrist. 2 230 vårdplatser är stängda p.g.a. personalbrist. 43% av patienter märker bristen.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Äldreomsorg till 2033</div>
+          <div class="ft-big">65 600<sub> nya behövs</sub></div>
+          <div class="ft-desc">Från 204 000 till 270 000 anställda (+32%). Undersköterskors medianlön: 31 000 kr/mån — 6 000 kr under rikssnittet. Svår konkurrens om personal.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Poliser vs mål</div>
+          <div class="ft-big">24 871<sub> av 26 200 mål</sub></div>
+          <div class="ft-desc">Saknas ~1 300 poliser mot 2025-målet. 40% av platserna på polisutbildningen stod tomma 2022. Behov: 1 000 nya studenter per termin.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Rekryteringsbehov per sektor till 2033–2038</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Äldreomsorg</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:96%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">65 600</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Sjuksköterskor</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:19%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">13 000</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Lärare</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:16%;background:var(--blue)"></div></div>
+          <span class="ft-bar-val">10 600</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">Poliser</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:2%;background:var(--red)"></div></div>
+          <span class="ft-bar-val">1 300</span>
+        </div>
+      </div>
+
+      <div class="ft-quote">
+        <strong>Kostnadskalkyl:</strong> Att anställa 65 600 personer i äldreomsorgen kostar ~24 Mdkr/år i löner och arbetsgivaravgifter. Totalt personalbehov i offentlig sektor (äldreomsorg + sjukvård + skola) motsvarar >40 Mdkr/år i nya lönekostnader — mer än hela försvarsbudgetens ökning.
+      </div>
+
+      <p class="ft-source">Källor: Skolverket Lärarprognos 2024, Socialstyrelsen 2024, Arbetsförmedlingen 2025, SKR Fördjupad analys äldreomsorg 2025, Polisförbundet, SNS Konjunkturråd 2026.</p>
+    </div>
+
+    <!-- DEMOGRAFI -->
+    <div class="ft-panel" id="ft-demo">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">80+ år: explosiv ökning</div>
+          <div class="ft-big">+28%<sub> till 2030</sub></div>
+          <div class="ft-desc">Från 635 000 (2024) till 812 000 (2030). 40-talisterna fyller 80+ under 2020-talet — den mest vårdkrävande gruppen ökar snabbast.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Försörjningskvoten stiger</div>
+          <div class="ft-big">0,77 → 0,89<sub> (2023→2070)</sub></div>
+          <div class="ft-desc">Idag försörjer 100 yrkesverksamma 77 barn+äldre. 2070: 89 per 100. Färre producerar — fler konsumerar välfärd.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Sjukvård som andel av BNP</div>
+          <div class="ft-big">11,2%<sub> (2023)</sub></div>
+          <div class="ft-desc">Stabilt 10,5–11,5% sedan 2011 men med snabbt ökande volymkrav. Utan ökad produktivitet krävs antingen höjd skatt eller sänkt ambitionsnivå.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">SKR:s scenarioberäkning</div>
+          <div class="ft-big">53%<sub> skattekvot 2035</sub></div>
+          <div class="ft-desc">Om ambitionen är att höja välfärdsstandarden med 1%/år och möta demografin krävs en skattekvot på 53% av BNP — 12 procentenheter högre än idag.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Befolkning 80+ år (tusental)</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2024</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:78%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">635 000</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2030</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">812 000</span>
+        </div>
+      </div>
+
+      <div class="ft-quote">
+        <strong>Grundparadoxen:</strong> Skattekvoten sjunker (−5,3 pp sedan 2010) samtidigt som andelen äldre som behöver vård ökar (+28% fler 80+ till 2030). Matematiken går inte ihop — antingen ökar skatten, minskar ambitionsnivån, eller effektiviseras leveransen radikalt.
+      </div>
+
+      <p class="ft-source">Källor: SCB Befolkningsframskrivning 2025–2070, SKR Ekonomirapporten 2024, Ekonomifakta.</p>
+    </div>
+
+    <!-- FÖRSVAR -->
+    <div class="ft-panel" id="ft-forsvar">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Försvarsbudget 2026</div>
+          <div class="ft-big">175<sub> Mdkr</sub></div>
+          <div class="ft-desc">Från 138 Mdkr (2025) till 175 Mdkr (2026). Försvarsbeslut 2025–2030 tillför 170 Mdkr extra under perioden.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">NATO-mål 2030</div>
+          <div class="ft-big">3,5%<sub> av BNP</sub></div>
+          <div class="ft-desc">Från 2,0% (2025) till 2,8% (2026) mot 3,5% senast 2030. Vid BNP ~7 000 Mdkr innebär 3,5% ca 245 Mdkr/år — en ökning på +107 Mdkr mot 2025.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Totalförsvarets kostnad</div>
+          <div class="ft-big">+107<sub> Mdkr/år till 2030</sub></div>
+          <div class="ft-desc">Ökningen från 138 till 245 Mdkr/år motsvarar ungefär hela utbildningsbudgeten (UO16). Pengar som måste tas från annat — eller finansieras med lån.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Försvarsutgifter (Mdkr)</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2020</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:28%;background:var(--ink3)"></div></div>
+          <span class="ft-bar-val">66</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2025</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:56%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">138</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2026</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:71%;background:var(--green2)"></div></div>
+          <span class="ft-bar-val">175</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2030 (3,5%)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">~245</span>
+        </div>
+      </div>
+
+      <p class="ft-source">Källor: Försvarsbeslut 2025–2030 (Regeringen), NATO Defence Expenditure 2024, Budgetpropositionen 2025/26:1.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- HISTORIK -->
+<section class="framtid-section" id="historik" aria-label="Historiska trender">
+  <div class="container">
+    <p class="s-eye">Trender 2000–2025</p>
+    <h2 class="s-title">Hur har det förändrats?</h2>
+    <p class="s-sub">Skattekvot, sjukvårdsutgifter, och välfärdsnivåer — trender över 25 år som visar Sveriges förändrade ambitionsnivå.</p>
+
+    <div class="ft-tabs">
+      <button class="ft-tab on" onclick="showHist(this,'skatt')">Skattekvot</button>
+      <button class="ft-tab" onclick="showHist(this,'sjukvard')">Sjukvård</button>
+      <button class="ft-tab" onclick="showHist(this,'utbildning')">Utbildning</button>
+      <button class="ft-tab" onclick="showHist(this,'demografi')">Demografi</button>
+    </div>
+
+    <!-- SKATTEKVOT -->
+    <div class="ft-panel on" id="hist-skatt">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Skattekvot (skatt/BNP)</div>
+          <div class="ft-big">41,4%<sub> (2024)</sub></div>
+          <div class="ft-desc">Sverige hade 2000 en skattekvot på 51,4% — bland de högsta i världen. Sedan dess har den sjunkit 10 procentenheter genom jobbskatteavdrag, slopad förmögenhetsskatt, sänkt bolagsskatt och reducerade arbetsgivaravgifter.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Jämförelse: Sverige vs OECD</div>
+          <div class="ft-big">+7,6<sub> pp över OECD-snitt</sub></div>
+          <div class="ft-desc">OECD-snittet ligger på ~33,8% (2024). Sverige ligger fortfarande högt, men gapet har minskat — 2000 var skillnaden ~16 pp. Danmark (44,6%) har nu högre skattekvot.</div>
+        </div>
+      </div>
+      <div id="hist-skatt-chart" style="margin-top:1.5rem"></div>
+      <p class="ft-source">Källor: OECD Revenue Statistics 2025, SCB Nationalräkenskaper 2024, ESV.</p>
+    </div>
+
+    <!-- SJUKVÅRD -->
+    <div class="ft-panel" id="hist-sjukvard">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Sjukvårdsutgifter (% av BNP)</div>
+          <div class="ft-big">11,2%<sub> (2023)</sub></div>
+          <div class="ft-desc">Sverige lägger 11,2% av BNP på hälso- och sjukvård — högst i Norden. Men hälften av ökningen sedan 2010 förklaras av BNP-nedgången under pandemin snarare än reella utgiftsökningar.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Personalkostnader</div>
+          <div class="ft-big">65%<sub> av sjukvårdsbudget</sub></div>
+          <div class="ft-desc">Lönekostnadsindex i offentlig sektor (LPIK) har ökat 27% under 2009–2021, jämfört med 15% KPI. Det innebär att varje sjukvårdskrona köper allt mindre vård — ett strukturellt finansieringsproblem.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Vårdplatser per 1 000 inv</div>
+          <div class="ft-big">1,9<sub> (2022)</sub></div>
+          <div class="ft-desc">Lägst i EU. År 2000 hade Sverige 3,5 vårdplatser/1 000 inv. Minskningen beror på medveten öppenvårdsstrategi, men skapar kapacitetsproblem vid pandemier och influensatoppar.</div>
+        </div>
+      </div>
+      <p class="ft-source">Källor: OECD Health Statistics 2024, SCB Nationalräkenskaper, SKR Ekonomirapporten 2024, Socialstyrelsen.</p>
+    </div>
+
+    <!-- UTBILDNING -->
+    <div class="ft-panel" id="hist-utbildning">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Utbildningsutgifter (% av BNP)</div>
+          <div class="ft-big">7,1%<sub> (2021)</sub></div>
+          <div class="ft-desc">Sverige spenderar mest i Norden och 45% mer än OECD-snittet (4,9%). Men kostnad per elev har inte ökat i reala termer sedan 2012 — BNP-tillväxt döljer det.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">PISA-trend 2003–2022</div>
+          <div class="ft-big">482<sub> p matematik (2022)</sub></div>
+          <div class="ft-desc">Sverige sjönk kraftigt 2003–2012 (från 509 till 478 p i matematik), återhämtade sig 2015–2018, och ligger nu strax över OECD-snittet (472). Men under Finland (484) och Danmark (489).</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Lärarbrist</div>
+          <div class="ft-big">10 600<sub> saknade lärare 2038</sub></div>
+          <div class="ft-desc">Skolverkets prognos visar ett behov av 23 700 nyanställningar per år — men bara 15 300 examineras. Underskottet ackumuleras och hotar kvaliteten, särskilt i matematik och NO.</div>
+        </div>
+      </div>
+      <p class="ft-source">Källor: OECD Education at a Glance 2024, OECD PISA 2022, Skolverket Lärarprognos 2024.</p>
+    </div>
+
+    <!-- DEMOGRAFI -->
+    <div class="ft-panel" id="hist-demografi">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Befolkning 80+ år</div>
+          <div class="ft-big">635 000<sub> (2024)</sub></div>
+          <div class="ft-desc">Ökar till 812 000 redan 2030 (+28%). Denna grupp konsumerar sjukvård och omsorg för i snitt 636 tkr/person/år — mer än dubbelt så mycket som genomsnittssvensken.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Försörjningskvot</div>
+          <div class="ft-big">0,77<sub> (2023)</sub></div>
+          <div class="ft-desc">0,77 innebär att det finns 0,77 icke-arbetsföra per arbetsför person. SCB:s prognos: 0,89 år 2070. Varje förvärvsarbetande ska försörja allt fler barn och äldre.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Medellivslängd</div>
+          <div class="ft-big">83,5<sub> år (2024)</sub></div>
+          <div class="ft-desc">Stigande medellivslängd är positivt men ökar kostnaderna. Varje extra levnadsår i 80+ segmentet kostar offentliga sektorn ~240 tkr i sjukvård och omsorg.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Befolkning 80+ år (tusental)</div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2010</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:51%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">489 000</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2024</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:66%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">635 000</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2030 (prognos)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:84%;background:#C8973A"></div></div>
+          <span class="ft-bar-val">812 000</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2040 (prognos)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:#B84A1E"></div></div>
+          <span class="ft-bar-val">960 000</span>
+        </div>
+      </div>
+
+      <p class="ft-source">Källor: SCB Befolkningsframskrivning 2025–2070, SCB Befolkningsstatistik 2024.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- METOD -->
-<section class="metod-section" id="metod">
+<section class="metod-section" id="metod" aria-label="Metodik och källor">
   <div class="container">
     <p class="s-eye">Hur vi räknar</p>
     <h2 class="s-title">Öppen metodik</h2>
@@ -411,7 +1152,16 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   </div>
 </section>
 
-<footer>
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detail-panel">
+  <button class="dp-close" onclick="closeDetail()">✕</button>
+  <div id="dp-content"></div>
+</div>
+
+</main>
+
+<footer role="contentinfo">
   <div class="container">
     <div class="footer-grid">
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
@@ -459,14 +1209,489 @@ const CARDS = [
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Kriminalvård, per intagen och år',unit:'per person i anstalt',amount:1200000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvården 2024: ~11 Mdkr / ~9 200 intagna i snitt = ~1 196 000 kr/år/person.'},
 ];
 
+// ═══════════════════════════════════════════════════════════════════
+// DETAIL DATA — deep dives per card
+// ═══════════════════════════════════════════════════════════════════
+const DETAILS = {
+  'Ett år i grundskolan': {
+    finansiering: [
+      {label:'Kommunalskatt',pct:68,note:'Ca 109 Mdkr'},
+      {label:'Statsbidrag (UO25)',pct:22,note:'Ca 35 Mdkr'},
+      {label:'Riktade statsbidrag',pct:7,note:'Lärarlönelyft, likvärdighet'},
+      {label:'Avgifter/övrigt',pct:3,note:'Frivilliga aktiviteter'}
+    ],
+    kostnadsposter: [
+      {label:'Undervisning & lärarnas löner',val:72600},
+      {label:'Lokaler & fastighetskostnader',val:28000},
+      {label:'Skolmåltider',val:7800},
+      {label:'Elevhälsa & specialpedagogik',val:12600},
+      {label:'Administration & ledning',val:15000},
+      {label:'Läromedel & IT',val:8500},
+      {label:'Skolskjuts',val:7500}
+    ],
+    oecd: [
+      {land:'Norge',val:18037,cl:'no'},
+      {land:'Danmark',val:15461,cl:'dk'},
+      {land:'Sverige',val:15037,cl:'se'},
+      {land:'OECD-snitt',val:13500,cl:'avg'}
+    ],
+    oecd_enhet: 'USD PPP per elev (2022)',
+    fakta: [
+      'Sverige har <strong>5,3% av BNP</strong> till utbildning (primär–tertiär) — högst i Norden',
+      'PISA 2022: Sverige <strong>482 i matte</strong> — över OECD-snitt (472) men under Finland (484)',
+      'Ca <strong>1,05 miljoner elever</strong> i grundskolan 2024',
+      'Kommunal skola 152 000 kr/elev — fristående 129 300 kr'
+    ]
+  },
+  'Ett år i gymnasiet (kommunal)': {
+    finansiering: [
+      {label:'Kommunalskatt',pct:65,note:'Ca 96 Mdkr'},
+      {label:'Statsbidrag',pct:25,note:'Via UO25 + riktade'},
+      {label:'Programpeng-skillnad',pct:10,note:'Teknik dyrare, humaniora billigare'}
+    ],
+    fakta: [
+      'Teknikprogrammet kostar <strong>~180 000 kr/elev</strong>, humanistiska <strong>~115 000 kr</strong>',
+      'Ca <strong>360 000 gymnasieelever</strong> 2024',
+      'Fristående gymnasieskola: <strong>129 300 kr/elev</strong> — 13% billigare',
+      'Gymnasiet är frivilligt men gratis — avgiftsförbud i skollagen'
+    ]
+  },
+  'Ett år på högskola / universitetet': {
+    finansiering: [
+      {label:'Direkta statsanslag',pct:52,note:'UO16: ~93,6 Mdkr'},
+      {label:'Forskningsanslag',pct:31,note:'Via Vetenskapsrådet m.fl.'},
+      {label:'Uppdragsforskning',pct:12,note:'Extern finansiering'},
+      {label:'Studieavgifter (ej EU)',pct:5,note:'Tredjelandsstudenter'}
+    ],
+    kostnadsposter: [
+      {label:'Läkarprogram',val:350000},
+      {label:'Ingenjörsprogram',val:200000},
+      {label:'Samhällsvetenskap',val:120000},
+      {label:'Humaniora',val:80000}
+    ],
+    oecd: [
+      {land:'Sverige',val:51.8,cl:'se'},
+      {land:'Norge',val:48.0,cl:'no'},
+      {land:'Danmark',val:42.0,cl:'dk'},
+      {land:'Finland',val:42.3,cl:'fi'},
+      {land:'OECD-snitt',val:40.0,cl:'avg'}
+    ],
+    oecd_enhet: '% med högskoleutbildning (25-64 år)',
+    fakta: [
+      'Sverige har <strong>51,8% högskoleutbildade</strong> — #7 i OECD',
+      '<strong>390 000 helårsstuderande</strong> 2024',
+      'Gratis för EU/EES-medborgare — tredjeland betalar avgift sedan 2011',
+      'CSN-lån totalt: ca <strong>240 Mdkr</strong> utestående skuld'
+    ]
+  },
+  'Förskola, ett år': {
+    finansiering: [
+      {label:'Kommunalskatt',pct:72,note:'Ca 68 Mdkr'},
+      {label:'Statsbidrag',pct:15,note:'Riktade bidrag'},
+      {label:'Föräldraavgifter (maxtaxa)',pct:13,note:'Max 1 614 kr/mån barn 1'}
+    ],
+    fakta: [
+      'Personal utgör <strong>~75% av kostnaden</strong> — mest personalintensiv välfärdstjänst',
+      '<strong>510 000 inskrivna barn</strong> i förskola 2024',
+      'Genomsnittlig gruppstorlek: <strong>14,8 barn</strong> (Skolverket)',
+      'Maxtaxan höjdes senast 2023 — staten kompenserar kommunerna'
+    ]
+  },
+  'Läkarbesök, primärvård': {
+    finansiering: [
+      {label:'Regionskatt',pct:72,note:'Via landstingsskatt'},
+      {label:'Statsbidrag',pct:18,note:'Kömiljarder, riktade'},
+      {label:'Patientavgift',pct:10,note:'200-350 kr/besök'}
+    ],
+    oecd: [
+      {land:'Norge',val:5.2,cl:'no'},
+      {land:'Sverige',val:4.4,cl:'se'},
+      {land:'OECD-snitt',val:4.0,cl:'avg'},
+      {land:'Danmark',val:3.4,cl:'dk'}
+    ],
+    oecd_enhet: 'Läkare per 1 000 invånare',
+    fakta: [
+      'Sverige har <strong>4,4 läkare per 1 000 invånare</strong> — över OECD-snittet',
+      'Men bara <strong>1,9 sjukhussängar</strong> per 1 000 — lägst i Norden',
+      'Patienten betalar <strong>8–15%</strong> av faktisk besökskostnad',
+      'Frikort efter <strong>1 300 kr/år</strong> i patientavgifter (2024)'
+    ]
+  },
+  'Ett dygn på IVA': {
+    finansiering: [
+      {label:'Regionskatt',pct:85,note:'Via hälso- och sjukvårdsbudgeten'},
+      {label:'Statsbidrag',pct:12,note:'Riktade medel'},
+      {label:'Patientavgift',pct:3,note:'130 kr/dygn — 0,2% av faktisk kostnad'}
+    ],
+    fakta: [
+      'Spann: <strong>35 000–80 000 kr/dygn</strong> beroende på vårdnivå',
+      'Sverige har ca <strong>5,2 IVA-platser per 100 000</strong> invånare — bland lägst i EU',
+      'COVID-pandemin blottade kapacitetsproblem — platserna har utökats sedan dess',
+      'Lagstadgad maxavgift: <strong>130 kr/dygn</strong> — du betalar alltså 0,2% av kostnaden'
+    ]
+  },
+  'Barnbidrag per år': {
+    finansiering: [
+      {label:'Statlig (FK)',pct:100,note:'UO12 — helt statligt finansierat'}
+    ],
+    fakta: [
+      '<strong>1 250 kr/mån</strong> per barn — oförändrat sedan 2006',
+      'Justerat för inflation har barnbidraget <strong>tappat ~25% i köpkraft</strong>',
+      'Flerbarnstillägg: +150 kr barn 2, +730 kr barn 3, +1 740 kr barn 4+',
+      'Ca <strong>1,9 miljoner barn</strong> har barnbidrag 2024'
+    ]
+  },
+  'Garantipension, per år': {
+    finansiering: [
+      {label:'Statlig (Pensionsmyndigheten)',pct:100,note:'UO11 — skattesubvention'}
+    ],
+    fakta: [
+      'Max <strong>9 403 kr/mån</strong> (ogift utan inkomstpension)',
+      'Gäller ca <strong>20% av pensionärerna</strong> — de med lägst inkomstpension',
+      'Inkomstpensionen (~800 Mdkr/år) är <strong>separat</strong> — avgiftsbaserad, ej skattefinansierad',
+      'Garantipensionen <strong>avtrappas</strong> mot inkomstpensionen — varje intjänad krona minskar garantin'
+    ]
+  },
+  'Underhåll av 1 km riksväg per år': {
+    finansiering: [
+      {label:'Statlig (Trafikverket)',pct:78,note:'UO22 ~82 Mdkr'},
+      {label:'Banavgifter & trängselskatt',pct:15,note:'Öronmärkta intäkter'},
+      {label:'EU-medel',pct:7,note:'TEN-T-program'}
+    ],
+    fakta: [
+      'Sverige har <strong>67 800 km statlig väg</strong>',
+      'Vägkvalitetsranking: Sverige <strong>#23</strong>, Danmark #13, Finland #19 (WEF)',
+      'Trafikdöda: <strong>22 per miljon</strong> — bland världens lägsta (EU-snitt: 46)',
+      'Eftersatt underhåll uppskattas till <strong>~30 Mdkr</strong> (Trafikverket)'
+    ]
+  },
+  'Försvaret per invånare, 2025': {
+    finansiering: [
+      {label:'Statlig (UO6)',pct:100,note:'~146 Mdkr 2025'}
+    ],
+    oecd: [
+      {land:'Norge',val:2.1,cl:'no'},
+      {land:'Sverige',val:2.0,cl:'se'},
+      {land:'Danmark',val:1.8,cl:'dk'},
+      {land:'Finland',val:2.4,cl:'fi'},
+      {land:'NATO-mål',val:2.0,cl:'avg'}
+    ],
+    oecd_enhet: '% av BNP till försvar (2025)',
+    fakta: [
+      'Sverige nådde <strong>2% av BNP</strong> till försvar 2025 — NATO-målet',
+      '2010 var försvarsutgiften bara <strong>4 185 kr/invånare</strong> — nu 13 840 kr',
+      'Trefaldig ökning på 15 år — den snabbaste upprustningen sedan kalla kriget',
+      'Värnplikten återinfördes 2017 — ca <strong>8 000 mönstras/år</strong>'
+    ]
+  },
+  'En förlossning (vaginal, okomplicerad)': {
+    finansiering: [
+      {label:'Regionskatt',pct:82,note:'Hälso- och sjukvårdsbudget'},
+      {label:'Statsbidrag',pct:15,note:'Förlossningssatsningen'},
+      {label:'Patientavgift',pct:3,note:'130-260 kr (1-2 dygn)'}
+    ],
+    fakta: [
+      'Kejsarsnitt: <strong>17,3%</strong> av förlossningar — inom WHO:s rekommendation (15-20%)',
+      'Spann mellan sjukhus: Göteborg <strong>27 200 kr</strong>, Stockholm <strong>41 000 kr</strong>',
+      'Sverige har bland <strong>lägst spädbarnsdödlighet</strong> i världen: 2,2 per 1 000',
+      'Förlossningssatsningen 2015–2024 tillförde <strong>8 Mdkr</strong> extra till förlossningsvården'
+    ]
+  },
+  'Barnvaccinationsprogrammet (komplett)': {
+    finansiering: [
+      {label:'Statlig (Folkhälsomyndigheten)',pct:60,note:'Vaccininköp'},
+      {label:'Regionskatt',pct:40,note:'BVC-besök, sjukskötersketid'}
+    ],
+    fakta: [
+      'Skyddar mot <strong>10 sjukdomar</strong> med ~16 doser under 0–18 år',
+      'Täckningsgrad: <strong>>97%</strong> — bland världens högsta',
+      'Sparar uppskattningsvis <strong>15–20 Mdkr/år</strong> i undvikna sjukvårdskostnader',
+      'HPV-vaccin ingår sedan 2012 — cervixcancer väntas minska med 90%'
+    ]
+  },
+  'Tandvård 0–23 år': {
+    finansiering: [
+      {label:'Regionskatt',pct:85,note:'Folktandvården'},
+      {label:'Statsbidrag',pct:15,note:'Utökad åldersgräns 2024'}
+    ],
+    fakta: [
+      'Utökades till <strong>23 år</strong> fr.o.m. januari 2024 (tidigare 21 år)',
+      '<strong>2,2 miljoner individer</strong> har fri tandvård',
+      'Vuxna 24+ har tandvårdsstöd: <strong>600 kr/år</strong> i allmänt tandvårdsbidrag',
+      'Sverige har bland <strong>bäst tandhälsa</strong> i EU (OECD Health at a Glance)'
+    ]
+  },
+  'En höftledsoperation (primär)': {
+    finansiering: [
+      {label:'Regionskatt',pct:88,note:'Via sjukvårdsbudgeten'},
+      {label:'Statsbidrag',pct:10,note:'Kömiljarder'},
+      {label:'Patientavgift',pct:2,note:'Max 1 100 kr (frikort)'}
+    ],
+    oecd: [
+      {land:'Sverige',val:85,cl:'se'},
+      {land:'Danmark',val:56,cl:'dk'},
+      {land:'Norge',val:90,cl:'no'},
+      {land:'OECD-snitt',val:120,cl:'avg'}
+    ],
+    oecd_enhet: 'Medianväntetid i dagar (2024)',
+    fakta: [
+      'Ca <strong>18 000 höftledsoperationer</strong> per år i Sverige',
+      'Väntetiderna har <strong>ökat sedan pandemin</strong> — andelen som väntar >3 månader stiger',
+      'Svenska höftledsregistret: <strong>95% nöjda</strong> efter 1 år',
+      'Katarakt (grå starr): <strong><50 dagars väntetid</strong> — väl under 2019-nivå'
+    ]
+  },
+  'Ambulansutryckning': {
+    finansiering: [
+      {label:'Regionskatt',pct:92,note:'Via räddningstjänstbudget'},
+      {label:'Patientavgift',pct:8,note:'0-200 kr regionberoende'}
+    ],
+    fakta: [
+      '<strong>770 000 ambulansinsatser</strong> per år i Sverige',
+      'Medianresponstid: <strong>~14 minuter</strong> i tätort, längre på landsbygd',
+      'Hjärtinfarkt (AMI) 30-dagars dödlighet: <strong>≤7%</strong> — bland OECD:s bästa',
+      'Sverige: <strong>3,8 dagar</strong> genomsnittlig sjukhusvistelse vid AMI — kortast i EU'
+    ]
+  },
+  'Ny asfaltbeläggning, 1 km riksväg': {
+    finansiering: [
+      {label:'Statlig (Trafikverket)',pct:85,note:'UO22'},
+      {label:'Banavgifter/trängselskatt',pct:10,note:'Öronmärkta'},
+      {label:'EU-medel',pct:5,note:'TEN-T'}
+    ],
+    fakta: [
+      'NCC–Trafikverket ramavtal mars 2025: <strong>840 Mkr för 600 km</strong>',
+      'Eftersatt vägunderhåll: uppskattningsvis <strong>~30 Mdkr</strong> underhållsskuld',
+      'Vägkvalitetsranking: Sverige <strong>#23 i världen</strong> — Danmark #13',
+      'Frysning/tjällossning gör underhåll dyrare i Norden än i Sydeuropa'
+    ]
+  },
+  'Järnvägsunderhåll, 1 km spår/år': {
+    finansiering: [
+      {label:'Statlig (Trafikverket)',pct:75,note:'UO22'},
+      {label:'Banavgifter',pct:20,note:'Operatörerna betalar'},
+      {label:'EU-medel',pct:5,note:'CEF/TEN-T'}
+    ],
+    fakta: [
+      'Sverige har <strong>21 000 km spår</strong> — <strong>75% elektrifierat</strong>',
+      'Tågpunktlighet 2023: SJ rapporterade <strong>88% i tid</strong> — historiskt lågt',
+      'VY 2024: <strong>95,5%</strong> operatörsberoende punktlighet',
+      'Eftersatt underhåll och kapacitetsbrist — Trafikverket begär <strong>165 Mdkr</strong> 2026-2037'
+    ]
+  },
+  'Sophantering, ett hushåll per år': {
+    finansiering: [
+      {label:'Renhållningsavgift',pct:75,note:'~2 400 kr/år från hushållet'},
+      {label:'Kommunal subvention',pct:25,note:'Differens till faktisk kostnad'}
+    ],
+    fakta: [
+      'Sverige återvinner <strong>39,5%</strong> av kommunalt avfall — <strong>under EU-snittet</strong> (47,7%)',
+      'Danmark: <strong>787 kg avfall per capita</strong> — Europas högsta',
+      'Sverige energiåtervinner (förbränner) en stor del — <strong>>50%</strong> av restavfall',
+      'Pant på burkar/flaskor: <strong>~85% återvinningsgrad</strong> — bland världens bästa'
+    ]
+  },
+  'En brandkårsutryckning': {
+    finansiering: [
+      {label:'Kommunalskatt',pct:95,note:'Kommunal räddningstjänst'},
+      {label:'Statsbidrag (MSB)',pct:5,note:'Riktade insatser'}
+    ],
+    fakta: [
+      '<strong>470 000 insatser</strong> per år — inte bara bränder utan även trafikolyckor, drunkning',
+      'Responstid: <strong>~10 minuter</strong> i tätort, upp till 30+ min på landsbygd',
+      'Totalkostnad kommunal räddningstjänst: <strong>~8,5 Mdkr/år</strong>',
+      'Antal bränder i bostäder har <strong>minskat 25%</strong> sedan 2010 (MSB)'
+    ]
+  },
+  'Föräldrapenning, totalt per barn': {
+    finansiering: [
+      {label:'Statlig (Försäkringskassan)',pct:100,note:'UO12 — helt statligt'}
+    ],
+    fakta: [
+      '<strong>480 dagar</strong> per barn — 390 på sjukpenningnivå, 90 på lägstanivå',
+      'Max <strong>1 116 kr/dag</strong> (80% av SGI)',
+      'Sverige bland <strong>världens mest generösa</strong> föräldraförsäkringar',
+      '90 dagar är <strong>reserverade per förälder</strong> — kan inte överlåtas'
+    ]
+  },
+  'Sjukpenning per dag': {
+    finansiering: [
+      {label:'Statlig (Försäkringskassan)',pct:100,note:'UO10 — helt statligt'}
+    ],
+    fakta: [
+      '<strong>~69 miljoner sjukpenningdagar</strong> per år',
+      'Psykisk ohälsa är <strong>största orsaken</strong> till sjukskrivning — >40% av fallen',
+      'Karensavdrag: <strong>20% av veckoersättningen</strong> (ersatte karensdagen 2019)',
+      'Sjukfrånvaro: Sverige <strong>högre än OECD-snitt</strong> — debatt om generositet vs behov'
+    ]
+  },
+  'Hemtjänst, ett år': {
+    finansiering: [
+      {label:'Kommunalskatt',pct:78,note:'Kommunal budget'},
+      {label:'Statsbidrag',pct:11,note:'Äldreomsorgslyft'},
+      {label:'Avgift (maxtaxa)',pct:11,note:'Max 2 809 kr/mån'}
+    ],
+    oecd: [
+      {land:'Norge',val:12.0,cl:'no'},
+      {land:'Sverige',val:11.8,cl:'se'},
+      {land:'Danmark',val:7.0,cl:'dk'},
+      {land:'OECD-snitt',val:5.5,cl:'avg'}
+    ],
+    oecd_enhet: 'Omsorgsanställda per 100 invånare 65+',
+    fakta: [
+      'Ca <strong>400 000 brukare</strong> har hemtjänst 2024',
+      'Sverige och Norge har <strong>dubbelt så mycket personal</strong> som OECD-snittet',
+      '<strong>62% av fackombud</strong> rapporterar otillräcklig bemanning (Kommunal 2023)',
+      'Friska levnadsår vid 65: Sverige <strong>14 år</strong> vs OECD-snitt 9,8 år'
+    ]
+  },
+  'Polisen per invånare och år': {
+    finansiering: [
+      {label:'Statlig (UO4)',pct:100,note:'Polismyndigheten + hela rättsväsendet'}
+    ],
+    oecd: [
+      {land:'Sverige',val:1.15,cl:'se'},
+      {land:'Danmark',val:0.94,cl:'dk'},
+      {land:'Norge',val:0.50,cl:'no'},
+      {land:'Finland',val:1.40,cl:'fi'}
+    ],
+    oecd_enhet: 'Mordfrekvens per 100 000 invånare (2023)',
+    fakta: [
+      'Dödligt skjutvapenvåld 2024: <strong>45 döda</strong> (ned från 53 år 2023)',
+      'Sverige leder EU i <strong>dödliga skjutningar per capita</strong> — ~4 per miljon',
+      'Upplevd trygghet kvällstid: Sverige rankas <strong>#38 av 40</strong> europeiska länder',
+      'Fängelsepopulation: <strong>80 per 100 000</strong> — under OECD-snitt men stigande (+15,5% 2023–2024)'
+    ]
+  },
+  'En rättegång, tingsrätten': {
+    finansiering: [
+      {label:'Statlig (Domstolsverket)',pct:100,note:'UO4 rättsväsendet'}
+    ],
+    fakta: [
+      'Rättsstatsindex: Sverige <strong>#4 i världen</strong> (World Justice Project 2025)',
+      'Alla nordiska länder i <strong>topp 4 globalt</strong> — Norden dominerar',
+      'Ca <strong>600 000 mål</strong> hanteras årligen av svenska domstolar',
+      'Brottmål med häktad kostar i snitt <strong>~120 000 kr</strong> (Domstolsverket)'
+    ]
+  },
+  'Kriminalvård, per intagen och år': {
+    finansiering: [
+      {label:'Statlig (Kriminalvården)',pct:100,note:'UO4 rättsväsendet'}
+    ],
+    oecd: [
+      {land:'Norge',val:56,cl:'no'},
+      {land:'Sverige',val:80,cl:'se'},
+      {land:'Danmark',val:72,cl:'dk'},
+      {land:'Finland',val:50,cl:'fi'}
+    ],
+    oecd_enhet: 'Fångpopulation per 100 000 invånare',
+    fakta: [
+      '<strong>9 200 intagna</strong> i snitt — anstalterna är <strong>överfulla</strong>',
+      'Återfall: ca <strong>20% återfaller inom 2 år</strong> — sjunkande trend sedan 2000',
+      'Norges modell: <strong>56 per 100 000</strong> — bland världens lägsta',
+      'Sverige: <strong>1,2 Mkr/år per intagen</strong> — dyrare än ett år på Karolinska Institutet'
+    ]
+  }
+};
+
 function fmtN(n){
   if(n>=1000000)return (n/1000000).toFixed(1).replace('.',',')+' Mkr';
   return n.toLocaleString('sv-SE');
 }
+
+function openDetail(cardTitle) {
+  const card = CARDS.find(c => c.title === cardTitle);
+  const detail = DETAILS[cardTitle];
+  if (!card) return;
+
+  let html = `<div class="dp-header">
+    <span class="dp-cat cat-${card.cat}">${card.cl}</span>
+    <div class="dp-title">${card.title}</div>
+    <div class="dp-amount">${fmtN(card.amount)} ${card.suf}</div>
+    <div class="dp-unit">${card.unit}</div>
+  </div><div class="dp-body">`;
+
+  if (detail) {
+    // Finansiering
+    if (detail.finansiering) {
+      html += `<div class="dp-section"><div class="dp-section-title">Så finansieras det</div>`;
+      detail.finansiering.forEach(f => {
+        html += `<div class="dp-bar-row">
+          <span class="dp-bar-label">${f.label}</span>
+          <div class="dp-bar-track"><div class="dp-bar-fill" style="width:${f.pct}%"></div></div>
+          <span class="dp-bar-val">${f.pct}%</span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Kostnadsposter (om finns)
+    if (detail.kostnadsposter) {
+      const kmax = Math.max(...detail.kostnadsposter.map(k=>k.val));
+      html += `<div class="dp-section"><div class="dp-section-title">Kostnadsposter (kr/år)</div>`;
+      detail.kostnadsposter.forEach(k => {
+        html += `<div class="dp-bar-row">
+          <span class="dp-bar-label">${k.label}</span>
+          <div class="dp-bar-track"><div class="dp-bar-fill" style="width:${(k.val/kmax*100).toFixed(0)}%;background:var(--blue)"></div></div>
+          <span class="dp-bar-val">${k.val.toLocaleString('sv-SE')} kr</span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // OECD-jämförelse (om finns)
+    if (detail.oecd) {
+      const omax = Math.max(...detail.oecd.map(o=>o.val));
+      const OECD_COLORS = {se:'var(--green)',dk:'#1E4A8C',no:'#C8973A',fi:'#5B3F8C',avg:'#888780'};
+      html += `<div class="dp-section"><div class="dp-section-title">Nordisk jämförelse — ${detail.oecd_enhet}</div>`;
+      detail.oecd.forEach(o => {
+        html += `<div class="dp-oecd-mini">
+          <span class="dp-oecd-flag">${o.land}</span>
+          <div class="dp-oecd-bar"><div class="dp-oecd-fill" style="width:${(o.val/omax*100).toFixed(0)}%;background:${OECD_COLORS[o.cl]||'#888'}"></div></div>
+          <span class="dp-oecd-val">${typeof o.val === 'number' && o.val >= 100 ? o.val.toLocaleString('sv-SE') : o.val}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+
+    // Fakta
+    if (detail.fakta) {
+      html += `<div class="dp-section"><div class="dp-section-title">Visste du att...</div>`;
+      detail.fakta.forEach(f => {
+        html += `<div class="dp-fact">${f}</div>`;
+      });
+      html += `</div>`;
+    }
+  }
+
+  // Alltid visa källa
+  html += `<div class="dp-section"><div class="dp-section-title">Fullständig källa</div>
+    <div class="dp-source">${card.src}</div></div>`;
+
+  // Vad du betalar
+  html += `<div class="dp-section"><div class="dp-section-title">Vad du betalar</div>
+    <div class="dp-fact">${card.vs}</div></div>`;
+
+  html += `</div>`;
+
+  document.getElementById('dp-content').innerHTML = html;
+  document.getElementById('detail-overlay').classList.add('open');
+  document.getElementById('detail-panel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.getElementById('detail-panel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetail(); });
+
 function renderCards(f){
   const d=f==='all'?CARDS:CARDS.filter(c=>c.cat===f);
   document.getElementById('pgrid').innerHTML=d.map(c=>`
-    <div class="pc">
+    <div class="pc" onclick="openDetail('${c.title.replace(/'/g,"\\'")}')">
       <span class="pc-cat cat-${c.cat}">${c.cl}</span>
       <div class="pc-title">${c.title}</div>
       <div class="pc-unit">${c.unit}</div>
@@ -481,23 +1706,59 @@ renderCards('all');
 // ═══════════════════════════════════════════════════════════════════
 // BUDGET BAR CHART
 // ═══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════
+// STATSBUDGETEN 2025 — alla 27 utgiftsområden (UO)
+// Källa: Budgetpropositionen 2025/26:1, Riksdagen, ESV
+// Total: ~1 442 Mdkr
+// ═══════════════════════════════════════════════════════════════════
 const BDATA=[
-  {l:'Allmänna bidrag till kommuner',v:164.7,c:'kom',p:true},
-  {l:'Ekon. trygghet sjukdom/funkt.',v:131.5,c:'helse',p:true},
-  {l:'Försvar och krisberedskap',v:115.4,c:'ovr',p:false},
-  {l:'Ekon. trygghet familjer/barn',v:107.5,c:'soc',p:true},
-  {l:'Hälsovård, sjukvård & soc. omsorg',v:102.4,c:'helse',p:true},
-  {l:'Utbildning & universitetsforskning',v:100.2,c:'utb',p:true},
-  {l:'Arbetsmarknad och arbetsliv',v:82.1,c:'arb',p:false},
-  {l:'Kommunikationer',v:82.1,c:'infra',p:true},
-  {l:'Ekon. trygghet vid ålderdom',v:72.1,c:'soc',p:true},
-  {l:'Rättsväsendet',v:65.8,c:'ovr',p:false},
-  {l:'Avgiften till EU',v:48.4,c:'ovr',p:false},
-  {l:'Statsskuldsräntor',v:42.8,c:'ovr',p:false},
-  {l:'Studiestöd',v:29.4,c:'utb',p:true},
-  {l:'Migration',v:21.3,c:'ovr',p:false},
+  {l:'Allmänna bidrag till kommuner (UO25)',v:164.7,c:'kom',p:true},
+  {l:'Försvar & krisberedskap (UO6)',v:146.0,c:'forv',p:false},
+  {l:'Ekon. trygghet sjukdom/funkt. (UO10)',v:131.5,c:'soc',p:true},
+  {l:'Ekon. trygghet familjer/barn (UO12)',v:107.5,c:'soc',p:true},
+  {l:'Utbildning & universitetsforskning (UO16)',v:104.0,c:'utb',p:true},
+  {l:'Hälsovård, sjukvård & social omsorg (UO9)',v:102.4,c:'helse',p:true},
+  {l:'Arbetsmarknad & arbetsliv (UO14)',v:92.9,c:'arb',p:false},
+  {l:'Rättsväsendet (UO4)',v:86.8,c:'tryg',p:false},
+  {l:'Kommunikationer (UO22)',v:82.1,c:'infra',p:true},
+  {l:'Ekon. trygghet vid ålderdom (UO11)',v:72.1,c:'soc',p:true},
+  {l:'Avgiften till EU (UO27)',v:48.4,c:'ovr',p:false},
+  {l:'Internationellt bistånd (UO7)',v:44.5,c:'ovr',p:false},
+  {l:'Statsskuldsräntor (UO26)',v:42.8,c:'ovr',p:false},
+  {l:'Studiestöd (UO15)',v:29.4,c:'utb',p:true},
+  {l:'Areella näringar & landsbygd (UO23)',v:24.1,c:'ovr',p:false},
+  {l:'Samhällsekonomi & finans (UO2)',v:21.7,c:'ovr',p:false},
+  {l:'Migration (UO8)',v:21.3,c:'ovr',p:false},
+  {l:'Rikets styrelse (UO1)',v:20.1,c:'ovr',p:false},
+  {l:'Miljö- & naturvård (UO20)',v:19.8,c:'miljo',p:false},
+  {l:'Kultur, medier & fritid (UO17)',v:18.5,c:'ovr',p:false},
+  {l:'Skatt, tull & exekution (UO3)',v:14.8,c:'ovr',p:false},
+  {l:'Jämställdhet & nyanländas etabl. (UO13)',v:12.8,c:'soc',p:false},
+  {l:'Näringsliv (UO24)',v:10.2,c:'ovr',p:false},
+  {l:'Energi (UO21)',v:7.8,c:'miljo',p:false},
+  {l:'Samhällsplanering & bostäder (UO18)',v:7.2,c:'infra',p:false},
+  {l:'Regional tillväxt (UO19)',v:4.6,c:'ovr',p:false},
+  {l:'Internationell samverkan (UO5)',v:2.3,c:'ovr',p:false},
 ];
-const BC={helse:'#2E7D5C',soc:'#5B3F8C',utb:'#1E4A8C',infra:'#C8973A',arb:'#3B6D11',kom:'#993C1D',ovr:'#888780'};
+// ═══════════════════════════════════════════════════════════════════
+// SKATTEUTGIFTER — "osynliga" subventioner via skattesystemet
+// Källa: Skr. 2024/25:98, ESV, Skatteverket
+// ═══════════════════════════════════════════════════════════════════
+const SKATTEDATA=[
+  {l:'Jobbskatteavdrag (under 66)',v:152.0,c:'arb',not:'Största enskilda skatteutgiften'},
+  {l:'Ränteavdrag (bostadslån)',v:61.0,c:'bost',not:'Ökat från 28 Mdkr 2020 med stigande räntor'},
+  {l:'Nedsatt moms — livsmedel (12%)',v:27.3,c:'moms',not:'Bredaste momslättnaden'},
+  {l:'Grundavdrag',v:35.0,c:'arb',not:'Standardavdrag alla inkomsttagare'},
+  {l:'ROT-avdrag',v:12.0,c:'bost',not:'Max 75 000 kr/person 2024'},
+  {l:'Jobbskatteavdrag (66+ år)',v:12.0,c:'arb',not:'Förhöjt för äldre'},
+  {l:'Nedsatt moms — restaurang (12%)',v:11.5,c:'moms',not:'Sänkt 2012'},
+  {l:'Skattefria förmåner',v:8.0,c:'ovr',not:'Friskvård, tjänstebil m.m.'},
+  {l:'Nedsatt moms — kollektivtrafik (6%)',v:5.2,c:'moms'},
+  {l:'Företagsskattereduktioner',v:5.0,c:'ovr'},
+  {l:'RUT-avdrag',v:4.0,c:'bost',not:'Hushållsnära tjänster'},
+  {l:'Nedsatt moms — böcker/tidningar (6%)',v:3.8,c:'moms'},
+];
+const BC={helse:'#2E7D5C',soc:'#5B3F8C',utb:'#1E4A8C',infra:'#C8973A',arb:'#3B6D11',kom:'#993C1D',ovr:'#888780',forv:'#4A6741',tryg:'#B84A1E',miljo:'#2E8B57',bost:'#8B6914',moms:'#6B5B8D'};
 function renderBars(f){
   const d=f==='pilot'?BDATA.filter(x=>x.p):BDATA;
   const mx=Math.max(...d.map(x=>x.v));
@@ -510,6 +1771,20 @@ function renderBars(f){
 }
 function setF2(btn,f){document.querySelectorAll('.cf2').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderBars(f)}
 renderBars('all');
+
+// Skatteutgiftsdiagram
+function renderSkatteChart(){
+  const el = document.getElementById('skatteChart');
+  if(!el) return;
+  const mx = Math.max(...SKATTEDATA.map(x=>x.v));
+  el.innerHTML = SKATTEDATA.map(x=>`
+    <div class="brow">
+      <span class="brow-l">${x.l}</span>
+      <div class="brow-t"><div class="brow-f" style="width:${(x.v/mx*96).toFixed(1)}%;background:${BC[x.c]}"></div></div>
+      <span class="brow-v">${x.v.toFixed(1)}</span>
+    </div>`).join('');
+}
+renderSkatteChart();
 
 // ═══════════════════════════════════════════════════════════════════
 // CALCULATOR — LIFECYCLE MODEL
@@ -526,37 +1801,43 @@ renderBars('all');
 // Annual welfare is measurable, defensible, and educational.
 // ═══════════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════════
+// LIVSFASMODELL — kalibrerad mot COFOG 2024 (3 011 Mdkr / 10,55M inv)
+// Mål: snitt 285 tkr/inv/år. Åldersprofil: UN NTA 2013 + SCB FASIT 2022.
+// Fördelningsproportioner: COFOG-funktioner → individnivå per fas.
+// Alla belopp tkr/år i 2024 års priser.
+// ═══════════════════════════════════════════════════════════════════
 const STAGES = [
   {min:0,  max:6,  id:'barn',    icon:'🍼', label:'Spädbarn & förskola',
-   w:{utb:185,sjukvård:48,socialt:15,koll:60,omsorg:0},
-   note:'Förskola finansieras med ~185 000 kr/barn/år. Hög sjukvård (BVC, vaccinationer). Föräldrar får föräldrapenning och barnbidrag.'},
+   w:{utb:175,sjukvård:40,socialt:38,koll:50,omsorg:0},
+   note:'Förskola ~175 tkr/barn/år. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
   {min:7,  max:15, id:'elev',    icon:'🎒', label:'Grundskoleelev',
-   w:{utb:152,sjukvård:18,socialt:16,koll:60,omsorg:0},
-   note:'Grundskolan kostar ~152 000 kr/elev/år. Fri skolmåltid, skolhälsovård, läromedel. Låg sjukvårdskonsumtion — friska år.'},
+   w:{utb:148,sjukvård:18,socialt:25,koll:50,omsorg:0},
+   note:'Grundskola 148 tkr/elev/år inkl. skolmat, elevhälsa, lokaler. Barnbidrag, fritids.'},
   {min:16, max:18, id:'gymn',    icon:'📚', label:'Gymnasieelev',
-   w:{utb:148,sjukvård:22,socialt:17,koll:60,omsorg:0},
-   note:'Gymnasiet kostar ~148 000 kr/elev/år (kommunal). Fri utbildning, skolmåltid, elevhälsa.'},
+   w:{utb:145,sjukvård:20,socialt:26,koll:50,omsorg:0},
+   note:'Gymnasiet ~145 tkr/elev/år. Teknikprogram dyrare (~180 tkr), humaniora billigare (~115 tkr).'},
   {min:19, max:25, id:'student', icon:'🎓', label:'Student / ung vuxen',
-   w:{utb:120,sjukvård:28,socialt:25,koll:60,omsorg:0},
-   note:'Högskoleutbildning kostar ~240 000 kr/helårsstudent/år — gratis att delta i. Studiemedel (CSN) tillkommer. Relativt låg sjukvård.'},
+   w:{utb:110,sjukvård:25,socialt:37,koll:50,omsorg:0},
+   note:'Högskola ~240 tkr/helårsstudent men inte alla studerar → snitt ~110 tkr. CSN-lån, bostadsbidrag.'},
   {min:26, max:34, id:'ung_arb', icon:'💼', label:'Ung förvärvsarbetande',
-   w:{utb:8,sjukvård:35,socialt:35,koll:60,omsorg:0},
-   note:'Nu betalar du mer i skatt än du tar emot direkt. Du finansierar andras barn, äldres vård och yngres skola. Det är kontraktet.'},
+   w:{utb:6,sjukvård:30,socialt:42,koll:50,omsorg:0},
+   note:'Du betalar betydligt mer i skatt än du tar emot. Du finansierar barns skola, äldres vård, och kollektiv trygghet.'},
   {min:35, max:44, id:'barnfamilj',icon:'👨‍👩‍👧', label:'Barnfamiljsfas',
-   w:{utb:45,sjukvård:62,socialt:62,koll:60,omsorg:2},
-   note:'Höga sociala förmåner: barnbidrag, föräldrapenning, barnens skola. Stigande sjukvård. Du är fortfarande nettobidragsgivare.'},
+   w:{utb:42,sjukvård:52,socialt:85,koll:50,omsorg:2},
+   note:'Höga sociala transfereringar: barnbidrag, föräldrapenning, VAB, bostadsbidrag. Fortfarande nettobidragsgivare.'},
   {min:45, max:54, id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',
-   w:{utb:5,sjukvård:95,socialt:42,koll:60,omsorg:3},
-   note:'Stigande sjukvårdskonsumtion men fortfarande nettobidragsgivare. Du finansierar nu en hel generation ungdomars utbildning.'},
+   w:{utb:5,sjukvård:78,socialt:52,koll:50,omsorg:4},
+   note:'Stigande sjukvårdskonsumtion. Sjukförsäkring, A-kassa. Dina skatter finansierar ungdomars utbildning och äldres omsorg.'},
   {min:55, max:64, id:'senior',  icon:'🏡', label:'Senior förvärvsarbetande',
-   w:{utb:3,sjukvård:145,socialt:48,koll:60,omsorg:8},
-   note:'Hög sjukvård. Ungefär vid balans: tjänster mottagna ≈ skatt betald. Du drar ned på kontot du fyllt på i decennier.'},
+   w:{utb:3,sjukvård:110,socialt:65,koll:50,omsorg:10},
+   note:'Hög sjukvård. Sjukersättning, sjukpenning. Ungefär vid balans: mottagna tjänster ≈ betald skatt.'},
   {min:65, max:74, id:'pensionar',icon:'🌅', label:'Ny pensionär',
-   w:{utb:2,sjukvård:235,socialt:52,koll:60,omsorg:65},
-   note:'Nu är du en klar nettotagare. Hög sjukvård, äldreomsorg börjar, garantipension/ATP. Du finansieras av dem som arbetar nu.'},
+   w:{utb:2,sjukvård:175,socialt:100,koll:50,omsorg:65},
+   note:'Nu nettotagare. Garantipension, bostadstillägg, äldreförsörjningsstöd. Du finansieras av dem som arbetar nu.'},
   {min:75, max:85, id:'aldri',   icon:'🕰️', label:'Senior pensionär',
-   w:{utb:1,sjukvård:380,socialt:55,koll:60,omsorg:280},
-   note:'Mycket hög offentlig konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat till i 45 år.'},
+   w:{utb:1,sjukvård:280,socialt:80,koll:50,omsorg:240},
+   note:'Mycket hög konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat in i 45 år.'},
 ];
 
 const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
@@ -567,16 +1848,93 @@ function getStage(age){
   return STAGES[STAGES.length-1];
 }
 
+// ═══════════════════════════════════════════════════════════════════
+// TAX CALCULATION — 2024 corrected
+// Sources: 67 kap IL (inkomstskattelagen), SKV 2024, SCB
+// All amounts in tkr (thousands SEK)
+// ═══════════════════════════════════════════════════════════════════
+function grundavdrag2024(inc){
+  // Grundavdrag per 67 kap IL, PBB 2024 = 57.3 tkr
+  // inc = bruttoinkomst i tkr
+  const pbb = 57.3;
+  if(inc <= 0) return 0;
+  if(inc <= 0.99 * pbb) return 0.423 * pbb;          // ~24.2 tkr
+  if(inc <= 2.72 * pbb) return 0.423 * pbb + 0.20 * (inc - 0.99*pbb); // stigande
+  if(inc <= 3.11 * pbb) return 0.770 * pbb;           // max ~44.1 tkr
+  if(inc <= 7.88 * pbb) return 0.770 * pbb - 0.10 * (inc - 3.11*pbb); // avtrappning
+  return 0.293 * pbb;                                  // ~16.8 tkr (golv)
+}
+
+function jobbskatteavdrag2024(inc, ga, ks){
+  // Jobbskatteavdrag 67 kap 5-7 §§ IL, under 66 år, 2024
+  // Kalibrerad mot SKV skattetabeller (tabell 32, snitt kommunalskatt 32,37%)
+  // JSA platåar ~2 500 kr/mån vid 25–35k, avtrappas därefter.
+  // Verifierade ankarpunkter: 30k → 6 500 kr nettoskatt, 50k → ~14 700.
+  // inc = arbetsinkomst tkr, ga = grundavdrag tkr, ks = kommunalskattesats (decimal)
+  if(inc <= 0) return 0;
+  const m = inc * 1000 / 12; // månadsinkomst i kr
+  let jsaM = 0; // jobbskatteavdrag per månad i kr
+  if(m <= 15000){
+    // Snabb uppbyggnad: 0 → 1 470 kr/mån
+    jsaM = m * 0.098;
+  } else if(m <= 25000){
+    // 1 470 → 2 500 kr/mån
+    jsaM = 1470 + (m - 15000) * 0.103;
+  } else if(m <= 35000){
+    // Platå: ~2 500 kr/mån (bekräftat via 30k = 6 500 kr nettoskatt)
+    jsaM = 2500;
+  } else if(m <= 50000){
+    // Avtrappning: 2 500 → 1 000 kr/mån
+    jsaM = 2500 - (m - 35000) * 0.100;
+  } else {
+    // Fortsatt avtrappning mot 0 vid ~80k
+    jsaM = Math.max(0, 1000 - (m - 50000) * 0.033);
+  }
+  const jsaÅr = jsaM * 12 / 1000; // tkr/år
+  // Kan aldrig överstiga kommunalskatten
+  const maxJsa = Math.max(0, inc - ga) * ks;
+  return Math.min(jsaÅr, maxJsa);
+}
+
 function annualTax(age, inc){
-  if(age < 18 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,tot:0};
-  const isPensionar = age >= 65;
-  const effInc = isPensionar ? inc * 0.7 : inc; // pensionärer har lägre effektiv inkomst
-  const komm = effInc * 0.3175;  // kommunalskatt snitt 31.75%
-  const stat = Math.max(0, effInc - 598) * 0.20;
-  const avg = isPensionar ? 0 : inc * 0.142;  // arbetsgivaravgifter ex pension
-  const moms = (effInc - komm - stat) * 0.065;
-  const tot = komm + stat + avg + moms;
-  return {komm:Math.round(komm),stat:Math.round(stat),avg:Math.round(avg),moms:Math.round(moms),tot:Math.round(tot)};
+  // inc = bruttoinkomst i tkr/år
+  if(age < 18 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
+  const isPensionar = age >= 66;
+  const ks = 0.3237;  // kommunalskatt genomsnitt 2024 (SCB)
+
+  // Pensionärer: effektiv inkomst ca 70% av yrkesverksam (inkomstpension ej skattefinansierad)
+  const effInc = isPensionar ? inc * 0.7 : inc;
+
+  // Grundavdrag
+  const ga = grundavdrag2024(effInc);
+
+  // Kommunalskatt på beskattningsbar inkomst
+  const beskBar = Math.max(0, effInc - ga);
+  const komm = beskBar * ks;
+
+  // Statlig inkomstskatt: 20% över skiktgränsen 598.5 tkr (2024)
+  const stat = Math.max(0, beskBar - 598.5) * 0.20;
+
+  // Jobbskatteavdrag (enbart för arbetsinkomster, ej pensionärer)
+  const jsa = isPensionar ? 0 : jobbskatteavdrag2024(effInc, ga, ks);
+
+  // Arbetsgivaravgifter exkl pension (10.21% pension exkluderas då inkomstpension ej räknas som välfärd)
+  // Total avgift 31.42%, pension 10.21% → resterande 21.21%
+  const avg = isPensionar ? 0 : inc * 0.2121;
+
+  // Moms: hushåll konsumerar ca 85% av disponibel inkomst
+  // Effektiv momsandel ~18% av konsumtion (mix 25/12/6%), men moms = konsumtion × 18/118
+  // Disponibel ≈ brutto - kommunalskatt - statlig + jobbskatteavdrag
+  const disp = effInc - komm - stat + jsa;
+  const konsumtion = disp * 0.85;  // sparkvot ~15%
+  const moms = konsumtion * 0.18 / 1.18;  // ~15.25% av konsumtion = effektiv moms
+
+  // Totalt
+  const tot = komm + stat + avg + moms - jsa;
+  return {
+    komm:Math.round(komm), stat:Math.round(stat), avg:Math.round(avg),
+    moms:Math.round(moms), jsa:Math.round(jsa), tot:Math.round(tot)
+  };
 }
 
 function updateCalc(){
@@ -614,16 +1972,22 @@ function updateCalc(){
   let taxHTML = '';
   if(tax.tot > 0){
     const items = [
-      ['Kommunalskatt', tax.komm],
+      ['Kommunalskatt (32,4%)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
       ['Arbetsgivaravgifter (ex pension)', tax.avg],
-      ['Effektiv moms (~6.5%)', tax.moms],
+      ['Effektiv moms (konsumtion)', tax.moms],
+      ['Jobbskatteavdrag', -tax.jsa],
     ];
-    taxHTML = items.filter(([,v])=>v>0).map(([l,v])=>`
-      <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(242,239,232,.65)">
+    taxHTML = items.filter(([,v])=>v!==0).map(([l,v])=>{
+      const isNeg = v < 0;
+      const col = isNeg ? '#2E7D5C' : 'rgba(242,239,232,.65)';
+      const prefix = isNeg ? '−' : '';
+      const abs = Math.abs(v);
+      return `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:${col}">
         <span>${l}</span>
-        <span style="font-family:var(--mono)">${v.toLocaleString('sv-SE')} tkr</span>
-      </div>`).join('') + `
+        <span style="font-family:var(--mono)">${prefix}${abs.toLocaleString('sv-SE')} tkr</span>
+      </div>`;
+    }).join('') + `
       <div style="display:flex;justify-content:space-between;font-size:.9rem;color:rgba(242,239,232,.85);font-weight:500;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.07);margin-top:.4rem">
         <span>Totalt per år</span>
         <span style="font-family:var(--mono)">${tax.tot.toLocaleString('sv-SE')} tkr</span>
@@ -665,23 +2029,474 @@ function updateCalc(){
   // Solidarity text — varies by life stage
   const solidarityTexts = {
     'barn': 'Samhället investerar i varje barn — skola, vård, trygghet — innan de ännu betalat en krona i skatt. Det är fundamentet i den svenska modellen.',
-    'elev': 'Din skolgång kostar samhället ~152 000 kr per år. Den som betalar är de som arbetar — föräldrar, mor- och farföräldrar, grannar utan barn.',
+    'elev': 'Din skolgång kostar samhället ~148 000 kr per år. Den som betalar är de som arbetar — föräldrar, mor- och farföräldrar, grannar utan barn.',
     'gymn': 'Gymnasiet är frivilligt men gratis. Samhällets investering i dig fortsätter. Pengarna kommer från de som befinner sig i arbetslivet.',
     'student': 'En högre utbildning kostar ~240 000 kr/år per student. Sverige är ett av få länder som gör detta gratis — finansierat av skattebetalarna.',
     'ung_arb': 'Du finansierar nu andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt. Du var själv mottagare, och du kommer att vara det igen.',
     'barnfamilj': 'Du är nettobidragsgivare trots barnbidrag och föräldrapenning. De förmånerna är viktiga, men skatten du betalar är större. Du finansierar äldre generationer och gemensamma nyttigheter.',
-    'mitt_karriar': 'Du finansierar just nu en hel generation: barn i förskola, gymnasiister, studenter, och pensionärer. Det är toppen av bidraget i livscykeln.',
+    'mitt_karriar': 'Du finansierar just nu en hel generation: barn i förskola, gymnasieelever, studenter, och pensionärer. Det är toppen av bidraget i livscykeln.',
     'senior': 'Du är nära balansen. De kommande åren minskar din skattebetalning och ökar ditt uttag. Systemet du betalat in i i decennier börjar nu leverera.',
     'pensionar': 'Du finansieras av de som arbetar nu — precis som du finansierade andra i 45 år. Systemet fungerar som avsett.',
     'aldri': 'Systemet är nu fullt investerat i din hälsa och omsorg. Kostnaderna för sjukvård och äldreomsorg är höga — men det är vad ett civiliserat samhälle gör för sina äldre.',
   };
   document.getElementById('solidarity-text').textContent = solidarityTexts[stage.id] ||
     'Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.';
+
+  // ─── DITT SKATTEKVITTO ─────────────────────────────────────────
+  // Proportional breakdown of user's total tax across COFOG functions
+  const receiptCard = document.getElementById('receipt-card');
+  if(tax.tot > 0){
+    receiptCard.style.display = '';
+    // COFOG 2024 shares (3 011 Mdkr total)
+    const cofogItems = [
+      {namn:'Socialt skydd (pension, a-kassa, barnbidrag)', andel:0.386, col:'#5B3F8C', icon:'🛡️'},
+      {namn:'Utbildning (förskola → universitet)',          andel:0.170, col:'#1E4A8C', icon:'🎓'},
+      {namn:'Hälso- & sjukvård',                            andel:0.152, col:'#2E7D5C', icon:'🏥'},
+      {namn:'Allmän offentlig förvaltning',                  andel:0.084, col:'#888780', icon:'🏛️'},
+      {namn:'Försvar',                                       andel:0.048, col:'#4A6741', icon:'🪖'},
+      {namn:'Näringslivsfrågor (infrastruktur, transport)',  andel:0.045, col:'#C8973A', icon:'🚆'},
+      {namn:'Rättsväsendet & samhällsskydd',                 andel:0.032, col:'#B84A1E', icon:'⚖️'},
+      {namn:'Fritid, kultur & religion',                     andel:0.018, col:'#D4A03A', icon:'🎭'},
+      {namn:'Bostäder & samhällsutveckling',                 andel:0.016, col:'#6B8E4E', icon:'🏘️'},
+      {namn:'Miljöskydd',                                    andel:0.012, col:'#2E8B57', icon:'🌿'},
+      {namn:'Räntor & transfereringar',                      andel:0.037, col:'rgba(255,255,255,.3)', icon:'📊'},
+    ];
+    const maxKr = tax.tot * cofogItems[0].andel;
+    let receiptHTML = '';
+    cofogItems.forEach(c => {
+      const kr = Math.round(tax.tot * c.andel);
+      if(kr <= 0) return;
+      const pct = (c.andel * 100).toFixed(1);
+      const barW = Math.round(kr / maxKr * 88);
+      receiptHTML += `<div style="display:flex;align-items:center;gap:.5rem">
+        <span style="font-size:.82rem;width:1.2rem;text-align:center">${c.icon}</span>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(242,239,232,.6);margin-bottom:.2rem">
+            <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.namn}</span>
+            <span style="font-family:var(--mono);white-space:nowrap;margin-left:.5rem">${kr.toLocaleString('sv-SE')} tkr</span>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${barW}%;background:${c.col};border-radius:3px;transition:width .4s"></div>
+          </div>
+        </div>
+        <span style="font-size:.65rem;color:rgba(242,239,232,.3);font-family:var(--mono);width:2.8rem;text-align:right">${pct}%</span>
+      </div>`;
+    });
+    document.getElementById('receipt-bars').innerHTML = receiptHTML;
+  } else {
+    receiptCard.style.display = 'none';
+  }
 }
 
 document.getElementById('s-age').addEventListener('input', updateCalc);
 document.getElementById('s-inc').addEventListener('input', updateCalc);
 updateCalc();
+
+// ═══════════════════════════════════════════════════════════════════
+// OECD COMPARISON — OUTCOME DATA
+// ═══════════════════════════════════════════════════════════════════
+const OECD_DATA = {
+  sjukvard: {
+    title: 'Hälso- & sjukvård',
+    charts: [
+      {title:'Medellivslängd',sub:'År vid födseln (2024)',
+       data:[{c:'Sverige',v:83.5,cl:'se'},{c:'Norge',v:83.3,cl:'no'},{c:'Finland',v:82.1,cl:'fi'},{c:'Danmark',v:82.3,cl:'dk'},{c:'OECD-snitt',v:80.7,cl:'avg'}],
+       max:90,unit:' år',src:'OECD Health at a Glance 2025, SCB 2024',verdict:'Sverige har högst medellivslängd i Norden (83,5 år) och väl över OECD-snittet.',vc:'good'},
+      {title:'Spädbarnsdödlighet',sub:'Per 1 000 levande födda (2024) — lägre = bättre',
+       data:[{c:'Norge',v:1.8,cl:'no'},{c:'Finland',v:1.9,cl:'fi'},{c:'Sverige',v:2.2,cl:'se'},{c:'Danmark',v:3.1,cl:'dk'},{c:'OECD-snitt',v:5.7,cl:'avg'}],
+       max:8,unit:'',src:'OECD Health at a Glance 2025',verdict:'Hela Norden långt under OECD-snittet. Norge och Finland lägst.',vc:'good',invert:true},
+      {title:'Hälsoutgifter per capita',sub:'USD PPP (2022)',
+       data:[{c:'Norge',v:7900,cl:'no'},{c:'Sverige',v:6400,cl:'se'},{c:'Danmark',v:6300,cl:'dk'},{c:'OECD-snitt',v:5972,cl:'avg'},{c:'Finland',v:5700,cl:'fi'}],
+       max:10000,unit:' $',src:'OECD Health Statistics 2024',verdict:'Sverige spenderar 7% över OECD-snittet men uppnår väsentligt bättre utfall.',vc:'good'},
+      {title:'Sjukhussängar per 1 000 invånare',sub:'(2022)',
+       data:[{c:'OECD-snitt',v:4.3,cl:'avg'},{c:'Finland',v:2.8,cl:'fi'},{c:'Norge',v:2.5,cl:'no'},{c:'Danmark',v:2.4,cl:'dk'},{c:'Sverige',v:1.9,cl:'se'}],
+       max:6,unit:'',src:'OECD Health at a Glance: Europe 2024',verdict:'Sverige har lägst antal sängar i Norden — medveten strategi mot öppenvård, men skapar kapacitetsproblem.',vc:'mixed'},
+      {title:'Bröstcancer — 5-årsöverlevnad',sub:'% (2016–2020)',
+       data:[{c:'Sverige',v:92.3,cl:'se'},{c:'Norge',v:90.5,cl:'no'},{c:'Finland',v:89.8,cl:'fi'},{c:'Danmark',v:88.1,cl:'dk'},{c:'OECD-snitt',v:87.0,cl:'avg'}],
+       max:100,unit:'%',src:'OECD Cancer Profiles 2025',verdict:'Sverige bäst i Norden och bland de högsta i världen.',vc:'good'}
+    ]
+  },
+  utbildning: {
+    title: 'Utbildning',
+    charts: [
+      {title:'PISA 2022 — Matematik',sub:'Poäng (15-åringar)',
+       data:[{c:'Danmark',v:489,cl:'dk'},{c:'Finland',v:484,cl:'fi'},{c:'Sverige',v:482,cl:'se'},{c:'OECD-snitt',v:472,cl:'avg'},{c:'Norge',v:467,cl:'no'}],
+       max:550,unit:' p',src:'OECD PISA 2022',verdict:'Sverige över OECD-snittet men under Danmark och Finland. Norge under snittet.',vc:'mixed'},
+      {title:'PISA 2022 — Naturvetenskap',sub:'Poäng (15-åringar)',
+       data:[{c:'Finland',v:511,cl:'fi'},{c:'Danmark',v:494,cl:'dk'},{c:'Sverige',v:494,cl:'se'},{c:'OECD-snitt',v:485,cl:'avg'},{c:'Norge',v:478,cl:'no'}],
+       max:550,unit:' p',src:'OECD PISA 2022',verdict:'Finland dominerar. Sverige över OECD-snittet.',vc:'mixed'},
+      {title:'Utbildningsutgifter',sub:'% av BNP, primär till tertiär (2022)',
+       data:[{c:'Sverige',v:5.3,cl:'se'},{c:'Danmark',v:5.1,cl:'dk'},{c:'Norge',v:5.2,cl:'no'},{c:'Finland',v:5.1,cl:'fi'},{c:'OECD-snitt',v:4.7,cl:'avg'}],
+       max:7,unit:'%',src:'OECD Education at a Glance 2025',verdict:'Sverige spenderar 13% mer än OECD-snittet — men utfallen (PISA) motiverar inte premien fullt ut.',vc:'mixed'},
+      {title:'Högskoleutbildade (25–64 år)',sub:'% av befolkningen (2024)',
+       data:[{c:'Sverige',v:51.8,cl:'se'},{c:'Norge',v:48.0,cl:'no'},{c:'Danmark',v:42.0,cl:'dk'},{c:'Finland',v:42.3,cl:'fi'},{c:'OECD-snitt',v:40.0,cl:'avg'}],
+       max:60,unit:'%',src:'OECD Education at a Glance 2025',verdict:'Sverige #7 i OECD — stark högskoletradition.',vc:'good'},
+      {title:'Vuxnas läskunnighet (PIAAC 2023)',sub:'Poäng',
+       data:[{c:'Finland',v:296,cl:'fi'},{c:'Sverige',v:284,cl:'se'},{c:'Norge',v:281,cl:'no'},{c:'OECD-snitt',v:260,cl:'avg'}],
+       max:320,unit:' p',src:'OECD PIAAC 2023',verdict:'Alla nordiska länder långt över OECD-snittet. Finland utklassar.',vc:'good'}
+    ]
+  },
+  aldreomsorg: {
+    title: 'Äldreomsorg & socialt skydd',
+    charts: [
+      {title:'Gini-koefficient (inkomstojämlikhet)',sub:'Efter skatt och transfereringar — lägre = mer jämlikt (2024)',
+       data:[{c:'Norge',v:0.26,cl:'no'},{c:'Sverige',v:0.27,cl:'se'},{c:'Finland',v:0.28,cl:'fi'},{c:'Danmark',v:0.29,cl:'dk'},{c:'OECD-snitt',v:0.32,cl:'avg'}],
+       max:0.45,unit:'',src:'OECD Society at a Glance 2024',verdict:'Alla nordiska länder väsentligt mer jämlika än OECD-snittet.',vc:'good',invert:true,dec:2},
+      {title:'Barnfattigdom',sub:'% barn under fattigdomsgräns — lägre = bättre (2022)',
+       data:[{c:'Danmark',v:2.8,cl:'dk'},{c:'Finland',v:2.9,cl:'fi'},{c:'Norge',v:6.7,cl:'no'},{c:'Sverige',v:8.8,cl:'se'},{c:'OECD-snitt',v:12.0,cl:'avg'}],
+       max:16,unit:'%',src:'OECD Family Database',verdict:'Sverige har högst barnfattigdom i Norden — tre gånger Danmarks nivå. En tydlig svaghet.',vc:'bad',invert:true},
+      {title:'Friska levnadsår vid 65',sub:'År (2021)',
+       data:[{c:'Sverige',v:14.0,cl:'se'},{c:'Norge',v:14.0,cl:'no'},{c:'OECD-snitt',v:9.8,cl:'avg'}],
+       max:18,unit:' år',src:'OECD Health at a Glance 2025',verdict:'Sverige och Norge: 4+ år fler friska år efter 65 än OECD-snittet.',vc:'good'},
+      {title:'Äldreomsorgspersonal per 100 invånare 65+',sub:'(2024)',
+       data:[{c:'Norge',v:12.0,cl:'no'},{c:'Sverige',v:11.8,cl:'se'},{c:'Danmark',v:7.0,cl:'dk'},{c:'OECD-snitt',v:5.5,cl:'avg'}],
+       max:15,unit:'',src:'OECD Health at a Glance 2025',verdict:'Sverige och Norge har dubbelt så mycket personal som OECD-snittet.',vc:'good'},
+      {title:'Bostadskostnad (median)',sub:'% av disponibel inkomst (2024)',
+       data:[{c:'Finland',v:32,cl:'fi'},{c:'Sverige',v:29,cl:'se'},{c:'Norge',v:29,cl:'no'},{c:'Danmark',v:27,cl:'dk'}],
+       max:45,unit:'%',src:'OECD Affordable Housing Database',verdict:'Relativt jämnt inom Norden. Alla runt 30% — en hög belastning.',vc:'mixed',invert:true}
+    ]
+  },
+  infrastruktur: {
+    title: 'Infrastruktur & samhälle',
+    charts: [
+      {title:'Trafikdöda per miljon invånare',sub:'(2023) — lägre = bättre',
+       data:[{c:'Norge',v:20,cl:'no'},{c:'Sverige',v:22,cl:'se'},{c:'Danmark',v:27,cl:'dk'},{c:'Finland',v:33,cl:'fi'},{c:'EU-snitt',v:46,cl:'avg'}],
+       max:60,unit:'',src:'Eurostat Road Safety Statistics',verdict:'Sverige och Norge världsledande — Vision Zero ger resultat.',vc:'good',invert:true},
+      {title:'Korruptionsindex (CPI)',sub:'Poäng 0–100, högre = bättre (2024)',
+       data:[{c:'Danmark',v:90,cl:'dk'},{c:'Finland',v:88,cl:'fi'},{c:'Norge',v:81,cl:'no'},{c:'Sverige',v:80,cl:'se'}],
+       max:100,unit:' p',src:'Transparency International CPI 2024',verdict:'Alla nordiska länder i topp 5 globalt. Sverige och Norge noterade dock historiskt låga poäng 2024.',vc:'mixed'},
+      {title:'Rättsstat (Rule of Law Index)',sub:'Global ranking (2025)',
+       data:[{c:'Danmark',v:1,cl:'dk'},{c:'Norge',v:2,cl:'no'},{c:'Finland',v:3,cl:'fi'},{c:'Sverige',v:4,cl:'se'}],
+       max:10,unit:'',src:'World Justice Project 2025',verdict:'Norden dominerar — topp 4 i världen.',vc:'good',invert:true,isRank:true},
+      {title:'Järnväg — andel elektrifierad',sub:'% av spårnätet (2024)',
+       data:[{c:'Sverige',v:75.1,cl:'se'},{c:'Finland',v:33.0,cl:'fi'}],
+       max:100,unit:'%',src:'Eurostat Railway Network 2024',verdict:'Sverige har bland Europas mest elektrifierade järnvägsnät.',vc:'good'},
+      {title:'Tillit till regeringen',sub:'% med hög/måttligt hög tillit (2023)',
+       data:[{c:'Norge',v:48,cl:'no'},{c:'Finland',v:47,cl:'fi'},{c:'Sverige',v:43,cl:'se'},{c:'OECD-snitt',v:39,cl:'avg'}],
+       max:65,unit:'%',src:'OECD Survey on Drivers of Trust 2024',verdict:'Sverige över OECD-snittet och ökade 4 procentenheter 2021–2023, medan Norge och Finland föll kraftigt.',vc:'mixed'}
+    ]
+  },
+  miljo: {
+    title: 'Miljö & hållbarhet',
+    charts: [
+      {title:'CO₂-utsläpp per capita',sub:'Ton CO₂e (2024) — lägre = bättre',
+       data:[{c:'Sverige',v:3.6,cl:'se'},{c:'Danmark',v:4.3,cl:'dk'},{c:'Finland',v:5.5,cl:'fi'},{c:'OECD-snitt',v:6.4,cl:'avg'},{c:'Norge',v:7.2,cl:'no'}],
+       max:10,unit:' t',src:'World Bank / TheGlobalEconomy.com',verdict:'Sverige lägst i Norden — 44% under OECD-snittet. Norges olje- och gassektor driver upp utsläppen.',vc:'good',invert:true},
+      {title:'Förnybar energi',sub:'% av slutlig energiförbrukning (2023)',
+       data:[{c:'Norge',v:75.0,cl:'no'},{c:'Sverige',v:66.4,cl:'se'},{c:'Danmark',v:43.0,cl:'dk'},{c:'Finland',v:39.6,cl:'fi'}],
+       max:85,unit:'%',src:'Eurostat Renewable Energy Statistics 2023 / EEA',verdict:'Sverige 66% förnybar energi, 88% förnybar el. Alla nordiska länder nådde EU:s 2030-mål redan 2023.',vc:'good'},
+      {title:'Återvinningsgrad (kommunalt avfall)',sub:'% (2023) — högre = bättre',
+       data:[{c:'EU-snitt',v:47.7,cl:'avg'},{c:'Sverige',v:39.5,cl:'se'},{c:'Norge',v:38.2,cl:'no'},{c:'Finland',v:37.1,cl:'fi'},{c:'Danmark',v:34.3,cl:'dk'}],
+       max:60,unit:'%',src:'EEA / Eurostat Waste Recycling',verdict:'Alla nordiska länder under EU-snittet — hög konsumtion genererar mycket avfall trots ambitiös klimatpolitik.',vc:'bad'}
+    ]
+  }
+};
+
+function renderOecdPanel(key) {
+  const section = OECD_DATA[key];
+  let html = `<div class="oecd-panel active" id="oecd-${key}">`;
+  section.charts.forEach(ch => {
+    html += `<div class="oecd-card"><div class="oecd-card-title">${ch.title}</div><div class="oecd-card-sub">${ch.sub}</div>`;
+    const maxVal = ch.max;
+    ch.data.forEach(d => {
+      let displayVal;
+      if(ch.isRank) displayVal = '#' + d.v;
+      else if(ch.dec) displayVal = d.v.toFixed(ch.dec);
+      else if(d.v >= 1000) displayVal = d.v.toLocaleString('sv-SE');
+      else displayVal = d.v;
+      const pct = ch.isRank ? Math.max(5, 100 - (d.v / maxVal * 100)) : (d.v / maxVal * 100);
+      html += `<div class="oecd-row"><span class="oecd-country">${d.c}</span><div class="oecd-bar-bg"><div class="oecd-bar-fill ${d.cl}" style="width:${Math.min(pct,100)}%"></div></div><span class="oecd-val">${displayVal}${ch.unit||''}</span></div>`;
+    });
+    if(ch.verdict) html += `<div class="oecd-verdict ${ch.vc}">${ch.verdict}</div>`;
+    html += `<div class="oecd-src">Källa: ${ch.src}</div></div>`;
+  });
+  html += '</div>';
+  return html;
+}
+
+function initOecd() {
+  const container = document.getElementById('oecd-panels');
+  let allHtml = '';
+  Object.keys(OECD_DATA).forEach((key, i) => {
+    const section = OECD_DATA[key];
+    let html = `<div class="oecd-panel${i===0?' active':''}" id="oecd-${key}">`;
+    section.charts.forEach(ch => {
+      html += `<div class="oecd-card"><div class="oecd-card-title">${ch.title}</div><div class="oecd-card-sub">${ch.sub}</div>`;
+      ch.data.forEach(d => {
+        let displayVal;
+        if(ch.isRank) displayVal = '#' + d.v;
+        else if(ch.dec) displayVal = d.v.toFixed(ch.dec);
+        else if(d.v >= 1000) displayVal = d.v.toLocaleString('sv-SE');
+        else displayVal = d.v;
+        const pct = ch.isRank ? Math.max(5, 100 - (d.v / ch.max * 100)) : (d.v / ch.max * 100);
+        html += `<div class="oecd-row"><span class="oecd-country">${d.c}</span><div class="oecd-bar-bg"><div class="oecd-bar-fill ${d.cl}" style="width:${Math.min(pct,100)}%"></div></div><span class="oecd-val">${displayVal}${ch.unit||''}</span></div>`;
+      });
+      if(ch.verdict) html += `<div class="oecd-verdict ${ch.vc}">${ch.verdict}</div>`;
+      html += `<div class="oecd-src">Källa: ${ch.src}</div></div>`;
+    });
+    html += '</div>';
+    allHtml += html;
+  });
+  container.innerHTML = allHtml;
+}
+
+function showOecd(btn, key) {
+  document.querySelectorAll('.oecd-tab').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.oecd-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('oecd-' + key).classList.add('active');
+}
+
+initOecd();
+
+// ═══════════════════════════════════════════════════════════════════
+// VISSTE DU ATT — rotating hero facts
+// ═══════════════════════════════════════════════════════════════════
+const VDA_FACTS = [
+  'Du betalar i snitt <strong>285 000 kr per år</strong> till offentlig sektor — mer än en genomsnittlig årshyra',
+  'Sverige har <strong>lägst spädbarnsdödlighet</strong> i EU: 2,2 per 1 000 födda (OECD 2024)',
+  'Barnvaccinationsprogrammet kostar <strong>7 200 kr per barn</strong> och sparar uppskattningsvis 15–20 Mdkr/år',
+  'Ett dygn på IVA kostar skattebetalarna <strong>45 000–80 000 kr</strong> — du betalar 130 kr',
+  'Sverige satsar <strong>7,1% av BNP</strong> på utbildning — högst i Norden och #2 i OECD',
+  'Kriminalvård kostar <strong>1,2 Mkr per intagen och år</strong> — dyrare än en högskoleutbildning',
+  'Trafikdöda i Sverige: <strong>22 per miljon</strong> invånare — bland världens lägsta (EU-snitt: 46)',
+  'Sveriges medellivslängd: <strong>84,1 år</strong> — 4,6 år mer än OECD-snittet',
+  'Sverige har <strong>66% förnybar energi</strong> och 88% förnybar el — bäst i EU',
+  'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP 2025)',
+  'Försvarsutgiften har <strong>tredubblats på 15 år</strong> — från 4 185 till 13 840 kr per invånare',
+  '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD'
+];
+
+(function initVda(){
+  const el = document.getElementById('vdaFact');
+  const dotsEl = document.getElementById('vdaDots');
+  if(!el) return;
+  let idx = 0;
+  // Create dots
+  VDA_FACTS.forEach((_,i) => {
+    const d = document.createElement('span');
+    d.className = 'vda-dot' + (i===0?' on':'');
+    d.onclick = () => { idx=i; show(); resetTimer(); };
+    dotsEl.appendChild(d);
+  });
+  function show(){
+    el.innerHTML = '<span>'+VDA_FACTS[idx]+'</span>';
+    dotsEl.querySelectorAll('.vda-dot').forEach((d,i) => d.classList.toggle('on',i===idx));
+  }
+  let timer;
+  function resetTimer(){ clearInterval(timer); timer=setInterval(()=>{idx=(idx+1)%VDA_FACTS.length;show();},6000); }
+  show();
+  resetTimer();
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+// FRAMTIDENS UTMANINGAR — tab switching
+// ═══════════════════════════════════════════════════════════════════
+function showFt(btn, key){
+  // Only toggle tabs within the same parent section
+  const section = btn.closest('section');
+  section.querySelectorAll('.ft-tab').forEach(b=>b.classList.remove('on'));
+  section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const panel = document.getElementById('ft-'+key);
+  if(panel) panel.classList.add('on');
+}
+
+function showHist(btn, key){
+  const section = btn.closest('section');
+  section.querySelectorAll('.ft-tab').forEach(b=>b.classList.remove('on'));
+  section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const panel = document.getElementById('hist-'+key);
+  if(panel) panel.classList.add('on');
+}
+
+// Skattekvot timeline chart
+(function(){
+  const data = [
+    {year:2000,se:51.4,oecd:34.9},{year:2002,se:48.9,oecd:34.2},{year:2004,se:48.1,oecd:34.0},
+    {year:2006,se:47.8,oecd:34.5},{year:2008,se:46.4,oecd:33.8},{year:2010,se:46.7,oecd:33.4},
+    {year:2012,se:44.3,oecd:33.7},{year:2014,se:43.3,oecd:33.6},{year:2016,se:44.1,oecd:34.0},
+    {year:2018,se:43.9,oecd:33.9},{year:2020,se:42.6,oecd:33.5},{year:2022,se:42.0,oecd:34.0},
+    {year:2024,se:41.4,oecd:33.8}
+  ];
+  const el = document.getElementById('hist-skatt-chart');
+  if(!el) return;
+  const W = 680, H = 220, pad = {t:20,r:55,b:35,l:45};
+  const iw = W-pad.l-pad.r, ih = H-pad.t-pad.b;
+  const minY = 30, maxY = 54;
+  const sx = i => pad.l + (i/(data.length-1))*iw;
+  const sy = v => pad.t + (1-(v-minY)/(maxY-minY))*ih;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  // Grid lines
+  for(let v=32;v<=52;v+=4){
+    const y=sy(v);
+    svg+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    svg+=`<text x="${pad.l-6}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}%</text>`;
+  }
+  // X labels
+  data.forEach((d,i)=>{
+    if(i%2===0) svg+=`<text x="${sx(i)}" y="${H-5}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.year}</text>`;
+  });
+  // OECD line
+  let oecdPath=`M${sx(0)},${sy(data[0].oecd)}`;
+  data.slice(1).forEach((d,i)=>oecdPath+=` L${sx(i+1)},${sy(d.oecd)}`);
+  svg+=`<path d="${oecdPath}" fill="none" stroke="#888780" stroke-width="2" stroke-dasharray="5,4" opacity=".7"/>`;
+  // Sweden line
+  let sePath=`M${sx(0)},${sy(data[0].se)}`;
+  data.slice(1).forEach((d,i)=>sePath+=` L${sx(i+1)},${sy(d.se)}`);
+  svg+=`<path d="${sePath}" fill="none" stroke="var(--green)" stroke-width="2.5"/>`;
+  // Dots + end labels
+  svg+=`<circle cx="${sx(data.length-1)}" cy="${sy(data[data.length-1].se)}" r="4" fill="var(--green)"/>`;
+  svg+=`<text x="${sx(data.length-1)+8}" y="${sy(data[data.length-1].se)+4}" fill="var(--green)" font-size="10" font-weight="500">${data[data.length-1].se}%</text>`;
+  svg+=`<circle cx="${sx(data.length-1)}" cy="${sy(data[data.length-1].oecd)}" r="3.5" fill="#888780"/>`;
+  svg+=`<text x="${sx(data.length-1)+8}" y="${sy(data[data.length-1].oecd)+4}" fill="#888780" font-size="10">${data[data.length-1].oecd}%</text>`;
+  // Legend
+  svg+=`<text x="${pad.l+8}" y="${pad.t+12}" fill="var(--green)" font-size="10" font-weight="500">Sverige</text>`;
+  svg+=`<text x="${pad.l+70}" y="${pad.t+12}" fill="#888780" font-size="10">OECD-snitt</text>`;
+  svg+=`</svg>`;
+  el.innerHTML = svg;
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+// A11Y — Keyboard navigation for tabs
+// ═══════════════════════════════════════════════════════════════════
+document.querySelectorAll('.ft-tabs, .oecd-tabs').forEach(tabstrip => {
+  tabstrip.setAttribute('role','tablist');
+  const tabs = tabstrip.querySelectorAll('button');
+  tabs.forEach((tab,i) => {
+    tab.setAttribute('role','tab');
+    tab.setAttribute('tabindex', tab.classList.contains('on') ? '0' : '-1');
+    tab.setAttribute('aria-selected', tab.classList.contains('on'));
+  });
+  tabstrip.addEventListener('keydown', e => {
+    const tabs = [...tabstrip.querySelectorAll('button')];
+    const idx = tabs.indexOf(document.activeElement);
+    if(idx < 0) return;
+    let next = -1;
+    if(e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
+    else if(e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length;
+    else if(e.key === 'Home') next = 0;
+    else if(e.key === 'End') next = tabs.length - 1;
+    if(next >= 0){
+      e.preventDefault();
+      tabs.forEach(t => { t.setAttribute('tabindex','-1'); t.setAttribute('aria-selected','false'); });
+      tabs[next].setAttribute('tabindex','0');
+      tabs[next].setAttribute('aria-selected','true');
+      tabs[next].focus();
+      tabs[next].click();
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// PERFORMANCE — IntersectionObserver for lazy section animation
+// ═══════════════════════════════════════════════════════════════════
+if('IntersectionObserver' in window){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {rootMargin:'0px 0px -60px 0px', threshold:0.05});
+
+  document.querySelectorAll('section:not(.hero)').forEach(sec => {
+    sec.style.opacity = '0';
+    sec.style.transform = 'translateY(24px)';
+    sec.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(sec);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// A11Y — Update aria-valuenow on sliders
+// ═══════════════════════════════════════════════════════════════════
+document.getElementById('s-age').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); });
+document.getElementById('s-inc').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); });
+
+// ═══════════════════════════════════════════════════════════════════
+// DELA FAKTA — Web Share API + clipboard fallback
+// ═══════════════════════════════════════════════════════════════════
+function shareSkatt(e){
+  e.preventDefault();
+  const age = +document.getElementById('s-age').value;
+  const inc = +document.getElementById('s-inc').value;
+  const stage = getStage(age);
+  const tax = annualTax(age, inc);
+  const total = Object.values(stage.w).reduce((a,b)=>a+b,0);
+  const effRate = inc > 0 && tax.tot > 0 ? (tax.tot / inc * 100).toFixed(0) : '0';
+
+  let text = `Visste du att en ${age}-åring med ${inc} tkr/år i inkomst:\n\n`;
+  text += `• Konsumerar offentliga tjänster för ${total.toLocaleString('sv-SE')} tkr/år\n`;
+  if(tax.tot > 0){
+    text += `• Betalar ${tax.tot.toLocaleString('sv-SE')} tkr i total skatt (${effRate}% effektiv skatt)\n`;
+    const balance = total - tax.tot;
+    text += balance < 0
+      ? `• Är nettobidragsgivare med ${Math.abs(balance).toLocaleString('sv-SE')} tkr\n`
+      : `• Är nettotagare med ${balance.toLocaleString('sv-SE')} tkr\n`;
+  }
+  text += `\nSvensk skattetransparens: https://wilhelm-wg.github.io/skatteplattformen/`;
+
+  if(navigator.share){
+    navigator.share({title:'Skatteplattformen',text}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text).then(()=>{
+      const btn = document.querySelector('.nav-pill');
+      const orig = btn.textContent;
+      btn.textContent = 'Kopierat!';
+      btn.style.background = 'var(--green)';
+      btn.style.borderColor = 'var(--green)';
+      setTimeout(()=>{btn.textContent=orig;btn.style.background='';btn.style.borderColor='';},2000);
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// JÄMFÖRELSEFUNKTION — visa två profiler sida vid sida
+// ═══════════════════════════════════════════════════════════════════
+function toggleCompare(){
+  const panel = document.getElementById('compare-panel');
+  panel.style.display = panel.style.display === 'none' ? '' : 'none';
+  if(panel.style.display !== 'none') updateCompare();
+}
+function updateCompare(){
+  const age2 = +document.getElementById('s-age2').value;
+  const inc2 = +document.getElementById('s-inc2').value;
+  document.getElementById('d-age2').textContent = age2 + ' år';
+  document.getElementById('d-inc2').textContent = inc2.toLocaleString('sv-SE') + ' tkr';
+
+  const age1 = +document.getElementById('s-age').value;
+  const inc1 = +document.getElementById('s-inc').value;
+
+  const stage1 = getStage(age1), stage2 = getStage(age2);
+  const t1 = Object.values(stage1.w).reduce((a,b)=>a+b,0);
+  const t2 = Object.values(stage2.w).reduce((a,b)=>a+b,0);
+  const tax1 = annualTax(age1, inc1), tax2 = annualTax(age2, inc2);
+
+  const rows = [
+    {l:'Offentliga tjänster', v1:t1, v2:t2, unit:'tkr/år'},
+    {l:'Total skatt', v1:tax1.tot, v2:tax2.tot, unit:'tkr/år'},
+    {l:'Netto (tjänster − skatt)', v1:t1-tax1.tot, v2:t2-tax2.tot, unit:'tkr/år'},
+    {l:'Effektiv skattesats', v1:inc1>0?Math.round(tax1.tot/inc1*100):0, v2:inc2>0?Math.round(tax2.tot/inc2*100):0, unit:'%'},
+  ];
+
+  let html = `<div style="display:grid;grid-template-columns:1fr 90px 90px;gap:.3rem .5rem;font-size:.72rem;color:rgba(242,239,232,.6)">
+    <div style="font-weight:500;color:rgba(242,239,232,.35)"></div>
+    <div style="text-align:right;font-weight:500;color:var(--green)">${age1} år</div>
+    <div style="text-align:right;font-weight:500;color:var(--amber)">${age2} år</div>`;
+  rows.forEach(r => {
+    const c1 = r.v1 < 0 ? '#C8973A' : 'rgba(242,239,232,.6)';
+    const c2 = r.v2 < 0 ? '#C8973A' : 'rgba(242,239,232,.6)';
+    html += `<div>${r.l}</div>
+      <div style="text-align:right;font-family:var(--mono);color:${c1}">${r.v1.toLocaleString('sv-SE')} ${r.unit}</div>
+      <div style="text-align:right;font-family:var(--mono);color:${c2}">${r.v2.toLocaleString('sv-SE')} ${r.unit}</div>`;
+  });
+  html += '</div>';
+  document.getElementById('compare-result').innerHTML = html;
+}
 </script>
 </body>
 </html>
