@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "beskrivning": "Komplett analys av svenska offentliga sektorns utgifter och skatteutgifter",
+    "uppdaterad": "2025-03-24",
+    "källor": [
+      "Budgetpropositionen 2025/26:1 (Riksdagen)",
+      "ESV Utfallet för statsbudgeten 2024",
+      "SCB COFOG 2024",
+      "Skr. 2024/25:98 Redovisning av skatteutgifter 2025",
+      "Tillväxtanalys: Statligt företagsstöd 2024"
+    ]
+  },
+
+  "statsbudgeten_2025_uo": {
+    "beskrivning": "Alla 27 utgiftsområden, statsbudgeten 2025, Mdkr",
+    "total_mdkr": 1442,
+    "poster": [
+      {"uo": 1, "namn": "Rikets styrelse", "mdkr": 20.1},
+      {"uo": 2, "namn": "Samhällsekonomi och finansförvaltning", "mdkr": 21.7},
+      {"uo": 3, "namn": "Skatt, tull och exekution", "mdkr": 14.8},
+      {"uo": 4, "namn": "Rättsväsendet", "mdkr": 86.8},
+      {"uo": 5, "namn": "Internationell samverkan", "mdkr": 2.3},
+      {"uo": 6, "namn": "Försvar och samhällets krisberedskap", "mdkr": 146.0},
+      {"uo": 7, "namn": "Internationellt bistånd", "mdkr": 44.5},
+      {"uo": 8, "namn": "Migration", "mdkr": 21.3},
+      {"uo": 9, "namn": "Hälsovård, sjukvård och social omsorg", "mdkr": 102.4},
+      {"uo": 10, "namn": "Ekonomisk trygghet vid sjukdom och funktionsnedsättning", "mdkr": 131.5},
+      {"uo": 11, "namn": "Ekonomisk trygghet vid ålderdom", "mdkr": 72.1},
+      {"uo": 12, "namn": "Ekonomisk trygghet för familjer och barn", "mdkr": 107.5},
+      {"uo": 13, "namn": "Jämställdhet och nyanländas etablering", "mdkr": 12.8},
+      {"uo": 14, "namn": "Arbetsmarknad och arbetsliv", "mdkr": 92.9},
+      {"uo": 15, "namn": "Studiestöd", "mdkr": 29.4},
+      {"uo": 16, "namn": "Utbildning och universitetsforskning", "mdkr": 104.0},
+      {"uo": 17, "namn": "Kultur, medier, trossamfund och fritid", "mdkr": 18.5},
+      {"uo": 18, "namn": "Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik", "mdkr": 7.2},
+      {"uo": 19, "namn": "Regional tillväxt", "mdkr": 4.6},
+      {"uo": 20, "namn": "Allmän miljö- och naturvård", "mdkr": 19.8},
+      {"uo": 21, "namn": "Energi", "mdkr": 7.8},
+      {"uo": 22, "namn": "Kommunikationer", "mdkr": 82.1},
+      {"uo": 23, "namn": "Areella näringar, landsbygd och livsmedel", "mdkr": 24.1},
+      {"uo": 24, "namn": "Näringsliv", "mdkr": 10.2},
+      {"uo": 25, "namn": "Allmänna bidrag till kommuner", "mdkr": 164.7},
+      {"uo": 26, "namn": "Statsskuldsräntor m.m.", "mdkr": 42.8},
+      {"uo": 27, "namn": "Avgiften till Europeiska unionen", "mdkr": 48.4}
+    ]
+  },
+
+  "offentlig_sektor_cofog_2024": {
+    "beskrivning": "Hela offentliga sektorn fördelad på COFOG-funktioner, 2024, Mdkr",
+    "total_mdkr": 3011,
+    "funktioner": [
+      {"cofog": "01", "namn": "Allmän offentlig förvaltning", "mdkr": 252, "andel_pct": 8.4},
+      {"cofog": "02", "namn": "Försvar", "mdkr": 146, "andel_pct": 4.8},
+      {"cofog": "03", "namn": "Samhällsskydd och rättsskipning", "mdkr": 95, "andel_pct": 3.2},
+      {"cofog": "04", "namn": "Näringslivsfrågor", "mdkr": 137, "andel_pct": 4.5},
+      {"cofog": "05", "namn": "Miljöskydd", "mdkr": 37, "andel_pct": 1.2},
+      {"cofog": "06", "namn": "Bostäder och samhällsutveckling", "mdkr": 48, "andel_pct": 1.6},
+      {"cofog": "07", "namn": "Hälso- och sjukvård", "mdkr": 457, "andel_pct": 15.2},
+      {"cofog": "08", "namn": "Fritid, kultur och religion", "mdkr": 55, "andel_pct": 1.8},
+      {"cofog": "09", "namn": "Utbildning", "mdkr": 512, "andel_pct": 17.0},
+      {"cofog": "10", "namn": "Socialt skydd", "mdkr": 1161, "andel_pct": 38.6},
+      {"cofog": "XX", "namn": "Räntor & transfereringar", "mdkr": 111, "andel_pct": 3.7}
+    ],
+    "delsektor": {
+      "staten": 1442,
+      "kommunerna": 892,
+      "regionerna": 496,
+      "socialforsakring_netto": 181
+    }
+  },
+
+  "skatteutgifter_2025": {
+    "beskrivning": "Stora skatteutgifter — offentliga subventioner via skattesystemet, Mdkr",
+    "källa": "Skr. 2024/25:98, ESV, Skatteverket",
+    "total_mdkr": 385,
+    "poster": [
+      {"namn": "Jobbskatteavdrag (under 66 år)", "mdkr": 152, "typ": "skattereduktion", "not": "Största enskilda skatteutgiften"},
+      {"namn": "Nedsatt moms livsmedel (12% istf 25%)", "mdkr": 27.3, "typ": "nedsatt_moms", "not": "Bredaste momslättnaden"},
+      {"namn": "Nedsatt moms restaurang (12% istf 25%)", "mdkr": 11.5, "typ": "nedsatt_moms"},
+      {"namn": "Nedsatt moms böcker/tidningar (6%)", "mdkr": 3.8, "typ": "nedsatt_moms"},
+      {"namn": "Nedsatt moms kollektivtrafik (6%)", "mdkr": 5.2, "typ": "nedsatt_moms"},
+      {"namn": "Övrig nedsatt moms", "mdkr": 48.2, "typ": "nedsatt_moms", "not": "Kultur, idrott, etc."},
+      {"namn": "Ränteavdrag (30% av kapitalunderskott)", "mdkr": 61.0, "typ": "skattereduktion", "not": "Ökat kraftigt med räntenivån, var 28 Mdkr 2020"},
+      {"namn": "ROT-avdrag", "mdkr": 12.0, "typ": "skattereduktion", "not": "Max 75 000 kr/person 2024"},
+      {"namn": "RUT-avdrag", "mdkr": 4.0, "typ": "skattereduktion", "not": "Ingår i ROT/RUT-taket"},
+      {"namn": "Grundavdrag", "mdkr": 35.0, "typ": "grundavdrag", "not": "Standardavdrag alla får"},
+      {"namn": "Jobbskatteavdrag (66+ år)", "mdkr": 12.0, "typ": "skattereduktion"},
+      {"namn": "Skattefria förmåner (friskvård, etc.)", "mdkr": 8.0, "typ": "undantag"},
+      {"namn": "Företagsskattereduktioner", "mdkr": 5.0, "typ": "företag"}
+    ]
+  },
+
+  "foretagsstod_2024": {
+    "beskrivning": "Statligt stöd till företag, Mdkr",
+    "källa": "Tillväxtanalys 2024, Riksrevisionen",
+    "total_mdkr": 122,
+    "kategorier": [
+      {"namn": "Direkta bidrag (Tillväxtverket, Vinnova, m.fl.)", "mdkr": 42},
+      {"namn": "Skattesubventioner till företag", "mdkr": 35},
+      {"namn": "Kreditgarantier och lån (Almi, EKN)", "mdkr": 15},
+      {"namn": "EU-medfinansierade stöd", "mdkr": 12},
+      {"namn": "Energi- och klimatstöd (Energimyndigheten)", "mdkr": 10},
+      {"namn": "Jordbruksstöd (CAP/nationellt)", "mdkr": 8}
+    ],
+    "not": "Minsta uppskattning — fördelat på 17+ myndigheter med varierande transparens"
+  },
+
+  "vad_saknas_i_modellen": {
+    "beskrivning": "Poster som INTE syns i hemsidans nuvarande budgetdiagram (BDATA)",
+    "nuvarande_bdata_total_mdkr": 1166,
+    "saknade_uo": [
+      {"namn": "UO1 Rikets styrelse (riksdag, regering, hovstaat)", "mdkr": 20.1},
+      {"namn": "UO2 Samhällsekonomi och finansförvaltning", "mdkr": 21.7},
+      {"namn": "UO3 Skatt, tull och exekution", "mdkr": 14.8},
+      {"namn": "UO5 Internationell samverkan", "mdkr": 2.3},
+      {"namn": "UO13 Jämställdhet och nyanländas etablering", "mdkr": 12.8},
+      {"namn": "UO17 Kultur, medier, trossamfund och fritid", "mdkr": 18.5},
+      {"namn": "UO18 Samhällsplanering och bostäder", "mdkr": 7.2},
+      {"namn": "UO19 Regional tillväxt", "mdkr": 4.6},
+      {"namn": "UO20 Allmän miljö- och naturvård", "mdkr": 19.8},
+      {"namn": "UO21 Energi", "mdkr": 7.8},
+      {"namn": "UO23 Areella näringar och landsbygd", "mdkr": 24.1},
+      {"namn": "UO24 Näringsliv", "mdkr": 10.2}
+    ],
+    "saknade_total_mdkr": 163.9,
+    "slutsats": "Modellen täcker 1 166 av 1 442 Mdkr statsbudget (81%). Saknade 164 Mdkr bör läggas till som 'Övrigt statligt'. Dessutom saknas hela kommunal/regional sektorn (892+496 Mdkr) och alla skatteutgifter (385 Mdkr)."
+  }
+}

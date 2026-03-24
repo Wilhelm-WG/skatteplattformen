@@ -1,0 +1,217 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "skapad": "2026-03-23",
+    "beskrivning": "OECD-utfallsjämförelse: Sverige vs Norden + OECD-snitt",
+    "länder": ["Sverige", "Danmark", "Norge", "Finland", "OECD-snitt"],
+    "princip": "Inte bara vad vi spenderar — utan vad vi får"
+  },
+
+  "sjukvård": {
+    "rubrik": "Hälso- och sjukvård",
+    "utgifter": {
+      "per_capita_usd_ppp": {
+        "Sverige": 6400, "Danmark": 6300, "Norge": 7900, "Finland": 5700, "OECD": 5972,
+        "år": 2022, "källa": "OECD Health at a Glance 2025"
+      },
+      "andel_bnp_pct": {
+        "Sverige": 11.7, "Danmark": 10.3, "Norge": 11.7, "Finland": 9.6, "OECD": 9.3,
+        "år": 2024, "källa": "OECD Health at a Glance 2025"
+      }
+    },
+    "utfall": {
+      "medellivslängd": {
+        "Sverige": 84.1, "Danmark": 82.3, "Norge": 83.3, "Finland": 82.4, "OECD": 79.5,
+        "enhet": "år vid födseln",
+        "år": 2024, "källa": "OECD Health at a Glance 2025"
+      },
+      "spädbarnsdödlighet": {
+        "Sverige": 2.2, "Danmark": null, "Norge": 1.8, "Finland": 1.9, "OECD": 5.7,
+        "enhet": "per 1 000 levande födda",
+        "år": 2024, "källa": "OECD Health at a Glance 2025"
+      },
+      "bröstcancer_5år_överlevnad": {
+        "Sverige": 92.3, "Danmark": null, "Norge": null, "Finland": null, "OECD": null,
+        "enhet": "% 5-årsöverlevnad",
+        "år": "2016-2020", "källa": "OECD Cancer Profiles 2025",
+        "not": "Sverige bland de högsta i OECD"
+      },
+      "tjocktarmscancer_5år_överlevnad": {
+        "Sverige": 64.9, "Danmark": null, "Norge": 66.7, "Finland": 64.9, "OECD": null,
+        "enhet": "% 5-årsöverlevnad",
+        "år": "2016-2020", "källa": "OECD Cancer Statistics"
+      },
+      "sjukhussängar_per_1000": {
+        "Sverige": 1.9, "Danmark": null, "Norge": null, "Finland": null, "OECD": 4.3,
+        "enhet": "per 1 000 invånare",
+        "år": 2022, "källa": "OECD Health at a Glance: Europe 2024",
+        "not": "Nordiska länder har medvetet låg kapacitet — fokus på öppenvård"
+      },
+      "läkare_per_1000": {
+        "Sverige": 4.4, "Danmark": 3.4, "Norge": 5.2, "Finland": null, "OECD": 4.0,
+        "enhet": "per 1 000 invånare",
+        "år": 2021, "källa": "OECD Health Statistics / World Bank"
+      },
+      "undvikbar_dödlighet": {
+        "not": "Sverige har lägst undvikbar dödlighet i EU",
+        "OECD_snitt": 79,
+        "enhet": "per 100 000 invånare",
+        "år": 2021, "källa": "OECD Health at a Glance 2025"
+      }
+    }
+  },
+
+  "utbildning": {
+    "rubrik": "Utbildning",
+    "utgifter": {
+      "andel_bnp_pct": {
+        "Sverige": 7.1, "Danmark": 6.4, "Norge": 6.2, "Finland": 6.2, "OECD": 4.9,
+        "år": 2021, "källa": "OECD Education at a Glance 2024"
+      },
+      "per_elev_usd_ppp_grundskola": {
+        "Sverige": 15037, "Danmark": 15461, "Norge": 18037, "Finland": null, "OECD": 13500,
+        "år": 2022, "källa": "OECD Education at a Glance 2024"
+      }
+    },
+    "utfall": {
+      "pisa_matematik_2022": {
+        "Sverige": 482, "Danmark": 489, "Norge": 467, "Finland": 484, "OECD": 472,
+        "källa": "OECD PISA 2022"
+      },
+      "pisa_läsning_2022": {
+        "Sverige": 487, "Danmark": null, "Norge": null, "Finland": 450, "OECD": 476,
+        "källa": "OECD PISA 2022"
+      },
+      "pisa_naturvetenskap_2022": {
+        "Sverige": 494, "Danmark": 494, "Norge": null, "Finland": 511, "OECD": 485,
+        "källa": "OECD PISA 2022"
+      },
+      "högskoleutbildade_25_64_pct": {
+        "Sverige": 51.8, "Danmark": 42.0, "Norge": null, "Finland": 42.3, "OECD": 40.0,
+        "enhet": "% av 25-64-åringar med högskoleutbildning",
+        "år": 2024, "källa": "OECD Education at a Glance 2025"
+      },
+      "neet_15_29_pct": {
+        "Sverige": 6.0, "Danmark": 9.0, "Norge": null, "Finland": 9.5, "OECD": 11.0,
+        "enhet": "% ej i utbildning, arbete eller praktik",
+        "år": 2024, "källa": "Nordic Statistics / OECD"
+      },
+      "piaac_läskunnighet_2023": {
+        "Sverige": 284, "Danmark": null, "Norge": 281, "Finland": 296, "OECD": 260,
+        "källa": "OECD PIAAC 2023"
+      },
+      "piaac_räknefärdighet_2023": {
+        "Sverige": 285, "Danmark": null, "Norge": 285, "Finland": 294, "OECD": 263,
+        "källa": "OECD PIAAC 2023"
+      }
+    }
+  },
+
+  "äldreomsorg": {
+    "rubrik": "Äldreomsorg & socialt skydd",
+    "utgifter": {
+      "ltc_andel_bnp_pct": {
+        "Sverige": 3.5, "Danmark": 3.5, "Norge": 3.5, "Finland": 2.2, "OECD": null,
+        "år": 2024, "källa": "OECD Health at a Glance 2025",
+        "not": "Nordiska länder bland världens högsta"
+      }
+    },
+    "utfall": {
+      "ltc_personal_per_100_äldre": {
+        "Sverige": 11.8, "Danmark": 7.0, "Norge": 12.0, "Finland": null, "OECD": 5.5,
+        "enhet": "anställda per 100 invånare 65+",
+        "år": 2024, "källa": "OECD Health at a Glance 2025"
+      },
+      "friska_levnadsår_vid_65": {
+        "Sverige": 14.0, "Danmark": null, "Norge": 14.0, "Finland": null, "OECD": 9.8,
+        "enhet": "år",
+        "år": 2021, "källa": "OECD Health at a Glance 2025"
+      },
+      "barnfattigdom_pct": {
+        "Sverige": 8.8, "Danmark": 2.8, "Norge": 6.7, "Finland": 2.9, "OECD": null,
+        "enhet": "% av barn under fattigdomsgräns",
+        "år": 2022, "källa": "OECD Family Database"
+      },
+      "gini_koefficient": {
+        "Sverige": 0.27, "Danmark": 0.29, "Norge": 0.26, "Finland": 0.28, "OECD": 0.32,
+        "enhet": "efter skatt och transfereringar (0=jämlikhet, 1=ojämlikhet)",
+        "år": 2024, "källa": "OECD Society at a Glance 2024"
+      },
+      "äldrefattigdom_65plus_pct": {
+        "Sverige": null, "Danmark": 5.0, "Norge": 5.0, "Finland": 5.0, "OECD": 15.0,
+        "enhet": "% under fattigdomsgräns",
+        "år": 2024, "källa": "OECD Pensions at a Glance 2025",
+        "not": "Alla nordiska länder bland de lägsta i OECD"
+      },
+      "bostadskostnad_median_pct": {
+        "Sverige": 29, "Danmark": 27, "Norge": 29, "Finland": 32, "OECD": null,
+        "enhet": "% av disponibel inkomst till hyra",
+        "år": 2024, "källa": "OECD Affordable Housing Database"
+      }
+    }
+  },
+
+  "infrastruktur": {
+    "rubrik": "Infrastruktur & samhällsstyrning",
+    "utfall": {
+      "trafikdöda_per_miljon": {
+        "Sverige": 22, "Danmark": 27, "Norge": 20, "Finland": 33, "OECD": 46,
+        "enhet": "döda per miljon invånare",
+        "år": 2023, "källa": "Eurostat / EFTA Road Safety Statistics"
+      },
+      "järnväg_elektrifiering_pct": {
+        "Sverige": 75.1, "Danmark": null, "Norge": null, "Finland": 33.0, "OECD": null,
+        "enhet": "% av järnvägsnätet elektrifierat",
+        "år": 2024, "källa": "Eurostat Railway Network"
+      },
+      "vägkvalitet_wef_rank": {
+        "Sverige": 23, "Danmark": 13, "Norge": 49, "Finland": 19, "OECD": null,
+        "enhet": "global ranking",
+        "år": 2025, "källa": "World Economic Forum / StatRanker"
+      },
+      "korruptionsindex_cpi": {
+        "Sverige": 80, "Danmark": 90, "Norge": 81, "Finland": 88, "OECD": null,
+        "enhet": "poäng 0-100 (högre = mindre korruption)",
+        "år": 2024, "källa": "Transparency International CPI 2024"
+      },
+      "e_government_egdi_rank": {
+        "Sverige": null, "Danmark": 1, "Norge": null, "Finland": null, "OECD": null,
+        "not": "Alla nordiska länder i toppskiktet; Danmark #1 globalt",
+        "år": 2024, "källa": "UN DESA E-Government Survey 2024"
+      },
+      "rättsstat_wjp_rank": {
+        "Sverige": 4, "Danmark": 1, "Norge": 2, "Finland": 3, "OECD": null,
+        "enhet": "global ranking",
+        "år": 2025, "källa": "World Justice Project Rule of Law Index"
+      },
+      "tillit_till_regering_pct": {
+        "Sverige": 43, "Danmark": null, "Norge": 48, "Finland": 47, "OECD": 39,
+        "enhet": "% med hög/måttligt hög tillit",
+        "år": 2023, "källa": "OECD Survey on Drivers of Trust 2024"
+      }
+    }
+  },
+
+  "miljö": {
+    "rubrik": "Miljö & hållbarhet",
+    "utfall": {
+      "co2_per_capita_ton": {
+        "Sverige": 3.6, "Danmark": 4.3, "Norge": 7.2, "Finland": 5.5, "OECD": 6.4,
+        "enhet": "ton CO2e per invånare",
+        "år": 2024, "källa": "World Bank / TheGlobalEconomy.com"
+      },
+      "förnybar_energi_pct": {
+        "Sverige": 66.4, "Danmark": 43.0, "Norge": 75.0, "Finland": 39.6, "OECD": null,
+        "enhet": "% av slutlig energiförbrukning",
+        "år": 2023, "källa": "Eurostat Renewable Energy Statistics",
+        "not": "Sverige 88% förnybar el; alla nordiska länder når EU 2030-mål redan 2023"
+      },
+      "återvinningsgrad_pct": {
+        "Sverige": 39.5, "Danmark": 34.3, "Norge": 38.2, "Finland": 37.1, "OECD": 47.7,
+        "enhet": "% av kommunalt avfall som återvinns",
+        "år": 2023, "källa": "EEA / Eurostat Waste Recycling Indicators",
+        "not": "Alla nordiska länder under EU-snitt — hög konsumtion skapar mycket avfall"
+      }
+    }
+  }
+}

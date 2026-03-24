@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "beskrivning": "Framtidens utmaningar för svensk offentlig sektor 2025-2035",
+    "uppdaterad": "2025-03-24",
+    "källor": ["Trafikverket NTP 2026-2037","Svenskt Vatten 2023","SKR Ekonomirapporten 2024","SCB Befolkningsframskrivning 2025-2070","Statskontoret Riktade statsbidrag 2024","Socialstyrelsen","Skolverket Lärarprognos 2024","SNS Konjunkturråd 2026"]
+  },
+  "investeringsbehov_10ar": {
+    "jarnvag": {"mdkr_10ar": 500, "underhallsskuld_mdkr": 91, "källa": "Trafikverket NTP 2026-2037"},
+    "vagar": {"mdkr_10ar": 961, "underhallsskuld_mdkr": 76.5, "källa": "Trafikverket NTP 2026-2037"},
+    "va": {"mdkr_10ar": 310, "gap_per_ar_mdkr": 10, "källa": "Svenskt Vatten 2023"},
+    "forsvar": {"mdkr_2025": 138, "mdkr_2026": 175, "nato_mal_2030_pct": 3.5, "källa": "Försvarsbeslut 2025-2030"},
+    "elnat": {"mdkr_2045": 945, "per_ar_mdkr": 60, "källa": "Energiföretagen Sverige"},
+    "bostader": {"mdkr_10ar": 450, "brist_enheter": 150000, "källa": "Boverket"},
+    "kommunal_infra": {"per_ar_mdkr": 230, "källa": "SKR"}
+  },
+  "finansieringsgap": {
+    "skattekvot_2010_pct": 46.7,
+    "skattekvot_2024_pct": 41.4,
+    "forandring_pp": -5.3,
+    "sjukvard_bnp_2023_pct": 11.2,
+    "regioner_underskott_2024_mdkr": -9,
+    "riktade_statsbidrag_antal": 163,
+    "lpik_vs_kpi_2009_2021": {"lpik_pct": 27, "kpi_pct": 15, "diff_pp": 12},
+    "personalkostnad_andel_sjukvard_pct": 65,
+    "befolkning_80plus_2024": 635000,
+    "befolkning_80plus_2030": 812000,
+    "forsorjningskvot_2023": 0.77,
+    "forsorjningskvot_2070": 0.89
+  },
+  "personalbrist": {
+    "larare_brist_2038": 10600,
+    "larare_behov_per_ar": 23700,
+    "larare_utbildas_per_ar": 15300,
+    "sjukskoterskor_utanfor_yrket": 13000,
+    "vardplatser_stangda": 2230,
+    "aldreomsorg_behov_2033": 65600,
+    "poliser_2025_mal": 26200,
+    "poliser_2025_faktiskt": 24871,
+    "offentlig_sektor_anstallda": 1500000
+  }
+}
