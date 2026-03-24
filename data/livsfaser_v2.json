@@ -1,0 +1,484 @@
+{
+  "_meta": {
+    "version": "2.0",
+    "basår": 2024,
+    "befolkning": 10550000,
+    "cofog_total_mdkr": 3011,
+    "källa_cofog": "SCB NR, offentliga sektorns utgifter (COFOG) 2024",
+    "kalibreringsfaktor": 1.130,
+    "kalibreringsnot": "JS-fasvärdenas befolkningsvägda summa ≈ 2 664 Mdkr. Faktorn 1.130 justerar mot COFOG 3 011 Mdkr. Differensen förklaras primärt av understimerad population 85+ samt viss dubbelräkning i kommunal service.",
+    "kategorier": {
+      "utbildning": "Förskola, grundskola, gymnasium, högskola, CSN-studiestöd",
+      "sjukvård": "Primärvård, specialistvård, läkemedel, folkhälsa (UO9 + SKR regioner)",
+      "socialt_skydd": "Sjukförsäkring, barnbidrag, föräldrapenning, garantipension, bostadsbidrag (UO10-12)",
+      "kollektivt": "Försvar, rättsväsende, infrastruktur, statsförvaltning, kommunal service (UO1-6, UO22, UO25 m.fl.)",
+      "äldreomsorg": "Hemtjänst, särskilt boende, dagverksamhet (SKR kommunal äldreomsorg)"
+    },
+    "konfidensintervall_förklaring": "±% anger 90%-intervall. Baseras på metodosäkerhet, ej statistisk sampling.",
+    "senast_uppdaterad": "2026-03-24",
+    "nästa_uppdatering": "2026-09-01 (ESV 2025-utfall + SCB KPP-data beställd 2026-03-23)"
+  },
+
+  "faser": [
+    {
+      "id": "barn",
+      "label": "Spädbarn & förskola",
+      "min_ålder": 0,
+      "max_ålder": 6,
+      "år_i_fas": 7,
+      "befolkning_approx": 700000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 175,
+          "ki_pct": 5,
+          "källa": "Skolverket 2024: förskola genomsnitt 175 000 kr/barn inkl. barnomsorgsavgift (maxtaxa täcker ~5%). Fritidshem exkl.",
+          "not": "Varierar 130–220 tkr beroende på kommun. Stockholms stad ~210 tkr, glesbygd ~145 tkr."
+        },
+        "sjukvård": {
+          "värde": 40,
+          "ki_pct": 20,
+          "källa": "NTA-profil 0–4 år, kalibrerad mot Socialstyrelsen kostnad per åldersgrupp 2022. BVC ~8 tkr + barnmedicin + akutvård.",
+          "not": "NTA-vikter (AGENTA 2010) ger 28% av per-capita-genomsnittet för 0–4-år."
+        },
+        "socialt_skydd": {
+          "värde": 38,
+          "ki_pct": 10,
+          "källa": "Försäkringskassan 2024: föräldrapenning (delad) ~28 tkr/barn/år genomsnitt 0–1 år. Barnbidrag 1 250 kr/mån = 15 tkr/år.",
+          "not": "Föräldrapenning avtar år 2–6. Barnbidrag löper 0–15 år. Snittbelopp fasens hela period."
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning: COFOG-kategorier utan tydlig åldersvikt (försvar, rättsväsende, infrastruktur, statsförvaltning). 285 tkr/capita totalt minus individuella tjänster.",
+          "not": "Metodval: platt fördelning är konservativ. Barn nyttjar mer av kollektiv infrastruktur (skollokaler ingår i utbildningsposten)."
+        },
+        "äldreomsorg": {
+          "värde": 0,
+          "ki_pct": 0,
+          "källa": "N/A — mottagare av kommunal äldreomsorg är i praktiken 65+.",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 303,
+      "not": "Förskola 175 tkr/barn/år är den enskilt största posten. BVC, vaccinationer, barnhälsovård ~40 tkr."
+    },
+
+    {
+      "id": "elev",
+      "label": "Grundskoleelev",
+      "min_ålder": 7,
+      "max_ålder": 15,
+      "år_i_fas": 9,
+      "befolkning_approx": 1000000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 148,
+          "ki_pct": 5,
+          "källa": "Skolverket rapport 2025: kommunal grundskola 148 000 kr/elev/år (inkl. skolmat, elevhälsa, lokaler, skolbuss).",
+          "not": "Rikssnittet. Enskild huvudman: 129 300 kr (nationell nivå). F-klass + åk 1–9 + fritidshem (för yngre)."
+        },
+        "sjukvård": {
+          "värde": 18,
+          "ki_pct": 25,
+          "källa": "NTA-profil 5–14 år. Skolhälsovård, ungdomsmottagning, enstaka akutbesök.",
+          "not": "Lägsta sjukvårdsandelen i livet. Frisk ålder med låg konsumtion utöver obligatoriska hälsokontroller."
+        },
+        "socialt_skydd": {
+          "värde": 25,
+          "ki_pct": 10,
+          "källa": "Barnbidrag 1 250 kr/mån (15 tkr/år). Bostadsbidrag till barnfamiljer ~8 tkr/barn genomsnitt (SCB HE0201). Underhållsstöd ~2 tkr.",
+          "not": null
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning, se fase 0–6.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 0,
+          "ki_pct": 0,
+          "källa": "N/A",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 241,
+      "not": "Grundskolan är en av de bäst dokumenterade posterna. Kostnaden per elev bekräftad av Skolverket."
+    },
+
+    {
+      "id": "gymn",
+      "label": "Gymnasieelev",
+      "min_ålder": 16,
+      "max_ålder": 18,
+      "år_i_fas": 3,
+      "befolkning_approx": 350000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 145,
+          "ki_pct": 8,
+          "källa": "Skolverket 2025: kommunalt gymnasium genomsnitt 148 000 kr/elev. Teknikprogram ~180 tkr, humanistiska ~115 tkr. Rikssnitt 145 tkr.",
+          "not": "Fristående gymnasier finansieras via skolpeng (lägre nationell nivå). Yrkesprogram inkl. APL."
+        },
+        "sjukvård": {
+          "värde": 20,
+          "ki_pct": 25,
+          "källa": "NTA-profil 15–19 år. Ungdomsmottagning, psykisk ohälsa (ökande), mödravård.",
+          "not": "Psykisk ohälsa bland unga har ökat markant 2015–2024 (Socialstyrelsen). Posten kan vara underskattad."
+        },
+        "socialt_skydd": {
+          "värde": 26,
+          "ki_pct": 10,
+          "källa": "Barnbidrag upphör vid 16 (om ej gymnasiet), förlängt bidrag ~1 050 kr/mån vid gymnasiestudier. CSN-studiebidrag gymnasiet ~1 250 kr/mån.",
+          "not": null
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 0,
+          "ki_pct": 0,
+          "källa": "N/A",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 241,
+      "not": "Gymnasiet frivilligt men 98% av 16-åringar påbörjar det. Kostar lika mycket som grundskolan per elev."
+    },
+
+    {
+      "id": "student",
+      "label": "Student / ung vuxen",
+      "min_ålder": 19,
+      "max_ålder": 25,
+      "år_i_fas": 7,
+      "befolkning_approx": 750000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 110,
+          "ki_pct": 15,
+          "källa": "UKÄ 2024: ~240 tkr/helårsstudent statlig högskola (anslag + OH). ~45% av 19–25-åringar studerar → snitt 110 tkr. CSN-lån ej inkl. (är skuld, ej förmån).",
+          "not": "CSN-studiebidrag ~3 000 kr/mån (36 tkr/år) inkluderat i socialt skydd. Universitetsanslaget ~240 tkr är den faktiska kostnaden per student."
+        },
+        "sjukvård": {
+          "värde": 25,
+          "ki_pct": 20,
+          "källa": "NTA-profil 20–24 år. Primärvård, psykisk ohälsa, mödravård.",
+          "not": null
+        },
+        "socialt_skydd": {
+          "värde": 37,
+          "ki_pct": 15,
+          "källa": "CSN studiebidrag ~25 tkr/år (studenter). Bostadsbidrag unga ~8 tkr. Sjukförsäkring låg konsumtion ~4 tkr.",
+          "not": null
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 0,
+          "ki_pct": 0,
+          "källa": "N/A",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 222,
+      "not": "Stor variation beroende på om man studerar eller arbetar. Modellen avspeglar en medelperson (mix studenter och yrkesarbetande)."
+    },
+
+    {
+      "id": "ung_arb",
+      "label": "Ung förvärvsarbetande",
+      "min_ålder": 26,
+      "max_ålder": 34,
+      "år_i_fas": 9,
+      "befolkning_approx": 1200000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 6,
+          "ki_pct": 50,
+          "källa": "Restpost: komvux, yrkesvux, arbetsmarknadsutbildning. ~4% av åldersgruppen i utbildning (SCB AKU).",
+          "not": null
+        },
+        "sjukvård": {
+          "värde": 30,
+          "ki_pct": 20,
+          "källa": "NTA-profil 25–34 år. Primärvård, mödravård, förlossningsvård. Relativt frisk grupp.",
+          "not": null
+        },
+        "socialt_skydd": {
+          "värde": 42,
+          "ki_pct": 15,
+          "källa": "Sjukförsäkring ~12 tkr (FK 2024, sjukpenningdagar normaliserat). Föräldrapenning ~18 tkr (för de som får barn). Barnbidrag ~12 tkr (genomsnitt på gruppen). Bostadsbidrag.",
+          "not": "Stor intern variation: de som inte har barn tar emot ~15 tkr; de med småbarn ~70+ tkr."
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 0,
+          "ki_pct": 0,
+          "källa": "N/A",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 128,
+      "not": "Lägst totala förmåner av alla faser — nettobidragsgivare. Finansierar barn, äldre och kollektiva nyttigheter."
+    },
+
+    {
+      "id": "barnfamilj",
+      "label": "Barnfamiljsfas",
+      "min_ålder": 35,
+      "max_ålder": 44,
+      "år_i_fas": 10,
+      "befolkning_approx": 1400000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 42,
+          "ki_pct": 20,
+          "källa": "Genomsnittlig barnfamilj med 1,7 barn. Skola ~148 tkr × 1,7 barn × andel skolålder ~17%. Förskola för yngre barn.",
+          "not": "Inkluderar barnens skolgång, inte den vuxnes utbildning."
+        },
+        "sjukvård": {
+          "värde": 52,
+          "ki_pct": 20,
+          "källa": "NTA-profil 35–44 år. Stigande konsumtion: cancer, hjärt-kärl (tidiga), psykisk ohälsa, rygg/led.",
+          "not": null
+        },
+        "socialt_skydd": {
+          "värde": 85,
+          "ki_pct": 15,
+          "källa": "Barnbidrag ~15 tkr (1,7 barn). Sjukförsäkring ~14 tkr (FK, åldersgrupp 35–44). VAB ~8 tkr. Bostadsbidrag/bostadstillägg ~5 tkr. Föräldrapenning ~43 tkr (om spädbarn i hushållet).",
+          "not": "Hög socialt skydd beror på barnbidrag + sjukförsäkring + (för en del) föräldrapenning för tredje barn."
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 2,
+          "ki_pct": 50,
+          "källa": "Marginellt: tidig hemtjänst vid funktionsnedsättning, LSS. Negligerbar post.",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 231,
+      "not": "Hög socialt skydd p.g.a. barnbidrag och sjukförsäkring. Fortfarande nettobidragsgivare till systemet totalt sett."
+    },
+
+    {
+      "id": "mitt_karriar",
+      "label": "Mitt i karriären",
+      "min_ålder": 45,
+      "max_ålder": 54,
+      "år_i_fas": 10,
+      "befolkning_approx": 1300000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 5,
+          "ki_pct": 50,
+          "källa": "Komvux, yrkesvux, arbetsmarknadsutbildning. Barn nu tonåringar (delvis utflugna). Liten post.",
+          "not": null
+        },
+        "sjukvård": {
+          "värde": 78,
+          "ki_pct": 20,
+          "källa": "NTA-profil 45–54 år. Markant stigande: hjärt-kärl, diabetes, cancer (screening), rörelseorganen.",
+          "not": "Cancerscreening (mammografi, PSA) och hjärt-kärlprevention driver upp kostnaderna."
+        },
+        "socialt_skydd": {
+          "värde": 52,
+          "ki_pct": 15,
+          "källa": "Sjukförsäkring ~21 tkr (FK, topp för åldersgruppen). A-kassa ~5 tkr (normaliserat). Barnbidrag avtackar ~3 tkr. Sjukersättning (aktivitetsersättning).",
+          "not": "Sjukdagarna per person toppar runt 50 år (Försäkringskassan MiDAS)."
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 4,
+          "ki_pct": 50,
+          "källa": "LSS, tidig hemtjänst, stroke-vård (yngre). Liten men existerande post.",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 189,
+      "not": "Sjukvården överstiger nu utbildningsposten markant. Stora skattebetalare som finansierar fler i systemet än de tar emot."
+    },
+
+    {
+      "id": "senior",
+      "label": "Senior förvärvsarbetande",
+      "min_ålder": 55,
+      "max_ålder": 64,
+      "år_i_fas": 10,
+      "befolkning_approx": 1200000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 3,
+          "ki_pct": 50,
+          "källa": "Negligerbar. Vuxenutbildning för enstaka. Barn nu vuxna.",
+          "not": null
+        },
+        "sjukvård": {
+          "värde": 110,
+          "ki_pct": 20,
+          "källa": "NTA-profil 55–64 år + Socialstyrelsen kostnad per åldersgrupp. Hjärt-kärl, cancer, led, KOLS. Nästan dubbelt mot 45–54.",
+          "not": "Sjukvårdsutgifter ökar exponentiellt med ålder. 55–64 är en tröskelålder."
+        },
+        "socialt_skydd": {
+          "värde": 65,
+          "ki_pct": 15,
+          "källa": "Sjukpenning/sjukersättning ~25 tkr (topp för gruppen, FK). A-kassa ~8 tkr. Garantipension börjar vid 65 (ej inkl. här). Bostadstillägg.",
+          "not": null
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 10,
+          "ki_pct": 40,
+          "källa": "Tidig äldreomsorg (anhörigstöd, korttidsboende). Socialstyrelsen: ~5% av 60–64-åringar har hemtjänst.",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 238,
+      "not": "Ungefärlig brytpunkt: mottagna tjänster ≈ betald skatt vid 60 år för genomsnittsinkomst. Sjukvården klättrar snabbt."
+    },
+
+    {
+      "id": "pensionar",
+      "label": "Ny pensionär",
+      "min_ålder": 65,
+      "max_ålder": 74,
+      "år_i_fas": 10,
+      "befolkning_approx": 1100000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 2,
+          "ki_pct": 50,
+          "källa": "Folkbildning, senioruniversitet. Negligerbar statlig kostnad.",
+          "not": null
+        },
+        "sjukvård": {
+          "värde": 175,
+          "ki_pct": 25,
+          "källa": "NTA-profil + Socialstyrelsen patientregistret. Specialiserad sjukvård, multisjuklighet, hjärt-kärl-ingrepp, höftoperationer, KOL, diabetes typ 2 komplikationer.",
+          "not": "Osäkerhet ±25% — NTA-vikter, ej faktisk KPP per åldersår. SCB-beställning gjord 2026-03-23."
+        },
+        "socialt_skydd": {
+          "värde": 100,
+          "ki_pct": 10,
+          "källa": "Garantipension: ~9 500 kr/mån = ~34 tkr/år (de som uppbär den). Bostadstillägg ~28 tkr/år (de berättigade). Genomsnitt på hela åldersgruppen ~100 tkr.",
+          "not": "Inkomstpension (~800 Mdkr/år totalt) är avgiftsfinansierad och INGÅR EJ i denna modell."
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 65,
+          "ki_pct": 20,
+          "källa": "SKR 2024: ~70 Mdkr kommunal hemtjänst / ~400 000 brukare. ~15% av 65–74-åringar har hemtjänst. Genomsnitt på åldersgruppen: ~65 tkr.",
+          "not": null
+        }
+      },
+      "total_tkr_per_år": 392,
+      "not": "Nu tydlig nettotagare. Systemet levererar enligt löftet. Notabelt: sjukvården överstiger garantipensionen i kostnad."
+    },
+
+    {
+      "id": "aldri",
+      "label": "Senior pensionär",
+      "min_ålder": 75,
+      "max_ålder": 85,
+      "år_i_fas": 11,
+      "befolkning_approx": 800000,
+      "förmåner_tkr_per_år": {
+        "utbildning": {
+          "värde": 1,
+          "ki_pct": 50,
+          "källa": "Negligerbar.",
+          "not": null
+        },
+        "sjukvård": {
+          "värde": 280,
+          "ki_pct": 25,
+          "källa": "NTA-profil 75+ + Socialstyrelsen. Specialiserad multisjuklighet, demensutredning, frakturer, hjärtsvikt, palliativ vård. Mer än dubbelt mot 65–74.",
+          "not": "Sjukvårdskostnaderna 80–85 år är extremt höga (>400 tkr/år per patient i slutenvård). NTA-vikter underskattar troligen toppen."
+        },
+        "socialt_skydd": {
+          "värde": 80,
+          "ki_pct": 10,
+          "källa": "Garantipension ~34 tkr. Bostadstillägg ~30 tkr (högre andel berättigade). Äldreförsörjningsstöd. Genomsnitt ~80 tkr.",
+          "not": null
+        },
+        "kollektivt": {
+          "värde": 50,
+          "ki_pct": 15,
+          "källa": "Platt fördelning.",
+          "not": null
+        },
+        "äldreomsorg": {
+          "värde": 240,
+          "ki_pct": 20,
+          "källa": "SKR 2024: Hemtjänst ~175 tkr/brukare/år. Särskilt boende ~800 tkr/plats/år. ~35% av 75–84-åringar har hemtjänst, ~12% bor i särskilt boende. Vägt genomsnitt ~240 tkr.",
+          "not": "Äldreomsorg ≈ sjukvård i kostnad för denna fas. Systemets tyngsta utgiftspost."
+        }
+      },
+      "total_tkr_per_år": 651,
+      "not": "Systemets klart dyraste fas. 75–85 kostar 5× mer per person än 26–34-åringen. Den demografiska förändringen påverkar systemet kraftigt."
+    }
+  ],
+
+  "skattemodell": {
+    "version": "2.0",
+    "not": "Standardmodell utan pensionsavgift. Toggle i kalkylatorn visar inkl/exkl.",
+    "kommunalskatt_sats": 0.3237,
+    "kommunalskatt_källa": "SCB 2024: genomsnittlig kommunalskatt inkl. landsting/region = 32,37%",
+    "statlig_skatt_sats": 0.20,
+    "statlig_skatt_brytpunkt_tkr": 598,
+    "statlig_skatt_källa": "65 kap 5 § IL, skiktgräns 2024: 598 000 kr (PBB × 1,025 × 10,48)",
+    "arbetsgivaravgift_exkl_pension": 0.1420,
+    "arbetsgivaravgift_inkl_pension": 0.3142,
+    "arbetsgivaravgift_källa": "SFS 2000:980, socialavgiftslagen 2024. Exkl. pension: 31,42% − 10,21% ålderspensionsavgift + inkluderar övriga.",
+    "moms_effektiv_sats": 0.1525,
+    "moms_beräkning": "konsumtion × 0.18 / 1.18. Konsumtion = disponibel × 0.85 (SCB sparkvot 2024 ~15%). Genomsnittlig momsats på konsumtionskorg: ~18% (mix 25/12/6%).",
+    "moms_källa": "SCB HE0201 Hushållens utgifter 2022. Momsåterbetalningsmetod (SCB Nationalräkenskaperna).",
+    "pbb_2024_tkr": 57.3,
+    "grundavdrag_not": "Beräknas per 67 kap IL med PBB 2024. Se nta_berakning.py::grundavdrag2024()",
+    "jobbskatteavdrag_not": "Beräknas per 67 kap 5-7 §§ IL, kalibrerad mot SKV skattetabeller tabell 32. Se nta_berakning.py::jobbskatteavdrag2024()"
+  },
+
+  "kalibrering": {
+    "not": "Verifiering att modellens befolkningsvägda förmånssumma stämmer mot COFOG.",
+    "cofog_target_mdkr": 3011,
+    "modell_summa_mdkr_approx": 2664,
+    "differens_pct": 11.3,
+    "differens_förklaring": [
+      "Population 85+ (~300k) ingår ej — dessa har extremt höga kostnader",
+      "Kollektiva nyttigheter kan vara underskattade (platt 50 tkr vs faktisk ~115 tkr/capita för ren kollektiv)",
+      "Viss kommunal service dubbelräknas/utelämnas i gränsdragning SKR vs statsbudget"
+    ]
+  }
+}

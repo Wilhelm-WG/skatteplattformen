@@ -487,6 +487,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           </div>
         </div>
 
+        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
+            <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
+            <span>Inkludera pensionsavgift i skatt</span>
+          </label>
+          <span style="color:var(--ink3);font-size:.72rem;line-height:1.3">Av = standard (pensionsavgift 10,21% ger individuell pensionsrätt — inte en "skatt"). På = brutto arbetsgivaravgift 31,42%.</span>
+        </div>
+
         <div class="method-note">
           <strong>Vad mäts här?</strong><br>
           Offentliga tjänster och förmåner du konsumerar <em>i år</em>, baserat på din ålder och livsfas. Inkluderar hela den offentliga sektorn (3 011 Mdkr 2024).
@@ -1807,38 +1815,56 @@ renderSkatteChart();
 // Fördelningsproportioner: COFOG-funktioner → individnivå per fas.
 // Alla belopp tkr/år i 2024 års priser.
 // ═══════════════════════════════════════════════════════════════════
-const STAGES = [
-  {min:0,  max:6,  id:'barn',    icon:'🍼', label:'Spädbarn & förskola',
-   w:{utb:175,sjukvård:40,socialt:38,koll:50,omsorg:0},
+// ── Livsfaser v2.0 — kanonisk datakälla (sync med data/livsfaser_v2.json) ────
+// VIKTIG: Uppdatera ALLTID livsfaser_v2.json parallellt om värden ändras här.
+const LIVSFASER_V2 = [
+  {id:'barn',       icon:'🍼', label:'Spädbarn & förskola',      min:0,  max:6,
+   f:{utb:175, sj:40, soc:38, koll:50, oms:0},
+   källa:'Skolverket 2024: förskola 175 tkr/barn/år. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
    note:'Förskola ~175 tkr/barn/år. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
-  {min:7,  max:15, id:'elev',    icon:'🎒', label:'Grundskoleelev',
-   w:{utb:148,sjukvård:18,socialt:25,koll:50,omsorg:0},
+  {id:'elev',       icon:'🎒', label:'Grundskoleelev',           min:7,  max:15,
+   f:{utb:148, sj:18, soc:25, koll:50, oms:0},
+   källa:'Skolverket 2025: grundskola 148 tkr/elev inkl. skolmat, elevhälsa, lokaler.',
    note:'Grundskola 148 tkr/elev/år inkl. skolmat, elevhälsa, lokaler. Barnbidrag, fritids.'},
-  {min:16, max:18, id:'gymn',    icon:'📚', label:'Gymnasieelev',
-   w:{utb:145,sjukvård:20,socialt:26,koll:50,omsorg:0},
+  {id:'gymn',       icon:'📚', label:'Gymnasieelev',             min:16, max:18,
+   f:{utb:145, sj:20, soc:26, koll:50, oms:0},
+   källa:'Skolverket 2025: gymnasium 145 tkr/elev (teknik ~180, humaniora ~115).',
    note:'Gymnasiet ~145 tkr/elev/år. Teknikprogram dyrare (~180 tkr), humaniora billigare (~115 tkr).'},
-  {min:19, max:25, id:'student', icon:'🎓', label:'Student / ung vuxen',
-   w:{utb:110,sjukvård:25,socialt:37,koll:50,omsorg:0},
+  {id:'student',    icon:'🎓', label:'Student / ung vuxen',      min:19, max:25,
+   f:{utb:110, sj:25, soc:37, koll:50, oms:0},
+   källa:'UKÄ 2024: 240 tkr/helårsstudent × 45% studerar = ~110 tkr genomsnitt. CSN studiebidrag ~36 tkr/år.',
    note:'Högskola ~240 tkr/helårsstudent men inte alla studerar → snitt ~110 tkr. CSN-lån, bostadsbidrag.'},
-  {min:26, max:34, id:'ung_arb', icon:'💼', label:'Ung förvärvsarbetande',
-   w:{utb:6,sjukvård:30,socialt:42,koll:50,omsorg:0},
+  {id:'ung_arb',    icon:'💼', label:'Ung förvärvsarbetande',    min:26, max:34,
+   f:{utb:6,  sj:30, soc:42, koll:50, oms:0},
+   källa:'FK 2024: sjukförsäkring 12 tkr. Barnbidrag+föräldrapenning 30 tkr (de med barn). SCB AKU.',
    note:'Du betalar betydligt mer i skatt än du tar emot. Du finansierar barns skola, äldres vård, och kollektiv trygghet.'},
-  {min:35, max:44, id:'barnfamilj',icon:'👨‍👩‍👧', label:'Barnfamiljsfas',
-   w:{utb:42,sjukvård:52,socialt:85,koll:50,omsorg:2},
+  {id:'barnfamilj', icon:'👨‍👩‍👧', label:'Barnfamiljsfas',          min:35, max:44,
+   f:{utb:42, sj:52, soc:85, koll:50, oms:2},
+   källa:'FK 2024: sjukdagar toppar 35–44. Barnbidrag+VAB+föräldrapenning. NTA-profil sjukvård 35–44.',
    note:'Höga sociala transfereringar: barnbidrag, föräldrapenning, VAB, bostadsbidrag. Fortfarande nettobidragsgivare.'},
-  {min:45, max:54, id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',
-   w:{utb:5,sjukvård:78,socialt:52,koll:50,omsorg:4},
+  {id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',         min:45, max:54,
+   f:{utb:5,  sj:78, soc:52, koll:50, oms:4},
+   källa:'NTA-profil 45–54 + Socialstyrelsen. Sjukvård märkbart stigande. FK: sjukpenningdagar per åldersgrupp.',
    note:'Stigande sjukvårdskonsumtion. Sjukförsäkring, A-kassa. Dina skatter finansierar ungdomars utbildning och äldres omsorg.'},
-  {min:55, max:64, id:'senior',  icon:'🏡', label:'Senior förvärvsarbetande',
-   w:{utb:3,sjukvård:110,socialt:65,koll:50,omsorg:10},
+  {id:'senior',     icon:'🏡', label:'Senior förvärvsarbetande', min:55, max:64,
+   f:{utb:3,  sj:110, soc:65, koll:50, oms:10},
+   källa:'NTA-profil 55–64 + Socialstyrelsen patientregistret. Sjukvård nära dubbelt mot 45–54.',
    note:'Hög sjukvård. Sjukersättning, sjukpenning. Ungefär vid balans: mottagna tjänster ≈ betald skatt.'},
-  {min:65, max:74, id:'pensionar',icon:'🌅', label:'Ny pensionär',
-   w:{utb:2,sjukvård:175,socialt:100,koll:50,omsorg:65},
+  {id:'pensionar',  icon:'🌅', label:'Ny pensionär',             min:65, max:74,
+   f:{utb:2,  sj:175, soc:100, koll:50, oms:65},
+   källa:'Socialstyrelsen + SKR 2024: hemtjänst 175 tkr/brukare/år × 15% av åldersgruppen. Garantipension 34 tkr.',
    note:'Nu nettotagare. Garantipension, bostadstillägg, äldreförsörjningsstöd. Du finansieras av dem som arbetar nu.'},
-  {min:75, max:85, id:'aldri',   icon:'🕰️', label:'Senior pensionär',
-   w:{utb:1,sjukvård:280,socialt:80,koll:50,omsorg:240},
+  {id:'aldri',      icon:'🕰️', label:'Senior pensionär',         min:75, max:85,
+   f:{utb:1,  sj:280, soc:80, koll:50, oms:240},
+   källa:'SKR 2024: hemtjänst+särskilt boende vägt 240 tkr. NTA-profil 75+ sjukvård. Osäkerhet ±25%.',
    note:'Mycket hög konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat in i 45 år.'},
 ];
+
+// Bygg STAGES från LIVSFASER_V2 (bakåtkompatibelt format)
+const STAGES = LIVSFASER_V2.map(f => ({
+  min:f.min, max:f.max, id:f.id, icon:f.icon, label:f.label, note:f.note,
+  w:{utb:f.f.utb, sjukvård:f.f.sj, socialt:f.f.soc, koll:f.f.koll, omsorg:f.f.oms}
+}));
 
 const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
 const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg'};
@@ -1918,9 +1944,12 @@ function annualTax(age, inc){
   // Jobbskatteavdrag (enbart för arbetsinkomster, ej pensionärer)
   const jsa = isPensionar ? 0 : jobbskatteavdrag2024(effInc, ga, ks);
 
-  // Arbetsgivaravgifter exkl pension (10.21% pension exkluderas då inkomstpension ej räknas som välfärd)
-  // Total avgift 31.42%, pension 10.21% → resterande 21.21%
-  const avg = isPensionar ? 0 : inc * 0.2121;
+  // Arbetsgivaravgifter: toggle styr om pensionsavgift (10.21%) inkluderas
+  // Exkl pension: 31.42% − 10.21% = 21.21% (standard — pension ger individuell pensionsrätt)
+  // Inkl pension: 31.42% (brutto, varav 10.21% ålderspensionsavgift)
+  const inkludaPension = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
+  const avgSats = inkludaPension ? 0.3142 : 0.2121;
+  const avg = isPensionar ? 0 : inc * avgSats;
 
   // Moms: hushåll konsumerar ca 85% av disponibel inkomst
   // Effektiv momsandel ~18% av konsumtion (mix 25/12/6%), men moms = konsumtion × 18/118
@@ -1974,7 +2003,7 @@ function updateCalc(){
     const items = [
       ['Kommunalskatt (32,4%)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
-      ['Arbetsgivaravgifter (ex pension)', tax.avg],
+      [(document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked) ? 'Arbetsgivaravgifter (inkl pension 10,21%)' : 'Arbetsgivaravgifter (ex pension)', tax.avg],
       ['Effektiv moms (konsumtion)', tax.moms],
       ['Jobbskatteavdrag', -tax.jsa],
     ];
