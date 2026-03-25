@@ -459,6 +459,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <button class="pf" onclick="fc(this,'infra')">Infrastruktur</button>
         <button class="pf" onclick="fc(this,'social')">Social</button>
         <button class="pf" onclick="fc(this,'trygghet')">Trygghet</button>
+        <button class="pf" onclick="fc(this,'kronisk')">Kroniska sjukdomar</button>
       </div>
     </div>
     <div class="pgrid" id="pgrid"></div>
@@ -717,6 +718,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <button class="ft-tab" onclick="showFt(this,'personal')">Personalbrist</button>
       <button class="ft-tab" onclick="showFt(this,'demo')">Demografi</button>
       <button class="ft-tab" onclick="showFt(this,'forsvar')">Försvar & säkerhet</button>
+      <button class="ft-tab" onclick="showFt(this,'skuld')">Statsskuld & räntor</button>
     </div>
 
     <!-- FINANSIERINGSGAPET -->
@@ -1000,6 +1002,68 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
       <p class="ft-source">Källor: Försvarsbeslut 2025–2030 (Regeringen), NATO Defence Expenditure 2024, Budgetpropositionen 2025/26:1.</p>
     </div>
+
+    <!-- ── STATSSKULD & RÄNTOR ── -->
+    <div class="ft-panel" id="ft-skuld">
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Statsskuld 2025 (prognos)</div>
+          <div class="ft-big">1 244<sub> Mdkr</sub></div>
+          <div class="ft-desc">Riksgäldens prognos: lånebehovet 2025 är 125 Mdkr. Skulden stiger igen efter bottennoteringen 2023. Per invånare: ~119 000 kr — inklusive nyfödda.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Räntekostnad 2025</div>
+          <div class="ft-big">13<sub> Mdkr/år</sub></div>
+          <div class="ft-desc">Vid medelränta 1,0%. Om räntan stiger till historisk norm (3%): 37 Mdkr/år — mer än hela Arbetsförmedlingens budget. Räntan är den enda stora utgiften utan motprestation.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Andel av BNP</div>
+          <div class="ft-big">19%<sub> av BNP</sub></div>
+          <div class="ft-desc">Lägst i EU (Maastrichtskulden inkl. kommuner: ~33%). Japan: 252%. USA: 122%. Sverige är ett av världens mest skuldfria länder — men skulden stiger för första gången sedan 1994-krisen.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Räntekänslighetens effekt</div>
+          <div class="ft-big">+1%<sub> ränta = +12 Mdkr</sub></div>
+          <div class="ft-desc">Varje procentenhets ränteökning kostar ~12 Mdkr extra per år. 1994 kostade räntorna 122 Mdkr — 8× mer än idag. Riksgälden refinansierar löpande, så effekten dröjer 3–5 år.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap" style="margin-top:1.5rem">
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Statsskuld som andel av BNP — historik och framåtblick</p>
+        <p style="font-size:.68rem;color:var(--ink3);margin-bottom:1rem">Från 1980-talets expansion till 1994-krisen (topp 74%) och den långa konsolideringen</p>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">1980</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:22%;background:var(--ink3)"></div></div>
+          <span class="ft-bar-val">16 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">1994 (topp)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:#B84A1E"></div></div>
+          <span class="ft-bar-val">74 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2010</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:46%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">34 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2023 (botten)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:24%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">18 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label">2025 (prognos)</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:26%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">19 %</span>
+        </div>
+      </div>
+
+      <div class="ft-callout" style="margin-top:1.2rem">
+        <strong>Generationsfrågans kärna:</strong> 1 244 Mdkr delat på 10,5 miljoner invånare = 119 000 kr per person. Men skulden amorteras inte aktivt — den ska "växa bort" om BNP-tillväxten överstiger räntan (överskottsmålet 0,33% av BNP). Det fungerar i lågräntemiljö. Om räntan normaliseras till 3% och tillväxten stannar på 1–2% minskar skuld/BNP-kvoten aldrig.
+      </div>
+      <p class="ft-source">Källor: Riksgälden statsskuldsstatistik 2025, SCB NR0103, IMF World Economic Outlook 2024, ESV Statsbudgetens utfall.</p>
+    </div>
+
   </div>
 </section>
 
@@ -1343,6 +1407,19 @@ const CARDS = [
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'En rättegång, tingsrätten',unit:'per mål (genomsnitt alla måltyper)',amount:38000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> som part i brottmål',src:'Domstolsverket 2024: ~600 000 mål / ~7,5 Mdkr = ~12 500 kr (ej rätt denominator). Brottmål med häktad: ~120 000 kr.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Försvaret per invånare, 2025',unit:'per invånare och år',amount:13800,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'UO6 2025 (preliminärt): ~146 Mdkr / 10,55M = 13 840 kr/inv. Jmf 2010: 4 185 kr/inv. 2% BNP-mål nått.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Kriminalvård, per intagen och år',unit:'per person i anstalt',amount:1200000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvården 2024: ~11 Mdkr / ~9 200 intagna i snitt = ~1 196 000 kr/år/person.'},
+
+  // ── KRONISKA SJUKDOMAR ──────────────────────────────────────────
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Typ 2-diabetes — vård per år',unit:'per patient och år, totalt vårdsystem',amount:52000,suf:'kr/år',vs:'Du betalar: <strong>max 1 300 kr/år</strong> (högkostnadsskydd)',src:'Socialstyrelsen/SKR 2024: ~530 000 typ 2-diabetiker. Total samhällskostnad ~45 Mdkr inkl. produktionsbortfall; direkt vård ~28 Mdkr → ~52 000 kr/patient/år. Inkl. läkemedel, kontroller, komplikationsbehandling.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Diabetes — läkemedel per år',unit:'per patient (genomsnitt alla läkemedel)',amount:18000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'TLV/e-hälsomyndigheten 2024: insulin + metformin + SGLT-2/GLP-1. Moderna SGLT-2-hämmare kostar ~18 000 kr/år. Äldre metformin ~300 kr/år. Genomsnittskostnaden är mix.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'MS (multipel skleros) — vård per år',unit:'per patient, biologiska läkemedel + uppföljning',amount:380000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'MS-sällskapet/TLV 2024: ~22 000 MS-patienter i Sverige. Biologiska DMT-läkemedel (Ocrevus, Tysabri, Lemtrada) kostar 250 000–600 000 kr/patient/år. Snitt inkl. uppföljning ~380 000 kr.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Depression (behandlingskrävande) — år',unit:'per patient, öppenvård + läkemedel',amount:38000,suf:'kr/år',vs:'Du betalar: <strong>~2 000–4 000 kr/år</strong> (besök + läkemedel)',src:'Socialstyrelsen 2024: ~400 000 med behandlingskrävande depression. Direkta kostnader ~15 Mdkr → ~38 000 kr/patient/år. SSRI-läkemedel ~1 500 kr/år; KBT-behandling ~15 000 kr/kurs.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'LSS — insats per person och år',unit:'per brukare med LSS-beslut (genomsnitt)',amount:780000,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — ingen avgift för LSS-insatser',src:'Socialstyrelsen LSS-uppföljning 2024: ~92 000 beslut om personlig assistans och boende. Totalt ~72 Mdkr / ~92 000 ≈ 780 000 kr/person/år. Personlig assistans (PAL): ~1,3 Mkr/år/person.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Cancer — behandling per patient',unit:'per nytt cancerfall, hela behandlingsperioden',amount:420000,suf:'kr totalt',vs:'Du betalar: <strong>max 1 300 kr/år</strong> (frikortstak)',src:'RCC/SKR 2024: ~75 000 nya cancerfall/år. Onkologisk behandling (kemo + strålning + kirurgi + kontroller): genomsnitt 300 000–600 000 kr beroende på typ. Prostatacancer billigare, blodcancer dyrare.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Reumatoid artrit (RA) — biologisk behandling',unit:'per patient och år, TNF-hämmare/JAK-hämmare',amount:160000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'TLV/Reumatikerförbundet 2024: ~70 000 RA-patienter. Biologiska läkemedel (Humira, Enbrel, JAK-hämmare) kostar 120 000–220 000 kr/år/patient. Biosimilars har sänkt kostnaden ~40% sedan 2018.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'KOL (kroniskt obstruktiv lungsjukdom)',unit:'per patient och år, alla stadier',amount:48000,suf:'kr/år',vs:'Du betalar: <strong>~2 000 kr/år</strong> i patientavgifter',src:'Socialstyrelsen/LHL 2024: ~400 000–600 000 KOL-patienter. Direkta sjukvårdskostnader ~20–29 Mdkr → ~48 000 kr/patient/år. Innebär inhalatorer, uppföljning, sjukhusinläggningar (snitt 2–3/år i svåra fall à 35 000 kr/dygn).'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Personlig assistans (LSS § 9:2)',unit:'per assistansberättigad och år',amount:1300000,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong>',src:'FK + Socialstyrelsen 2024: ~17 000 personer med statlig assistansersättning. FK-utgifter ~22 Mdkr + kommunal assistans ~6 Mdkr = ~28 Mdkr / ~17 000 ≈ 1 650 kr/timme × 8 760 timmar × beviljade timmar. Snitt ~1,3 Mkr/år.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Ätstörning (AN/BN) — slutenvård',unit:'per inneliggande patient och behandlingsomgång',amount:620000,suf:'kr totalt',vs:'Du betalar: <strong>max 130 kr/dygn</strong>',src:'Socialstyrelsen/Riksät 2024: anorexia nervosa-behandling ~60–180 dagars slutenvård. Kostnad ~8 000–10 000 kr/dygn. Svåra fall: 60 dagar × 9 000 kr = 540 000 kr. Utöver det: dagvård, öppenvård, återfall.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Demens — vård sista levnadsåren',unit:'per person, hemtjänst + boende + sjukvård',amount:680000,suf:'kr/år',vs:'Maxtaxa boende: <strong>~2 365 kr/mån</strong> = ~4% av faktisk kostnad',src:'Socialstyrelsen/Alzheimer Sverige 2024: ~170 000 med demenssjukdom. Total samhällskostnad ~63 Mdkr → ~370 000 kr/år. I slutskedet på demensboende: ~680 000 kr/år (boende + personal + sjukvård). Anhöriga utför oavlönad vård motsvarande 25 Mdkr/år.'},
 ];
 
 // ═══════════════════════════════════════════════════════════════════
