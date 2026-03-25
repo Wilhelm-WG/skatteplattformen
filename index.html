@@ -293,6 +293,14 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .scen-netto.pos{background:rgba(46,125,92,.12);color:var(--green)}
 .scen-netto.neg{background:rgba(184,74,30,.1);color:#B84A1E}
 .scen-not{font-size:.7rem;color:var(--ink3);line-height:1.6;margin-top:.75rem}
+/* LIFECYCLE PRESETS */
+.lc-preset{display:flex;flex-direction:column;align-items:flex-start;padding:.65rem 1rem;border:1px solid var(--border);border-radius:6px;background:transparent;cursor:pointer;transition:all .15s;font-family:var(--sans);text-align:left;gap:1px}
+.lc-preset:hover{border-color:var(--green);background:rgba(46,125,92,.06)}
+.lc-preset.on{border-color:var(--green);background:rgba(46,125,92,.1)}
+.lc-preset-lbl{font-size:.65rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.lc-preset-val{font-family:var(--mono);font-size:1rem;font-weight:500;color:var(--ink)}
+.lc-preset.on .lc-preset-val{color:var(--green)}
+.lc-preset-sub{font-size:.62rem;color:var(--ink3)}
 .metod-section{background:var(--bg2);padding:72px 0}
 .metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
 .step-list{display:flex;flex-direction:column;gap:1.35rem}
@@ -629,16 +637,52 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   <div class="cw">
     <p class="s-eye">Ålder 0–85</p>
     <h2 class="s-title">Hela livet i ett diagram</h2>
-    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Justera inkomst med reglaget nedan.</p>
-    <div style="display:flex;align-items:center;gap:1rem;margin:1rem 0">
-      <label style="font-size:.8rem;color:var(--ink2)">Genomsnittlig bruttoinkomst under yrkeslivet:</label>
-      <input type="range" id="lc-inc-slider" min="200" max="1200" value="500" step="50"
-        style="width:180px;accent-color:var(--green)" oninput="updateLifecycle()">
-      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.85rem;color:var(--green);min-width:70px">500 tkr</span>
+    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
+
+    <!-- Snabbval: verkliga svenska inkomstnivåer -->
+    <div style="margin:1.2rem 0 .6rem">
+      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
+        <button class="lc-preset" onclick="setLcInc(this,240)">
+          <span class="lc-preset-lbl">Lägsta decil</span>
+          <span class="lc-preset-val">240 tkr</span>
+          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,340)">
+          <span class="lc-preset-lbl">Median</span>
+          <span class="lc-preset-val">340 tkr</span>
+          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
+        </button>
+        <button class="lc-preset on" onclick="setLcInc(this,460)">
+          <span class="lc-preset-lbl">Genomsnitt</span>
+          <span class="lc-preset-val">460 tkr</span>
+          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,620)">
+          <span class="lc-preset-lbl">Övre skikt</span>
+          <span class="lc-preset-val">620 tkr</span>
+          <span class="lc-preset-sub">P80 — akademiker/chef</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,1000)">
+          <span class="lc-preset-lbl">Toppinkomst</span>
+          <span class="lc-preset-val">1 000 tkr</span>
+          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
+        </button>
+      </div>
     </div>
+
+    <!-- Reglage + kontexttext -->
+    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
+      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
+      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
+        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
+      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
+      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
+    </div>
+
     <div id="lifecycle-chart" style="margin:1rem 0"></div>
     <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt från verifierad skattemodell 2024 (kommunalskatt 32,37%, statlig skatt, arbetsgivaravgift 21,21%, moms 18% på disponibel). Inkomst antas 0 ålder 0–18, stiger linjärt 19–26, platå 27–64, pension 70% av platå 65–75, 50% 76–85. Alla belopp 2024 priser, ej diskonterade.</p>
+    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37%, statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21%, moms 18% på disponibel. Inkomst antas 0 (0–18 år), stiger linjärt 19–26, platå 27–64, pension 70% av platå 65–75, 50% 76–85. Alla belopp 2024 priser, ej diskonterade. Källa inkomstnivåer: SCB HE0110 / IoT 2024.</p>
   </div>
 </section>
 
@@ -3061,9 +3105,43 @@ function calcLifecycle(peakInc){
   return {pts, crossover};
 }
 
+// Kontexttext: var i inkomstfördelningen hamnar du?
+const LC_DIST = [
+  {max:200, text:'Under P10 — lägsta inkomstdecilen'},
+  {max:280, text:'P10–P20 — låg inkomst, ofta deltid'},
+  {max:340, text:'Runt medianen (P50) — hälften av Sveriges löntagare tjänar mer'},
+  {max:410, text:'P50–P65 — något över medianen'},
+  {max:480, text:'Runt genomsnittet (P65) — medelvärdet dras upp av höga inkomster'},
+  {max:580, text:'P65–P80 — övre mellanklass'},
+  {max:700, text:'P80–P90 — höginkomsttagare (t.ex. läkare, ingenjör, chef)'},
+  {max:900, text:'P90–P95 — topp 10% — statlig inkomstskatt är nu betydande'},
+  {max:1200, text:'P95–P99 — topp 5% — t.ex. höga chefer, specialister'},
+  {max:9999, text:'P99+ — topp 1% — kapitalinkomster ofta större än löneinkomst'}
+];
+
+function lcContext(inc){
+  for(const d of LC_DIST) if(inc <= d.max) return d.text;
+  return '';
+}
+
+function setLcInc(btn, inc){
+  document.querySelectorAll('.lc-preset').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const slider = document.getElementById('lc-inc-slider');
+  if(slider) slider.value = inc;
+  document.getElementById('lc-inc-val').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+  const ctx = document.getElementById('lc-inc-context');
+  if(ctx) ctx.textContent = lcContext(inc);
+  renderLifecycle(inc);
+}
+
 function updateLifecycle(){
-  const inc = parseInt(document.getElementById('lc-inc-slider')?.value||500);
-  document.getElementById('lc-inc-val').textContent = inc + ' tkr';
+  // Clear preset selection if slider moved manually
+  document.querySelectorAll('.lc-preset').forEach(b=>b.classList.remove('on'));
+  const inc = parseInt(document.getElementById('lc-inc-slider')?.value||460);
+  document.getElementById('lc-inc-val').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+  const ctx = document.getElementById('lc-inc-context');
+  if(ctx) ctx.textContent = lcContext(inc);
   renderLifecycle(inc);
 }
 
@@ -3146,8 +3224,12 @@ function renderLifecycle(inc){
   }
 }
 
-// Init lifecycle chart
-renderLifecycle(500);
+// Init lifecycle chart — startar på genomsnittsinkomst 460 tkr
+(function(){
+  const ctx = document.getElementById('lc-inc-context');
+  if(ctx) ctx.textContent = lcContext(460);
+  renderLifecycle(460);
+})();
 
 // ═══════════════════════════════════════════════════════════════════
 // A11Y — Keyboard navigation for tabs
