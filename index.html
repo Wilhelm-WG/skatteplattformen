@@ -267,6 +267,14 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .ft-bar-val{font-size:.68rem;font-family:var(--mono);color:var(--ink);width:60px;text-align:right;flex-shrink:0}
 .ft-quote{margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg2);border-left:3px solid var(--amber);border-radius:0 3px 3px 0;font-size:.78rem;color:var(--ink2);line-height:1.7}
 .ft-source{font-size:.65rem;color:var(--ink3);margin-top:1rem;line-height:1.5}
+.ft-heading{font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
+.ft-intro{font-size:.8rem;color:var(--ink2);line-height:1.65;margin-bottom:1rem}
+.ft-stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
+.ft-stat{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:.85rem 1rem}
+.ft-stat-val{font-family:var(--mono);font-size:1.15rem;font-weight:500;color:var(--green);line-height:1.1;margin-bottom:.25rem}
+.ft-stat-lbl{font-size:.65rem;color:var(--ink3);line-height:1.4}
+.ft-callout{padding:1rem 1.25rem;background:var(--bg2);border-left:3px solid var(--green);border-radius:0 3px 3px 0;font-size:.78rem;color:var(--ink2);line-height:1.7}
+.ft-callout strong{color:var(--ink);font-weight:500}
 .metod-section{background:var(--bg2);padding:72px 0}
 .metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
 .step-list{display:flex;flex-direction:column;gap:1.35rem}
@@ -485,6 +493,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
             <input type="range" min="0" max="1200" value="500" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="500">
             <span class="sl-val" id="d-inc">500 tkr</span>
           </div>
+        </div>
+
+        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
+            <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
+            <span>Inkludera pensionsavgift i skatt</span>
+          </label>
+          <span style="color:var(--ink3);font-size:.72rem;line-height:1.3">Av = standard (pensionsavgift 10,21% ger individuell pensionsrätt — inte en "skatt"). På = brutto arbetsgivaravgift 31,42%.</span>
         </div>
 
         <div class="method-note">
@@ -994,13 +1010,16 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   <div class="container">
     <p class="s-eye">Trender 2000–2025</p>
     <h2 class="s-title">Hur har det förändrats?</h2>
-    <p class="s-sub">Skattekvot, sjukvårdsutgifter, och välfärdsnivåer — trender över 25 år som visar Sveriges förändrade ambitionsnivå.</p>
+    <p class="s-sub">Skattekvot, sjukvårdsutgifter, statsskuld och välfärdsnivåer — trender sedan 1980 som visar Sveriges förändrade ambitionsnivå och ekonomiska historia.</p>
 
     <div class="ft-tabs">
       <button class="ft-tab on" onclick="showHist(this,'skatt')">Skattekvot</button>
       <button class="ft-tab" onclick="showHist(this,'sjukvard')">Sjukvård</button>
       <button class="ft-tab" onclick="showHist(this,'utbildning')">Utbildning</button>
       <button class="ft-tab" onclick="showHist(this,'demografi')">Demografi</button>
+      <button class="ft-tab" onclick="showHist(this,'statsskuld')">Statsskuld</button>
+      <button class="ft-tab" onclick="showHist(this,'gini')">Ojämlikhet (Gini)</button>
+      <button class="ft-tab" onclick="showHist(this,'sjukfranvaro')">Sjukfrånvaro</button>
     </div>
 
     <!-- SKATTEKVOT -->
@@ -1110,6 +1129,123 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
 
       <p class="ft-source">Källor: SCB Befolkningsframskrivning 2025–2070, SCB Befolkningsstatistik 2024.</p>
+    </div>
+
+    <!-- ── STATSSKULD panel ── -->
+    <div class="ft-panel" id="hist-statsskuld">
+      <h3 class="ft-heading">Statsskuldens utveckling 1980–2025</h3>
+      <p class="ft-intro">Från under 20 % av BNP 1980 till historisk topp på 74 % (1994) — sedan en lång konsolidering. Idag ~19 % men räntekostnaderna stiger igen.</p>
+      <div id="hist-skuld-chart" style="margin:1.2rem 0 .5rem"></div>
+      <div class="ft-stat-row" style="margin-top:1rem">
+        <div class="ft-stat"><div class="ft-stat-val">1 244 Mdkr</div><div class="ft-stat-lbl">Statsskuld 2025 (prognos)</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">119 000 kr</div><div class="ft-stat-lbl">Per invånare (inkl. barn)</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">13 Mdkr/år</div><div class="ft-stat-lbl">Räntekostnad 2025</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">19 % av BNP</div><div class="ft-stat-lbl">Vs EU-snitt ~83 %</div></div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Internationell jämförelse — Maastrichtskuld 2024 (% av BNP)</div>
+        <div id="hist-skuld-intl" style="margin-bottom:.5rem"></div>
+      </div>
+      <div class="ft-callout" style="margin-top:1rem">
+        <strong>Vad kostar räntan per invånare?</strong> 13 Mdkr = 1 250 kr/person och år. Om räntan stiger till 3 % (historisk norm) kostar det 37 Mdkr — mer än hela Arbetsförmedlingens budget.
+      </div>
+      <p class="ft-source">Källor: Riksgälden statsskuldsstatistik, SCB NR0103, IMF WEO 2024.</p>
+    </div>
+
+    <!-- ── GINI panel ── -->
+    <div class="ft-panel" id="hist-gini">
+      <h3 class="ft-heading">Ojämlikhet — tre mått som berättar tre olika historier</h3>
+      <p class="ft-intro">Den vanligast citerade siffran (0.28 disponibel Gini) är sann men ofullständig. Lägg till kapitalinkomster och ojämlikheten ökar märkbart. Mät förmögenheter och bilden förändras dramatiskt.</p>
+
+      <!-- Three-measure comparison chart -->
+      <div id="hist-gini-tre-matt" style="margin:1.2rem 0 1rem"></div>
+
+      <!-- Timeline: two lines -->
+      <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin:.8rem 0 .3rem">Inkomst-Gini 1975–2024 — med och utan kapitalinkomster</div>
+      <div id="hist-gini-chart" style="margin-bottom:.5rem"></div>
+
+      <!-- Key stats -->
+      <div class="ft-stat-row" style="margin-top:1rem">
+        <div class="ft-stat"><div class="ft-stat-val">0.28</div><div class="ft-stat-lbl">Disponibel inkomst-Gini 2024</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">0.31</div><div class="ft-stat-lbl">Gini inkl. kapitalinkomster 2023</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">0.75</div><div class="ft-stat-lbl">Förmögenhets-Gini 2024 (UBS)</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">0.48</div><div class="ft-stat-lbl">Marknadsinkomst-Gini (före skatt)</div></div>
+      </div>
+
+      <!-- Capital income distribution -->
+      <div style="margin-top:1.5rem">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.3rem">Vem tar kapitalinkomsterna? (utdelningar + kapitalvinster)</div>
+        <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.75rem">Fördelning av totala kapitalinkomster mellan inkomstgrupper — Sverige 2023. Källa: SCB; Karimi et al. Fiscal Studies 2024.</div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Topp 1 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:54%;background:#B84A1E"></div></div>
+          <span class="ft-bar-val">54 % av allt</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Topp 2–10 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:36%;background:#C8973A"></div></div>
+          <span class="ft-bar-val">36 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Botten 90 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:10%;background:#888780"></div></div>
+          <span class="ft-bar-val">10 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Botten 50 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:2%;background:#666461"></div></div>
+          <span class="ft-bar-val">2 %</span>
+        </div>
+        <div style="font-size:.65rem;color:var(--ink3);margin-top:.3rem">Av utdelningarna specifikt tar topp 1% hela 67 %. Kapitalinkomster utgör 15% av total disponibel inkomst men är extremt koncentrerade.</div>
+      </div>
+
+      <!-- Wealth distribution -->
+      <div style="margin-top:1.5rem">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.3rem">Förmögenhetsfördelning — nettoförmögenhet 2024</div>
+        <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.75rem">Finansiella tillgångar + fastigheter − skulder. Förmögenhetsskatten avskaffades 2007. Källa: UBS Global Wealth Report 2024; Roine &amp; Waldenström, WID.world.</div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Topp 1 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:35.8%;background:#B84A1E"></div></div>
+          <span class="ft-bar-val">35,8 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Topp 10 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:74.4%;background:#C8973A"></div></div>
+          <span class="ft-bar-val">74,4 %</span>
+        </div>
+        <div class="ft-bar-row">
+          <span class="ft-bar-label" style="width:110px">Botten 90 %</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:25.6%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">25,6 %</span>
+        </div>
+        <div style="font-size:.65rem;color:var(--ink3);margin-top:.3rem">Medianförmögenhet: ~3,3 Mkr (319 000 USD). Medelförmögenhet: ~3,5 Mkr (336 000 USD). Närheten beror på utbrett bostadsägande — finansiella tillgångar är långt mer koncentrerade.</div>
+      </div>
+
+      <div class="ft-callout" style="margin-top:1.2rem">
+        <strong>Omfördelningens dolda effektivitet — och dess blinda fläck:</strong> Marknadsinkomst-Gini är 0.48 — skatterna och bidragen sänker den till 0.28 (−0.20 enheter), bland de mest effektiva omfördelningarna i världen. Men kapitalinkomster beskattas till 30 % (vs 55–65 % för höga tjänsteinkomster), och förmögenhet beskattas inte alls sedan 2007. Inkomsttillväxt 1991–2023: topp 1% +224 %, botten-decilen +32 %.
+      </div>
+      <p class="ft-source">Källor: SCB HE0110; Karimi et al. "Components of the evolution of income inequality in Sweden, 1990–2021", Fiscal Studies 2024; UBS Global Wealth Report 2024; Roine &amp; Waldenström, Top Incomes in Sweden (WID.world); Finanspolitiska rådet rapport febr. 2024; Oxfam Sverige 2024; OECD Income Distribution Database.</p>
+    </div>
+
+    <!-- ── SJUKFRÅNVARO panel ── -->
+    <div class="ft-panel" id="hist-sjukfranvaro">
+      <h3 class="ft-heading">Sjukfrånvaro 2000–2024</h3>
+      <p class="ft-intro">Nettodagar med sjukpenning per försäkrad. Toppen 2003 kostade 50 Mdkr/år. Reformerna 2008 halverade dagarna — men trenden vände uppåt 2020.</p>
+      <div id="hist-sjuk-chart" style="margin:1.2rem 0 .5rem"></div>
+      <div class="ft-stat-row" style="margin-top:1rem">
+        <div class="ft-stat"><div class="ft-stat-val">14,2 dagar</div><div class="ft-stat-lbl">Sjukpenningdagar/försäkrad 2024</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">38 Mdkr</div><div class="ft-stat-lbl">Kostnad 2024</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">+65 %</div><div class="ft-stat-lbl">Ökning sedan 2010</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">63 %</div><div class="ft-stat-lbl">Psykisk ohälsa av långa sjukfall</div></div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.6rem">Diagnosfördelning — långa sjukfall (&gt;60 dagar) 2024</div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Psykisk ohälsa</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:63%;background:#B84A1E"></div></div><span class="ft-bar-val">63 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Rörelseorganen</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:21%;background:var(--amber)"></div></div><span class="ft-bar-val">21 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Cancer / hjärta</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:9%;background:var(--green)"></div></div><span class="ft-bar-val">9 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Övriga</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:7%;background:#888780"></div></div><span class="ft-bar-val">7 %</span></div>
+      </div>
+      <p class="ft-source">Källa: Försäkringskassan — Sjukpenningstatistik, nettodagar per försäkrad 2000–2024.</p>
     </div>
 
   </div>
@@ -1807,38 +1943,56 @@ renderSkatteChart();
 // Fördelningsproportioner: COFOG-funktioner → individnivå per fas.
 // Alla belopp tkr/år i 2024 års priser.
 // ═══════════════════════════════════════════════════════════════════
-const STAGES = [
-  {min:0,  max:6,  id:'barn',    icon:'🍼', label:'Spädbarn & förskola',
-   w:{utb:175,sjukvård:40,socialt:38,koll:50,omsorg:0},
+// ── Livsfaser v2.0 — kanonisk datakälla (sync med data/livsfaser_v2.json) ────
+// VIKTIG: Uppdatera ALLTID livsfaser_v2.json parallellt om värden ändras här.
+const LIVSFASER_V2 = [
+  {id:'barn',       icon:'🍼', label:'Spädbarn & förskola',      min:0,  max:6,
+   f:{utb:175, sj:40, soc:38, koll:50, oms:0},
+   källa:'Skolverket 2024: förskola 175 tkr/barn/år. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
    note:'Förskola ~175 tkr/barn/år. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
-  {min:7,  max:15, id:'elev',    icon:'🎒', label:'Grundskoleelev',
-   w:{utb:148,sjukvård:18,socialt:25,koll:50,omsorg:0},
+  {id:'elev',       icon:'🎒', label:'Grundskoleelev',           min:7,  max:15,
+   f:{utb:148, sj:18, soc:25, koll:50, oms:0},
+   källa:'Skolverket 2025: grundskola 148 tkr/elev inkl. skolmat, elevhälsa, lokaler.',
    note:'Grundskola 148 tkr/elev/år inkl. skolmat, elevhälsa, lokaler. Barnbidrag, fritids.'},
-  {min:16, max:18, id:'gymn',    icon:'📚', label:'Gymnasieelev',
-   w:{utb:145,sjukvård:20,socialt:26,koll:50,omsorg:0},
+  {id:'gymn',       icon:'📚', label:'Gymnasieelev',             min:16, max:18,
+   f:{utb:145, sj:20, soc:26, koll:50, oms:0},
+   källa:'Skolverket 2025: gymnasium 145 tkr/elev (teknik ~180, humaniora ~115).',
    note:'Gymnasiet ~145 tkr/elev/år. Teknikprogram dyrare (~180 tkr), humaniora billigare (~115 tkr).'},
-  {min:19, max:25, id:'student', icon:'🎓', label:'Student / ung vuxen',
-   w:{utb:110,sjukvård:25,socialt:37,koll:50,omsorg:0},
+  {id:'student',    icon:'🎓', label:'Student / ung vuxen',      min:19, max:25,
+   f:{utb:110, sj:25, soc:37, koll:50, oms:0},
+   källa:'UKÄ 2024: 240 tkr/helårsstudent × 45% studerar = ~110 tkr genomsnitt. CSN studiebidrag ~36 tkr/år.',
    note:'Högskola ~240 tkr/helårsstudent men inte alla studerar → snitt ~110 tkr. CSN-lån, bostadsbidrag.'},
-  {min:26, max:34, id:'ung_arb', icon:'💼', label:'Ung förvärvsarbetande',
-   w:{utb:6,sjukvård:30,socialt:42,koll:50,omsorg:0},
+  {id:'ung_arb',    icon:'💼', label:'Ung förvärvsarbetande',    min:26, max:34,
+   f:{utb:6,  sj:30, soc:42, koll:50, oms:0},
+   källa:'FK 2024: sjukförsäkring 12 tkr. Barnbidrag+föräldrapenning 30 tkr (de med barn). SCB AKU.',
    note:'Du betalar betydligt mer i skatt än du tar emot. Du finansierar barns skola, äldres vård, och kollektiv trygghet.'},
-  {min:35, max:44, id:'barnfamilj',icon:'👨‍👩‍👧', label:'Barnfamiljsfas',
-   w:{utb:42,sjukvård:52,socialt:85,koll:50,omsorg:2},
+  {id:'barnfamilj', icon:'👨‍👩‍👧', label:'Barnfamiljsfas',          min:35, max:44,
+   f:{utb:42, sj:52, soc:85, koll:50, oms:2},
+   källa:'FK 2024: sjukdagar toppar 35–44. Barnbidrag+VAB+föräldrapenning. NTA-profil sjukvård 35–44.',
    note:'Höga sociala transfereringar: barnbidrag, föräldrapenning, VAB, bostadsbidrag. Fortfarande nettobidragsgivare.'},
-  {min:45, max:54, id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',
-   w:{utb:5,sjukvård:78,socialt:52,koll:50,omsorg:4},
+  {id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',         min:45, max:54,
+   f:{utb:5,  sj:78, soc:52, koll:50, oms:4},
+   källa:'NTA-profil 45–54 + Socialstyrelsen. Sjukvård märkbart stigande. FK: sjukpenningdagar per åldersgrupp.',
    note:'Stigande sjukvårdskonsumtion. Sjukförsäkring, A-kassa. Dina skatter finansierar ungdomars utbildning och äldres omsorg.'},
-  {min:55, max:64, id:'senior',  icon:'🏡', label:'Senior förvärvsarbetande',
-   w:{utb:3,sjukvård:110,socialt:65,koll:50,omsorg:10},
+  {id:'senior',     icon:'🏡', label:'Senior förvärvsarbetande', min:55, max:64,
+   f:{utb:3,  sj:110, soc:65, koll:50, oms:10},
+   källa:'NTA-profil 55–64 + Socialstyrelsen patientregistret. Sjukvård nära dubbelt mot 45–54.',
    note:'Hög sjukvård. Sjukersättning, sjukpenning. Ungefär vid balans: mottagna tjänster ≈ betald skatt.'},
-  {min:65, max:74, id:'pensionar',icon:'🌅', label:'Ny pensionär',
-   w:{utb:2,sjukvård:175,socialt:100,koll:50,omsorg:65},
+  {id:'pensionar',  icon:'🌅', label:'Ny pensionär',             min:65, max:74,
+   f:{utb:2,  sj:175, soc:100, koll:50, oms:65},
+   källa:'Socialstyrelsen + SKR 2024: hemtjänst 175 tkr/brukare/år × 15% av åldersgruppen. Garantipension 34 tkr.',
    note:'Nu nettotagare. Garantipension, bostadstillägg, äldreförsörjningsstöd. Du finansieras av dem som arbetar nu.'},
-  {min:75, max:85, id:'aldri',   icon:'🕰️', label:'Senior pensionär',
-   w:{utb:1,sjukvård:280,socialt:80,koll:50,omsorg:240},
+  {id:'aldri',      icon:'🕰️', label:'Senior pensionär',         min:75, max:85,
+   f:{utb:1,  sj:280, soc:80, koll:50, oms:240},
+   källa:'SKR 2024: hemtjänst+särskilt boende vägt 240 tkr. NTA-profil 75+ sjukvård. Osäkerhet ±25%.',
    note:'Mycket hög konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat in i 45 år.'},
 ];
+
+// Bygg STAGES från LIVSFASER_V2 (bakåtkompatibelt format)
+const STAGES = LIVSFASER_V2.map(f => ({
+  min:f.min, max:f.max, id:f.id, icon:f.icon, label:f.label, note:f.note,
+  w:{utb:f.f.utb, sjukvård:f.f.sj, socialt:f.f.soc, koll:f.f.koll, omsorg:f.f.oms}
+}));
 
 const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
 const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg'};
@@ -1918,9 +2072,12 @@ function annualTax(age, inc){
   // Jobbskatteavdrag (enbart för arbetsinkomster, ej pensionärer)
   const jsa = isPensionar ? 0 : jobbskatteavdrag2024(effInc, ga, ks);
 
-  // Arbetsgivaravgifter exkl pension (10.21% pension exkluderas då inkomstpension ej räknas som välfärd)
-  // Total avgift 31.42%, pension 10.21% → resterande 21.21%
-  const avg = isPensionar ? 0 : inc * 0.2121;
+  // Arbetsgivaravgifter: toggle styr om pensionsavgift (10.21%) inkluderas
+  // Exkl pension: 31.42% − 10.21% = 21.21% (standard — pension ger individuell pensionsrätt)
+  // Inkl pension: 31.42% (brutto, varav 10.21% ålderspensionsavgift)
+  const inkludaPension = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
+  const avgSats = inkludaPension ? 0.3142 : 0.2121;
+  const avg = isPensionar ? 0 : inc * avgSats;
 
   // Moms: hushåll konsumerar ca 85% av disponibel inkomst
   // Effektiv momsandel ~18% av konsumtion (mix 25/12/6%), men moms = konsumtion × 18/118
@@ -1974,7 +2131,7 @@ function updateCalc(){
     const items = [
       ['Kommunalskatt (32,4%)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
-      ['Arbetsgivaravgifter (ex pension)', tax.avg],
+      [(document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked) ? 'Arbetsgivaravgifter (inkl pension 10,21%)' : 'Arbetsgivaravgifter (ex pension)', tax.avg],
       ['Effektiv moms (konsumtion)', tax.moms],
       ['Jobbskatteavdrag', -tax.jsa],
     ];
@@ -2356,6 +2513,211 @@ function showHist(btn, key){
   svg+=`<text x="${pad.l+70}" y="${pad.t+12}" fill="#888780" font-size="10">OECD-snitt</text>`;
   svg+=`</svg>`;
   el.innerHTML = svg;
+})();
+
+// ── Statsskuld % of BNP timeline chart ──
+(function(){
+  const data = [
+    {y:1980,v:16},{y:1985,v:34},{y:1990,v:40},{y:1992,v:54},
+    {y:1994,v:74},{y:1995,v:73},{y:1997,v:67},{y:2000,v:53},
+    {y:2003,v:47},{y:2006,v:41},{y:2008,v:32},{y:2010,v:34},
+    {y:2013,v:33},{y:2016,v:31},{y:2018,v:27},{y:2020,v:28},
+    {y:2022,v:22},{y:2023,v:18},{y:2024,v:18},{y:2025,v:19}
+  ];
+  const el = document.getElementById('hist-skuld-chart');
+  if(!el) return;
+  const W=680,H=200,p={t:18,r:55,b:32,l:42};
+  const iw=W-p.l-p.r, ih=H-p.t-p.b;
+  const minY=0,maxY=80;
+  const sx=i=>p.l+(i/(data.length-1))*iw;
+  const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  // Grid
+  [0,20,40,60,80].forEach(v=>{
+    const y=sy(v);
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}%</text>`;
+  });
+  // Crisis annotation
+  svg+=`<line x1="${sx(4)}" y1="${p.t}" x2="${sx(4)}" y2="${H-p.b}" stroke="rgba(184,74,30,.4)" stroke-width="1" stroke-dasharray="3,3"/>`;
+  svg+=`<text x="${sx(4)}" y="${p.t-4}" text-anchor="middle" fill="rgba(184,74,30,.7)" font-size="8">Kris -94</text>`;
+  // X labels
+  data.forEach((d,i)=>{
+    if(i%3===0||d.y===2025) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.y}</text>`;
+  });
+  // Area fill
+  let areaPath=`M${sx(0)},${sy(data[0].v)}`;
+  data.slice(1).forEach((d,i)=>areaPath+=` L${sx(i+1)},${sy(d.v)}`);
+  areaPath+=` L${sx(data.length-1)},${H-p.b} L${sx(0)},${H-p.b} Z`;
+  svg+=`<path d="${areaPath}" fill="var(--green)" opacity=".08"/>`;
+  // Line
+  let linePath=`M${sx(0)},${sy(data[0].v)}`;
+  data.slice(1).forEach((d,i)=>linePath+=` L${sx(i+1)},${sy(d.v)}`);
+  svg+=`<path d="${linePath}" fill="none" stroke="var(--green)" stroke-width="2"/>`;
+  // End dot + label
+  const last=data[data.length-1];
+  svg+=`<circle cx="${sx(data.length-1)}" cy="${sy(last.v)}" r="4" fill="var(--green)"/>`;
+  svg+=`<text x="${sx(data.length-1)+7}" y="${sy(last.v)+4}" fill="var(--green)" font-size="10" font-weight="500">${last.v}%</text>`;
+  svg+=`</svg>`;
+  el.innerHTML=svg;
+
+  // International comparison bars
+  const intl=[
+    {land:'Japan',v:252},{land:'USA',v:122},{land:'Frankrike',v:112},
+    {land:'EU-27 snitt',v:83},{land:'Finland',v:81},{land:'Polen',v:54},
+    {land:'Nederland',v:47},{land:'Sverige',v:33},{land:'Danmark',v:29}
+  ];
+  const el2=document.getElementById('hist-skuld-intl');
+  if(!el2) return;
+  const maxV=intl[0].v;
+  let bars='';
+  intl.forEach(d=>{
+    const w=Math.round((d.v/maxV)*100);
+    const col=d.land==='Sverige'?'var(--green)':(d.land==='EU-27 snitt'?'var(--amber)':'#888780');
+    bars+=`<div class="ft-bar-row"><span class="ft-bar-label">${d.land}</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:${w}%;background:${col}"></div></div><span class="ft-bar-val">${d.v} %</span></div>`;
+  });
+  el2.innerHTML=bars;
+})();
+
+// ── Gini: Three-measure comparison (horizontal bars) ──
+(function(){
+  const el=document.getElementById('hist-gini-tre-matt');
+  if(!el) return;
+  const measures=[
+    {label:'Förmögenhets-Gini',val:0.75,col:'#B84A1E',not:'Finansiella tillgångar + fastigheter − skulder (UBS 2024)'},
+    {label:'Marknadsinkomst-Gini',val:0.48,col:'#C8973A',not:'Inkomst FÖRE skatter och transfereringar (OECD IDD / FPR 2024)'},
+    {label:'Gini inkl. kapitalinkomster',val:0.316,col:'#A07840',not:'Disponibel inkomst + utdelningar + kapitalvinster (SCB / Karimi 2024)'},
+    {label:'Disponibel inkomst-Gini',val:0.287,col:'var(--green)',not:'Inkomst EFTER skatter och transfereringar — den vanligast citerade siffran (SCB HE0110 2024)'}
+  ];
+  const W=680,H=measures.length*52+30,pl=210,pr=90,pt=20,pb=20;
+  const iw=W-pl-pr;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+  // x scale 0→0.85
+  const sx=v=>pl+(v/0.85)*iw;
+  // Grid
+  [0,0.2,0.4,0.6,0.75].forEach(v=>{
+    svg+=`<line x1="${sx(v)}" y1="${pt}" x2="${sx(v)}" y2="${H-pb}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    svg+=`<text x="${sx(v)}" y="${H-pb+12}" text-anchor="middle" fill="rgba(242,239,232,.3)" font-size="9">${v.toFixed(1)}</text>`;
+  });
+  measures.forEach((m,i)=>{
+    const y=pt+i*52;
+    const bh=28,by=y+12;
+    const bw=sx(m.val)-pl;
+    svg+=`<text x="${pl-8}" y="${by+10}" text-anchor="end" fill="rgba(242,239,232,.7)" font-size="11" font-weight="500">${m.label}</text>`;
+    svg+=`<rect x="${pl}" y="${by}" width="${bw}" height="${bh}" rx="2" fill="${m.col}" opacity=".85"/>`;
+    svg+=`<text x="${sx(m.val)+6}" y="${by+18}" fill="${m.col}" font-size="12" font-weight="700">${m.val.toFixed(2)}</text>`;
+    svg+=`<text x="${pl}" y="${by+bh+14}" fill="rgba(242,239,232,.35)" font-size="9">${m.not}</text>`;
+  });
+  svg+=`</svg>`;
+  el.innerHTML=svg;
+})();
+
+// ── Gini timeline chart — two lines: disponibel + inkl. kapital ──
+(function(){
+  const disp=[
+    {y:1975,v:0.197},{y:1980,v:0.195},{y:1985,v:0.196},{y:1990,v:0.209},
+    {y:1995,v:0.211},{y:2000,v:0.243},{y:2005,v:0.234},{y:2006,v:0.241},
+    {y:2008,v:0.259},{y:2010,v:0.268},{y:2012,v:0.274},{y:2014,v:0.278},
+    {y:2016,v:0.283},{y:2018,v:0.275},{y:2020,v:0.270},{y:2021,v:0.274},
+    {y:2022,v:0.280},{y:2023,v:0.285},{y:2024,v:0.287}
+  ];
+  // Inkl kapital (sparser, aligned by year)
+  const kap=[
+    {y:1995,v:0.226},{y:2000,v:0.298},{y:2002,v:0.268},{y:2005,v:0.272},
+    {y:2007,v:0.315},{y:2010,v:0.293},{y:2012,v:0.298},{y:2015,v:0.308},
+    {y:2018,v:0.301},{y:2020,v:0.292},{y:2021,v:0.325},{y:2022,v:0.314},{y:2023,v:0.316}
+  ];
+  const el=document.getElementById('hist-gini-chart');
+  if(!el) return;
+  const W=680,H=210,p={t:20,r:80,b:32,l:48};
+  const iw=W-p.l-p.r, ih=H-p.t-p.b;
+  const minY=0.17,maxY=0.36;
+  const minX=1975,maxX=2024;
+  const sx=y=>p.l+(y-minX)/(maxX-minX)*iw;
+  const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  [0.20,0.25,0.30,0.35].forEach(v=>{
+    const y=sy(v);
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v.toFixed(2)}</text>`;
+  });
+  // EU ref
+  const euY=sy(0.30);
+  svg+=`<line x1="${p.l}" y1="${euY}" x2="${W-p.r}" y2="${euY}" stroke="rgba(200,151,58,.35)" stroke-width="1.5" stroke-dasharray="4,4"/>`;
+  svg+=`<text x="${W-p.r+4}" y="${euY+4}" fill="rgba(200,151,58,.65)" font-size="9">EU-27</text>`;
+  // X labels
+  [1975,1985,1995,2000,2010,2020,2024].forEach(y=>{
+    svg+=`<text x="${sx(y)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${y}</text>`;
+  });
+  // Disponibel area+line
+  let aD=`M${sx(disp[0].y)},${sy(disp[0].v)}`;
+  disp.slice(1).forEach(d=>aD+=` L${sx(d.y)},${sy(d.v)}`);
+  const areaD=aD+` L${sx(disp[disp.length-1].y)},${H-p.b} L${sx(disp[0].y)},${H-p.b} Z`;
+  svg+=`<path d="${areaD}" fill="var(--green)" opacity=".06"/>`;
+  svg+=`<path d="${aD}" fill="none" stroke="var(--green)" stroke-width="2"/>`;
+  // Kapital line (dashed)
+  let lK=`M${sx(kap[0].y)},${sy(kap[0].v)}`;
+  kap.slice(1).forEach(d=>lK+=` L${sx(d.y)},${sy(d.v)}`);
+  svg+=`<path d="${lK}" fill="none" stroke="#C8973A" stroke-width="2" stroke-dasharray="5,3"/>`;
+  // End dots + labels
+  const lastD=disp[disp.length-1];
+  svg+=`<circle cx="${sx(lastD.y)}" cy="${sy(lastD.v)}" r="4" fill="var(--green)"/>`;
+  svg+=`<text x="${sx(lastD.y)+7}" y="${sy(lastD.v)+4}" fill="var(--green)" font-size="10" font-weight="500">${lastD.v.toFixed(3)}</text>`;
+  const lastK=kap[kap.length-1];
+  svg+=`<circle cx="${sx(lastK.y)}" cy="${sy(lastK.v)}" r="4" fill="#C8973A"/>`;
+  svg+=`<text x="${sx(lastK.y)+7}" y="${sy(lastK.v)+4}" fill="#C8973A" font-size="10" font-weight="500">${lastK.v.toFixed(3)}</text>`;
+  // Legend
+  svg+=`<line x1="${p.l+8}" y1="${p.t+10}" x2="${p.l+26}" y2="${p.t+10}" stroke="var(--green)" stroke-width="2"/>`;
+  svg+=`<text x="${p.l+30}" y="${p.t+14}" fill="var(--green)" font-size="9">Disponibel inkomst</text>`;
+  svg+=`<line x1="${p.l+145}" y1="${p.t+10}" x2="${p.l+163}" y2="${p.t+10}" stroke="#C8973A" stroke-width="2" stroke-dasharray="5,3"/>`;
+  svg+=`<text x="${p.l+167}" y="${p.t+14}" fill="#C8973A" font-size="9">Inkl. kapitalinkomster</text>`;
+  svg+=`</svg>`;
+  el.innerHTML=svg;
+})();
+
+// ── Sjukfrånvaro timeline chart ──
+(function(){
+  const data = [
+    {y:2000,v:14.2},{y:2001,v:16.8},{y:2002,v:19.2},{y:2003,v:20.1},
+    {y:2004,v:18.5},{y:2005,v:15.7},{y:2006,v:12.4},{y:2007,v:10.2},
+    {y:2008,v:9.1},{y:2009,v:9.4},{y:2010,v:8.6},{y:2011,v:8.2},
+    {y:2012,v:8.5},{y:2013,v:9.0},{y:2014,v:9.8},{y:2015,v:10.8},
+    {y:2016,v:11.4},{y:2017,v:11.3},{y:2018,v:11.0},{y:2019,v:10.8},
+    {y:2020,v:10.5},{y:2021,v:11.2},{y:2022,v:12.9},{y:2023,v:13.8},{y:2024,v:14.2}
+  ];
+  const el=document.getElementById('hist-sjuk-chart');
+  if(!el) return;
+  const W=680,H=200,p={t:18,r:55,b:32,l:42};
+  const iw=W-p.l-p.r, ih=H-p.t-p.b;
+  const minY=0,maxY=24;
+  const sx=i=>p.l+(i/(data.length-1))*iw;
+  const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  [0,6,12,18,24].forEach(v=>{
+    const y=sy(v);
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}</text>`;
+  });
+  // Reform annotation 2008
+  const ri=data.findIndex(d=>d.y===2008);
+  svg+=`<line x1="${sx(ri)}" y1="${p.t}" x2="${sx(ri)}" y2="${H-p.b}" stroke="rgba(88,135,88,.4)" stroke-width="1" stroke-dasharray="3,3"/>`;
+  svg+=`<text x="${sx(ri)}" y="${p.t-4}" text-anchor="middle" fill="rgba(88,135,88,.7)" font-size="8">Reform</text>`;
+  data.forEach((d,i)=>{
+    if(d.y%4===0) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.y}</text>`;
+  });
+  let areaPath=`M${sx(0)},${sy(data[0].v)}`;
+  data.slice(1).forEach((d,i)=>areaPath+=` L${sx(i+1)},${sy(d.v)}`);
+  areaPath+=` L${sx(data.length-1)},${H-p.b} L${sx(0)},${H-p.b} Z`;
+  svg+=`<path d="${areaPath}" fill="var(--amber)" opacity=".1"/>`;
+  let linePath=`M${sx(0)},${sy(data[0].v)}`;
+  data.slice(1).forEach((d,i)=>linePath+=` L${sx(i+1)},${sy(d.v)}`);
+  svg+=`<path d="${linePath}" fill="none" stroke="var(--amber)" stroke-width="2"/>`;
+  const last=data[data.length-1];
+  svg+=`<circle cx="${sx(data.length-1)}" cy="${sy(last.v)}" r="4" fill="var(--amber)"/>`;
+  svg+=`<text x="${sx(data.length-1)+7}" y="${sy(last.v)+4}" fill="var(--amber)" font-size="10" font-weight="500">${last.v}</text>`;
+  svg+=`<text x="${W-p.r+5}" y="${sy(last.v)+14}" fill="rgba(242,239,232,.45)" font-size="8">dagar</text>`;
+  svg+=`</svg>`;
+  el.innerHTML=svg;
 })();
 
 // ═══════════════════════════════════════════════════════════════════

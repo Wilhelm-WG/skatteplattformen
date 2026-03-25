@@ -3,7 +3,10 @@ Skatteplattformen — Beräkningsmodell v1.0
 Schablonberäkning av offentliga förmåner per åldersprofil
 Källa: ESV 2024, SKR 2024, SCB KPI, Försäkringskassan, CSN
 """
+import os
+import sys
 from openpyxl import load_workbook
+_DIR = os.path.dirname(os.path.abspath(__file__))
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 import json
@@ -103,20 +106,72 @@ def berakna_arsformaaner(age_idx):
     res["TOTALT"] = round(total, 1)
     return res
 
-# ── Livstidsmodell ────────────────────────────────────────────────────────────
-# Ackumulerade förmåner från födseln till respektive ålder
-# Baseras på årsförmåner per fas, viktade med populationsstorlek per åldersgrupp
+# ── Livstidsmodell — läser från livsfaser_v2.json (enda sanningskällan) ───────
+# Kategorimap: JSON 5-kategorier → Python 10-poster (proportionell fördelning)
+# Uppdatera ALLTID livsfaser_v2.json om värdena behöver ändras.
 
-LIVSFASER = [
-    (0,  5,   {"sjukvård":70,"sjukforsakr":0,"familj":45,"studiemedel":0,"hogskola":0,"skola_k":0,"infra":4,"kom_bidrag":12,"aldreomsorg":0,"pension_g":0}),   # Spädbarn/förskola
-    (6,  15,  {"sjukvård":18,"sjukforsakr":0,"familj":15,"studiemedel":0,"hogskola":0,"skola_k":95,"infra":5,"kom_bidrag":14,"aldreomsorg":0,"pension_g":0}),  # Grundskola
-    (16, 19,  {"sjukvård":12,"sjukforsakr":0,"familj":8,"studiemedel":4,"hogskola":0,"skola_k":58,"infra":6,"kom_bidrag":12,"aldreomsorg":0,"pension_g":0}),   # Gymnasium
-    (20, 24,  {"sjukvård":14,"sjukforsakr":3,"familj":2,"studiemedel":18,"hogskola":34,"skola_k":0,"infra":7,"kom_bidrag":12,"aldreomsorg":0,"pension_g":0}),  # Högskolestudier
-    (25, 34,  {"sjukvård":20,"sjukforsakr":12,"familj":28,"studiemedel":1,"hogskola":8,"skola_k":0,"infra":8,"kom_bidrag":13,"aldreomsorg":0,"pension_g":0}),  # Barnfamilj
-    (35, 44,  {"sjukvård":35,"sjukforsakr":14,"familj":10,"studiemedel":0,"hogskola":2,"skola_k":0,"infra":9,"kom_bidrag":14,"aldreomsorg":0,"pension_g":0}),  # Mitt-karriär
-    (45, 64,  {"sjukvård":67,"sjukforsakr":21,"familj":2,"studiemedel":0,"hogskola":0,"skola_k":0,"infra":8,"kom_bidrag":15,"aldreomsorg":0,"pension_g":0}),   # Senior
-    (65, 80,  {"sjukvård":195,"sjukforsakr":8,"familj":0,"studiemedel":0,"hogskola":0,"skola_k":0,"infra":7,"kom_bidrag":18,"aldreomsorg":65,"pension_g":34}), # Pensionär
-]
+def _ladda_livsfaser():
+    """Läser livsfaser_v2.json och konverterar till Python-modellens format."""
+    livsfaser_path = os.path.join(_DIR, 'livsfaser_v2.json')
+    with open(livsfaser_path, encoding='utf-8') as f:
+        data = json.load(f)
+
+    livsfaser = []
+    for fas in data['faser']:
+        fv  = fas['förmåner_tkr_per_år']
+        utb = fv['utbildning']['värde']
+        sj  = fv['sjukvård']['värde']
+        soc = fv['socialt_skydd']['värde']
+        koll= fv['kollektivt']['värde']
+        oms = fv['äldreomsorg']['värde']
+
+        # Fördelning utbildning → Python-poster baserat på fas
+        ålder_mitt = (fas['min_ålder'] + fas['max_ålder']) / 2
+        if ålder_mitt <= 5:
+            sk = utb;          hg = 0;         sm = 0
+        elif ålder_mitt <= 15:
+            sk = utb * 0.95;  hg = 0;         sm = utb * 0.05
+        elif ålder_mitt <= 18:
+            sk = utb * 0.92;  hg = 0;         sm = utb * 0.08
+        elif ålder_mitt <= 25:
+            sk = 0;            hg = utb * 0.74; sm = utb * 0.26
+        else:
+            sk = utb * 0.30;  hg = utb * 0.50; sm = utb * 0.20
+
+        # Fördelning socialt skydd → sjukforsakr + familj + pension_g
+        if ålder_mitt >= 65:
+            sf = soc * 0.10; fj = 0;          pg = soc * 0.90
+        elif ålder_mitt >= 55:
+            sf = soc * 0.60; fj = soc * 0.05; pg = 0
+        elif ålder_mitt >= 35:
+            sf = soc * 0.35; fj = soc * 0.65; pg = 0
+        elif ålder_mitt >= 20:
+            sf = soc * 0.25; fj = soc * 0.75; pg = 0
+        else:
+            sf = 0;           fj = soc;        pg = 0
+
+        # Kollektivt → infra 50% + kom_bidrag 50%
+        inf = koll * 0.50
+        kb  = koll * 0.50
+
+        livsfaser.append((
+            fas['min_ålder'], fas['max_ålder'],
+            {
+                "sjukvård":    round(sj,  1),
+                "sjukforsakr": round(sf,  1),
+                "familj":      round(fj,  1),
+                "studiemedel": round(sm,  1),
+                "hogskola":    round(hg,  1),
+                "skola_k":     round(sk,  1),
+                "infra":       round(inf, 1),
+                "kom_bidrag":  round(kb,  1),
+                "aldreomsorg": round(oms, 1),
+                "pension_g":   round(pg,  1),
+            }
+        ))
+    return livsfaser
+
+LIVSFASER = _ladda_livsfaser()
 
 def livstid_formaaner(target_age):
     """Ackumulerade förmåner tkr (2024 priser) från födseln t.o.m. target_age"""
@@ -147,7 +202,6 @@ def berakna_skatt_livet(target_age, bruttolön_tkr=500):
 
 # ── EXCEL: Lägg till ny flik ──────────────────────────────────────────────────
 import os
-_DIR = os.path.dirname(os.path.abspath(__file__))
 _EXCEL = os.path.join(_DIR, '..', 'skatteplattformen_data.xlsx')
 wb = load_workbook(_EXCEL)
 
@@ -518,3 +572,54 @@ for ap in AGE_PROFILES:
     sk = berakna_skatt_livet(ap["age"], 500)
     kvot = round(lt/sk, 2) if sk > 0 else "n/a"
     print(f"  {ap['label']:8s}  Livstidsförmåner: {lt:>6,} tkr  |  Skatt 20→{ap['age']}: {sk:>5,} tkr  |  Kvot: {kvot}x")
+
+# ── Verifieringstest (kör med: python nta_berakning.py --verify) ─────────────
+if '--verify' in sys.argv:
+    print("\n=== VERIFIERINGSTEST ===")
+    errors = []
+
+    # Test 1: livsfaser_v2.json laddas korrekt
+    assert len(LIVSFASER) == 10, f"Fel: förväntade 10 faser, fick {len(LIVSFASER)}"
+    print("  ✓ livsfaser_v2.json laddad: 10 faser")
+
+    # Test 2: Alla faser täcker 0–85 utan gap
+    prev_end = -1
+    for i, (start, end, _) in enumerate(LIVSFASER):
+        assert start == prev_end + 1, f"Gap i fas {i}: start={start}, prev_end={prev_end}"
+        prev_end = end
+    print(f"  ✓ Faserna täcker 0–{prev_end} utan luckor")
+
+    # Test 3: Totala livstidsförmåner rimliga (300–20 000 tkr per profil)
+    for ap in AGE_PROFILES:
+        lt = int(life_totals[ap["idx"]])
+        assert 100 < lt < 25000, f"Orimligt livstidsvärde för {ap['label']}: {lt} tkr"
+    print("  ✓ Livstidsförmåner inom rimliga gränser för alla profiler")
+
+    # Test 4: Skatteberäkning rimlig (exkl pension, 500 tkr/år)
+    skatt_35 = berakna_skatt_livet(35, 500)
+    assert 5000 < skatt_35 < 30000, f"Orimlig skatt vid 35 år: {skatt_35} tkr"
+    print(f"  ✓ Skatteberäkning rimlig: 35 år, 500 tkr/år → {skatt_35:,} tkr ackumulerat")
+
+    # Test 5: Kalibrering mot COFOG (max 20% avvikelse)
+    BEFOLKNING_PER_FAS = {
+        0:700000, 1:1000000, 2:350000, 3:750000, 4:1200000,
+        5:1400000, 6:1300000, 7:1200000, 8:1100000, 9:800000
+    }
+    livsfaser_path = os.path.join(_DIR, 'livsfaser_v2.json')
+    with open(livsfaser_path, encoding='utf-8') as fh:
+        lf_data = json.load(fh)
+    total_mdkr = sum(
+        BEFOLKNING_PER_FAS[i] * f['total_tkr_per_år'] / 1_000_000_000 * 1_000
+        for i, f in enumerate(lf_data['faser'])
+    )
+    cofog_target = 3011
+    diff_pct = abs(total_mdkr - cofog_target) / cofog_target * 100
+    assert diff_pct < 20, f"COFOG-differens för stor: {diff_pct:.1f}%"
+    print(f"  ✓ COFOG-kalibrering: {total_mdkr:.0f} Mdkr vs mål {cofog_target} Mdkr ({diff_pct:.1f}% differens)")
+
+    if errors:
+        print(f"\n  ✗ {len(errors)} FEL:")
+        for e in errors: print(f"    - {e}")
+        sys.exit(1)
+    else:
+        print("\n  ✓ Alla verifieringstester godkända")

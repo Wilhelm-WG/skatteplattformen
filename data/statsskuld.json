@@ -1,0 +1,257 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "senast_uppdaterad": "2026-03-24",
+    "källa_statsskuld": "Riksgälden — Sveriges statsskuld, historisk statistik",
+    "källa_url": "https://www.riksgalden.se/statistik/statistik-om-sveriges-statsskuld/statsskuldens-utveckling/",
+    "källa_bnp": "SCB Nationalräkenskaper NR0103",
+    "källa_gini": "SCB HE0110 Hushållens ekonomi, Gini-koefficient disponibel inkomst",
+    "källa_sjukfranvaro": "Försäkringskassan — Statistik sjukpenningdagar",
+    "not": "Skuld i löpande priser. BNP-procent baseras på SCB BNP löpande priser. Räntekostnad = statens faktiska ränteutgifter (budgetens utgiftsområde 26)."
+  },
+
+  "statsskuld_historia": [
+    {"år": 1980, "skuld_mdkr": 165,  "bnp_pct": 16.0, "räntekostnad_mdkr": 14,  "not": ""},
+    {"år": 1985, "skuld_mdkr": 465,  "bnp_pct": 34.0, "räntekostnad_mdkr": 38,  "not": ""},
+    {"år": 1990, "skuld_mdkr": 621,  "bnp_pct": 40.0, "räntekostnad_mdkr": 62,  "not": ""},
+    {"år": 1991, "skuld_mdkr": 720,  "bnp_pct": 45.0, "räntekostnad_mdkr": 70,  "not": "Fastighets- och bankkrisen börjar"},
+    {"år": 1992, "skuld_mdkr": 875,  "bnp_pct": 54.0, "räntekostnad_mdkr": 85,  "not": "Valutakrisens år — kronan flöt"},
+    {"år": 1993, "skuld_mdkr": 1130, "bnp_pct": 67.0, "räntekostnad_mdkr": 104, "not": ""},
+    {"år": 1994, "skuld_mdkr": 1390, "bnp_pct": 74.0, "räntekostnad_mdkr": 118, "not": "Historisk topp — räntekostnaderna överstiger hela försvarsbudgeten"},
+    {"år": 1995, "skuld_mdkr": 1413, "bnp_pct": 73.0, "räntekostnad_mdkr": 122, "not": "Räntekostnadstopp: 122 Mdkr"},
+    {"år": 1996, "skuld_mdkr": 1410, "bnp_pct": 70.0, "räntekostnad_mdkr": 116, "not": "Saneringspolitiken börjar bita"},
+    {"år": 1997, "skuld_mdkr": 1395, "bnp_pct": 67.0, "räntekostnad_mdkr": 104, "not": ""},
+    {"år": 1998, "skuld_mdkr": 1375, "bnp_pct": 63.0, "räntekostnad_mdkr": 93,  "not": ""},
+    {"år": 1999, "skuld_mdkr": 1300, "bnp_pct": 58.0, "räntekostnad_mdkr": 82,  "not": ""},
+    {"år": 2000, "skuld_mdkr": 1273, "bnp_pct": 53.0, "räntekostnad_mdkr": 76,  "not": "IT-boom — överskott i statsfinanserna"},
+    {"år": 2001, "skuld_mdkr": 1198, "bnp_pct": 49.0, "räntekostnad_mdkr": 70,  "not": ""},
+    {"år": 2002, "skuld_mdkr": 1194, "bnp_pct": 48.0, "räntekostnad_mdkr": 58,  "not": ""},
+    {"år": 2003, "skuld_mdkr": 1196, "bnp_pct": 47.0, "räntekostnad_mdkr": 50,  "not": ""},
+    {"år": 2004, "skuld_mdkr": 1262, "bnp_pct": 47.0, "räntekostnad_mdkr": 46,  "not": ""},
+    {"år": 2005, "skuld_mdkr": 1268, "bnp_pct": 45.0, "räntekostnad_mdkr": 43,  "not": ""},
+    {"år": 2006, "skuld_mdkr": 1243, "bnp_pct": 41.0, "räntekostnad_mdkr": 40,  "not": ""},
+    {"år": 2007, "skuld_mdkr": 1100, "bnp_pct": 34.0, "räntekostnad_mdkr": 36,  "not": ""},
+    {"år": 2008, "skuld_mdkr": 1059, "bnp_pct": 32.0, "räntekostnad_mdkr": 34,  "not": "Finanskrisen"},
+    {"år": 2009, "skuld_mdkr": 1096, "bnp_pct": 36.0, "räntekostnad_mdkr": 28,  "not": ""},
+    {"år": 2010, "skuld_mdkr": 1138, "bnp_pct": 34.0, "räntekostnad_mdkr": 24,  "not": ""},
+    {"år": 2011, "skuld_mdkr": 1140, "bnp_pct": 32.0, "räntekostnad_mdkr": 22,  "not": ""},
+    {"år": 2012, "skuld_mdkr": 1140, "bnp_pct": 31.0, "räntekostnad_mdkr": 21,  "not": ""},
+    {"år": 2013, "skuld_mdkr": 1213, "bnp_pct": 33.0, "räntekostnad_mdkr": 20,  "not": ""},
+    {"år": 2014, "skuld_mdkr": 1302, "bnp_pct": 34.0, "räntekostnad_mdkr": 18,  "not": ""},
+    {"år": 2015, "skuld_mdkr": 1280, "bnp_pct": 32.0, "räntekostnad_mdkr": 16,  "not": ""},
+    {"år": 2016, "skuld_mdkr": 1302, "bnp_pct": 31.0, "räntekostnad_mdkr": 14,  "not": ""},
+    {"år": 2017, "skuld_mdkr": 1291, "bnp_pct": 29.0, "räntekostnad_mdkr": 13,  "not": ""},
+    {"år": 2018, "skuld_mdkr": 1246, "bnp_pct": 27.0, "räntekostnad_mdkr": 11,  "not": ""},
+    {"år": 2019, "skuld_mdkr": 1203, "bnp_pct": 26.0, "räntekostnad_mdkr": 9,   "not": ""},
+    {"år": 2020, "skuld_mdkr": 1236, "bnp_pct": 28.0, "räntekostnad_mdkr": 8,   "not": "Covid-pandemin: statens utgifter ökade kraftigt"},
+    {"år": 2021, "skuld_mdkr": 1215, "bnp_pct": 26.0, "räntekostnad_mdkr": 9,   "not": ""},
+    {"år": 2022, "skuld_mdkr": 1143, "bnp_pct": 22.0, "räntekostnad_mdkr": 9,   "not": "Inflationen drev upp BNP i löpande priser"},
+    {"år": 2023, "skuld_mdkr": 1050, "bnp_pct": 18.0, "räntekostnad_mdkr": 9,   "not": ""},
+    {"år": 2024, "skuld_mdkr": 1151, "bnp_pct": 18.0, "räntekostnad_mdkr": 12,  "not": "Budgetunderskott 104 Mdkr, räntorna steg"},
+    {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Prognos: Riksgälden lånebehov 2025"}
+  ],
+
+  "internationell_jämförelse_2024": {
+    "källa": "IMF World Economic Outlook 2024 / Eurostat gov_10dd_edpt1",
+    "not": "Maastricht-skuld (konsoliderad offentlig sektor, brutto). Sverige = statsskulden, ej kommuner.",
+    "länder": [
+      {"land": "Sverige",     "pct_bnp": 33,  "not": "Inkl kommuner ca 33% Maastricht vs 18% statsskuld"},
+      {"land": "Danmark",     "pct_bnp": 29,  "not": ""},
+      {"land": "Finland",     "pct_bnp": 81,  "not": ""},
+      {"land": "Norge",       "pct_bnp": 38,  "not": "Exkl. oljefond — nettoskuld kraftigt negativ"},
+      {"land": "Tyskland",    "pct_bnp": 63,  "not": ""},
+      {"land": "Frankrike",   "pct_bnp": 113, "not": ""},
+      {"land": "Spanien",     "pct_bnp": 107, "not": ""},
+      {"land": "Italien",     "pct_bnp": 138, "not": ""},
+      {"land": "Grekland",    "pct_bnp": 161, "not": ""},
+      {"land": "EU-snitt",    "pct_bnp": 82,  "not": "EU27 genomsnitt"},
+      {"land": "USA",         "pct_bnp": 122, "not": "Federal + delstatsskuld"},
+      {"land": "Japan",       "pct_bnp": 255, "not": "Mest skuldsatta avancerade ekonomi"},
+      {"land": "UK",          "pct_bnp": 100, "not": ""}
+    ]
+  },
+
+  "per_invånare_2024": {
+    "statsskuld_kr_per_inv": 109100,
+    "statsskuld_kr_per_yrkesverksam": 218200,
+    "räntekostnad_kr_per_inv_2024": 1138,
+    "räntekostnad_kr_per_inv_2025": 1232,
+    "räntekostnad_kr_per_inv_1995": 13900,
+    "not": "Befolkning 2024: 10,55M. Yrkesverksamma (20-64): ~5,28M. Räntekostnad 1995 = 122 Mdkr / 8,78M inv."
+  },
+
+  "kontext_räntekostnad": {
+    "not": "Räntekostnaden 2025 på 13 Mdkr motsvarar:",
+    "jämförelser": [
+      {"vad": "Antal nya grundskolor (30M kr/st)",       "antal": 433},
+      {"vad": "Antal IVA-platser (3M kr/plats/år)",     "antal": 4333},
+      {"vad": "Antal poliser (750k kr/år inkl. OH)",    "antal": 17333},
+      {"vad": "Läkemedelskostnad hela Sverige",          "andel_pct": 48, "not": "Läkemedelskostnad ~27 Mdkr/år"},
+      {"vad": "Hela försvarsbudgeten 1994",              "andel_pct": 9, "not": "Räntorna 1994-1995 var 8-9x nuvarande nivå"}
+    ]
+  },
+
+  "generationsanalys": {
+    "not": "Vem betalar av skulden?",
+    "skuld_per_generation_kr": {
+      "generation_z_1997_2012": 109100,
+      "millennials_1981_1996": 109100,
+      "not": "Alla nulevande delar på skulden lika, men amorteringstiden avgör vem som faktiskt betalar"
+    },
+    "scenario_räntehöjning": {
+      "not": "Om medelräntan stiger från 1,5% (2024) till 3,0%:",
+      "extra_räntekostnad_mdkr": 18,
+      "extra_per_invånare_kr": 1707,
+      "kontext": "Motsvarar avvecklingen av all statlig kulturbudget (ca 16 Mdkr)"
+    },
+    "amorteringstakt": {
+      "not": "Sverige amorterar inte aktivt — skulden hålls konstant relativt BNP via överskottsmålet.",
+      "överskottsmål_pct_bnp": 0.33,
+      "överskottsmål_mdkr": 22,
+      "effekt": "Om överskottsmålet hålls minskar skuld/BNP organiskt om tillväxten överstiger räntan"
+    }
+  },
+
+  "gini_historia": {
+    "källa_disponibel": "SCB HE0110 — Gini-koefficient disponibel inkomst efter transfereringar och skatt",
+    "källa_kapital": "Karimi et al. 2024, Fiscal Studies — 'Components of the evolution of income inequality in Sweden, 1990–2021'; SCB HE0110",
+    "källa_förmögenhet": "UBS Global Wealth Report 2024; Roine & Waldenström (2010, WID.world); SCB Hushållens förmögenhet",
+    "not": "Lägre värde = jämnare fördelning. Sverige 1980: bland de mest jämlika i världen. Tre olika mått ger tre helt olika bilder av ojämlikheten.",
+    "tre_ojämlikhetsmått_2024": {
+      "not": "Disponibel inkomst-Gini underskattar ojämlikheten kraftigt — kapitalinkomster och förmögenheter berättar en annan historia.",
+      "disponibel_inkomst": {"gini": 0.28, "inkluderar": "Löneinkomst, pension, bidrag — efter skatt och transfereringar", "källa": "SCB HE0110 2024"},
+      "inkl_kapitalinkomster": {"gini": 0.31, "inkluderar": "Ovan + utdelningar och realiserade kapitalvinster", "källa": "SCB/Karimi et al. 2024", "skillnad_not": "+0.03 enheter — kapitalinkomster ökar ojämlikheten mätbart"},
+      "förmögenhetsgini": {"gini": 0.75, "inkluderar": "Finansiella tillgångar + fastigheter − skulder", "källa": "UBS Global Wealth Report 2024", "skillnad_not": "Nästan 3× inkomst-Gini — förmögenhet är extremt koncentrerad"}
+    },
+    "serie_disponibel": [
+      {"år": 1975, "gini": 0.197}, {"år": 1980, "gini": 0.195, "not": "Historisk jämlikhetstopp"},
+      {"år": 1985, "gini": 0.196}, {"år": 1990, "gini": 0.209},
+      {"år": 1995, "gini": 0.211}, {"år": 2000, "gini": 0.243, "not": "Kapitalinkomster steg kraftigt"},
+      {"år": 2005, "gini": 0.234}, {"år": 2006, "gini": 0.241},
+      {"år": 2008, "gini": 0.259}, {"år": 2010, "gini": 0.268},
+      {"år": 2012, "gini": 0.274}, {"år": 2014, "gini": 0.278},
+      {"år": 2016, "gini": 0.283}, {"år": 2018, "gini": 0.275},
+      {"år": 2020, "gini": 0.270}, {"år": 2021, "gini": 0.274},
+      {"år": 2022, "gini": 0.280}, {"år": 2023, "gini": 0.285}, {"år": 2024, "gini": 0.287}
+    ],
+    "serie_inkl_kapital": {
+      "not": "Disponibel inkomst + realiserade kapitalvinster + utdelningar. Mer volatil — toppar vid börskrascher/boom.",
+      "serie": [
+        {"år": 1995, "gini": 0.226}, {"år": 2000, "gini": 0.298, "not": "IT-bubblan"},
+        {"år": 2002, "gini": 0.268}, {"år": 2005, "gini": 0.272},
+        {"år": 2007, "gini": 0.315, "not": "Börstopp + fastighetsboom"},
+        {"år": 2010, "gini": 0.293}, {"år": 2012, "gini": 0.298},
+        {"år": 2015, "gini": 0.308}, {"år": 2018, "gini": 0.301},
+        {"år": 2020, "gini": 0.292}, {"år": 2021, "gini": 0.325, "not": "Rekordutdelningar post-covid"},
+        {"år": 2022, "gini": 0.314}, {"år": 2023, "gini": 0.316}
+      ]
+    },
+    "kapitalinkomst_fördelning": {
+      "källa": "SCB; Karimi et al. 2024; Oxfam Sverige 2024",
+      "not": "Fördelning av kapitalinkomster (utdelningar + kapitalvinster) mellan inkomstgrupper",
+      "topp_1_pct": {"andel_kapitalinkomst_pct": 54, "andel_utdelningar_pct": 67, "not": "Topp 1% tar 54% av alla kapitalinkomster, 67% av utdelningarna"},
+      "topp_2_10_pct": {"andel_kapitalinkomst_pct": 36, "not": ""},
+      "botten_90_pct": {"andel_kapitalinkomst_pct": 10, "not": "90% av befolkningen delar på 10% av kapitalinkomsterna"},
+      "botten_50_pct": {"andel_kapitalinkomst_pct": 2, "not": "Botten 50% tar bara 2%"},
+      "kapital_av_total_disponibel": {"pct": 15, "not": "Kapitalinkomster utgör 15% av total disponibel inkomst — men extremt koncentrerat"},
+      "inkomsttillväxt_1991_2023": {
+        "topp_1_pct": 224,
+        "botten_decil": 32,
+        "not": "Topp 1% ökade sin reala disponibla inkomst med 224% mot 32% för botten-decilen (1991–2023, inkl. kapital)"
+      }
+    },
+    "förmögenhetsfördelning": {
+      "källa": "UBS Global Wealth Report 2024; Roine & Waldenström WID.world; Landgeist analysis 2024",
+      "not": "Nettoförmögenhet = finansiella tillgångar + fastigheter − skulder. Sverige avskaffade förmögenhetsskatten 2007.",
+      "förmögenhetsgini": 0.75,
+      "topp_1_pct_andel": 35.8,
+      "topp_10_pct_andel": 74.4,
+      "median_förmögenhet_usd": 319289,
+      "medel_förmögenhet_usd": 336000,
+      "not_kvot": "Medel/Median-kvoten är 1.05 — att medelvärdet är nära medianen beror på bostadsägande bland normalinkomsttagare. Finansiella tillgångar är mer koncentrerade.",
+      "historisk_not": "Topp 1% förmögenhetsandel: ~50% (1930-tal) → ~43% (1980-tal) → ~36% (2024). Minskning driven av folkpensionsreformer + bostadsägande. Ökning sedan 2007 pga avskaffad förmögenhetsskatt."
+    },
+    "marknads_gini": {
+      "not": "Gini FÖRE skatter och transfereringar — visar den 'råa' marknadsojämlikheten",
+      "värde_2022": 0.48,
+      "källa": "OECD Income Distribution Database (IDD); Finanspolitiska rådet 2024",
+      "omfördelningseffekt": {"marknads_gini": 0.48, "disponibel_gini": 0.28, "skillnad": 0.20, "not": "Sverige omfördelar 0.20 Gini-enheter via skatter och bidrag — bland de mest effektiva i världen"}
+    },
+    "eu_jämförelse_2022": {
+      "Sverige": 0.274, "Danmark": 0.281, "Finland": 0.271, "Norge": 0.262,
+      "Tyskland": 0.290, "EU27_snitt": 0.300, "Spanien": 0.330, "Bulgarien": 0.386
+    },
+    "pedagogisk_not": "Den vanligaste siffran (0.28 disponibel Gini) är sann men ofullständig. Lägg till kapitalinkomster och den stiger till 0.31. Mät förmögenhet istället för inkomst och den exploderar till 0.75 — nästan tre gånger så hög. 90% av befolkningen delar på 10% av kapitalinkomsterna."
+  },
+
+  "sjukfrånvaro_historia": {
+    "källa": "Försäkringskassan — Sjukpenningdagar per försäkrad",
+    "not": "Nettodagar sjukpenning per försäkrad med sjukpenninggrundande inkomst",
+    "serie": [
+      {"år": 2000, "dagar": 14.2, "kostnad_mdkr": 21, "not": "Kraftig uppgång — 'sjukskrivningskrisen'"},
+      {"år": 2002, "dagar": 16.8, "kostnad_mdkr": 28, "not": "Historisk topp"},
+      {"år": 2004, "dagar": 14.0, "kostnad_mdkr": 24, "not": ""},
+      {"år": 2006, "dagar": 11.0, "kostnad_mdkr": 19, "not": "Rehabiliteringskedjan + bortre gräns"},
+      {"år": 2008, "dagar": 8.2,  "kostnad_mdkr": 15, "not": ""},
+      {"år": 2010, "dagar": 6.8,  "kostnad_mdkr": 12, "not": ""},
+      {"år": 2012, "dagar": 6.8,  "kostnad_mdkr": 12, "not": ""},
+      {"år": 2014, "dagar": 7.6,  "kostnad_mdkr": 14, "not": "Uppgång börjar"},
+      {"år": 2016, "dagar": 9.1,  "kostnad_mdkr": 19, "not": ""},
+      {"år": 2018, "dagar": 9.6,  "kostnad_mdkr": 22, "not": ""},
+      {"år": 2020, "dagar": 7.1,  "kostnad_mdkr": 17, "not": "Covid-effekt: folk sjukskrev sig ej lika mycket (hemarbete)"},
+      {"år": 2021, "dagar": 6.8,  "kostnad_mdkr": 17, "not": ""},
+      {"år": 2022, "dagar": 7.4,  "kostnad_mdkr": 19, "not": "Post-covid uppgång"},
+      {"år": 2023, "dagar": 8.2,  "kostnad_mdkr": 22, "not": ""},
+      {"år": 2024, "dagar": 8.5,  "kostnad_mdkr": 24, "not": "Psykisk ohälsa: störst bidragande diagnos"}
+    ],
+    "diagnoser_2024": [
+      {"diagnos": "Psykisk ohälsa (inkl. utmattning)", "andel_pct": 46},
+      {"diagnos": "Rörelseorganen (rygg, skulder, nacke)", "andel_pct": 22},
+      {"diagnos": "Hjärt-kärl", "andel_pct": 6},
+      {"diagnos": "Cancer", "andel_pct": 5},
+      {"diagnos": "Övriga", "andel_pct": 21}
+    ]
+  },
+
+  "demografisk_prognos": {
+    "källa": "SCB Befolkningsframskrivning 2025-2070 (publicerad april 2025)",
+    "källa_url": "https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningsframskrivningar/",
+    "forsörjningskvot": {
+      "not": "Antal yrkesverksamma (20-64 år) per äldre (65+). Lägre = mer press på systemet.",
+      "serie": [
+        {"år": 2000, "kvot": 3.9, "not": ""},
+        {"år": 2010, "kvot": 3.4, "not": ""},
+        {"år": 2020, "kvot": 3.0, "not": ""},
+        {"år": 2024, "kvot": 3.1, "not": "Nuläge — 3,1 yrkesverksamma per pensionär"},
+        {"år": 2030, "kvot": 2.9, "not": "40-talisterna fullt pensionerade"},
+        {"år": 2035, "kvot": 2.7, "not": ""},
+        {"år": 2040, "kvot": 2.6, "not": ""},
+        {"år": 2050, "kvot": 2.4, "not": "Demografisk botten — kräver antingen högre skatt, lägre förmåner eller mer invandring"},
+        {"år": 2060, "kvot": 2.3, "not": ""},
+        {"år": 2070, "kvot": 2.4, "not": "Lätt återhämtning"}
+      ]
+    },
+    "andel_80plus": {
+      "not": "Andel 80+ av befolkningen — de som konsumerar mest sjukvård och äldreomsorg",
+      "serie": [
+        {"år": 2024, "pct": 5.7,  "antal_tusen": 601},
+        {"år": 2030, "pct": 6.2,  "antal_tusen": 668},
+        {"år": 2035, "pct": 7.0,  "antal_tusen": 765},
+        {"år": 2040, "pct": 8.1,  "antal_tusen": 895},
+        {"år": 2050, "pct": 9.4,  "antal_tusen": 1080},
+        {"år": 2060, "pct": 10.1, "antal_tusen": 1180},
+        {"år": 2070, "pct": 10.3, "antal_tusen": 1240}
+      ]
+    },
+    "finansieringsgap_prognos": {
+      "not": "SKR beräknar att kommunsektorn behöver 90 Mdkr/år mer 2030 för att hålla nuvarande servicenivå",
+      "extra_behov_2030_mdkr": 90,
+      "alternativ_finansiering": [
+        {"metod": "Höjd kommunalskatt", "effekt": "+3-4 öre = +14 Mdkr/år"},
+        {"metod": "Statsbidrag (lånefinansierat)", "effekt": "+90 Mdkr = 7 000 kr/invånare/år"},
+        {"metod": "Sänkt servicenivå", "effekt": "Stängda äldreboenden, längre köer"},
+        {"metod": "Produktivitetsökning via digitalisering", "effekt": "Osäker, historiskt lågt i offentlig sektor"}
+      ]
+    }
+  }
+}

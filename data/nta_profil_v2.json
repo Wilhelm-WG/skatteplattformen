@@ -154,7 +154,7 @@
         "Garantipension": 0.0,
         "TOTALT": 148.2
       },
-      "livstid_tkr": 2556,
+      "livstid_tkr": 5013,
       "skatt_500tkr": 0
     },
     {
@@ -173,7 +173,7 @@
         "Garantipension": 0.0,
         "TOTALT": 104.1
       },
-      "livstid_tkr": 3196,
+      "livstid_tkr": 6567,
       "skatt_500tkr": 1696
     },
     {
@@ -192,7 +192,7 @@
         "Garantipension": 0.0,
         "TOTALT": 133.1
       },
-      "livstid_tkr": 4090,
+      "livstid_tkr": 7950,
       "skatt_500tkr": 5088
     },
     {
@@ -211,7 +211,7 @@
         "Garantipension": 0.0,
         "TOTALT": 150.7
       },
-      "livstid_tkr": 4959,
+      "livstid_tkr": 10217,
       "skatt_500tkr": 8480
     },
     {
@@ -230,7 +230,7 @@
         "Garantipension": 34.0,
         "TOTALT": 315.0
       },
-      "livstid_tkr": 7433,
+      "livstid_tkr": 14070,
       "skatt_500tkr": 15264
     }
   ],
@@ -238,33 +238,33 @@
     {
       "label": "Spädbarn & förskola",
       "start": 0,
-      "end": 5,
+      "end": 6,
       "årsvals": {
-        "sjukvård": 70,
+        "sjukvård": 40,
         "sjukforsakr": 0,
-        "familj": 45,
+        "familj": 38,
         "studiemedel": 0,
         "hogskola": 0,
-        "skola_k": 0,
-        "infra": 4,
-        "kom_bidrag": 12,
+        "skola_k": 175,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
         "aldreomsorg": 0,
         "pension_g": 0
       }
     },
     {
       "label": "Grundskola",
-      "start": 6,
+      "start": 7,
       "end": 15,
       "årsvals": {
         "sjukvård": 18,
         "sjukforsakr": 0,
-        "familj": 15,
-        "studiemedel": 0,
+        "familj": 25,
+        "studiemedel": 7.4,
         "hogskola": 0,
-        "skola_k": 95,
-        "infra": 5,
-        "kom_bidrag": 14,
+        "skola_k": 140.6,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
         "aldreomsorg": 0,
         "pension_g": 0
       }
@@ -272,50 +272,50 @@
     {
       "label": "Gymnasium",
       "start": 16,
-      "end": 19,
+      "end": 18,
       "årsvals": {
-        "sjukvård": 12,
+        "sjukvård": 20,
         "sjukforsakr": 0,
-        "familj": 8,
-        "studiemedel": 4,
+        "familj": 26,
+        "studiemedel": 11.6,
         "hogskola": 0,
-        "skola_k": 58,
-        "infra": 6,
-        "kom_bidrag": 12,
+        "skola_k": 133.4,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
         "aldreomsorg": 0,
         "pension_g": 0
       }
     },
     {
       "label": "Högskolestudier",
-      "start": 20,
-      "end": 24,
+      "start": 19,
+      "end": 25,
       "årsvals": {
-        "sjukvård": 14,
-        "sjukforsakr": 3,
-        "familj": 2,
-        "studiemedel": 18,
-        "hogskola": 34,
+        "sjukvård": 25,
+        "sjukforsakr": 9.2,
+        "familj": 27.8,
+        "studiemedel": 28.6,
+        "hogskola": 81.4,
         "skola_k": 0,
-        "infra": 7,
-        "kom_bidrag": 12,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
         "aldreomsorg": 0,
         "pension_g": 0
       }
     },
     {
       "label": "Barnfamilj-fas",
-      "start": 25,
+      "start": 26,
       "end": 34,
       "årsvals": {
-        "sjukvård": 20,
-        "sjukforsakr": 12,
-        "familj": 28,
-        "studiemedel": 1,
-        "hogskola": 8,
-        "skola_k": 0,
-        "infra": 8,
-        "kom_bidrag": 13,
+        "sjukvård": 30,
+        "sjukforsakr": 10.5,
+        "familj": 31.5,
+        "studiemedel": 1.2,
+        "hogskola": 3.0,
+        "skola_k": 1.8,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
         "aldreomsorg": 0,
         "pension_g": 0
       }
@@ -325,50 +325,50 @@
       "start": 35,
       "end": 44,
       "årsvals": {
-        "sjukvård": 35,
-        "sjukforsakr": 14,
-        "familj": 10,
-        "studiemedel": 0,
-        "hogskola": 2,
-        "skola_k": 0,
-        "infra": 9,
-        "kom_bidrag": 14,
-        "aldreomsorg": 0,
+        "sjukvård": 52,
+        "sjukforsakr": 29.7,
+        "familj": 55.2,
+        "studiemedel": 8.4,
+        "hogskola": 21.0,
+        "skola_k": 12.6,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
+        "aldreomsorg": 2,
         "pension_g": 0
       }
     },
     {
       "label": "Senior (45–64)",
       "start": 45,
-      "end": 64,
+      "end": 54,
       "årsvals": {
-        "sjukvård": 67,
-        "sjukforsakr": 21,
-        "familj": 2,
-        "studiemedel": 0,
-        "hogskola": 0,
-        "skola_k": 0,
-        "infra": 8,
-        "kom_bidrag": 15,
-        "aldreomsorg": 0,
+        "sjukvård": 78,
+        "sjukforsakr": 18.2,
+        "familj": 33.8,
+        "studiemedel": 1.0,
+        "hogskola": 2.5,
+        "skola_k": 1.5,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
+        "aldreomsorg": 4,
         "pension_g": 0
       }
     },
     {
       "label": "Pensionär (65–80)",
-      "start": 65,
-      "end": 80,
+      "start": 55,
+      "end": 64,
       "årsvals": {
-        "sjukvård": 195,
-        "sjukforsakr": 8,
-        "familj": 0,
-        "studiemedel": 0,
-        "hogskola": 0,
-        "skola_k": 0,
-        "infra": 7,
-        "kom_bidrag": 18,
-        "aldreomsorg": 65,
-        "pension_g": 34
+        "sjukvård": 110,
+        "sjukforsakr": 39.0,
+        "familj": 3.2,
+        "studiemedel": 0.6,
+        "hogskola": 1.5,
+        "skola_k": 0.9,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
+        "aldreomsorg": 10,
+        "pension_g": 0
       }
     }
   ]
