@@ -103,6 +103,25 @@ h1 em{font-style:italic;color:var(--green)}
 .btn-p:hover{background:#163d31;transform:translateY(-1px)}
 .btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:.9rem;padding:13px 26px;border-radius:2px;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .15s}
 .btn-g:hover{border-color:var(--ink2);background:var(--bg2)}
+/* HERO SNABBKOLL */
+.hero-snabbkoll{background:var(--ink);border-radius:6px;padding:1.75rem;display:flex;flex-direction:column;gap:.7rem}
+.hsk-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.hsk-age-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.hsk-age{font-family:var(--mono);font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .15s}
+.hsk-age:hover{border-color:var(--green);color:var(--green)}
+.hsk-age.on{background:var(--green);border-color:var(--green);color:#fff}
+.hsk-age-lbl{font-size:.75rem;color:rgba(255,255,255,.3);margin-left:2px}
+.hsk-total{font-family:var(--mono);font-size:2.4rem;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1}
+.hsk-sublbl{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:-.3rem}
+.hsk-bars{display:flex;flex-direction:column;gap:5px;margin-top:.2rem}
+.hsk-bar-row{display:flex;align-items:center;gap:.5rem}
+.hsk-bar-lbl{font-size:.65rem;color:rgba(255,255,255,.45);width:90px;flex-shrink:0}
+.hsk-bar-track{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.hsk-bar-fill{height:100%;border-radius:3px;transition:width .4s ease}
+.hsk-bar-val{font-size:.65rem;font-family:var(--mono);color:rgba(255,255,255,.5);width:48px;text-align:right;flex-shrink:0}
+.hsk-shock{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.6;padding:.65rem .85rem;background:rgba(255,255,255,.04);border-left:2px solid var(--green);border-radius:0 3px 3px 0;margin-top:.1rem}
+.hsk-link{font-size:.75rem;color:var(--green);text-decoration:none;font-weight:500;margin-top:.1rem;display:inline-block}
+.hsk-link:hover{text-decoration:underline}
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
 .ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
 .ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
@@ -413,7 +432,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
         <li><a href="#budget">Budgeten</a></li>
-        <li><a href="#oecd">OECD</a></li>
+        <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#framtid">Framtid</a></li>
         <li><a href="#historik">Historik</a></li>
         <li><a href="#metod">Metod</a></li>
@@ -443,16 +462,22 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
         </div>
       </div>
-      <div class="ticker-box fu fu4">
-        <div class="ticker-title">Offentlig sektor 2024 — hela bilden (COFOG/SCB)</div>
-        <div class="ticker-grid">
-          <div class="t-cell"><div class="t-num">3 011<sub> Mdkr</sub></div><div class="t-lbl">Total offentlig sektor</div></div>
-          <div class="t-cell"><div class="t-num">285<sub> tkr</sub></div><div class="t-lbl">Per invånare &amp; år</div></div>
-          <div class="t-cell"><div class="t-num">1 442<sub> Mdkr</sub></div><div class="t-lbl">Statsbudgeten 2025</div></div>
-          <div class="t-cell"><div class="t-num">50<sub> % BNP</sub></div><div class="t-lbl">Offentliga utgifter/BNP</div></div>
-          <div class="t-cell"><div class="t-num">457<sub> Mdkr</sub></div><div class="t-lbl">Sjukvård (COFOG 2024)</div></div>
-          <div class="t-cell"><div class="t-num">512<sub> Mdkr</sub></div><div class="t-lbl">Utbildning (SCB 2024)</div></div>
+      <!-- HERO SNABBKOLL — personlig hook för unga vuxna -->
+      <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll">
+        <div class="hsk-eyebrow">Samhällets investering i dig just nu</div>
+        <div class="hsk-age-row">
+          <button class="hsk-age" onclick="heroAge(this,18)">18</button>
+          <button class="hsk-age" onclick="heroAge(this,22)">22</button>
+          <button class="hsk-age on" onclick="heroAge(this,25)">25</button>
+          <button class="hsk-age" onclick="heroAge(this,30)">30</button>
+          <button class="hsk-age" onclick="heroAge(this,35)">35</button>
+          <span class="hsk-age-lbl">år</span>
         </div>
+        <div class="hsk-total" id="hskTotal">— tkr/år</div>
+        <div class="hsk-sublbl" id="hskSublbl">konsumerar du i offentliga tjänster</div>
+        <div class="hsk-bars" id="hskBars"></div>
+        <div class="hsk-shock" id="hskShock"></div>
+        <a href="#kalkylator" class="hsk-link">Beräkna exakt för dig →</a>
       </div>
     </div>
   </div>
@@ -466,6 +491,62 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div class="vda-dots" id="vdaDots"></div>
   </div>
 </div>
+
+<hr class="div">
+
+<!-- LIVSLOPP — flyttat upp som sektion #2, direkt synlig hook -->
+<section class="section" id="livslopp" aria-label="Livsloppsdiagram">
+  <div class="cw">
+    <p class="s-eye">Ålder 0–85</p>
+    <h2 class="s-title">Hela livet i ett diagram</h2>
+    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
+
+    <!-- Snabbval: verkliga svenska inkomstnivåer -->
+    <div style="margin:1.2rem 0 .6rem">
+      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
+        <button class="lc-preset" onclick="setLcInc(this,240)">
+          <span class="lc-preset-lbl">Lägsta decil</span>
+          <span class="lc-preset-val">240 tkr</span>
+          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,340)">
+          <span class="lc-preset-lbl">Median</span>
+          <span class="lc-preset-val">340 tkr</span>
+          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
+        </button>
+        <button class="lc-preset on" onclick="setLcInc(this,460)">
+          <span class="lc-preset-lbl">Genomsnitt</span>
+          <span class="lc-preset-val">460 tkr</span>
+          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,620)">
+          <span class="lc-preset-lbl">Övre skikt</span>
+          <span class="lc-preset-val">620 tkr</span>
+          <span class="lc-preset-sub">P80 — akademiker/chef</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,1000)">
+          <span class="lc-preset-lbl">Toppinkomst</span>
+          <span class="lc-preset-val">1 000 tkr</span>
+          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reglage + kontexttext -->
+    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
+      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
+      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
+        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
+      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
+      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
+    </div>
+
+    <div id="lifecycle-chart" style="margin:1rem 0"></div>
+    <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
+    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37%, statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21%, moms 18% på disponibel. Inkomst antas 0 (0–18 år), stiger linjärt 19–26, platå 27–64, pension 70% av platå 65–75, 50% 76–85. Alla belopp 2024 priser, ej diskonterade. Källa inkomstnivåer: SCB HE0110 / IoT 2024.</p>
+  </div>
+</section>
 
 <hr class="div">
 
@@ -633,59 +714,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <hr class="div">
 
 <!-- LIVSLOPP -->
-<section class="section" id="livslopp" aria-label="Livsloppsdiagram">
-  <div class="cw">
-    <p class="s-eye">Ålder 0–85</p>
-    <h2 class="s-title">Hela livet i ett diagram</h2>
-    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
-
-    <!-- Snabbval: verkliga svenska inkomstnivåer -->
-    <div style="margin:1.2rem 0 .6rem">
-      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
-        <button class="lc-preset" onclick="setLcInc(this,240)">
-          <span class="lc-preset-lbl">Lägsta decil</span>
-          <span class="lc-preset-val">240 tkr</span>
-          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,340)">
-          <span class="lc-preset-lbl">Median</span>
-          <span class="lc-preset-val">340 tkr</span>
-          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
-        </button>
-        <button class="lc-preset on" onclick="setLcInc(this,460)">
-          <span class="lc-preset-lbl">Genomsnitt</span>
-          <span class="lc-preset-val">460 tkr</span>
-          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,620)">
-          <span class="lc-preset-lbl">Övre skikt</span>
-          <span class="lc-preset-val">620 tkr</span>
-          <span class="lc-preset-sub">P80 — akademiker/chef</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,1000)">
-          <span class="lc-preset-lbl">Toppinkomst</span>
-          <span class="lc-preset-val">1 000 tkr</span>
-          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Reglage + kontexttext -->
-    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
-      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
-      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
-        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
-      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
-      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
-    </div>
-
-    <div id="lifecycle-chart" style="margin:1rem 0"></div>
-    <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37%, statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21%, moms 18% på disponibel. Inkomst antas 0 (0–18 år), stiger linjärt 19–26, platå 27–64, pension 70% av platå 65–75, 50% 76–85. Alla belopp 2024 priser, ej diskonterade. Källa inkomstnivåer: SCB HE0110 / IoT 2024.</p>
-  </div>
-</section>
-
 <hr class="div">
 
 <!-- BUDGET -->
@@ -777,11 +805,11 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </section>
 
 <!-- OECD JÄMFÖRELSE -->
-<section class="oecd-section" id="oecd" aria-label="OECD-jämförelse">
+<section class="oecd-section" id="oecd" aria-label="Sverige vs. resten av världen">
   <div class="container">
-    <p class="s-eye">Nordisk jämförelse</p>
-    <h2 class="s-title">Vad får vi för pengarna?</h2>
-    <p class="s-sub">Sverige jämfört med Norden och OECD-snittet — inte bara vad vi spenderar, utan vilka utfall vi uppnår.</p>
+    <p class="s-eye">Hur hänger Sverige sig?</p>
+    <h2 class="s-title">Sverige vs. resten av världen</h2>
+    <p class="s-sub">Sverige jämfört med Norden och OECD-snittet — inte bara vad vi spenderar, utan vilka utfall vi faktiskt uppnår.</p>
 
     <div class="oecd-tabs">
       <button class="oecd-tab on" onclick="showOecd(this,'sjukvard')">Sjukvård</button>
@@ -2015,6 +2043,46 @@ function renderCards(f){
 }
 function fc(btn,f){document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderCards(f)}
 renderCards('all');
+
+// ═══════════════════════════════════════════════════════════════════
+// HERO SNABBKOLL — personlig åldershook
+// ═══════════════════════════════════════════════════════════════════
+const HSK_SHOCKS = {
+  18: 'Ditt gymnasieprogram kostar ~145 000 kr/år — du betalar 0 kr. Det finansieras av dem som arbetar.',
+  22: 'Ditt högskolaprogram kostar ~240 000 kr/år i snitt — du betalar 0 kr i studieavgift.',
+  25: 'Din sjukförsäkring är aktiv från dag 1. Ett IVA-dygn kostar 55 000 kr — du betalar max 130 kr.',
+  30: 'Om du får barn nu betalar samhället ~185 000 kr/år för förskolan. Du betalar max 1 614 kr/mån.',
+  35: 'Du är nu nettobidragsgivare. Din skatt finansierar andras skola, vård och pensioner.',
+};
+
+function heroAge(btn, age){
+  document.querySelectorAll('.hsk-age').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const stage = typeof getStage === 'function' ? getStage(age) : null;
+  if(!stage) return;
+  const w = stage.w;
+  const total = Object.values(w).reduce((s,v)=>s+v,0);
+  document.getElementById('hskTotal').textContent = total.toLocaleString('sv-SE') + ' tkr/år';
+
+  const COLS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.2)',omsorg:'#C8973A'};
+  const LBLS = {utb:'Utbildning',sjukvård:'Sjukvård',socialt:'Social trygghet',koll:'Kollektivt',omsorg:'Äldreomsorg'};
+  const entries = Object.entries(w).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  const maxV = entries[0][1];
+  document.getElementById('hskBars').innerHTML = entries.map(([k,v])=>`
+    <div class="hsk-bar-row">
+      <span class="hsk-bar-lbl">${LBLS[k]||k}</span>
+      <div class="hsk-bar-track"><div class="hsk-bar-fill" style="width:${Math.round(v/maxV*100)}%;background:${COLS[k]||'#888'}"></div></div>
+      <span class="hsk-bar-val">${v} tkr</span>
+    </div>`).join('');
+
+  const shock = HSK_SHOCKS[age] || HSK_SHOCKS[25];
+  document.getElementById('hskShock').textContent = shock;
+}
+
+// Init hero snabbkoll när LIVSFASER_V2 är redo
+document.addEventListener('DOMContentLoaded', ()=>{ heroAge(document.querySelector('.hsk-age.on'), 25); });
+// Fallback om DOMContentLoaded redan kört
+if(document.readyState !== 'loading') heroAge(document.querySelector('.hsk-age.on')||{classList:{add:()=>{},remove:()=>{}}}, 25);
 
 // ═══════════════════════════════════════════════════════════════════
 // BUDGET BAR CHART
