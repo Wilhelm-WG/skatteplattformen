@@ -470,6 +470,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
         <li><a href="#livslopp">Livslopp</a></li>
+        <li><a href="#scenarion">Scenarion</a></li>
         <li><a href="#budget">Budgeten</a></li>
         <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#framtid">Framtid</a></li>
@@ -795,9 +796,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   </div>
 </section>
 
-<hr class="div">
-
-<!-- LIVSLOPP -->
 <hr class="div">
 
 <!-- BUDGET -->
@@ -1179,7 +1177,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="ft-card">
           <div class="ft-card-title">NATO-mål 2030</div>
           <div class="ft-big">3,5%<sub> av BNP</sub></div>
-          <div class="ft-desc">Från 2,0% (2025) till 2,8% (2026) mot 3,5% senast 2030. Vid BNP ~7 000 Mdkr innebär 3,5% ca 245 Mdkr/år — en ökning på +107 Mdkr mot 2025.</div>
+          <div class="ft-desc">Från 2,0% (2025) till 2,8% (2026) mot 3,5% senast 2030. Vid BNP ~7 000 Mdkr innebär 3,5% ca 245 Mdkr/år — en ökning på +107 Mdkr mot 2025. OBS: 3,5%-målet är det nya NATO-minimikravet beslutat vid toppmötet i Haag, juni 2025.</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Totalförsvarets kostnad</div>
@@ -1212,7 +1210,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
       </div>
 
-      <p class="ft-source">Källor: Försvarsbeslut 2025–2030 (Regeringen), NATO Defence Expenditure 2024, Budgetpropositionen 2025/26:1.</p>
+      <p class="ft-source">Källor: Försvarsbeslut 2025–2030 (Prop. 2024/25:121), NATO Defence Expenditure 2024, Budgetpropositionen 2025/26:1, NATO Haag-toppmöte 25 juni 2025 (3,5%-beslut).</p>
     </div>
 
     <!-- ── STATSSKULD & RÄNTOR ── -->
@@ -1343,8 +1341,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div class="ft-grid">
         <div class="ft-card">
           <div class="ft-card-title">Utbildningsutgifter (% av BNP)</div>
-          <div class="ft-big">7,1%<sub> (2021)</sub></div>
-          <div class="ft-desc">Sverige spenderar mest i Norden och 45% mer än OECD-snittet (4,9%). Men kostnad per elev har inte ökat i reala termer sedan 2012 — BNP-tillväxt döljer det.</div>
+          <div class="ft-big">7,1%<sub> (2021, OECD EAG)</sub></div>
+          <div class="ft-desc">Inkl. primär–tertiär utbildning + forskning vid lärosäten + vuxenutbildning (OECD EAG-definition). Sverige 45% över OECD-snittet (4,9%, samma definition). 2024 COFOG-estimat: ~6,5% (inkl. förskola, exkl. en del tertiär forskning). Kostnad per elev har inte ökat realt sedan 2012.</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">PISA-trend 2003–2022</div>
@@ -1663,7 +1661,7 @@ const DETAILS = {
     ],
     oecd_enhet: 'USD PPP per elev (2022)',
     fakta: [
-      'Sverige har <strong>5,3% av BNP</strong> till utbildning (primär–tertiär) — högst i Norden',
+      'Sverige lägger <strong>~6,5% av BNP</strong> på utbildning (COFOG 2024, inkl. förskola). Exkl. förskola och tertiär forskning: 5,3% (OECD EAG, primär–tertiär)',
       'PISA 2022: Sverige <strong>482 i matte</strong> — över OECD-snitt (472) men under Finland (484)',
       'Ca <strong>1,05 miljoner elever</strong> i grundskolan 2024',
       'Kommunal skola 152 000 kr/elev — fristående 129 300 kr'
@@ -2657,10 +2655,10 @@ function updateCalc(){
     'elev': 'Din skolgång kostar samhället ~148 000 kr per år. Den som betalar är de som arbetar — föräldrar, mor- och farföräldrar, grannar utan barn.',
     'gymn': 'Gymnasiet är frivilligt men gratis. Samhällets investering i dig fortsätter. Pengarna kommer från de som befinner sig i arbetslivet.',
     'student': 'En högre utbildning kostar ~240 000 kr/år per student. Sverige är ett av få länder som gör detta gratis — finansierat av skattebetalarna.',
-    'ung_arb': 'Du finansierar nu andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt. Du var själv mottagare, och du kommer att vara det igen.',
-    'barnfamilj': 'Du är nettobidragsgivare trots barnbidrag och föräldrapenning. De förmånerna är viktiga, men skatten du betalar är större. Du finansierar äldre generationer och gemensamma nyttigheter.',
-    'mitt_karriar': 'Du finansierar just nu en hel generation: barn i förskola, gymnasieelever, studenter, och pensionärer. Det är toppen av bidraget i livscykeln.',
-    'senior': 'Du är nära balansen. De kommande åren minskar din skattebetalning och ökar ditt uttag. Systemet du betalat in i i decennier börjar nu leverera.',
+    'ung_arb': 'I år betalar du mer i skatt än du konsumerar i direkta förmåner — men kumulativt sedan födseln (skola, vård, barnår) är de flesta fortfarande netto-mottagare. Systemet är ett kollektivt försäkringsarrangemang, inte ett lån.',
+    'barnfamilj': 'Barnbidrag och föräldrapenning är betydande, men den totala skatten är högre. Det årets nettoflöde är negativt — men livscykelperspektivet är mer nyanserat: gratis skolgång och vård under uppväxten vägdes in länge innan.',
+    'mitt_karriar': 'Du bidrar nu som mest till de gemensamma systemen. Det är inte en "skuld" som betalas av — det är hur ett ömsesidigt försäkringssystem fungerar: varje generation bär upp nästa.',
+    'senior': 'Din skatt sjunker och förmånerna ökar. Men det är inte "ta tillbaka" — det är det kollektiva systemet som levererar för den livsfas du befinner dig i, precis som det levererade för barn och studenter.',
     'pensionar': 'Du finansieras av de som arbetar nu — precis som du finansierade andra i 45 år. Systemet fungerar som avsett.',
     'aldri': 'Systemet är nu fullt investerat i din hälsa och omsorg. Kostnaderna för sjukvård och äldreomsorg är höga — men det är vad ett civiliserat samhälle gör för sina äldre.',
   };
