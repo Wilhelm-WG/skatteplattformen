@@ -631,7 +631,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
     <div id="lifecycle-chart" style="margin:1rem 0"></div>
     <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37%, statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21%, moms 18% på disponibel. Inkomst antas 0 (0–18 år), stiger linjärt 19–26, platå 27–64, pension 70% av platå 65–75, 50% 76–85. Alla belopp 2024 priser, ej diskonterade. Källa inkomstnivåer: SCB HE0110 / IoT 2024.</p>
+    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem">Modell: förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37%, statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21%, moms 18% på disponibel. Inkomstprofil: 0 (0–18 år), 20% av toppinkomst (19–22 år, student), linjär uppgång till 100% (23–26 år), platå (27–64), pension 70% (65–74), 50% (75–85). Pensionärer: förhöjt grundavdrag (+40%), ingen arbetsgivaravgift, inget jobbskatteavdrag. Alla belopp nominella 2024-priser, ej diskonterade. Källa inkomstnivåer: SCB HE0110 / IoT 2024.</p>
   </div>
 </section>
 
@@ -2155,18 +2155,25 @@ const PHASE_COLORS = {
 //   pension 70% (65-74), pension 50% (75-85).
 // Skatt: annualTax() = kommunalskatt + statlig + arbetsgivaravgifter + moms
 // ═══════════════════════════════════════════════════════════════════
+
+// Gemensam inkomstprofil — används av BÅDA calcCumulativeNet och calcLifecycle
+// för konsistens. Returnerar bruttoinkomst i tkr för en given ålder.
+function lifecycleIncome(age, peakInc){
+  if(age < 19) return 0;
+  if(age < 23) return peakInc * 0.20;                         // student/deltid
+  if(age < 27) return peakInc * (0.20 + 0.80*(age-23)/4);    // stiger mot topp
+  if(age < 65) return peakInc;                                // yrkesverksam
+  if(age < 75) return peakInc * 0.70;                        // pension (inkomstpension)
+  return peakInc * 0.50;                                      // hög ålder
+}
+
 function calcCumulativeNet(toAge, peakInc) {
   if(typeof getStage !== 'function' || typeof annualTax !== 'function') return null;
   let cumFörmåner = 0, cumTax = 0;
   for(let a = 0; a <= Math.min(toAge, 85); a++) {
     const s = getStage(a);
     cumFörmåner += Object.values(s.w).reduce((x,v) => x+v, 0);
-    let inc = 0;
-    if(a < 19) inc = 0;
-    else if(a < 26) inc = peakInc * (a - 18) / 8;
-    else if(a < 65) inc = peakInc;
-    else if(a < 75) inc = peakInc * 0.7;
-    else inc = peakInc * 0.5;
+    const inc = lifecycleIncome(a, peakInc);
     if(inc >= 50) {
       const t = annualTax(a, inc);
       cumTax += t.tot;
@@ -2523,16 +2530,17 @@ function jobbskatteavdrag2024(inc, ga, ks){
 }
 
 function annualTax(age, inc){
-  // inc = bruttoinkomst i tkr/år
-  if(age < 18 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
-  const isPensionar = age >= 66;
+  // inc = bruttoinkomst i tkr/år (pension­sinkomst skickas in redan reducerad av anroparen)
+  if(age < 19 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
+  const isPensionar = age >= 65;
   const ks = 0.3237;  // kommunalskatt genomsnitt 2024 (SCB)
 
-  // Pensionärer: effektiv inkomst ca 70% av yrkesverksam (inkomstpension ej skattefinansierad)
-  const effInc = isPensionar ? inc * 0.7 : inc;
-
-  // Grundavdrag
-  const ga = grundavdrag2024(effInc);
+  // Pensionärer: ingen extra inkomstreduktion här — inkomsten är redan rätt skalad av anroparen.
+  // Pensionärer får förhöjt grundavdrag (67 kap 3 § IL) jämfört med arbetsinkomst.
+  // Approximation: +40% på grundavdraget för pensionärer (ger ~5–8 pp lägre effektiv skatt).
+  const effInc = inc;
+  const gaBase = grundavdrag2024(effInc);
+  const ga = isPensionar ? Math.min(gaBase * 1.40, effInc * 0.50) : gaBase;
 
   // Kommunalskatt på beskattningsbar inkomst
   const beskBar = Math.max(0, effInc - ga);
@@ -3390,17 +3398,9 @@ renderScen('barnfamilj');
 // LIVSLOPPSDIAGRAM — ackumulerat 0–85
 // ═══════════════════════════════════════════════════════════════════
 function calcLifecycle(peakInc){
-  // peakInc = platåinkomst tkr under yrkeslivet (27–64)
+  // peakInc = platåinkomst tkr under yrkeslivet
+  // Använder lifecycleIncome() — samma profil som calcCumulativeNet för konsistens
   const ages = Array.from({length:86},(_,i)=>i);
-
-  function incAtAge(a){
-    if(a < 18) return 0;
-    if(a < 22) return peakInc * 0.20;   // student
-    if(a < 27) return peakInc * (0.20 + 0.80*(a-22)/5); // stiger
-    if(a < 65) return peakInc;
-    if(a < 75) return peakInc * 0.70;   // pension
-    return peakInc * 0.50;
-  }
 
   function formanAtAge(a){
     const s = getStage(Math.min(a,85));
@@ -3409,7 +3409,7 @@ function calcLifecycle(peakInc){
 
   let cumForman = 0, cumSkatt = 0;
   const pts = ages.map(a => {
-    const inc = incAtAge(a);
+    const inc = lifecycleIncome(a, peakInc);
     const t = annualTax(a, inc);
     cumForman += formanAtAge(a);
     cumSkatt += t.tot;
