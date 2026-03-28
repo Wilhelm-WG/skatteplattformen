@@ -83,6 +83,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px sol
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:.82rem;color:var(--ink2);text-decoration:none;transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
+.nav-links a.nav-active{color:var(--green);font-weight:500}
 .nav-pill{font-size:.72rem;font-weight:500;padding:6px 16px;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .15s;text-decoration:none}
 .nav-pill:hover{background:var(--ink);color:var(--bg)}
 .nav-hamburger{display:none;background:none;border:1px solid var(--border);border-radius:3px;padding:6px 8px;cursor:pointer;color:var(--ink);font-size:1.1rem;line-height:1}
@@ -386,7 +387,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}.fu4{animation-delay:.42s}
 /* ══ OECD COMPARISON ══════════════════════════════════ */
 .oecd-section{padding:72px 0;background:var(--bg2)}
-.oecd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2rem 0 1.5rem}
+.oecd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2rem 0 1.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.oecd-tabs::-webkit-scrollbar{display:none}
 .oecd-tab{font-size:.72rem;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
 .oecd-tab.on{background:var(--green);color:#fff;border-color:var(--green)}
 .oecd-panel{display:none}
@@ -737,10 +739,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="contract-card">
           <div class="card-label">Det livslånga kontraktet — var befinner du dig?</div>
           <div class="lifecycle-bar" id="lc-bar">
-            <div class="lc-seg lc-taker" style="width:25%">Barn &amp; elev</div>
-            <div class="lc-seg lc-payer" style="width:42%">Arbetsför ålder</div>
-            <div class="lc-seg lc-taker" style="width:33%">Senior &amp; pensionär</div>
-            <div class="lc-marker" id="lc-marker" style="left:52%"></div>
+            <div class="lc-seg lc-taker" id="lcseg-taker1" style="width:22%">Barn &amp; elev</div>
+            <div class="lc-seg lc-payer" id="lcseg-payer" style="width:54%">Arbetsför ålder</div>
+            <div class="lc-seg lc-taker" id="lcseg-taker2" style="width:24%">Senior &amp; pensionär</div>
+            <div class="lc-marker" id="lc-marker" style="left:0%"></div>
           </div>
           <div class="lc-legend">
             <div class="lc-leg"><div class="lc-dot" style="background:rgba(46,125,92,.55)"></div>Nettotagare av offentliga tjänster</div>
@@ -755,8 +757,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <!-- Jämförelse -->
-        <div style="text-align:center;margin-top:1rem">
-          <button onclick="toggleCompare()" style="font-size:.72rem;padding:6px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s">Jämför med en annan profil</button>
+        <div style="margin-top:.75rem;border:1px dashed var(--border);border-radius:5px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap">
+          <div>
+            <div style="font-size:.72rem;font-weight:500;color:var(--ink2)">Jämför med en annan profil</div>
+            <div style="font-size:.63rem;color:var(--ink3)">Ställ din profil mot t.ex. en pensionär eller ett barn</div>
+          </div>
+          <button onclick="toggleCompare()" id="compare-toggle-btn" style="font-size:.72rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap">Öppna jämförelse ↓</button>
         </div>
         <div id="compare-panel" style="display:none;margin-top:1rem">
           <div class="annual-card">
@@ -2629,11 +2635,19 @@ function updateCalc(){
   }
   document.getElementById('tax-breakdown').innerHTML = taxHTML;
 
-  // Lifecycle bar position
-  // Life phases: 0-18 = taker (21%), 19-64 = payer (53%), 65-85 = taker (26%)
+  // Lifecycle bar position + active segment highlight
   const maxAge = 85;
   const markerPct = (age / maxAge * 100).toFixed(1);
   document.getElementById('lc-marker').style.left = markerPct + '%';
+  const inPayer = age >= 19 && age <= 64;
+  const inTaker2 = age >= 65;
+  ['lcseg-taker1','lcseg-payer','lcseg-taker2'].forEach(id => {
+    const seg = document.getElementById(id);
+    if(seg) seg.style.opacity = '0.45';
+  });
+  const activeSeg = inTaker2 ? 'lcseg-taker2' : inPayer ? 'lcseg-payer' : 'lcseg-taker1';
+  const activeEl = document.getElementById(activeSeg);
+  if(activeEl) activeEl.style.opacity = '1';
 
   // Lifecycle text
   const isTaker = age <= 18 || age >= 55;
@@ -2899,7 +2913,14 @@ const VDA_FACTS = [
   // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
   'Svenska arbetsmarknaden är känd för flexibilitet — <strong>~500 000 tjänster</strong> tillsätts varje år (SCB AKU)',
   // KORRIGERAT: Fritt till och med 23 år (fr.o.m. 2024). Bidragsbeloppet är ~3 300 kr/år fr.o.m. 24.
-  'Tandvård är <strong>gratis till och med 23 år</strong> (fr.o.m. 2024). Från 24 år: ~3 300 kr/år i subvention för basala insatser'
+  'Tandvård är <strong>gratis till och med 23 år</strong> (fr.o.m. 2024). Från 24 år: ~3 300 kr/år i subvention för basala insatser',
+  // ── KRITISKA / BALANSERADE FAKTA ─────────────────────────────────
+  '<strong>~170 000 personer</strong> väntade på planerad operation eller specialistvård längre än 90 dagar (jan 2025) — trots garantins 90-dagarsgräns (SKR Väntetider i vården)',
+  'Sverige saknar uppskattningsvis <strong>10 600 legitimerade lärare</strong> till 2038 — brist som ackumuleras trots satsningar (Skolverkets lärarprognos 2024)',
+  'Regional ojämlikhet i vård: Skillnaden i canceröverlevnad mellan bästa och sämsta region är <strong>upp till 12 procentenheter</strong> för vissa diagnoser (Socialstyrelsen Cancerregistret 2024)',
+  'Psykisk ohälsa bland unga: <strong>1 av 4 gymnasieelever</strong> uppger besvärande ångest eller depressiva symtom — andelen har fördubblats sedan 2010 (Folkhälsomyndigheten 2024)',
+  'Bostadsbristen: <strong>215 av 290 kommuner</strong> uppger underskott på hyresrätter (Boverket 2024). Genomsnittlig kötid i Stockholm: <strong>8–11 år</strong>',
+  'Skattesystemets regresivitet: En person med <strong>10 Mkr i kapitalinkomst</strong> betalar 30% skatt — samma effektiva skatt som en sjuksköterska på medianlön (SCB/Riksrevisionen)'
 ];
 
 (function initVda(){
@@ -3607,21 +3628,28 @@ document.getElementById('s-inc').addEventListener('input', function(){ this.setA
 // ═══════════════════════════════════════════════════════════════════
 function shareSkatt(e){
   e.preventDefault();
-  const age = +document.getElementById('s-age').value;
-  const inc = +document.getElementById('s-inc').value;
+  // Prioritize Hero Snabbkoll state if slider exists, else fall back to calculator
+  const hskSlider = document.getElementById('hskAgeSlider');
+  const hskActiveBtn = document.querySelector('.hsk-age.on');
+  const heroAge = hskActiveBtn ? parseInt(hskActiveBtn.textContent) : (hskSlider ? parseInt(hskSlider.value) : null);
+  const age = heroAge !== null ? heroAge : +document.getElementById('s-age').value;
+  const inc = (typeof hskIncome !== 'undefined' && hskIncome) ? hskIncome : +document.getElementById('s-inc').value;
   const stage = getStage(age);
   const tax = annualTax(age, inc);
   const total = Object.values(stage.w).reduce((a,b)=>a+b,0);
   const effRate = inc > 0 && tax.tot > 0 ? (tax.tot / inc * 100).toFixed(0) : '0';
+  const cum = calcCumulativeNet ? calcCumulativeNet(age, inc) : null;
 
   let text = `Visste du att en ${age}-åring med ${inc} tkr/år i inkomst:\n\n`;
   text += `• Konsumerar offentliga tjänster för ${total.toLocaleString('sv-SE')} tkr/år\n`;
   if(tax.tot > 0){
     text += `• Betalar ${tax.tot.toLocaleString('sv-SE')} tkr i total skatt (${effRate}% effektiv skatt)\n`;
-    const balance = total - tax.tot;
-    text += balance < 0
-      ? `• Är nettobidragsgivare med ${Math.abs(balance).toLocaleString('sv-SE')} tkr\n`
-      : `• Är nettotagare med ${balance.toLocaleString('sv-SE')} tkr\n`;
+  }
+  if(cum){
+    const cumMkr = (cum.net / 1000).toFixed(1);
+    text += cum.net > 0
+      ? `• Kumulativt sedan födseln: +${cumMkr} Mkr netto (fortfarande nettomottagare av välfärd)\n`
+      : `• Kumulativt sedan födseln: ${cumMkr} Mkr netto (har betalat mer än tagit ut)\n`;
   }
   text += `\nSvensk skattetransparens: https://wilhelm-wg.github.io/skatteplattformen/`;
 
@@ -3644,8 +3672,11 @@ function shareSkatt(e){
 // ═══════════════════════════════════════════════════════════════════
 function toggleCompare(){
   const panel = document.getElementById('compare-panel');
-  panel.style.display = panel.style.display === 'none' ? '' : 'none';
-  if(panel.style.display !== 'none') updateCompare();
+  const btn = document.getElementById('compare-toggle-btn');
+  const open = panel.style.display === 'none';
+  panel.style.display = open ? '' : 'none';
+  if(btn) btn.textContent = open ? 'Stäng jämförelse ↑' : 'Öppna jämförelse ↓';
+  if(open) updateCompare();
 }
 function updateCompare(){
   const age2 = +document.getElementById('s-age2').value;
@@ -3682,6 +3713,32 @@ function updateCompare(){
   html += '</div>';
   document.getElementById('compare-result').innerHTML = html;
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// NAV ACTIVE LINK — IntersectionObserver
+// ═══════════════════════════════════════════════════════════════════
+(function initNavHighlight(){
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if(!navLinks.length || !window.IntersectionObserver) return;
+  const sections = [];
+  navLinks.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(el) sections.push({el, a});
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const match = sections.find(s => s.el === entry.target);
+      if(match) match.a.classList.toggle('nav-active', entry.isIntersecting);
+    });
+    // If multiple visible, keep only the topmost
+    const visible = sections.filter(s => s.a.classList.contains('nav-active'));
+    if(visible.length > 1){
+      visible.forEach((s,i) => { if(i > 0) s.a.classList.remove('nav-active'); });
+    }
+  }, {rootMargin:'-10% 0px -80% 0px', threshold:0});
+  sections.forEach(s => observer.observe(s.el));
+})();
 </script>
 </body>
 </html>
