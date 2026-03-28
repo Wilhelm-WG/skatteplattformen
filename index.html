@@ -104,24 +104,41 @@ h1 em{font-style:italic;color:var(--green)}
 .btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:.9rem;padding:13px 26px;border-radius:2px;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .15s}
 .btn-g:hover{border-color:var(--ink2);background:var(--bg2)}
 /* HERO SNABBKOLL */
-.hero-snabbkoll{background:var(--ink);border-radius:6px;padding:1.75rem;display:flex;flex-direction:column;gap:.7rem}
-.hsk-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.hsk-age-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.hsk-age{font-family:var(--mono);font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;transition:all .15s}
+.hero-snabbkoll{background:var(--ink);border-radius:8px;padding:1.75rem 1.75rem 1.35rem;display:flex;flex-direction:column;gap:.52rem;position:relative;overflow:hidden}
+.hsk-accent-line{position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);transition:background .4s ease;border-radius:8px 8px 0 0}
+.hsk-eyebrow{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:.2rem}
+.hsk-age-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;row-gap:5px}
+.hsk-age{font-family:var(--mono);font-size:.82rem;font-weight:500;padding:5px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.42);cursor:pointer;transition:all .15s}
 .hsk-age:hover{border-color:var(--green);color:var(--green)}
 .hsk-age.on{background:var(--green);border-color:var(--green);color:#fff}
-.hsk-age-lbl{font-size:.75rem;color:rgba(255,255,255,.3);margin-left:2px}
-.hsk-total{font-family:var(--mono);font-size:2.4rem;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1}
-.hsk-sublbl{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:-.3rem}
-.hsk-bars{display:flex;flex-direction:column;gap:5px;margin-top:.2rem}
+.hsk-age-lbl{font-size:.66rem;color:rgba(255,255,255,.22);margin-left:1px}
+.hsk-age-sep{width:1px;height:14px;background:rgba(255,255,255,.1);margin:0 3px;flex-shrink:0}
+.hsk-phase-info{display:flex;align-items:center;gap:7px;padding:.32rem .6rem;background:rgba(255,255,255,.05);border-radius:4px}
+.hsk-phase-icon{font-size:.98rem;line-height:1}
+.hsk-phase-lbl{font-size:.71rem;color:rgba(255,255,255,.62);font-weight:500}
+.hsk-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:.52rem}
+.hsk-stat{background:rgba(255,255,255,.04);border-radius:5px;padding:.58rem .68rem;transition:background .35s,border .35s;border:1px solid transparent}
+.hsk-stat.cum-recv{background:rgba(46,125,92,.14);border-color:rgba(46,125,92,.3)}
+.hsk-stat.cum-give{background:rgba(210,80,80,.1);border-color:rgba(210,80,80,.2)}
+.hsk-stat-lbl{font-size:.56rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.18rem}
+.hsk-stat-val{font-family:var(--mono);font-size:1.42rem;font-weight:700;color:#fff;line-height:1.1}
+.hsk-stat-sub{font-size:.57rem;color:rgba(255,255,255,.26);margin-top:.1rem;line-height:1.35}
+.hsk-net{font-size:.65rem;padding:4px 10px;border-radius:12px;display:inline-block;font-weight:500;line-height:1.4}
+.hsk-net.recv{background:rgba(46,125,92,.28);color:#6DDBA8;border:1px solid rgba(46,125,92,.38)}
+.hsk-net.give{background:rgba(200,80,80,.18);color:#FF9B9B;border:1px solid rgba(200,80,80,.28)}
+.hsk-lc-bar{margin:.05rem 0 .1rem}
+.hsk-lc-bar-lbl{display:flex;justify-content:space-between;font-size:.55rem;color:rgba(255,255,255,.2);margin-bottom:3px}
+.hsk-lc-track{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.hsk-lc-fill{height:100%;border-radius:2px;transition:width .5s ease,background .4s ease}
+.hsk-bars{display:flex;flex-direction:column;gap:4px;margin-top:.1rem}
 .hsk-bar-row{display:flex;align-items:center;gap:.5rem}
-.hsk-bar-lbl{font-size:.65rem;color:rgba(255,255,255,.45);width:90px;flex-shrink:0}
-.hsk-bar-track{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.hsk-bar-lbl{font-size:.62rem;color:rgba(255,255,255,.38);width:86px;flex-shrink:0}
+.hsk-bar-track{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
 .hsk-bar-fill{height:100%;border-radius:3px;transition:width .4s ease}
-.hsk-bar-val{font-size:.65rem;font-family:var(--mono);color:rgba(255,255,255,.5);width:48px;text-align:right;flex-shrink:0}
-.hsk-shock{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.6;padding:.65rem .85rem;background:rgba(255,255,255,.04);border-left:2px solid var(--green);border-radius:0 3px 3px 0;margin-top:.1rem}
-.hsk-link{font-size:.75rem;color:var(--green);text-decoration:none;font-weight:500;margin-top:.1rem;display:inline-block}
-.hsk-link:hover{text-decoration:underline}
+.hsk-bar-val{font-size:.61rem;font-family:var(--mono);color:rgba(255,255,255,.42);width:44px;text-align:right;flex-shrink:0}
+.hsk-shock{font-size:.71rem;color:rgba(255,255,255,.48);line-height:1.6;padding:.58rem .78rem;background:rgba(255,255,255,.04);border-left:2px solid var(--green);border-radius:0 3px 3px 0;transition:border-color .4s}
+.hsk-link{font-size:.71rem;color:var(--green);text-decoration:none;font-weight:500;margin-top:.05rem;display:inline-block}
+.hsk-link:hover{text-decoration:underline;opacity:.8}
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
 .ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
 .ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
@@ -462,22 +479,55 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
         </div>
       </div>
-      <!-- HERO SNABBKOLL — personlig hook för unga vuxna -->
+      <!-- HERO SNABBKOLL — personlig hook med livscykelperspektiv -->
       <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll">
-        <div class="hsk-eyebrow">Samhällets investering i dig just nu</div>
+        <div class="hsk-accent-line" id="hskAccent"></div>
+        <div class="hsk-eyebrow">Samhällets investering i dig — livscykelperspektiv</div>
         <div class="hsk-age-row">
-          <button class="hsk-age" onclick="heroAge(this,18)">18</button>
-          <button class="hsk-age" onclick="heroAge(this,22)">22</button>
-          <button class="hsk-age on" onclick="heroAge(this,25)">25</button>
+          <button class="hsk-age" onclick="heroAge(this,4)">4</button>
+          <button class="hsk-age" onclick="heroAge(this,10)">10</button>
+          <button class="hsk-age" onclick="heroAge(this,17)">17</button>
+          <button class="hsk-age on" onclick="heroAge(this,22)">22</button>
           <button class="hsk-age" onclick="heroAge(this,30)">30</button>
-          <button class="hsk-age" onclick="heroAge(this,35)">35</button>
+          <div class="hsk-age-sep"></div>
+          <button class="hsk-age" onclick="heroAge(this,40)">40</button>
+          <button class="hsk-age" onclick="heroAge(this,50)">50</button>
+          <button class="hsk-age" onclick="heroAge(this,60)">60</button>
+          <button class="hsk-age" onclick="heroAge(this,68)">68</button>
+          <button class="hsk-age" onclick="heroAge(this,80)">80</button>
           <span class="hsk-age-lbl">år</span>
         </div>
-        <div class="hsk-total" id="hskTotal">— tkr/år</div>
-        <div class="hsk-sublbl" id="hskSublbl">konsumerar du i offentliga tjänster</div>
+        <div class="hsk-phase-info" id="hskPhaseInfo">
+          <span class="hsk-phase-icon" id="hskPhaseIcon">🎓</span>
+          <span class="hsk-phase-lbl" id="hskPhaseLbl">Student / ung vuxen</span>
+        </div>
+        <!-- Tvåkolumnssats: förmåner detta år + kumulativt saldo -->
+        <div class="hsk-stats-row">
+          <div class="hsk-stat">
+            <div class="hsk-stat-lbl">Förmåner detta år</div>
+            <div class="hsk-stat-val" id="hskTotal">—</div>
+            <div class="hsk-stat-sub">tkr i offentliga tjänster</div>
+          </div>
+          <div class="hsk-stat" id="hskCumStat">
+            <div class="hsk-stat-lbl">Kumulativt saldo sedan födseln</div>
+            <div class="hsk-stat-val" id="hskCumVal">—</div>
+            <div class="hsk-stat-sub" id="hskCumSub">Mkr vid medianlön 340 tkr</div>
+          </div>
+        </div>
+        <!-- Nettoindikator — baserad på kumulativt livscykelsaldo, ej enbart innevarande år -->
+        <span class="hsk-net" id="hskNet">—</span>
+        <!-- Livscykelposition: var i livsloppet befinner du dig? -->
+        <div class="hsk-lc-bar">
+          <div class="hsk-lc-bar-lbl">
+            <span>Födseln</span>
+            <span id="hskLcPct"></span>
+            <span>85 år</span>
+          </div>
+          <div class="hsk-lc-track"><div class="hsk-lc-fill" id="hskLcFill" style="width:0%"></div></div>
+        </div>
         <div class="hsk-bars" id="hskBars"></div>
         <div class="hsk-shock" id="hskShock"></div>
-        <a href="#kalkylator" class="hsk-link">Beräkna exakt för dig →</a>
+        <a href="#livslopp" class="hsk-link">Se hela livscykeln →</a>
       </div>
     </div>
   </div>
@@ -2047,42 +2097,144 @@ renderCards('all');
 // ═══════════════════════════════════════════════════════════════════
 // HERO SNABBKOLL — personlig åldershook
 // ═══════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════
+// PHASE COLORS — en unik färg per livsfas
+// ═══════════════════════════════════════════════════════════════════
+const PHASE_COLORS = {
+  barn:'#7EB8FF', elev:'#3A78C9', gymn:'#2E9D7A', student:'#2E7D5C',
+  ung_arb:'#3DAE78', barnfamilj:'#7B5FBC', mitt_karriar:'#C8973A',
+  senior:'#D4732A', pensionar:'#A8883C', aldri:'#888780'
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// KUMULATIVT LIVSCYKELNETTOSALDO
+// Beräknar ackumulerade förmåner MINUS ackumulerade skatter från
+// födseln till angiven ålder, vid given inkomstprofil.
+// Positiv = nettomottagare (mer mottaget än betalat hittills)
+// Negativ = nettobidragsgivare (mer betalat än mottaget hittills)
+// Inkomstprofil: 0 kr (0-18), linjär ramp (19-25), peak (26-64),
+//   pension 70% (65-74), pension 50% (75-85).
+// Skatt: annualTax() = kommunalskatt + statlig + arbetsgivaravgifter + moms
+// ═══════════════════════════════════════════════════════════════════
+function calcCumulativeNet(toAge, peakInc) {
+  if(typeof getStage !== 'function' || typeof annualTax !== 'function') return null;
+  let cumFörmåner = 0, cumTax = 0;
+  for(let a = 0; a <= Math.min(toAge, 85); a++) {
+    const s = getStage(a);
+    cumFörmåner += Object.values(s.w).reduce((x,v) => x+v, 0);
+    let inc = 0;
+    if(a < 19) inc = 0;
+    else if(a < 26) inc = peakInc * (a - 18) / 8;
+    else if(a < 65) inc = peakInc;
+    else if(a < 75) inc = peakInc * 0.7;
+    else inc = peakInc * 0.5;
+    if(inc >= 50) {
+      const t = annualTax(a, inc);
+      cumTax += t.tot;
+    }
+  }
+  return {
+    förmåner: Math.round(cumFörmåner),
+    tax: Math.round(cumTax),
+    net: Math.round(cumFörmåner - cumTax)   // positiv = fortfarande nettomottagare
+  };
+}
+
 const HSK_SHOCKS = {
-  18: 'Ditt gymnasieprogram kostar ~145 000 kr/år — du betalar 0 kr. Det finansieras av dem som arbetar.',
-  22: 'Ditt högskolaprogram kostar ~240 000 kr/år i snitt — du betalar 0 kr i studieavgift.',
-  25: 'Din sjukförsäkring är aktiv från dag 1. Ett IVA-dygn kostar 55 000 kr — du betalar max 130 kr.',
-  30: 'Om du får barn nu betalar samhället ~185 000 kr/år för förskolan. Du betalar max 1 614 kr/mån.',
-  35: 'Du är nu nettobidragsgivare. Din skatt finansierar andras skola, vård och pensioner.',
+  4:  'Din förskoleplatsen kostar ~175 000 kr/år. Maxtaxan du betalar: 1 614 kr/mån. Resten finansieras av dem som arbetar.',
+  10: 'Din grundskoleplats kostar ~148 000 kr/år inkl. skolmat, elevhälsa och lokaler. Det finansieras via kommunalskatten.',
+  17: 'Ditt gymnasieprogram kostar ~145 000 kr/år. Teknikprogram kostar upp till 180 000 kr — du betalar 0 kr.',
+  22: 'Ditt högskolaprogram kostar ~240 000 kr/år. Du betalar 0 kr i studieavgift — finansieras av nuvarande skattebetalare.',
+  30: 'Du betalar nu ~110–140 tkr/år i inkomstskatt. Du finansierar andras barns skola, sjukvård och äldres omsorg.',
+  40: 'Du är systemets motor. Din arbetsgivare betalar ~72 tkr i arbetsgivaravgift ovanpå din lön — direkt till välfärden.',
+  50: 'Din sjukvård kostar ~78 tkr/år. Men du betalar ~120+ tkr i skatt. Du finansierar generationer ovanför och nedanför dig.',
+  60: 'Sjukvården kostar dig ~110 tkr/år. Du betalar fortfarande mer i skatt än du tar emot — men balansen håller på att vända.',
+  68: 'Din pension garanteras av dem som arbetar nu. Garantipensionen är 100 680 kr/år. Sjukvård och omsorg kostar systemet ~240 tkr/år.',
+  80: 'Hemtjänst + specialiserad sjukvård kostar ~520 tkr/år. Du betalade in detta under ~40 yrkesverksamma år. Systemet levererar.',
 };
 
 function heroAge(btn, age){
   document.querySelectorAll('.hsk-age').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
+  if(btn && btn.classList) btn.classList.add('on');
   const stage = typeof getStage === 'function' ? getStage(age) : null;
   if(!stage) return;
+
+  // ── Fasaccentfärg
+  const phaseColor = PHASE_COLORS[stage.id] || '#2E7D5C';
+  const accentEl = document.getElementById('hskAccent');
+  if(accentEl) accentEl.style.background = phaseColor;
+
+  // ── Fasbeteckning
+  const phaseIcon = document.getElementById('hskPhaseIcon');
+  const phaseLbl  = document.getElementById('hskPhaseLbl');
+  if(phaseIcon) phaseIcon.textContent = stage.icon || '📋';
+  if(phaseLbl)  phaseLbl.textContent  = stage.label || '';
+
+  // ── Förmåner detta år
   const w = stage.w;
   const total = Object.values(w).reduce((s,v)=>s+v,0);
-  document.getElementById('hskTotal').textContent = total.toLocaleString('sv-SE') + ' tkr/år';
+  const totalEl = document.getElementById('hskTotal');
+  if(totalEl) totalEl.textContent = total.toLocaleString('sv-SE');
 
-  const COLS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.2)',omsorg:'#C8973A'};
+  // ── Kumulativt livscykelnettosaldo (vid medianlön 340 tkr)
+  const cum = calcCumulativeNet(age, 340);
+  const cumValEl  = document.getElementById('hskCumVal');
+  const cumSubEl  = document.getElementById('hskCumSub');
+  const cumStatEl = document.getElementById('hskCumStat');
+  if(cum && cumValEl) {
+    const absMkr = Math.abs(cum.net / 1000);
+    const sign   = cum.net >= 0 ? '+' : '−';
+    cumValEl.textContent = sign + absMkr.toFixed(1) + ' Mkr';
+  }
+  if(cum && cumStatEl) {
+    cumStatEl.className = 'hsk-stat ' + (cum.net >= 0 ? 'cum-recv' : 'cum-give');
+  }
+
+  // ── Nettoindikator — visar KUMULATIVT saldo, inte bara årets flöde
+  //    En 35-åring som studerat till 26 är fortfarande nettomottagare livscykelvis
+  //    trots att hon betalar mer i skatt detta år än hon tar emot i förmåner.
+  const netEl = document.getElementById('hskNet');
+  if(netEl && cum) {
+    const absMkr = Math.abs(cum.net / 1000).toFixed(1);
+    if(cum.net >= 0) {
+      netEl.className = 'hsk-net recv';
+      netEl.textContent = `Kumulativt nettomottagare — du har tagit emot ${absMkr} Mkr mer än betalat (sedan födseln, vid medianlön)`;
+    } else {
+      netEl.className = 'hsk-net give';
+      netEl.textContent = `Kumulativt nettobidragsgivare — du har betalat in ${absMkr} Mkr mer än du tagit emot`;
+    }
+  }
+
+  // ── Livsloppets progressbar — var i livscykeln befinner du dig?
+  const pct = Math.round(age / 85 * 100);
+  const lcFillEl = document.getElementById('hskLcFill');
+  const lcPctEl  = document.getElementById('hskLcPct');
+  if(lcFillEl){ lcFillEl.style.width = pct + '%'; lcFillEl.style.background = phaseColor; }
+  if(lcPctEl)  lcPctEl.textContent = `Ålder ${age} — ${pct}% av livsloppet`;
+
+  // ── Kategoriuppdelning
+  const COLS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.18)',omsorg:'#C8973A'};
   const LBLS = {utb:'Utbildning',sjukvård:'Sjukvård',socialt:'Social trygghet',koll:'Kollektivt',omsorg:'Äldreomsorg'};
   const entries = Object.entries(w).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,4);
-  const maxV = entries[0][1];
-  document.getElementById('hskBars').innerHTML = entries.map(([k,v])=>`
-    <div class="hsk-bar-row">
-      <span class="hsk-bar-lbl">${LBLS[k]||k}</span>
-      <div class="hsk-bar-track"><div class="hsk-bar-fill" style="width:${Math.round(v/maxV*100)}%;background:${COLS[k]||'#888'}"></div></div>
-      <span class="hsk-bar-val">${v} tkr</span>
-    </div>`).join('');
+  if(entries.length){
+    const maxV = entries[0][1];
+    document.getElementById('hskBars').innerHTML = entries.map(([k,v])=>`
+      <div class="hsk-bar-row">
+        <span class="hsk-bar-lbl">${LBLS[k]||k}</span>
+        <div class="hsk-bar-track"><div class="hsk-bar-fill" style="width:${Math.round(v/maxV*100)}%;background:${COLS[k]||'#888'}"></div></div>
+        <span class="hsk-bar-val">${v} tkr</span>
+      </div>`).join('');
+  }
 
-  const shock = HSK_SHOCKS[age] || HSK_SHOCKS[25];
-  document.getElementById('hskShock').textContent = shock;
+  // ── Chockfakta
+  const shockEl = document.getElementById('hskShock');
+  if(shockEl){ shockEl.textContent = HSK_SHOCKS[age] || ''; shockEl.style.borderLeftColor = phaseColor; }
 }
 
 // Init hero snabbkoll när LIVSFASER_V2 är redo
-document.addEventListener('DOMContentLoaded', ()=>{ heroAge(document.querySelector('.hsk-age.on'), 25); });
+document.addEventListener('DOMContentLoaded', ()=>{ heroAge(document.querySelector('.hsk-age.on'), 22); });
 // Fallback om DOMContentLoaded redan kört
-if(document.readyState !== 'loading') heroAge(document.querySelector('.hsk-age.on')||{classList:{add:()=>{},remove:()=>{}}}, 25);
+if(document.readyState !== 'loading') heroAge(document.querySelector('.hsk-age.on')||{classList:{add:()=>{},remove:()=>{}}}, 22);
 
 // ═══════════════════════════════════════════════════════════════════
 // BUDGET BAR CHART
@@ -2666,7 +2818,13 @@ const VDA_FACTS = [
   'Sverige har <strong>66% förnybar energi</strong> och 88% förnybar el — bäst i EU',
   'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP 2025)',
   'Försvarsutgiften har <strong>tredubblats på 15 år</strong> — från 4 185 till 13 840 kr per invånare',
-  '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD'
+  '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
+  'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong> — Sverige är bland världens generösaste länder',
+  'Statsskulden uppgår till <strong>ca 1 260 Mdkr</strong> — ungefär 118 000 kr per person i landet',
+  'Sverige investerade <strong>1 010 kr per invånare</strong> i kultur 2024 — mer än försvaret gjorde 2010',
+  'En nyexad sjuksköterska arbetar <strong>4 000 timmar</strong> via offentligt finansierad praktik innan examen',
+  'Varje år byter <strong>~5% av befolkningen</strong> arbete via Arbetsförmedlingen — i världens mest flexibla arbetsmarknad',
+  'Tandvård subventioneras från <strong>3 000 kr/år</strong> fr.o.m. 24 år — men fullt av egna pengar under 24'
 ];
 
 (function initVda(){
