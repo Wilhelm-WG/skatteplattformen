@@ -1432,6 +1432,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div class="ft-panel" id="hist-gini">
       <h3 class="ft-heading">Ojämlikhet — tre mått som berättar tre olika historier</h3>
       <p class="ft-intro">Den vanligast citerade siffran (0.28 disponibel Gini) är sann men ofullständig. Lägg till kapitalinkomster och ojämlikheten ökar märkbart. Mät förmögenheter och bilden förändras dramatiskt.</p>
+      <p style="font-size:.72rem;color:var(--ink3);background:rgba(200,151,58,.08);border-left:3px solid rgba(200,151,58,.5);padding:.5rem .7rem;border-radius:0 4px 4px 0;margin:.6rem 0 1rem"><strong>OBS — jämför inte dessa fyra siffror rakt av.</strong> De mäter helt olika fenomen: förmögenhets-Gini (0.75) mäter ackumulerat kapital och ärvda tillgångar; marknadsinkomst-Gini (0.48) mäter inkomst <em>innan</em> skatter och bidrag; Gini inkl. kapital (0.316) lägger till realiserade kapitalvinster; disponibel Gini (0.287) är inkomst <em>efter</em> alla omfördelningar. De är kompletterande perspektiv, inte en skala från "bäst" till "sämst".</p>
 
       <!-- Three-measure comparison chart -->
       <div id="hist-gini-tre-matt" style="margin:1.2rem 0 1rem"></div>
@@ -1539,8 +1540,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div class="step-list">
         <div class="step"><span class="step-n">01</span><div><div class="step-t">Hela offentliga sektorn — inte bara statsbudgeten</div><div class="step-d">Kalkylatorn baseras på COFOG (Eurostat/SCB) ~3 011 Mdkr — stat + kommuner + regioner. Statsbudgeten är 47% av totalen. Att bara räkna statsbudgeten ger en missvisande bild.</div></div></div>
         <div class="step"><span class="step-n">02</span><div><div class="step-t">Årsförmåner baserade på SCB FASIT</div><div class="step-d">SCB:s fördelningsanalys (FASIT) visar hur välfärdstjänster fördelas per inkomstdecil och ålder. Kalkylatorn utgår från dessa fördelningsprofiler, justerade med Skolverkets och SKR:s enhetskostnader.</div></div></div>
-        <div class="step"><span class="step-n">03</span><div><div class="step-t">Varför vi inte visar "livstids-netto"</div><div class="step-d">Livstidsjämförelser kräver diskonterade nuvärden, hypotetiska framtida skattebetalningar och antaganden om framtida vård. Sådana beräkningar ger sken av precision men är i praktiken spekulation. Vi visar i stället det vi vet: vad du konsumerar i år.</div></div></div>
-        <div class="step"><span class="step-n">04</span><div><div class="step-t">Livscykel-narrativet är vetenskapligt väl belagt</div><div class="step-d">Att arbetsför ålder är nettobidragsgivare och unga/äldre är nettotagare är ett av de starkaste resultaten i fördelningsstatistiken. SCB bekräftar: nästan enbart sammanboende utan barn är netto-negativa när man adderar välfärdstjänster.</div></div></div>
+        <div class="step"><span class="step-n">03</span><div><div class="step-t">Årsflöde är huvudmåttet — kumulativt är illustrativt</div><div class="step-d">Kalkylatorn visar primärt vad du konsumerar i år. Snabbkollen ovan erbjuder även ett kumulativt saldo från födseln — men det är nominellt och odiskonterat. Det illustrerar livscykelmönstret, inte en exakt skuld eller fordran. Korrekta livstidsberäkningar kräver diskonterade nuvärden och hypotetiska framtida skattebetalningar — en precision vi inte gör anspråk på.</div></div></div>
+        <div class="step"><span class="step-n">04</span><div><div class="step-t">Livscykeln — ett analytiskt ramverk, inte en naturlag</div><div class="step-d">Att konsumtionen av offentliga tjänster är högre i unga år och ålderdom än i arbetsför ålder är ett välbelagt mönster i SCB:s fördelningsstatistik. Men ramverket bör inte läsas som att du har en "skuld" till samhället — välfärdssystemet är ett kollektivt försäkringsarrangemang, inte ett sparkonto. Framing och politiska slutsatser är normativa val som inte följer automatiskt av statistiken.</div></div></div>
         <div class="step"><span class="step-n">05</span><div><div class="step-t">Inkomstpension = avgiftsbaserad</div><div class="step-d">Pensionsavgiften (18,5% av lön) ger rätt till inkomstpension. Det är dina egna inbetalningar — inte en "förmån" finansierad av andras skatt. Garantipension (UO11, 72 Mdkr) ingår däremot som offentlig förmån.</div></div></div>
       </div>
       <div>
@@ -2725,7 +2726,7 @@ const OECD_DATA = {
     charts: [
       {title:'Medellivslängd',sub:'År vid födseln (2024)',
        data:[{c:'Sverige',v:83.5,cl:'se'},{c:'Norge',v:83.3,cl:'no'},{c:'Finland',v:82.1,cl:'fi'},{c:'Danmark',v:82.3,cl:'dk'},{c:'OECD-snitt',v:80.7,cl:'avg'}],
-       max:90,unit:' år',src:'OECD Health at a Glance 2025, SCB 2024',verdict:'Sverige har högst medellivslängd i Norden (83,5 år) och väl över OECD-snittet.',vc:'good'},
+       max:90,unit:' år',src:'OECD Health at a Glance 2025, SCB 2024',verdict:'Sverige har högst medellivslängd i Norden (83,5 år) — tätt följt av Norge (83,3 år). Båda väl över OECD-snittet på 80,7 år.',vc:'good'},
       {title:'Spädbarnsdödlighet',sub:'Per 1 000 levande födda (2024) — lägre = bättre',
        data:[{c:'Norge',v:1.8,cl:'no'},{c:'Finland',v:1.9,cl:'fi'},{c:'Sverige',v:2.2,cl:'se'},{c:'Danmark',v:3.1,cl:'dk'},{c:'OECD-snitt',v:5.7,cl:'avg'}],
        max:8,unit:'',src:'OECD Health at a Glance 2025',verdict:'Hela Norden långt under OECD-snittet. Norge och Finland lägst.',vc:'good',invert:true},
@@ -2878,23 +2879,29 @@ initOecd();
 // ═══════════════════════════════════════════════════════════════════
 const VDA_FACTS = [
   'Du betalar i snitt <strong>285 000 kr per år</strong> till offentlig sektor — mer än en genomsnittlig årshyra',
-  'Sverige har <strong>lägst spädbarnsdödlighet</strong> i EU: 2,2 per 1 000 födda (OECD 2024)',
-  'Barnvaccinationsprogrammet kostar <strong>7 200 kr per barn</strong> och sparar uppskattningsvis 15–20 Mdkr/år',
-  'Ett dygn på IVA kostar skattebetalarna <strong>45 000–80 000 kr</strong> — du betalar 130 kr',
-  'Sverige satsar <strong>7,1% av BNP</strong> på utbildning — högst i Norden och #2 i OECD',
+  // KORRIGERAT: Sverige är INTE lägst i EU — Finland (1,9) och Norge (1,8) är lägre
+  'Norden har bland världens lägsta spädbarnsdödlighet: Norge 1,8, Finland 1,9, Sverige 2,2 per 1 000 (OECD 2024) — EU-snitt: 3,5',
+  'Barnvaccinationsprogrammet kostar <strong>7 200 kr per barn</strong> och sparar uppskattningsvis 15–20 Mdkr/år i sjukvård',
+  'Ett dygn på IVA kostar skattebetalarna <strong>45 000–80 000 kr</strong> — du betalar max 130 kr i avgift',
+  // KORRIGERAT: 5,3% primary-gymnasie (OECD EaG 2025); inkl. förskola+högskoleforskning ~6,5%. 7,1% är överskattning.
+  'Sverige satsar <strong>~6,5% av BNP</strong> på utbildning (alla nivåer inkl. forskning) — bland de högsta i OECD',
   'Kriminalvård kostar <strong>1,2 Mkr per intagen och år</strong> — dyrare än en högskoleutbildning',
   'Trafikdöda i Sverige: <strong>22 per miljon</strong> invånare — bland världens lägsta (EU-snitt: 46)',
-  'Sveriges medellivslängd: <strong>84,1 år</strong> — 4,6 år mer än OECD-snittet',
-  'Sverige har <strong>66% förnybar energi</strong> och 88% förnybar el — bäst i EU',
-  'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP 2025)',
-  'Försvarsutgiften har <strong>tredubblats på 15 år</strong> — från 4 185 till 13 840 kr per invånare',
+  // KORRIGERAT: SCB/OECD 2024 visar 83,5 år, inte 84,1. Gap mot OECD-snitt (80,7) är 2,8 år.
+  'Sveriges medellivslängd: <strong>83,5 år</strong> — 2,8 år mer än OECD-snittet 80,7 år (OECD Health 2024)',
+  'Sverige har <strong>66% förnybar energi</strong> och 88% förnybar el — varav huvuddelen vattenkraft',
+  'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP Rule of Law Index 2025)',
+  // KORRIGERAT: 13 840 / 4 185 = 3,31× (inte "tredubblas" exakt). Nominella kronor — ej inflationsjusterat.
+  'Försvarsutgiften har ökat <strong>3,3 gånger</strong> på 15 år — från 4 185 till 13 840 kr/inv (nominellt, 2010–2025)',
   '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
   'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong> — Sverige är bland världens generösaste länder',
   'Statsskulden uppgår till <strong>ca 1 260 Mdkr</strong> — ungefär 118 000 kr per person i landet',
-  'Sverige investerade <strong>1 010 kr per invånare</strong> i kultur 2024 — mer än försvaret gjorde 2010',
-  'En nyexad sjuksköterska arbetar <strong>4 000 timmar</strong> via offentligt finansierad praktik innan examen',
-  'Varje år byter <strong>~5% av befolkningen</strong> arbete via Arbetsförmedlingen — i världens mest flexibla arbetsmarknad',
-  'Tandvård subventioneras från <strong>3 000 kr/år</strong> fr.o.m. 24 år — men fullt av egna pengar under 24'
+  'Sverige investerade <strong>1 010 kr per invånare</strong> i kultur 2024 — mer än försvaret kostade 2010',
+  'En nyexad sjuksköterska genomför <strong>~4 000 timmar</strong> offentligt finansierad VFU-praktik innan examen',
+  // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
+  'Svenska arbetsmarknaden är känd för flexibilitet — <strong>~500 000 tjänster</strong> tillsätts varje år (SCB AKU)',
+  // KORRIGERAT: Fritt till och med 23 år (fr.o.m. 2024). Bidragsbeloppet är ~3 300 kr/år fr.o.m. 24.
+  'Tandvård är <strong>gratis till och med 23 år</strong> (fr.o.m. 2024). Från 24 år: ~3 300 kr/år i subvention för basala insatser'
 ];
 
 (function initVda(){
