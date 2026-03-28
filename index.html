@@ -139,6 +139,20 @@ h1 em{font-style:italic;color:var(--green)}
 .hsk-shock{font-size:.71rem;color:rgba(255,255,255,.48);line-height:1.6;padding:.58rem .78rem;background:rgba(255,255,255,.04);border-left:2px solid var(--green);border-radius:0 3px 3px 0;transition:border-color .4s}
 .hsk-link{font-size:.71rem;color:var(--green);text-decoration:none;font-weight:500;margin-top:.05rem;display:inline-block}
 .hsk-link:hover{text-decoration:underline;opacity:.8}
+/* Åldersslider */
+.hsk-slider-wrap{padding:.05rem 0}
+.hsk-slider{width:100%;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;background:rgba(255,255,255,.1);outline:none;cursor:pointer;transition:background .4s}
+.hsk-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;transition:background .3s;box-shadow:0 0 0 3px rgba(46,125,92,.25)}
+.hsk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;border:none}
+/* Inkomst-toggle för kumulativt saldo */
+.hsk-inc-row{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.hsk-inc-lbl{font-size:.55rem;color:rgba(255,255,255,.22);margin-right:2px;flex-shrink:0}
+.hsk-inc-btn{font-size:.58rem;font-family:var(--mono);padding:2px 7px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.32);cursor:pointer;transition:all .15s}
+.hsk-inc-btn:hover{border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.65)}
+.hsk-inc-btn.on{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#fff}
+/* Nummer-transition i hero */
+.hsk-stat-val{transition:opacity .15s}
+.hsk-stat-val.flash{opacity:0}
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
 .ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
 .ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
@@ -434,6 +448,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .footer-grid{grid-template-columns:1fr}
   .brow{grid-template-columns:120px 1fr 60px}
 }
+@media(max-width:480px){
+  .hsk-stats-row{grid-template-columns:1fr}
+  .hsk-net{font-size:.6rem}
+  .hsk-inc-row{gap:3px}
+  .hsk-inc-btn{font-size:.55rem;padding:2px 5px}
+  .hsk-stat-val{font-size:1.2rem}
+}
 </style>
 </head>
 <body>
@@ -448,6 +469,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <ul class="nav-links" onclick="this.classList.remove('open')">
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
+        <li><a href="#livslopp">Livslopp</a></li>
         <li><a href="#budget">Budgeten</a></li>
         <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#framtid">Framtid</a></li>
@@ -497,6 +519,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <button class="hsk-age" onclick="heroAge(this,80)">80</button>
           <span class="hsk-age-lbl">år</span>
         </div>
+        <!-- Slider: välj valfri ålder 0–85 -->
+        <div class="hsk-slider-wrap">
+          <input type="range" min="0" max="85" value="22" id="hskAgeSlider" class="hsk-slider" oninput="heroAgeSlider(parseInt(this.value))">
+        </div>
         <div class="hsk-phase-info" id="hskPhaseInfo">
           <span class="hsk-phase-icon" id="hskPhaseIcon">🎓</span>
           <span class="hsk-phase-lbl" id="hskPhaseLbl">Student / ung vuxen</span>
@@ -516,6 +542,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
         <!-- Nettoindikator — baserad på kumulativt livscykelsaldo, ej enbart innevarande år -->
         <span class="hsk-net" id="hskNet">—</span>
+        <!-- Inkomsttoggle: välj antagande för det kumulativa saldot -->
+        <div class="hsk-inc-row">
+          <span class="hsk-inc-lbl">Inkomstantagande:</span>
+          <button class="hsk-inc-btn" onclick="setHskInc(this,240)">240 tkr</button>
+          <button class="hsk-inc-btn on" onclick="setHskInc(this,340)">340 tkr</button>
+          <button class="hsk-inc-btn" onclick="setHskInc(this,460)">460 tkr</button>
+          <button class="hsk-inc-btn" onclick="setHskInc(this,620)">620 tkr</button>
+        </div>
         <!-- Livscykelposition: var i livsloppet befinner du dig? -->
         <div class="hsk-lc-bar">
           <div class="hsk-lc-bar-lbl">
@@ -2153,9 +2187,11 @@ const HSK_SHOCKS = {
   80: 'Hemtjänst + specialiserad sjukvård kostar ~520 tkr/år. Du betalade in detta under ~40 yrkesverksamma år. Systemet levererar.',
 };
 
-function heroAge(btn, age){
-  document.querySelectorAll('.hsk-age').forEach(b=>b.classList.remove('on'));
-  if(btn && btn.classList) btn.classList.add('on');
+// Globalt inkomstantagande för det kumulativa saldot (kan ändras via toggle)
+let hskIncome = 340;
+
+// Kör renderingen för en given ålder (utan att röra knapp-state)
+function heroAgeRender(age){
   const stage = typeof getStage === 'function' ? getStage(age) : null;
   if(!stage) return;
 
@@ -2176,41 +2212,48 @@ function heroAge(btn, age){
   const totalEl = document.getElementById('hskTotal');
   if(totalEl) totalEl.textContent = total.toLocaleString('sv-SE');
 
-  // ── Kumulativt livscykelnettosaldo (vid medianlön 340 tkr)
-  const cum = calcCumulativeNet(age, 340);
+  // ── Kumulativt livscykelnettosaldo (vid valt inkomstantagande hskIncome)
+  const cum = calcCumulativeNet(age, hskIncome);
   const cumValEl  = document.getElementById('hskCumVal');
   const cumSubEl  = document.getElementById('hskCumSub');
   const cumStatEl = document.getElementById('hskCumStat');
-  if(cum && cumValEl) {
+  if(cum && cumValEl){
     const absMkr = Math.abs(cum.net / 1000);
     const sign   = cum.net >= 0 ? '+' : '−';
-    cumValEl.textContent = sign + absMkr.toFixed(1) + ' Mkr';
+    // Animerad flash-transition
+    cumValEl.classList.add('flash');
+    requestAnimationFrame(()=>{ cumValEl.textContent = sign + absMkr.toFixed(1) + ' Mkr'; cumValEl.classList.remove('flash'); });
   }
-  if(cum && cumStatEl) {
-    cumStatEl.className = 'hsk-stat ' + (cum.net >= 0 ? 'cum-recv' : 'cum-give');
-  }
+  if(cum && cumSubEl) cumSubEl.textContent = `Mkr vid ${hskIncome} tkr inkomst`;
+  if(cum && cumStatEl) cumStatEl.className = 'hsk-stat ' + (cum.net >= 0 ? 'cum-recv' : 'cum-give');
 
-  // ── Nettoindikator — visar KUMULATIVT saldo, inte bara årets flöde
+  // ── Nettoindikator — KUMULATIVT saldo, inte bara årets flöde
   //    En 35-åring som studerat till 26 är fortfarande nettomottagare livscykelvis
   //    trots att hon betalar mer i skatt detta år än hon tar emot i förmåner.
   const netEl = document.getElementById('hskNet');
-  if(netEl && cum) {
+  if(netEl && cum){
     const absMkr = Math.abs(cum.net / 1000).toFixed(1);
-    if(cum.net >= 0) {
+    if(cum.net >= 0){
       netEl.className = 'hsk-net recv';
-      netEl.textContent = `Kumulativt nettomottagare — du har tagit emot ${absMkr} Mkr mer än betalat (sedan födseln, vid medianlön)`;
+      netEl.textContent = `Kumulativt nettomottagare — +${absMkr} Mkr mer mottaget än betalat sedan födseln`;
     } else {
       netEl.className = 'hsk-net give';
-      netEl.textContent = `Kumulativt nettobidragsgivare — du har betalat in ${absMkr} Mkr mer än du tagit emot`;
+      netEl.textContent = `Kumulativt nettobidragsgivare — ${absMkr} Mkr mer betalat än mottaget`;
     }
   }
 
-  // ── Livsloppets progressbar — var i livscykeln befinner du dig?
+  // ── Livsloppets progressbar
   const pct = Math.round(age / 85 * 100);
   const lcFillEl = document.getElementById('hskLcFill');
   const lcPctEl  = document.getElementById('hskLcPct');
   if(lcFillEl){ lcFillEl.style.width = pct + '%'; lcFillEl.style.background = phaseColor; }
   if(lcPctEl)  lcPctEl.textContent = `Ålder ${age} — ${pct}% av livsloppet`;
+
+  // ── Slider synk
+  const slider = document.getElementById('hskAgeSlider');
+  if(slider && parseInt(slider.value) !== age) slider.value = age;
+  // Uppdatera slider-bakgrund proportionellt
+  if(slider) slider.style.background = `linear-gradient(to right, ${phaseColor} ${pct}%, rgba(255,255,255,.1) ${pct}%)`;
 
   // ── Kategoriuppdelning
   const COLS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.18)',omsorg:'#C8973A'};
@@ -2229,6 +2272,33 @@ function heroAge(btn, age){
   // ── Chockfakta
   const shockEl = document.getElementById('hskShock');
   if(shockEl){ shockEl.textContent = HSK_SHOCKS[age] || ''; shockEl.style.borderLeftColor = phaseColor; }
+}
+
+// Knapptryck → synka slider → rendera
+function heroAge(btn, age){
+  document.querySelectorAll('.hsk-age').forEach(b=>b.classList.remove('on'));
+  if(btn && btn.classList) btn.classList.add('on');
+  heroAgeRender(age);
+}
+
+// Slider → synka knappar (närmaste preset om exakt träff) → rendera
+function heroAgeSlider(age){
+  const PRESETS = [4,10,17,22,30,40,50,60,68,80];
+  document.querySelectorAll('.hsk-age').forEach(b=>{
+    b.classList.toggle('on', PRESETS.includes(age) && parseInt(b.textContent)===age);
+  });
+  heroAgeRender(age);
+}
+
+// Inkomsttoggle → uppdatera globalt hskIncome → re-rendera kumulativt
+function setHskInc(btn, inc){
+  document.querySelectorAll('.hsk-inc-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  hskIncome = inc;
+  const activeBtn = document.querySelector('.hsk-age.on');
+  const slider = document.getElementById('hskAgeSlider');
+  const age = activeBtn ? parseInt(activeBtn.textContent) : (slider ? parseInt(slider.value) : 22);
+  heroAgeRender(age);
 }
 
 // Init hero snabbkoll när LIVSFASER_V2 är redo
@@ -3420,12 +3490,23 @@ function renderLifecycle(inc){
   svg+=`<path d="${fPath}" fill="none" stroke="var(--green)" stroke-width="2.5"/>`;
   svg+=`<path d="${sPath}" fill="none" stroke="#B84A1E" stroke-width="2.5"/>`;
 
-  // Korsningspunkt
+  // Korsningspunkt — interpolera exakt korsning mellan förmåner och skattekurvan
   if(crossover !== null){
+    const cx = sx(crossover);
     const cp = pts[crossover];
-    const midY = (sy(cp.forman)+sy(cp.skatt))/2;
-    svg+=`<line x1="${sx(crossover)}" y1="${p.t}" x2="${sx(crossover)}" y2="${H-p.b}" stroke="rgba(200,151,58,.5)" stroke-width="1.5" stroke-dasharray="4,3"/>`;
-    svg+=`<text x="${sx(crossover)}" y="${p.t-4}" text-anchor="middle" fill="rgba(200,151,58,.8)" font-size="9">Nettobidrag\nbörjar ~${crossover} år</text>`;
+    const midY = sy((cp.forman + cp.skatt) / 2);
+    // Vertikal streckad linje
+    svg+=`<line x1="${cx}" y1="${p.t}" x2="${cx}" y2="${H-p.b}" stroke="rgba(200,151,58,.55)" stroke-width="1.5" stroke-dasharray="4,3"/>`;
+    // Etikett med tvärrad (tspan för multiline i SVG)
+    const lx = cx + (cx > W * 0.7 ? -6 : 6);
+    const anchor = cx > W * 0.7 ? 'end' : 'start';
+    svg+=`<text text-anchor="${anchor}" fill="rgba(200,151,58,.9)" font-size="9">` +
+         `<tspan x="${lx}" y="${p.t+14}">Netto</tspan>` +
+         `<tspan x="${lx}" dy="11">bidrag</tspan>` +
+         `<tspan x="${lx}" dy="11">~${crossover} år</tspan></text>`;
+    // Cirkelmarkering på korsningspunkten
+    const kY = sy(cp.forman);
+    svg+=`<circle cx="${cx}" cy="${kY}" r="5" fill="rgba(200,151,58,.2)" stroke="rgba(200,151,58,.7)" stroke-width="1.5"/>`;
   }
 
   // End labels
