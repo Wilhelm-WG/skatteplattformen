@@ -653,8 +653,30 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <span id="lc-profile-desc" style="font-size:.62rem;color:var(--ink3)">Studier till ~22, stabil inkomst 27–64</span>
     </div>
 
+    <!-- Förväntad livslängd-val (mortalitet) -->
+    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
+      <span style="font-size:.72rem;color:var(--ink2)">Förväntad livslängd:</span>
+      <select id="lc-mortality" onchange="setLcMortality(this.value)"
+        style="font-size:.7rem;padding:4px 10px;border-radius:14px;border:1px solid var(--border);background:var(--bg2);color:var(--ink2);cursor:pointer;font-family:var(--sans)">
+        <option value="">Ingen markering (visa hela 85 år)</option>
+        <option value="snitt">Genomsnitt 83 år (samtliga)</option>
+        <option value="man_förg">Man, förgymnasial — 78 år</option>
+        <option value="man_gym">Man, gymnasial — 81 år</option>
+        <option value="man_efterg">Man, eftergymnasial — 85 år</option>
+        <option value="kvinna_förg">Kvinna, förgymnasial — 83 år</option>
+        <option value="kvinna_gym">Kvinna, gymnasial — 84 år</option>
+        <option value="kvinna_efterg">Kvinna, eftergymnasial — 87 år</option>
+        <option value="låginkomst_man">Man, decil 1 (låg inkomst) — 75 år</option>
+        <option value="höginkomst_man">Man, decil 10 (hög inkomst) — 85 år</option>
+        <option value="låginkomst_kv">Kvinna, decil 1 — 81 år</option>
+        <option value="höginkomst_kv">Kvinna, decil 10 — 87 år</option>
+      </select>
+      <span id="lc-mortality-note" style="font-size:.62rem;color:var(--ink3)"></span>
+    </div>
+
     <div id="lifecycle-chart" style="margin:1rem 0"></div>
     <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
+    <div id="lc-mortality-explain" style="display:none;font-size:.68rem;color:var(--ink2);margin-top:.8rem;padding:.6rem .8rem;background:rgba(255,255,255,.04);border-left:3px solid rgba(242,239,232,.4);border-radius:0 4px 4px 0;line-height:1.5"></div>
     <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15%. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2024-priser.</span></p>
     <details style="margin-top:.4rem">
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
@@ -3766,6 +3788,52 @@ renderScen('barnfamilj');
 // ═══════════════════════════════════════════════════════════════════
 // LIVSLOPPSDIAGRAM — ackumulerat 0–85
 // ═══════════════════════════════════════════════════════════════════
+
+// ── Mortalitetstabell ─────────────────────────────────────────────
+// SCB BE0701 Livslängdstabeller 2018-2022, kompletterat med
+// utbildnings- och inkomstgradient. Synk: data/livslangd.json.
+// Värden är medellivslängd e₀ vid födelsen.
+const LIVSLANGD = {
+  snitt:          {ålder: 83, label: 'Genomsnitt (samtliga)'},
+  man_förg:       {ålder: 78, label: 'Man, förgymnasial utb.'},
+  man_gym:        {ålder: 81, label: 'Man, gymnasial utb.'},
+  man_efterg:     {ålder: 85, label: 'Man, eftergymnasial utb.'},
+  kvinna_förg:    {ålder: 83, label: 'Kvinna, förgymnasial utb.'},
+  kvinna_gym:     {ålder: 84, label: 'Kvinna, gymnasial utb.'},
+  kvinna_efterg:  {ålder: 87, label: 'Kvinna, eftergymnasial utb.'},
+  låginkomst_man: {ålder: 75, label: 'Man, decil 1 (låg inkomst)'},
+  höginkomst_man: {ålder: 85, label: 'Man, decil 10 (hög inkomst)'},
+  låginkomst_kv:  {ålder: 81, label: 'Kvinna, decil 1'},
+  höginkomst_kv:  {ålder: 87, label: 'Kvinna, decil 10'},
+};
+
+// Notiser per kategori — visas under dropdown när vald
+const LIVSLANGD_NOTES = {
+  snitt: 'SCB BE0701 2023, befolkningsmedel',
+  man_förg: 'Lägst medellivslängd, men gruppen är liten och starkt selekterad',
+  man_efterg: '~6 år mer än förgymnasial — utbildningsgradienten är robust',
+  låginkomst_man: '10 år lägre än män i decil 10 — den enskilt största gradienten i svensk hälsostatistik',
+  höginkomst_man: '+10 år jämfört med decil 1, längst tid att hämta hem äldreomsorgs- och sjukvårdsförmåner',
+  låginkomst_kv: 'Kvinnors inkomstgradient är ~5 år — hälften så stor som för män',
+};
+
+let currentMortality = '';  // '' = visa hela 85, annars LIVSLANGD-nyckel
+
+function setLcMortality(key){
+  currentMortality = key || '';
+  const noteEl = document.getElementById('lc-mortality-note');
+  if(noteEl){
+    if(currentMortality && LIVSLANGD_NOTES[currentMortality]){
+      noteEl.textContent = LIVSLANGD_NOTES[currentMortality];
+    } else if(currentMortality && LIVSLANGD[currentMortality]){
+      noteEl.textContent = `Markering vid ${LIVSLANGD[currentMortality].ålder} år`;
+    } else {
+      noteEl.textContent = '';
+    }
+  }
+  updateLifecycle();
+}
+
 function calcLifecycle(peakInc, discount){
   // peakInc = platåinkomst tkr under yrkeslivet
   // discount = true → 2% real ränta diskonterad från födseln
@@ -3887,6 +3955,14 @@ function renderLifecycle(inc){
     svg+=`<text x="${(sx(b.min)+sx(b.max))/2}" y="${p.t+10}" text-anchor="middle" fill="rgba(242,239,232,.2)" font-size="8">${b.lbl}</text>`;
   });
 
+  // Mortalitets-overlay: dimma område efter förväntad livslängd (om vald)
+  const mortAge = currentMortality && LIVSLANGD[currentMortality]
+    ? LIVSLANGD[currentMortality].ålder : null;
+  if(mortAge !== null && mortAge < 85){
+    // Mörk dim-mask över området efter förväntad livslängd
+    svg+=`<rect x="${sx(mortAge)}" y="${p.t}" width="${sx(85)-sx(mortAge)}" height="${ih}" fill="rgba(0,0,0,.42)" rx="0"/>`;
+  }
+
   // Area between lines
   const fPath = `M${sx(0)},${sy(pts[0].forman)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.forman)}`).join('');
   const sPath = `M${sx(0)},${sy(pts[0].skatt)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.skatt)}`).join('');
@@ -3935,6 +4011,26 @@ function renderLifecycle(inc){
   svg+=`<circle cx="${sx(85)}" cy="${sy(lastF.skatt)}" r="4" fill="#B84A1E"/>`;
   svg+=`<text x="${sx(85)-8}" y="${sy(lastF.skatt)+14}" text-anchor="end" fill="#B84A1E" font-size="10" font-weight="500">${Math.round(lastF.skatt/1000)} Mkr skatt</text>`;
 
+  // Mortalitets-markering: vertikal streckad linje + label (ritas ovanpå allt)
+  if(mortAge !== null){
+    const mx = sx(mortAge);
+    svg+=`<line x1="${mx}" y1="${p.t}" x2="${mx}" y2="${H-p.b}" stroke="rgba(242,239,232,.55)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+    // Label placering: vänster om linjen om den är nära höger kant, annars höger
+    const labelLeft = mortAge > 70;
+    const lx = mx + (labelLeft ? -5 : 5);
+    const anch = labelLeft ? 'end' : 'start';
+    svg+=`<text text-anchor="${anch}" fill="rgba(242,239,232,.8)" font-size="9" font-weight="500">` +
+         `<tspan x="${lx}" y="${p.t+24}">Förv. livslängd</tspan>` +
+         `<tspan x="${lx}" dy="11">${mortAge} år</tspan>` +
+         `</text>`;
+    // Punkter på kurvorna vid mortAge
+    const mp = pts[mortAge];
+    if(mp){
+      svg+=`<circle cx="${mx}" cy="${sy(mp.forman)}" r="3.5" fill="var(--green)" stroke="rgba(242,239,232,.6)" stroke-width="1"/>`;
+      svg+=`<circle cx="${mx}" cy="${sy(mp.skatt)}" r="3.5" fill="#B84A1E" stroke="rgba(242,239,232,.6)" stroke-width="1"/>`;
+    }
+  }
+
   svg+=`</svg>`;
   el.innerHTML = svg;
 
@@ -3943,11 +4039,46 @@ function renderLifecycle(inc){
   if(statsEl){
     const net = lastF.forman - lastF.skatt;
     const discMode = discount ? 'diskonterat 2% real' : 'nominellt, ej diskonterat';
+
+    // Mortalitets-justerat netto: vid förv. livslängd istället för 85
+    let mortStatHTML = '';
+    if(mortAge !== null && pts[mortAge]){
+      const mp = pts[mortAge];
+      const mortNet = mp.forman - mp.skatt;
+      const mortLbl = LIVSLANGD[currentMortality]?.label || 'vald grupp';
+      const diff = Math.round((mortNet - net) / 1000);
+      const diffSign = diff > 0 ? '+' : '';
+      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val" style="color:${mortNet>=0?'var(--green)':'#B84A1E'}">${mortNet>=0?'+':''}${Math.round(mortNet/1000)} Mkr</div><div class="ft-stat-lbl">Netto till ${mortAge} år — ${mortLbl}<br><span style="font-size:.62rem;color:var(--ink3)">${diffSign}${diff} Mkr vs hela 85 år</span></div></div>`;
+    }
+
     statsEl.innerHTML = `
-      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.forman/1000)} Mkr</div><div class="ft-stat-lbl">Totala förmåner livstid (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.skatt/1000)} Mkr</div><div class="ft-stat-lbl">Total skatt livstid (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val" style="color:${net>=0?'var(--green)':'#B84A1E'}">${net>=0?'+':''}${Math.round(net/1000)} Mkr</div><div class="ft-stat-lbl">Livstidsnetto (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Ålder när skatten passerar förmånerna</div></div>`;
+      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.forman/1000)} Mkr</div><div class="ft-stat-lbl">Totala förmåner till 85 år (${discMode})</div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.skatt/1000)} Mkr</div><div class="ft-stat-lbl">Total skatt till 85 år (${discMode})</div></div>
+      <div class="ft-stat"><div class="ft-stat-val" style="color:${net>=0?'var(--green)':'#B84A1E'}">${net>=0?'+':''}${Math.round(net/1000)} Mkr</div><div class="ft-stat-lbl">Netto vid 85 år (${discMode})</div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Ålder när skatten passerar förmånerna</div></div>
+      ${mortStatHTML}`;
+  }
+
+  // Pedagogisk förklaring under stats (visas bara om mortalitet vald)
+  const explainEl = document.getElementById('lc-mortality-explain');
+  if(explainEl){
+    if(mortAge !== null && pts[mortAge]){
+      const mp = pts[mortAge];
+      const mortNet = mp.forman - mp.skatt;
+      const fullNet = lastF.forman - lastF.skatt;
+      const diffMkr = Math.round((mortNet - fullNet) / 1000);
+      const direction = diffMkr < 0 ? 'lägre' : (diffMkr > 0 ? 'högre' : 'samma');
+      const lostYears = 85 - mortAge;
+      explainEl.style.display = 'block';
+      explainEl.innerHTML = `
+        <strong>Varför mortalitet justerar bilden:</strong> Den valda gruppen har förväntad medellivslängd ${mortAge} år — ${lostYears} år kortare än diagrammets 85-års-projektion.
+        Eftersom äldreomsorg och specialistsjukvård (75-85 år) är den dyraste delen av förmånskurvan, blir nettot ${direction} (${diffMkr >= 0 ? '+' : ''}${diffMkr} Mkr).
+        Höginkomsttagare har systematiskt 5-10 år längre livslängd — och alltså längre tid att hämta hem förmånerna i ålderdomen.
+        <span style="display:block;margin-top:.4rem;font-size:.62rem;color:var(--ink3)">Källa: SCB BE0701 Livslängdstabeller 2018-2022. Värdena är populationsgenomsnitt, inte individprognos.</span>`;
+    } else {
+      explainEl.style.display = 'none';
+      explainEl.innerHTML = '';
+    }
   }
 }
 

@@ -11,6 +11,20 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 ## [Unreleased]
 
 ### Added
+- **Mortalitets-overlay i livsloppsdiagrammet** (`#livslopp`): ny dropdown
+  "Förväntad livslängd" med 11 kategorier baserade på SCB BE0701
+  Livslängdstabeller 2018–2022. Vid val ritas vertikal markering i
+  diagrammet vid förväntad ålder, område efter dimmas, och nytt stat-card
+  visar "Netto till X år vs hela 85 år". Adresserar den enskilt största
+  pedagogiska bristen i den tidigare versionen: att diagrammet implicit
+  antog att alla lever till 85, vilket inverterar systemets fördelnings­logik
+  (höginkomsttagare lever 10 år längre och har därmed mer tid att hämta hem
+  äldreomsorgs- och sjukvårdsförmånerna). Inkluderar utbildningsgradient
+  (förgymnasial vs eftergymnasial: ±6 år för män) och inkomstgradient
+  (decil 1 vs decil 10: ±10 år för män).
+- `data/livslangd.json` — kanonisk källa för medellivslängd per kön ×
+  utbildning + per inkomstdecil, med osäkerhetsmått, pedagogisk kontext
+  och implementations­notiser.
 - `scripts/verify_data_sync.py` — kontrollerar att inline-data i `index.html`
   stämmer med `data/*.json`. Spot-checks på sjukfrånvaro-serien, statsskuld
   %-BNP, Gini, befolkning 80+ och internationell jämförelse. Förhindrar tyst
