@@ -112,6 +112,10 @@ h1 em{font-style:italic;color:var(--green)}
 .hsk-age{font-family:var(--mono);font-size:.82rem;font-weight:500;padding:5px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.42);cursor:pointer;transition:all .15s}
 .hsk-age:hover{border-color:var(--green);color:var(--green)}
 .hsk-age.on{background:var(--green);border-color:var(--green);color:#fff}
+.hh-btn:hover{border-color:var(--green);color:var(--green)}
+.hh-btn.on{background:var(--green);border-color:var(--green);color:#fff}
+.lc-profile-btn:hover{border-color:var(--green);color:var(--green)}
+.lc-profile-btn.on{background:var(--green);border-color:var(--green);color:#fff}
 .hsk-age-lbl{font-size:.66rem;color:rgba(255,255,255,.22);margin-left:1px}
 .hsk-age-sep{width:1px;height:14px;background:rgba(255,255,255,.1);margin:0 3px;flex-shrink:0}
 .hsk-phase-info{display:flex;align-items:center;gap:7px;padding:.32rem .6rem;background:rgba(255,255,255,.05);border-radius:4px}
@@ -540,7 +544,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <div class="hsk-stat" id="hskCumStat">
             <div class="hsk-stat-lbl">Kumulativt saldo sedan födseln</div>
             <div class="hsk-stat-val" id="hskCumVal">—</div>
-            <div class="hsk-stat-sub" id="hskCumSub">Mkr vid medianlön 340 tkr</div>
+            <div class="hsk-stat-sub" id="hskCumSub">Mkr nuvärde (2% real) vid 340 tkr</div>
           </div>
         </div>
         <!-- Nettoindikator — baserad på kumulativt livscykelsaldo, ej enbart innevarande år -->
@@ -565,6 +569,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="hsk-bars" id="hskBars"></div>
         <div class="hsk-shock" id="hskShock"></div>
         <a href="#livslopp" class="hsk-link">Se hela livscykeln →</a>
+        <button id="shareBtn" onclick="shareCurrentState()" style="margin-top:.8rem;font-size:.68rem;padding:6px 14px;border:1px solid rgba(255,255,255,.18);border-radius:20px;background:transparent;color:rgba(255,255,255,.7);cursor:pointer;font-family:var(--sans);transition:all .15s" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='rgba(255,255,255,.18)';this.style.color='rgba(255,255,255,.7)'">🔗 Dela detta scenario</button>
       </div>
     </div>
   </div>
@@ -637,9 +642,30 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </label>
       <span id="lc-discount-note" style="font-size:.65rem;color:var(--ink3);display:none">Nuvärden — tidiga förmåner (barnår) väger mer, sena förmåner (pensionsår) väger mindre</span>
     </div>
+
+    <!-- Inkomstprofilval -->
+    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
+      <span style="font-size:.72rem;color:var(--ink2)">Inkomstprofil:</span>
+      <button class="lc-profile-btn on" onclick="setLcProfile(this,'standard')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Standard</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'kort_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Kort utbildning</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'lang_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Lång utbildning</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'avbruten')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Avbruten karriär</button>
+      <span id="lc-profile-desc" style="font-size:.62rem;color:var(--ink3)">Studier till ~22, stabil inkomst 27–64</span>
+    </div>
+
     <div id="lifecycle-chart" style="margin:1rem 0"></div>
     <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <p style="font-size:.65rem;color:var(--ink3);margin-top:.8rem"><strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21% (exkl. pensionsavgift), moms ~15% av konsumtion (inkomstberoende). Inkomstprofil: 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85). <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande. <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), ingen arbetsgivaravgift, inget jobbskatteavdrag. Alla belopp nominella 2024-priser. Källa inkomstnivåer: SCB HE0110 / IoT 2024. <strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15% (främst momsapproximation och kommunalskattespridning).</p>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15%. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2024-priser.</span></p>
+    <details style="margin-top:.4rem">
+      <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
+      <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
+        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21% exkl. pensionsavgift (reducerad 10,21% för 66+), moms ~15% av konsumtion (inkomstberoende sparkvot 5–25%, effektiv moms 14,5–18,5%).<br><br>
+        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
+        <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
+        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
+        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (29,7–35,6%), individuell förmånskonsumtion vs genomsnitt.
+      </div>
+    </details>
   </div>
 </section>
 
@@ -698,12 +724,32 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           </div>
         </div>
 
+        <div>
+          <label>Hushållstyp</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
+            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">🧑 Ensamstående</button>
+            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👫 Par utan barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👨‍👩‍👧‍👦 Par med barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👩‍👧 Ensamstående m barn</button>
+          </div>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
+        </div>
+
         <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
           <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
             <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
             <span>Inkludera pensionsavgift i skatt</span>
           </label>
           <span style="color:var(--ink3);font-size:.72rem;line-height:1.3">Av = standard (pensionsavgift 10,21% ger individuell pensionsrätt — inte en "skatt"). På = brutto arbetsgivaravgift 31,42%.</span>
+        </div>
+
+        <div>
+          <label>Kapitalinkomst per år <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(valfri)</span></label>
+          <div class="sl-row">
+            <input type="range" min="0" max="1000" value="0" id="s-kapital" step="10" aria-label="Kapitalinkomst per år i tusen kronor" oninput="updateCalc()">
+            <span class="sl-val" id="d-kapital">0 tkr</span>
+          </div>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.2rem">Utdelning, ränta, kapitalvinst, uthyrning. Beskattas med 30% (schablon). Lägg till för en mer komplett bild av din totala skattesituation.</span>
         </div>
 
         <div class="method-note">
@@ -803,6 +849,19 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
   </div>
 </section>
+
+<!-- SENSITIVITETSANALYS / TORNADO -->
+<section class="section" id="sensitivitet" aria-label="Sensitivitetsanalys" style="padding:2.5rem 0;background:var(--bg2)">
+  <div class="cw">
+    <p class="s-eye">Hur känslig är modellen?</p>
+    <h2 class="s-title">Sensitivitetsanalys</h2>
+    <p class="s-sub">Tornadodiagrammet visar hur ditt nettoresultat ändras vid rimliga variationer i modellens nyckelparametrar. Basfall: 35 år, 340 tkr inkomst.</p>
+    <div id="tornado-chart" style="margin-top:1.5rem"></div>
+    <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar effekten av att variera en parameter medan övriga hålls konstanta (ceteris paribus). Avläses som ändring i kronor/år relativt basfallet.</p>
+  </div>
+</section>
+
+<hr class="div">
 
 <!-- SCENARION -->
 <section class="section" id="scenarion" aria-label="Livssituationer och scenarion">
@@ -1591,6 +1650,34 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   </div>
 </section>
 
+<!-- OM OSS -->
+<section id="om-oss" aria-label="Om Skatteplattformen" style="padding:3rem 0;background:var(--bg2)">
+  <div class="container">
+    <p class="s-eye">Vilka vi är</p>
+    <h2 class="s-title">Om Skatteplattformen</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:1.5rem">
+      <div style="background:var(--bg1);border-radius:8px;padding:1.4rem;border:1px solid var(--border)">
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink1);margin-bottom:.5rem">🎯 Syfte</h3>
+        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen gör offentliga finanser begripliga för alla. Vi omvandlar tusentals sidor av myndighetsstatistik till interaktiva verktyg som visar vad du betalar — och vad du får tillbaka.</p>
+      </div>
+      <div style="background:var(--bg1);border-radius:8px;padding:1.4rem;border:1px solid var(--border)">
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink1);margin-bottom:.5rem">🏛️ Oberoende</h3>
+        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Ingen extern finansiering. Inga annonsörer, partibidrag eller intresseorganisationer. Projektet drivs ideellt och all källkod är publik under MIT-licens. Vi skiljer strikt mellan data och tolkning.</p>
+      </div>
+      <div style="background:var(--bg1);border-radius:8px;padding:1.4rem;border:1px solid var(--border)">
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink1);margin-bottom:.5rem">👥 Teamet</h3>
+        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen drivs av Wilhelm Wennergren. Modellen har genomgått granskning av tredje part.</p>
+      </div>
+      <div style="background:var(--bg1);border-radius:8px;padding:1.4rem;border:1px solid var(--border)">
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink1);margin-bottom:.5rem">📋 Version & uppdateringar</h3>
+        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6"><strong>Version 2.1</strong> — senast uppdaterad maj 2026.<br>Viktiga tillägg: åldersdifferentierad arbetsgivaravgift, uppdelad COFOG-redovisning av socialt skydd, osäkerhetsintervall, och utökad metodtransparens.</p>
+        <p style="font-size:.65rem;color:var(--ink3);margin-top:.4rem">Ändringslogg finns i projektets GitHub-repo.</p>
+      </div>
+    </div>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:1.5rem;text-align:center">Har du frågor, hittar felaktigheter eller vill bidra? Kontakta oss via GitHub Issues eller <a href="mailto:wennergrenf@gmail.com" style="color:var(--green)">wennergrenf@gmail.com</a>.</p>
+  </div>
+</section>
+
 <!-- DETAIL PANEL -->
 <div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
 <div class="detail-panel" id="detail-panel">
@@ -2180,25 +2267,34 @@ const PHASE_COLORS = {
 
 // Gemensam inkomstprofil — används av BÅDA calcCumulativeNet och calcLifecycle
 // för konsistens. Returnerar bruttoinkomst i tkr för en given ålder.
+// Använder scenarioprofil om vald (INCOME_PROFILES), annars standardprofil.
 function lifecycleIncome(age, peakInc){
+  if(typeof INCOME_PROFILES !== 'undefined' && typeof currentProfile !== 'undefined'
+     && INCOME_PROFILES[currentProfile]) {
+    return INCOME_PROFILES[currentProfile].fn(age, peakInc);
+  }
+  // Fallback: standardprofil
   if(age < 19) return 0;
-  if(age < 23) return peakInc * 0.20;                         // student/deltid
-  if(age < 27) return peakInc * (0.20 + 0.80*(age-23)/4);    // stiger mot topp
-  if(age < 65) return peakInc;                                // yrkesverksam
-  if(age < 75) return peakInc * 0.70;                        // pension (inkomstpension)
-  return peakInc * 0.50;                                      // hög ålder
+  if(age < 23) return peakInc * 0.20;
+  if(age < 27) return peakInc * (0.20 + 0.80*(age-23)/4);
+  if(age < 65) return peakInc;
+  if(age < 75) return peakInc * 0.70;
+  return peakInc * 0.50;
 }
 
 function calcCumulativeNet(toAge, peakInc) {
+  // Diskonterat nuvärde (2% real) som default — ger mer rättvisande livscykelsaldo
   if(typeof getStage !== 'function' || typeof annualTax !== 'function') return null;
+  const r = 0.02; // 2% real diskonteringsränta
   let cumFörmåner = 0, cumTax = 0;
   for(let a = 0; a <= Math.min(toAge, 85); a++) {
+    const pv = 1 / Math.pow(1 + r, a); // nuvärdefaktor
     const s = getStage(a);
-    cumFörmåner += Object.values(s.w).reduce((x,v) => x+v, 0);
+    cumFörmåner += Object.values(s.w).reduce((x,v) => x+v, 0) * pv;
     const inc = lifecycleIncome(a, peakInc);
     if(inc >= 50) {
       const t = annualTax(a, inc);
-      cumTax += t.tot;
+      cumTax += t.tot * pv;
     }
   }
   return {
@@ -2258,7 +2354,7 @@ function heroAgeRender(age){
     cumValEl.classList.add('flash');
     requestAnimationFrame(()=>{ cumValEl.textContent = sign + absMkr.toFixed(1) + ' Mkr'; cumValEl.classList.remove('flash'); });
   }
-  if(cum && cumSubEl) cumSubEl.textContent = `Mkr vid ${hskIncome} tkr inkomst`;
+  if(cum && cumSubEl) cumSubEl.textContent = `Mkr nuvärde (2% real) vid ${hskIncome} tkr`;
   if(cum && cumStatEl) cumStatEl.className = 'hsk-stat ' + (cum.net >= 0 ? 'cum-recv' : 'cum-give');
 
   // ── Nettoindikator — KUMULATIVT saldo, inte bara årets flöde
@@ -2339,6 +2435,58 @@ function setHskInc(btn, inc){
 document.addEventListener('DOMContentLoaded', ()=>{ heroAge(document.querySelector('.hsk-age.on'), 22); });
 // Fallback om DOMContentLoaded redan kört
 if(document.readyState !== 'loading') heroAge(document.querySelector('.hsk-age.on')||{classList:{add:()=>{},remove:()=>{}}}, 22);
+
+// ═══════════════════════════════════════════════════════════════════
+// SHAREABLE URLs — läs/skriv URL-parametrar för delbart tillstånd
+// Parametrar: ?age=35&inc=500&pension=1
+// ═══════════════════════════════════════════════════════════════════
+function readURLParams(){
+  const p = new URLSearchParams(window.location.search);
+  const age = parseInt(p.get('age'));
+  const inc = parseInt(p.get('inc'));
+  const pension = p.get('pension');
+  if(!isNaN(age) && age >= 0 && age <= 85){
+    const slider = document.getElementById('hskAgeSlider');
+    if(slider) slider.value = age;
+    heroAgeSlider(age);
+  }
+  if(!isNaN(inc) && inc > 0 && inc <= 2000){
+    hskIncome = inc;
+    // Synka inkomstknapp om den finns
+    document.querySelectorAll('.hsk-inc-btn').forEach(b=>{
+      b.classList.toggle('on', parseInt(b.textContent) === inc || parseInt(b.dataset.inc) === inc);
+    });
+  }
+  if(pension !== null){
+    const toggle = document.getElementById('pension-toggle');
+    if(toggle) toggle.checked = pension === '1';
+  }
+}
+function buildShareURL(){
+  const slider = document.getElementById('hskAgeSlider');
+  const age = slider ? parseInt(slider.value) : 22;
+  const inc = hskIncome || 340;
+  const pensionEl = document.getElementById('pension-toggle');
+  const pension = pensionEl ? (pensionEl.checked ? '1' : '0') : '1';
+  const params = new URLSearchParams({age, inc, pension});
+  return window.location.origin + window.location.pathname + '?' + params.toString();
+}
+function shareCurrentState(){
+  const url = buildShareURL();
+  // Uppdatera URL utan sidladdning
+  history.replaceState(null, '', '?' + new URLSearchParams({age: document.getElementById('hskAgeSlider')?.value||22, inc: hskIncome||340, pension: document.getElementById('pension-toggle')?.checked ? '1':'0'}).toString());
+  // Kopiera till urklipp
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>{
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const orig = btn.textContent; btn.textContent = '✓ Kopierad!'; setTimeout(()=> btn.textContent = orig, 2000); }
+    });
+  } else {
+    prompt('Kopiera denna länk:', url);
+  }
+}
+// Läs URL-parametrar vid laddning
+document.addEventListener('DOMContentLoaded', readURLParams);
 
 // ═══════════════════════════════════════════════════════════════════
 // BUDGET BAR CHART
@@ -2498,9 +2646,130 @@ const STAGES = LIVSFASER_V2.map(f => ({
 const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
 const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg'};
 
-function getStage(age){
-  for(const s of STAGES) if(age>=s.min && age<=s.max) return s;
-  return STAGES[STAGES.length-1];
+// ═══════════════════════════════════════════════════════════════════
+// MODELLFÖRBÄTTRINGAR — implementering av modellgranskning
+// ═══════════════════════════════════════════════════════════════════
+
+// ── 1. Hushållstypsmultiplikatorer (SCB FASIT 2022) ──
+// Justerar förmåner beroende på hushållstyp.
+// Källa: SCB "Fördelningsanalytiskt statistiksystem" 2022
+// Ensamstående utan barn: lägre sociala transfereringar
+// Par utan barn: lägsta förmånskonsumtion (SCB 2009: enda grupp som är netto-negativa)
+// Par med barn: högst sociala transfereringar (barnbidrag × 2+, föräldrapenning, VAB)
+// Ensamstående med barn: mycket hög social transferering (underhållsstöd, bostadsbidrag)
+let currentHousehold = 'ensam';
+const HOUSEHOLD_MULT = {
+  ensam:      { utb: 1.0, sjukvård: 1.05, socialt: 0.75, koll: 1.0, omsorg: 1.0 },
+  par:        { utb: 0.5, sjukvård: 0.95, socialt: 0.45, koll: 1.0, omsorg: 0.8 },
+  familj:     { utb: 1.8, sjukvård: 1.10, socialt: 1.65, koll: 1.0, omsorg: 0.9 },
+  ensam_barn: { utb: 1.4, sjukvård: 1.10, socialt: 2.10, koll: 1.0, omsorg: 1.0 },
+};
+
+function setHousehold(btn, type) {
+  document.querySelectorAll('.hh-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  currentHousehold = type;
+  updateCalc();
+}
+
+// ── 2. Inkomstgradient (decil-multiplikator) — SCB FASIT ──
+// Lägre inkomstdeciler konsumerar 20–40% mer sjukvård.
+// Högre deciler konsumerar mindre sociala transfereringar.
+function incomeGradient(inc) {
+  // inc = bruttoinkomst tkr
+  // Returnerar multiplikator för sjukvård och socialt
+  if (inc < 200)  return { sjukvård: 1.25, socialt: 1.40 };
+  if (inc < 300)  return { sjukvård: 1.15, socialt: 1.20 };
+  if (inc < 400)  return { sjukvård: 1.00, socialt: 1.00 };
+  if (inc < 600)  return { sjukvård: 0.90, socialt: 0.85 };
+  if (inc < 800)  return { sjukvård: 0.82, socialt: 0.70 };
+  return                   { sjukvård: 0.75, socialt: 0.55 };
+}
+
+// ── 3. Scenarioprofiler för inkomstbanan ──
+// Alternativ till den fasta lifecycleIncome()
+let currentProfile = 'standard';
+const INCOME_PROFILES = {
+  standard: {
+    label: 'Standardprofil',
+    desc: 'Studier till ~22, stabil inkomst 27–64',
+    fn: function(age, peak) {
+      if(age < 19) return 0;
+      if(age < 23) return peak * 0.20;
+      if(age < 27) return peak * (0.20 + 0.80*(age-23)/4);
+      if(age < 65) return peak;
+      if(age < 75) return peak * 0.70;
+      return peak * 0.50;
+    }
+  },
+  kort_utb: {
+    label: 'Kort utbildning',
+    desc: 'Börjar arbeta vid 19, når topp tidigt',
+    fn: function(age, peak) {
+      if(age < 18) return 0;
+      if(age < 21) return peak * 0.55;
+      if(age < 25) return peak * (0.55 + 0.45*(age-21)/4);
+      if(age < 55) return peak;
+      if(age < 65) return peak * 0.90; // lägre löneutveckling sent
+      if(age < 75) return peak * 0.65;
+      return peak * 0.45;
+    }
+  },
+  lang_utb: {
+    label: 'Lång utbildning',
+    desc: 'Studier till ~28, högre topp men senare start',
+    fn: function(age, peak) {
+      if(age < 19) return 0;
+      if(age < 24) return peak * 0.10; // studentjobb
+      if(age < 29) return peak * (0.10 + 0.90*(age-24)/5);
+      if(age < 65) return peak;
+      if(age < 75) return peak * 0.75;
+      return peak * 0.55;
+    }
+  },
+  avbruten: {
+    label: 'Avbruten karriär',
+    desc: 'Två perioder av låg inkomst (30–33, 36–38)',
+    fn: function(age, peak) {
+      if(age < 19) return 0;
+      if(age < 23) return peak * 0.20;
+      if(age < 27) return peak * (0.20 + 0.80*(age-23)/4);
+      // Avbrott 1: föräldraledighet/deltid 30–33
+      if(age >= 30 && age <= 33) return peak * 0.40;
+      // Avbrott 2: andra föräldraledigheten 36–38
+      if(age >= 36 && age <= 38) return peak * 0.45;
+      if(age < 65) return peak;
+      if(age < 75) return peak * 0.62; // lägre pension pga avbrotten
+      return peak * 0.42;
+    }
+  }
+};
+
+// ── Justerad getStage som applicerar hushålls- och inkomstmultiplikatorer ──
+function getStage(age, inc){
+  let stage = null;
+  for(const s of STAGES) if(age>=s.min && age<=s.max){ stage = s; break; }
+  if(!stage) stage = STAGES[STAGES.length-1];
+
+  // Om ingen inkomst angiven, returnera ojusterad
+  if(typeof inc === 'undefined' || inc === null) return stage;
+
+  // Applicera hushållsmultiplikator
+  const hm = HOUSEHOLD_MULT[currentHousehold] || HOUSEHOLD_MULT.ensam;
+  // Applicera inkomstgradient
+  const ig = incomeGradient(inc);
+
+  // Bygg justerade förmåner
+  const w = {};
+  for(const [k, v] of Object.entries(stage.w)) {
+    let mult = hm[k] || 1.0;
+    // Sjukvård och socialt får även inkomstgradient
+    if(k === 'sjukvård') mult *= ig.sjukvård;
+    if(k === 'socialt') mult *= ig.socialt;
+    w[k] = Math.round(v * mult);
+  }
+
+  return { ...stage, w };
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -2551,11 +2820,12 @@ function jobbskatteavdrag2024(inc, ga, ks){
   return Math.min(jsaÅr, maxJsa);
 }
 
-function annualTax(age, inc){
+function annualTax(age, inc, opts){
   // inc = bruttoinkomst i tkr/år (pension­sinkomst skickas in redan reducerad av anroparen)
+  // opts = {ksOverride: number} för sensitivitetsanalys
   if(age < 19 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
   const isPensionar = age >= 65;
-  const ks = 0.3237;  // kommunalskatt genomsnitt 2024 (SCB)
+  const ks = (opts && opts.ksOverride) ? opts.ksOverride : 0.3237;  // kommunalskatt genomsnitt 2024 (SCB)
 
   // Pensionärer: ingen extra inkomstreduktion här — inkomsten är redan rätt skalad av anroparen.
   // Pensionärer får förhöjt grundavdrag (67 kap 3 § IL) jämfört med arbetsinkomst.
@@ -2577,9 +2847,21 @@ function annualTax(age, inc){
   // Arbetsgivaravgifter: toggle styr om pensionsavgift (10.21%) inkluderas
   // Exkl pension: 31.42% − 10.21% = 21.21% (standard — pension ger individuell pensionsrätt)
   // Inkl pension: 31.42% (brutto, varav 10.21% ålderspensionsavgift)
+  // Åldersvariation: personer fyllda 66+ betalar reducerad avgift (10,21% ålderspensionsavgift)
+  // Personer under 18: enbart ålderspensionsavgift (10,21%)
   const inkludaPension = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
-  const avgSats = inkludaPension ? 0.3142 : 0.2121;
-  const avg = isPensionar ? 0 : inc * avgSats;
+  let avgSats;
+  if(age < 18){
+    // Under 18: enbart ålderspensionsavgift (10,21%)
+    avgSats = inkludaPension ? 0.1021 : 0;
+  } else if(age >= 66){
+    // Fyllda 66+: reducerad avgift — enbart ålderspensionsavgift 10,21%
+    // (gäller oavsett om personen arbetar eller ej — arbetsgivare betalar reducerat)
+    avgSats = inkludaPension ? 0.1021 : 0;
+  } else {
+    avgSats = inkludaPension ? 0.3142 : 0.2121;
+  }
+  const avg = inc * avgSats;
 
   // Moms: hushåll konsumerar del av disponibel inkomst
   // Sparkvot: SCB HUT — varierar med inkomst (låg: ~5%, medel: ~15%, hög: ~25%)
@@ -2602,10 +2884,13 @@ function annualTax(age, inc){
 function updateCalc(){
   const age = +document.getElementById('s-age').value;
   const inc = +document.getElementById('s-inc').value;
+  const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
   document.getElementById('d-age').textContent = age + ' år';
   document.getElementById('d-inc').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+  if(document.getElementById('d-kapital')) document.getElementById('d-kapital').textContent = kapitalInc.toLocaleString('sv-SE') + ' tkr';
 
-  const stage = getStage(age);
+  // Hushålls- och inkomstjusterade förmåner
+  const stage = getStage(age, inc);
   const w = stage.w;
   const total = Object.values(w).reduce((a,b)=>a+b,0);
 
@@ -2630,9 +2915,12 @@ function updateCalc(){
 
   // Tax breakdown
   const tax = annualTax(age, inc);
-  document.getElementById('tax-inc-label').textContent = inc.toLocaleString('sv-SE');
+  // Kapitalskatt: 30% schablonskatt på kapitalinkomster
+  const kapSkatt = Math.round(kapitalInc * 0.30);
+  const totalSkatt = tax.tot + kapSkatt;
+  document.getElementById('tax-inc-label').textContent = inc.toLocaleString('sv-SE') + (kapitalInc > 0 ? ' + ' + kapitalInc.toLocaleString('sv-SE') + ' tkr kapital' : '');
   let taxHTML = '';
-  if(tax.tot > 0){
+  if(totalSkatt > 0){
     const items = [
       ['Kommunalskatt (32,4%)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
@@ -2640,6 +2928,7 @@ function updateCalc(){
       ['Effektiv moms (konsumtion)', tax.moms],
       ['Jobbskatteavdrag', -tax.jsa],
     ];
+    if(kapSkatt > 0) items.push(['Kapitalskatt (30%)', kapSkatt]);
     taxHTML = items.filter(([,v])=>v!==0).map(([l,v])=>{
       const isNeg = v < 0;
       const col = isNeg ? '#2E7D5C' : 'rgba(242,239,232,.65)';
@@ -2652,10 +2941,10 @@ function updateCalc(){
     }).join('') + `
       <div style="display:flex;justify-content:space-between;font-size:.9rem;color:rgba(242,239,232,.85);font-weight:500;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.07);margin-top:.4rem">
         <span>Totalt per år</span>
-        <span style="font-family:var(--mono)">${tax.tot.toLocaleString('sv-SE')} tkr</span>
+        <span style="font-family:var(--mono)">${totalSkatt.toLocaleString('sv-SE')} tkr</span>
       </div>`;
     // Balance note
-    const balance = total - tax.tot;
+    const balance = total - totalSkatt;
     const isNegative = balance < 0;
     taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:${isNegative?'rgba(200,151,58,.12)':'rgba(46,125,92,.12)'};border-left:2px solid ${isNegative?'#C8973A':'#2E7D5C'};border-radius:0 3px 3px 0;font-size:.72rem;color:rgba(242,239,232,.6);line-height:1.6">
       <strong style="color:${isNegative?'#C8973A':'#2E7D5C'}">${isNegative?'Nettobidragsgivare':'Nettotagare i år'}</strong> — 
@@ -2715,11 +3004,16 @@ function updateCalc(){
   // ─── DITT SKATTEKVITTO ─────────────────────────────────────────
   // Proportional breakdown of user's total tax across COFOG functions
   const receiptCard = document.getElementById('receipt-card');
-  if(tax.tot > 0){
+  if(totalSkatt > 0){
     receiptCard.style.display = '';
     // COFOG 2024 shares (3 011 Mdkr total)
     const cofogItems = [
-      {namn:'Socialt skydd (pension, a-kassa, barnbidrag)', andel:0.386, col:'#5B3F8C', icon:'🛡️'},
+      // Socialt skydd uppdelat (totalt 38,6% av COFOG):
+      {namn:'Ålderspension & efterlevande',     andel:0.168, col:'#7B5FBC', icon:'🧓'}, // Största posten: garantipension, bostadstillägg, efterlevandepension
+      {namn:'Sjukdom & funktionsnedsättning',   andel:0.098, col:'#9B6FCC', icon:'🤕'}, // Sjukpenning, sjukersättning, assistansersättning
+      {namn:'Familj & barn',                     andel:0.065, col:'#A87FD4', icon:'👶'}, // Barnbidrag, föräldrapenning, underhållsstöd
+      {namn:'Arbetslöshet',                      andel:0.030, col:'#B490DA', icon:'📋'}, // A-kassa, aktivitetsstöd
+      {namn:'Övrigt socialt (bostad, exklusion)',andel:0.025, col:'#C4A6E2', icon:'🏠'}, // Bostadsbidrag, ekonomiskt bistånd
       {namn:'Utbildning (förskola → universitet)',          andel:0.170, col:'#1E4A8C', icon:'🎓'},
       {namn:'Hälso- & sjukvård',                            andel:0.152, col:'#2E7D5C', icon:'🏥'},
       {namn:'Allmän offentlig förvaltning',                  andel:0.084, col:'#888780', icon:'🏛️'},
@@ -2731,10 +3025,10 @@ function updateCalc(){
       {namn:'Miljöskydd',                                    andel:0.012, col:'#2E8B57', icon:'🌿'},
       {namn:'Räntor & transfereringar',                      andel:0.037, col:'rgba(255,255,255,.3)', icon:'📊'},
     ];
-    const maxKr = tax.tot * cofogItems[0].andel;
+    const maxKr = totalSkatt * cofogItems[0].andel;
     let receiptHTML = '';
     cofogItems.forEach(c => {
-      const kr = Math.round(tax.tot * c.andel);
+      const kr = Math.round(totalSkatt * c.andel);
       if(kr <= 0) return;
       const pct = (c.andel * 100).toFixed(1);
       const barW = Math.round(kr / maxKr * 88);
@@ -2761,11 +3055,11 @@ function updateCalc(){
   const margCard = document.getElementById('marginal-card');
   const margBars = document.getElementById('marginal-bars');
   const isPens = age >= 65;
-  if(margCard && margBars && tax.tot > 0 && age >= 19){
+  if(margCard && margBars && totalSkatt > 0 && age >= 19){
     margCard.style.display = '';
     const ks = 0.3237;
     const inkludaPens = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
-    const avgM = isPens ? 0 : (inkludaPens ? 0.3142 : 0.2121);
+    const avgM = isPens ? (inkludaPens ? 0.1021 : 0) : (inkludaPens ? 0.3142 : 0.2121);
     // Marginalskatt vid olika inkomstpunkter
     const points = [200, 350, 500, 650, 900].map(p => {
       const ga = grundavdrag2024(p);
@@ -3046,6 +3340,7 @@ function showHist(btn, key){
 
 // Skattekvot timeline chart
 (function(){
+  const ARIA_SKATTEKVOT = 'Linjediagram: skattekvot som andel av BNP, Sverige jämfört med OECD-snitt, 2000–2024. Sverige sjunker från 51% till 42%, OECD relativt stabilt kring 34%.';
   const data = [
     {year:2000,se:51.4,oecd:34.9},{year:2002,se:48.9,oecd:34.2},{year:2004,se:48.1,oecd:34.0},
     {year:2006,se:47.8,oecd:34.5},{year:2008,se:46.4,oecd:33.8},{year:2010,se:46.7,oecd:33.4},
@@ -3060,7 +3355,7 @@ function showHist(btn, key){
   const minY = 30, maxY = 54;
   const sx = i => pad.l + (i/(data.length-1))*iw;
   const sy = v => pad.t + (1-(v-minY)/(maxY-minY))*ih;
-  let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${ARIA_SKATTEKVOT}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   // Grid lines
   for(let v=32;v<=52;v+=4){
     const y=sy(v);
@@ -3107,7 +3402,7 @@ function showHist(btn, key){
   const minY=0,maxY=80;
   const sx=i=>p.l+(i/(data.length-1))*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Sveriges statsskuld som andel av BNP 1980–2025. Topp 74% år 1994, ned till 18% år 2024." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   // Grid
   [0,20,40,60,80].forEach(v=>{
     const y=sy(v);
@@ -3167,7 +3462,7 @@ function showHist(btn, key){
   ];
   const W=680,H=measures.length*52+30,pl=210,pr=90,pt=20,pb=20;
   const iw=W-pl-pr;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Horisontellt stapeldiagram: Sveriges olika Gini-mått — förmögenhet 0,75, marknadsinkomst 0,48, inkl. kapital 0,32, disponibel 0,29." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
   // x scale 0→0.85
   const sx=v=>pl+(v/0.85)*iw;
   // Grid
@@ -3211,7 +3506,7 @@ function showHist(btn, key){
   const minX=1975,maxX=2024;
   const sx=y=>p.l+(y-minX)/(maxX-minX)*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Gini-koefficient i Sverige 1975–2024. Disponibel inkomst steg från 0,20 till 0,29. Inkl. kapitalinkomster högre, kring 0,32." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   [0.20,0.25,0.30,0.35].forEach(v=>{
     const y=sy(v);
     svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
@@ -3268,7 +3563,7 @@ function showHist(btn, key){
   const minY=0,maxY=24;
   const sx=i=>p.l+(i/(data.length-1))*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: sjukfrånvaro i Sverige 2000–2024 (nettodagar per försäkrad). Topp 20 dagar 2003, lägst 8 dagar 2011, nu ca 11 dagar." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   [0,6,12,18,24].forEach(v=>{
     const y=sy(v);
     svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
@@ -3518,6 +3813,15 @@ function lcContext(inc){
   return '';
 }
 
+function setLcProfile(btn, profile) {
+  document.querySelectorAll('.lc-profile-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  currentProfile = profile;
+  const desc = document.getElementById('lc-profile-desc');
+  if(desc && INCOME_PROFILES[profile]) desc.textContent = INCOME_PROFILES[profile].desc;
+  updateLifecycle();
+}
+
 function setLcInc(btn, inc){
   document.querySelectorAll('.lc-preset').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
@@ -3554,7 +3858,7 @@ function renderLifecycle(inc){
   const sx=a=>p.l+(a/85)*iw;
   const sy=v=>p.t+(1-(v/maxVal))*ih;
 
-  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: skatt och förmåner över livet (0–85 år) vid vald inkomstnivå. Visar hur nettot går från mottagare i barndom till betalare i arbetslivet och åter mottagare vid pension." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
 
   // Grid
   const gridVals = [0, maxVal*0.25, maxVal*0.5, maxVal*0.75, maxVal].map(v=>Math.round(v/100)*100);
@@ -3647,6 +3951,96 @@ function renderLifecycle(inc){
   const ctx = document.getElementById('lc-inc-context');
   if(ctx) ctx.textContent = lcContext(460);
   renderLifecycle(460);
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+// SENSITIVITETSANALYS — TORNADO DIAGRAM
+// Visar hur nettot (skatt − förmåner) ändras vid variation i nyckelparametrar
+// Basfall: ålder 35, inkomst 340 tkr
+// ═══════════════════════════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('tornado-chart');
+  if(!el) return;
+
+  // Basfall
+  const baseAge = 35, baseInc = 340;
+  const baseTax = annualTax(baseAge, baseInc * 1000);
+  const baseStage = getStage(baseAge);
+  const baseForman = baseStage ? Object.values(baseStage.w).reduce((s,v)=>s+v,0)*1000 : 0;
+  const baseNet = baseTax.tot - baseForman; // positivt = nettobetalare
+
+  // Parametervariationer
+  const params = [
+    {
+      label: 'Kommunalskatt ±3 pp',
+      low: (function(){ const t=annualTax(baseAge,baseInc*1000,{ksOverride:0.3237-0.03}); return t.tot - baseForman; })(),
+      high: (function(){ const t=annualTax(baseAge,baseInc*1000,{ksOverride:0.3237+0.03}); return t.tot - baseForman; })()
+    },
+    {
+      label: 'Inkomst ±15%',
+      low: (function(){ const inc2=baseInc*0.85; const t=annualTax(baseAge,inc2*1000); return t.tot - baseForman; })(),
+      high: (function(){ const inc2=baseInc*1.15; const t=annualTax(baseAge,inc2*1000); return t.tot - baseForman; })()
+    },
+    {
+      label: 'Förmånsdata ±25%',
+      low: baseTax.tot - baseForman*1.25,
+      high: baseTax.tot - baseForman*0.75
+    },
+    {
+      label: 'Moms ±2 pp (effektiv)',
+      low: (function(){ const momsBase = baseInc*1000*0.18*12/12; return baseNet - baseInc*1000*0.02; })(),
+      high: baseNet + baseInc*1000*0.02
+    }
+  ];
+
+  // Beräkna avvikelser från basfall
+  const bars = params.map(p=>({
+    label: p.label,
+    dLow: p.low - baseNet,
+    dHigh: p.high - baseNet
+  }));
+
+  // Sortera efter total spännvidd (störst först)
+  bars.sort((a,b)=>(Math.abs(b.dHigh-b.dLow)) - (Math.abs(a.dHigh-a.dLow)));
+
+  // Rendering
+  const W=680, barH=38, gap=8, pt=30, pb=20, pl=180, pr=60;
+  const H = pt + bars.length*(barH+gap) + pb;
+  const maxAbs = Math.max(...bars.map(b=>Math.max(Math.abs(b.dLow),Math.abs(b.dHigh))));
+  const iw = W-pl-pr;
+  const cx = pl + iw/2; // center (basfall = 0)
+  const sx = v => cx + (v/maxAbs)*(iw/2);
+
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tornadodiagram: sensitivitetsanalys som visar hur nettot ändras vid variation i kommunalskatt, inkomst, förmånsdata och moms." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+
+  // Center line (basfall)
+  svg+=`<line x1="${cx}" y1="${pt-10}" x2="${cx}" y2="${H-pb}" stroke="rgba(242,239,232,.25)" stroke-width="1" stroke-dasharray="4,3"/>`;
+  svg+=`<text x="${cx}" y="${pt-14}" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="9">Basfall: 0 kr</text>`;
+
+  bars.forEach((b,i)=>{
+    const y = pt + i*(barH+gap);
+    const midY = y + barH/2;
+
+    // Label
+    svg+=`<text x="${pl-8}" y="${midY+4}" text-anchor="end" fill="var(--ink2)" font-size="11">${b.label}</text>`;
+
+    // Low bar (negative = green/mottagare, positive = red/betalare)
+    const x1 = Math.min(sx(b.dLow), cx);
+    const x2 = Math.max(sx(b.dLow), cx);
+    svg+=`<rect x="${x1}" y="${y+6}" width="${x2-x1}" height="${barH-12}" rx="3" fill="${b.dLow<0?'var(--green)':'#B84A1E'}" opacity=".7"/>`;
+
+    // High bar
+    const x3 = Math.min(sx(b.dHigh), cx);
+    const x4 = Math.max(sx(b.dHigh), cx);
+    svg+=`<rect x="${x3}" y="${y+6}" width="${x4-x3}" height="${barH-12}" rx="3" fill="${b.dHigh>0?'#B84A1E':'var(--green)'}" opacity=".7"/>`;
+
+    // Values
+    svg+=`<text x="${Math.min(x1,x3)-4}" y="${midY+4}" text-anchor="end" fill="var(--ink3)" font-size="9">${b.dLow>=0?'+':''}${Math.round(b.dLow/1000)} tkr</text>`;
+    svg+=`<text x="${Math.max(x2,x4)+4}" y="${midY+4}" text-anchor="start" fill="var(--ink3)" font-size="9">${b.dHigh>=0?'+':''}${Math.round(b.dHigh/1000)} tkr</text>`;
+  });
+
+  svg+=`</svg>`;
+  el.innerHTML = svg;
 })();
 
 // ═══════════════════════════════════════════════════════════════════
