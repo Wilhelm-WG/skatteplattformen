@@ -10,6 +10,29 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed
+- **Livsloppsberäkningen synkar nu hushållstyp, kapital och inkomstgradient
+  från grundkalkylen.** Tidigare kasserade `calcLifecycle()` all variation
+  och använde råa `STAGES`. Resultat: en barnfamilj (familj) vs ensamstående
+  visar nu ~30 Mkr vs 23 Mkr i livsförmåner (skillnad +30 %), och
+  låginkomstprofil 200 tkr visar 26 Mkr vs höginkomst 800 tkr 21 Mkr
+  (−19 %, p.g.a. inkomstgradient på sjukvård + socialt). Hushållsändring
+  och kapital-slider triggar nu omrendering av livsloppsdiagrammet.
+- **Sektionsrubrik ändrad** från "Välfärdsstaten är ett livslångt kontrakt"
+  till "Välfärdsstaten — ett kollektivt försäkringssystem över livet".
+  Hero-snabbkollens netto-indikator omformulerad från transaktionellt
+  språk ("mer mottaget än betalat") till modell-deskriptivt ("i modellen
+  — kollektivt finansierade tjänster ~X Mkr över skatt vid din ålder").
+  Adresserar reviewens punkt G: framing-laddade "kontrakt"-formuleringar
+  som motsäger metodik-steg 04 (välfärden som försäkring, inte sparkonto).
+- **Stat-cards i livsloppsdiagrammet visar nu propagerad osäkerhet.**
+  ±22 % förmåner och ±12 % skatt adderas kvadratiskt (okorrelerat) till
+  ett netto-osäkerhetsmått. Exempel: vid 460 tkr standardprofil visas
+  "+3 Mkr · ±3 Mkr — överlappar noll om |netto| < 3" istället för bara
+  "+3 Mkr". Korsningsåldern markeras nu också med "~±3 år givet osäkerhet".
+- **Stat-card rubriker omformulerade** från "Livstidsnetto" → "Netto vid
+  85 år" för transparens om antagandet.
+
 ### Added
 - **Mortalitets-overlay i livsloppsdiagrammet** (`#livslopp`): ny dropdown
   "Förväntad livslängd" med 11 kategorier baserade på SCB BE0701

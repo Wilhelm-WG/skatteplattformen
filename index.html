@@ -674,6 +674,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <span id="lc-mortality-note" style="font-size:.62rem;color:var(--ink3)"></span>
     </div>
 
+    <div id="lc-applied" style="font-size:.62rem;color:var(--ink3);margin:.2rem 0 .4rem;padding:.4rem .7rem;background:rgba(255,255,255,.03);border-left:2px solid rgba(46,125,92,.45);border-radius:0 3px 3px 0;line-height:1.5"></div>
     <div id="lifecycle-chart" style="margin:1rem 0"></div>
     <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
     <div id="lc-mortality-explain" style="display:none;font-size:.68rem;color:var(--ink2);margin-top:.8rem;padding:.6rem .8rem;background:rgba(255,255,255,.04);border-left:3px solid rgba(242,239,232,.4);border-radius:0 4px 4px 0;line-height:1.5"></div>
@@ -723,8 +724,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <section class="calc-wrap" id="kalkylator">
   <div class="container">
     <p class="s-eye">Din välfärdsprofil</p>
-    <h2 class="s-title">Välfärdsstaten är ett livslångt kontrakt</h2>
-    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning.</p>
+    <h2 class="s-title">Välfärdsstaten — ett kollektivt försäkringssystem över livet</h2>
+    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning. Modellen visar genomsnittsmönstret per åldersgrupp — inte ett individuellt sparkonto.</p>
 
     <div class="calc-layout">
       <!-- Controls -->
@@ -822,7 +823,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
         <!-- Lifecycle bar + solidarity -->
         <div class="contract-card">
-          <div class="card-label">Det livslånga kontraktet — var befinner du dig?</div>
+          <div class="card-label">Livscykeln i välfärdsmodellen — var befinner du dig?</div>
           <div class="lifecycle-bar" id="lc-bar">
             <div class="lc-seg lc-taker" id="lcseg-taker1" style="width:22%">Barn &amp; elev</div>
             <div class="lc-seg lc-payer" id="lcseg-payer" style="width:54%">Arbetsför ålder</div>
@@ -2392,10 +2393,10 @@ function heroAgeRender(age){
     const absMkr = Math.abs(cum.net / 1000).toFixed(1);
     if(cum.net >= 0){
       netEl.className = 'hsk-net recv';
-      netEl.textContent = `Kumulativt nettomottagare — +${absMkr} Mkr mer mottaget än betalat sedan födseln`;
+      netEl.textContent = `I modellen — kollektivt finansierade tjänster ~${absMkr} Mkr över skatt vid din ålder`;
     } else {
       netEl.className = 'hsk-net give';
-      netEl.textContent = `Kumulativt nettobidragsgivare — ${absMkr} Mkr mer betalat än mottaget`;
+      netEl.textContent = `I modellen — skatt ~${absMkr} Mkr över kollektivt mottagna tjänster vid din ålder`;
     }
   }
 
@@ -2697,6 +2698,8 @@ function setHousehold(btn, type) {
   btn.classList.add('on');
   currentHousehold = type;
   updateCalc();
+  // Livscykelvyn ska reflektera samma hushållstyp
+  if(typeof updateLifecycle === 'function') updateLifecycle();
 }
 
 // ── 2. Inkomstgradient (decil-multiplikator) — SCB FASIT ──
@@ -3121,6 +3124,10 @@ function updateCalc(){
   } else if(margCard) {
     margCard.style.display = 'none';
   }
+
+  // Propagera ändringar i grundkalkylen (inkomst, kapital, hushåll, ålder) ned
+  // till livscykelvyn så att den reflekterar samma profil. Defensiv mot script-ordning.
+  if(typeof updateLifecycle === 'function') updateLifecycle();
 }
 
 document.getElementById('s-age').addEventListener('input', updateCalc);
@@ -3834,15 +3841,23 @@ function setLcMortality(key){
   updateLifecycle();
 }
 
-function calcLifecycle(peakInc, discount){
+function calcLifecycle(peakInc, discount, kapitalInc){
   // peakInc = platåinkomst tkr under yrkeslivet
   // discount = true → 2% real ränta diskonterad från födseln
-  // Använder lifecycleIncome() — samma profil som calcCumulativeNet för konsistens
+  // kapitalInc = årlig kapitalinkomst tkr (valfritt, default 0)
+  //
+  // Använder lifecycleIncome() — samma profil som calcCumulativeNet för konsistens.
+  // Applicerar HOUSEHOLD_MULT × incomeGradient(peakInc) på förmånerna genom getStage(a, peakInc).
+  // peakInc fungerar som socioekonomisk proxy: hushållets livsinkomstnivå
+  // bestämmer förmånsfördelningen även i åldrar utan egen inkomst.
   const ages = Array.from({length:86},(_,i)=>i);
   const r = discount ? 0.02 : 0;
+  const kap = kapitalInc || 0;
+  const kapSkattÅrlig = kap * 0.30; // 30% schablonskatt på kapitalinkomst
 
   function formanAtAge(a){
-    const s = getStage(Math.min(a,85));
+    // peakInc som socioekonomi-proxy → hushåll + inkomstgradient appliceras
+    const s = getStage(Math.min(a,85), peakInc);
     return Object.values(s.w).reduce((sum,v)=>sum+v,0);
   }
 
@@ -3852,7 +3867,8 @@ function calcLifecycle(peakInc, discount){
     const inc = lifecycleIncome(a, peakInc);
     const t = annualTax(a, inc);
     cumForman += formanAtAge(a) * pv;
-    cumSkatt += t.tot * pv;
+    // Skatt = inkomstskatt + kapitalskatt (kapital antas konstant över livet — förenkling)
+    cumSkatt += (t.tot + kapSkattÅrlig) * pv;
     return {a, forman: cumForman, skatt: cumSkatt};
   });
 
@@ -3921,7 +3937,27 @@ function renderLifecycle(inc){
   const discount = discountEl ? discountEl.checked : false;
   const noteEl = document.getElementById('lc-discount-note');
   if(noteEl) noteEl.style.display = discount ? 'inline' : 'none';
-  const {pts, crossover} = calcLifecycle(inc, discount);
+  // Läs hushållstyp + kapital från grundkalkylen (samma rutiner som annual-vyn använder)
+  // så att livscykelvyn reflekterar samma profil som användaren ställt in ovanför.
+  const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
+
+  // Badge: visa vilken hushållstyp + kapital som är applicerade
+  const appliedEl = document.getElementById('lc-applied');
+  if(appliedEl){
+    const hhLabels = {
+      ensam: '🧑 Ensamstående',
+      par: '👫 Par utan barn',
+      familj: '👨‍👩‍👧‍👦 Par med barn',
+      ensam_barn: '👩‍👧 Ensamstående m. barn'
+    };
+    const hhLbl = hhLabels[currentHousehold] || 'Ensamstående';
+    const kapLbl = kapitalInc > 0
+      ? ` · 💰 ${kapitalInc.toLocaleString('sv-SE')} tkr/år kapital (30% schablon)`
+      : '';
+    appliedEl.innerHTML = `<strong>Profilen ovan applicerad i livsloppet:</strong> ${hhLbl} · 📊 inkomstgradient enligt ${inc.toLocaleString('sv-SE')} tkr platåinkomst${kapLbl}. <span style="color:var(--ink3)">Ändra ovan för att se effekten här.</span>`;
+  }
+
+  const {pts, crossover} = calcLifecycle(inc, discount, kapitalInc);
   const el = document.getElementById('lifecycle-chart');
   if(!el) return;
 
@@ -4040,22 +4076,39 @@ function renderLifecycle(inc){
     const net = lastF.forman - lastF.skatt;
     const discMode = discount ? 'diskonterat 2% real' : 'nominellt, ej diskonterat';
 
+    // ── Osäkerhetspropagering: ±22% förmåner, ±12% skatt, kvadratiskt adderade
+    // Bygger på antagandet att de två felkällorna är okorrelerade
+    // (förmåner kommer från NTA/FASIT, skatt från SCB-skattetabeller).
+    const UNC_FORMAN = 0.22, UNC_SKATT = 0.12;
+    function uncertaintyMkr(forman, skatt){
+      const sF = forman * UNC_FORMAN;
+      const sS = skatt * UNC_SKATT;
+      const sNet = Math.sqrt(sF*sF + sS*sS);
+      return {forman: Math.round(sF/1000), skatt: Math.round(sS/1000), net: Math.round(sNet/1000)};
+    }
+    const unc = uncertaintyMkr(lastF.forman, lastF.skatt);
+    const formanMkr = Math.round(lastF.forman/1000);
+    const skattMkr = Math.round(lastF.skatt/1000);
+    const netMkr = Math.round(net/1000);
+
     // Mortalitets-justerat netto: vid förv. livslängd istället för 85
     let mortStatHTML = '';
     if(mortAge !== null && pts[mortAge]){
       const mp = pts[mortAge];
       const mortNet = mp.forman - mp.skatt;
+      const mortUnc = uncertaintyMkr(mp.forman, mp.skatt);
       const mortLbl = LIVSLANGD[currentMortality]?.label || 'vald grupp';
       const diff = Math.round((mortNet - net) / 1000);
       const diffSign = diff > 0 ? '+' : '';
-      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val" style="color:${mortNet>=0?'var(--green)':'#B84A1E'}">${mortNet>=0?'+':''}${Math.round(mortNet/1000)} Mkr</div><div class="ft-stat-lbl">Netto till ${mortAge} år — ${mortLbl}<br><span style="font-size:.62rem;color:var(--ink3)">${diffSign}${diff} Mkr vs hela 85 år</span></div></div>`;
+      const mortNetMkr = Math.round(mortNet/1000);
+      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val" style="color:${mortNet>=0?'var(--green)':'#B84A1E'}">${mortNet>=0?'+':''}${mortNetMkr} Mkr</div><div class="ft-stat-lbl">Netto till ${mortAge} år — ${mortLbl}<br><span style="font-size:.62rem;color:var(--ink3)">±${mortUnc.net} Mkr osäkerhet · ${diffSign}${diff} Mkr vs hela 85 år</span></div></div>`;
     }
 
     statsEl.innerHTML = `
-      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.forman/1000)} Mkr</div><div class="ft-stat-lbl">Totala förmåner till 85 år (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${Math.round(lastF.skatt/1000)} Mkr</div><div class="ft-stat-lbl">Total skatt till 85 år (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val" style="color:${net>=0?'var(--green)':'#B84A1E'}">${net>=0?'+':''}${Math.round(net/1000)} Mkr</div><div class="ft-stat-lbl">Netto vid 85 år (${discMode})</div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Ålder när skatten passerar förmånerna</div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${formanMkr} Mkr</div><div class="ft-stat-lbl">Totala förmåner till 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.forman} Mkr · ${discMode}</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${skattMkr} Mkr</div><div class="ft-stat-lbl">Total skatt till 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.skatt} Mkr · ${discMode}</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val" style="color:${net>=0?'var(--green)':'#B84A1E'}">${net>=0?'+':''}${netMkr} Mkr</div><div class="ft-stat-lbl">Netto vid 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.net} Mkr — överlappar noll om |netto| < ${unc.net}</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Ålder när skatten passerar förmånerna<br><span style="font-size:.62rem;color:var(--ink3)">~±3 år givet osäkerhet</span></div></div>
       ${mortStatHTML}`;
   }
 
