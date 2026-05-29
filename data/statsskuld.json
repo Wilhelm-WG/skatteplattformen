@@ -64,10 +64,12 @@
       {"land": "Spanien",     "pct_bnp": 107, "not": ""},
       {"land": "Italien",     "pct_bnp": 138, "not": ""},
       {"land": "Grekland",    "pct_bnp": 161, "not": ""},
-      {"land": "EU-snitt",    "pct_bnp": 82,  "not": "EU27 genomsnitt"},
+      {"land": "EU-snitt",    "pct_bnp": 82,  "not": "EU27 genomsnitt (HTML-chart visar 'EU-27 snitt' 83 %, inom mätosäkerhet)"},
       {"land": "USA",         "pct_bnp": 122, "not": "Federal + delstatsskuld"},
-      {"land": "Japan",       "pct_bnp": 255, "not": "Mest skuldsatta avancerade ekonomi"},
-      {"land": "UK",          "pct_bnp": 100, "not": ""}
+      {"land": "Japan",       "pct_bnp": 252, "not": "Mest skuldsatta avancerade ekonomi (IMF WEO 2024)"},
+      {"land": "UK",          "pct_bnp": 100, "not": ""},
+      {"land": "Polen",       "pct_bnp": 54,  "not": "IMF WEO 2024"},
+      {"land": "Nederland",   "pct_bnp": 47,  "not": "IMF WEO 2024"}
     ]
   },
 
