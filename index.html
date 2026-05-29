@@ -474,12 +474,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Meny">☰</button>
       <ul class="nav-links" onclick="this.classList.remove('open')">
         <li><a href="#pristabell">Prislistan</a></li>
-        <li><a href="#kalkylator">Din profil</a></li>
-        <li><a href="#livslopp">Livslopp</a></li>
-        <li><a href="#scenarion">Scenarion</a></li>
         <li><a href="#budget">Budgeten</a></li>
         <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#framtid">Framtid</a></li>
+        <li><a href="#kalkylator">Din profil</a></li>
+        <li><a href="#scenarion">Scenarion</a></li>
+        <li><a href="#livslopp">Livslopp</a></li>
         <li><a href="#historik">Historik</a></li>
         <li><a href="#metod">Metod</a></li>
       </ul>
@@ -586,109 +586,38 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
 <hr class="div">
 
-<!-- LIVSLOPP — flyttat upp som sektion #2, direkt synlig hook -->
-<section class="section" id="livslopp" aria-label="Livsloppsdiagram">
+<!-- TL;DR — fyra teser som länkar in i sajten -->
+<section class="section" id="tldr" aria-label="Sammanfattning" style="padding:2rem 0">
   <div class="cw">
-    <p class="s-eye">Ålder 0–85</p>
-    <h2 class="s-title">Hela livet i ett diagram</h2>
-    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
+    <p class="s-eye" style="text-align:center;margin-bottom:.3rem">På 30 sekunder</p>
+    <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Fyra siffror som ramar in Sverige</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem">
 
-    <!-- Snabbval: verkliga svenska inkomstnivåer -->
-    <div style="margin:1.2rem 0 .6rem">
-      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
-        <button class="lc-preset" onclick="setLcInc(this,240)">
-          <span class="lc-preset-lbl">Lägsta decil</span>
-          <span class="lc-preset-val">240 tkr</span>
-          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,340)">
-          <span class="lc-preset-lbl">Median</span>
-          <span class="lc-preset-val">340 tkr</span>
-          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
-        </button>
-        <button class="lc-preset on" onclick="setLcInc(this,460)">
-          <span class="lc-preset-lbl">Genomsnitt</span>
-          <span class="lc-preset-val">460 tkr</span>
-          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,620)">
-          <span class="lc-preset-lbl">Övre skikt</span>
-          <span class="lc-preset-val">620 tkr</span>
-          <span class="lc-preset-sub">P80 — akademiker/chef</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,1000)">
-          <span class="lc-preset-lbl">Toppinkomst</span>
-          <span class="lc-preset-val">1 000 tkr</span>
-          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
-        </button>
-      </div>
+      <a href="#budget" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(46,125,92,.14)';this.style.borderColor='rgba(46,125,92,.5)'" onmouseout="this.style.background='rgba(46,125,92,.08)';this.style.borderColor='rgba(46,125,92,.25)'">
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">3 011<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vart → budget</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Hela den offentliga sektorn 2024. Stat + kommuner + regioner. Det är vad COFOG-flödet från din skatt finansierar.</div>
+      </a>
+
+      <a href="#pristabell" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(200,151,58,.14)';this.style.borderColor='rgba(200,151,58,.5)'" onmouseout="this.style.background='rgba(200,151,58,.08)';this.style.borderColor='rgba(200,151,58,.25)'">
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber);line-height:1">55 000<span style="font-size:.9rem;opacity:.7"> kr</span></div>
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vad → prislistan</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Kostnaden för ett dygn på intensivvård. Du betalar 130 kr. Resten — och 24 andra prislappar — hittar du här.</div>
+      </a>
+
+      <a href="#oecd" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(91,63,140,.10);border:1px solid rgba(91,63,140,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(91,63,140,.16)';this.style.borderColor='rgba(91,63,140,.55)'" onmouseout="this.style.background='rgba(91,63,140,.10)';this.style.borderColor='rgba(91,63,140,.30)'">
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#9B7FD4;line-height:1">41,4<span style="font-size:.9rem;opacity:.7"> %</span></div>
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vs världen → jämförelse</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Sveriges skattekvot 2024. OECD-snitt: 33,8 %. Vad får vi för de extra 7,6 procentenheterna? Se uträkningen.</div>
+      </a>
+
+      <a href="#framtid" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(184,74,30,.10);border:1px solid rgba(184,74,30,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(184,74,30,.16)';this.style.borderColor='rgba(184,74,30,.55)'" onmouseout="this.style.background='rgba(184,74,30,.10)';this.style.borderColor='rgba(184,74,30,.30)'">
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#E58060;line-height:1">+90<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Varthän → framtid</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Kommunsektorns finansieringsgap 2030 enligt SKR. Utan reform: höjd skatt, lånefinansiering eller sänkt servicenivå.</div>
+      </a>
+
     </div>
-
-    <!-- Reglage + kontexttext -->
-    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
-      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
-      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
-        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
-      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
-      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
-    </div>
-
-    <!-- Diskonteringsval -->
-    <div style="display:flex;align-items:center;gap:.8rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <label style="font-size:.72rem;color:var(--ink2);display:flex;align-items:center;gap:5px;cursor:pointer">
-        <input type="checkbox" id="lc-discount" onchange="updateLifecycle()" style="accent-color:var(--green)">
-        <span>Diskonterat (2% real ränta)</span>
-      </label>
-      <span id="lc-discount-note" style="font-size:.65rem;color:var(--ink3);display:none">Nuvärden — tidiga förmåner (barnår) väger mer, sena förmåner (pensionsår) väger mindre</span>
-    </div>
-
-    <!-- Inkomstprofilval -->
-    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <span style="font-size:.72rem;color:var(--ink2)">Inkomstprofil:</span>
-      <button class="lc-profile-btn on" onclick="setLcProfile(this,'standard')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Standard</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'kort_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Kort utbildning</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'lang_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Lång utbildning</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'avbruten')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Avbruten karriär</button>
-      <span id="lc-profile-desc" style="font-size:.62rem;color:var(--ink3)">Studier till ~22, stabil inkomst 27–64</span>
-    </div>
-
-    <!-- Förväntad livslängd-val (mortalitet) -->
-    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <span style="font-size:.72rem;color:var(--ink2)">Förväntad livslängd:</span>
-      <select id="lc-mortality" onchange="setLcMortality(this.value)"
-        style="font-size:.7rem;padding:4px 10px;border-radius:14px;border:1px solid var(--border);background:var(--bg2);color:var(--ink2);cursor:pointer;font-family:var(--sans)">
-        <option value="">Ingen markering (visa hela 85 år)</option>
-        <option value="snitt">Genomsnitt 83 år (samtliga)</option>
-        <option value="man_förg">Man, förgymnasial — 78 år</option>
-        <option value="man_gym">Man, gymnasial — 81 år</option>
-        <option value="man_efterg">Man, eftergymnasial — 85 år</option>
-        <option value="kvinna_förg">Kvinna, förgymnasial — 83 år</option>
-        <option value="kvinna_gym">Kvinna, gymnasial — 84 år</option>
-        <option value="kvinna_efterg">Kvinna, eftergymnasial — 87 år</option>
-        <option value="låginkomst_man">Man, decil 1 (låg inkomst) — 75 år</option>
-        <option value="höginkomst_man">Man, decil 10 (hög inkomst) — 85 år</option>
-        <option value="låginkomst_kv">Kvinna, decil 1 — 81 år</option>
-        <option value="höginkomst_kv">Kvinna, decil 10 — 87 år</option>
-      </select>
-      <span id="lc-mortality-note" style="font-size:.62rem;color:var(--ink3)"></span>
-    </div>
-
-    <div id="lc-applied" style="font-size:.62rem;color:var(--ink3);margin:.2rem 0 .4rem;padding:.4rem .7rem;background:rgba(255,255,255,.03);border-left:2px solid rgba(46,125,92,.45);border-radius:0 3px 3px 0;line-height:1.5"></div>
-    <div id="lifecycle-chart" style="margin:1rem 0"></div>
-    <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <div id="lc-mortality-explain" style="display:none;font-size:.68rem;color:var(--ink2);margin-top:.8rem;padding:.6rem .8rem;background:rgba(255,255,255,.04);border-left:3px solid rgba(242,239,232,.4);border-radius:0 4px 4px 0;line-height:1.5"></div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15%. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2024-priser.</span></p>
-    <details style="margin-top:.4rem">
-      <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
-      <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
-        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21% exkl. pensionsavgift (reducerad 10,21% för 66+), moms ~15% av konsumtion (inkomstberoende sparkvot 5–25%, effektiv moms 14,5–18,5%).<br><br>
-        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
-        <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
-        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
-        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (29,7–35,6%), individuell förmånskonsumtion vs genomsnitt.
-      </div>
-    </details>
   </div>
 </section>
 
@@ -1384,6 +1313,119 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </section>
 
 <hr class="div">
+
+<!-- LIVSLOPP — djupdykning för den som vill se hela 0-85 i ett diagram.
+     Flyttades ned från position #2 till efter framtid 2026-05-29 — kritisk
+     review fann att den höga kognitiva tröskeln + ackumulerade osäkerheten
+     gjorde den till sajtens svagaste hook. Konkret prislista, COFOG-budget,
+     OECD-jämförelse och framtidens utmaningar är starkare öppningsargument. -->
+<section class="section" id="livslopp" aria-label="Livsloppsdiagram">
+  <div class="cw">
+    <p class="s-eye">Ålder 0–85</p>
+    <h2 class="s-title">Hela livet i ett diagram</h2>
+    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
+
+    <!-- Snabbval: verkliga svenska inkomstnivåer -->
+    <div style="margin:1.2rem 0 .6rem">
+      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
+        <button class="lc-preset" onclick="setLcInc(this,240)">
+          <span class="lc-preset-lbl">Lägsta decil</span>
+          <span class="lc-preset-val">240 tkr</span>
+          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,340)">
+          <span class="lc-preset-lbl">Median</span>
+          <span class="lc-preset-val">340 tkr</span>
+          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
+        </button>
+        <button class="lc-preset on" onclick="setLcInc(this,460)">
+          <span class="lc-preset-lbl">Genomsnitt</span>
+          <span class="lc-preset-val">460 tkr</span>
+          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,620)">
+          <span class="lc-preset-lbl">Övre skikt</span>
+          <span class="lc-preset-val">620 tkr</span>
+          <span class="lc-preset-sub">P80 — akademiker/chef</span>
+        </button>
+        <button class="lc-preset" onclick="setLcInc(this,1000)">
+          <span class="lc-preset-lbl">Toppinkomst</span>
+          <span class="lc-preset-val">1 000 tkr</span>
+          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Reglage + kontexttext -->
+    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
+      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
+      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
+        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
+      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
+      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
+    </div>
+
+    <!-- Diskonteringsval -->
+    <div style="display:flex;align-items:center;gap:.8rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
+      <label style="font-size:.72rem;color:var(--ink2);display:flex;align-items:center;gap:5px;cursor:pointer">
+        <input type="checkbox" id="lc-discount" onchange="updateLifecycle()" style="accent-color:var(--green)">
+        <span>Diskonterat (2% real ränta)</span>
+      </label>
+      <span id="lc-discount-note" style="font-size:.65rem;color:var(--ink3);display:none">Nuvärden — tidiga förmåner (barnår) väger mer, sena förmåner (pensionsår) väger mindre</span>
+    </div>
+
+    <!-- Inkomstprofilval -->
+    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
+      <span style="font-size:.72rem;color:var(--ink2)">Inkomstprofil:</span>
+      <button class="lc-profile-btn on" onclick="setLcProfile(this,'standard')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Standard</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'kort_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Kort utbildning</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'lang_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Lång utbildning</button>
+      <button class="lc-profile-btn" onclick="setLcProfile(this,'avbruten')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Avbruten karriär</button>
+      <span id="lc-profile-desc" style="font-size:.62rem;color:var(--ink3)">Studier till ~22, stabil inkomst 27–64</span>
+    </div>
+
+    <!-- Förväntad livslängd-val (mortalitet) -->
+    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
+      <span style="font-size:.72rem;color:var(--ink2)">Förväntad livslängd:</span>
+      <select id="lc-mortality" onchange="setLcMortality(this.value)"
+        style="font-size:.7rem;padding:4px 10px;border-radius:14px;border:1px solid var(--border);background:var(--bg2);color:var(--ink2);cursor:pointer;font-family:var(--sans)">
+        <option value="">Ingen markering (visa hela 85 år)</option>
+        <option value="snitt">Genomsnitt 83 år (samtliga)</option>
+        <option value="man_förg">Man, förgymnasial — 78 år</option>
+        <option value="man_gym">Man, gymnasial — 81 år</option>
+        <option value="man_efterg">Man, eftergymnasial — 85 år</option>
+        <option value="kvinna_förg">Kvinna, förgymnasial — 83 år</option>
+        <option value="kvinna_gym">Kvinna, gymnasial — 84 år</option>
+        <option value="kvinna_efterg">Kvinna, eftergymnasial — 87 år</option>
+        <option value="låginkomst_man">Man, decil 1 (låg inkomst) — 75 år</option>
+        <option value="höginkomst_man">Man, decil 10 (hög inkomst) — 85 år</option>
+        <option value="låginkomst_kv">Kvinna, decil 1 — 81 år</option>
+        <option value="höginkomst_kv">Kvinna, decil 10 — 87 år</option>
+      </select>
+      <span id="lc-mortality-note" style="font-size:.62rem;color:var(--ink3)"></span>
+    </div>
+
+    <div id="lc-applied" style="font-size:.62rem;color:var(--ink3);margin:.2rem 0 .4rem;padding:.4rem .7rem;background:rgba(255,255,255,.03);border-left:2px solid rgba(46,125,92,.45);border-radius:0 3px 3px 0;line-height:1.5"></div>
+    <div id="lifecycle-chart" style="margin:1rem 0"></div>
+    <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
+    <div id="lc-mortality-explain" style="display:none;font-size:.68rem;color:var(--ink2);margin-top:.8rem;padding:.6rem .8rem;background:rgba(255,255,255,.04);border-left:3px solid rgba(242,239,232,.4);border-radius:0 4px 4px 0;line-height:1.5"></div>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15%. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2024-priser.</span></p>
+    <details style="margin-top:.4rem">
+      <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
+      <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
+        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21% exkl. pensionsavgift (reducerad 10,21% för 66+), moms ~15% av konsumtion (inkomstberoende sparkvot 5–25%, effektiv moms 14,5–18,5%).<br><br>
+        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
+        <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
+        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
+        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (29,7–35,6%), individuell förmånskonsumtion vs genomsnitt.
+      </div>
+    </details>
+  </div>
+</section>
+
+<hr class="div">
+
 
 <!-- HISTORIK -->
 <section class="framtid-section" id="historik" aria-label="Historiska trender">

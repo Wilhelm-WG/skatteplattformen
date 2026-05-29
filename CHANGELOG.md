@@ -11,6 +11,24 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 ## [Unreleased]
 
 ### Changed
+- **Sidans narrativa båge omflyttad.** `#livslopp` ("Hela livet i ett diagram")
+  flyttades från position #2 (direkt efter hero) till efter `#framtid`.
+  Bakgrund: kritisk review fann att livsloppsdiagrammet — sajtens
+  analytiskt mest sofistikerade element — också är dess mest tveksamma
+  som öppningshook: hög kognitiv tröskel, osäkerhet som multipliceras
+  över 85 år, transaktionellt framing-laddat, ingen direkt aktuell
+  policyrelevans. Prislistan, budgeten, OECD-jämförelsen och framtids­
+  utmaningarna är starkare öppningsargument (konkret, faktabaserade,
+  policyrelevanta inför val 2026).
+- Ny **TL;DR-sektion** (`#tldr`) direkt efter hero: fyra stora siffror
+  som ramar in sajten — 3 011 Mdkr (vart), 55 000 kr IVA-dygn (vad),
+  41,4 % skattekvot (vs världen), +90 Mdkr finansieringsgap 2030
+  (varthän). Varje kort är en länk till respektive djupare sektion.
+  Resultat: användaren får sajtens fyra huvudteser i första vyn och
+  kan navigera direkt till intresseområde.
+- **Navigation omordnad** för att matcha nya narrativa båge:
+  Prislistan · Budgeten · Jämförelse · Framtid · Din profil ·
+  Scenarion · Livslopp · Historik · Metod
 - **Livsloppsberäkningen synkar nu hushållstyp, kapital och inkomstgradient
   från grundkalkylen.** Tidigare kasserade `calcLifecycle()` all variation
   och använde råa `STAGES`. Resultat: en barnfamilj (familj) vs ensamstående
