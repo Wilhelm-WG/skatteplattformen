@@ -26,9 +26,19 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
   (varthän). Varje kort är en länk till respektive djupare sektion.
   Resultat: användaren får sajtens fyra huvudteser i första vyn och
   kan navigera direkt till intresseområde.
+- **Personliga profil-sektioner flyttade efter framtid** (option B i
+  reviewen). Kalkylator, sensitivitet och scenarion låg tidigare före
+  budget/oecd/framtid, vilket avbröt fakta-bågen. Nu är ordningen:
+  konkret fakta (prislista → budget → oecd → framtid) → personligt
+  (kalkylator → scenarion) → djupdyk (livslopp). Detta fullföljer den
+  inverterade-pyramid-strukturen: användaren får sajtens fyra teser
+  först, kan sluta läsa när som helst med behållet värde, och
+  fördjupningen finns för den engagerade.
 - **Navigation omordnad** för att matcha nya narrativa båge:
   Prislistan · Budgeten · Jämförelse · Framtid · Din profil ·
-  Scenarion · Livslopp · Historik · Metod
+  Scenarion · Djupdyk · Historik · Metod
+  (Livslopp-länken döpt om till "Djupdyk" för att signalera dess nya
+  roll som fördjupning snarare än introduktion.)
 - **Livsloppsberäkningen synkar nu hushållstyp, kapital och inkomstgradient
   från grundkalkylen.** Tidigare kasserade `calcLifecycle()` all variation
   och använde råa `STAGES`. Resultat: en barnfamilj (familj) vs ensamstående

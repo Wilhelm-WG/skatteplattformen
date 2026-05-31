@@ -479,7 +479,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#framtid">Framtid</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
         <li><a href="#scenarion">Scenarion</a></li>
-        <li><a href="#livslopp">Livslopp</a></li>
+        <li><a href="#livslopp">Djupdyk</a></li>
         <li><a href="#historik">Historik</a></li>
         <li><a href="#metod">Metod</a></li>
       </ul>
@@ -648,191 +648,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </section>
 
 <hr class="div">
-
-<!-- CALCULATOR — LIFECYCLE REDESIGN -->
-<section class="calc-wrap" id="kalkylator">
-  <div class="container">
-    <p class="s-eye">Din välfärdsprofil</p>
-    <h2 class="s-title">Välfärdsstaten — ett kollektivt försäkringssystem över livet</h2>
-    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning. Modellen visar genomsnittsmönstret per åldersgrupp — inte ett individuellt sparkonto.</p>
-
-    <div class="calc-layout">
-      <!-- Controls -->
-      <div class="calc-ctrl">
-        <div>
-          <label>Din ålder</label>
-          <div class="sl-row">
-            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35">
-            <span class="sl-val" id="d-age">35 år</span>
-          </div>
-          <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon">👔</span><span id="stage-label">Mitt i arbetslivet</span></div>
-        </div>
-
-        <div>
-          <label>Bruttoinkomst per år</label>
-          <div class="sl-row">
-            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="500">
-            <span class="sl-val" id="d-inc">500 tkr</span>
-          </div>
-        </div>
-
-        <div>
-          <label>Hushållstyp</label>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
-            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">🧑 Ensamstående</button>
-            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👫 Par utan barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👨‍👩‍👧‍👦 Par med barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👩‍👧 Ensamstående m barn</button>
-          </div>
-          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
-        </div>
-
-        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
-          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
-            <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
-            <span>Inkludera pensionsavgift i skatt</span>
-          </label>
-          <span style="color:var(--ink3);font-size:.72rem;line-height:1.3">Av = standard (pensionsavgift 10,21% ger individuell pensionsrätt — inte en "skatt"). På = brutto arbetsgivaravgift 31,42%.</span>
-        </div>
-
-        <div>
-          <label>Kapitalinkomst per år <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(valfri)</span></label>
-          <div class="sl-row">
-            <input type="range" min="0" max="1000" value="0" id="s-kapital" step="10" aria-label="Kapitalinkomst per år i tusen kronor" oninput="updateCalc()">
-            <span class="sl-val" id="d-kapital">0 tkr</span>
-          </div>
-          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.2rem">Utdelning, ränta, kapitalvinst, uthyrning. Beskattas med 30% (schablon). Lägg till för en mer komplett bild av din totala skattesituation.</span>
-        </div>
-
-        <div class="method-note">
-          <strong>Vad mäts här?</strong><br>
-          Offentliga tjänster och förmåner du konsumerar <em>i år</em>, baserat på din ålder och livsfas. Inkluderar hela den offentliga sektorn (3 011 Mdkr 2024).
-          <br><br>
-          <strong>Vad visas inte?</strong><br>
-          Inkomstpension är avgiftsbaserad — dina egna inbetalningar, inte en "skatteförmån". Vi visar inte heller ett "livstids-netto" — se nedan varför.
-        </div>
-      </div>
-
-      <!-- Result -->
-      <div class="c-result">
-
-        <!-- Annual welfare bars -->
-        <div class="annual-card">
-          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2024 priser)</div>
-          <div class="welfare-bars" id="welfare-bars"></div>
-          <div class="w-total">
-            <span class="wt-l">Totalt värde offentliga tjänster &amp; förmåner</span>
-            <span class="wt-v" id="w-total">— tkr</span>
-          </div>
-        </div>
-
-        <!-- Annual tax context -->
-        <div class="annual-card" id="tax-card">
-          <div class="card-label">Skatt du betalar i år (vid <span id="tax-inc-label">500</span> tkr/år)</div>
-          <div id="tax-breakdown" style="display:flex;flex-direction:column;gap:.5rem"></div>
-        </div>
-
-        <!-- Ditt skattekvitto -->
-        <div class="annual-card" id="receipt-card" style="display:none">
-          <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
-          <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
-          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.35);line-height:1.5">
-            Fördelningen baseras på COFOG 2024 (hela offentliga sektorn 3 011 Mdkr). Alla skatter (kommunal, statlig, moms, arbetsgivaravgifter minus jobbskatteavdrag) fördelas proportionellt.
-          </div>
-        </div>
-
-        <!-- Marginalskatt-visualisering -->
-        <div class="annual-card" id="marginal-card" style="display:none">
-          <div class="card-label">Marginalskatt — incitamentsstruktur</div>
-          <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
-          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.3);line-height:1.5">
-            Marginalskatt = kommunalskatt + ev. statlig skatt + arbetsgivaravgift på den sista intjänade kronan. Visar incitamentseffekten: hur mycket av en löneökning du (och din arbetsgivare) behåller vs. betalar i skatt.
-          </div>
-        </div>
-
-        <!-- Lifecycle bar + solidarity -->
-        <div class="contract-card">
-          <div class="card-label">Livscykeln i välfärdsmodellen — var befinner du dig?</div>
-          <div class="lifecycle-bar" id="lc-bar">
-            <div class="lc-seg lc-taker" id="lcseg-taker1" style="width:22%">Barn &amp; elev</div>
-            <div class="lc-seg lc-payer" id="lcseg-payer" style="width:54%">Arbetsför ålder</div>
-            <div class="lc-seg lc-taker" id="lcseg-taker2" style="width:24%">Senior &amp; pensionär</div>
-            <div class="lc-marker" id="lc-marker" style="left:0%"></div>
-          </div>
-          <div class="lc-legend">
-            <div class="lc-leg"><div class="lc-dot" style="background:rgba(46,125,92,.55)"></div>Nettotagare av offentliga tjänster</div>
-            <div class="lc-leg"><div class="lc-dot" style="background:rgba(200,151,58,.45)"></div>Nettobidragsgivare</div>
-          </div>
-          <div style="margin-top:1.25rem" id="lifecycle-text"></div>
-        </div>
-
-        <!-- Solidarity quote — normativ tolkning, ej empirisk fakta -->
-        <div class="solidarity-box">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Perspektiv</span></div>
-          <p class="solidarity-text" id="solidarity-text"></p>
-        </div>
-
-        <!-- Jämförelse -->
-        <div style="margin-top:.75rem;border:1px dashed var(--border);border-radius:5px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap">
-          <div>
-            <div style="font-size:.72rem;font-weight:500;color:var(--ink2)">Jämför med en annan profil</div>
-            <div style="font-size:.63rem;color:var(--ink3)">Ställ din profil mot t.ex. en pensionär eller ett barn</div>
-          </div>
-          <button onclick="toggleCompare()" id="compare-toggle-btn" style="font-size:.72rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap">Öppna jämförelse ↓</button>
-        </div>
-        <div id="compare-panel" style="display:none;margin-top:1rem">
-          <div class="annual-card">
-            <div class="card-label">Jämför — ange en annan profil</div>
-            <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem">
-              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
-                Ålder <span id="d-age2" style="font-family:var(--mono);color:var(--amber)">65 år</span>
-                <input type="range" id="s-age2" min="0" max="85" value="65" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
-              </label>
-              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
-                Inkomst <span id="d-inc2" style="font-family:var(--mono);color:var(--amber)">300 tkr</span>
-                <input type="range" id="s-inc2" min="0" max="1500" step="10" value="300" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
-              </label>
-            </div>
-            <div id="compare-result"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SENSITIVITETSANALYS / TORNADO -->
-<section class="section" id="sensitivitet" aria-label="Sensitivitetsanalys" style="padding:2.5rem 0;background:var(--bg2)">
-  <div class="cw">
-    <p class="s-eye">Hur känslig är modellen?</p>
-    <h2 class="s-title">Sensitivitetsanalys</h2>
-    <p class="s-sub">Tornadodiagrammet visar hur ditt nettoresultat ändras vid rimliga variationer i modellens nyckelparametrar. Basfall: 35 år, 340 tkr inkomst.</p>
-    <div id="tornado-chart" style="margin-top:1.5rem"></div>
-    <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar effekten av att variera en parameter medan övriga hålls konstanta (ceteris paribus). Avläses som ändring i kronor/år relativt basfallet.</p>
-  </div>
-</section>
-
-<hr class="div">
-
-<!-- SCENARION -->
-<section class="section" id="scenarion" aria-label="Livssituationer och scenarion">
-  <div class="cw">
-    <p class="s-eye">Vad händer i din situation?</p>
-    <h2 class="s-title">Fyra livssituationer</h2>
-    <p class="s-sub">Hur ser förmåner och skatt ut för olika hushållstyper? Välj ett scenario eller justera med kalkylatorn ovan.</p>
-    <div class="scen-tabs">
-      <button class="scen-tab on" onclick="showScen(this,'barnfamilj')">👨‍👩‍👧‍👦 Barnfamilj</button>
-      <button class="scen-tab" onclick="showScen(this,'ensamstaende')">🧑 Ensamstående</button>
-      <button class="scen-tab" onclick="showScen(this,'kronisk')">🏥 Kronisk sjukdom</button>
-      <button class="scen-tab" onclick="showScen(this,'anhorigvardare')">❤️ Anhörigvårdare</button>
-    </div>
-    <div id="scen-panels"></div>
-  </div>
-</section>
-
-<hr class="div">
-
 <!-- BUDGET -->
 <section class="budget-section" id="budget" aria-label="Statsbudgeten">
   <div class="cw">
@@ -1309,6 +1124,191 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <p class="ft-source">Källor: Riksgälden statsskuldsstatistik 2025, SCB NR0103, IMF World Economic Outlook 2024, ESV Statsbudgetens utfall.</p>
     </div>
 
+  </div>
+</section>
+
+<hr class="div">
+
+
+<!-- CALCULATOR — LIFECYCLE REDESIGN -->
+<section class="calc-wrap" id="kalkylator">
+  <div class="container">
+    <p class="s-eye">Din välfärdsprofil</p>
+    <h2 class="s-title">Välfärdsstaten — ett kollektivt försäkringssystem över livet</h2>
+    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning. Modellen visar genomsnittsmönstret per åldersgrupp — inte ett individuellt sparkonto.</p>
+
+    <div class="calc-layout">
+      <!-- Controls -->
+      <div class="calc-ctrl">
+        <div>
+          <label>Din ålder</label>
+          <div class="sl-row">
+            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35">
+            <span class="sl-val" id="d-age">35 år</span>
+          </div>
+          <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon">👔</span><span id="stage-label">Mitt i arbetslivet</span></div>
+        </div>
+
+        <div>
+          <label>Bruttoinkomst per år</label>
+          <div class="sl-row">
+            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="500">
+            <span class="sl-val" id="d-inc">500 tkr</span>
+          </div>
+        </div>
+
+        <div>
+          <label>Hushållstyp</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
+            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">🧑 Ensamstående</button>
+            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👫 Par utan barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👨‍👩‍👧‍👦 Par med barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👩‍👧 Ensamstående m barn</button>
+          </div>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
+        </div>
+
+        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
+            <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
+            <span>Inkludera pensionsavgift i skatt</span>
+          </label>
+          <span style="color:var(--ink3);font-size:.72rem;line-height:1.3">Av = standard (pensionsavgift 10,21% ger individuell pensionsrätt — inte en "skatt"). På = brutto arbetsgivaravgift 31,42%.</span>
+        </div>
+
+        <div>
+          <label>Kapitalinkomst per år <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(valfri)</span></label>
+          <div class="sl-row">
+            <input type="range" min="0" max="1000" value="0" id="s-kapital" step="10" aria-label="Kapitalinkomst per år i tusen kronor" oninput="updateCalc()">
+            <span class="sl-val" id="d-kapital">0 tkr</span>
+          </div>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.2rem">Utdelning, ränta, kapitalvinst, uthyrning. Beskattas med 30% (schablon). Lägg till för en mer komplett bild av din totala skattesituation.</span>
+        </div>
+
+        <div class="method-note">
+          <strong>Vad mäts här?</strong><br>
+          Offentliga tjänster och förmåner du konsumerar <em>i år</em>, baserat på din ålder och livsfas. Inkluderar hela den offentliga sektorn (3 011 Mdkr 2024).
+          <br><br>
+          <strong>Vad visas inte?</strong><br>
+          Inkomstpension är avgiftsbaserad — dina egna inbetalningar, inte en "skatteförmån". Vi visar inte heller ett "livstids-netto" — se nedan varför.
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="c-result">
+
+        <!-- Annual welfare bars -->
+        <div class="annual-card">
+          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2024 priser)</div>
+          <div class="welfare-bars" id="welfare-bars"></div>
+          <div class="w-total">
+            <span class="wt-l">Totalt värde offentliga tjänster &amp; förmåner</span>
+            <span class="wt-v" id="w-total">— tkr</span>
+          </div>
+        </div>
+
+        <!-- Annual tax context -->
+        <div class="annual-card" id="tax-card">
+          <div class="card-label">Skatt du betalar i år (vid <span id="tax-inc-label">500</span> tkr/år)</div>
+          <div id="tax-breakdown" style="display:flex;flex-direction:column;gap:.5rem"></div>
+        </div>
+
+        <!-- Ditt skattekvitto -->
+        <div class="annual-card" id="receipt-card" style="display:none">
+          <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
+          <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
+          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.35);line-height:1.5">
+            Fördelningen baseras på COFOG 2024 (hela offentliga sektorn 3 011 Mdkr). Alla skatter (kommunal, statlig, moms, arbetsgivaravgifter minus jobbskatteavdrag) fördelas proportionellt.
+          </div>
+        </div>
+
+        <!-- Marginalskatt-visualisering -->
+        <div class="annual-card" id="marginal-card" style="display:none">
+          <div class="card-label">Marginalskatt — incitamentsstruktur</div>
+          <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
+          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.3);line-height:1.5">
+            Marginalskatt = kommunalskatt + ev. statlig skatt + arbetsgivaravgift på den sista intjänade kronan. Visar incitamentseffekten: hur mycket av en löneökning du (och din arbetsgivare) behåller vs. betalar i skatt.
+          </div>
+        </div>
+
+        <!-- Lifecycle bar + solidarity -->
+        <div class="contract-card">
+          <div class="card-label">Livscykeln i välfärdsmodellen — var befinner du dig?</div>
+          <div class="lifecycle-bar" id="lc-bar">
+            <div class="lc-seg lc-taker" id="lcseg-taker1" style="width:22%">Barn &amp; elev</div>
+            <div class="lc-seg lc-payer" id="lcseg-payer" style="width:54%">Arbetsför ålder</div>
+            <div class="lc-seg lc-taker" id="lcseg-taker2" style="width:24%">Senior &amp; pensionär</div>
+            <div class="lc-marker" id="lc-marker" style="left:0%"></div>
+          </div>
+          <div class="lc-legend">
+            <div class="lc-leg"><div class="lc-dot" style="background:rgba(46,125,92,.55)"></div>Nettotagare av offentliga tjänster</div>
+            <div class="lc-leg"><div class="lc-dot" style="background:rgba(200,151,58,.45)"></div>Nettobidragsgivare</div>
+          </div>
+          <div style="margin-top:1.25rem" id="lifecycle-text"></div>
+        </div>
+
+        <!-- Solidarity quote — normativ tolkning, ej empirisk fakta -->
+        <div class="solidarity-box">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Perspektiv</span></div>
+          <p class="solidarity-text" id="solidarity-text"></p>
+        </div>
+
+        <!-- Jämförelse -->
+        <div style="margin-top:.75rem;border:1px dashed var(--border);border-radius:5px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap">
+          <div>
+            <div style="font-size:.72rem;font-weight:500;color:var(--ink2)">Jämför med en annan profil</div>
+            <div style="font-size:.63rem;color:var(--ink3)">Ställ din profil mot t.ex. en pensionär eller ett barn</div>
+          </div>
+          <button onclick="toggleCompare()" id="compare-toggle-btn" style="font-size:.72rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap">Öppna jämförelse ↓</button>
+        </div>
+        <div id="compare-panel" style="display:none;margin-top:1rem">
+          <div class="annual-card">
+            <div class="card-label">Jämför — ange en annan profil</div>
+            <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem">
+              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+                Ålder <span id="d-age2" style="font-family:var(--mono);color:var(--amber)">65 år</span>
+                <input type="range" id="s-age2" min="0" max="85" value="65" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
+              </label>
+              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+                Inkomst <span id="d-inc2" style="font-family:var(--mono);color:var(--amber)">300 tkr</span>
+                <input type="range" id="s-inc2" min="0" max="1500" step="10" value="300" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
+              </label>
+            </div>
+            <div id="compare-result"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSITIVITETSANALYS / TORNADO -->
+<section class="section" id="sensitivitet" aria-label="Sensitivitetsanalys" style="padding:2.5rem 0;background:var(--bg2)">
+  <div class="cw">
+    <p class="s-eye">Hur känslig är modellen?</p>
+    <h2 class="s-title">Sensitivitetsanalys</h2>
+    <p class="s-sub">Tornadodiagrammet visar hur ditt nettoresultat ändras vid rimliga variationer i modellens nyckelparametrar. Basfall: 35 år, 340 tkr inkomst.</p>
+    <div id="tornado-chart" style="margin-top:1.5rem"></div>
+    <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar effekten av att variera en parameter medan övriga hålls konstanta (ceteris paribus). Avläses som ändring i kronor/år relativt basfallet.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SCENARION -->
+<section class="section" id="scenarion" aria-label="Livssituationer och scenarion">
+  <div class="cw">
+    <p class="s-eye">Vad händer i din situation?</p>
+    <h2 class="s-title">Fyra livssituationer</h2>
+    <p class="s-sub">Hur ser förmåner och skatt ut för olika hushållstyper? Välj ett scenario eller justera med kalkylatorn ovan.</p>
+    <div class="scen-tabs">
+      <button class="scen-tab on" onclick="showScen(this,'barnfamilj')">👨‍👩‍👧‍👦 Barnfamilj</button>
+      <button class="scen-tab" onclick="showScen(this,'ensamstaende')">🧑 Ensamstående</button>
+      <button class="scen-tab" onclick="showScen(this,'kronisk')">🏥 Kronisk sjukdom</button>
+      <button class="scen-tab" onclick="showScen(this,'anhorigvardare')">❤️ Anhörigvårdare</button>
+    </div>
+    <div id="scen-panels"></div>
   </div>
 </section>
 
