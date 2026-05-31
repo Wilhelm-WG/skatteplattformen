@@ -496,11 +496,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#budget">Budgeten</a></li>
         <li><a href="#oecd">Jämförelse</a></li>
+        <li><a href="#sjukvard">Sjukvård</a></li>
         <li><a href="#framtid">Framtid</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
-        <li><a href="#scenarion">Scenarion</a></li>
         <li><a href="#livslopp">Djupdyk</a></li>
-        <li><a href="#historik">Historik</a></li>
         <li><a href="#metod">Metod</a></li>
       </ul>
       <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela fakta</a>
@@ -552,7 +551,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
             <div class="hsk-cofog-arrow">→</div>
           </a>
 
-          <a href="#oecd" class="hsk-cofog-row" aria-label="Hälso- och sjukvård: 15 kr av varje 100 kr">
+          <a href="#sjukvard" class="hsk-cofog-row" aria-label="Hälso- och sjukvård: 15 kr av varje 100 kr">
             <div class="hsk-cofog-amount">15<sub>kr</sub></div>
             <div class="hsk-cofog-lbl">Hälso- &amp; sjukvård</div>
             <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:39%;background:#2E7D5C"></div></div>
@@ -781,6 +780,181 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
 
     <div id="oecd-panels"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SVENSK SJUKVÅRD — UTFALL
+     Egen sektion eftersom sjukvård är 20% av offentliga utgifter och har
+     starka utfallsmått (cancer/hjärta i världstopp, kapacitet bland EU:s
+     svagaste) som förtjänar mer plats än en flik under #oecd. -->
+<section class="framtid-section" id="sjukvard" aria-label="Svensk sjukvård — utfall">
+  <div class="container">
+    <p class="s-eye">Världsklass och kapacitetsbrist samtidigt</p>
+    <h2 class="s-title">Svensk sjukvård — vad får vi för pengarna?</h2>
+    <p class="s-sub">Sverige spenderar <strong>11,2 % av BNP</strong> på hälso- och sjukvård — högst i Norden. Svaret på "vad får vi" beror på vilken dimension du frågar om: <em>kapacitet</em> är svagast, <em>utfall vid sjukdom</em> bland världens bästa, <em>tillgänglighet</em> ojämn.</p>
+
+    <!-- Snabbfakta-rad -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1.5rem 0 2rem">
+      <div style="padding:1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:5px">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">83,5<span style="font-size:.85rem;opacity:.6"> år</span></div>
+        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
+        <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Högst i Norden (OECD: 80,7)</div>
+      </div>
+      <div style="padding:1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:5px">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">92<span style="font-size:.85rem;opacity:.6"> %</span></div>
+        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Bröstcancer 5-årsöverlevnad</div>
+        <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Bland världens högsta (OECD: 87)</div>
+      </div>
+      <div style="padding:1rem;background:rgba(184,74,30,.08);border:1px solid rgba(184,74,30,.3);border-radius:5px">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">1,9<span style="font-size:.85rem;opacity:.6"> /1000</span></div>
+        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
+        <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Lägst i EU (OECD: 4,3)</div>
+      </div>
+      <div style="padding:1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.3);border-radius:5px">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber);line-height:1">~50<span style="font-size:.85rem;opacity:.6"> %</span></div>
+        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
+        <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Inom 3 dagar (mål: 100 %)</div>
+      </div>
+    </div>
+
+    <!-- TRE TEMATISKA BLOCK -->
+    <div class="ft-tabs">
+      <button class="ft-tab on" onclick="showSjukv(this,'kapacitet')">🛏️ Kapacitet</button>
+      <button class="ft-tab" onclick="showSjukv(this,'utfall')">🏆 Utfall vid sjukdom</button>
+      <button class="ft-tab" onclick="showSjukv(this,'tillganglighet')">⏱️ Tillgänglighet</button>
+    </div>
+
+    <!-- KAPACITET -->
+    <div class="ft-panel on" id="sjukv-kapacitet">
+      <p class="ft-intro">Sverige har medvetet valt en öppenvårdsstrategi — färre slutenvårdsplatser, fler insatser hemma. Det fungerar tills systemet utsätts för chock (pandemi, influensasäsong). Lägst antal sängar i EU.</p>
+
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Vårdplatser per 1 000 invånare</div>
+          <div class="ft-big">1,9<sub> (2022)</sub></div>
+          <div class="ft-desc">År 2000: 3,5. År 2022: 1,9. Halvering på 22 år. Finland 2,8 · Norge 2,5 · Danmark 2,4 · OECD 4,3 · Tyskland 7,8.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Disponibla vårdplatser stängda</div>
+          <div class="ft-big">2 230<sub> (IVO 2024)</sub></div>
+          <div class="ft-desc">Sjuksköterskebrist är primär orsak — inte byggnader. 21 av 21 regioner rapporterar bemanningsbrist. 43 % av patienter märker bristen i form av tidigare hemskrivning eller utebliven plats.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Läkare per 1 000 invånare</div>
+          <div class="ft-big">4,4<sub> (2023)</sub></div>
+          <div class="ft-desc">Över OECD-snittet (3,7). Men distribution är skev: Stockholm 5,8 / Norrbotten 3,1. Brist i primärvården — specialistläkare är fler än allmänläkare per capita.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Vårdplatser per 1 000 invånare — internationell jämförelse</div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Tyskland</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:#888780"></div></div><span class="ft-bar-val">7,8</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Frankrike</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:74%;background:#888780"></div></div><span class="ft-bar-val">5,8</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">OECD-snitt</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:55%;background:var(--amber)"></div></div><span class="ft-bar-val">4,3</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Finland</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:36%;background:#888780"></div></div><span class="ft-bar-val">2,8</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Norge</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:32%;background:#888780"></div></div><span class="ft-bar-val">2,5</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Danmark</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:31%;background:#888780"></div></div><span class="ft-bar-val">2,4</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Sverige</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:24%;background:#B84A1E"></div></div><span class="ft-bar-val">1,9</span></div>
+      </div>
+
+      <div class="ft-callout" style="margin-top:1.2rem">
+        <strong>Strukturellt val, inte slump:</strong> Sveriges strategi sedan 1990-talet har varit att flytta vård ut ur sjukhus — till primärvård, hemsjukvård och öppenvård. Den klarar normalläget med färre sängar. Men under covid-pandemin och vinterns influensa-toppar blottas systemets svagaste länk: inga "buffert"-platser att skala upp till.
+      </div>
+      <p class="ft-source">Källor: OECD Health at a Glance: Europe 2024, IVO Tillsynsrapport 2024, Socialstyrelsen Nationella vårdkapaciteten 2024, SKR.</p>
+    </div>
+
+    <!-- UTFALL VID SJUKDOM -->
+    <div class="ft-panel" id="sjukv-utfall">
+      <p class="ft-intro">När du <em>väl</em> får vård är svensk sjukvård bland världens bästa. Cancer-överlevnad och hjärt-utfall ligger i topp 5 globalt. Det är där sajtens läsare — om de blir allvarligt sjuka — kommer att se det system de finansierat.</p>
+
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Bröstcancer 5-årsöverlevnad</div>
+          <div class="ft-big">92,3 %<sub> (2016–2020)</sub></div>
+          <div class="ft-desc">OECD-snitt 87,0 %. Sverige bland topp 3 globalt — jämfört med USA 91,2 % (men där betalar du). Tidig upptäckt (mammografi-program 40–74 år) ger 30 % bättre överlevnad än sen upptäckt.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Hjärtinfarkt — 30-dagars dödlighet</div>
+          <div class="ft-big">3,5 %<sub> (Swedeheart 2024)</sub></div>
+          <div class="ft-desc">OECD-snitt 6,7 %. Sverige bäst i Norden tillsammans med Norge. PCI-tillgång inom 90 min för 95 % av fall — bland världens snabbaste.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Stroke — 30-dagars dödlighet</div>
+          <div class="ft-big">7,2 %<sub> (2023)</sub></div>
+          <div class="ft-desc">OECD-snitt 12,4 %. Snabb trombolys + trombektomi ger Sverige nästan halverad dödlighet jämfört med snittet. Riksstroke-registret driver kvalitetsförbättring.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Spädbarnsdödlighet</div>
+          <div class="ft-big">2,2<sub> per 1 000 (2024)</sub></div>
+          <div class="ft-desc">OECD-snitt 5,7. Hela Norden i topp 5 globalt. Mödravård + barnhälsovård är fortfarande Sveriges starkaste välfärdsinvestering — 99 % deltagande på BVC.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Bröstcancer 5-årsöverlevnad (% överlevande efter diagnos)</div>
+        <div class="ft-bar-row"><span class="ft-bar-label">USA</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:99%;background:#888780"></div></div><span class="ft-bar-val">91,2 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Sverige</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:var(--green)"></div></div><span class="ft-bar-val">92,3 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Norge</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:98%;background:#888780"></div></div><span class="ft-bar-val">90,5 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Finland</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:97%;background:#888780"></div></div><span class="ft-bar-val">89,8 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Danmark</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:95%;background:#888780"></div></div><span class="ft-bar-val">88,1 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">OECD-snitt</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:94%;background:var(--amber)"></div></div><span class="ft-bar-val">87,0 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">UK</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:92%;background:#888780"></div></div><span class="ft-bar-val">85,6 %</span></div>
+      </div>
+
+      <div class="ft-callout" style="margin-top:1.2rem">
+        <strong>Vad utfallsdata egentligen säger:</strong> Sverige har gjort ett medvetet vägval — färre sängar men bättre process för dem som väl får vård. Resultatet syns i livshotande tillstånd: cancer, hjärtinfarkt, stroke, förlossning. Det syns inte i "lätt" sjukdom — vårdcentrals-besöket där väntetiden är 5 dagar istället för 3 påverkar inte ditt liv mätbart, men det påverkar din upplevelse av att finansiera systemet.
+      </div>
+      <p class="ft-source">Källor: OECD Cancer Profiles 2025, Swedeheart Annual Report 2024, Riksstroke 2024, OECD Health at a Glance 2025.</p>
+    </div>
+
+    <!-- TILLGÄNGLIGHET -->
+    <div class="ft-panel" id="sjukv-tillganglighet">
+      <p class="ft-intro">Här ligger systemets svagaste punkt och dess största politiska tema. Vårdgarantin från 2005 lovade 0–7–90–90-dagar (kontakt–besök–utredning–behandling). Verkligheten 2024 ligger långt efter målen i de flesta regioner.</p>
+
+      <div class="ft-grid">
+        <div class="ft-card">
+          <div class="ft-card-title">Primärvård inom 3 dagar</div>
+          <div class="ft-big">~50 %<sub> (SKR 2024)</sub></div>
+          <div class="ft-desc">Vårdgaranti-mål: 100 %. Stockholm 62 %, Norrbotten 41 %. Regionvariationen är systemets största likvärdighetsproblem. Privata vårdcentraler ligger ~10 pp högre än offentliga.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Planerad operation 90 dagar</div>
+          <div class="ft-big">~70 %<sub> (Q4 2024)</sub></div>
+          <div class="ft-desc">Vårdgaranti-mål: 100 %. Sjönk från ~80 % före pandemin. Höftleds-, ögon- och kataraktoperationer har längst köer. Privat utförd vård via vårdval ligger 15 pp högre.</div>
+        </div>
+        <div class="ft-card">
+          <div class="ft-card-title">Specialistbesök 90 dagar</div>
+          <div class="ft-big">~62 %<sub> (Q4 2024)</sub></div>
+          <div class="ft-desc">Mål: 100 %. Psykiatri är svagaste fältet — BUP-väntetiderna är politiskt symbol för utmaningen. ~30 % av barn väntar längre än 90 dagar på första bedömning.</div>
+        </div>
+      </div>
+
+      <div class="ft-bar-wrap">
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Vårdgaranti-uppfyllelse per region (primärvård 0–3 dagar, 2024)</div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Stockholm</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:62%;background:var(--green)"></div></div><span class="ft-bar-val">62 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Halland</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:58%;background:var(--green)"></div></div><span class="ft-bar-val">58 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Riksgenomsnitt</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:50%;background:var(--amber)"></div></div><span class="ft-bar-val">50 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Värmland</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:46%;background:var(--amber)"></div></div><span class="ft-bar-val">46 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Norrbotten</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:41%;background:#B84A1E"></div></div><span class="ft-bar-val">41 %</span></div>
+        <div class="ft-bar-row"><span class="ft-bar-label">Mål (vårdgaranti)</span><div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:rgba(255,255,255,.15)"></div></div><span class="ft-bar-val">100 %</span></div>
+      </div>
+
+      <div class="ft-callout" style="margin-top:1.2rem">
+        <strong>Den politiska bröstkorgen:</strong> Vårdgarantins efterlevnad är det mått som väljare och politiker oftast diskuterar — eftersom det är det som <em>upplevs</em>. När kapaciteten är låg (1,9 sängar/1000) och personalbristen tvingar regionerna att stänga platser, fördröjs både akut och planerad vård. Det syns inte i cancer-överlevnad — men i din egen morgon på telefon med 1177.
+      </div>
+      <p class="ft-source">Källor: SKR Vården i siffror 2024, Socialstyrelsen Vårdgaranti-uppföljning 2024, Inspektionen för vård och omsorg (IVO).</p>
+    </div>
+
+    <div style="margin-top:2rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
+      <strong>Vill du djupdyka?</strong>
+      <a href="#pristabell" style="color:var(--green);text-decoration:none;font-weight:500;margin-left:.4rem">→ Prislistan: 11 prislappar inom sjukvård</a>
+      <span style="opacity:.5;margin:0 .4rem">·</span>
+      <a href="#oecd" style="color:var(--green);text-decoration:none;font-weight:500">→ Hela OECD-jämförelsen</a>
+      <span style="opacity:.5;margin:0 .4rem">·</span>
+      <a href="#framtid" style="color:var(--green);text-decoration:none;font-weight:500">→ Personalbrist 2030</a>
+    </div>
   </div>
 </section>
 
@@ -3378,6 +3552,16 @@ function showHist(btn, key){
   section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
   btn.classList.add('on');
   const panel = document.getElementById('hist-'+key);
+  if(panel) panel.classList.add('on');
+}
+
+// Samma mönster för #sjukvard-flikarna (kapacitet / utfall / tillganglighet)
+function showSjukv(btn, key){
+  const section = btn.closest('section');
+  section.querySelectorAll('.ft-tab').forEach(b=>b.classList.remove('on'));
+  section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  const panel = document.getElementById('sjukv-'+key);
   if(panel) panel.classList.add('on');
 }
 

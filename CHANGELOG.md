@@ -10,6 +10,29 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added
+- **Ny sektion `#sjukvard` — "Svensk sjukvård — vad får vi för pengarna?"**
+  mellan #oecd och #framtid. Egen sektion eftersom sjukvård är 20 % av
+  offentliga utgifter och har starka utfallsmått (cancer/hjärta i världs-
+  topp, kapacitet bland EU:s svagaste) som förtjänar mer plats än en
+  flik under #oecd. Strukturen är: snabbfakta-rad (4 stora siffror:
+  83,5 år medellivslängd · 92 % bröstcancer · 1,9/1000 vårdplatser ·
+  ~50 % vårdgaranti) + tre flikar:
+    🛏️ **Kapacitet** — vårdplatser/1000, 2 230 stängda platser, läkare/1000,
+    internationell stapeljämförelse (Sverige lägst i Norden).
+    🏆 **Utfall vid sjukdom** — bröstcancer 5-årsöverlevnad 92,3 %,
+    hjärtinfarkt 30-dagars 3,5 %, stroke 7,2 %, spädbarnsdödlighet 2,2.
+    ⏱️ **Tillgänglighet** — primärvård 3 dagar ~50 %, planerad operation
+    90 dagar ~70 %, specialist 90 dagar ~62 %, regionvariation Stockholm
+    62 % vs Norrbotten 41 %.
+  Pedagogisk vinkel: Sverige har gjort vägval — färre sängar och längre
+  väntetider i utbyte mot världsklass-utfall när du väl får vård.
+- Nav uppdaterad med "Sjukvård"-länk (Scenarion + Historik tagna bort
+  ur nav för att hålla den ren — fortfarande tillgängliga via inline-
+  länkar och scroll).
+- Hero COFOG-rad "Hälso- & sjukvård 15 kr" länkar nu till `#sjukvard`
+  istället för `#oecd`.
+
 ### Removed
 - **Hero-snabbkollens livscykel-vy borttagen.** `heroAge*`, `setHskInc`,
   `HSK_SHOCKS`, `heroAgeRender` med tillhörande knappar och slider tagna
