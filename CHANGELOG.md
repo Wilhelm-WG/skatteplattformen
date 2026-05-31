@@ -10,6 +10,41 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-05-31, v2)
+- **Hero ersatt: COFOG-vy → roterande prislapps-widget.** Användaren
+  identifierade att även COFOG-vyn signalerade "personlig kalkylator"
+  och att sajten istället borde börja med vad skatten konkret köper.
+  Ny widget visar 8 handplockade prislappar (IVA 55k, grundskola 152k,
+  MS 380k, LSS 1,3 Mkr, förskola 185k, demens 680k, cancer 420k,
+  höftleds-op 72k) som roterar var 6 sek. Pausa vid hover/focus,
+  manuella dots för navigation, respekterar `prefers-reduced-motion`.
+
+### Added (2026-05-31, v2)
+- **Ny sektion `#skatter` — "Skatter i korthet"** mellan hero och
+  prislistan. Pedagogisk grundförklaring av sex skatter: kommunalskatt
+  32,4 %, statlig inkomstskatt 20 %, moms 25/12/6 %, arbetsgivaravgift
+  31,42 %, kapitalskatt 30 %, effektiv skatt ~50 %. Färgkodade kort
+  (grön/amber/lila/röd) med kort förklaring + källa per skatt.
+  Sammanfattande callout under: "Skatteintäkterna 2024 fördelas så här".
+
+### Changed (2026-05-31, v2) — livscykel
+- **Livscykel-sektionen förenklad till statisk illustration.** Alla
+  interaktiva element borttagna: inkomst-preset-knappar (5 st),
+  inkomstslider, diskonteringstoggle, inkomstprofil-knappar (4 st),
+  mortalitets-dropdown (11 val), applied-badge, stat-cards och
+  mortality-explain-block. Behåller endast: disclaimer + statiskt
+  SVG-diagram (renderat vid init med 460 tkr/standard/nominellt) + tre
+  livsfas-kort (Mottagare → Bidragsgivare → Mottagare igen).
+  Bakgrund: användaren noterade att livscykeln "alltjämt är lite
+  missvisande" trots tidigare disclaimers. Ny strategi: behåll formen
+  som strukturillustration av välfärdslogiken, ta bort allt som ser
+  ut som en personlig kalkylator.
+
+### Changed (2026-05-31, v2) — navigation
+- Nav-ordning uppdaterad: Skatter (ny) · Prislistan · Budgeten ·
+  Sjukvård · Jämförelse · Framtid · Din profil · Metod. Djupdyk-länken
+  (livslopp) borttagen ur nav eftersom sektionen nu är så förenklad.
+
 ### Added
 - **Ny sektion `#sjukvard` — "Svensk sjukvård — vad får vi för pengarna?"**
   mellan #oecd och #framtid. Egen sektion eftersom sjukvård är 20 % av

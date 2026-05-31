@@ -112,25 +112,32 @@ h1 em{font-style:italic;color:var(--green)}
 .hh-btn.on{background:var(--green);border-color:var(--green);color:#fff}
 .lc-profile-btn:hover{border-color:var(--green);color:var(--green)}
 .lc-profile-btn.on{background:var(--green);border-color:var(--green);color:#fff}
-/* COFOG-vy i hero (ersatte livscykel-snabbkollen 2026-05) */
-.hsk-cofog-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
-.hsk-cofog-heading{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1.15;color:#fff;margin:.05rem 0 .8rem}
-.hsk-cofog-list{display:flex;flex-direction:column;gap:3px}
-.hsk-cofog-row{display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem;border-radius:5px;text-decoration:none;color:inherit;transition:background .15s;border:1px solid transparent}
-.hsk-cofog-row:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
-.hsk-cofog-amount{font-family:var(--mono);font-size:1.18rem;font-weight:700;color:#fff;min-width:56px;text-align:right;line-height:1}
-.hsk-cofog-amount sub{font-size:.6rem;color:rgba(255,255,255,.4);font-weight:400;margin-left:1px}
-.hsk-cofog-lbl{font-size:.78rem;color:rgba(255,255,255,.78);flex:0 0 130px}
-.hsk-cofog-bar-wrap{flex:1;height:9px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;min-width:40px}
-.hsk-cofog-bar-fill{height:100%;border-radius:2px;transition:width .4s ease}
-.hsk-cofog-arrow{font-size:.7rem;color:rgba(255,255,255,.3);transition:color .15s,transform .15s;flex-shrink:0;width:14px;text-align:right}
-.hsk-cofog-row:hover .hsk-cofog-arrow{color:var(--green);transform:translateX(2px)}
-.hsk-cofog-foot{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
-.hsk-cofog-foot a{color:var(--green);text-decoration:none;font-weight:500}
-.hsk-cofog-foot a:hover{text-decoration:underline}
+/* Hero: roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
+   Visar konkreta prislappar — direkt svar på "vad köper Sveriges skatt?". */
+.hsk-prislapp-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+.hsk-prislapp-heading{font-family:var(--serif);font-size:1.3rem;font-weight:700;line-height:1.2;color:#fff;margin:.05rem 0 .8rem}
+.hsk-prislapp-stage{min-height:175px;display:flex;flex-direction:column;justify-content:center;padding:.4rem 0;transition:opacity .35s ease}
+.hsk-prislapp-stage.fading{opacity:0}
+.hsk-prislapp-cat{display:inline-block;font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:10px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.55);margin-bottom:.5rem;align-self:flex-start}
+.hsk-prislapp-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.6rem}
+.hsk-prislapp-amount-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem}
+.hsk-prislapp-amount{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1;letter-spacing:-.02em}
+.hsk-prislapp-suf{font-family:var(--mono);font-size:.85rem;color:rgba(255,255,255,.4)}
+.hsk-prislapp-vs{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.45}
+.hsk-prislapp-vs strong{color:#fff}
+.hsk-prislapp-dots{display:flex;gap:6px;margin:.6rem 0 .3rem;justify-content:flex-start;align-items:center;flex-wrap:wrap}
+.hsk-prislapp-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);border:none;cursor:pointer;padding:0;transition:background .15s,transform .15s}
+.hsk-prislapp-dot:hover{background:rgba(255,255,255,.4)}
+.hsk-prislapp-dot.on{background:var(--green);transform:scale(1.15)}
+.hsk-prislapp-foot{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
+.hsk-prislapp-foot a{color:var(--green);text-decoration:none;font-weight:500}
+.hsk-prislapp-foot a:hover{text-decoration:underline}
+@media (prefers-reduced-motion: reduce){
+  .hsk-prislapp-stage{transition:none}
+}
 @media (max-width:520px){
-  .hsk-cofog-lbl{flex:0 0 90px;font-size:.72rem}
-  .hsk-cofog-amount{font-size:1rem;min-width:48px}
+  .hsk-prislapp-amount{font-size:1.6rem}
+  .hsk-prislapp-stage{min-height:200px}
 }
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
 .ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
@@ -447,13 +454,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <a href="#" class="nav-logo">Skatte<em>plattformen</em></a>
       <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Meny">☰</button>
       <ul class="nav-links" onclick="this.classList.remove('open')">
+        <li><a href="#skatter">Skatter</a></li>
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#budget">Budgeten</a></li>
-        <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#sjukvard">Sjukvård</a></li>
+        <li><a href="#oecd">Jämförelse</a></li>
         <li><a href="#framtid">Framtid</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
-        <li><a href="#livslopp">Djupdyk</a></li>
         <li><a href="#metod">Metod</a></li>
       </ul>
       <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela fakta</a>
@@ -481,58 +488,31 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
         </div>
       </div>
-      <!-- HERO SNABBKOLL — COFOG-vy (ersatte livscykel-snabbkollen 2026-05).
-           Direkt svar på rubrikfrågan: vart går varje krona? Fakta från SCB
-           COFOG 2024 (3 011 Mdkr). Klickbara block länkar till djupare sektioner. -->
-      <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll">
+      <!-- HERO SNABBKOLL — roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
+           Direkt svar: konkreta prislappar — vad köper svenska skattepengar?
+           Auto-rotation 6 sek, pausa på hover, manuella dots.
+           Datapunkter handplockade från CARDS-arrayen för bästa pedagogiska spann. -->
+      <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll" role="region" aria-label="Roterande prislappar — vad samhällskostnader är">
         <div class="hsk-accent-line" style="background:var(--green)"></div>
-        <div class="hsk-cofog-eyebrow">Av varje 100 kr i skatt 2024</div>
-        <h3 class="hsk-cofog-heading">Det här köper vi tillsammans</h3>
+        <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · 2024 priser</div>
+        <h3 class="hsk-prislapp-heading">Verkliga prislappar — vad samhället faktiskt betalar</h3>
 
-        <div class="hsk-cofog-list">
-
-          <a href="#budget" class="hsk-cofog-row" aria-label="Socialt skydd: 39 kr av varje 100 kr">
-            <div class="hsk-cofog-amount">39<sub>kr</sub></div>
-            <div class="hsk-cofog-lbl">Socialt skydd</div>
-            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:100%;background:#7B5FBC"></div></div>
-            <div class="hsk-cofog-arrow">→</div>
-          </a>
-
-          <a href="#pristabell" class="hsk-cofog-row" aria-label="Utbildning: 17 kr av varje 100 kr">
-            <div class="hsk-cofog-amount">17<sub>kr</sub></div>
-            <div class="hsk-cofog-lbl">Utbildning</div>
-            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:44%;background:#1E4A8C"></div></div>
-            <div class="hsk-cofog-arrow">→</div>
-          </a>
-
-          <a href="#sjukvard" class="hsk-cofog-row" aria-label="Hälso- och sjukvård: 15 kr av varje 100 kr">
-            <div class="hsk-cofog-amount">15<sub>kr</sub></div>
-            <div class="hsk-cofog-lbl">Hälso- &amp; sjukvård</div>
-            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:39%;background:#2E7D5C"></div></div>
-            <div class="hsk-cofog-arrow">→</div>
-          </a>
-
-          <a href="#budget" class="hsk-cofog-row" aria-label="Förvaltning och försvar: 13 kr av varje 100 kr">
-            <div class="hsk-cofog-amount">13<sub>kr</sub></div>
-            <div class="hsk-cofog-lbl">Förvaltning &amp; försvar</div>
-            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:34%;background:#888780"></div></div>
-            <div class="hsk-cofog-arrow">→</div>
-          </a>
-
-          <a href="#framtid" class="hsk-cofog-row" aria-label="Övrigt: 16 kr av varje 100 kr">
-            <div class="hsk-cofog-amount">16<sub>kr</sub></div>
-            <div class="hsk-cofog-lbl">Infra · rätts · kultur · räntor</div>
-            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:41%;background:#C8973A"></div></div>
-            <div class="hsk-cofog-arrow">→</div>
-          </a>
-
+        <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="polite">
+          <span class="hsk-prislapp-cat" id="hskPrislappCat">Hälsa &amp; sjukvård</span>
+          <div class="hsk-prislapp-title" id="hskPrislappTitle">Ett dygn på intensivvård</div>
+          <div class="hsk-prislapp-amount-row">
+            <span class="hsk-prislapp-amount" id="hskPrislappAmount">55 000</span>
+            <span class="hsk-prislapp-suf" id="hskPrislappSuf">kr</span>
+          </div>
+          <div class="hsk-prislapp-vs" id="hskPrislappVs">Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)</div>
         </div>
 
-        <div class="hsk-cofog-foot">
-          <strong style="color:rgba(255,255,255,.7)">3 011 Mdkr</strong> total offentlig sektor 2024 — stat + kommuner + regioner.
-          <a href="#budget">Hela budgeten →</a>
+        <div class="hsk-prislapp-dots" id="hskPrislappDots" role="tablist" aria-label="Prislapps-navigation"></div>
+
+        <div class="hsk-prislapp-foot">
+          <a href="#pristabell">Hela prislistan (36 poster) →</a>
           <span style="opacity:.5;margin:0 .3rem">·</span>
-          <a href="#pristabell">Konkreta prislappar →</a>
+          <a href="#budget">Vart pengarna går →</a>
         </div>
       </div>
     </div>
@@ -581,6 +561,69 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Kommunsektorns finansieringsgap 2030 enligt SKR. Utan reform: höjd skatt, lånefinansiering eller sänkt servicenivå.</div>
       </a>
 
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SKATTER I KORTHET — pedagogisk grundförklaring av sex skatter -->
+<section class="section" id="skatter" aria-label="Skatter i korthet" style="padding:2.5rem 0">
+  <div class="cw">
+    <p class="s-eye">Grunden</p>
+    <h2 class="s-title">Skatter i korthet</h2>
+    <p class="s-sub">Sex skatter som tillsammans utgör <strong>41,4 %</strong> av Sveriges BNP. Vad de är, vem som betalar, och hur stora de är.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">32,4 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension. <strong>Rikssnitt 2024</strong> — varierar 29,7 % (Solna) till 35,7 % (Dorotea) mellan kommuner.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SKR Kommunalskatt 2024</div>
+      </div>
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">20 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på inkomst <strong>över 598 500 kr/år</strong> (50 tkr/mån) 2024. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket, 67 kap inkomstskattelagen</div>
+      </div>
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.25);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber);line-height:1">25 <span style="font-size:.85rem;opacity:.6">/ 12 / 6 %</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> livsmedel + hotell + restaurang. <strong>6 %</strong> böcker, tidningar, kollektivtrafik, kultur.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200)</div>
+      </div>
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#9B7FD4;line-height:1">31,42 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. ~10 % är pensionsavgift (din egen rätt), ~21 % är "skatte"-del. Reducerad för 66+.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SAL — Socialavgiftslagen</div>
+      </div>
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#9B7FD4;line-height:1">30 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Schablon på <strong>utdelning, ränta, kapitalvinst</strong>. Lägre än hög tjänsteinkomst (55–65 %). Tas ut via ISK/KF eller direkt deklaration.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
+      </div>
+
+      <div style="padding:1.1rem 1.2rem;background:rgba(184,74,30,.07);border:1px solid rgba(184,74,30,.28);border-radius:6px">
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv skatt — exempel</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~50 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>500 tkr lön</strong>: ~32 % direkt skatt + arbetsgivaravgift + moms på det du konsumerar ≈ 47–53 % av allt arbetsgivaren betalar. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning baserad på Skatteverket + SCB IoT</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
+      <strong style="color:var(--ink)">Skatteintäkterna 2024 fördelas så här:</strong>
+      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt + moms + arbetsgivaravgift finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Totalsumman — <strong>3 011 Mdkr</strong> offentliga sektorn — fördelas per COFOG-funktion.
+      <a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
     </div>
   </div>
 </section>
@@ -1495,91 +1538,29 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <span style="color:var(--ink3)">Använd diagrammet för att förstå formen, inte för att räkna ut din egen "vinst" eller "förlust" mot systemet.</span>
     </div>
 
-    <!-- Snabbval: verkliga svenska inkomstnivåer -->
-    <div style="margin:1.2rem 0 .6rem">
-      <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.6rem;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Typiska bruttoinkomster — Sverige 2024 (SCB)</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px" id="lc-presets">
-        <button class="lc-preset" onclick="setLcInc(this,240)">
-          <span class="lc-preset-lbl">Lägsta decil</span>
-          <span class="lc-preset-val">240 tkr</span>
-          <span class="lc-preset-sub">P10 — deltid/lågavlönad</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,340)">
-          <span class="lc-preset-lbl">Median</span>
-          <span class="lc-preset-val">340 tkr</span>
-          <span class="lc-preset-sub">P50 — hälften tjänar mer</span>
-        </button>
-        <button class="lc-preset on" onclick="setLcInc(this,460)">
-          <span class="lc-preset-lbl">Genomsnitt</span>
-          <span class="lc-preset-val">460 tkr</span>
-          <span class="lc-preset-sub">Medel, dras upp av höga löner</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,620)">
-          <span class="lc-preset-lbl">Övre skikt</span>
-          <span class="lc-preset-val">620 tkr</span>
-          <span class="lc-preset-sub">P80 — akademiker/chef</span>
-        </button>
-        <button class="lc-preset" onclick="setLcInc(this,1000)">
-          <span class="lc-preset-lbl">Toppinkomst</span>
-          <span class="lc-preset-val">1 000 tkr</span>
-          <span class="lc-preset-sub">P95 — statlig skatt träder in</span>
-        </button>
+    <!-- Statisk illustration vid 460 tkr (genomsnittsinkomst), standardprofil,
+         nominellt, ingen mortalitetsmarkering. Tidigare interaktiva sliders/
+         toggles borttagna 2026-05-31: modellen var pedagogiskt vilseledande
+         som personlig kalkylator. Behåller renderad SVG som strukturillustration. -->
+    <div id="lifecycle-chart" style="margin:1.2rem 0"></div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-top:1rem">
+      <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
+        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Barn (0–18 år)</div>
+        <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Mottagare</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Skola, sjukvård, omsorg — finansierat av de som arbetar.</div>
+      </div>
+      <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
+        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (19–64 år)</div>
+        <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Bidragsgivare</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar mer i skatt än konsumerar i tjänster. Korsningsåldern ligger kring 30 år vid genomsnittsinkomst.</div>
+      </div>
+      <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
+        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
+        <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Mottagare igen</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Sjukvård och äldreomsorg konsumeras intensivast 75–85 år. Finansierat av nästa generations skatter.</div>
       </div>
     </div>
-
-    <!-- Reglage + kontexttext -->
-    <div style="display:flex;align-items:center;gap:1rem;margin:.8rem 0 .4rem;flex-wrap:wrap">
-      <label style="font-size:.78rem;color:var(--ink2)">Eller välj manuellt:</label>
-      <input type="range" id="lc-inc-slider" min="200" max="1200" value="460" step="10"
-        style="width:200px;accent-color:var(--green)" oninput="updateLifecycle()">
-      <span id="lc-inc-val" style="font-family:var(--mono);font-size:.9rem;color:var(--green);min-width:75px;font-weight:500">460 tkr</span>
-      <span id="lc-inc-context" style="font-size:.72rem;color:var(--ink3)"></span>
-    </div>
-
-    <!-- Diskonteringsval -->
-    <div style="display:flex;align-items:center;gap:.8rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <label style="font-size:.72rem;color:var(--ink2);display:flex;align-items:center;gap:5px;cursor:pointer">
-        <input type="checkbox" id="lc-discount" onchange="updateLifecycle()" style="accent-color:var(--green)">
-        <span>Diskonterat (2% real ränta)</span>
-      </label>
-      <span id="lc-discount-note" style="font-size:.65rem;color:var(--ink3);display:none">Nuvärden — tidiga förmåner (barnår) väger mer, sena förmåner (pensionsår) väger mindre</span>
-    </div>
-
-    <!-- Inkomstprofilval -->
-    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <span style="font-size:.72rem;color:var(--ink2)">Inkomstprofil:</span>
-      <button class="lc-profile-btn on" onclick="setLcProfile(this,'standard')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Standard</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'kort_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Kort utbildning</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'lang_utb')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Lång utbildning</button>
-      <button class="lc-profile-btn" onclick="setLcProfile(this,'avbruten')" style="font-size:.65rem;padding:3px 10px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-family:var(--sans);transition:all .15s">Avbruten karriär</button>
-      <span id="lc-profile-desc" style="font-size:.62rem;color:var(--ink3)">Studier till ~22, stabil inkomst 27–64</span>
-    </div>
-
-    <!-- Förväntad livslängd-val (mortalitet) -->
-    <div style="display:flex;align-items:center;gap:.5rem;margin:.4rem 0 .6rem;flex-wrap:wrap">
-      <span style="font-size:.72rem;color:var(--ink2)">Förväntad livslängd:</span>
-      <select id="lc-mortality" onchange="setLcMortality(this.value)"
-        style="font-size:.7rem;padding:4px 10px;border-radius:14px;border:1px solid var(--border);background:var(--bg2);color:var(--ink2);cursor:pointer;font-family:var(--sans)">
-        <option value="">Ingen markering (visa hela 85 år)</option>
-        <option value="snitt">Genomsnitt 83 år (samtliga)</option>
-        <option value="man_förg">Man, förgymnasial — 78 år</option>
-        <option value="man_gym">Man, gymnasial — 81 år</option>
-        <option value="man_efterg">Man, eftergymnasial — 85 år</option>
-        <option value="kvinna_förg">Kvinna, förgymnasial — 83 år</option>
-        <option value="kvinna_gym">Kvinna, gymnasial — 84 år</option>
-        <option value="kvinna_efterg">Kvinna, eftergymnasial — 87 år</option>
-        <option value="låginkomst_man">Man, decil 1 (låg inkomst) — 75 år</option>
-        <option value="höginkomst_man">Man, decil 10 (hög inkomst) — 85 år</option>
-        <option value="låginkomst_kv">Kvinna, decil 1 — 81 år</option>
-        <option value="höginkomst_kv">Kvinna, decil 10 — 87 år</option>
-      </select>
-      <span id="lc-mortality-note" style="font-size:.62rem;color:var(--ink3)"></span>
-    </div>
-
-    <div id="lc-applied" style="font-size:.62rem;color:var(--ink3);margin:.2rem 0 .4rem;padding:.4rem .7rem;background:rgba(255,255,255,.03);border-left:2px solid rgba(46,125,92,.45);border-radius:0 3px 3px 0;line-height:1.5"></div>
-    <div id="lifecycle-chart" style="margin:1rem 0"></div>
-    <div class="ft-stat-row" style="margin-top:1rem" id="lc-stats"></div>
-    <div id="lc-mortality-explain" style="display:none;font-size:.68rem;color:var(--ink2);margin-top:.8rem;padding:.6rem .8rem;background:rgba(255,255,255,.04);border-left:3px solid rgba(242,239,232,.4);border-radius:0 4px 4px 0;line-height:1.5"></div>
     <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25%, skatteberäkning ±10–15%. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2024-priser.</span></p>
     <details style="margin-top:.4rem">
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
@@ -2601,6 +2582,99 @@ function calcCumulativeNet(toAge, peakInc) {
 // hskIncome behålls som default-inkomstantagande för delningsfunktionen som
 // fortfarande använder calcCumulativeNet för att generera text till delning.
 let hskIncome = 340;
+
+// ── Hero: roterande prislapps-widget ────────────────────────────────
+// 8 handplockade prislappar — bredd från utbildning till äldreomsorg —
+// visar konkret vad svenska skattepengar finansierar. Auto-rotation 6 sek,
+// pausa på hover, manuella dots, respektera prefers-reduced-motion.
+const HERO_PRISLAPPAR = [
+  {cat:'Hälsa & sjukvård', title:'Ett dygn på intensivvård',
+   amount:'55 000', suf:'kr', vs:'Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)'},
+  {cat:'Utbildning', title:'En grundskoleelev, ett år',
+   amount:'152 000', suf:'kr', vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis'},
+  {cat:'Kronisk sjukdom', title:'En MS-patient, ett år',
+   amount:'380 000', suf:'kr', vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)'},
+  {cat:'Funktionsnedsättning', title:'En person med personlig assistans (LSS)',
+   amount:'1,3', suf:'Mkr/år', vs:'Du betalar: <strong>0 kr</strong> — ingen avgift för LSS-insatser'},
+  {cat:'Förskola', title:'En förskoleplats, ett år',
+   amount:'185 000', suf:'kr', vs:'Du betalar: <strong>max 1 614 kr/mån</strong> via maxtaxan'},
+  {cat:'Äldreomsorg', title:'Demens-vård i livets slutskede, per år',
+   amount:'680 000', suf:'kr', vs:'Du betalar: <strong>max 2 365 kr/mån</strong> (~4 % av faktisk kostnad)'},
+  {cat:'Hälsa & sjukvård', title:'En cancerbehandling, hela perioden',
+   amount:'420 000', suf:'kr', vs:'Du betalar: <strong>max 1 300 kr/år</strong> (frikortstak)'},
+  {cat:'Hälsa & sjukvård', title:'En höftledsoperation, primär',
+   amount:'72 000', suf:'kr', vs:'Du betalar: <strong>max 1 300 kr/år</strong> (frikortstak)'},
+];
+
+(function initHeroPrislappar(){
+  const stage   = document.getElementById('hskPrislappStage');
+  const catEl   = document.getElementById('hskPrislappCat');
+  const titleEl = document.getElementById('hskPrislappTitle');
+  const amtEl   = document.getElementById('hskPrislappAmount');
+  const sufEl   = document.getElementById('hskPrislappSuf');
+  const vsEl    = document.getElementById('hskPrislappVs');
+  const dotsEl  = document.getElementById('hskPrislappDots');
+  if(!stage || !dotsEl) return;
+
+  let current = 0;
+  let timer = null;
+  const ROTATE_MS = 6000;
+  const FADE_MS   = 350;
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Bygg dots
+  HERO_PRISLAPPAR.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'hsk-prislapp-dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-label', `Visa prislapp ${i+1} av ${HERO_PRISLAPPAR.length}`);
+    b.onclick = () => goTo(i, true);
+    dotsEl.appendChild(b);
+  });
+
+  function render(idx){
+    const p = HERO_PRISLAPPAR[idx];
+    catEl.textContent   = p.cat;
+    titleEl.textContent = p.title;
+    amtEl.textContent   = p.amount;
+    sufEl.textContent   = p.suf;
+    vsEl.innerHTML      = p.vs;
+    dotsEl.querySelectorAll('.hsk-prislapp-dot').forEach((d, i) => d.classList.toggle('on', i === idx));
+  }
+
+  function goTo(idx, manual){
+    if(idx === current) return;
+    current = idx;
+    if(reducedMotion){
+      render(current);
+    } else {
+      stage.classList.add('fading');
+      setTimeout(() => { render(current); stage.classList.remove('fading'); }, FADE_MS);
+    }
+    if(manual){ stopTimer(); startTimer(); }  // återstart efter manuell navigation
+  }
+
+  function next(){
+    goTo((current + 1) % HERO_PRISLAPPAR.length, false);
+  }
+
+  function startTimer(){
+    if(reducedMotion) return;
+    stopTimer();
+    timer = setInterval(next, ROTATE_MS);
+  }
+  function stopTimer(){
+    if(timer){ clearInterval(timer); timer = null; }
+  }
+
+  // Pausera vid hover/focus
+  stage.parentElement.addEventListener('mouseenter', stopTimer);
+  stage.parentElement.addEventListener('mouseleave', startTimer);
+  stage.parentElement.addEventListener('focusin',    stopTimer);
+  stage.parentElement.addEventListener('focusout',   startTimer);
+
+  startTimer();
+})();
 
 // ═══════════════════════════════════════════════════════════════════
 // SHAREABLE URLs — läs/skriv URL-parametrar för delbart tillstånd
