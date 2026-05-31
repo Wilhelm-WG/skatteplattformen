@@ -3131,8 +3131,12 @@ function updateCalc(){
   }
 
   // Propagera ändringar i grundkalkylen (inkomst, kapital, hushåll, ålder) ned
-  // till livscykelvyn så att den reflekterar samma profil. Defensiv mot script-ordning.
-  if(typeof updateLifecycle === 'function') updateLifecycle();
+  // till livscykelvyn så att den reflekterar samma profil. Defensiv mot script-ordning:
+  // try/catch fångar TDZ-fel om livscykel-modulen (LC_DIST etc) inte hunnit
+  // initialiseras än, vilket händer vid första updateCalc() på modul-laddning.
+  if(typeof updateLifecycle === 'function') {
+    try { updateLifecycle(); } catch(e) { /* livscykel-modulen inte redo än */ }
+  }
 }
 
 document.getElementById('s-age').addEventListener('input', updateCalc);
