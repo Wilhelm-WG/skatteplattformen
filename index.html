@@ -158,6 +158,26 @@ h1 em{font-style:italic;color:var(--green)}
 /* Nummer-transition i hero */
 .hsk-stat-val{transition:opacity .15s}
 .hsk-stat-val.flash{opacity:0}
+/* COFOG-vy i hero (ersatte livscykel-snabbkollen 2026-05) */
+.hsk-cofog-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+.hsk-cofog-heading{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1.15;color:#fff;margin:.05rem 0 .8rem}
+.hsk-cofog-list{display:flex;flex-direction:column;gap:3px}
+.hsk-cofog-row{display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem;border-radius:5px;text-decoration:none;color:inherit;transition:background .15s;border:1px solid transparent}
+.hsk-cofog-row:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.hsk-cofog-amount{font-family:var(--mono);font-size:1.18rem;font-weight:700;color:#fff;min-width:56px;text-align:right;line-height:1}
+.hsk-cofog-amount sub{font-size:.6rem;color:rgba(255,255,255,.4);font-weight:400;margin-left:1px}
+.hsk-cofog-lbl{font-size:.78rem;color:rgba(255,255,255,.78);flex:0 0 130px}
+.hsk-cofog-bar-wrap{flex:1;height:9px;background:rgba(255,255,255,.04);border-radius:2px;overflow:hidden;min-width:40px}
+.hsk-cofog-bar-fill{height:100%;border-radius:2px;transition:width .4s ease}
+.hsk-cofog-arrow{font-size:.7rem;color:rgba(255,255,255,.3);transition:color .15s,transform .15s;flex-shrink:0;width:14px;text-align:right}
+.hsk-cofog-row:hover .hsk-cofog-arrow{color:var(--green);transform:translateX(2px)}
+.hsk-cofog-foot{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
+.hsk-cofog-foot a{color:var(--green);text-decoration:none;font-weight:500}
+.hsk-cofog-foot a:hover{text-decoration:underline}
+@media (max-width:520px){
+  .hsk-cofog-lbl{flex:0 0 90px;font-size:.72rem}
+  .hsk-cofog-amount{font-size:1rem;min-width:48px}
+}
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
 .ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
 .ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
@@ -508,68 +528,59 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
         </div>
       </div>
-      <!-- HERO SNABBKOLL — personlig hook med livscykelperspektiv -->
+      <!-- HERO SNABBKOLL — COFOG-vy (ersatte livscykel-snabbkollen 2026-05).
+           Direkt svar på rubrikfrågan: vart går varje krona? Fakta från SCB
+           COFOG 2024 (3 011 Mdkr). Klickbara block länkar till djupare sektioner. -->
       <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll">
-        <div class="hsk-accent-line" id="hskAccent"></div>
-        <div class="hsk-eyebrow">Samhällets investering i dig — livscykelperspektiv</div>
-        <div class="hsk-age-row">
-          <button class="hsk-age" onclick="heroAge(this,4)">4</button>
-          <button class="hsk-age" onclick="heroAge(this,10)">10</button>
-          <button class="hsk-age" onclick="heroAge(this,17)">17</button>
-          <button class="hsk-age on" onclick="heroAge(this,22)">22</button>
-          <button class="hsk-age" onclick="heroAge(this,30)">30</button>
-          <div class="hsk-age-sep"></div>
-          <button class="hsk-age" onclick="heroAge(this,40)">40</button>
-          <button class="hsk-age" onclick="heroAge(this,50)">50</button>
-          <button class="hsk-age" onclick="heroAge(this,60)">60</button>
-          <button class="hsk-age" onclick="heroAge(this,68)">68</button>
-          <button class="hsk-age" onclick="heroAge(this,80)">80</button>
-          <span class="hsk-age-lbl">år</span>
+        <div class="hsk-accent-line" style="background:var(--green)"></div>
+        <div class="hsk-cofog-eyebrow">Av varje 100 kr i skatt 2024</div>
+        <h3 class="hsk-cofog-heading">Det här köper vi tillsammans</h3>
+
+        <div class="hsk-cofog-list">
+
+          <a href="#budget" class="hsk-cofog-row" aria-label="Socialt skydd: 39 kr av varje 100 kr">
+            <div class="hsk-cofog-amount">39<sub>kr</sub></div>
+            <div class="hsk-cofog-lbl">Socialt skydd</div>
+            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:100%;background:#7B5FBC"></div></div>
+            <div class="hsk-cofog-arrow">→</div>
+          </a>
+
+          <a href="#pristabell" class="hsk-cofog-row" aria-label="Utbildning: 17 kr av varje 100 kr">
+            <div class="hsk-cofog-amount">17<sub>kr</sub></div>
+            <div class="hsk-cofog-lbl">Utbildning</div>
+            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:44%;background:#1E4A8C"></div></div>
+            <div class="hsk-cofog-arrow">→</div>
+          </a>
+
+          <a href="#oecd" class="hsk-cofog-row" aria-label="Hälso- och sjukvård: 15 kr av varje 100 kr">
+            <div class="hsk-cofog-amount">15<sub>kr</sub></div>
+            <div class="hsk-cofog-lbl">Hälso- &amp; sjukvård</div>
+            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:39%;background:#2E7D5C"></div></div>
+            <div class="hsk-cofog-arrow">→</div>
+          </a>
+
+          <a href="#budget" class="hsk-cofog-row" aria-label="Förvaltning och försvar: 13 kr av varje 100 kr">
+            <div class="hsk-cofog-amount">13<sub>kr</sub></div>
+            <div class="hsk-cofog-lbl">Förvaltning &amp; försvar</div>
+            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:34%;background:#888780"></div></div>
+            <div class="hsk-cofog-arrow">→</div>
+          </a>
+
+          <a href="#framtid" class="hsk-cofog-row" aria-label="Övrigt: 16 kr av varje 100 kr">
+            <div class="hsk-cofog-amount">16<sub>kr</sub></div>
+            <div class="hsk-cofog-lbl">Infra · rätts · kultur · räntor</div>
+            <div class="hsk-cofog-bar-wrap"><div class="hsk-cofog-bar-fill" style="width:41%;background:#C8973A"></div></div>
+            <div class="hsk-cofog-arrow">→</div>
+          </a>
+
         </div>
-        <!-- Slider: välj valfri ålder 0–85 -->
-        <div class="hsk-slider-wrap">
-          <input type="range" min="0" max="85" value="22" id="hskAgeSlider" class="hsk-slider" oninput="heroAgeSlider(parseInt(this.value))">
+
+        <div class="hsk-cofog-foot">
+          <strong style="color:rgba(255,255,255,.7)">3 011 Mdkr</strong> total offentlig sektor 2024 — stat + kommuner + regioner.
+          <a href="#budget">Hela budgeten →</a>
+          <span style="opacity:.5;margin:0 .3rem">·</span>
+          <a href="#pristabell">Konkreta prislappar →</a>
         </div>
-        <div class="hsk-phase-info" id="hskPhaseInfo">
-          <span class="hsk-phase-icon" id="hskPhaseIcon">🎓</span>
-          <span class="hsk-phase-lbl" id="hskPhaseLbl">Student / ung vuxen</span>
-        </div>
-        <!-- Tvåkolumnssats: förmåner detta år + kumulativt saldo -->
-        <div class="hsk-stats-row">
-          <div class="hsk-stat">
-            <div class="hsk-stat-lbl">Förmåner detta år</div>
-            <div class="hsk-stat-val" id="hskTotal">—</div>
-            <div class="hsk-stat-sub">tkr i offentliga tjänster</div>
-          </div>
-          <div class="hsk-stat" id="hskCumStat">
-            <div class="hsk-stat-lbl">Kumulativt saldo sedan födseln</div>
-            <div class="hsk-stat-val" id="hskCumVal">—</div>
-            <div class="hsk-stat-sub" id="hskCumSub">Mkr nuvärde (2% real) vid 340 tkr</div>
-          </div>
-        </div>
-        <!-- Nettoindikator — baserad på kumulativt livscykelsaldo, ej enbart innevarande år -->
-        <span class="hsk-net" id="hskNet">—</span>
-        <!-- Inkomsttoggle: välj antagande för det kumulativa saldot -->
-        <div class="hsk-inc-row">
-          <span class="hsk-inc-lbl">Inkomstantagande:</span>
-          <button class="hsk-inc-btn" onclick="setHskInc(this,240)">240 tkr</button>
-          <button class="hsk-inc-btn on" onclick="setHskInc(this,340)">340 tkr</button>
-          <button class="hsk-inc-btn" onclick="setHskInc(this,460)">460 tkr</button>
-          <button class="hsk-inc-btn" onclick="setHskInc(this,620)">620 tkr</button>
-        </div>
-        <!-- Livscykelposition: var i livsloppet befinner du dig? -->
-        <div class="hsk-lc-bar">
-          <div class="hsk-lc-bar-lbl">
-            <span>Födseln</span>
-            <span id="hskLcPct"></span>
-            <span>85 år</span>
-          </div>
-          <div class="hsk-lc-track"><div class="hsk-lc-fill" id="hskLcFill" style="width:0%"></div></div>
-        </div>
-        <div class="hsk-bars" id="hskBars"></div>
-        <div class="hsk-shock" id="hskShock"></div>
-        <a href="#livslopp" class="hsk-link">Se hela livscykeln →</a>
-        <button id="shareBtn" onclick="shareCurrentState()" style="margin-top:.8rem;font-size:.68rem;padding:6px 14px;border:1px solid rgba(255,255,255,.18);border-radius:20px;background:transparent;color:rgba(255,255,255,.7);cursor:pointer;font-family:var(--sans);transition:all .15s" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='rgba(255,255,255,.18)';this.style.color='rgba(255,255,255,.7)'">🔗 Dela detta scenario</button>
       </div>
     </div>
   </div>
@@ -634,6 +645,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
       <div class="pf-row">
         <button class="pf on" onclick="fc(this,'all')">Alla</button>
+        <button class="pf" onclick="fc(this,'top10')" style="background:rgba(200,151,58,.08);border-color:rgba(200,151,58,.4)">🏆 Topp 10 dyraste</button>
         <button class="pf" onclick="fc(this,'helse')">Hälsa</button>
         <button class="pf" onclick="fc(this,'utb')">Utbildning</button>
         <button class="pf" onclick="fc(this,'infra')">Infrastruktur</button>
@@ -642,7 +654,16 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <button class="pf" onclick="fc(this,'kronisk')">Kroniska sjukdomar</button>
       </div>
     </div>
-    <div class="pgrid" id="pgrid"></div>
+    <div style="margin-top:1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+      <label for="pgrid-search" style="font-size:.7rem;color:var(--ink3);font-weight:500;letter-spacing:.05em;text-transform:uppercase">Sök i prislistan</label>
+      <input type="search" id="pgrid-search" placeholder="t.ex. cancer · skola · fängelse · IVA · ms"
+        oninput="searchCards(this.value)"
+        style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .15s"
+        onfocus="this.style.borderColor='var(--green)'"
+        onblur="this.style.borderColor='var(--border)'" />
+      <span id="pgrid-count" style="font-size:.68rem;color:var(--ink3);font-family:var(--mono)"></span>
+    </div>
+    <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
     <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Alla belopp 2024 priser.</p>
   </div>
 </section>
@@ -1133,9 +1154,17 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <!-- CALCULATOR — LIFECYCLE REDESIGN -->
 <section class="calc-wrap" id="kalkylator">
   <div class="container">
-    <p class="s-eye">Din välfärdsprofil</p>
-    <h2 class="s-title">Välfärdsstaten — ett kollektivt försäkringssystem över livet</h2>
-    <p class="s-sub">Hur mycket offentliga tjänster och förmåner konsumerar en person i din ålder och livssituation per år? Baserat på SCB:s FASIT-data och COFOG-fördelning. Modellen visar genomsnittsmönstret per åldersgrupp — inte ett individuellt sparkonto.</p>
+    <p class="s-eye">Din välfärdsprofil — illustration</p>
+    <h2 class="s-title">Hur fördelas förmåner per ålder och livssituation?</h2>
+    <p class="s-sub">Visar <em>befolkningsgenomsnittet</em> för en person i din ålder, hushållstyp och inkomstklass. Baserat på SCB FASIT och COFOG. <strong>Detta är inte din individuella prognos</strong> — verklig variation är 5–10× större än modellen visar.</p>
+
+    <!-- Modell-disclaimer: ärlig om vad detta faktiskt är -->
+    <div style="margin:1rem 0 1.5rem;padding:.9rem 1.1rem;background:rgba(200,151,58,.06);border-left:3px solid rgba(200,151,58,.4);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.6">
+      <strong style="color:var(--amber)">⚠ Vad detta är — och inte är.</strong>
+      Modellen visar <strong>befolkningens genomsnitt</strong> per åldersgrupp, hushåll och inkomstdecil, multiplicerat av tre osäkra faktorer (NTA-vikter ±25 %, FASIT-hushåll ±20 %, decilgradient ±15 %). En frisk person konsumerar 5–10× mindre sjukvård än en kroniker i samma åldersgrupp.
+      <strong>Använd den som intuition för välfärdslogiken, inte som din personliga prognos.</strong>
+      <a href="#metod" style="color:var(--green);text-decoration:none;font-weight:500">→ Metodikens fullständiga osäkerhetskällor</a>
+    </div>
 
     <div class="calc-layout">
       <!-- Controls -->
@@ -1321,9 +1350,22 @@ footer{border-top:1px solid var(--border);padding:36px 0}
      OECD-jämförelse och framtidens utmaningar är starkare öppningsargument. -->
 <section class="section" id="livslopp" aria-label="Livsloppsdiagram">
   <div class="cw">
-    <p class="s-eye">Ålder 0–85</p>
-    <h2 class="s-title">Hela livet i ett diagram</h2>
-    <p class="s-sub">Ackumulerade offentliga förmåner vs ackumulerad skatt (inkl. arbetsgivaravgift) från födseln till 85. Välj en typisk inkomstprofil eller justera med reglaget.</p>
+    <p class="s-eye">Djupdyk · ålder 0–85</p>
+    <h2 class="s-title">Mönstret i välfärdsmodellen över ett liv</h2>
+    <p class="s-sub">Diagrammet visar <strong>formen</strong> på välfärdslogiken: mottagare som barn → bidragsgivare i yrkesliv → mottagare som äldre. Det <strong>visar inte din individuella balans</strong> — de absoluta beloppen är populationsmedel med stor osäkerhet.</p>
+
+    <!-- Skarp disclaimer ovan diagrammet -->
+    <div style="margin:1rem 0 1.5rem;padding:1rem 1.2rem;background:rgba(184,74,30,.06);border-left:3px solid rgba(184,74,30,.45);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.65">
+      <strong style="color:#E58060">⚠ Modellen visar mönstret — inte beloppet.</strong>
+      Att summera 85 år av schablonberäknade förmåner mot 85 år av schablonberäknad skatt ger en siffra med ±35–40 % osäkerhet. Värdet är pedagogiskt (välfärdens livscykellogik) — inte prognostiskt (din individuella balans). Ytterligare oprecision:
+      <ul style="margin:.5rem 0 .3rem 1.2rem;padding:0;line-height:1.55">
+        <li>Diagrammet antar <strong>2024 års skatte- och pensionsregler i 85 år</strong> — historiskt har dessa ändrats varje decennium.</li>
+        <li><strong>Mortalitet</strong> är endast markerad — den är inte aktivt nedjusterad i flödena.</li>
+        <li>Förmåner är <strong>befolkningsmedel</strong> — en kroniker konsumerar 5–10× mer än en frisk i samma åldersband.</li>
+        <li>Inkomstpensionen är <strong>medvetet exkluderad</strong> (avgiftsbaserad, ej skatteförmån). Det är därför 65+ inte ser "rikare" ut än de skulle göra med tjänstepensionen inräknad.</li>
+      </ul>
+      <span style="color:var(--ink3)">Använd diagrammet för att förstå formen, inte för att räkna ut din egen "vinst" eller "förlust" mot systemet.</span>
+    </div>
 
     <!-- Snabbval: verkliga svenska inkomstnivåer -->
     <div style="margin:1.2rem 0 .6rem">
@@ -2297,9 +2339,50 @@ function closeDetail() {
 
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetail(); });
 
-function renderCards(f){
-  const d=f==='all'?CARDS:CARDS.filter(c=>c.cat===f);
-  document.getElementById('pgrid').innerHTML=d.map(c=>`
+// Prislista — filter + sök. Filter och sök kombineras (sök inom valt filter).
+let pgridFilter = 'all';
+let pgridSearch = '';
+
+function applyPgridFilters(){
+  let d;
+  if(pgridFilter === 'top10'){
+    d = [...CARDS].sort((a,b) => b.amount - a.amount).slice(0,10);
+  } else if(pgridFilter === 'all'){
+    d = CARDS;
+  } else {
+    d = CARDS.filter(c => c.cat === pgridFilter);
+  }
+  if(pgridSearch){
+    const q = pgridSearch.toLowerCase();
+    d = d.filter(c =>
+      c.title.toLowerCase().includes(q) ||
+      c.cl.toLowerCase().includes(q) ||
+      c.unit.toLowerCase().includes(q) ||
+      (c.src && c.src.toLowerCase().includes(q))
+    );
+  }
+
+  const grid = document.getElementById('pgrid');
+  const count = document.getElementById('pgrid-count');
+  if(count){
+    const totalShown = d.length;
+    const totalAll = CARDS.length;
+    if(pgridSearch || pgridFilter !== 'all'){
+      count.textContent = `${totalShown} av ${totalAll} poster`;
+    } else {
+      count.textContent = `${totalAll} prislappar`;
+    }
+  }
+
+  if(!d.length){
+    grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center;color:var(--ink3);background:rgba(255,255,255,.02);border-radius:6px">
+      Inga prislappar matchade "<strong style="color:var(--ink2)">${pgridSearch}</strong>" i den valda kategorin.
+      <button onclick="document.getElementById('pgrid-search').value='';searchCards('')" style="margin-left:.5rem;background:none;border:none;color:var(--green);text-decoration:underline;cursor:pointer;font-family:inherit;font-size:inherit">Rensa sök</button>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = d.map(c=>`
     <div class="pc" onclick="openDetail('${c.title.replace(/'/g,"\\'")}')">
       <span class="pc-cat cat-${c.cat}">${c.cl}</span>
       <div class="pc-title">${c.title}</div>
@@ -2309,6 +2392,9 @@ function renderCards(f){
       <div class="pc-src">Källa: ${c.src}</div>
     </div>`).join('');
 }
+
+function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
+function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
 function fc(btn,f){document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderCards(f)}
 renderCards('all');
 
@@ -2374,137 +2460,17 @@ function calcCumulativeNet(toAge, peakInc) {
   };
 }
 
-const HSK_SHOCKS = {
-  4:  'Din förskoleplatsen kostar ~175 000 kr/år. Maxtaxan du betalar: 1 614 kr/mån. Resten finansieras av dem som arbetar.',
-  10: 'Din grundskoleplats kostar ~148 000 kr/år inkl. skolmat, elevhälsa och lokaler. Det finansieras via kommunalskatten.',
-  17: 'Ditt gymnasieprogram kostar ~145 000 kr/år. Teknikprogram kostar upp till 180 000 kr — du betalar 0 kr.',
-  22: 'Ditt högskolaprogram kostar ~240 000 kr/år. Du betalar 0 kr i studieavgift — finansieras av nuvarande skattebetalare.',
-  30: 'Du betalar nu ~110–140 tkr/år i inkomstskatt. Du finansierar andras barns skola, sjukvård och äldres omsorg.',
-  40: 'Du är systemets motor. Din arbetsgivare betalar ~72 tkr i arbetsgivaravgift ovanpå din lön — direkt till välfärden.',
-  50: 'Din sjukvård kostar ~78 tkr/år. Men du betalar ~120+ tkr i skatt. Du finansierar generationer ovanför och nedanför dig.',
-  60: 'Sjukvården kostar dig ~110 tkr/år. Du betalar fortfarande mer i skatt än du tar emot — men balansen håller på att vända.',
-  68: 'Din pension garanteras av dem som arbetar nu. Garantipensionen är 100 680 kr/år. Sjukvård och omsorg kostar systemet ~240 tkr/år.',
-  80: 'Hemtjänst + specialiserad sjukvård kostar ~520 tkr/år. Du betalade in detta under ~40 yrkesverksamma år. Systemet levererar.',
-};
+// ── Hero-snabbkollen är nu en statisk COFOG-vy (sedan 2026-05-30).
+// Tidigare livscykel-snabbkoll med heroAge/heroAgeRender/setHskInc/HSK_SHOCKS
+// borttagen — för att undvika att livscykelmodellen dominerade första vyn med
+// schablon-multiplicerade Mkr-siffror som låtsades vara individuell prognos.
+// COFOG-procenten är hårdkodade i HTML (av varje 100 kr: 39 socialt, 17 utb,
+// 15 sjukvård, 13 förvaltning+försvar, 16 övrigt — total 100, källa cofogItems
+// i skattekvitto-funktionen längre ned).
 
-// Globalt inkomstantagande för det kumulativa saldot (kan ändras via toggle)
+// hskIncome behålls som default-inkomstantagande för delningsfunktionen som
+// fortfarande använder calcCumulativeNet för att generera text till delning.
 let hskIncome = 340;
-
-// Kör renderingen för en given ålder (utan att röra knapp-state)
-function heroAgeRender(age){
-  const stage = typeof getStage === 'function' ? getStage(age) : null;
-  if(!stage) return;
-
-  // ── Fasaccentfärg
-  const phaseColor = PHASE_COLORS[stage.id] || '#2E7D5C';
-  const accentEl = document.getElementById('hskAccent');
-  if(accentEl) accentEl.style.background = phaseColor;
-
-  // ── Fasbeteckning
-  const phaseIcon = document.getElementById('hskPhaseIcon');
-  const phaseLbl  = document.getElementById('hskPhaseLbl');
-  if(phaseIcon) phaseIcon.textContent = stage.icon || '📋';
-  if(phaseLbl)  phaseLbl.textContent  = stage.label || '';
-
-  // ── Förmåner detta år
-  const w = stage.w;
-  const total = Object.values(w).reduce((s,v)=>s+v,0);
-  const totalEl = document.getElementById('hskTotal');
-  if(totalEl) totalEl.textContent = total.toLocaleString('sv-SE');
-
-  // ── Kumulativt livscykelnettosaldo (vid valt inkomstantagande hskIncome)
-  const cum = calcCumulativeNet(age, hskIncome);
-  const cumValEl  = document.getElementById('hskCumVal');
-  const cumSubEl  = document.getElementById('hskCumSub');
-  const cumStatEl = document.getElementById('hskCumStat');
-  if(cum && cumValEl){
-    const absMkr = Math.abs(cum.net / 1000);
-    const sign   = cum.net >= 0 ? '+' : '−';
-    // Animerad flash-transition
-    cumValEl.classList.add('flash');
-    requestAnimationFrame(()=>{ cumValEl.textContent = sign + absMkr.toFixed(1) + ' Mkr'; cumValEl.classList.remove('flash'); });
-  }
-  if(cum && cumSubEl) cumSubEl.textContent = `Mkr nuvärde (2% real) vid ${hskIncome} tkr`;
-  if(cum && cumStatEl) cumStatEl.className = 'hsk-stat ' + (cum.net >= 0 ? 'cum-recv' : 'cum-give');
-
-  // ── Nettoindikator — KUMULATIVT saldo, inte bara årets flöde
-  //    En 35-åring som studerat till 26 är fortfarande nettomottagare livscykelvis
-  //    trots att hon betalar mer i skatt detta år än hon tar emot i förmåner.
-  const netEl = document.getElementById('hskNet');
-  if(netEl && cum){
-    const absMkr = Math.abs(cum.net / 1000).toFixed(1);
-    if(cum.net >= 0){
-      netEl.className = 'hsk-net recv';
-      netEl.textContent = `I modellen — kollektivt finansierade tjänster ~${absMkr} Mkr över skatt vid din ålder`;
-    } else {
-      netEl.className = 'hsk-net give';
-      netEl.textContent = `I modellen — skatt ~${absMkr} Mkr över kollektivt mottagna tjänster vid din ålder`;
-    }
-  }
-
-  // ── Livsloppets progressbar
-  const pct = Math.round(age / 85 * 100);
-  const lcFillEl = document.getElementById('hskLcFill');
-  const lcPctEl  = document.getElementById('hskLcPct');
-  if(lcFillEl){ lcFillEl.style.width = pct + '%'; lcFillEl.style.background = phaseColor; }
-  if(lcPctEl)  lcPctEl.textContent = `Ålder ${age} — ${pct}% av livsloppet`;
-
-  // ── Slider synk
-  const slider = document.getElementById('hskAgeSlider');
-  if(slider && parseInt(slider.value) !== age) slider.value = age;
-  // Uppdatera slider-bakgrund proportionellt
-  if(slider) slider.style.background = `linear-gradient(to right, ${phaseColor} ${pct}%, rgba(255,255,255,.1) ${pct}%)`;
-
-  // ── Kategoriuppdelning
-  const COLS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.18)',omsorg:'#C8973A'};
-  const LBLS = {utb:'Utbildning',sjukvård:'Sjukvård',socialt:'Social trygghet',koll:'Kollektivt',omsorg:'Äldreomsorg'};
-  const entries = Object.entries(w).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).slice(0,4);
-  if(entries.length){
-    const maxV = entries[0][1];
-    document.getElementById('hskBars').innerHTML = entries.map(([k,v])=>`
-      <div class="hsk-bar-row">
-        <span class="hsk-bar-lbl">${LBLS[k]||k}</span>
-        <div class="hsk-bar-track"><div class="hsk-bar-fill" style="width:${Math.round(v/maxV*100)}%;background:${COLS[k]||'#888'}"></div></div>
-        <span class="hsk-bar-val">${v} tkr</span>
-      </div>`).join('');
-  }
-
-  // ── Chockfakta
-  const shockEl = document.getElementById('hskShock');
-  if(shockEl){ shockEl.textContent = HSK_SHOCKS[age] || ''; shockEl.style.borderLeftColor = phaseColor; }
-}
-
-// Knapptryck → synka slider → rendera
-function heroAge(btn, age){
-  document.querySelectorAll('.hsk-age').forEach(b=>b.classList.remove('on'));
-  if(btn && btn.classList) btn.classList.add('on');
-  heroAgeRender(age);
-}
-
-// Slider → synka knappar (närmaste preset om exakt träff) → rendera
-function heroAgeSlider(age){
-  const PRESETS = [4,10,17,22,30,40,50,60,68,80];
-  document.querySelectorAll('.hsk-age').forEach(b=>{
-    b.classList.toggle('on', PRESETS.includes(age) && parseInt(b.textContent)===age);
-  });
-  heroAgeRender(age);
-}
-
-// Inkomsttoggle → uppdatera globalt hskIncome → re-rendera kumulativt
-function setHskInc(btn, inc){
-  document.querySelectorAll('.hsk-inc-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  hskIncome = inc;
-  const activeBtn = document.querySelector('.hsk-age.on');
-  const slider = document.getElementById('hskAgeSlider');
-  const age = activeBtn ? parseInt(activeBtn.textContent) : (slider ? parseInt(slider.value) : 22);
-  heroAgeRender(age);
-}
-
-// Init hero snabbkoll när LIVSFASER_V2 är redo
-document.addEventListener('DOMContentLoaded', ()=>{ heroAge(document.querySelector('.hsk-age.on'), 22); });
-// Fallback om DOMContentLoaded redan kört
-if(document.readyState !== 'loading') heroAge(document.querySelector('.hsk-age.on')||{classList:{add:()=>{},remove:()=>{}}}, 22);
 
 // ═══════════════════════════════════════════════════════════════════
 // SHAREABLE URLs — läs/skriv URL-parametrar för delbart tillstånd
@@ -2515,37 +2481,34 @@ function readURLParams(){
   const age = parseInt(p.get('age'));
   const inc = parseInt(p.get('inc'));
   const pension = p.get('pension');
+  // Sedan hero-snabbkollen togs bort läser/skriver vi mot kalkylatorns sliders.
   if(!isNaN(age) && age >= 0 && age <= 85){
-    const slider = document.getElementById('hskAgeSlider');
-    if(slider) slider.value = age;
-    heroAgeSlider(age);
+    const slider = document.getElementById('s-age');
+    if(slider){ slider.value = age; if(typeof updateCalc === 'function') updateCalc(); }
   }
   if(!isNaN(inc) && inc > 0 && inc <= 2000){
     hskIncome = inc;
-    // Synka inkomstknapp om den finns
-    document.querySelectorAll('.hsk-inc-btn').forEach(b=>{
-      b.classList.toggle('on', parseInt(b.textContent) === inc || parseInt(b.dataset.inc) === inc);
-    });
+    const slider = document.getElementById('s-inc');
+    if(slider){ slider.value = inc; if(typeof updateCalc === 'function') updateCalc(); }
   }
   if(pension !== null){
     const toggle = document.getElementById('pension-toggle');
-    if(toggle) toggle.checked = pension === '1';
+    if(toggle){ toggle.checked = pension === '1'; if(typeof updateCalc === 'function') updateCalc(); }
   }
 }
 function buildShareURL(){
-  const slider = document.getElementById('hskAgeSlider');
-  const age = slider ? parseInt(slider.value) : 22;
-  const inc = hskIncome || 340;
+  const ageSlider = document.getElementById('s-age');
+  const incSlider = document.getElementById('s-inc');
+  const age = ageSlider ? parseInt(ageSlider.value) : 35;
+  const inc = incSlider ? parseInt(incSlider.value) : (hskIncome || 340);
   const pensionEl = document.getElementById('pension-toggle');
-  const pension = pensionEl ? (pensionEl.checked ? '1' : '0') : '1';
+  const pension = pensionEl ? (pensionEl.checked ? '1' : '0') : '0';
   const params = new URLSearchParams({age, inc, pension});
   return window.location.origin + window.location.pathname + '?' + params.toString();
 }
 function shareCurrentState(){
   const url = buildShareURL();
-  // Uppdatera URL utan sidladdning
-  history.replaceState(null, '', '?' + new URLSearchParams({age: document.getElementById('hskAgeSlider')?.value||22, inc: hskIncome||340, pension: document.getElementById('pension-toggle')?.checked ? '1':'0'}).toString());
-  // Kopiera till urklipp
+  history.replaceState(null, '', url.substring(url.indexOf('?')));
   if(navigator.clipboard){
     navigator.clipboard.writeText(url).then(()=>{
       const btn = document.getElementById('shareBtn');
@@ -4082,12 +4045,12 @@ function renderLifecycle(inc){
     svg+=`<circle cx="${cx}" cy="${kY}" r="5" fill="rgba(200,151,58,.2)" stroke="rgba(200,151,58,.7)" stroke-width="1.5"/>`;
   }
 
-  // End labels
+  // End labels — bara linjenamn, inga Mkr-siffror (modellen visar mönster, inte belopp)
   const lastF = pts[85];
   svg+=`<circle cx="${sx(85)}" cy="${sy(lastF.forman)}" r="4" fill="var(--green)"/>`;
-  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.forman)-6}" text-anchor="end" fill="var(--green)" font-size="10" font-weight="500">${Math.round(lastF.forman/1000)} Mkr förmåner</text>`;
+  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.forman)-6}" text-anchor="end" fill="var(--green)" font-size="10" font-weight="500">Förmåner</text>`;
   svg+=`<circle cx="${sx(85)}" cy="${sy(lastF.skatt)}" r="4" fill="#B84A1E"/>`;
-  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.skatt)+14}" text-anchor="end" fill="#B84A1E" font-size="10" font-weight="500">${Math.round(lastF.skatt/1000)} Mkr skatt</text>`;
+  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.skatt)+14}" text-anchor="end" fill="#B84A1E" font-size="10" font-weight="500">Skatt</text>`;
 
   // Mortalitets-markering: vertikal streckad linje + label (ritas ovanpå allt)
   if(mortAge !== null){
@@ -4133,43 +4096,47 @@ function renderLifecycle(inc){
     const skattMkr = Math.round(lastF.skatt/1000);
     const netMkr = Math.round(net/1000);
 
-    // Mortalitets-justerat netto: vid förv. livslängd istället för 85
+    // Strategiskt val: ta bort Mkr-summerade siffror, behåll mönstret.
+    // Modellen är ärlig som strukturillustration (mottagare-bidragsgivare-mottagare)
+    // men oärlig som personlig prognos. Stat-cards visar nu förhållanden och
+    // mönsteråldrar, inte multiplicerade Mkr-belopp.
+    const ratio = lastF.forman > 0 ? (lastF.skatt / lastF.forman) : 0;
+    const ratioPct = Math.round(ratio * 100);
+    const direction = net > 0 ? 'modellen ger mer än den tar' : (net < 0 ? 'modellen tar mer än den ger' : 'balans');
+    const directionColor = net > 0 ? 'var(--green)' : (net < 0 ? '#E58060' : 'var(--ink2)');
+
+    // Mortalitets-effekt: hur mycket av förmånskurvan klipps av tidig död?
     let mortStatHTML = '';
-    if(mortAge !== null && pts[mortAge]){
+    if(mortAge !== null && pts[mortAge] && mortAge < 85){
       const mp = pts[mortAge];
-      const mortNet = mp.forman - mp.skatt;
-      const mortUnc = uncertaintyMkr(mp.forman, mp.skatt);
+      const formanShare = lastF.forman > 0 ? Math.round(mp.forman / lastF.forman * 100) : 0;
+      const skattShare = lastF.skatt > 0 ? Math.round(mp.skatt / lastF.skatt * 100) : 0;
       const mortLbl = LIVSLANGD[currentMortality]?.label || 'vald grupp';
-      const diff = Math.round((mortNet - net) / 1000);
-      const diffSign = diff > 0 ? '+' : '';
-      const mortNetMkr = Math.round(mortNet/1000);
-      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val" style="color:${mortNet>=0?'var(--green)':'#B84A1E'}">${mortNet>=0?'+':''}${mortNetMkr} Mkr</div><div class="ft-stat-lbl">Netto till ${mortAge} år — ${mortLbl}<br><span style="font-size:.62rem;color:var(--ink3)">±${mortUnc.net} Mkr osäkerhet · ${diffSign}${diff} Mkr vs hela 85 år</span></div></div>`;
+      const lostBenefits = 100 - formanShare;
+      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val">${lostBenefits}%</div><div class="ft-stat-lbl">av förmånskurvan ligger efter ${mortAge} år<br><span style="font-size:.62rem;color:var(--ink3)">${mortLbl} — den klipps bort av förväntad livslängd</span></div></div>`;
     }
 
     statsEl.innerHTML = `
-      <div class="ft-stat"><div class="ft-stat-val">${formanMkr} Mkr</div><div class="ft-stat-lbl">Totala förmåner till 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.forman} Mkr · ${discMode}</span></div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${skattMkr} Mkr</div><div class="ft-stat-lbl">Total skatt till 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.skatt} Mkr · ${discMode}</span></div></div>
-      <div class="ft-stat"><div class="ft-stat-val" style="color:${net>=0?'var(--green)':'#B84A1E'}">${net>=0?'+':''}${netMkr} Mkr</div><div class="ft-stat-lbl">Netto vid 85 år<br><span style="font-size:.62rem;color:var(--ink3)">±${unc.net} Mkr — överlappar noll om |netto| < ${unc.net}</span></div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Ålder när skatten passerar förmånerna<br><span style="font-size:.62rem;color:var(--ink3)">~±3 år givet osäkerhet</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${ratioPct}%</div><div class="ft-stat-lbl">Skatt vs förmåner — modellen<br><span style="font-size:.62rem;color:var(--ink3)">${ratioPct < 100 ? 'mindre skatt än förmåner' : ratioPct > 100 ? 'mer skatt än förmåner' : 'jämvikt'} (${discMode})</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Korsningsålder — skatten passerar förmånerna<br><span style="font-size:.62rem;color:var(--ink3)">±3 år givet modellosäkerhet</span></div></div>
+      <div class="ft-stat"><div class="ft-stat-val" style="color:${directionColor}">${direction}</div><div class="ft-stat-lbl">Mönster vid valda inställningar<br><span style="font-size:.62rem;color:var(--ink3)">±35–40 % osäkerhet — modellen visar form, inte belopp</span></div></div>
       ${mortStatHTML}`;
   }
 
   // Pedagogisk förklaring under stats (visas bara om mortalitet vald)
   const explainEl = document.getElementById('lc-mortality-explain');
   if(explainEl){
-    if(mortAge !== null && pts[mortAge]){
+    if(mortAge !== null && pts[mortAge] && mortAge < 85){
       const mp = pts[mortAge];
-      const mortNet = mp.forman - mp.skatt;
-      const fullNet = lastF.forman - lastF.skatt;
-      const diffMkr = Math.round((mortNet - fullNet) / 1000);
-      const direction = diffMkr < 0 ? 'lägre' : (diffMkr > 0 ? 'högre' : 'samma');
+      const formanShare = lastF.forman > 0 ? Math.round(mp.forman / lastF.forman * 100) : 0;
+      const lostBenefitsShare = 100 - formanShare;
       const lostYears = 85 - mortAge;
       explainEl.style.display = 'block';
       explainEl.innerHTML = `
-        <strong>Varför mortalitet justerar bilden:</strong> Den valda gruppen har förväntad medellivslängd ${mortAge} år — ${lostYears} år kortare än diagrammets 85-års-projektion.
-        Eftersom äldreomsorg och specialistsjukvård (75-85 år) är den dyraste delen av förmånskurvan, blir nettot ${direction} (${diffMkr >= 0 ? '+' : ''}${diffMkr} Mkr).
-        Höginkomsttagare har systematiskt 5-10 år längre livslängd — och alltså längre tid att hämta hem förmånerna i ålderdomen.
-        <span style="display:block;margin-top:.4rem;font-size:.62rem;color:var(--ink3)">Källa: SCB BE0701 Livslängdstabeller 2018-2022. Värdena är populationsgenomsnitt, inte individprognos.</span>`;
+        <strong>Varför mortalitet inverterar intuitionen:</strong> Den valda gruppen har förväntad medellivslängd ${mortAge} år — ${lostYears} år kortare än diagrammets 85-års-projektion.
+        Eftersom äldreomsorg och specialistsjukvård (75-85 år) är den dyraste delen av förmånskurvan, betyder ${lostYears} förlorade år att <strong>${lostBenefitsShare} %</strong> av den potentiella förmånskurvan aldrig hämtas.
+        Höginkomsttagare har systematiskt 5–10 år längre livslängd — och alltså längre tid att konsumera de dyraste förmånerna. Den intuitiva läsningen "höginkomsttagare betalar för mycket" inverterar därför ofta jämfört med verklig dödlighet.
+        <span style="display:block;margin-top:.4rem;font-size:.62rem;color:var(--ink3)">Källa: SCB BE0701 Livslängdstabeller 2018-2022. Populationsmedel, inte individprognos.</span>`;
     } else {
       explainEl.style.display = 'none';
       explainEl.innerHTML = '';
@@ -4339,11 +4306,11 @@ document.getElementById('s-inc').addEventListener('input', function(){ this.setA
 function shareSkatt(e){
   e.preventDefault();
   // Prioritize Hero Snabbkoll state if slider exists, else fall back to calculator
-  const hskSlider = document.getElementById('hskAgeSlider');
-  const hskActiveBtn = document.querySelector('.hsk-age.on');
-  const heroAge = hskActiveBtn ? parseInt(hskActiveBtn.textContent) : (hskSlider ? parseInt(hskSlider.value) : null);
-  const age = heroAge !== null ? heroAge : +document.getElementById('s-age').value;
-  const inc = (typeof hskIncome !== 'undefined' && hskIncome) ? hskIncome : +document.getElementById('s-inc').value;
+  // Hero-snabbkollen är borttagen — läs profil från kalkylator-slidersen direkt.
+  const ageSlider = document.getElementById('s-age');
+  const incSlider = document.getElementById('s-inc');
+  const age = ageSlider ? +ageSlider.value : 35;
+  const inc = incSlider ? +incSlider.value : (hskIncome || 340);
   const stage = getStage(age);
   const tax = annualTax(age, inc);
   const total = Object.values(stage.w).reduce((a,b)=>a+b,0);
@@ -4351,17 +4318,11 @@ function shareSkatt(e){
   const cum = calcCumulativeNet ? calcCumulativeNet(age, inc) : null;
 
   let text = `Visste du att en ${age}-åring med ${inc} tkr/år i inkomst:\n\n`;
-  text += `• Konsumerar offentliga tjänster för ${total.toLocaleString('sv-SE')} tkr/år\n`;
+  text += `• Konsumerar offentliga tjänster för ~${total.toLocaleString('sv-SE')} tkr/år (befolkningssnitt — verklig variation 5–10×)\n`;
   if(tax.tot > 0){
-    text += `• Betalar ${tax.tot.toLocaleString('sv-SE')} tkr i total skatt (${effRate}% effektiv skatt)\n`;
+    text += `• Betalar ~${tax.tot.toLocaleString('sv-SE')} tkr i total skatt (${effRate}% effektiv skatt)\n`;
   }
-  if(cum){
-    const cumMkr = (cum.net / 1000).toFixed(1);
-    text += cum.net > 0
-      ? `• Kumulativt sedan födseln: +${cumMkr} Mkr netto (fortfarande nettomottagare av välfärd)\n`
-      : `• Kumulativt sedan födseln: ${cumMkr} Mkr netto (har betalat mer än tagit ut)\n`;
-  }
-  text += `\nSvensk skattetransparens: https://wilhelm-wg.github.io/skatteplattformen/`;
+  text += `\nKolla själv: https://wilhelm-wg.github.io/skatteplattformen/`;
 
   if(navigator.share){
     navigator.share({title:'Skatteplattformen',text}).catch(()=>{});

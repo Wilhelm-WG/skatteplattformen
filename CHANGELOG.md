@@ -10,7 +10,50 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Removed
+- **Hero-snabbkollens livscykel-vy borttagen.** `heroAge*`, `setHskInc`,
+  `HSK_SHOCKS`, `heroAgeRender` med tillhörande knappar och slider tagna
+  bort. Ersatt med statisk COFOG-vy (se nedan). Bakgrund: efter
+  datakritik blev det tydligt att hero-snabbkollen var livscykelmodellen
+  i kompakt form — vilket dominerade första vyn med multiplicerade
+  schablonsiffror som gav sken av individuell prognos. Sidans starkaste
+  budskap (prislista, budget, sjukvårdsutfall) tar nu hero-positionen.
+
 ### Changed
+- **Hero-snabbkollen är nu en COFOG-vy.** "Av varje 100 kr i skatt 2024
+  — det här köper vi tillsammans" med fem klickbara block: Socialt skydd
+  (39 kr → #budget), Utbildning (17 kr → #pristabell), Hälso- & sjukvård
+  (15 kr → #oecd), Förvaltning & försvar (13 kr → #budget), Övrigt (16
+  kr → #framtid). Direkt koppling till rubrikfrågan "Vad fan får vi för
+  pengarna?". Klickbara länkar leder rakt in i djupare sektioner.
+- **#kalkylator reframad som illustration.** Sektionsrubrik "Välfärds-
+  staten — försäkringssystem" → "Hur fördelas förmåner per ålder och
+  livssituation?". Subtitel signalerar tydligt "befolkningsgenomsnittet,
+  inte personlig prognos, verklig variation 5–10× större". Stor gul
+  callout ovan kontroller listar de tre osäkerhetskällorna (NTA ±25 %,
+  FASIT ±20 %, decilgradient ±15 %).
+- **#livslopp reframad som mönster, inte belopp.** Rubrik "Hela livet
+  i ett diagram" → "Mönstret i välfärdsmodellen över ett liv". Stor röd
+  disclaimer-ruta ovan diagrammet listar fyra konkreta osäkerheter
+  (regimkonstans, mortalitet, populationsmedel, exkluderad inkomst-
+  pension). Stat-cards visar nu förhållanden (skatt/förmåner %),
+  korsningsålder och mönster-direction — inte Mkr-summerade
+  livstidsbelopp som låtsas vara precisa. End-labels i SVG-diagrammet
+  ändrade från "12 Mkr förmåner" → "Förmåner".
+- **shareSkatt-text reframad** från "har betalat mer än tagit ut" till
+  "befolkningssnitt — verklig variation 5–10×".
+- **Prislistan: sökruta + Topp 10-filter.** Ny fritextsökruta som söker
+  i title/kategori/unit/källa. Ny "🏆 Topp 10 dyraste"-knapp som
+  sorterar by amount descending. Filter + sök kombineras. Antal träffar
+  visas live ("12 av 36 poster"). Bakgrund: efter datakritik blev det
+  tydligt att prislistan är sajtens starkaste innehåll — den får nu
+  värdiga sökfunktioner.
+
+### Notes
+- `.hsk-age*` CSS-klasser finns kvar som död kod (ingen renderad HTML
+  matchar dem). Tas bort i nästa städning.
+
+### Earlier this Unreleased cycle
 - **Sidans narrativa båge omflyttad.** `#livslopp` ("Hela livet i ett diagram")
   flyttades från position #2 (direkt efter hero) till efter `#framtid`.
   Bakgrund: kritisk review fann att livsloppsdiagrammet — sajtens
