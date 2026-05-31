@@ -107,57 +107,11 @@ h1 em{font-style:italic;color:var(--green)}
 /* HERO SNABBKOLL */
 .hero-snabbkoll{background:var(--ink);border-radius:8px;padding:1.75rem 1.75rem 1.35rem;display:flex;flex-direction:column;gap:.52rem;position:relative;overflow:hidden}
 .hsk-accent-line{position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);transition:background .4s ease;border-radius:8px 8px 0 0}
-.hsk-eyebrow{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:.2rem}
-.hsk-age-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;row-gap:5px}
-.hsk-age{font-family:var(--mono);font-size:.82rem;font-weight:500;padding:5px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.42);cursor:pointer;transition:all .15s}
-.hsk-age:hover{border-color:var(--green);color:var(--green)}
-.hsk-age.on{background:var(--green);border-color:var(--green);color:#fff}
+/* Kalkylator/livslopps-knappar i botten av sajten — kvar trots att hero-snabbkollens livscykel togs bort 2026-05 (städning gjord 2026-05-31) */
 .hh-btn:hover{border-color:var(--green);color:var(--green)}
 .hh-btn.on{background:var(--green);border-color:var(--green);color:#fff}
 .lc-profile-btn:hover{border-color:var(--green);color:var(--green)}
 .lc-profile-btn.on{background:var(--green);border-color:var(--green);color:#fff}
-.hsk-age-lbl{font-size:.66rem;color:rgba(255,255,255,.22);margin-left:1px}
-.hsk-age-sep{width:1px;height:14px;background:rgba(255,255,255,.1);margin:0 3px;flex-shrink:0}
-.hsk-phase-info{display:flex;align-items:center;gap:7px;padding:.32rem .6rem;background:rgba(255,255,255,.05);border-radius:4px}
-.hsk-phase-icon{font-size:.98rem;line-height:1}
-.hsk-phase-lbl{font-size:.71rem;color:rgba(255,255,255,.62);font-weight:500}
-.hsk-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:.52rem}
-.hsk-stat{background:rgba(255,255,255,.04);border-radius:5px;padding:.58rem .68rem;transition:background .35s,border .35s;border:1px solid transparent}
-.hsk-stat.cum-recv{background:rgba(46,125,92,.14);border-color:rgba(46,125,92,.3)}
-.hsk-stat.cum-give{background:rgba(210,80,80,.1);border-color:rgba(210,80,80,.2)}
-.hsk-stat-lbl{font-size:.56rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.18rem}
-.hsk-stat-val{font-family:var(--mono);font-size:1.42rem;font-weight:700;color:#fff;line-height:1.1}
-.hsk-stat-sub{font-size:.57rem;color:rgba(255,255,255,.26);margin-top:.1rem;line-height:1.35}
-.hsk-net{font-size:.65rem;padding:4px 10px;border-radius:12px;display:inline-block;font-weight:500;line-height:1.4}
-.hsk-net.recv{background:rgba(46,125,92,.28);color:#6DDBA8;border:1px solid rgba(46,125,92,.38)}
-.hsk-net.give{background:rgba(200,80,80,.18);color:#FF9B9B;border:1px solid rgba(200,80,80,.28)}
-.hsk-lc-bar{margin:.05rem 0 .1rem}
-.hsk-lc-bar-lbl{display:flex;justify-content:space-between;font-size:.55rem;color:rgba(255,255,255,.2);margin-bottom:3px}
-.hsk-lc-track{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
-.hsk-lc-fill{height:100%;border-radius:2px;transition:width .5s ease,background .4s ease}
-.hsk-bars{display:flex;flex-direction:column;gap:4px;margin-top:.1rem}
-.hsk-bar-row{display:flex;align-items:center;gap:.5rem}
-.hsk-bar-lbl{font-size:.62rem;color:rgba(255,255,255,.38);width:86px;flex-shrink:0}
-.hsk-bar-track{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
-.hsk-bar-fill{height:100%;border-radius:3px;transition:width .4s ease}
-.hsk-bar-val{font-size:.61rem;font-family:var(--mono);color:rgba(255,255,255,.42);width:44px;text-align:right;flex-shrink:0}
-.hsk-shock{font-size:.71rem;color:rgba(255,255,255,.48);line-height:1.6;padding:.58rem .78rem;background:rgba(255,255,255,.04);border-left:2px solid var(--green);border-radius:0 3px 3px 0;transition:border-color .4s}
-.hsk-link{font-size:.71rem;color:var(--green);text-decoration:none;font-weight:500;margin-top:.05rem;display:inline-block}
-.hsk-link:hover{text-decoration:underline;opacity:.8}
-/* Åldersslider */
-.hsk-slider-wrap{padding:.05rem 0}
-.hsk-slider{width:100%;-webkit-appearance:none;appearance:none;height:3px;border-radius:2px;background:rgba(255,255,255,.1);outline:none;cursor:pointer;transition:background .4s}
-.hsk-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;transition:background .3s;box-shadow:0 0 0 3px rgba(46,125,92,.25)}
-.hsk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;border:none}
-/* Inkomst-toggle för kumulativt saldo */
-.hsk-inc-row{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-.hsk-inc-lbl{font-size:.55rem;color:rgba(255,255,255,.22);margin-right:2px;flex-shrink:0}
-.hsk-inc-btn{font-size:.58rem;font-family:var(--mono);padding:2px 7px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(255,255,255,.32);cursor:pointer;transition:all .15s}
-.hsk-inc-btn:hover{border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.65)}
-.hsk-inc-btn.on{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#fff}
-/* Nummer-transition i hero */
-.hsk-stat-val{transition:opacity .15s}
-.hsk-stat-val.flash{opacity:0}
 /* COFOG-vy i hero (ersatte livscykel-snabbkollen 2026-05) */
 .hsk-cofog-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
 .hsk-cofog-heading{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1.15;color:#fff;margin:.05rem 0 .8rem}
@@ -2005,9 +1959,9 @@ const CARDS = [
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Tandvård 0–23 år',unit:'per person och år (genomsnitt)',amount:3800,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — gratis t.o.m. 23 år (sedan 2024)',src:'SKR 2024: ~8,5 Mdkr / ~2,2M individer ≈ 3 860 kr/person/år. Utökades till 23 år fr.o.m. jan 2024.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'En höftledsoperation (primär)',unit:'per ingrepp, nationellt genomsnitt',amount:72000,suf:'kr',vs:'Du betalar: <strong>max 1 100 kr</strong> (frikortstak 2024)',src:'SKR KPP-databas DRG primär höftledsartroplastik 2024. ~18 000 ingrepp/år. Socialstyrelsens DRG-viktlista.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Ambulansutryckning',unit:'per insats inkl. sjuktransport',amount:8500,suf:'kr',vs:'Du betalar: <strong>0–200 kr</strong> (regionberoende)',src:'SKR/regionerna 2024: ~6,5 Mdkr / ~770 000 insatser = 8 440 kr/insats.'},
-  {cat:'infra',cl:'Infrastruktur',title:'Underhåll av 1 km riksväg per år',unit:'per km och år, statliga vägar',amount:280000,suf:'kr/km/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket underhållsplan 2024–2027: ~19 Mdkr/år / 67 800 km = 280 000 kr/km/år.'},
-  {cat:'infra',cl:'Infrastruktur',title:'Ny asfaltbeläggning, 1 km riksväg',unit:'per km (totalåtgärd)',amount:1400000,suf:'kr/km',vs:'Privat uppfart (5m bred): <strong>~625 000 kr/km</strong>',src:'NCC–Trafikverket ramavtal mars 2025: 840 Mkr / 600 km = 1,4 Mkr/km. Inkl. fräsning, bärlager, beläggning, trafikanordning.'},
-  {cat:'infra',cl:'Infrastruktur',title:'Järnvägsunderhåll, 1 km spår/år',unit:'per spårkm och år',amount:520000,suf:'kr/km/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket 2024: ~11 Mdkr/år / ~21 000 spårkm = 524 000 kr/km/år.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Underhåll av 1 km riksväg per år',unit:'per km och år, statliga vägar',amount:280000,suf:'kr/km/år',pp:false,vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket underhållsplan 2024–2027: ~19 Mdkr/år / 67 800 km = 280 000 kr/km/år.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Ny asfaltbeläggning, 1 km riksväg',unit:'per km (totalåtgärd)',amount:1400000,suf:'kr/km',pp:false,vs:'Privat uppfart (5m bred): <strong>~625 000 kr/km</strong>',src:'NCC–Trafikverket ramavtal mars 2025: 840 Mkr / 600 km = 1,4 Mkr/km. Inkl. fräsning, bärlager, beläggning, trafikanordning.'},
+  {cat:'infra',cl:'Infrastruktur',title:'Järnvägsunderhåll, 1 km spår/år',unit:'per spårkm och år',amount:520000,suf:'kr/km/år',pp:false,vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket 2024: ~11 Mdkr/år / ~21 000 spårkm = 524 000 kr/km/år.'},
   {cat:'infra',cl:'Infrastruktur',title:'Sophantering, ett hushåll per år',unit:'per hushåll och år',amount:3200,suf:'kr',vs:'Du betalar: <strong>~2 400 kr/år</strong> renhållningsavgift',src:'Avfall Sverige 2024: faktisk kostnad ~3 200 kr/hushåll. Taxa i snitt ~2 400 kr/år. Differens subventioneras.'},
   {cat:'infra',cl:'Infrastruktur',title:'En brandkårsutryckning',unit:'per insats (genomsnitt alla typer)',amount:18000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong>',src:'MSB 2024: kommunal räddningstjänst ~8,5 Mdkr / ~470 000 insatser = 18 100 kr/insats.'},
   {cat:'social',cl:'Social trygghet',title:'Barnbidrag per år',unit:'per barn 0–15 år (ett barn)',amount:15000,suf:'kr/år',vs:'Du får: <strong>1 250 kr/mån</strong> (oförändrat sedan 2018 — realt -25%)',src:'Försäkringskassan 2024: 1 250 kr/mån = 15 000 kr/år. UO12 ~107 Mdkr totalt (inkl. föräldraförsäkring).'},
@@ -2520,7 +2474,9 @@ let pgridSearch = '';
 function applyPgridFilters(){
   let d;
   if(pgridFilter === 'top10'){
-    d = [...CARDS].sort((a,b) => b.amount - a.amount).slice(0,10);
+    // Filtrera bort per-enhet-poster (pp:false — t.ex. "per km riksväg") så
+    // jämförelsen blir äpplen-mot-äpplen: personnära samhällskostnader.
+    d = CARDS.filter(c => c.pp !== false).sort((a,b) => b.amount - a.amount).slice(0,10);
   } else if(pgridFilter === 'all'){
     d = CARDS;
   } else {

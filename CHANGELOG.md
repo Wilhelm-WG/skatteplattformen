@@ -72,9 +72,23 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
   tydligt att prislistan är sajtens starkaste innehåll — den får nu
   värdiga sökfunktioner.
 
-### Notes
-- `.hsk-age*` CSS-klasser finns kvar som död kod (ingen renderad HTML
-  matchar dem). Tas bort i nästa städning.
+### Fixed
+- **Topp 10-anomalin i prislistan.** Tidigare visade Topp 10 "Ny
+  asfaltbeläggning 1 km riksväg — 1,4 Mkr/km" som dyraste posten,
+  vilket var konceptuellt fel: per-km-kostnad jämförs med per-person-
+  kostnader (LSS 1,3 Mkr/år, kriminalvård 1,2 Mkr/år osv) — apples-to-
+  oranges. Fix: ny `pp:false`-flagga på tre per-enhet-poster (vägunderhåll,
+  asfaltbeläggning, järnvägsunderhåll). Topp 10-filter exkluderar
+  `pp:false` så jämförelsen blir äpplen-mot-äpplen: personnära
+  samhällskostnader. Resultat: nya Topp 10 leds av LSS-assistans,
+  kriminalvård, demens, ätstörning, cancer, MS, högskola, förskola,
+  hemtjänst — alla personnära kostnader som berättar starkare historia.
+- **Död `.hsk-*`-CSS borttagen.** ~50 rader CSS-regler för element som
+  togs bort vid hero→COFOG-bytet (.hsk-age, .hsk-stat, .hsk-net,
+  .hsk-lc-*, .hsk-bar-*, .hsk-shock, .hsk-link, .hsk-slider*,
+  .hsk-inc-*, .hsk-stat-val.flash, .hsk-eyebrow, .hsk-phase-*).
+  Behåller .hero-snabbkoll + .hsk-accent-line (used) och .hsk-cofog-*
+  (new). Sparar ~3 KB.
 
 ### Earlier this Unreleased cycle
 - **Sidans narrativa båge omflyttad.** `#livslopp` ("Hela livet i ett diagram")
