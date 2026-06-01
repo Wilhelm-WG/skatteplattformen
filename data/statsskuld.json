@@ -48,7 +48,8 @@
     {"år": 2022, "skuld_mdkr": 1143, "bnp_pct": 22.0, "räntekostnad_mdkr": 9,   "not": "Inflationen drev upp BNP i löpande priser"},
     {"år": 2023, "skuld_mdkr": 1050, "bnp_pct": 18.0, "räntekostnad_mdkr": 9,   "not": ""},
     {"år": 2024, "skuld_mdkr": 1151, "bnp_pct": 18.0, "räntekostnad_mdkr": 12,  "not": "Budgetunderskott 104 Mdkr, räntorna steg"},
-    {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Prognos: Riksgälden lånebehov 2025"}
+    {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Riksgälden lånebehov 2025"},
+    {"år": 2026, "skuld_mdkr": 1300, "bnp_pct": 20.0, "räntekostnad_mdkr": 27,  "not": "BP2026: budgetunderskott 167 Mdkr, räntekostnad 27 Mdkr (UO26). Skuldkvot 20% snitt 2026-2028."}
   ],
 
   "internationell_jämförelse_2024": {

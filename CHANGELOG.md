@@ -10,6 +10,64 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-06-01, andra rundan) — Fler 2024→2025/2026
+Fortsättning på BP2026-uppdateringen.
+
+**Skattekvot 2024 → 2025:**
+- TL;DR-kortet: 41,4 % (2024) → **41,2 % (2025)**
+- Chart-serien förlängd: lagt till 2025-datapunkt
+- Framtid-flik "Finansieringsgapet": 46,7 % (2010) → 41,2 % (2025),
+  motsvarar ~370 Mdkr/år
+- Historik-flik "Skattekvot": rubriktal 2024 → 2025, OECD-snitt
+  uppdaterat 33,8 % → 34,1 % (2024 — senaste OECD)
+
+**Försvarsbudget framtid-flik:**
+- 175 Mdkr (preliminär) → **225,0 Mdkr (2026)** — BP2026 officiella
+- Bar-chart: 138 (2025) → 169 + 225 (2026) + ~252 (2030)
+- NATO-mål-kontext uppdaterad — Sverige når 3,5 % redan 2026
+
+**Demografi:**
+- Befolkning 80+ "2024: 635k → 2030: 812k" → "2025: 636k → 2030:
+  668k" (SCB Framskrivning 2026-2070)
+- Bar-chart utbyggd: 2024 / 2025 / 2030 / 2040 / 2050
+- Försörjningskvot 0,77 (2023) → 0,78 (2025)
+
+**Kalkylator-text:**
+- "(tkr, 2024 priser)" → "(tkr, 2026 priser)" — både template-string
+  och static label
+- Osäkerhetsnotis "Alla belopp nominella 2024-priser" → "2026-priser"
+- Metod-beskrivning: kommunalskatt 32,37 → 32,38 %, skiktgräns
+  615,3 → 643 tkr
+- "3 011 Mdkr 2024" → "~3 280 Mdkr 2026 (statsbudget 1 542 Mdkr)"
+- COFOG-fördelnings-text uppdaterad
+
+**Transparency JSON:**
+- version 2.0 → 2.1, datum 2026-03-28 → 2026-06-01
+- Skatteformel-block uppdaterad till 2026-värden
+- PBB 57,3 → 59,2 tkr
+- Nytt block `statsbudget_2026` med UO-höjdpunkter
+- Nytt block `statsskuld_2026`
+- COFOG-block markerat tydligt som 2024-värde + 2026-uppskattning
+
+**Skatter i korthet:**
+- "Skatteintäkterna 2024 fördelas så här" → "2026 fördelas så här"
+- 3 011 Mdkr → ~3 280 Mdkr
+
+**VDA-fakta:**
+- "Försvarsutgiften 3,3× på 15 år, 4 185 → 13 840 kr/inv" →
+  "**5,1× på 16 år**, 4 185 → ~21 300 kr/inv (2026 enligt BP2026)"
+- "Statsskulden ~1 260 Mdkr, 118 000 kr/person" →
+  "**1 300 Mdkr, 123 000 kr/person. Räntekostnaden har dubblats
+  sedan 2024.**"
+
+**Statsskuld-serien (`data/statsskuld.json`):**
+- Tillagt år 2026: skuld 1 300 Mdkr, BNP-andel 20 %, ränta 27 Mdkr
+- Bar-chart timeline förlängd: 1980 → 2026
+
+Resultat: 2024-omnämnanden minskat från 190 till 206 (många är
+äkta källhänvisningar — t.ex. "OECD Health 2024" som är rapportens
+publikationsår). 2026-omnämnanden från 30 → 111.
+
 ### Changed (2026-06-01) — BP2026-uppdatering
 Systematisk uppdatering till 2026 års värden enligt Budgetpropositionen
 för 2026 (prop. 2025/26:1, riksdagsbeslut nov 2025) och Skatteverkets
