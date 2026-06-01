@@ -586,7 +586,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
         <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">20 <span style="font-size:.85rem;opacity:.6">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på inkomst <strong>över 598 500 kr/år</strong> (50 tkr/mån) 2024. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på inkomst <strong>över 615 300 kr/år</strong> (~51 tkr/mån) 2024. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket, 67 kap inkomstskattelagen</div>
       </div>
 
@@ -1377,12 +1377,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <div>
-          <label>Kapitalinkomst per år <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(valfri)</span></label>
+          <label>Kapitalinkomst per år <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(valfri — direktägd portfölj)</span></label>
           <div class="sl-row">
             <input type="range" min="0" max="1000" value="0" id="s-kapital" step="10" aria-label="Kapitalinkomst per år i tusen kronor" oninput="updateCalc()">
             <span class="sl-val" id="d-kapital">0 tkr</span>
           </div>
-          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.2rem">Utdelning, ränta, kapitalvinst, uthyrning. Beskattas med 30% (schablon). Lägg till för en mer komplett bild av din totala skattesituation.</span>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.45;display:block;margin-top:.3rem">
+            <strong style="color:var(--ink2)">OBS — beräkningen 30 % gäller direktägt sparande:</strong> utdelning, ränta, realiserad kapitalvinst, uthyrning. Det vanligaste sparandet idag är <strong>ISK/KF</strong> där portföljens värde beskattas med en schablon (~1 % 2024) — där betalar du <strong>ingen skatt på själva inkomsten</strong>. Modellen visar 30 %-fallet eftersom det är det tydligaste.
+          </span>
         </div>
 
         <div class="method-note">
@@ -1565,7 +1567,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <details style="margin-top:.4rem">
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
       <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
-        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 598,5 tkr, arbetsgivaravgift 21,21% exkl. pensionsavgift (reducerad 10,21% för 66+), moms ~15% av konsumtion (inkomstberoende sparkvot 5–25%, effektiv moms 14,5–18,5%).<br><br>
+        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 3 011 Mdkr). Skatt: kommunalskatt 32,37% (rikssnitt 2024, SCB), statlig skatt 20% över 615,3 tkr (2024), arbetsgivaravgift 21,21% exkl. pensionsavgift (reducerad 10,21% för 66+), moms ~15% av konsumtion (inkomstberoende sparkvot 5–25%, effektiv moms 14,5–18,5%).<br><br>
         <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
         <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
         <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
@@ -1947,7 +1949,7 @@ const CARDS = [
   {cat:'infra',cl:'Infrastruktur',title:'En brandkårsutryckning',unit:'per insats (genomsnitt alla typer)',amount:18000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong>',src:'MSB 2024: kommunal räddningstjänst ~8,5 Mdkr / ~470 000 insatser = 18 100 kr/insats.'},
   {cat:'social',cl:'Social trygghet',title:'Barnbidrag per år',unit:'per barn 0–15 år (ett barn)',amount:15000,suf:'kr/år',vs:'Du får: <strong>1 250 kr/mån</strong> (oförändrat sedan 2018 — realt -25%)',src:'Försäkringskassan 2024: 1 250 kr/mån = 15 000 kr/år. UO12 ~107 Mdkr totalt (inkl. föräldraförsäkring).'},
   {cat:'social',cl:'Social trygghet',title:'Föräldrapenning, totalt per barn',unit:'per barn (480 dagar)',amount:168000,suf:'kr totalt',vs:'Max: <strong>1 116 kr/dag</strong> (80% av SGI)',src:'Försäkringskassan 2024: genomsnitt ~350 kr/dag × 480 dagar = 168 000 kr totalt per barn.'},
-  {cat:'social',cl:'Social trygghet',title:'Garantipension, per år',unit:'per ogift utan inkomstpension (max)',amount:112800,suf:'kr/år',vs:'Du får: <strong>~9 403 kr/mån</strong> om inkomstpension = 0',src:'Pensionsmyndigheten 2024: max 9 403 kr/mån. UO11 72 Mdkr. Gäller ~20% av pensionärerna. Inkomstpension är SEPARAT (avgiftsbaserad).'},
+  {cat:'social',cl:'Social trygghet',title:'Garantipension, per år',unit:'per ogift utan inkomstpension (max — 67+ år)',amount:115200,suf:'kr/år',vs:'Du får: <strong>9 597 kr/mån</strong> om 67+, <strong>8 597 kr/mån</strong> om under 67',src:'Pensionsmyndigheten 2024: 67+ år 9 597 kr/mån (115,2 tkr/år), under 67 8 597 kr/mån (103,2 tkr/år). Skillnaden från reformen aug 2023. UO11 72 Mdkr. Gäller ~20 % av pensionärerna. Inkomstpension är SEPARAT (avgiftsbaserad).'},
   {cat:'social',cl:'Social trygghet',title:'Sjukpenning per dag',unit:'genomsnittlig utbetalning per sjukdag',amount:870,suf:'kr/dag',vs:'Max: <strong>1 116 kr/dag</strong> (80% av SGI)',src:'FK 2024: ~69M sjukpenningdagar. UO10 ~131 Mdkr. ~870 kr/dag för sjukpenning (exkl. sjukersättning).'},
   {cat:'social',cl:'Social trygghet',title:'Hemtjänst, ett år',unit:'per brukare med hemtjänst',amount:175000,suf:'kr/år',vs:'Maxtaxa hemtjänst: <strong>2 809 kr/mån</strong> = ~19% av faktisk kostnad',src:'SKR 2024: ~70 Mdkr kommunal hemtjänst / ~400 000 brukare = ~175 000 kr/brukare/år.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Polisen per invånare och år',unit:'enbart polismyndigheten',amount:3400,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Polismyndigheten 2024: ~35,5 Mdkr / 10,55M inv = 3 365 kr/inv. Hela rättsväsendet UO4 = 6 240 kr/inv.'},
@@ -2106,7 +2108,7 @@ const DETAILS = {
       {label:'Statlig (Pensionsmyndigheten)',pct:100,note:'UO11 — skattesubvention'}
     ],
     fakta: [
-      'Max <strong>9 403 kr/mån</strong> (ogift utan inkomstpension)',
+      'Max <strong>9 597 kr/mån</strong> (ogift 67+ år), <strong>8 597 kr/mån</strong> (under 67)',
       'Gäller ca <strong>20% av pensionärerna</strong> — de med lägst inkomstpension',
       'Inkomstpensionen (~800 Mdkr/år) är <strong>separat</strong> — avgiftsbaserad, ej skattefinansierad',
       'Garantipensionen <strong>avtrappas</strong> mot inkomstpensionen — varje intjänad krona minskar garantin'
@@ -2833,9 +2835,9 @@ renderSkatteChart();
 // VIKTIG: Uppdatera ALLTID livsfaser_v2.json parallellt om värden ändras här.
 const LIVSFASER_V2 = [
   {id:'barn',       icon:'🍼', label:'Spädbarn & förskola',      min:0,  max:6,
-   f:{utb:175, sj:40, soc:38, koll:50, oms:0},
-   källa:'Skolverket 2024: förskola 175 tkr/barn/år. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
-   note:'Förskola ~175 tkr/barn/år. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
+   f:{utb:112, sj:40, soc:38, koll:50, oms:0},
+   källa:'SCB 2024: förskola 185 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 ≈ 112 tkr i åldersmedel. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
+   note:'Förskola ~185 tkr/inskrivet barn/år men 0-åringar och 6-åringar går inte → åldersmedel ~112 tkr. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
   {id:'elev',       icon:'🎒', label:'Grundskoleelev',           min:7,  max:15,
    f:{utb:152, sj:18, soc:25, koll:50, oms:0},
    källa:'Skolverket 2025: grundskola 152 tkr/elev inkl. undervisning, skolmat, elevhälsa, lokaler (SCB 2024: 160 Mdkr / ~1,05M elever).',
@@ -3077,8 +3079,9 @@ function annualTax(age, inc, opts){
   const beskBar = Math.max(0, effInc - ga);
   const komm = beskBar * ks;
 
-  // Statlig inkomstskatt: 20% över skiktgränsen 598.5 tkr (2024)
-  const stat = Math.max(0, beskBar - 598.5) * 0.20;
+  // Statlig inkomstskatt: 20% över skiktgränsen 615.3 tkr (2024 års värde
+  // enligt Skatteverket — indexerad +2,6% från 2023 års 598.5 tkr).
+  const stat = Math.max(0, beskBar - 615.3) * 0.20;
 
   // Jobbskatteavdrag (enbart för arbetsinkomster, ej pensionärer)
   const jsa = isPensionar ? 0 : jobbskatteavdrag2024(effInc, ga, ks);
@@ -3167,7 +3170,7 @@ function updateCalc(){
       ['Effektiv moms (konsumtion)', tax.moms],
       ['Jobbskatteavdrag', -tax.jsa],
     ];
-    if(kapSkatt > 0) items.push(['Kapitalskatt (30%)', kapSkatt]);
+    if(kapSkatt > 0) items.push(['Kapitalskatt (30 % på direktägt — ISK/KF beskattas annars)', kapSkatt]);
     taxHTML = items.filter(([,v])=>v!==0).map(([l,v])=>{
       const isNeg = v < 0;
       const col = isNeg ? '#2E7D5C' : 'rgba(242,239,232,.65)';
@@ -3182,14 +3185,15 @@ function updateCalc(){
         <span>Totalt per år</span>
         <span style="font-family:var(--mono)">${totalSkatt.toLocaleString('sv-SE')} tkr</span>
       </div>`;
-    // Balance note
+    // Modell-not: vad förhållandet säger om välfärdslogiken (inte personlig vinst/förlust)
     const balance = total - totalSkatt;
     const isNegative = balance < 0;
     taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:${isNegative?'rgba(200,151,58,.12)':'rgba(46,125,92,.12)'};border-left:2px solid ${isNegative?'#C8973A':'#2E7D5C'};border-radius:0 3px 3px 0;font-size:.72rem;color:rgba(242,239,232,.6);line-height:1.6">
-      <strong style="color:${isNegative?'#C8973A':'#2E7D5C'}">${isNegative?'Nettobidragsgivare':'Nettotagare i år'}</strong> — 
+      <strong style="color:${isNegative?'#C8973A':'#2E7D5C'}">I modellen vid denna ålder:</strong>
       ${isNegative
-        ? `Du betalar ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än du tar emot direkt i tjänster. I ett livscykelperspektiv är detta normalt under arbetsför ålder.`
-        : `Du tar emot ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i tjänster än du betalar i skatt. Livscykelmodellen förutser detta för din ålder.`}
+        ? `befolkningssnittet betalar ~${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än det <em>i år</em> konsumerar i offentliga tjänster. Detta är välfärdsmodellens kärna: yrkesaktiva finansierar både barn och äldre, samt sin egen framtida vård.`
+        : `befolkningssnittet tar emot ~${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i tjänster än det <em>i år</em> betalar i skatt. Detta är välfärdsmodellens kärna: barn och äldre konsumerar mer än de bidrar med just nu — finansierat av de yrkesaktiva.`}
+      <span style="display:block;margin-top:.3rem;font-size:.65rem;color:var(--ink3)">Detta är inte din individuella balans — verklig konsumtion varierar 5–10× per person inom samma ålders- och inkomstgrupp.</span>
     </div>`;
   } else {
     taxHTML = `<div style="font-size:.78rem;color:rgba(242,239,232,.4);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
@@ -3303,7 +3307,7 @@ function updateCalc(){
     const points = [200, 350, 500, 650, 900].map(p => {
       const ga = grundavdrag2024(p);
       const beskBar = Math.max(0, p - ga);
-      const hasStatlig = beskBar > 598.5;
+      const hasStatlig = beskBar > 615.3;
       const margKomm = ks;
       const margStat = hasStatlig ? 0.20 : 0;
       const margAvg = isPens ? 0 : avgM;
@@ -4625,7 +4629,7 @@ function downloadTransparencyJSON(){
     },
     skatteformel: {
       kommunalskatt: '32,37% (rikssnitt 2024, SCB)',
-      statlig_inkomstskatt: '20% över skiktgräns 598,5 tkr (2024)',
+      statlig_inkomstskatt: '20% över skiktgräns 615,3 tkr (2024 års värde enligt SKV)',
       arbetsgivaravgift: '21,21% exkl pension (31,42% inkl)',
       moms: {beskrivning:'Inkomstberoende: sparkvot 5-25%, effektiv moms 14,5-18,5%',
         sparkvot_per_inkomstklass: {'<300 tkr':'5%','300-500 tkr':'12%','500-700 tkr':'18%','>700 tkr':'25%'},

@@ -10,6 +10,37 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-05-31, v3) — datakritik-runda
+- **F1: Skiktgräns för statlig skatt 598,5 → 615,3 tkr.** 598,5 var
+  2023 års värde; Skatteverket har 615 300 kr för 2024 (indexerad
+  +2,6 %). Fixad på fem ställen: `annualTax` (rad 3083),
+  marginalskattekurva (rad ~3307), `#skatter`-card,
+  `<details>`-modellbeskrivning i livslopp, transparency JSON.
+  Effekt: vid 700 tkr inkomst sjunker beräknad statlig skatt från
+  17 tkr till 14 tkr (verifierat i browser).
+- **F2: Kapitalskatt — ISK-medvetenhet.** Slidern beskrivs nu som
+  "(valfri — direktägd portfölj)" och hjälptexten klargör att
+  ISK/KF (där 80 %+ av småsparare sparar) använder schablon på
+  värdet (~1 % 2024) — inte 30 % på inkomsten. Skattekvittots
+  rad ändrad: "Kapitalskatt (30 % på direktägt — ISK/KF beskattas
+  annars)".
+- **F3: Förskola 175 → 112 tkr i åldersgrupp 0-6.** 175 tkr var
+  kostnad per inskrivet barn. Verklig åldersmedel: 185 tkr ×
+  85 % täckning × 5/7 av åldersgruppen ≈ 112 tkr. Modellen
+  överskattade barn-utbildning med ~56 %.
+- **F4: Garantipension 2024-värden.** Var: 9 403 kr/mån. Är:
+  9 597 kr/mån för 67+ år / 8 597 kr/mån för under 67 (efter
+  reformen aug 2023). Prislistan + detalj-fakta uppdaterade.
+
+### Changed (2026-05-31, v3) — språk
+- **P5: Kalkylator-balance reframad.** Det transaktionella språket
+  "Nettobidragsgivare / Nettotagare i år — Du betalar X mer än du
+  tar emot" ersatt med modell-deskriptivt: "I modellen vid denna
+  ålder: befolkningssnittet betalar/tar emot ~X tkr mer ...
+  Detta är välfärdsmodellens kärna: yrkesaktiva finansierar både
+  barn och äldre." Plus disclaimer: "verklig konsumtion varierar
+  5–10× per person". Konsistent med tidigare reframning av livslopp.
+
 ### Changed (2026-05-31, v2)
 - **Hero ersatt: COFOG-vy → roterande prislapps-widget.** Användaren
   identifierade att även COFOG-vyn signalerade "personlig kalkylator"
