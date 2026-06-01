@@ -10,6 +10,49 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-06-01, tredje rundan) — FK-belopp + skatteutgifter 2026
+
+**Försäkringskassan-belopp 2026 (FK aktuella belopp 2026-01):**
+- Föräldrapenning max: 1 116 → **1 259 kr/dag** (80 % av SGI-tak
+  10 × PBB 59 200 = 592 000 kr)
+- Sjukpenning max: 1 116 → **1 259 kr/dag**
+- Sjukpenning genomsnitt: 870 → ~920 kr/dag (indexering)
+
+**Högkostnadsskydd vården (1177.se 2026):**
+- Frikortstak: 1 300 → **1 450 kr/år** — höjt 2026
+- Cancer, höftleds-op, depression, KOL m.fl. prislappar
+  uppdaterade (6 ställen total)
+
+**Skatteutgifter 2024 → 2026 (Skr. 2025/26:98, publ. april 2026):**
+- Jobbskatteavdrag: 152 → **218,8 Mdkr** (+44 %, JSA-utvidgning +
+  indexering)
+- Nedsatt moms livsmedel: 27,3 → **62,2 Mdkr** (+128 %, momssänkning)
+- Förhöjt grundavdrag äldre: ny post **68,7 Mdkr**
+- Avkastning eget hem: ny post **29,3 Mdkr**
+- Pensionsmedel avkastningsskatt: ny post **24,7 Mdkr**
+- Nedsatt energiskatt el (industri): ny post **13,6 Mdkr**
+- ROT-avdrag: 12 → 10 Mdkr
+- RUT-avdrag: 4 → **9,2 Mdkr** (höjt tak)
+- Totalt 11 nya skatteutgifter-poster ersätter de 12 gamla
+- Kommentarer + chart-rubrik uppdaterade
+
+**Övrigt:**
+- Prislista subtitle: "Alla belopp 2024 priser" → "2026 priser där
+  tillgängligt"
+- Livslopp-disclaimer: "antar 2024 års skatteregler i 85 år" → "2026"
+- Frikort i sjukvårds-fakta: 1 300 → 1 450 kr
+- ESV-källkort omskrivet: "tidsserier 1995–2024" → "+ BP2026"
+- Företagsstöd-källor uppdaterade till BP2026
+
+Resultat efter 3 rundor: 2024-träffar 206 → 203 (de återstående är
+äkta källhänvisningar — t.ex. "OECD Health 2024", "FK 2024" =
+rapport-publikationsår). 2026-träffar 111 → 135 (+24).
+
+Källor använda:
+- Försäkringskassan: aktuella belopp 2026
+- 1177.se: högkostnadsskydd 2026 (1 450 kr)
+- Skr. 2025/26:98 Redovisning av skatteutgifter 2026
+
 ### Changed (2026-06-01, andra rundan) — Fler 2024→2025/2026
 Fortsättning på BP2026-uppdateringen.
 
