@@ -86,7 +86,14 @@
     "statsskuld_kr_per_inv": 119000,
     "statsskuld_kr_per_yrkesverksam": 235600,
     "räntekostnad_kr_per_inv": 1232,
-    "not": "2025-prognos. Skuld 1 244 Mdkr / 10,46M invånare. Yrkesverksamma 20-64: ~5,28M. Detta är värdet som visas i kalkylatorns Framtida utmaningar-flik och Statsskuld-historik."
+    "not": "2025-prognos. Skuld 1 244 Mdkr / 10,46M invånare. Yrkesverksamma 20-64: ~5,28M."
+  },
+
+  "per_invånare_2026": {
+    "statsskuld_kr_per_inv": 123000,
+    "statsskuld_kr_per_yrkesverksam": 246100,
+    "räntekostnad_kr_per_inv": 2560,
+    "not": "2026 enligt Budgetpropositionen 2026 (prop. 2025/26:1). Skuld ~1 300 Mdkr (prognosen säger ~20 % av BNP 2026-2028). UO26 räntekostnad 27 Mdkr / 10,55M invånare = ~2 560 kr/inv. Dubblat från 2024 trots oförändrad skuld — räntenivåer har stigit. Detta är värdet som visas i sajtens nuvarande version (Statsskuld-flik + Framtida utmaningar)."
   },
 
   "kontext_räntekostnad": {

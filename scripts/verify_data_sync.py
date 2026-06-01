@@ -116,10 +116,10 @@ statsskuld = load_json(STATSSKULD_JSON)
 # Check 1: statsskuld 2025 per invånare
 # ──────────────────────────────────────────────────────────────────
 
-per_inv_2025 = statsskuld["per_invånare_2025"]["statsskuld_kr_per_inv"]
+per_inv_2025 = statsskuld["per_invånare_2026"]["statsskuld_kr_per_inv"]
 # HTML shows it with non-breaking space: "119 000 kr"
 expected_str = f"{per_inv_2025 // 1000} 000 kr"
-html_contains(html, expected_str, "Statsskuld 2025 per invånare")
+html_contains(html, expected_str, "Statsskuld 2026 per invånare")
 
 # ──────────────────────────────────────────────────────────────────
 # Check 2: räntekostnad per invånare 2025
@@ -127,7 +127,7 @@ html_contains(html, expected_str, "Statsskuld 2025 per invånare")
 # JSON: 1232 kr/inv. HTML kan visa avrundat "1 232 kr" eller "1 250 kr"
 # Vi tillåter ±2 % avrundning.
 
-rk_2025 = statsskuld["per_invånare_2025"]["räntekostnad_kr_per_inv"]
+rk_2025 = statsskuld["per_invånare_2026"]["räntekostnad_kr_per_inv"]
 # Look for "1 232 kr" or "1 250 kr" anywhere in HTML
 matches = re.findall(r"(\d[\d  ]{2,5})\s*kr/person", html)
 if matches:
@@ -135,10 +135,10 @@ if matches:
     closest = min(parsed, key=lambda v: abs(v - rk_2025))
     diff_pct = abs(closest - rk_2025) / rk_2025 * 100
     if diff_pct <= 5:
-        ok(f"Räntekostnad/inv 2025: JSON {rk_2025} kr ≈ HTML {closest} kr ({diff_pct:.1f}% diff)")
+        ok(f"Räntekostnad/inv 2026: JSON {rk_2025} kr ≈ HTML {closest} kr ({diff_pct:.1f}% diff)")
     else:
         fail(
-            f"Räntekostnad/inv 2025: JSON {rk_2025} kr vs närmaste HTML-värde {closest} kr ({diff_pct:.1f}% diff > 5%)"
+            f"Räntekostnad/inv 2026: JSON {rk_2025} kr vs närmaste HTML-värde {closest} kr ({diff_pct:.1f}% diff > 5%)"
         )
 else:
     warn("Hittade ingen 'kr/person'-string i HTML att jämföra mot")

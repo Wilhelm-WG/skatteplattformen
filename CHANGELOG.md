@@ -10,6 +10,60 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-06-01) — BP2026-uppdatering
+Systematisk uppdatering till 2026 års värden enligt Budgetpropositionen
+för 2026 (prop. 2025/26:1, riksdagsbeslut nov 2025) och Skatteverkets
+fastställda belopp för inkomstår 2026.
+
+**Skattevärden 2024 → 2026:**
+- Skiktgräns statlig skatt: 615,3 → **643,0 tkr** (Skatteverket)
+- Prisbasbelopp (PBB): 57,3 → **59,2 tkr** (regeringen sep 2025)
+- Kommunalskatt rikssnitt: 32,37 → **32,38 %** (SKR/SCB)
+- Inkomstbasbelopp: 76,2 → **83,4 tkr**
+- Arbetsgivaravgift: 31,42 % (oförändrat)
+- Kapitalskatt: 30 % (oförändrat)
+- Garantipension max ogift: 9 597 → **11 988 kr/mån** (143 856 kr/år)
+- Garantipension max gift: 8 597 → **10 853 kr/mån** (130 236 kr/år)
+
+**Statsbudgeten 2025 → 2026:**
+- Total utgifter: 1 442 → **1 542 Mdkr**
+- Total inkomster: ~1 360 → **1 375 Mdkr**
+- Budgetsaldo: ~−80 → **−167 Mdkr**
+- UO6 Försvar: 168,8 → **225,0 Mdkr (+54 %)** — NATO Haag-mål 3,5 %
+- UO9 Hälsovård+omsorg: 102,4 → **127,7 Mdkr (+25 %)**
+- UO16 Utbildning: 104,0 → **106,9 Mdkr**
+- UO25 Kommunbidrag: 164,7 → **180,7 Mdkr**
+- UO26 Statsskuldsräntor: 42,8 → **27,0 Mdkr (−37 %)** — refinansiering
+- UO11 Ekon trygghet ålderdom: 72,1 → **59,3 Mdkr**
+- UO22 Kommunikationer: 82,1 → **106,7 Mdkr**
+- Alla 27 UO uppdaterade i BDATA-arrayen
+
+**Statsskuld 2025 → 2026:**
+- Total: 1 244 → **~1 300 Mdkr** (lånebehov +167 Mdkr 2026)
+- Per invånare: 119 000 → **~123 000 kr**
+- Räntekostnad: 13 → **27 Mdkr/år** (+108 % trots oförändrad skuld)
+- Räntekostnad per invånare: 1 232 → **2 560 kr/år**
+- Andel av BNP: 19 → **20 %** (snitt 2026-2028)
+
+**TL;DR-raden ombytt:**
+- "3 011 Mdkr offentlig sektor 2024" → **"1 542 Mdkr statsbudget 2026"**
+- "+90 Mdkr kommunsektorn 2030" → **"−167 Mdkr underskott 2026"**
+
+**Eyebrow uppdaterade:**
+- Hero: "2025" → "2026"
+- Prislapp-widget: "2024 priser" → "2026 års budget"
+- #budget: "Statsbudgeten 2025" → "Statsbudgeten 2026"
+
+**verify_data_sync.py uppdaterad** med 2026-värden från
+`per_invånare_2026` block i `data/statsskuld.json` (nytt block).
+
+Källor använda:
+- Budgetpropositionen 2026 (prop. 2025/26:1) — riksdagsbeslut nov 2025
+- UO6, UO9, UO11, UO12, UO14, UO16, UO22, UO25, UO26 hämtade
+  individuellt från riksdagen.se
+- Skatteverket: Belopp och procent inkomstår 2026 (skatteverket.se)
+- Pensionsmyndigheten: garantipension 2026 (pensionsmyndigheten.se)
+
 ### Fixed (2026-05-31, v3) — datakritik-runda
 - **F1: Skiktgräns för statlig skatt 598,5 → 615,3 tkr.** 598,5 var
   2023 års värde; Skatteverket har 615 300 kr för 2024 (indexerad
