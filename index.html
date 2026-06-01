@@ -612,10 +612,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(184,74,30,.07);border:1px solid rgba(184,74,30,.28);border-radius:6px">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv skatt — exempel</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~50 <span style="font-size:.85rem;opacity:.6">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>500 tkr lön</strong>: ~32 % direkt skatt + arbetsgivaravgift + moms på det du konsumerar ≈ 47–53 % av allt arbetsgivaren betalar. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning baserad på Skatteverket + SCB IoT</div>
+        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~23 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön ~390 tkr/år (2026)</strong>: kommunal 118 tkr − jobbskatteavdrag 30 tkr = <strong>~88 tkr i direkt inkomstskatt</strong> (23 % av brutto). Plus moms ~38 tkr = ~32 % av brutto. Plus arbetsgivaravgift (21,21 %) som arbetsgivaren betalar ovanpå = ~44 % av total arbetsgivarkostnad. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverket 2026 + SCB medianlön + sparkvot/momsmix SCB HUT</div>
       </div>
 
     </div>
@@ -1456,10 +1456,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
         <!-- Marginalskatt-visualisering -->
         <div class="annual-card" id="marginal-card" style="display:none">
-          <div class="card-label">Marginalskatt — incitamentsstruktur</div>
+          <div class="card-label">Marginalskatt på bruttolön — vad din nästa intjänade krona kostar</div>
           <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
-          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.3);line-height:1.5">
-            Marginalskatt = kommunalskatt + ev. statlig skatt + arbetsgivaravgift på den sista intjänade kronan. Visar incitamentseffekten: hur mycket av en löneökning du (och din arbetsgivare) behåller vs. betalar i skatt.
+          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.4);line-height:1.55">
+            <strong>Marginalskatt</strong> = kommunalskatt (32,38 %) + ev. statlig skatt (20 % över 643 tkr) ± jobbskatteavdragets marginaleffekt på just den lönenivån.
+            JSA <strong>avtrappas</strong> vid månadslön 35-50 tkr → marginalskatten höjs där. Vid <strong>medellön</strong> är marginalskatten ~32 %, inte 50 %.
+            Arbetsgivaravgiften (21-31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
           </div>
         </div>
 
@@ -3337,23 +3339,34 @@ function updateCalc(){
   const isPens = age >= 65;
   if(margCard && margBars && totalSkatt > 0 && age >= 19){
     margCard.style.display = '';
-    const ks = 0.3237;
-    const inkludaPens = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
-    const avgM = isPens ? (inkludaPens ? 0.1021 : 0) : (inkludaPens ? 0.3142 : 0.2121);
-    // Marginalskatt vid olika inkomstpunkter
+    const ks = 0.3238;  // kommunalskatt rikssnitt 2026
+    // Marginalskatt vid olika inkomstpunkter — räknat på BRUTTOLÖN.
+    // Detta är den "klassiska" marginalskattesatsen som SKV publicerar.
+    // Skattekil inkl. arbetsgivaravgift är ~10-15 pp högre men presenteras
+    // inte här eftersom det blandar pensionsavgift (10,21 % av arbgiv) som
+    // ger individuell pensionsrätt — inte en "skatt" i sträng mening.
+    // JSA-marginaleffekt: när JSA byggs upp (under m=25k) ger varje extra
+    // intjänad krona MER JSA → negativ marginalskatt. När JSA avtrappas
+    // (m=35-50k) försvinner ~10 % per extra krona → positiv marginalskatt.
+    function jsaMarg(yearTkr){
+      const m = yearTkr * 1000 / 12;
+      if(m <= 15000) return -0.098;   // JSA byggs upp snabbt
+      if(m <= 25000) return -0.103;   // JSA byggs upp
+      if(m <= 35000) return 0;        // platå — ingen marginaleffekt
+      if(m <= 50000) return 0.100;    // JSA avtrappas
+      if(m <= 80000) return 0.033;    // JSA avtrappas långsammare
+      return 0;                        // ingen JSA kvar att avtrappa
+    }
     const points = [200, 350, 500, 650, 900].map(p => {
       const ga = grundavdrag2024(p);
       const beskBar = Math.max(0, p - ga);
       const hasStatlig = beskBar > 643.0;
-      const margKomm = ks;
+      const margKomm = isPens ? ks : ks;  // pensionärer har samma kommunalskatt
       const margStat = hasStatlig ? 0.20 : 0;
-      const margAvg = isPens ? 0 : avgM;
-      // Total marginalskatt på en extra intjänad bruttokrona (arbetsgivarens perspektiv)
-      // Arbetsgivaren betalar lön + avg: total kostnad = lön × (1+avgM)
-      // Av den: marginal kommunalskatt = ks × lön, statlig = 0.20 × (del > skiktgräns)
-      // Effektiv marginalskatt = (margKomm + margStat + margAvg) / (1 + margAvg)
-      const totMarg = ((margKomm + margStat) * (1 + margAvg) + margAvg) / (1 + margAvg);
-      return {inc: p, marg: Math.round(totMarg * 100), hasStatlig};
+      const margJsa = isPens ? 0 : jsaMarg(p);
+      // Marginalskatt på bruttolön = vad du betalar på din nästa intjänade krona
+      const totMarg = margKomm + margStat + margJsa;
+      return {inc: p, marg: Math.round(totMarg * 100), hasStatlig, margJsa};
     });
     const maxM = Math.max(...points.map(p=>p.marg));
     const currentP = points.reduce((prev, curr) =>
