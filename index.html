@@ -558,7 +558,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <a href="#framtid" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(184,74,30,.10);border:1px solid rgba(184,74,30,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(184,74,30,.16)';this.style.borderColor='rgba(184,74,30,.55)'" onmouseout="this.style.background='rgba(184,74,30,.10)';this.style.borderColor='rgba(184,74,30,.30)'">
         <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#E58060;line-height:1">−167<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Varthän → framtid</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +54 % och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +33 % på ett år (168,8 → 225 Mdkr) och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
       </a>
 
     </div>
@@ -671,7 +671,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div style="max-width:1080px">
       <p class="s-eye">Statsbudgeten 2026 — alla 27 utgiftsområden</p>
       <h2 class="s-title">Hur fördelas pengarna?</h2>
-      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 Mdkr</strong> fördelat på 27 utgiftsområden (UO) — inkomster 1 375 Mdkr, budgetsaldo <strong>−167 Mdkr</strong>. Statsbudgeten ≈ 47 % av total offentlig sektor (ca 3 280 Mdkr inkl. kommuner & regioner). Stora förändringar 2026: <strong>försvaret +54 %</strong> (NATO-mål), sjukvård/omsorg +25 %, räntekostnader −11 %. Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
+      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 Mdkr</strong> fördelat på 27 utgiftsområden (UO) — inkomster 1 375 Mdkr, budgetsaldo <strong>−167 Mdkr</strong>. Statsbudgeten ≈ 47 % av total offentlig sektor (ca 3 280 Mdkr inkl. kommuner & regioner). Stora förändringar 2026 vs 2025: <strong>försvaret +33 %</strong> (NATO-mål 3,5 %), sjukvård/omsorg +25 %, räntekostnader −11 %. Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
     </div>
     <div class="chart-box">
       <div class="chart-topbar">
@@ -1991,12 +1991,12 @@ const CARDS = [
 
   // ── KRONISKA SJUKDOMAR ──────────────────────────────────────────
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Typ 2-diabetes — vård per år',unit:'per patient och år, totalt vårdsystem',amount:52000,suf:'kr/år',vs:'Du betalar: <strong>max 1 450 kr/år</strong> (högkostnadsskydd 2026)',src:'Socialstyrelsen/SKR 2024: ~530 000 typ 2-diabetiker. Total samhällskostnad ~45 Mdkr inkl. produktionsbortfall; direkt vård ~28 Mdkr → ~52 000 kr/patient/år. Inkl. läkemedel, kontroller, komplikationsbehandling.'},
-  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Diabetes — läkemedel per år',unit:'per patient (genomsnitt alla läkemedel)',amount:18000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'TLV/e-hälsomyndigheten 2024: insulin + metformin + SGLT-2/GLP-1. Moderna SGLT-2-hämmare kostar ~18 000 kr/år. Äldre metformin ~300 kr/år. Genomsnittskostnaden är mix.'},
-  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'MS (multipel skleros) — vård per år',unit:'per patient, biologiska läkemedel + uppföljning',amount:380000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'MS-sällskapet/TLV 2024: ~22 000 MS-patienter i Sverige. Biologiska DMT-läkemedel (Ocrevus, Tysabri, Lemtrada) kostar 250 000–600 000 kr/patient/år. Snitt inkl. uppföljning ~380 000 kr.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Diabetes — läkemedel per år',unit:'per patient (genomsnitt alla läkemedel)',amount:18000,suf:'kr/år',vs:'Du betalar: <strong>max 2 950 kr/år</strong> (högkostnadsskydd)',src:'TLV/e-hälsomyndigheten 2024: insulin + metformin + SGLT-2/GLP-1. Moderna SGLT-2-hämmare kostar ~18 000 kr/år. Äldre metformin ~300 kr/år. Genomsnittskostnaden är mix.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'MS (multipel skleros) — vård per år',unit:'per patient, biologiska läkemedel + uppföljning',amount:380000,suf:'kr/år',vs:'Du betalar: <strong>max 2 950 kr/år</strong> (högkostnadsskydd)',src:'MS-sällskapet/TLV 2024: ~22 000 MS-patienter i Sverige. Biologiska DMT-läkemedel (Ocrevus, Tysabri, Lemtrada) kostar 250 000–600 000 kr/patient/år. Snitt inkl. uppföljning ~380 000 kr.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Depression (behandlingskrävande) — år',unit:'per patient, öppenvård + läkemedel',amount:38000,suf:'kr/år',vs:'Du betalar: <strong>~2 000–4 000 kr/år</strong> (besök + läkemedel)',src:'Socialstyrelsen 2024: ~400 000 med behandlingskrävande depression. Direkta kostnader ~15 Mdkr → ~38 000 kr/patient/år. SSRI-läkemedel ~1 500 kr/år; KBT-behandling ~15 000 kr/kurs.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'LSS — insats per person och år',unit:'per brukare med LSS-beslut (genomsnitt)',amount:780000,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — ingen avgift för LSS-insatser',src:'Socialstyrelsen LSS-uppföljning 2024: ~92 000 beslut om personlig assistans och boende. Totalt ~72 Mdkr / ~92 000 ≈ 780 000 kr/person/år. Personlig assistans (PAL): ~1,3 Mkr/år/person.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Cancer — behandling per patient',unit:'per nytt cancerfall, hela behandlingsperioden',amount:420000,suf:'kr totalt',vs:'Du betalar: <strong>max 1 450 kr/år</strong> (frikortstak 2026)',src:'RCC/SKR 2024: ~75 000 nya cancerfall/år. Onkologisk behandling (kemo + strålning + kirurgi + kontroller): genomsnitt 300 000–600 000 kr beroende på typ. Prostatacancer billigare, blodcancer dyrare.'},
-  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Reumatoid artrit (RA) — biologisk behandling',unit:'per patient och år, TNF-hämmare/JAK-hämmare',amount:160000,suf:'kr/år',vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)',src:'TLV/Reumatikerförbundet 2024: ~70 000 RA-patienter. Biologiska läkemedel (Humira, Enbrel, JAK-hämmare) kostar 120 000–220 000 kr/år/patient. Biosimilars har sänkt kostnaden ~40% sedan 2018.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Reumatoid artrit (RA) — biologisk behandling',unit:'per patient och år, TNF-hämmare/JAK-hämmare',amount:160000,suf:'kr/år',vs:'Du betalar: <strong>max 2 950 kr/år</strong> (högkostnadsskydd)',src:'TLV/Reumatikerförbundet 2024: ~70 000 RA-patienter. Biologiska läkemedel (Humira, Enbrel, JAK-hämmare) kostar 120 000–220 000 kr/år/patient. Biosimilars har sänkt kostnaden ~40% sedan 2018.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'KOL (kroniskt obstruktiv lungsjukdom)',unit:'per patient och år, alla stadier',amount:48000,suf:'kr/år',vs:'Du betalar: <strong>~2 000 kr/år</strong> i patientavgifter',src:'Socialstyrelsen/LHL 2024: ~400 000–600 000 KOL-patienter. Direkta sjukvårdskostnader ~20–29 Mdkr → ~48 000 kr/patient/år. Innebär inhalatorer, uppföljning, sjukhusinläggningar (snitt 2–3/år i svåra fall à 35 000 kr/dygn).'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Personlig assistans (LSS § 9:2)',unit:'per assistansberättigad och år',amount:1300000,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong>',src:'FK + Socialstyrelsen 2024: ~17 000 personer med statlig assistansersättning. FK-utgifter ~22 Mdkr + kommunal assistans ~6 Mdkr = ~28 Mdkr / ~17 000 ≈ 1 650 kr/timme × 8 760 timmar × beviljade timmar. Snitt ~1,3 Mkr/år.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Ätstörning (AN/BN) — slutenvård',unit:'per inneliggande patient och behandlingsomgång',amount:620000,suf:'kr totalt',vs:'Du betalar: <strong>max 130 kr/dygn</strong>',src:'Socialstyrelsen/Riksät 2024: anorexia nervosa-behandling ~60–180 dagars slutenvård. Kostnad ~8 000–10 000 kr/dygn. Svåra fall: 60 dagar × 9 000 kr = 540 000 kr. Utöver det: dagvård, öppenvård, återfall.'},
@@ -2161,7 +2161,7 @@ const DETAILS = {
   },
   'Försvaret per invånare, 2026': {
     finansiering: [
-      {label:'Statlig (UO6)',pct:100,note:'225,0 Mdkr 2026 (+54 % från 2025)'}
+      {label:'Statlig (UO6)',pct:100,note:'225,0 Mdkr 2026 (+33 % från 2025, +54 % från 2024)'}
     ],
     oecd: [
       {land:'Polen',val:4.7,cl:'avg'},
@@ -2628,7 +2628,7 @@ const HERO_PRISLAPPAR = [
   {cat:'Utbildning', title:'En grundskoleelev, ett år',
    amount:'152 000', suf:'kr', vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis'},
   {cat:'Kronisk sjukdom', title:'En MS-patient, ett år',
-   amount:'380 000', suf:'kr', vs:'Du betalar: <strong>max 2 850 kr/år</strong> (högkostnadsskydd)'},
+   amount:'380 000', suf:'kr', vs:'Du betalar: <strong>max 2 950 kr/år</strong> (högkostnadsskydd)'},
   {cat:'Funktionsnedsättning', title:'En person med personlig assistans (LSS)',
    amount:'1,3', suf:'Mkr/år', vs:'Du betalar: <strong>0 kr</strong> — ingen avgift för LSS-insatser'},
   {cat:'Förskola', title:'En förskoleplats, ett år',
@@ -2782,23 +2782,23 @@ const BDATA=[
   {l:'Rättsväsendet (UO4)',v:94.7,c:'tryg',p:false},
   {l:'Arbetsmarknad & arbetsliv (UO14)',v:91.2,c:'arb',p:false},
   {l:'Ekon. trygghet vid ålderdom (UO11)',v:59.3,c:'soc',p:true},
-  {l:'Avgiften till EU (UO27)',v:48.0,c:'ovr',p:false},
-  {l:'Internationellt bistånd (UO7)',v:44.0,c:'ovr',p:false},
+  {l:'Avgiften till EU (UO27)',v:54.2,c:'ovr',p:false},
+  {l:'Internationellt bistånd (UO7)',v:43.7,c:'ovr',p:false},
+  {l:'Studiestöd (UO15)',v:35.8,c:'utb',p:true},
   {l:'Statsskuldsräntor (UO26)',v:27.0,c:'ovr',p:false},
-  {l:'Studiestöd (UO15)',v:29.5,c:'utb',p:true},
-  {l:'Areella näringar & landsbygd (UO23)',v:24.0,c:'ovr',p:false},
+  {l:'Areella näringar & landsbygd (UO23)',v:22.6,c:'ovr',p:false},
   {l:'Samhällsekonomi & finans (UO2)',v:22.0,c:'ovr',p:false},
-  {l:'Migration (UO8)',v:20.5,c:'ovr',p:false},
-  {l:'Rikets styrelse (UO1)',v:20.5,c:'ovr',p:false},
-  {l:'Miljö- & naturvård (UO20)',v:19.5,c:'miljo',p:false},
-  {l:'Kultur, medier & fritid (UO17)',v:18.7,c:'ovr',p:false},
-  {l:'Skatt, tull & exekution (UO3)',v:15.0,c:'ovr',p:false},
-  {l:'Jämställdhet & nyanländas etabl. (UO13)',v:13.0,c:'soc',p:false},
-  {l:'Näringsliv (UO24)',v:10.5,c:'ovr',p:false},
-  {l:'Energi (UO21)',v:8.0,c:'miljo',p:false},
-  {l:'Samhällsplanering & bostäder (UO18)',v:7.3,c:'infra',p:false},
-  {l:'Regional tillväxt (UO19)',v:4.7,c:'ovr',p:false},
-  {l:'Internationell samverkan (UO5)',v:2.3,c:'ovr',p:false},
+  {l:'Rikets styrelse (UO1)',v:21.6,c:'ovr',p:false},
+  {l:'Miljö- & naturvård (UO20)',v:19.6,c:'miljo',p:false},
+  {l:'Kultur, medier & fritid (UO17)',v:17.3,c:'ovr',p:false},
+  {l:'Skatt, tull & exekution (UO3)',v:15.5,c:'ovr',p:false},
+  {l:'Migration (UO8)',v:13.5,c:'ovr',p:false},
+  {l:'Näringsliv (UO24)',v:9.0,c:'ovr',p:false},
+  {l:'Energi (UO21)',v:7.9,c:'miljo',p:false},
+  {l:'Jämställdhet & nyanländas etabl. (UO13)',v:5.9,c:'soc',p:false},
+  {l:'Regional utveckling (UO19)',v:4.9,c:'ovr',p:false},
+  {l:'Internationell samverkan (UO5)',v:2.5,c:'ovr',p:false},
+  {l:'Samhällsplanering & bostäder (UO18)',v:1.8,c:'infra',p:false},
 ];
 // ═══════════════════════════════════════════════════════════════════
 // SKATTEUTGIFTER — "osynliga" subventioner via skattesystemet
@@ -3969,7 +3969,7 @@ const SCENARIER = {
       return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
     },
     noter:[
-      'MS-behandling (biologiska DMT-läkemedel): ~380 000 kr/år — patienten betalar max 2 850 kr/år',
+      'MS-behandling (biologiska DMT-läkemedel): ~380 000 kr/år — patienten betalar max 2 950 kr/år',
       'Systemet bär 99% av behandlingskostnaden via landstingen',
       'Utan högkostnadsskydd: en månads behandling kostar mer än en genomsnittslön',
       'Rehabilitering, sjukskrivning, hjälpmedel tillkommer (ej inkluderade)'

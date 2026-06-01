@@ -254,6 +254,36 @@ else:
         ok(f"Internationell statsskuld-jämförelse: HTML och JSON inom 2 pp")
 
 # ──────────────────────────────────────────────────────────────────
+# Check 8: BDATA-summa = 1 542 Mdkr (statsbudget 2026 enligt BP2026)
+# ──────────────────────────────────────────────────────────────────
+bdata_match = re.search(r"const BDATA=\[[\s\S]*?\];", html)
+if bdata_match:
+    vs = [float(m.group(1)) for m in re.finditer(r"v:(\d+\.?\d*)", bdata_match.group(0))]
+    total = sum(vs)
+    EXPECTED_BDATA = 1542.0  # BP2026 officiellt totalt
+    diff = abs(total - EXPECTED_BDATA)
+    if diff <= 5:
+        ok(f"BDATA-summa: {total:.1f} Mdkr ({len(vs)} UO) — matchar BP2026 ({EXPECTED_BDATA}) inom 5 Mdkr")
+    else:
+        fail(f"BDATA-summa: {total:.1f} Mdkr vs förväntat {EXPECTED_BDATA} — diff {diff:.1f} Mdkr (>5 Mdkr)")
+else:
+    warn("Hittade ingen BDATA-array")
+
+# ──────────────────────────────────────────────────────────────────
+# Check 9: COFOG-andelar summerar till 100 %
+# ──────────────────────────────────────────────────────────────────
+cofog_match = re.search(r"const cofogItems = \[[\s\S]*?\];", html)
+if cofog_match:
+    andels = [float(m.group(1)) for m in re.finditer(r"andel:(\d+\.?\d*)", cofog_match.group(0))]
+    total_pct = sum(andels) * 100
+    if abs(total_pct - 100) <= 0.5:
+        ok(f"COFOG-andelar: summerar till {total_pct:.1f} % ({len(andels)} kategorier)")
+    else:
+        fail(f"COFOG-andelar: summerar till {total_pct:.1f} % — väntat 100 % (diff {total_pct-100:+.1f} pp)")
+else:
+    warn("Hittade ingen cofogItems-array")
+
+# ──────────────────────────────────────────────────────────────────
 # Sammanfattning
 # ──────────────────────────────────────────────────────────────────
 
