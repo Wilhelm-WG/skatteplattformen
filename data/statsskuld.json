@@ -49,7 +49,7 @@
     {"år": 2023, "skuld_mdkr": 1050, "bnp_pct": 18.0, "räntekostnad_mdkr": 9,   "not": ""},
     {"år": 2024, "skuld_mdkr": 1151, "bnp_pct": 18.0, "räntekostnad_mdkr": 12,  "not": "Budgetunderskott 104 Mdkr, räntorna steg"},
     {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Riksgälden lånebehov 2025"},
-    {"år": 2026, "skuld_mdkr": 1300, "bnp_pct": 20.0, "räntekostnad_mdkr": 27,  "not": "BP2026: budgetunderskott 167 Mdkr, räntekostnad 27 Mdkr (UO26). Skuldkvot 20% snitt 2026-2028."}
+    {"år": 2026, "skuld_mdkr": 1316, "bnp_pct": 19.0, "räntekostnad_mdkr": 27,  "not": "Riksgälden prognos maj 2026: 1 316 Mdkr vid årets slut = 19% av BNP. Budgetunderskott 173 Mdkr. Räntekostnad 27 Mdkr (UO26). Finansplanens snitt 2026-2028: ~20% av BNP."}
   ],
 
   "internationell_jämförelse_2024": {
@@ -91,10 +91,10 @@
   },
 
   "per_invånare_2026": {
-    "statsskuld_kr_per_inv": 123000,
-    "statsskuld_kr_per_yrkesverksam": 246100,
+    "statsskuld_kr_per_inv": 125000,
+    "statsskuld_kr_per_yrkesverksam": 249200,
     "räntekostnad_kr_per_inv": 2560,
-    "not": "2026 enligt Budgetpropositionen 2026 (prop. 2025/26:1). Skuld ~1 300 Mdkr (prognosen säger ~20 % av BNP 2026-2028). UO26 räntekostnad 27 Mdkr / 10,55M invånare = ~2 560 kr/inv. Dubblat från 2024 trots oförändrad skuld — räntenivåer har stigit. Detta är värdet som visas i sajtens nuvarande version (Statsskuld-flik + Framtida utmaningar)."
+    "not": "2026 enligt Riksgäldens prognos maj 2026: 1 316 Mdkr / 10,55M = 124 700 kr/inv. UO26 räntekostnad 27 Mdkr / 10,55M = 2 560 kr/inv. Dubblat från 2024 trots oförändrad skuld — räntenivåer har stigit. Skuldkvot 19% vid årets slut 2026 (snitt 2026-2028: ~20%)."
   },
 
   "kontext_räntekostnad": {
