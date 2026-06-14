@@ -2042,7 +2042,6 @@ function updateCalc(){
   document.getElementById('lc-marker').style.left = markerPct + '%';
 
   // Lifecycle text
-  const isTaker = age <= 18 || age >= 55;
   let lcText = '';
   if(age <= 18){
     lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du är i uppväxtfasen — systemet investerar i dig. Dina föräldrar, din generation och de som arbetar nu finansierar din utbildning och vård.</p>`;

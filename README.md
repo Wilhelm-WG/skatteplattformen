@@ -6,19 +6,22 @@ Oberoende, partipolitiskt neutral databas som visar hur svenska skattepengar anv
 
 ## Webbplatsen
 
-Öppna `index.html` (döp om från `skatteplattformen.html`) i en webbläsare, eller hosta via GitHub Pages.
+Öppna `index.html` i en webbläsare, eller hosta via GitHub Pages.
 
 ## Innehåll i detta repo
 
 | Fil | Beskrivning |
 |-----|-------------|
 | `index.html` | Komplett webbplats — prislista, kalkylator, budgetdiagram |
-| `skatteplattformen_data.xlsx` | Excel-modell: ESV-tidsserier 2010–2025, FASIT-analys, KPI-justering |
-| `skatteplattformen_metodrapport_v1.docx` | Akademisk metodrapport, 17 refs, redo för extern granskning |
-| `data/nta_profil_v2.json` | NTA-åldersprofil: 86 åldersår × 4 kategorier × konfidensintervall |
+| `data/livsfaser_v2.json` | **Enda sanningskällan**: 10 livsfaser, förmåner per kategori, skattemodell, kalibrering |
+| `data/nta_profil_v2.json` | Genererad åldersprofil (av `nta_berakning.py`) som webbplatsen använder |
 | `data/fasit_full.json` | FASIT-rekonstruktion: förmåner och skatt per 5-årsåldersgrupp |
 | `data/fasit_analys.json` | Kalibrerad fördelningsanalys 2022 |
-| `data/nta_berakning.py` | Python-skript som reproducerar åldersprofilen från öppna källor |
+| `data/nta_berakning.py` | Python-skript som reproducerar `nta_profil_v2.json` från `livsfaser_v2.json` |
+| `docs/skatteplattformen_metodrapport_v1.docx` | Akademisk metodrapport, 17 refs, redo för extern granskning |
+| `docs/MODELLFIX_PLAN.md` | Plan/resonemang bakom v2.1-modellfixen |
+
+> `skatteplattformen_data.xlsx` (ESV-tidsserier, FASIT) genereras lokalt och är gitignorerad — den krävs **inte** för att bygga webbplatsen eller regenerera JSON-modellen.
 
 ## Metodik
 
@@ -29,7 +32,7 @@ Modellen kombinerar:
 - **NTA-metodik (UN 2013)** — åldersprofil sjukvård, kalibrerad mot AGENTA NTA 2010
 - **Eurostat gov_10a_exp 2022** — EU-ranking per utgiftskategori
 
-Fullständig metoddokumentation: se `METODRAPPORT.docx`.
+Fullständig metoddokumentation: se `docs/skatteplattformen_metodrapport_v1.docx`.
 
 ## Konfidensintervall
 
@@ -49,10 +52,11 @@ Fullständig metoddokumentation: se `METODRAPPORT.docx`.
 ## Reproducerbarhet
 
 ```bash
-python data/nta_berakning.py
+python data/nta_berakning.py           # regenererar data/nta_profil_v2.json
+python data/nta_berakning.py --verify   # kör verifieringstester (fasstruktur, skattemodell, COFOG-kalibrering)
 ```
 
-Producerar `nta_profil_v2.json` från scratch. Alla makrototaler kalibreras mot offentliga COFOG-siffror.
+Skriptet läser `data/livsfaser_v2.json` (enda sanningskällan för förmåner, skattesatser och befolkningsvikter) och regenererar `nta_profil_v2.json`. Finns den lokala Excel-filen byggs även dess `Beräkningsmodell`-flik; saknas den hoppas Excel-steget tyst över. Alla makrototaler kalibreras mot offentliga COFOG-siffror.
 
 ## Kända begränsningar
 

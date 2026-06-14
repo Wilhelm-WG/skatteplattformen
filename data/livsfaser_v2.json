@@ -457,17 +457,17 @@
     "kommunalskatt_sats": 0.3237,
     "kommunalskatt_källa": "SCB 2024: genomsnittlig kommunalskatt inkl. landsting/region = 32,37%",
     "statlig_skatt_sats": 0.20,
-    "statlig_skatt_brytpunkt_tkr": 598,
-    "statlig_skatt_källa": "65 kap 5 § IL, skiktgräns 2024: 598 000 kr (PBB × 1,025 × 10,48)",
-    "arbetsgivaravgift_exkl_pension": 0.1420,
+    "statlig_skatt_brytpunkt_tkr": 598.5,
+    "statlig_skatt_källa": "65 kap 5 § IL, skiktgräns 2024: 598 500 kr",
+    "arbetsgivaravgift_exkl_pension": 0.2121,
     "arbetsgivaravgift_inkl_pension": 0.3142,
-    "arbetsgivaravgift_källa": "SFS 2000:980, socialavgiftslagen 2024. Exkl. pension: 31,42% − 10,21% ålderspensionsavgift + inkluderar övriga.",
+    "arbetsgivaravgift_källa": "SFS 2000:980, socialavgiftslagen 2024. Full sats 31,42%; exkl. ålderspensionsavgift 10,21% = 21,21%.",
     "moms_effektiv_sats": 0.1525,
     "moms_beräkning": "konsumtion × 0.18 / 1.18. Konsumtion = disponibel × 0.85 (SCB sparkvot 2024 ~15%). Genomsnittlig momsats på konsumtionskorg: ~18% (mix 25/12/6%).",
     "moms_källa": "SCB HE0201 Hushållens utgifter 2022. Momsåterbetalningsmetod (SCB Nationalräkenskaperna).",
     "pbb_2024_tkr": 57.3,
-    "grundavdrag_not": "Beräknas per 67 kap IL med PBB 2024. Se nta_berakning.py::grundavdrag2024()",
-    "jobbskatteavdrag_not": "Beräknas per 67 kap 5-7 §§ IL, kalibrerad mot SKV skattetabeller tabell 32. Se nta_berakning.py::jobbskatteavdrag2024()"
+    "grundavdrag_not": "Beräknas per 67 kap IL med PBB 2024 i kalkylatorn. Se index.html::grundavdrag2024(). Pythons livstidsschablon (nta_berakning.py) använder ej grundavdrag.",
+    "jobbskatteavdrag_not": "Beräknas per 67 kap 5-7 §§ IL, kalibrerad mot SKV skattetabeller tabell 32, i kalkylatorn. Se index.html::jobbskatteavdrag2024(). Pythons livstidsschablon använder ej jobbskatteavdrag."
   },
 
   "kalibrering": {

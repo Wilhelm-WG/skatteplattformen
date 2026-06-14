@@ -174,7 +174,7 @@
         "TOTALT": 104.1
       },
       "livstid_tkr": 6567,
-      "skatt_500tkr": 1696
+      "skatt_500tkr": 1559
     },
     {
       "label": "35 år",
@@ -193,7 +193,7 @@
         "TOTALT": 133.1
       },
       "livstid_tkr": 7950,
-      "skatt_500tkr": 5088
+      "skatt_500tkr": 4676
     },
     {
       "label": "45 år",
@@ -212,7 +212,7 @@
         "TOTALT": 150.7
       },
       "livstid_tkr": 10217,
-      "skatt_500tkr": 8480
+      "skatt_500tkr": 7794
     },
     {
       "label": "65 år",
@@ -230,8 +230,8 @@
         "Garantipension": 34.0,
         "TOTALT": 315.0
       },
-      "livstid_tkr": 14070,
-      "skatt_500tkr": 15264
+      "livstid_tkr": 14462,
+      "skatt_500tkr": 14029
     }
   ],
   "livsfaser": [
@@ -253,7 +253,7 @@
       }
     },
     {
-      "label": "Grundskola",
+      "label": "Grundskoleelev",
       "start": 7,
       "end": 15,
       "årsvals": {
@@ -270,7 +270,7 @@
       }
     },
     {
-      "label": "Gymnasium",
+      "label": "Gymnasieelev",
       "start": 16,
       "end": 18,
       "årsvals": {
@@ -287,7 +287,7 @@
       }
     },
     {
-      "label": "Högskolestudier",
+      "label": "Student / ung vuxen",
       "start": 19,
       "end": 25,
       "årsvals": {
@@ -304,7 +304,7 @@
       }
     },
     {
-      "label": "Barnfamilj-fas",
+      "label": "Ung förvärvsarbetande",
       "start": 26,
       "end": 34,
       "årsvals": {
@@ -321,7 +321,7 @@
       }
     },
     {
-      "label": "Mitt-karriär",
+      "label": "Barnfamiljsfas",
       "start": 35,
       "end": 44,
       "årsvals": {
@@ -338,7 +338,7 @@
       }
     },
     {
-      "label": "Senior (45–64)",
+      "label": "Mitt i karriären",
       "start": 45,
       "end": 54,
       "årsvals": {
@@ -355,7 +355,7 @@
       }
     },
     {
-      "label": "Pensionär (65–80)",
+      "label": "Senior förvärvsarbetande",
       "start": 55,
       "end": 64,
       "årsvals": {
@@ -369,6 +369,40 @@
         "kom_bidrag": 25.0,
         "aldreomsorg": 10,
         "pension_g": 0
+      }
+    },
+    {
+      "label": "Ny pensionär",
+      "start": 65,
+      "end": 74,
+      "årsvals": {
+        "sjukvård": 175,
+        "sjukforsakr": 10.0,
+        "familj": 0,
+        "studiemedel": 0.4,
+        "hogskola": 1.0,
+        "skola_k": 0.6,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
+        "aldreomsorg": 65,
+        "pension_g": 90.0
+      }
+    },
+    {
+      "label": "Senior pensionär",
+      "start": 75,
+      "end": 85,
+      "årsvals": {
+        "sjukvård": 280,
+        "sjukforsakr": 8.0,
+        "familj": 0,
+        "studiemedel": 0.2,
+        "hogskola": 0.5,
+        "skola_k": 0.3,
+        "infra": 25.0,
+        "kom_bidrag": 25.0,
+        "aldreomsorg": 240,
+        "pension_g": 72.0
       }
     }
   ]

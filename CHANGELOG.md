@@ -1,5 +1,35 @@
 # Ändringslogg
 
+## v2.2 — 2026-06-13
+
+### Rättelser efter modellgranskning
+
+- **Datakorruption rättad:** `nta_profil_v2.json` innehöll bara 8 av 10 livsfaser med felmatchade etiketter (t.ex. "Pensionär (65–80)" satt på ålder 55–64; faserna 65–74 och 75–85 saknades helt). Orsak: en hårdkodad 8-poster `LIVSFAS_LABELS` uppdaterades aldrig vid v2.1-migreringen till 10 faser, varpå `zip()` trunkerade tyst. Etiketter, befolkningsvikter och skattesatser läses nu direkt från `livsfaser_v2.json`.
+- **Reproducerbarhet återställd:** `python data/nta_berakning.py` kraschade på en färsk klon eftersom skriptet ovillkorligt laddade den gitignorerade `skatteplattformen_data.xlsx`. Excel-steget hoppas nu tyst över om filen saknas och JSON-modellen regenereras ändå.
+- **`--verify` fungerar nu fristående** — testblocket låg efter den kraschande Excel-koden och kunde aldrig köras. Flyttat före Excel-genereringen + nya regressionstester (etikett/fas-paritet, befolkningsvikter).
+- **Python-skattemodellen synkad med kalkylatorn:** `berakna_skatt_livet` använde fortfarande gamla satser (kommunalskatt 32 %, arbetsgivaravgift 31,42 % inkl. pension, moms 6,5 % platt) — ~35 % avvikelse mot JavaScript. Läser nu satserna från `livsfaser_v2.json::skattemodell`. Pensionsavgifts-toggle (`inkludera_pension`) tillagd även i Python.
+- **Datafel i `livsfaser_v2.json` rättade:** `arbetsgivaravgift_exkl_pension` var 0,142 (motsade både kalkylatorn och sin egen källtext) → 0,2121 (31,42 % − 10,21 %). Statlig skiktgräns 2024 rättad 598 → 598,5 tkr. Metodnoter pekade fel fil (`nta_berakning.py` → `index.html` för grundavdrag/jobbskatteavdrag).
+- **README:** rättade trasiga filsökvägar (metodrapport ligger i `docs/`, borttagen stale `skatteplattformen.html`-instruktion) och förtydligade reproducerbarheten.
+- **Städning:** oanvänd `isTaker`-variabel borttagen i `index.html`.
+
+## v2.1 — 2026-03-24
+
+### Modellfix — en enda sanningskälla
+
+- **`data/livsfaser_v2.json`** införd som kanonisk datakälla för livstidsförmåner (10 faser, 0–85 år, 5 kategorier, källhänvisning per värde). Både Python och JavaScript läser från samma modell.
+- **Synkad skattemodell.** Python (`berakna_skatt_livet`) och JavaScript (`annualTax`) gav tidigare ~35 % olika resultat. Nu enhetlig spec: kommunalskatt ~31,75 %, statlig 20 % över 598 tkr, arbetsgivaravgift 21,21 % (ex pension), konsumtionsbaserad moms (disp × 0,85 × 18/118).
+- **Pensionsavgifts-toggle** i kalkylatorn: visar skatt med/utan ålderspensionsavgiften (10,21 %). Av som standard — pensionsavgiften ger individuell pensionsrätt och inkomstpensionen är redan exkluderad på förmånssidan.
+- **Förbättrad momsberäkning** — tidigare 6,5 % av nettoinkomst underskattade rejält; nu ~12 % av disponibel inkomst (SCB HE0201).
+- **Verifieringstest:** `python data/nta_berakning.py --verify` — kontrollerar fasstruktur, rimliga livstidsförmåner, synkad skattemodell och COFOG-kalibrering. Körs fristående utan Excel-filen.
+- Plan och resonemang dokumenterat i `docs/MODELLFIX_PLAN.md`.
+
+## v2.0 — 2026-03-24
+
+### Skattemodell, kalkylator, a11y & SEO
+
+- Reviderad skattemodell med grundavdrag och jobbskatteavdrag (2024 års satser) i kalkylatorn.
+- Tillgänglighet (a11y) och SEO-förbättringar i `index.html`.
+
 ## v1.0 — 2026-03-23
 
 ### Lansering

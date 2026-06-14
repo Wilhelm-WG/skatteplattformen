@@ -171,7 +171,18 @@ def _ladda_livsfaser():
         ))
     return livsfaser
 
-LIVSFASER = _ladda_livsfaser()
+def _ladda_json():
+    """Returnerar hela livsfaser_v2.json (enda sanningskällan)."""
+    with open(os.path.join(_DIR, 'livsfaser_v2.json'), encoding='utf-8') as f:
+        return json.load(f)
+
+_LF_JSON          = _ladda_json()
+LIVSFASER         = _ladda_livsfaser()
+# Etiketter, befolkning och skattesatser läses direkt från JSON så att Python
+# och kalkylatorn aldrig kan glida isär. Uppdatera ENDAST livsfaser_v2.json.
+LIVSFAS_LABELS    = [f['label'] for f in _LF_JSON['faser']]
+BEFOLKNING_PER_FAS = {i: f.get('befolkning_approx', 0) for i, f in enumerate(_LF_JSON['faser'])}
+SKATTEMODELL      = _LF_JSON['skattemodell']
 
 def livstid_formaaner(target_age):
     """Ackumulerade förmåner tkr (2024 priser) från födseln t.o.m. target_age"""
@@ -190,19 +201,141 @@ def livstid_formaaner(target_age):
     return round(grand_total), total_by_post
 
 # ── Skatteberäkning ───────────────────────────────────────────────────────────
-def berakna_skatt_livet(target_age, bruttolön_tkr=500):
-    """Total skatt betald från 20 år (inkl. arbetsgivaravgifter), tkr 2024 priser"""
-    arbetsår = max(0, min(target_age, 65) - 20)  # Arbetar 20–65
-    kommunalskatt  = bruttolön_tkr * 0.3200  # 32% snitt
-    statlig_skatt  = max(0, bruttolön_tkr - 598) * 0.20
-    arbgivaravg    = bruttolön_tkr * 0.3142
-    moms           = (bruttolön_tkr - kommunalskatt - statlig_skatt) * 0.065
+# Satserna läses från livsfaser_v2.json::skattemodell (enda sanningskällan),
+# samma värden som kalkylatorn i index.html (annualTax) använder. Pythonmodellen
+# är en livstidsschablon: den tillämpar kommunalskatten på bruttolön utan
+# grundavdrag/jobbskatteavdrag (de finns enbart i den interaktiva kalkylatorn).
+def berakna_skatt_livet(target_age, bruttolön_tkr=500, inkludera_pension=False):
+    """Total skatt betald under arbetslivet (20–65 år), tkr 2024 priser.
+    inkludera_pension=True lägger pensionsavgiften (10,21 %) till arbetsgivaravgiften,
+    motsvarande kalkylatorns toggle 'Inkludera pensionsavgift i skatt'."""
+    sm             = SKATTEMODELL
+    arbetsår       = max(0, min(target_age, 65) - 20)  # Arbetar 20–65
+    kommunalskatt  = bruttolön_tkr * sm['kommunalskatt_sats']
+    statlig_skatt  = max(0, bruttolön_tkr - sm['statlig_skatt_brytpunkt_tkr']) * sm['statlig_skatt_sats']
+    avg_sats       = sm['arbetsgivaravgift_inkl_pension'] if inkludera_pension else sm['arbetsgivaravgift_exkl_pension']
+    arbgivaravg    = bruttolön_tkr * avg_sats
+    disponibel     = bruttolön_tkr - kommunalskatt - statlig_skatt
+    konsumtion     = disponibel * 0.85          # sparkvot ~15 % (SCB)
+    moms           = konsumtion * 0.18 / 1.18   # effektiv moms på konsumtion
     total_per_år   = kommunalskatt + statlig_skatt + arbgivaravg + moms
     return round(total_per_år * arbetsår)
 
-# ── EXCEL: Lägg till ny flik ──────────────────────────────────────────────────
+# ── Verifieringstest (kör med: python nta_berakning.py --verify) ─────────────
+# Körs FÖRE Excel-genereringen så testet inte kräver skatteplattformen_data.xlsx
+# (som är gitignorerad och bara genereras lokalt).
+def _life_totals():
+    """Ackumulerade livstidsförmåner per AGE_PROFILE, fristående från Excel-koden."""
+    col_ages = [ap["age"] for ap in AGE_PROFILES]
+    totals = [0.0] * len(col_ages)
+    for (start, end, årsvals) in LIVSFASER:
+        for ai, target_age in enumerate(col_ages):
+            years = max(0, min(end, target_age) - start + 1)
+            totals[ai] += round(sum(årsvals.values()) * years)
+    return totals
+
+if '--verify' in sys.argv:
+    print("\n=== VERIFIERINGSTEST ===")
+    life_totals = _life_totals()
+
+    # Test 1: livsfaser_v2.json laddas korrekt
+    assert len(LIVSFASER) == 10, f"Fel: förväntade 10 faser, fick {len(LIVSFASER)}"
+    print("  ✓ livsfaser_v2.json laddad: 10 faser")
+
+    # Test 2: Alla faser täcker 0–85 utan gap
+    prev_end = -1
+    for i, (start, end, _) in enumerate(LIVSFASER):
+        assert start == prev_end + 1, f"Gap i fas {i}: start={start}, prev_end={prev_end}"
+        prev_end = end
+    print(f"  ✓ Faserna täcker 0–{prev_end} utan luckor")
+
+    # Test 3: Totala livstidsförmåner rimliga (100–25 000 tkr per profil)
+    for ap in AGE_PROFILES:
+        lt = int(life_totals[ap["idx"]])
+        assert 100 < lt < 25000, f"Orimligt livstidsvärde för {ap['label']}: {lt} tkr"
+    print("  ✓ Livstidsförmåner inom rimliga gränser för alla profiler")
+
+    # Test 4: Skatteberäkning rimlig och synkad (exkl pension, 500 tkr/år)
+    skatt_35 = berakna_skatt_livet(35, 500)
+    skatt_35_p = berakna_skatt_livet(35, 500, inkludera_pension=True)
+    assert 3000 < skatt_35 < 30000, f"Orimlig skatt vid 35 år: {skatt_35} tkr"
+    assert skatt_35_p > skatt_35, "Pensionsavgift-toggle ska höja total skatt"
+    print(f"  ✓ Skatteberäkning rimlig: 35 år, 500 tkr/år → {skatt_35:,} tkr "
+          f"(ex pension), {skatt_35_p:,} tkr (inkl pension)")
+
+    # Test 5: Befolkningsvikterna ska vara satta för alla faser
+    assert all(BEFOLKNING_PER_FAS[i] > 0 for i in range(len(LIVSFASER))), \
+        "Saknad befolkning_approx för någon fas i livsfaser_v2.json"
+    print(f"  ✓ Befolkningsvikter satta för alla {len(LIVSFASER)} faser "
+          f"(summa {sum(BEFOLKNING_PER_FAS.values()):,} av 0–85 år)")
+
+    # Test 6: Kalibrering mot COFOG (max 20% avvikelse)
+    total_mdkr = sum(
+        BEFOLKNING_PER_FAS[i] * f['total_tkr_per_år'] / 1_000_000_000 * 1_000
+        for i, f in enumerate(_LF_JSON['faser'])
+    )
+    cofog_target = _LF_JSON['_meta']['cofog_total_mdkr']
+    diff_pct = abs(total_mdkr - cofog_target) / cofog_target * 100
+    assert diff_pct < 20, f"COFOG-differens för stor: {diff_pct:.1f}%"
+    print(f"  ✓ COFOG-kalibrering: {total_mdkr:.0f} Mdkr vs mål {cofog_target} Mdkr "
+          f"({diff_pct:.1f}% differens)")
+
+    # Test 7: Etiketterna täcker alla faser (regression: 8≠10-buggen)
+    assert len(LIVSFAS_LABELS) == len(LIVSFASER), \
+        f"Etikettantal {len(LIVSFAS_LABELS)} ≠ fasantal {len(LIVSFASER)}"
+    print(f"  ✓ {len(LIVSFAS_LABELS)} etiketter matchar {len(LIVSFASER)} faser")
+
+    print("\n  ✓ Alla verifieringstester godkända")
+    sys.exit(0)
+
+# ── JSON-export + sammanfattning (oberoende av Excel) ────────────────────────
+def _export_json(life_totals):
+    """Skriver nta_profil_v2.json — den publika datakällan för webbplatsen."""
+    model_export = {
+        "basår": BASÅR,
+        "befolkning": BEFOLKNING,
+        "per_capita_tkr": PC,
+        "vikter": VIKTER,
+        "poster": [{"namn": n, "key": k, "källa": s} for n,k,s in POSTER_DEF],
+        "age_profiles": [
+            {
+                "label": ap["label"],
+                "age": ap["age"],
+                "årsförmåner": berakna_arsformaaner(ap["idx"]),
+                "livstid_tkr": int(life_totals[ap["idx"]]),
+                "skatt_500tkr": berakna_skatt_livet(ap["age"], 500),
+            }
+            for ap in AGE_PROFILES
+        ],
+        "livsfaser": [
+            {"label": lbl, "start": s, "end": e, "årsvals": v}
+            for (s,e,v), lbl in zip(LIVSFASER, LIVSFAS_LABELS)
+        ],
+    }
+    with open(os.path.join(_DIR, 'nta_profil_v2.json'), 'w', encoding='utf-8') as f:
+        json.dump(model_export, f, ensure_ascii=False, indent=2)
+
+def _sammanfatta(life_totals):
+    print("\n=== SAMMANFATTNING ===")
+    for ap in AGE_PROFILES:
+        lt = int(life_totals[ap["idx"]])
+        sk = berakna_skatt_livet(ap["age"], 500)
+        kvot = round(lt/sk, 2) if sk > 0 else "n/a"
+        print(f"  {ap['label']:8s}  Livstidsförmåner: {lt:>6,} tkr  |  Skatt 20→{ap['age']}: {sk:>5,} tkr  |  Kvot: {kvot}x")
+
+# ── EXCEL: Lägg till ny flik (kräver den lokala, gitignorerade xlsx-filen) ────
 import os
 _EXCEL = os.path.join(_DIR, '..', 'skatteplattformen_data.xlsx')
+
+if not os.path.exists(_EXCEL):
+    # Färsk klon utan Excel-källfilen: exportera ändå JSON så att den
+    # dokumenterade reproducerbarheten (python nta_berakning.py) fungerar.
+    life_totals = _life_totals()
+    _export_json(life_totals)
+    print("⚠ skatteplattformen_data.xlsx saknas lokalt — exporterade nta_profil_v2.json, hoppade över Excel-fliken.")
+    _sammanfatta(life_totals)
+    sys.exit(0)
+
 wb = load_workbook(_EXCEL)
 
 if "Beräkningsmodell" in wb.sheetnames:
@@ -410,17 +543,9 @@ for ci, h in enumerate(life_hdrs, 1):
     c.alignment = Alignment(horizontal="center", vertical="center")
 ws.row_dimensions[r].height = 26; r += 1
 
-LIVSFAS_LABELS = [
-    "Spädbarn & förskola",
-    "Grundskola",
-    "Gymnasium",
-    "Högskolestudier",
-    "Barnfamilj-fas",
-    "Mitt-karriär",
-    "Senior (45–64)",
-    "Pensionär (65–80)",
-]
-
+# LIVSFAS_LABELS läses nu från livsfaser_v2.json (definierad högre upp) — täcker
+# alla 10 faser. Tidigare fanns här en hårdkodad 8-postlista som tappade de två
+# äldsta faserna och felmärkte resten i JSON-exporten.
 col_ages = [18, 25, 35, 45, 65]
 life_totals = [0.0] * 5
 
@@ -539,87 +664,10 @@ ws.column_dimensions["H"].width = 50
 wb.save(_EXCEL)
 
 # ── Export JSON for website ───────────────────────────────────────────────────
-model_export = {
-    "basår": BASÅR,
-    "befolkning": BEFOLKNING,
-    "per_capita_tkr": PC,
-    "vikter": VIKTER,
-    "poster": [{"namn": n, "key": k, "källa": s} for n,k,s in POSTER_DEF],
-    "age_profiles": [
-        {
-            "label": ap["label"],
-            "age": ap["age"],
-            "årsförmåner": berakna_arsformaaner(ap["idx"]),
-            "livstid_tkr": int(life_totals[ap["idx"]]),
-            "skatt_500tkr": berakna_skatt_livet(ap["age"], 500),
-        }
-        for ap in AGE_PROFILES
-    ],
-    "livsfaser": [
-        {"label": lbl, "start": s, "end": e, "årsvals": v}
-        for (s,e,v), lbl in zip(LIVSFASER, LIVSFAS_LABELS)
-    ],
-}
-
-with open(os.path.join(_DIR, 'nta_profil_v2.json'), 'w', encoding='utf-8') as f:
-    json.dump(model_export, f, ensure_ascii=False, indent=2)
+_export_json(life_totals)
 
 print("✓ Excel workbook saved")
 print("✓ JSON model exported")
-print("\n=== SAMMANFATTNING ===")
-for ap in AGE_PROFILES:
-    lt = int(life_totals[ap["idx"]])
-    sk = berakna_skatt_livet(ap["age"], 500)
-    kvot = round(lt/sk, 2) if sk > 0 else "n/a"
-    print(f"  {ap['label']:8s}  Livstidsförmåner: {lt:>6,} tkr  |  Skatt 20→{ap['age']}: {sk:>5,} tkr  |  Kvot: {kvot}x")
+_sammanfatta(life_totals)
 
-# ── Verifieringstest (kör med: python nta_berakning.py --verify) ─────────────
-if '--verify' in sys.argv:
-    print("\n=== VERIFIERINGSTEST ===")
-    errors = []
-
-    # Test 1: livsfaser_v2.json laddas korrekt
-    assert len(LIVSFASER) == 10, f"Fel: förväntade 10 faser, fick {len(LIVSFASER)}"
-    print("  ✓ livsfaser_v2.json laddad: 10 faser")
-
-    # Test 2: Alla faser täcker 0–85 utan gap
-    prev_end = -1
-    for i, (start, end, _) in enumerate(LIVSFASER):
-        assert start == prev_end + 1, f"Gap i fas {i}: start={start}, prev_end={prev_end}"
-        prev_end = end
-    print(f"  ✓ Faserna täcker 0–{prev_end} utan luckor")
-
-    # Test 3: Totala livstidsförmåner rimliga (300–20 000 tkr per profil)
-    for ap in AGE_PROFILES:
-        lt = int(life_totals[ap["idx"]])
-        assert 100 < lt < 25000, f"Orimligt livstidsvärde för {ap['label']}: {lt} tkr"
-    print("  ✓ Livstidsförmåner inom rimliga gränser för alla profiler")
-
-    # Test 4: Skatteberäkning rimlig (exkl pension, 500 tkr/år)
-    skatt_35 = berakna_skatt_livet(35, 500)
-    assert 5000 < skatt_35 < 30000, f"Orimlig skatt vid 35 år: {skatt_35} tkr"
-    print(f"  ✓ Skatteberäkning rimlig: 35 år, 500 tkr/år → {skatt_35:,} tkr ackumulerat")
-
-    # Test 5: Kalibrering mot COFOG (max 20% avvikelse)
-    BEFOLKNING_PER_FAS = {
-        0:700000, 1:1000000, 2:350000, 3:750000, 4:1200000,
-        5:1400000, 6:1300000, 7:1200000, 8:1100000, 9:800000
-    }
-    livsfaser_path = os.path.join(_DIR, 'livsfaser_v2.json')
-    with open(livsfaser_path, encoding='utf-8') as fh:
-        lf_data = json.load(fh)
-    total_mdkr = sum(
-        BEFOLKNING_PER_FAS[i] * f['total_tkr_per_år'] / 1_000_000_000 * 1_000
-        for i, f in enumerate(lf_data['faser'])
-    )
-    cofog_target = 3011
-    diff_pct = abs(total_mdkr - cofog_target) / cofog_target * 100
-    assert diff_pct < 20, f"COFOG-differens för stor: {diff_pct:.1f}%"
-    print(f"  ✓ COFOG-kalibrering: {total_mdkr:.0f} Mdkr vs mål {cofog_target} Mdkr ({diff_pct:.1f}% differens)")
-
-    if errors:
-        print(f"\n  ✗ {len(errors)} FEL:")
-        for e in errors: print(f"    - {e}")
-        sys.exit(1)
-    else:
-        print("\n  ✓ Alla verifieringstester godkända")
+# (Verifieringstestet körs före Excel-genereringen, se ovan.)
