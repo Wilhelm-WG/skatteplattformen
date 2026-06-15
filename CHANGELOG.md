@@ -1,5 +1,15 @@
 # Ändringslogg
 
+## v2.3 — 2026-06-15
+
+### Designomarbetning
+
+- **Ny typografi:** Playfair Display → **Fraunces** (variabel, optisk storlek) för rubriker, IBM Plex Sans → **Inter** för brödtext. IBM Plex Mono behålls för alla siffror. Kontinuerliga viktintervall (400–900) begärs så alla vikter renderas skarpt.
+- **Designsystem:** nya tokens — varmare papper (`#F4F1EA`), egen kortyta (`--paper`), trestegs skugg-/höjdsystem och enhetliga hörnradier (`--r`/`--r-sm`).
+- **Komponenter:** navigering med glaseffekt och animerad understrykning; hero-tickern fick djup (gradient, bärnstensaccenter, hover); sektionsrubriker med grön ögonbrynslinje och mer vertikal rytm; **prislistan** flyttad från platt hårlinjerutnät till upphöjda papperskort med hover-lyft; enhetliga skuggor/hover på knappar, piller, diagram- och källkort.
+- Endast CSS/`<head>` ändrat — ingen HTML-struktur eller JavaScript rörd, så kalkylator och diagram fungerar oförändrat.
+- **Städning:** stale `index_backup.html` borttagen (git-historiken är backupen).
+
 ## v2.2 — 2026-06-13
 
 ### Rättelser efter modellgranskning
