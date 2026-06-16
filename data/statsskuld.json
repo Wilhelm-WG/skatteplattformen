@@ -48,7 +48,8 @@
     {"år": 2022, "skuld_mdkr": 1143, "bnp_pct": 22.0, "räntekostnad_mdkr": 9,   "not": "Inflationen drev upp BNP i löpande priser"},
     {"år": 2023, "skuld_mdkr": 1050, "bnp_pct": 18.0, "räntekostnad_mdkr": 9,   "not": ""},
     {"år": 2024, "skuld_mdkr": 1151, "bnp_pct": 18.0, "räntekostnad_mdkr": 12,  "not": "Budgetunderskott 104 Mdkr, räntorna steg"},
-    {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Prognos: Riksgälden lånebehov 2025"}
+    {"år": 2025, "skuld_mdkr": 1244, "bnp_pct": 19.0, "räntekostnad_mdkr": 13,  "not": "Riksgälden lånebehov 2025"},
+    {"år": 2026, "skuld_mdkr": 1316, "bnp_pct": 19.0, "räntekostnad_mdkr": 27,  "not": "Riksgälden prognos maj 2026: 1 316 Mdkr vid årets slut = 19% av BNP. Budgetunderskott 173 Mdkr. Räntekostnad 27 Mdkr (UO26). Finansplanens snitt 2026-2028: ~20% av BNP."}
   ],
 
   "internationell_jämförelse_2024": {
@@ -64,10 +65,12 @@
       {"land": "Spanien",     "pct_bnp": 107, "not": ""},
       {"land": "Italien",     "pct_bnp": 138, "not": ""},
       {"land": "Grekland",    "pct_bnp": 161, "not": ""},
-      {"land": "EU-snitt",    "pct_bnp": 82,  "not": "EU27 genomsnitt"},
+      {"land": "EU-snitt",    "pct_bnp": 82,  "not": "EU27 genomsnitt (HTML-chart visar 'EU-27 snitt' 83 %, inom mätosäkerhet)"},
       {"land": "USA",         "pct_bnp": 122, "not": "Federal + delstatsskuld"},
-      {"land": "Japan",       "pct_bnp": 255, "not": "Mest skuldsatta avancerade ekonomi"},
-      {"land": "UK",          "pct_bnp": 100, "not": ""}
+      {"land": "Japan",       "pct_bnp": 252, "not": "Mest skuldsatta avancerade ekonomi (IMF WEO 2024)"},
+      {"land": "UK",          "pct_bnp": 100, "not": ""},
+      {"land": "Polen",       "pct_bnp": 54,  "not": "IMF WEO 2024"},
+      {"land": "Nederland",   "pct_bnp": 47,  "not": "IMF WEO 2024"}
     ]
   },
 
@@ -78,6 +81,20 @@
     "räntekostnad_kr_per_inv_2025": 1232,
     "räntekostnad_kr_per_inv_1995": 13900,
     "not": "Befolkning 2024: 10,55M. Yrkesverksamma (20-64): ~5,28M. Räntekostnad 1995 = 122 Mdkr / 8,78M inv."
+  },
+
+  "per_invånare_2025": {
+    "statsskuld_kr_per_inv": 119000,
+    "statsskuld_kr_per_yrkesverksam": 235600,
+    "räntekostnad_kr_per_inv": 1232,
+    "not": "2025-prognos. Skuld 1 244 Mdkr / 10,46M invånare. Yrkesverksamma 20-64: ~5,28M."
+  },
+
+  "per_invånare_2026": {
+    "statsskuld_kr_per_inv": 125000,
+    "statsskuld_kr_per_yrkesverksam": 249200,
+    "räntekostnad_kr_per_inv": 2560,
+    "not": "2026 enligt Riksgäldens prognos maj 2026: 1 316 Mdkr / 10,55M = 124 700 kr/inv. UO26 räntekostnad 27 Mdkr / 10,55M = 2 560 kr/inv. Dubblat från 2024 trots oförändrad skuld — räntenivåer har stigit. Skuldkvot 19% vid årets slut 2026 (snitt 2026-2028: ~20%)."
   },
 
   "kontext_räntekostnad": {
@@ -185,32 +202,54 @@
   },
 
   "sjukfrånvaro_historia": {
-    "källa": "Försäkringskassan — Sjukpenningdagar per försäkrad",
-    "not": "Nettodagar sjukpenning per försäkrad med sjukpenninggrundande inkomst",
+    "källa": "Försäkringskassan — Sjukpenningdagar per försäkrad (FK Sjukpenningstatistik)",
+    "not": "Nettodagar sjukpenning per försäkrad med sjukpenninggrundande inkomst. OBS: serien matchar inline-grafen i index.html (chart 2000-2024). 2024-värdet 14,2 ligger högre än FK:s preliminära kvartalsstatistik (~11 dgr) och bör verifieras mot FK:s officiella årsrapport 2024 (publiceras Q2 2025).",
     "serie": [
-      {"år": 2000, "dagar": 14.2, "kostnad_mdkr": 21, "not": "Kraftig uppgång — 'sjukskrivningskrisen'"},
-      {"år": 2002, "dagar": 16.8, "kostnad_mdkr": 28, "not": "Historisk topp"},
-      {"år": 2004, "dagar": 14.0, "kostnad_mdkr": 24, "not": ""},
-      {"år": 2006, "dagar": 11.0, "kostnad_mdkr": 19, "not": "Rehabiliteringskedjan + bortre gräns"},
-      {"år": 2008, "dagar": 8.2,  "kostnad_mdkr": 15, "not": ""},
-      {"år": 2010, "dagar": 6.8,  "kostnad_mdkr": 12, "not": ""},
-      {"år": 2012, "dagar": 6.8,  "kostnad_mdkr": 12, "not": ""},
-      {"år": 2014, "dagar": 7.6,  "kostnad_mdkr": 14, "not": "Uppgång börjar"},
-      {"år": 2016, "dagar": 9.1,  "kostnad_mdkr": 19, "not": ""},
-      {"år": 2018, "dagar": 9.6,  "kostnad_mdkr": 22, "not": ""},
-      {"år": 2020, "dagar": 7.1,  "kostnad_mdkr": 17, "not": "Covid-effekt: folk sjukskrev sig ej lika mycket (hemarbete)"},
-      {"år": 2021, "dagar": 6.8,  "kostnad_mdkr": 17, "not": ""},
-      {"år": 2022, "dagar": 7.4,  "kostnad_mdkr": 19, "not": "Post-covid uppgång"},
-      {"år": 2023, "dagar": 8.2,  "kostnad_mdkr": 22, "not": ""},
-      {"år": 2024, "dagar": 8.5,  "kostnad_mdkr": 24, "not": "Psykisk ohälsa: störst bidragande diagnos"}
+      {"år": 2000, "dagar": 14.2, "kostnad_mdkr": 26, "not": "Kraftig uppgång — 'sjukskrivningskrisen'"},
+      {"år": 2001, "dagar": 16.8, "kostnad_mdkr": 36, "not": ""},
+      {"år": 2002, "dagar": 19.2, "kostnad_mdkr": 45, "not": "Nära topp"},
+      {"år": 2003, "dagar": 20.1, "kostnad_mdkr": 50, "not": "Historisk topp — kostnad 50 Mdkr"},
+      {"år": 2004, "dagar": 18.5, "kostnad_mdkr": 44, "not": ""},
+      {"år": 2005, "dagar": 15.7, "kostnad_mdkr": 36, "not": ""},
+      {"år": 2006, "dagar": 12.4, "kostnad_mdkr": 28, "not": "Rehabiliteringskedjan börjar"},
+      {"år": 2007, "dagar": 10.2, "kostnad_mdkr": 22, "not": ""},
+      {"år": 2008, "dagar": 9.1,  "kostnad_mdkr": 19, "not": "Sjukförsäkringsreformen + bortre gräns"},
+      {"år": 2009, "dagar": 9.4,  "kostnad_mdkr": 19, "not": ""},
+      {"år": 2010, "dagar": 8.6,  "kostnad_mdkr": 17, "not": "Lågpunkt-zon"},
+      {"år": 2011, "dagar": 8.2,  "kostnad_mdkr": 16, "not": "Lägsta noteringen"},
+      {"år": 2012, "dagar": 8.5,  "kostnad_mdkr": 17, "not": ""},
+      {"år": 2013, "dagar": 9.0,  "kostnad_mdkr": 18, "not": ""},
+      {"år": 2014, "dagar": 9.8,  "kostnad_mdkr": 20, "not": "Uppgång börjar"},
+      {"år": 2015, "dagar": 10.8, "kostnad_mdkr": 24, "not": ""},
+      {"år": 2016, "dagar": 11.4, "kostnad_mdkr": 27, "not": ""},
+      {"år": 2017, "dagar": 11.3, "kostnad_mdkr": 28, "not": ""},
+      {"år": 2018, "dagar": 11.0, "kostnad_mdkr": 28, "not": ""},
+      {"år": 2019, "dagar": 10.8, "kostnad_mdkr": 28, "not": ""},
+      {"år": 2020, "dagar": 10.5, "kostnad_mdkr": 28, "not": "Covid: hemarbete dämpade ökningen"},
+      {"år": 2021, "dagar": 11.2, "kostnad_mdkr": 30, "not": ""},
+      {"år": 2022, "dagar": 12.9, "kostnad_mdkr": 34, "not": "Post-covid uppgång"},
+      {"år": 2023, "dagar": 13.8, "kostnad_mdkr": 37, "not": ""},
+      {"år": 2024, "dagar": 14.2, "kostnad_mdkr": 38, "not": "VERIFIERA: FK:s preliminära statistik visar ~11 dgr. Kontrollera mot årsrapport 2024 (publ. Q2 2025)."}
     ],
-    "diagnoser_2024": [
-      {"diagnos": "Psykisk ohälsa (inkl. utmattning)", "andel_pct": 46},
-      {"diagnos": "Rörelseorganen (rygg, skulder, nacke)", "andel_pct": 22},
-      {"diagnos": "Hjärt-kärl", "andel_pct": 6},
-      {"diagnos": "Cancer", "andel_pct": 5},
-      {"diagnos": "Övriga", "andel_pct": 21}
-    ]
+    "diagnoser_2024_alla_sjukfall": {
+      "not": "Andel av samtliga sjukpenningfall under året, oavsett längd",
+      "fördelning": [
+        {"diagnos": "Psykisk ohälsa (inkl. utmattning)", "andel_pct": 46},
+        {"diagnos": "Rörelseorganen (rygg, skulder, nacke)", "andel_pct": 22},
+        {"diagnos": "Hjärt-kärl", "andel_pct": 6},
+        {"diagnos": "Cancer", "andel_pct": 5},
+        {"diagnos": "Övriga", "andel_pct": 21}
+      ]
+    },
+    "diagnoser_2024_långa_sjukfall": {
+      "not": "Andel av långa sjukfall (>60 dagar) — denna fördelning visas i index.html historik-fliken. Psykisk ohälsa dominerar långa sjukfall starkt.",
+      "fördelning": [
+        {"diagnos": "Psykisk ohälsa", "andel_pct": 63},
+        {"diagnos": "Rörelseorganen", "andel_pct": 21},
+        {"diagnos": "Cancer / hjärta", "andel_pct": 9},
+        {"diagnos": "Övriga", "andel_pct": 7}
+      ]
+    }
   },
 
   "demografisk_prognos": {

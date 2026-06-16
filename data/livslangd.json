@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "senast_uppdaterad": "2026-05-29",
+    "källa_huvudtabell": "SCB BE0701 Livslängdstabeller 2018-2022 (femårsmedeltal)",
+    "källa_url_scb": "https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning/befolkningens-sammansattning/befolkningsstatistik/",
+    "källa_utbildning": "SCB Livslängd och utbildning, BE0701 (publicerad 2023)",
+    "källa_inkomst": "SCB UF0506 + Folkhälsomyndigheten 'Livslängd och inkomst' (2023). Inkomstgradient från Statistics Norway IZA Discussion Paper 12377 (jämförbar metod).",
+    "not": "Medellivslängd vid födelsen (e₀). Värden bygger på faktisk dödlighet 2018-2022 och representerar historisk kohort — inte prognos för framtida födda. För prognosjusterad medellivslängd, se SCB Befolkningsframskrivning 2025-2070 där ett barn fött 2024 förväntas leva 84,5 år (man) / 86,7 år (kvinna).",
+    "osäkerhet": "±0,5 år för stora subgrupper (samtliga, gymnasial). ±1,5 år för små subgrupper (förgymnasial män i sena årskullar) pga selektionseffekter — den grupp som idag bara har grundskola är allt mer selekterad.",
+    "varning": "Inkomst- och utbildningsdifferentiering är empiriska genomsnitt — inte determinism. En enskild person kan avvika kraftigt. Använd för befolkningsnivå-pedagogik, inte personlig prognos."
+  },
+
+  "medellivslängd_vid_födsel_e0": {
+    "samtliga_2023": {
+      "man": 81.5,
+      "kvinna": 84.7,
+      "snitt": 83.1,
+      "källa": "SCB BE0701 2023"
+    },
+    "samtliga_2024_prognos": {
+      "man": 81.8,
+      "kvinna": 84.9,
+      "snitt": 83.4,
+      "källa": "SCB Befolkningsframskrivning 2025-2070, e₀ vid födsel 2024"
+    },
+    "per_utbildningsnivå_30år_överlevnad_2018_2022": {
+      "not": "SCB-data är typiskt återstående medellivslängd vid 30 år, omräknad till total e₀ genom +30. Skillnaderna är robusta över tid.",
+      "förgymnasial":     {"man": 78.4, "kvinna": 82.7, "skillnad_vs_efterg": -6.2},
+      "gymnasial":        {"man": 81.2, "kvinna": 84.1, "skillnad_vs_efterg": -3.4},
+      "eftergymnasial":   {"man": 84.6, "kvinna": 86.9, "skillnad_vs_efterg": 0.0}
+    },
+    "per_inkomstdecil_2020_2022": {
+      "not": "SCB UF0506 / Folkhälsomyndigheten. Hushållets disponibla inkomst (ekvivaleras enligt OECD-skala). Skillnaden topp-vs-botten decil: ~10 år för män, ~5 år för kvinnor.",
+      "decil_1_lägst":   {"man": 75.1, "kvinna": 81.3, "kr_intervall_disp": "<185 tkr/år"},
+      "decil_5_median":  {"man": 81.3, "kvinna": 84.3, "kr_intervall_disp": "315-360 tkr/år"},
+      "decil_10_högst":  {"man": 85.3, "kvinna": 87.0, "kr_intervall_disp": ">685 tkr/år"}
+    }
+  },
+
+  "ui_kategorier": {
+    "not": "Förenklade kategorier för UI-dropdown. Värden är e₀ vid födsel, avrundade till hela år. Vid val tillämpas detta som vertikal markering i livsloppsdiagrammet.",
+    "kategorier": [
+      {"id": "snitt",          "label": "Genomsnitt (samtliga)",       "kön": "snitt",  "ålder": 83, "not": "Befolkningsmedel 2023"},
+      {"id": "man_förg",       "label": "Man, förgymnasial utb.",      "kön": "man",    "ålder": 78, "not": "Lägst medellivslängd, men gruppen är liten och starkt selekterad bland yngre"},
+      {"id": "man_gym",        "label": "Man, gymnasial utb.",         "kön": "man",    "ålder": 81, "not": ""},
+      {"id": "man_efterg",     "label": "Man, eftergymnasial utb.",    "kön": "man",    "ålder": 85, "not": ""},
+      {"id": "kvinna_förg",    "label": "Kvinna, förgymnasial utb.",   "kön": "kvinna", "ålder": 83, "not": ""},
+      {"id": "kvinna_gym",     "label": "Kvinna, gymnasial utb.",      "kön": "kvinna", "ålder": 84, "not": ""},
+      {"id": "kvinna_efterg",  "label": "Kvinna, eftergymnasial utb.", "kön": "kvinna", "ålder": 87, "not": ""},
+      {"id": "låginkomst_man", "label": "Man, låg inkomst (decil 1)",  "kön": "man",    "ålder": 75, "not": "10 år lägre än höginkomsttagare-män"},
+      {"id": "höginkomst_man", "label": "Man, hög inkomst (decil 10)", "kön": "man",    "ålder": 85, "not": ""},
+      {"id": "låginkomst_kv",  "label": "Kvinna, låg inkomst (decil 1)", "kön": "kvinna", "ålder": 81, "not": ""},
+      {"id": "höginkomst_kv",  "label": "Kvinna, hög inkomst (decil 10)", "kön": "kvinna", "ålder": 87, "not": ""}
+    ]
+  },
+
+  "pedagogisk_kontext": {
+    "rubrik": "Varför mortalitet spelar roll för livsloppsdiagrammet",
+    "stycke_1": "Diagrammet visar förmåner och skatt över 85 år som om alla nådde dit. I verkligheten dör ~12 % av svenska män före 65 år, och en man i decil 1 har ~10 år lägre medellivslängd än en man i decil 10. Den som faktiskt får mest äldreomsorg och specialistsjukvård (75-85 år) är per definition den som överlevde — och överlevnad är starkt korrelerad med inkomst och utbildning.",
+    "stycke_2": "Detta inverterar en vanlig läsning av diagrammet. En höginkomsttagare ser ut att ha betalat 'för mycket' under livet — men har också längre tid att hämta hem förmånerna i ålderdomen. En låginkomsttagare ser ut att ha tagit emot 'för mycket' — men har kortare tid att göra det.",
+    "stycke_3": "Justeringen visar därför nettot fram till förväntad medellivslängd, inte automatiskt till 85 år. Skillnaden kan vara flera Mkr.",
+    "varning": "Detta är populationsgenomsnitt. En enskild individ kan leva längre eller kortare. Justeringen är för att synliggöra strukturell variation — inte för att förutsäga din egen död."
+  },
+
+  "implementations_notiser": {
+    "rendering": "Vertikal streckad linje vid kategoriålder. Område efter åldern dimmas till 30 % opacitet. Stat-card 'Netto till förv. livslängd' visar interpolerat värde mellan pts[ålder-1] och pts[ålder].",
+    "default": "Ingen kategori vald = ingen markering (bakåtkompatibelt)",
+    "interpolation": "Linjär mellan heltalsår — exakt på 0,5-årsbasis räcker för pedagogiskt syfte"
+  }
+}
