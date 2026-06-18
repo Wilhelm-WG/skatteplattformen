@@ -17,8 +17,9 @@ JavaScript, data eller modell rörd, så kalkylator, diagram och alla
 beräkningar fungerar oförändrat.
 
 **Typografi:**
-- Rubriker: Playfair Display → **Fraunces** (variabel, `font-optical-sizing`
-  så stora rubriker blir kraftfulla och små serif-element läsbara).
+- Rubriker: Playfair Display → **Fraunces** (variabel, `font-optical-sizing`).
+  H1 i vikt 700 (WONK av) för en graciös, redaktionell ton utan den
+  kompakta tyngden i Black-vikten.
 - Brödtext: IBM Plex Sans → **Inter** (med `cv05`/`ss01`, lätt negativ
   spärr). IBM Plex Mono behålls för alla siffror.
 - Kontinuerliga viktintervall (400–900) begärs så alla vikter renderas
