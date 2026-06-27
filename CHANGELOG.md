@@ -10,6 +10,39 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-06-16) — Designomarbetning: ny typografi + designsystem
+
+Visuell omarbetning. Endast CSS och `<head>` — ingen HTML-struktur,
+JavaScript, data eller modell rörd, så kalkylator, diagram och alla
+beräkningar fungerar oförändrat.
+
+**Typografi:**
+- Rubriker: Playfair Display → **Fraunces** (variabel, `font-optical-sizing`).
+  H1 i vikt 700 (WONK av) för en graciös, redaktionell ton utan den
+  kompakta tyngden i Black-vikten.
+- Brödtext: IBM Plex Sans → **Inter** (med `cv05`/`ss01`, lätt negativ
+  spärr). IBM Plex Mono behålls för alla siffror.
+- Kontinuerliga viktintervall (400–900) begärs så alla vikter renderas
+  skarpt.
+
+**Designsystem (nya tokens i `:root`):**
+- Varmare papper (`--bg` #F2EFE8 → #F4F1EA), egen kortyta `--paper`.
+- Trestegs skugg-/höjdsystem (`--shadow-sm/md/lg`) och enhetliga
+  hörnradier (`--r`/`--r-sm`) ersätter spridda 2/3/4 px-värden.
+
+**Komponenter:**
+- Navigering: glaseffekt (backdrop-blur) + animerad grön understrykning;
+  aktiv länk behåller understrykningen.
+- Hero-widget (`.hero-snabbkoll`): gradientdjup + skugga; roterande
+  prislapps-belopp i ljusare grönt (`--green2`) för bättre kontrast.
+- Sektionsrubriker: grön ögonbrynslinje, mer vertikal rytm (72→88 px).
+- Prislistan: platt hårlinjerutnät → upphöjda papperskort med hover-lyft.
+- Knappar, filterpiller, diagram-, framtids-, käll- och OECD-kort:
+  enhetliga skuggor, radier och hover-tillstånd.
+- Avslutande citat: rikare grön gradient, större Fraunces-kursiv.
+
+Verifierad på desktop (1280 px) och mobil (390 px).
+
 ### Changed (2026-06-01, tredje rundan) — FK-belopp + skatteutgifter 2026
 
 **Försäkringskassan-belopp 2026 (FK aktuella belopp 2026-01):**
