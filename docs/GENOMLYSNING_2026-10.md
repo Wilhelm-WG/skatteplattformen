@@ -18,7 +18,9 @@ Det som är mest angeläget nu, i prioritetsordning:
 2. **Självflaggad uppdatering är överdragen.** `livsfaser_v2.json` anger `nästa_uppdatering: 2026-09-01 (ESV 2025-utfall + SCB KPP-data)`. Deadline passerad.
 3. **2027 års skatteparametrar** (PBB 59,6 tkr, skiktgräns ~660 tkr) träder i kraft 1 jan 2027 och är kända nu.
 4. **Repo-hygien:** en övergiven v2.x-fork ligger kvar på lokala `main` och `origin/main` släpar ~19 commits efter den kanoniska linjen (se §1).
-5. **Kvarstående modell-/UX-punkter** från granskningarna: "Om oss"-sektion, kommunväljare i UI, formell osäkerhet (Monte Carlo), validering mot SCB:s sektorräkenskaper.
+5. **Kvarstående modell-/UX-punkter** från granskningarna: kommunväljare i UI, formell osäkerhet (Monte Carlo), validering mot SCB:s sektorräkenskaper.
+
+> **Rättelse (2026-10-27):** valframing-fixen och "Om oss"-sektionen är åtgärdade (se §5). En första version av denna genomlysning påstod felaktigt att "Om oss"-sektion saknades — den fanns (`#om-oss`) men var trasig (odefinierade CSS-tokens `--bg1`/`--ink1` gjorde korten osynliga, inaktuell versionstext, döda footer-länkar). Nu fixat.
 
 ---
 
@@ -132,11 +134,13 @@ De två granskningsdokumenten (`Modellgranskning_Skatteplattformen.docx`, 14 pun
 
 **Redan bra:** prislistan ligger tidigt i navigationen (granskningens rekommendation), delnings-URL finns, oberoende-badge i footern, 36 prislappar (upp från 25).
 
-**Inaktuell valframing (ny, tidskänslig):**
-- ⬜ Sajten ramas in som byggd **"inför valet 2026"** — bl.a. meta-beskrivningen (rad 8) och Schema.org-`description` (rad 30: *"…faktasajt om svenska skatter och välfärd inför valet 2026."*). Riksdagsvalet hölls i **september 2026** och har passerat. Framingen bör uppdateras till efter-val/löpande kontext (t.ex. "om svenska skatter och välfärd" utan valkoppling, alternativt koppla till den nya regeringens BP2027). CLAUDE.md:s backlogpunkt "Val 2026-sektion" är därmed också överspelad i sin ursprungliga form.
+**Inaktuell valframing — ÅTGÄRDAT 2026-10-27:**
+- ✅ Sajten ramades in som byggd **"inför valet 2026"** (meta-keywords rad 8 + Schema.org-`description` rad 30). Riksdagsvalet hölls i september 2026. Fixat: keywords → "offentliga finanser, 2026"; Schema.org-description → neutral formulering utan valkoppling.
+
+**"Om oss"-sektion — ÅTGÄRDAT 2026-10-27:**
+- ✅ Sektionen `#om-oss` fanns (syfte, oberoende, team, version/kontakt) men var **trasig**: inline-stilarna använde odefinierade tokens `--bg1`/`--ink1` → korten saknade bakgrund och rätt textfärg. Fixat till `--paper`/`--ink` + `--shadow-sm`/`--r` enligt designsystemet. Versionstexten ("v2.1, maj 2026") uppdaterad till aktuell data (BP2026) och senaste uppdatering (juni 2026). Footerns **döda platshållarlänkar** (`href="#"` för Syfte/Oberoende/Kontakt/Bidra m.fl.) kopplade till riktiga ankare, GitHub och mailto. © 2025 → 2026. "Om oss"-länk tillagd i huvudnavigeringen.
 
 **Kvarstår (från kommunikatörsgranskningen):**
-- ⬜ **"Om oss"-sektion** — footern saknar person/organisation, finansiering och omnämnande av extern granskning. Detta är en **P1-trovärdighetspunkt**: en oberoende, partipolitiskt neutral plattform bör namnge vem som står bakom, hur den finansieras och att den granskats.
 - ⬜ **Responsiva/tillgängliga SVG-diagram** — kontrollera etikettstorlek på mobil (390 px), aria-labels på alla diagram, synligare osäkerhetsband (opacity .07 är nära osynligt), `aria-valuetext` på sliders, WCAG AA-kontrast.
 - ⬜ **Hero-snabbkollens informationstäthet** — granskningen föreslog max ~4 element ovanför "fold"; verifiera efter designomarbetningen.
 - ⬜ **Kollapsbar metodfottext** — den täta metodnoten under livscykeldiagrammet kan bli en expanderbar "Visa metod"-ruta.
@@ -150,8 +154,8 @@ De två granskningsdokumenten (`Modellgranskning_Skatteplattformen.docx`, 14 pun
 |-----|--------|-----|-----------|
 | **P1** | Uppdatera BP2026 → **BP2027** (BDATA, hero, budgetdiagram, källtexter) + justera `verify_data_sync.py` | Data | Gällande budget sedan sept 2026 |
 | **P1** | Verifiera & fast-forwarda `origin/main` till kanonisk linje; bekräfta GitHub Pages-gren | Repo | Rätt version live |
-| **P1** | "Om oss"-sektion (vem, finansiering, granskning, version) | UX/trovärdighet | Oberoende-anspråket kräver det |
-| **P2** | Uppdatera "inför valet 2026"-framing (meta + Schema.org) till efter-val-kontext | UX/SEO | Valet har passerat (sept 2026) |
+| ~~P1~~ ✅ | "Om oss"-sektion — fanns men var trasig; fixade tokens, version, footer-länkar, nav | UX/trovärdighet | **Klar 2026-10-27** |
+| ~~P2~~ ✅ | "inför valet 2026"-framing (meta + Schema.org) → neutral efter-val-kontext | UX/SEO | **Klar 2026-10-27** |
 | **P2** | 2027 års skatteparametrar (PBB 59,6; skiktgräns ~660 tkr) | Data/modell | Ikraft 1 jan 2027, kända nu |
 | **P2** | Statsskuld: 2025 utfall (1 217→slutlig) + 2026-serien | Data | Prognos → faktiskt utfall finns |
 | **P2** | Följ upp SCB KPP-leverans + ESV 2025-utfall (överdragen självflaggad uppd.) | Data | Deadline 2026-09-01 passerad |
