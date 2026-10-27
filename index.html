@@ -472,6 +472,19 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sc-share{background:transparent;color:var(--ink);border:1px solid var(--border2,var(--border))}
 .sc-actions button:hover{filter:brightness(1.06)}
 .sc-hint{font-size:.66rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
+/* Hero: växel + "Din 100-lapp"-fördelning */
+.hsk-toggle{display:flex;gap:.35rem;margin:-.2rem 0 .7rem}
+.hsk-tg{font-size:.64rem;font-weight:500;padding:4px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;font-family:var(--sans);transition:all .15s}
+.hsk-tg.on{background:var(--green);color:#fff;border-color:var(--green)}
+.hsk-100-sub{font-size:.74rem;color:rgba(255,255,255,.6);margin:.1rem 0 .75rem}
+.hsk-100-sub strong{color:#fff}
+.hsk-100-rows{display:flex;flex-direction:column;gap:.5rem;min-height:175px}
+.h100-row{display:grid;grid-template-columns:92px 1fr 46px;align-items:center;gap:.55rem}
+.h100-lbl{font-size:.68rem;color:rgba(255,255,255,.82);line-height:1.1}
+.h100-track{height:9px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
+.h100-fill{height:100%;width:0;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.7);text-align:right}
+@media(prefers-reduced-motion:reduce){.h100-fill{transition:none}}
 </style>
 </head>
 <body>
@@ -525,7 +538,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll" role="region" aria-label="Roterande prislappar — vad samhällskostnader är">
         <div class="hsk-accent-line" style="background:var(--green)"></div>
         <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · 2026 års budget</div>
-        <h3 class="hsk-prislapp-heading">Verkliga prislappar — vad samhället faktiskt betalar</h3>
+        <h3 class="hsk-prislapp-heading" id="hskHeading">Verkliga prislappar — vad samhället faktiskt betalar</h3>
+
+        <div class="hsk-toggle" role="tablist" aria-label="Byt vy">
+          <button type="button" class="hsk-tg on" onclick="setHeroMode('pris',this)">Prislappar</button>
+          <button type="button" class="hsk-tg" onclick="setHeroMode('hundra',this)">Din 100-lapp</button>
+        </div>
 
         <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="polite">
           <span class="hsk-prislapp-cat" id="hskPrislappCat">Hälsa &amp; sjukvård</span>
@@ -538,6 +556,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <div class="hsk-prislapp-dots" id="hskPrislappDots" role="tablist" aria-label="Prislapps-navigation"></div>
+
+        <!-- Vy 2: Din 100-lapp — animerad fördelning (COFOG 2024) -->
+        <div class="hsk-100" id="hsk100" style="display:none">
+          <div class="hsk-100-sub">Av varje <strong>100-lapp</strong> i skatt går, 2024:</div>
+          <div class="hsk-100-rows" id="hsk100rows"></div>
+        </div>
 
         <div class="hsk-prislapp-foot">
           <a href="#pristabell">Hela prislistan (36 poster) →</a>
@@ -2724,6 +2748,50 @@ const HERO_PRISLAPPAR = [
   {cat:'Hälsa & sjukvård', title:'En höftledsoperation, primär',
    amount:'72 000', suf:'kr', vs:'Du betalar: <strong>max 1 450 kr/år</strong> (frikortstak 2026)'},
 ];
+
+// ── Hero vy 2: "Din 100-lapp" — animerad fördelning (COFOG 2024) ──────
+const HERO_100 = [
+  {k:'Socialt skydd',     v:39, c:'#7B5EA8'},  // pension, a-kassa, barnbidrag
+  {k:'Utbildning',        v:17, c:'#3E6FB0'},
+  {k:'Hälsa & sjukvård',  v:15, c:'#2E7D5C'},
+  {k:'Förvaltning',       v:8,  c:'#9A988F'},
+  {k:'Försvar',           v:5,  c:'#6E8A58'},
+  {k:'Infrastruktur',     v:5,  c:'#C8973A'},
+  {k:'Övrigt',            v:11, c:'#8A8D94'},   // rätt, kultur, miljö, räntor
+];
+let heroMode = 'pris';
+function buildHundra(){
+  const el = document.getElementById('hsk100rows'); if(!el) return;
+  const mx = Math.max(...HERO_100.map(d => d.v));
+  el.innerHTML = HERO_100.map((d,i) => `
+    <div class="h100-row">
+      <span class="h100-lbl">${d.k}</span>
+      <div class="h100-track"><div class="h100-fill" data-w="${Math.round(d.v/mx*100)}" style="background:${d.c};transition-delay:${(i*0.08).toFixed(2)}s"></div></div>
+      <span class="h100-amt">${d.v} kr</span>
+    </div>`).join('');
+}
+function animateHundra(){
+  const fills = document.querySelectorAll('#hsk100rows .h100-fill');
+  fills.forEach(f => { f.style.width = '0'; });
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    fills.forEach(f => { f.style.width = f.dataset.w + '%'; });
+  }));
+}
+function setHeroMode(mode, btn){
+  heroMode = mode;
+  document.querySelectorAll('.hsk-tg').forEach(b => b.classList.toggle('on', b === btn));
+  const pris = mode === 'pris';
+  const stage = document.getElementById('hskPrislappStage');
+  const dots  = document.getElementById('hskPrislappDots');
+  const hundra = document.getElementById('hsk100');
+  const head  = document.getElementById('hskHeading');
+  if(stage) stage.style.display = pris ? '' : 'none';
+  if(dots)  dots.style.display  = pris ? '' : 'none';
+  if(hundra) hundra.style.display = pris ? 'none' : '';
+  if(head) head.textContent = pris ? 'Verkliga prislappar — vad samhället faktiskt betalar'
+                                   : 'Vart går din 100-lapp?';
+  if(!pris){ buildHundra(); animateHundra(); }
+}
 
 (function initHeroPrislappar(){
   const stage   = document.getElementById('hskPrislappStage');

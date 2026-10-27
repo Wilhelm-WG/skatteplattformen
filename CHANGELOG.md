@@ -10,6 +10,16 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-27) — Hero-krok: "Vart går din 100-lapp?" (browser-verifierad)
+
+Hero-widgeten (de roterande "Verkliga prislappar") har nu en växel
+**[Prislappar] ↔ [Din 100-lapp]**. Den nya vyn är en animerad top-down-
+fördelning: av varje 100-lapp i skatt går 39 kr till socialt skydd, 17 till
+utbildning, 15 till vård, 8 förvaltning, 5 försvar, 5 infrastruktur, 11 övrigt
+(COFOG 2024). Staplarna fylls staggrat vid växling (respekterar
+`prefers-reduced-motion`). Kompletterar de befintliga prislapparna: botten-upp
+(vad saker kostar) + top-down (vart din krona går) i samma krok.
+
 ### Added (2026-10-27) — Delbart resultatkort (prototyp, browser-verifierad)
 
 Största hävstången för yngre räckvidd: personligt + delbart. Knappen "Spara &
