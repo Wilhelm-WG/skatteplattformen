@@ -10,6 +10,33 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-27) — Livscykeldiagram, rubriktypsnitt, Om oss & valframing
+
+**Livscykeldiagrammet ("Mönstret i välfärdsmodellen över ett liv"):**
+- Ritar nu **årliga** flöden per ålder i stället för ackumulerade. Den
+  ackumulerade vyn fick barndomens förmånsförsprång (18 år utan skatt) att
+  aldrig hinnas ikapp, så kurvan såg ut som att alla var nettomottagare hela
+  livet — tvärtemot rubriken och faskorten. Årsvyn visar nu den faktiska
+  bidragsgivarfasen med två korsningar (mottagare → bidragsgivare → mottagare).
+- Död kod borttagen (lc-stats/lc-applied/lc-mortality-explain refererade
+  borttagna DOM-element och en odefinierad variabel).
+
+**Typografi:**
+- Rubriker: Fraunces → **Source Serif 4**. Fraunces tvingades till display-läge
+  (opsz 144, WONK/SOFT-axlar) vilket gav dramatiska, kvirkiga former. Source
+  Serif 4 är renare och mer förtroendeingivande. Brödtext (Inter) och siffror
+  (IBM Plex Mono) oförändrade.
+
+**Om oss & footer:**
+- `#om-oss`-korten använde odefinierade CSS-tokens (`--bg1`/`--ink1`) → ingen
+  bakgrund; bytt till `--paper`/`--ink` + designsystemets skuggor/radier.
+  Versionstexten uppdaterad. Footerns döda platshållarlänkar kopplade till
+  riktiga ankare/GitHub/mailto, © 2025 → 2026, "Om oss" tillagd i navigeringen.
+
+**Metadata:**
+- Tog bort "inför valet 2026"-framing (valet hölls sept 2026) i meta-keywords
+  och Schema.org-beskrivning.
+
 ### Changed (2026-06-16) — Designomarbetning: ny typografi + designsystem
 
 Visuell omarbetning. Endast CSS och `<head>` — ingen HTML-struktur,
