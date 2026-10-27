@@ -10,6 +10,27 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-27) — OECD-jämförelsen: Sverige vs resten av världen
+
+Sjukvård-fliken var tidigare nästan bara nordisk. Fyra nya globala diagram med
+en bredare länderuppsättning (USA, Japan, Tyskland, Frankrike, Italien + OECD),
+all data från OECD Health at a Glance 2025 / Health Statistics:
+
+- **Hälsoutgifter per capita** (PPP$, 2023): USA 13 818, Tyskland 8 503, Sverige
+  7 364, Frankrike 6 848, OECD ~6 000, Japan 5 619, Italien 4 847.
+- **Medellivslängd** (2025): Japan 84,1, Sverige 83,4, Italien 82,7, Frankrike
+  82,5, OECD 81,0, Tyskland 80,8, USA 78,4.
+- **Undvikbar dödlighet** /100k (2023, lägre=bättre): Japan 134, Italien 146,
+  Sverige 150, Tyskland 195, OECD 237, USA 336.
+- **Läkare per 1 000** (2023–24): Italien 5,8, Tyskland 4,8, Sverige 4,5, OECD
+  3,9, USA 2,7, Japan 2,6.
+
+Berättelsen: USA spenderar ~1,9× Sverige men lever kortast och har mer än dubbelt
+så hög undvikbar dödlighet; Japan/Italien spenderar mindre än Sverige med minst
+lika bra utfall. Nya färgklasser för länderna; den statiska (och nu felaktiga)
+legenden borttagen eftersom varje stapel redan är namnmärkt. De nordiska
+detalj­diagrammen (spädbarnsdödlighet, sängar, cancer) behålls oförändrade.
+
 ### Fixed/Changed (2026-10-27) — Kriminalvård-kostnad + systematiskt språksvep
 
 - **Kriminalvård uppdaterad:** nya underlag visar högre kostnad. Dygnskostnad

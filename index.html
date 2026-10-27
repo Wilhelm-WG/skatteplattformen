@@ -402,7 +402,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .oecd-bar-fill.dk{background:#1E4A8C}
 .oecd-bar-fill.no{background:#C8973A}
 .oecd-bar-fill.fi{background:#5B3F8C}
-.oecd-bar-fill.avg{background:#888780}
+.oecd-bar-fill.avg{background:#B0ADA4}
+.oecd-bar-fill.us{background:#B84A1E}
+.oecd-bar-fill.jp{background:#8A6FB0}
+.oecd-bar-fill.de{background:#6B7280}
+.oecd-bar-fill.fr{background:#3E6FB0}
+.oecd-bar-fill.it{background:#A0763A}
 .oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
 .oecd-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
 .oecd-verdict{margin-top:.5rem;padding:.65rem .85rem;border-radius:4px;font-size:.76rem;line-height:1.6}
@@ -826,14 +831,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <button class="oecd-tab" onclick="showOecd(this,'aldreomsorg')">Äldreomsorg & socialt</button>
       <button class="oecd-tab" onclick="showOecd(this,'infrastruktur')">Infrastruktur</button>
       <button class="oecd-tab" onclick="showOecd(this,'miljo')">Miljö</button>
-    </div>
-
-    <div class="oecd-legend">
-      <div class="oecd-leg"><div class="oecd-leg-d" style="background:var(--green)"></div>Sverige</div>
-      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#1E4A8C"></div>Danmark</div>
-      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#C8973A"></div>Norge</div>
-      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#5B3F8C"></div>Finland</div>
-      <div class="oecd-leg"><div class="oecd-leg-d" style="background:#888780"></div>OECD-snitt</div>
     </div>
 
     <div id="oecd-panels"></div>
@@ -3596,15 +3593,21 @@ const OECD_DATA = {
   sjukvard: {
     title: 'Hälso- & sjukvård',
     charts: [
-      {title:'Medellivslängd',sub:'År vid födseln (2024)',
-       data:[{c:'Sverige',v:83.5,cl:'se'},{c:'Norge',v:83.3,cl:'no'},{c:'Finland',v:82.1,cl:'fi'},{c:'Danmark',v:82.3,cl:'dk'},{c:'OECD-snitt',v:80.7,cl:'avg'}],
-       max:90,unit:' år',src:'OECD Health at a Glance 2025, SCB 2024',verdict:'Sverige har högst medellivslängd i Norden (83,5 år) — tätt följt av Norge (83,3 år). Båda väl över OECD-snittet på 80,7 år.',vc:'good'},
+      {title:'Hälsoutgifter per capita — Sverige vs världen',sub:'US-dollar (PPP), 2023 — hela vårdsystemet',
+       data:[{c:'USA',v:13818,cl:'us'},{c:'Tyskland',v:8503,cl:'de'},{c:'Sverige',v:7364,cl:'se'},{c:'Frankrike',v:6848,cl:'fr'},{c:'OECD-snitt',v:6000,cl:'avg'},{c:'Japan',v:5619,cl:'jp'},{c:'Italien',v:4847,cl:'it'}],
+       max:15000,unit:' $',src:'OECD Health at a Glance 2025 / OECD Health Statistics (2023, PPP-justerat)',verdict:'USA spenderar nära dubbelt mot Sverige — och ~2,5× OECD-snittet. Japan och Italien spenderar mindre än Sverige men når minst lika bra utfall (se nästa diagram).',vc:'mixed'},
+      {title:'Medellivslängd — Sverige vs världen',sub:'År vid födseln (2025)',
+       data:[{c:'Japan',v:84.1,cl:'jp'},{c:'Sverige',v:83.4,cl:'se'},{c:'Italien',v:82.7,cl:'it'},{c:'Frankrike',v:82.5,cl:'fr'},{c:'OECD-snitt',v:81.0,cl:'avg'},{c:'Tyskland',v:80.8,cl:'de'},{c:'USA',v:78.4,cl:'us'}],
+       max:90,unit:' år',src:'OECD Health at a Glance 2025',verdict:'Paradoxen: USA spenderar mest men lever kortast (78,4 år). Japan spenderar mindre än Sverige men lever längst. Mer pengar ger inte automatiskt bättre hälsa.',vc:'good'},
+      {title:'Undvikbar dödlighet — Sverige vs världen',sub:'Dödsfall per 100 000 som kunnat undvikas (2023) — lägre = bättre',
+       data:[{c:'Japan',v:134,cl:'jp'},{c:'Italien',v:146,cl:'it'},{c:'Sverige',v:150,cl:'se'},{c:'Tyskland',v:195,cl:'de'},{c:'OECD-snitt',v:237,cl:'avg'},{c:'USA',v:336,cl:'us'}],
+       max:380,unit:'',src:'OECD Health at a Glance 2023 (undvikbar dödlighet, åldersstandardiserad)',verdict:'Sverige bland de bästa. USA:s dubbla kostnad ger mer än dubbelt så många undvikbara dödsfall som Sverige — systemdesign slår utgiftsnivå.',vc:'good',invert:true},
+      {title:'Läkare per 1 000 invånare — Sverige vs världen',sub:'Praktiserande läkare (2023–2024)',
+       data:[{c:'Italien',v:5.8,cl:'it'},{c:'Tyskland',v:4.8,cl:'de'},{c:'Sverige',v:4.5,cl:'se'},{c:'OECD-snitt',v:3.9,cl:'avg'},{c:'USA',v:2.7,cl:'us'},{c:'Japan',v:2.6,cl:'jp'}],
+       max:7,unit:'',src:'OECD Health at a Glance 2025',verdict:'Sverige har fler läkare än OECD-snittet. Japan når topputfall med få läkare men många vårdbesök per person — olika systemlogiker.',vc:'good'},
       {title:'Spädbarnsdödlighet',sub:'Per 1 000 levande födda (2024) — lägre = bättre',
        data:[{c:'Norge',v:1.8,cl:'no'},{c:'Finland',v:1.9,cl:'fi'},{c:'Sverige',v:2.2,cl:'se'},{c:'Danmark',v:3.1,cl:'dk'},{c:'OECD-snitt',v:5.7,cl:'avg'}],
        max:8,unit:'',src:'OECD Health at a Glance 2025',verdict:'Hela Norden långt under OECD-snittet. Norge och Finland lägst.',vc:'good',invert:true},
-      {title:'Hälsoutgifter per capita',sub:'USD PPP (2022)',
-       data:[{c:'Norge',v:7900,cl:'no'},{c:'Sverige',v:6400,cl:'se'},{c:'Danmark',v:6300,cl:'dk'},{c:'OECD-snitt',v:5972,cl:'avg'},{c:'Finland',v:5700,cl:'fi'}],
-       max:10000,unit:' $',src:'OECD Health Statistics 2024',verdict:'Sverige spenderar 7% över OECD-snittet men uppnår väsentligt bättre utfall.',vc:'good'},
       {title:'Sjukhussängar per 1 000 invånare',sub:'(2022)',
        data:[{c:'OECD-snitt',v:4.3,cl:'avg'},{c:'Finland',v:2.8,cl:'fi'},{c:'Norge',v:2.5,cl:'no'},{c:'Danmark',v:2.4,cl:'dk'},{c:'Sverige',v:1.9,cl:'se'}],
        max:6,unit:'',src:'OECD Health at a Glance: Europe 2024',verdict:'Sverige har lägst antal sängar i Norden — medveten strategi mot öppenvård, men skapar kapacitetsproblem.',vc:'mixed'},
