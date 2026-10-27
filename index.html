@@ -156,14 +156,17 @@ h1 em{font-style:italic;color:var(--green)}
 .t-lbl{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.3}
 /* VISSTE DU ATT — hero fact ticker */
 .vda-strip{background:var(--ink);padding:18px 0;overflow:hidden;position:relative}
-.vda-inner{display:flex;align-items:center;gap:1.2rem;max-width:1080px;margin:0 auto;padding:0 2rem}
+.vda-inner{display:flex;align-items:center;gap:1.2rem;row-gap:.6rem;flex-wrap:wrap;max-width:1080px;margin:0 auto;padding:0 2rem}
 .vda-badge{flex-shrink:0;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(200,151,58,.3);padding:4px 12px;border-radius:2px;white-space:nowrap}
-.vda-fact{color:rgba(255,255,255,.88);font-size:.88rem;font-weight:300;line-height:1.5;min-height:1.5em;position:relative}
+.vda-fact{flex:1 1 280px;color:rgba(255,255,255,.88);font-size:.88rem;font-weight:300;line-height:1.5;min-height:1.5em;position:relative}
 .vda-fact span{display:inline;animation:vdaFade 0.5s ease}
 .vda-fact strong{color:#fff;font-weight:500}
-.vda-dots{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
-.vda-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s}
-.vda-dot.on{background:var(--amber)}
+.vda-nav{display:flex;align-items:center;gap:.4rem;margin-left:auto;flex-shrink:0}
+.vda-ctrl{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.75);border-radius:5px;cursor:pointer;font-size:.92rem;line-height:1;transition:all .15s;font-family:var(--sans)}
+.vda-ctrl:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35)}
+.vda-ctrl:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.vda-count{font-size:.68rem;color:rgba(255,255,255,.5);font-family:var(--mono);min-width:3.4em;text-align:center;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.vda-fact span{animation:none}}
 @keyframes vdaFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 /* SECTIONS */
 .section{padding:88px 0}
@@ -474,7 +477,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#metod">Metod</a></li>
         <li><a href="#om-oss">Om oss</a></li>
       </ul>
-      <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela fakta</a>
+      <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela min profil</a>
     </div>
   </div>
 </nav>
@@ -534,8 +537,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <div class="vda-strip" id="vdaStrip">
   <div class="vda-inner">
     <span class="vda-badge">Visste du att</span>
-    <div class="vda-fact" id="vdaFact"></div>
-    <div class="vda-dots" id="vdaDots"></div>
+    <div class="vda-fact" id="vdaFact" aria-live="polite" role="status"></div>
+    <div class="vda-nav">
+      <button type="button" class="vda-ctrl" id="vdaPrev" aria-label="Föregående fakta" title="Föregående">‹</button>
+      <span class="vda-count" id="vdaCount" aria-hidden="true"></span>
+      <button type="button" class="vda-ctrl" id="vdaNext" aria-label="Nästa fakta" title="Nästa">›</button>
+      <button type="button" class="vda-ctrl" id="vdaPause" aria-label="Pausa automatisk växling" title="Pausa">❙❙</button>
+      <button type="button" class="vda-ctrl" id="vdaShare" aria-label="Dela denna fakta" title="Dela denna fakta">↗</button>
+    </div>
   </div>
 </div>
 
@@ -3504,7 +3513,7 @@ const OECD_DATA = {
        max:10,unit:' t',src:'World Bank / TheGlobalEconomy.com',verdict:'Sverige lägst i Norden — 44% under OECD-snittet. Norges olje- och gassektor driver upp utsläppen.',vc:'good',invert:true},
       {title:'Förnybar energi',sub:'% av slutlig energiförbrukning (2023)',
        data:[{c:'Norge',v:75.0,cl:'no'},{c:'Sverige',v:66.4,cl:'se'},{c:'Danmark',v:43.0,cl:'dk'},{c:'Finland',v:39.6,cl:'fi'}],
-       max:85,unit:'%',src:'Eurostat Renewable Energy Statistics 2023 / EEA',verdict:'Sverige 66% förnybar energi, 88% förnybar el. Alla nordiska länder nådde EU:s 2030-mål redan 2023.',vc:'good'},
+       max:85,unit:'%',src:'Eurostat Renewable Energy Statistics 2023 / EEA',verdict:'Sverige 66% förnybar energi och ~70% förnybar el (99% fossilfri inkl. kärnkraft). Alla nordiska länder nådde EU:s 2030-mål redan 2023.',vc:'good'},
       {title:'Återvinningsgrad (kommunalt avfall)',sub:'% (2023) — högre = bättre',
        data:[{c:'EU-snitt',v:47.7,cl:'avg'},{c:'Sverige',v:39.5,cl:'se'},{c:'Norge',v:38.2,cl:'no'},{c:'Finland',v:37.1,cl:'fi'},{c:'Danmark',v:34.3,cl:'dk'}],
        max:60,unit:'%',src:'EEA / Eurostat Waste Recycling',verdict:'Alla nordiska länder under EU-snittet — hög konsumtion genererar mycket avfall trots ambitiös klimatpolitik.',vc:'bad'}
@@ -3576,7 +3585,7 @@ const VDA_FACTS = [
   'Du betalar i snitt <strong>285 000 kr per år</strong> till offentlig sektor — mer än en genomsnittlig årshyra',
   // KORRIGERAT: Sverige är INTE lägst i EU — Finland (1,9) och Norge (1,8) är lägre
   'Norden har bland världens lägsta spädbarnsdödlighet: Norge 1,8, Finland 1,9, Sverige 2,2 per 1 000 (OECD 2024) — EU-snitt: 3,5',
-  'Barnvaccinationsprogrammet kostar <strong>7 200 kr per barn</strong> och sparar uppskattningsvis 15–20 Mdkr/år i sjukvård',
+  'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC och en av vårdens mest kostnadseffektiva insatser',
   'Ett dygn på IVA kostar skattebetalarna <strong>45 000–80 000 kr</strong> — du betalar max 130 kr i avgift',
   // KORRIGERAT: 5,3% primary-gymnasie (OECD EaG 2025); inkl. förskola+högskoleforskning ~6,5%. 7,1% är överskattning.
   'Sverige satsar <strong>~6,5% av BNP</strong> på utbildning (alla nivåer inkl. forskning) — bland de högsta i OECD',
@@ -3584,19 +3593,21 @@ const VDA_FACTS = [
   'Trafikdöda i Sverige: <strong>22 per miljon</strong> invånare — bland världens lägsta (EU-snitt: 46)',
   // KORRIGERAT: SCB/OECD 2024 visar 83,5 år, inte 84,1. Gap mot OECD-snitt (80,7) är 2,8 år.
   'Sveriges medellivslängd: <strong>83,5 år</strong> — 2,8 år mer än OECD-snittet 80,7 år (OECD Health 2024)',
-  'Sverige har <strong>66% förnybar energi</strong> och 88% förnybar el — varav huvuddelen vattenkraft',
+  // KORRIGERAT: elproduktionen är ~70% förnybar (99% fossilfri inkl. kärnkraft), ej 88% förnybar. Källa: Energiföretagen/Ekonomifakta 2024.
+  'Sveriges elproduktion är <strong>99% fossilfri</strong> — ca 70% förnybart (mest vatten- och vindkraft) och 29% kärnkraft (2024)',
   'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP Rule of Law Index 2025)',
   // BP2026: försvar 225 Mdkr / 10,55M inv ≈ 21 300 kr/inv. Från 4 185 (2010) → 21 300 (2026) = 5,1× nominellt.
   'Försvarsutgiften har ökat <strong>5,1 gånger</strong> på 16 år — från 4 185 (2010) till ~21 300 kr/inv (2026 enligt BP2026, NATO-mål 3,5 %)',
   '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
   'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong> — Sverige är bland världens generösaste länder',
   'Statsskulden 2026: <strong>1 316 Mdkr</strong> (Riksgälden prognos) — ungefär 125 000 kr per person. Räntekostnaden har dubblats sedan 2024 till 27 Mdkr/år.',
-  'Sverige investerade <strong>1 010 kr per invånare</strong> i kultur 2024 — mer än försvaret kostade 2010',
+  // KORRIGERAT: tidigare jämförelse "mer än försvaret 2010 (4 185 kr/inv)" var falsk — kultur ~860 kr/inv < 4 185. Källa: Myndigheten för kulturanalys 2025.
+  'Staten lade <strong>9,1 Mdkr på kultur</strong> 2024 (~860 kr/invånare) — realt lägre per invånare än för tio år sedan',
   'En nyexad sjuksköterska genomför <strong>~4 000 timmar</strong> offentligt finansierad VFU-praktik innan examen',
   // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
   'Svenska arbetsmarknaden är känd för flexibilitet — <strong>~500 000 tjänster</strong> tillsätts varje år (SCB AKU)',
-  // KORRIGERAT: Fritt till och med 23 år (fr.o.m. 2024). Bidragsbeloppet är ~3 300 kr/år fr.o.m. 24.
-  'Tandvård är <strong>gratis till och med 23 år</strong> (fr.o.m. 2024). Från 24 år: ~3 300 kr/år i subvention för basala insatser',
+  // KORRIGERAT: allmänt tandvårdsbidrag (ATB) är 300–600 kr/år, EJ ~3 300. Källa: Försäkringskassan / prop. 2023/24:158.
+  'Tandvård är <strong>gratis till och med 23 år</strong>. Som vuxen får du allmänt tandvårdsbidrag <strong>300–600 kr/år</strong> plus ett högkostnadsskydd vid dyra behandlingar',
   // ── KRITISKA / BALANSERADE FAKTA ─────────────────────────────────
   '<strong>~170 000 personer</strong> väntade på planerad operation eller specialistvård längre än 90 dagar (jan 2025) — trots garantins 90-dagarsgräns (SKR Väntetider i vården)',
   'Sverige saknar uppskattningsvis <strong>10 600 legitimerade lärare</strong> till 2038 — brist som ackumuleras trots satsningar (Skolverkets lärarprognos 2024)',
@@ -3608,24 +3619,56 @@ const VDA_FACTS = [
 
 (function initVda(){
   const el = document.getElementById('vdaFact');
-  const dotsEl = document.getElementById('vdaDots');
+  const strip = document.getElementById('vdaStrip');
+  const countEl = document.getElementById('vdaCount');
+  const prevBtn = document.getElementById('vdaPrev');
+  const nextBtn = document.getElementById('vdaNext');
+  const pauseBtn = document.getElementById('vdaPause');
+  const shareBtn = document.getElementById('vdaShare');
   if(!el) return;
-  let idx = 0;
-  // Create dots
-  VDA_FACTS.forEach((_,i) => {
-    const d = document.createElement('span');
-    d.className = 'vda-dot' + (i===0?' on':'');
-    d.onclick = () => { idx=i; show(); resetTimer(); };
-    dotsEl.appendChild(d);
-  });
+  const N = VDA_FACTS.length;
+  const DWELL = 11000; // ms per fakta — längre uppehåll så man hinner läsa
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let idx = 0, timer = null, paused = false, hoverPaused = false;
+
   function show(){
     el.innerHTML = '<span>'+VDA_FACTS[idx]+'</span>';
-    dotsEl.querySelectorAll('.vda-dot').forEach((d,i) => d.classList.toggle('on',i===idx));
+    if(countEl) countEl.textContent = (idx+1)+' / '+N;
   }
-  let timer;
-  function resetTimer(){ clearInterval(timer); timer=setInterval(()=>{idx=(idx+1)%VDA_FACTS.length;show();},6000); }
+  function go(n){ idx = (n + N) % N; show(); }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+  function start(){
+    stop();
+    if(reduceMotion || paused || hoverPaused) return;
+    timer = setInterval(()=>go(idx+1), DWELL);
+  }
+  function manual(n){ go(n); start(); } // navigering: visa + starta om intervallet
+
+  if(prevBtn) prevBtn.onclick = ()=>manual(idx-1);
+  if(nextBtn) nextBtn.onclick = ()=>manual(idx+1);
+  if(pauseBtn) pauseBtn.onclick = ()=>{
+    paused = !paused;
+    pauseBtn.textContent = paused ? '▶' : '❙❙';
+    pauseBtn.setAttribute('aria-label', paused ? 'Spela automatisk växling' : 'Pausa automatisk växling');
+    pauseBtn.title = paused ? 'Spela' : 'Pausa';
+    start();
+  };
+  if(shareBtn) shareBtn.onclick = ()=>{
+    const plain = VDA_FACTS[idx].replace(/<[^>]+>/g,'');
+    const text = 'Visste du att: '+plain+'\n\nKälla: Skatteplattformen https://wilhelm-wg.github.io/skatteplattformen/';
+    const done = ()=>{ const o = shareBtn.textContent; shareBtn.textContent='✓'; setTimeout(()=>{shareBtn.textContent=o;},1500); };
+    if(navigator.share){ navigator.share({title:'Skatteplattformen — Visste du att',text}).then(done).catch(()=>{}); }
+    else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done).catch(()=>{}); }
+  };
+  // Pausa vid hover/fokus så man hinner läsa och interagera
+  if(strip){
+    strip.addEventListener('mouseenter', ()=>{ hoverPaused = true; stop(); });
+    strip.addEventListener('mouseleave', ()=>{ hoverPaused = false; start(); });
+    strip.addEventListener('focusin',  ()=>{ hoverPaused = true; stop(); });
+    strip.addEventListener('focusout', ()=>{ hoverPaused = false; start(); });
+  }
   show();
-  resetTimer();
+  start();
 })();
 
 // ═══════════════════════════════════════════════════════════════════

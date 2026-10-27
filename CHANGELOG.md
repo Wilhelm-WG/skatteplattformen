@@ -10,6 +10,31 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-27) — "Visste du att"-remsan: redesign + faktagranskning
+
+**Interaktion (`index.html`):**
+- Längre uppehåll per fakta: 6 s → **11 s**.
+- Manuell bläddring: **‹ ›-pilar**, räknare (t.ex. "3 / 24") och **pausknapp**.
+  Remsan pausar automatiskt vid hover/fokus så man hinner läsa.
+- **Dela denna fakta** (↗-knapp) delar den fakta som visas just nu (Web Share
+  API + urklipps-fallback) — tidigare kunde man bara dela kalkylatorns
+  profil via nav-knappen (som nu heter "Dela min profil" för tydlighet).
+- Respekterar `prefers-reduced-motion` (ingen autoväxling). De 24 små
+  navigeringsprickarna ersatta av pilar + räknare.
+
+**Faktagranskning — rättade fel:**
+- **Elproduktion:** "88 % förnybar el" var fel (på två ställen) → ~70 %
+  förnybar el, 99 % fossilfri inkl. kärnkraft (Energiföretagen/Ekonomifakta 2024).
+- **Kultur:** "1 010 kr/inv, mer än försvaret 2010" var en falsk jämförelse
+  (försvar 2010 = 4 185 kr/inv) → staten lade 9,1 Mdkr på kultur 2024
+  (~860 kr/inv), realt lägre per invånare än för tio år sedan (Kulturanalys).
+- **Tandvård:** "~3 300 kr/år i subvention" var fel → allmänt tandvårdsbidrag
+  300–600 kr/år + högkostnadsskydd (Försäkringskassan).
+- **Barnvaccination:** faktaremsans 7 200 kr synkad till prislistans sourcade
+  ~4 200 kr/barn; den osäkra besparingssiffran borttagen.
+- Verifierade (oförändrade): WJP Rule of Law 2025 (alla fyra nordiska i topp 4),
+  medellivslängd, spädbarnsdödlighet, högskoleutbildade 51,8 %.
+
 ### Changed (2026-10-27) — PISA 2025-resultat
 
 OECD PISA 2025 publicerades 2026-09-08. Uppdaterat från PISA 2022 i
