@@ -18,7 +18,8 @@ dela din profil som bild" i kalkylatorn genererar en varumärkt **1080×1080-bil
 kommun, offentliga tjänster, skatt och netto — redo för Instagram/Snapchat.
 Ladda ner eller dela via Web Share API (med fil-fallback till nedladdning).
 Modalen ligger på body-nivå så `position:fixed` inte fångas av kalkylatorns
-transform.
+transform. **Formatväljare:** 1:1 (inlägg) eller 9:16 (story, 1080×1920) för
+TikTok/Stories.
 
 Bifix: `updateLifecycle` kraschade på ett borttaget element (`lc-inc-val`) utan
 null-skydd, vilket hindrade livscykeln från att uppdateras vid kommun-/hushålls-

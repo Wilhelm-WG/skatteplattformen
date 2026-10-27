@@ -461,7 +461,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sc-overlay{position:fixed;inset:0;background:rgba(20,18,15,.62);display:none;align-items:center;justify-content:center;z-index:2000;padding:1rem;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .sc-overlay.on{display:flex}
 .sc-modal{position:relative;background:var(--paper);border-radius:14px;padding:1rem;max-width:min(92vw,400px);box-shadow:var(--shadow-lg)}
-.sc-modal canvas{width:100%;height:auto;border-radius:9px;display:block;box-shadow:var(--shadow-sm)}
+.sc-format{display:flex;gap:.4rem;margin-bottom:.6rem}
+.sc-fmt{flex:1;padding:.5rem;border:1px solid var(--border2,var(--border));background:transparent;color:var(--ink2);border-radius:7px;font-size:.72rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .15s}
+.sc-fmt.on{background:var(--green);color:#fff;border-color:var(--green)}
+.sc-modal canvas{display:block;margin:0 auto;max-width:100%;max-height:58vh;width:auto;height:auto;border-radius:9px;box-shadow:var(--shadow-sm)}
 .sc-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-md)}
 .sc-actions{display:flex;gap:.5rem;margin-top:.7rem}
 .sc-actions button{flex:1;padding:.65rem;border-radius:7px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:filter .15s}
@@ -1997,6 +2000,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <div class="sc-overlay" id="sc-overlay" onclick="if(event.target===this)closeShareCard()">
   <div class="sc-modal">
     <button class="sc-close" onclick="closeShareCard()" aria-label="Stäng">✕</button>
+    <div class="sc-format" role="group" aria-label="Bildformat">
+      <button type="button" class="sc-fmt on" data-fmt="square" onclick="setScFormat(this,'square')">⬛ Inlägg (1:1)</button>
+      <button type="button" class="sc-fmt" data-fmt="story" onclick="setScFormat(this,'story')">▬ Story (9:16)</button>
+    </div>
     <canvas id="sc-canvas" width="1080" height="1080"></canvas>
     <div class="sc-actions">
       <button class="sc-dl" onclick="downloadShareCard()">⬇ Ladda ner</button>
@@ -4693,42 +4700,57 @@ function scState(){
   return { age, inc, kommun, benefits, tax, net: benefits - tax };
 }
 
+let scFormat = 'square';
+function setScFormat(btn, fmt){
+  scFormat = fmt;
+  document.querySelectorAll('.sc-fmt').forEach(b => b.classList.toggle('on', b === btn));
+  drawShareCard();
+}
+
 function drawShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
-  const x = c.getContext('2d'); const s = scState();
-  const W = 1080, H = 1080, M = 90;
+  const s = scState();
+  const story = scFormat === 'story';
+  const W = 1080, H = story ? 1920 : 1080, M = 90;
+  c.width = W; c.height = H;
+  const x = c.getContext('2d');
   const kr = n => n.toLocaleString('sv-SE');
+  // Vertikala ankare per format (story har mer luft)
+  const y = story
+    ? { wm:160, badge:205, head:560, prof:630, b1:860, b1l:922, t1:1160, t1l:1222, rule:1320, net:1420, netsub:1472 }
+    : { wm:120, badge:158, head:270, prof:322, b1:500, b1l:548, t1:710,  t1l:758,  rule:812,  net:882,  netsub:924 };
+
   x.fillStyle = '#F4F1EA'; x.fillRect(0, 0, W, H);
   x.fillStyle = '#1B4D3E'; x.fillRect(0, 0, W, 14);
   // Wordmark + badge
   x.fillStyle = '#1B4D3E'; x.font = '600 42px Georgia, serif';
-  x.fillText('Skatteplattformen', M, 120);
+  x.fillText('Skatteplattformen', M, y.wm);
   x.fillStyle = '#8A8D94'; x.font = '500 21px Arial';
-  x.fillText('ÖPPEN DATA · PARTIPOLITISKT OBEROENDE · 2026', M, 158);
+  x.fillText('ÖPPEN DATA · PARTIPOLITISKT OBEROENDE · 2026', M, y.badge);
   // Headline
   x.fillStyle = '#1A1814'; x.font = 'italic 700 70px Georgia, serif';
-  x.fillText('Min välfärdsprofil', M, 270);
+  x.fillText('Min välfärdsprofil', M, y.head);
   x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, 322);
+  x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, y.prof);
   // Förmåner
   x.fillStyle = '#2E7D5C'; x.font = '700 104px Georgia, serif';
-  x.fillText(kr(s.benefits) + ' tkr', M, 500);
+  x.fillText(kr(s.benefits) + ' tkr', M, y.b1);
   x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText('offentliga tjänster jag använder i år', M, 548);
+  x.fillText('offentliga tjänster jag använder i år', M, y.b1l);
   // Skatt
   x.fillStyle = '#B84A1E'; x.font = '700 104px Georgia, serif';
-  x.fillText(kr(s.tax) + ' tkr', M, 710);
+  x.fillText(kr(s.tax) + ' tkr', M, y.t1);
   x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText('skatt jag betalar i år', M, 758);
+  x.fillText('skatt jag betalar i år', M, y.t1l);
   // Netto
   const neg = s.net < 0;
-  x.fillStyle = neg ? '#B84A1E' : '#2E7D5C'; x.fillRect(M, 812, W - 2*M, 4);
+  x.fillStyle = neg ? '#B84A1E' : '#2E7D5C'; x.fillRect(M, y.rule, W - 2*M, 4);
   x.font = '700 42px Arial'; x.fillStyle = neg ? '#B84A1E' : '#2E7D5C';
-  x.fillText(neg ? 'Nettobidragsgivare i år' : 'Nettomottagare i år', M, 882);
+  x.fillText(neg ? 'Nettobidragsgivare i år' : 'Nettomottagare i år', M, y.net);
   x.fillStyle = '#4A4A46'; x.font = '400 27px Arial';
   const d = kr(Math.abs(s.net));
   x.fillText(neg ? `Jag betalar ${d} tkr mer än jag använder — normalt i arbetsför ålder.`
-                 : `Jag använder ${d} tkr mer än jag betalar — livscykelkontraktets mening.`, M, 924);
+                 : `Jag använder ${d} tkr mer än jag betalar — livscykelkontraktets mening.`, M, y.netsub);
   // Footer
   x.fillStyle = '#1B4D3E'; x.fillRect(0, H - 92, W, 92);
   x.fillStyle = '#FFFFFF'; x.font = '600 32px Arial';
