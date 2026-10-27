@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added/Changed (2026-10-27) — Fyra genomlysningspunkter (P3/P4)
+
+- **Kommunväljare i kalkylatorn:** ny rullgardin (Rikssnitt 32,38 %, Stockholm,
+  Göteborg, Malmö, Uppsala, Österåker 28,93 % lägst, Dorotea 35,65 % högst) som
+  sätter `currentKs` vilken `annualTax()` använder. Kommunalskatten varierar
+  28,9–35,7 % ≈ 17 tkr/år. Skattekvittots etikett och delnings-URL (`ks`)
+  följer valet. Källa: SCB Kommunalskatterna 2026 (kommun + region).
+- **Makroavstämning mot SCB** i `verify_data_sync.py`: nya checkar som flaggar
+  om COFOG-totalen (3 011 Mdkr) eller skattekvoten (41,4 %) driftar från SCB:s
+  utfall (>5 %). Dokumenterar även referensen för totala skatteintäkter 2024
+  (~2 644 Mdkr). 11 → 13 checkar.
+- **Formaliserade osäkerhetsintervall:** metodrutan dokumenterar nu grunden för
+  ±20–25 %/±10–15 %-banden (FASIT-variationskoefficient, KPP regional spridning,
+  kommunalskattespridning 28,9–35,7 %) och anger explicit att det är en *bedömd
+  envelopp* — inte formella konfidensintervall; Monte Carlo återstår.
+- **Harmoniserad prisårgång:** förmånsbeloppens etiketter rättade från
+  "2026 priser" till "2024 års priser" (de bygger på COFOG 2024), och
+  prislistans motstridiga rubrik/fotnot gjorda konsekventa (enhetskostnader
+  2024, avgifter/FK-belopp 2026).
+
 ### Fixed (2026-10-27) — Navigering (regressionsfix) + omarbetad delning
 
 **Navigering:** "Om oss"-länken som lagts till i huvudnavigeringen gjorde raden

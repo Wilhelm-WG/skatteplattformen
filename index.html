@@ -656,7 +656,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div>
         <p class="s-eye">Vad kostar det faktiskt?</p>
         <h2 class="s-title">Den offentliga prislistan</h2>
-        <p class="s-sub">Faktiska samhällskostnader — vad du betalar och vad skatten täcker. Alla belopp beräknade direkt som totalkostnad delat med volym, 2026 priser där tillgängligt (annars 2024–2025).</p>
+        <p class="s-sub">Faktiska samhällskostnader — vad du betalar och vad skatten täcker. Alla belopp beräknade direkt som totalkostnad delat med volym, 2024 års priser (enhetskostnader); patientavgifter och FK-belopp i 2026 års nivå.</p>
       </div>
       <div class="pf-row">
         <button class="pf on" onclick="fc(this,'all')">Alla</button>
@@ -679,7 +679,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <span id="pgrid-count" style="font-size:.68rem;color:var(--ink3);font-family:var(--mono)"></span>
     </div>
     <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Alla belopp 2024 priser.</p>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
   </div>
 </section>
 
@@ -1407,6 +1407,20 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <div>
+          <label>Kommun <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(kommunalskatten varierar 28,9–35,7 %)</span></label>
+          <select id="s-kommun" onchange="setKommun(this)" aria-label="Välj kommun för kommunalskattesats" style="width:100%;margin-top:.35rem;padding:7px 10px;font-size:.78rem;font-family:var(--sans);color:#f2efe8;background:#2a2926;border:1px solid rgba(255,255,255,.14);border-radius:6px;cursor:pointer">
+            <option value="0.3238">Rikssnitt — 32,38 %</option>
+            <option value="0.3055">Stockholm — 30,55 %</option>
+            <option value="0.3260">Göteborg — 32,60 %</option>
+            <option value="0.3242">Malmö — 32,42 %</option>
+            <option value="0.3285">Uppsala — 32,85 %</option>
+            <option value="0.2893">Österåker (lägst i landet) — 28,93 %</option>
+            <option value="0.3565">Dorotea (högst i landet) — 35,65 %</option>
+          </select>
+          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Total kommunalskatt (kommun + region). Källa: SCB Kommunalskatterna 2026.</span>
+        </div>
+
+        <div>
           <label>Hushållstyp</label>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
             <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">🧑 Ensamstående</button>
@@ -1450,7 +1464,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
         <!-- Annual welfare bars -->
         <div class="annual-card">
-          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2026 priser)</div>
+          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2024 års priser)</div>
           <div class="welfare-bars" id="welfare-bars"></div>
           <div class="w-total">
             <span class="wt-l">Totalt värde offentliga tjänster &amp; förmåner</span>
@@ -1614,7 +1628,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Sjukvård och äldreomsorg konsumeras intensivast 75–85 år. Finansierat av nästa generations skatter.</div>
       </div>
     </div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25 %, skatteberäkning ±10–15 %. <span style="font-size:.62rem;color:var(--ink3)">Alla belopp nominella 2026-priser.</span></p>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25 %, skatteberäkning ±10–15 %. <span style="font-size:.62rem;color:var(--ink3)">Förmåner i 2024 års priser (COFOG), skatt enligt 2026 års regler. Nominella, ej diskonterade.</span></p>
     <details style="margin-top:.4rem">
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
       <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
@@ -1622,7 +1636,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
         <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
         <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
-        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (29,7–35,6%), individuell förmånskonsumtion vs genomsnitt.
+        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (28,9–35,7%), individuell förmånskonsumtion vs genomsnitt.<br><br>
+        <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). ±10–15 % på skatt speglar kommunalskattespridningen (28,9–35,7 %, ±~5 % kring rikssnittet 32,38 %) plus grundavdrags- och jobbskatteavdragsapproximationer. Intervallen är en <strong>bedömd osäkerhetsenvelopp</strong> — inte formella konfidensintervall; en Monte Carlo-simulering (10 000 dragningar per parameter, med korrelation mellan sjukvård och äldreomsorg) återstår och skulle ge kvantitativt stöd.
       </div>
     </details>
   </div>
@@ -2764,6 +2779,14 @@ function readURLParams(){
     const s = document.getElementById('s-kapital');
     if(s){ s.value = kap; s.dispatchEvent(new Event('input')); if(typeof updateCalc === 'function') updateCalc(); }
   }
+  // Kommunalskattesats (vald kommun).
+  const ks = parseFloat(p.get('ks'));
+  if(!isNaN(ks) && ks > 0.2 && ks < 0.4){
+    currentKs = ks;
+    const sel = document.getElementById('s-kommun');
+    if(sel){ Array.from(sel.options).forEach(o => { if(Math.abs(parseFloat(o.value) - ks) < 1e-6) sel.value = o.value; }); }
+    if(typeof updateCalc === 'function') updateCalc();
+  }
 }
 function buildShareURL(){
   // Bygger en djuplänk som återskapar HELA vyn: ålder, inkomst, pension,
@@ -2777,6 +2800,7 @@ function buildShareURL(){
   const kap = parseInt(document.getElementById('s-kapital')?.value || 0);
   const params = new URLSearchParams({age, inc, pension});
   if(typeof currentHousehold !== 'undefined' && currentHousehold && currentHousehold !== 'ensam') params.set('hh', currentHousehold);
+  if(typeof currentKs === 'number' && Math.abs(currentKs - 0.3238) > 1e-6) params.set('ks', currentKs);
   if(kap > 0) params.set('kapital', kap);
   return window.location.origin + window.location.pathname + '?' + params.toString();
 }
@@ -2967,6 +2991,7 @@ const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'So
 // Par med barn: högst sociala transfereringar (barnbidrag × 2+, föräldrapenning, VAB)
 // Ensamstående med barn: mycket hög social transferering (underhållsstöd, bostadsbidrag)
 let currentHousehold = 'ensam';
+let currentKs = 0.3238; // vald kommunalskattesats (default rikssnitt 2026, SCB: 32,38 %)
 const HOUSEHOLD_MULT = {
   ensam:      { utb: 1.0, sjukvård: 1.05, socialt: 0.75, koll: 1.0, omsorg: 1.0 },
   par:        { utb: 0.5, sjukvård: 0.95, socialt: 0.45, koll: 1.0, omsorg: 0.8 },
@@ -2980,6 +3005,14 @@ function setHousehold(btn, type) {
   currentHousehold = type;
   updateCalc();
   // Livscykelvyn ska reflektera samma hushållstyp
+  if(typeof updateLifecycle === 'function') updateLifecycle();
+}
+
+// Kommunval → sätter kommunalskattesatsen som annualTax() använder.
+function setKommun(sel) {
+  const v = parseFloat(sel.value);
+  if(!isNaN(v)) currentKs = v;
+  updateCalc();
   if(typeof updateLifecycle === 'function') updateLifecycle();
 }
 
@@ -3139,7 +3172,7 @@ function annualTax(age, inc, opts){
   // opts = {ksOverride: number} för sensitivitetsanalys
   if(age < 19 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
   const isPensionar = age >= 65;
-  const ks = (opts && opts.ksOverride) ? opts.ksOverride : 0.3238;  // kommunalskatt rikssnitt 2026 (SCB)
+  const ks = (opts && opts.ksOverride) ? opts.ksOverride : currentKs;  // vald kommunalskatt (default rikssnitt 0.3238, SCB 2026)
 
   // Pensionärer: ingen extra inkomstreduktion här — inkomsten är redan rätt skalad av anroparen.
   // Pensionärer får förhöjt grundavdrag (67 kap 3 § IL) jämfört med arbetsinkomst.
@@ -3216,7 +3249,7 @@ function updateCalc(){
 
   // Annual welfare label
   document.getElementById('annual-label').textContent =
-    `Offentliga förmåner du konsumerar i år — ${age} år (tkr, 2026 priser)`;
+    `Offentliga förmåner du konsumerar i år — ${age} år (tkr, 2024 års priser)`;
 
   // Welfare bars
   const mx = Math.max(...Object.values(w));
@@ -3238,7 +3271,7 @@ function updateCalc(){
   let taxHTML = '';
   if(totalSkatt > 0){
     const items = [
-      ['Kommunalskatt (32,4%)', tax.komm],
+      ['Kommunalskatt (' + (currentKs*100).toFixed(2).replace('.',',') + '%)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
       [(document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked) ? 'Arbetsgivaravgifter (inkl pension 10,21%)' : 'Arbetsgivaravgifter (ex pension)', tax.avg],
       ['Effektiv moms (konsumtion)', tax.moms],

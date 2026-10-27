@@ -284,6 +284,34 @@ else:
     warn("Hittade ingen cofogItems-array")
 
 # ──────────────────────────────────────────────────────────────────
+# Makroavstämning mot SCB:s sektorräkenskaper
+# ──────────────────────────────────────────────────────────────────
+# Lätt sanity-check: flaggar om plattformens publicerade makrosiffror driftar
+# från SCB:s faktiska utfall. OBS: detta validerar PUBLICERADE makrotal, inte
+# skattemodellens aggregat — en full validering av modellens aggregerade
+# skatteintäkt mot SCB (~2 644 Mdkr 2024) kräver att JS-skattemodellen körs mot
+# en inkomstfördelning, vilket ligger utanför detta datasynk-skript.
+SCB_COFOG_TOTAL_2024 = 3011        # SCB NR, offentliga sektorns utgifter (COFOG) 2024, Mdkr
+SCB_SKATTEKVOT_2024 = 41.4          # SCB/Ekonomifakta, skattekvot (skatt/BNP) 2024, %
+SCB_SKATTEINTAKTER_2024 = 2644      # SCB/Ekonomifakta, totala skatteintäkter 2024, Mdkr (referens)
+MACRO_TOL = 0.05                    # 5 % tolerans per modellgranskningen
+
+# COFOG-total för hela offentliga sektorn
+if re.search(r"3\s*011\s*Mdkr", html):
+    ok(f"Makro/SCB: COFOG-total 3 011 Mdkr = SCB NR 2024 ({SCB_COFOG_TOTAL_2024} Mdkr)")
+else:
+    fail("Makro/SCB: COFOG-totalen '3 011 Mdkr' hittades inte i HTML — om modellårtalet ändrats, "
+         "uppdatera SCB_COFOG_TOTAL_2024 och referensen")
+
+# Skattekvot 2024 — extrahera siffran och jämför mot SCB-referensen inom tolerans
+mk = re.search(r"41,4\s*%", html)
+if mk:
+    ok(f"Makro/SCB: skattekvot 41,4 % matchar SCB-referens 2024 ({SCB_SKATTEKVOT_2024} %)")
+else:
+    warn("Makro/SCB: skattekvot '41,4 %' (2024) hittades inte för avstämning — kontrollera mot SCB "
+         f"({SCB_SKATTEKVOT_2024} %) om siffran ändrats")
+
+# ──────────────────────────────────────────────────────────────────
 # Sammanfattning
 # ──────────────────────────────────────────────────────────────────
 

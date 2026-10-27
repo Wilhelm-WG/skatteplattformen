@@ -160,12 +160,12 @@ De två granskningsdokumenten (`Modellgranskning_Skatteplattformen.docx`, 14 pun
 | **P2** | Statsskuld: 2025 utfall (1 217→slutlig) + 2026-serien | Data | Prognos → faktiskt utfall finns |
 | **P2** | Följ upp SCB KPP-leverans + ESV 2025-utfall (överdragen självflaggad uppd.) | Data | Deadline 2026-09-01 passerad |
 | **P2** | Synka `budget_analys_2025.json` (Skr. 2024/25:98 → 2025/26:98) | Data | Släpar efter HTML |
-| **P3** | Kommunväljare i UI (bygg på befintlig `ksOverride`) | Modell/UX | Stor regional variation |
+| ~~P3~~ ✅ | Kommunväljare i kalkylatorn (7 kommuner, SCB 2026) | Modell/UX | **Klar 2026-10-27** |
 | **P3** | Responsiva + tillgängliga SVG-diagram, synligare osäkerhetsband | UX/a11y | Mobil + WCAG |
-| **P3** | Validering mot SCB sektorräkenskaper i verify-skriptet | Data/QA | Fångar aggregatfel >5 % |
-| **P3** | Harmonisera prisårgång (2024 vs 2026) i `index.html` | Data | Konsekvens |
+| ~~P3~~ ✅ | Makroavstämning mot SCB i verify-skriptet (COFOG + skattekvot) | Data/QA | **Klar 2026-10-27** |
+| ~~P3~~ ✅ | Harmonisera prisårgång (förmåner → 2024 års priser) | Data | **Klar 2026-10-27** |
 | **P4** | Inkomstdifferentierad pensionskvot; förstärkt JSA 66+ | Modell | Finjustering |
-| **P4** | Formalisera osäkerhetsintervall (dokumentera källa / Monte Carlo) | Modell | Vetenskaplig stringens |
+| ~~P4~~ ✅ | Formalisera osäkerhetsintervall (dokumenterad envelopp) | Modell | **Klar 2026-10-27** |
 | **P4** | Nuvärde-default/KPI-toggle i hero-snabbkollen | UX | Minska överskattning |
 
 ---
