@@ -475,9 +475,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <li><a href="#framtid">Framtid</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
         <li><a href="#metod">Metod</a></li>
-        <li><a href="#om-oss">Om oss</a></li>
       </ul>
-      <a href="#" class="nav-pill" onclick="shareSkatt(event)">Dela min profil</a>
+      <a href="#" class="nav-pill" onclick="shareSkatt(event)" title="Dela en länk som återskapar din vy">Dela</a>
     </div>
   </div>
 </nav>
@@ -2753,15 +2752,32 @@ function readURLParams(){
     const toggle = document.getElementById('pension-toggle');
     if(toggle){ toggle.checked = pension === '1'; if(typeof updateCalc === 'function') updateCalc(); }
   }
+  // Hushållstyp — klicka rätt knapp så global + aktiv markering + omräkning sköts.
+  const hh = p.get('hh');
+  if(hh){
+    const b = document.querySelector('.hh-btn[data-hh="'+hh+'"]');
+    if(b && typeof setHousehold === 'function') setHousehold(b, hh);
+  }
+  // Kapitalinkomst.
+  const kap = parseInt(p.get('kapital'));
+  if(!isNaN(kap) && kap >= 0 && kap <= 10000){
+    const s = document.getElementById('s-kapital');
+    if(s){ s.value = kap; s.dispatchEvent(new Event('input')); if(typeof updateCalc === 'function') updateCalc(); }
+  }
 }
 function buildShareURL(){
+  // Bygger en djuplänk som återskapar HELA vyn: ålder, inkomst, pension,
+  // hushållstyp och kapitalinkomst. readURLParams() läser tillbaka dem.
   const ageSlider = document.getElementById('s-age');
   const incSlider = document.getElementById('s-inc');
   const age = ageSlider ? parseInt(ageSlider.value) : 35;
   const inc = incSlider ? parseInt(incSlider.value) : (hskIncome || 340);
   const pensionEl = document.getElementById('pension-toggle');
   const pension = pensionEl ? (pensionEl.checked ? '1' : '0') : '0';
+  const kap = parseInt(document.getElementById('s-kapital')?.value || 0);
   const params = new URLSearchParams({age, inc, pension});
+  if(typeof currentHousehold !== 'undefined' && currentHousehold && currentHousehold !== 'ensam') params.set('hh', currentHousehold);
+  if(kap > 0) params.set('kapital', kap);
   return window.location.origin + window.location.pathname + '?' + params.toString();
 }
 function shareCurrentState(){
@@ -4552,37 +4568,32 @@ document.getElementById('s-inc').addEventListener('input', function(){ this.setA
 // DELA FAKTA — Web Share API + clipboard fallback
 // ═══════════════════════════════════════════════════════════════════
 function shareSkatt(e){
-  e.preventDefault();
-  // Prioritize Hero Snabbkoll state if slider exists, else fall back to calculator
-  // Hero-snabbkollen är borttagen — läs profil från kalkylator-slidersen direkt.
-  const ageSlider = document.getElementById('s-age');
-  const incSlider = document.getElementById('s-inc');
-  const age = ageSlider ? +ageSlider.value : 35;
-  const inc = incSlider ? +incSlider.value : (hskIncome || 340);
-  const stage = getStage(age);
-  const tax = annualTax(age, inc);
-  const total = Object.values(stage.w).reduce((a,b)=>a+b,0);
-  const effRate = inc > 0 && tax.tot > 0 ? (tax.tot / inc * 100).toFixed(0) : '0';
-  const cum = calcCumulativeNet ? calcCumulativeNet(age, inc) : null;
+  if(e) e.preventDefault();
+  // Delar en LÄNK som återskapar vyn (ålder, inkomst, pension, hushåll, kapital)
+  // — mottagaren ser exakt samma beräkning. Uppdaterar även adressfältet.
+  const url = buildShareURL();
+  try{ history.replaceState(null, '', url.substring(url.indexOf('?'))); }catch(_){}
 
-  let text = `Visste du att en ${age}-åring med ${inc} tkr/år i inkomst:\n\n`;
-  text += `• Konsumerar offentliga tjänster för ~${total.toLocaleString('sv-SE')} tkr/år (befolkningssnitt — verklig variation 5–10×)\n`;
-  if(tax.tot > 0){
-    text += `• Betalar ~${tax.tot.toLocaleString('sv-SE')} tkr i total skatt (${effRate}% effektiv skatt)\n`;
-  }
-  text += `\nKolla själv: https://wilhelm-wg.github.io/skatteplattformen/`;
+  const age = parseInt(document.getElementById('s-age')?.value || 35);
+  const inc = parseInt(document.getElementById('s-inc')?.value || (hskIncome || 340));
+  const tax = annualTax(age, inc);
+  const total = Object.values(getStage(age, inc).w).reduce((a,b)=>a+b,0);
+  const text = `Min välfärdsprofil på Skatteplattformen — ${age} år, ${inc.toLocaleString('sv-SE')} tkr/år: `
+    + `~${total.toLocaleString('sv-SE')} tkr/år i offentliga tjänster`
+    + (tax.tot>0 ? `, ~${tax.tot.toLocaleString('sv-SE')} tkr i skatt. ` : '. ')
+    + `Öppna länken för samma beräkning:`;
+
+  const btn = document.querySelector('.nav-pill');
+  const flash = (msg)=>{ if(!btn) return; const o=btn.textContent;
+    btn.textContent = msg; btn.style.borderColor='var(--green)'; btn.style.color='var(--green)';
+    setTimeout(()=>{btn.textContent=o; btn.style.borderColor=''; btn.style.color='';}, 2000); };
 
   if(navigator.share){
-    navigator.share({title:'Skatteplattformen',text}).catch(()=>{});
+    navigator.share({title:'Skatteplattformen', text, url}).catch(()=>{});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad!')).catch(()=>flash('Kunde ej kopiera'));
   } else {
-    navigator.clipboard.writeText(text).then(()=>{
-      const btn = document.querySelector('.nav-pill');
-      const orig = btn.textContent;
-      btn.textContent = 'Kopierat!';
-      btn.style.background = 'var(--green)';
-      btn.style.borderColor = 'var(--green)';
-      setTimeout(()=>{btn.textContent=orig;btn.style.background='';btn.style.borderColor='';},2000);
-    });
+    flash('Länk i adressfältet');
   }
 }
 

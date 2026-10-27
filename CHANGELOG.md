@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-27) — Navigering (regressionsfix) + omarbetad delning
+
+**Navigering:** "Om oss"-länken som lagts till i huvudnavigeringen gjorde raden
+för bred (9 länkar + en längre knappetikett) så att det sticky-fästa
+rubrikfältet spillde över och täckte innehållet. Länken borttagen ur navet
+(sektionen nås fortfarande via footern), vilket återställer den enradiga
+layouten.
+
+**Delning (`shareSkatt` / `buildShareURL` / `readURLParams`):** knappen delar
+nu en **djuplänk som återskapar hela vyn** — ålder, inkomst, pensionstoggle,
+hushållstyp och kapitalinkomst — i stället för en statisk textblobb. Mottagaren
+öppnar länken och ser exakt samma beräkning. Web Share API med urklipps-fallback
+och uppdaterat adressfält. Knappen heter nu kort **"Dela"** (tidigare "Dela
+fakta"/"Dela min profil"). Rådata finns även fortsatt som nedladdningsbar
+transparens-JSON i metodavsnittet.
+
 ### Changed (2026-10-27) — "Visste du att"-remsan: redesign + faktagranskning
 
 **Interaktion (`index.html`):**
