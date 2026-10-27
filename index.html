@@ -830,7 +830,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <button class="oecd-tab" onclick="showOecd(this,'utbildning')">Utbildning</button>
       <button class="oecd-tab" onclick="showOecd(this,'aldreomsorg')">Äldreomsorg & socialt</button>
       <button class="oecd-tab" onclick="showOecd(this,'infrastruktur')">Infrastruktur</button>
-      <button class="oecd-tab" onclick="showOecd(this,'miljo')">Miljö</button>
+      <button class="oecd-tab" onclick="showOecd(this,'miljo')">Klimat & energi</button>
     </div>
 
     <div id="oecd-panels"></div>
@@ -3605,6 +3605,9 @@ const OECD_DATA = {
       {title:'Läkare per 1 000 invånare — Sverige vs världen',sub:'Praktiserande läkare (2023–2024)',
        data:[{c:'Italien',v:5.8,cl:'it'},{c:'Tyskland',v:4.8,cl:'de'},{c:'Sverige',v:4.5,cl:'se'},{c:'OECD-snitt',v:3.9,cl:'avg'},{c:'USA',v:2.7,cl:'us'},{c:'Japan',v:2.6,cl:'jp'}],
        max:7,unit:'',src:'OECD Health at a Glance 2025',verdict:'Sverige har fler läkare än OECD-snittet. Japan når topputfall med få läkare men många vårdbesök per person — olika systemlogiker.',vc:'good'},
+      {title:'Läkemedel per capita — Sverige vs världen',sub:'US-dollar (PPP), ~2021 — recept + egenvård',
+       data:[{c:'USA',v:1432,cl:'us'},{c:'Tyskland',v:1042,cl:'de'},{c:'Japan',v:836,cl:'jp'},{c:'OECD-snitt',v:766,cl:'avg'},{c:'Frankrike',v:766,cl:'fr'},{c:'Italien',v:748,cl:'it'},{c:'Sverige',v:576,cl:'se'}],
+       max:1600,unit:' $',src:'OECD Health Statistics (läkemedelsutgifter per capita, PPP, 2020–2022)',verdict:'USA betalar mest i världen för läkemedel — ~2,5× Sverige — främst p.g.a. högre priser, inte mer medicin. Sverige ligger bland de lägsta i OECD.',vc:'good',invert:true},
       {title:'Spädbarnsdödlighet',sub:'Per 1 000 levande födda (2024) — lägre = bättre',
        data:[{c:'Norge',v:1.8,cl:'no'},{c:'Finland',v:1.9,cl:'fi'},{c:'Sverige',v:2.2,cl:'se'},{c:'Danmark',v:3.1,cl:'dk'},{c:'OECD-snitt',v:5.7,cl:'avg'}],
        max:8,unit:'',src:'OECD Health at a Glance 2025',verdict:'Hela Norden långt under OECD-snittet. Norge och Finland lägst.',vc:'good',invert:true},
@@ -3619,12 +3622,12 @@ const OECD_DATA = {
   utbildning: {
     title: 'Utbildning',
     charts: [
-      {title:'PISA 2025 — Matematik',sub:'Poäng (15-åringar)',
-       data:[{c:'Danmark',v:471,cl:'dk'},{c:'Finland',v:469,cl:'fi'},{c:'Sverige',v:464,cl:'se'},{c:'OECD-snitt',v:463,cl:'avg'},{c:'Norge',v:452,cl:'no'}],
-       max:550,unit:' p',src:'OECD PISA 2025',verdict:'Sverige föll 18 p sedan 2022 och ligger nu i nivå med OECD-snittet, under Danmark och Finland. Nedgången är bred i hela OECD.',vc:'bad'},
-      {title:'PISA 2025 — Naturvetenskap',sub:'Poäng (15-åringar)',
-       data:[{c:'Finland',v:504,cl:'fi'},{c:'Sverige',v:485,cl:'se'},{c:'OECD-snitt',v:482,cl:'avg'},{c:'Danmark',v:478,cl:'dk'},{c:'Norge',v:470,cl:'no'}],
-       max:550,unit:' p',src:'OECD PISA 2025',verdict:'Finland fortsatt främst. Sverige strax över OECD-snittet — naturvetenskap föll inte statistiskt säkert, till skillnad från matematik och läsning.',vc:'mixed'},
+      {title:'PISA 2025 — Matematik (Sverige vs världen)',sub:'Poäng, 15-åringar',
+       data:[{c:'Japan',v:525,cl:'jp'},{c:'Finland',v:469,cl:'fi'},{c:'Italien',v:468,cl:'it'},{c:'Sverige',v:464,cl:'se'},{c:'Tyskland',v:464,cl:'de'},{c:'OECD-snitt',v:463,cl:'avg'},{c:'USA',v:463,cl:'us'},{c:'Frankrike',v:458,cl:'fr'}],
+       max:560,unit:' p',src:'OECD PISA 2025',verdict:'Japan utklassar. Sverige (464) i nivå med OECD-snittet och USA, men långt under Östasien. Sverige föll 18 p sedan 2022 — en bred nedgång i hela OECD.',vc:'bad'},
+      {title:'PISA 2025 — Naturvetenskap (Sverige vs världen)',sub:'Poäng, 15-åringar',
+       data:[{c:'Japan',v:538,cl:'jp'},{c:'Finland',v:504,cl:'fi'},{c:'USA',v:502,cl:'us'},{c:'Tyskland',v:486,cl:'de'},{c:'Sverige',v:485,cl:'se'},{c:'Frankrike',v:483,cl:'fr'},{c:'Italien',v:483,cl:'it'},{c:'OECD-snitt',v:482,cl:'avg'}],
+       max:560,unit:' p',src:'OECD PISA 2025',verdict:'Japan och Finland i topp. Sverige (485) strax över OECD-snittet. USA presterar starkare i naturvetenskap (502) än i matematik.',vc:'mixed'},
       {title:'Utbildningsutgifter',sub:'% av BNP, primär till tertiär (2022)',
        data:[{c:'Sverige',v:5.3,cl:'se'},{c:'Danmark',v:5.1,cl:'dk'},{c:'Norge',v:5.2,cl:'no'},{c:'Finland',v:5.1,cl:'fi'},{c:'OECD-snitt',v:4.7,cl:'avg'}],
        max:7,unit:'%',src:'OECD Education at a Glance 2025',verdict:'Sverige spenderar 13% mer än OECD-snittet — men utfallen (PISA) motiverar inte premien fullt ut.',vc:'mixed'},
@@ -3677,11 +3680,11 @@ const OECD_DATA = {
     ]
   },
   miljo: {
-    title: 'Miljö & hållbarhet',
+    title: 'Klimat & energi',
     charts: [
-      {title:'CO₂-utsläpp per capita',sub:'Ton CO₂e (2024) — lägre = bättre',
-       data:[{c:'Sverige',v:3.6,cl:'se'},{c:'Danmark',v:4.3,cl:'dk'},{c:'Finland',v:5.5,cl:'fi'},{c:'OECD-snitt',v:6.4,cl:'avg'},{c:'Norge',v:7.2,cl:'no'}],
-       max:10,unit:' t',src:'World Bank / TheGlobalEconomy.com',verdict:'Sverige lägst i Norden — 44% under OECD-snittet. Norges olje- och gassektor driver upp utsläppen.',vc:'good',invert:true},
+      {title:'CO₂-utsläpp per capita — Sverige vs världen',sub:'Ton CO₂ per person (2023) — lägre = bättre',
+       data:[{c:'Sverige',v:3.6,cl:'se'},{c:'Frankrike',v:4.5,cl:'fr'},{c:'Italien',v:5.2,cl:'it'},{c:'OECD-snitt',v:6.4,cl:'avg'},{c:'Tyskland',v:7.0,cl:'de'},{c:'Japan',v:7.9,cl:'jp'},{c:'USA',v:14.3,cl:'us'}],
+       max:16,unit:' t',src:'IEA / World Bank (territoriella CO₂-utsläpp 2023)',verdict:'Sverige bland de lägsta i västvärlden tack vare fossilfri el. USA släpper ut ~4× så mycket per person. Frankrikes kärnkraft ger låga utsläpp.',vc:'good',invert:true},
       {title:'Förnybar energi',sub:'% av slutlig energiförbrukning (2023)',
        data:[{c:'Norge',v:75.0,cl:'no'},{c:'Sverige',v:66.4,cl:'se'},{c:'Danmark',v:43.0,cl:'dk'},{c:'Finland',v:39.6,cl:'fi'}],
        max:85,unit:'%',src:'Eurostat Renewable Energy Statistics 2023 / EEA',verdict:'Sverige 66% förnybar energi och ~70% förnybar el (99% fossilfri inkl. kärnkraft). Alla nordiska länder nådde EU:s 2030-mål redan 2023.',vc:'good'},

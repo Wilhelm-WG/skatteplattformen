@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-27) — OECD-jämförelsen vidgad: läkemedel, utbildning & klimat globalt
+
+Fortsättning på den globala "vs världen"-utbyggnaden (samma länderuppsättning:
+USA, Japan, Tyskland, Frankrike, Italien + OECD):
+
+- **Läkemedel per capita** (nytt sjukvårdsdiagram): USA 1 432 $, Tyskland 1 042,
+  Japan 836, OECD/Frankrike 766, Italien 748, **Sverige 576** (bland lägst).
+  USA betalar ~2,5× Sverige — främst högre priser, inte mer medicin.
+  Källa: OECD Health Statistics (PPP, 2020–2022).
+- **PISA 2025 globaliserad** (matematik + naturvetenskap): Japan utklassar
+  (525/538); Sverige (464/485) i nivå med OECD, under Östasien; USA starkare i
+  naturvetenskap (502) än matte (463). Källa: OECD PISA 2025.
+- **Klimat & energi** (fliken "Miljö" omdöpt): CO₂ per capita globaliserad —
+  Sverige 3,6 t, Frankrike 4,5, Italien 5,2, OECD 6,4, Tyskland 7,0, Japan 7,9,
+  **USA 14,3** (~4× Sverige). Källa: IEA / World Bank (2023).
+
 ### Added (2026-10-27) — OECD-jämförelsen: Sverige vs resten av världen
 
 Sjukvård-fliken var tidigare nästan bara nordisk. Fyra nya globala diagram med
