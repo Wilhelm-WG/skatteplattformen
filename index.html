@@ -1633,9 +1633,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
       <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
         <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 2024: 3 011 Mdkr — Eurostat publicerar med ~2 års eftersläpning). Skatt: kommunalskatt 32,38 % (rikssnitt 2026, SKR), statlig skatt 20 % över 643 tkr (2026), arbetsgivaravgift 21,21 % exkl. pensionsavgift (reducerad 10,21 % för 66+), moms ~15 % av konsumtion (inkomstberoende sparkvot 5–25 %, effektiv moms 14,5–18,5 %).<br><br>
-        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64), pension 70% av topp (65–74), 50% (75–85).<br><br>
-        <strong>Pensionsantagande:</strong> 70% = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Andelen varierar kraftigt med yrkesliv och sparande.<br><br>
-        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag.<br><br>
+        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64). Pension <strong>inkomstdifferentierad</strong>: 65–74 ~80 % av slutlön vid låg inkomst → ~55 % över inkomstpensionstaket; 75+ ca 18 pp lägre (garantipensionen skyddar låg inkomst).<br><br>
+        <strong>Pensionsantagande:</strong> kompensationsgraden = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Modellen differentierar efter inkomst (Pensionsmyndighetens typfall): låginkomsttagare skyddas av garantipensionen, höginkomsttagare tappar över taket (~600 tkr).<br><br>
+        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag. <em>Förenkling:</em> den som fortsätter arbeta efter 66 får ett förstärkt jobbskatteavdrag som modellen inte applicerar (modellen antar pensionsinkomst vid 65+); felet för den gruppen är ~5–10 tkr/år. Kumulativa livstidsbelopp (calcCumulativeNet) diskonteras till nuvärde med 2 % real; livscykeldiagrammet visar årsflöden, inte en nominell summa.<br><br>
         <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (28,9–35,7%), individuell förmånskonsumtion vs genomsnitt.<br><br>
         <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). ±10–15 % på skatt speglar kommunalskattespridningen (28,9–35,7 %, ±~5 % kring rikssnittet 32,38 %) plus grundavdrags- och jobbskatteavdragsapproximationer. Intervallen är en <strong>bedömd osäkerhetsenvelopp</strong> — inte formella konfidensintervall; en Monte Carlo-simulering (10 000 dragningar per parameter, med korrelation mellan sjukvård och äldreomsorg) återstår och skulle ge kvantitativt stöd.
       </div>
@@ -2603,6 +2603,20 @@ const PHASE_COLORS = {
 // Gemensam inkomstprofil — används av BÅDA calcCumulativeNet och calcLifecycle
 // för konsistens. Returnerar bruttoinkomst i tkr för en given ålder.
 // Använder scenarioprofil om vald (INCOME_PROFILES), annars standardprofil.
+// Inkomstdifferentierad pensionskvot (pension / slutlön). Låg inkomst skyddas
+// av garantipension (hög kvot); hög inkomst tappar över inkomstpensionstaket
+// (~600 tkr brutto) där tjänstepension sällan kompenserar fullt ut. Kalibrerad
+// så att medianinkomst (~500 tkr) ger ~0,69 (65–74) / ~0,51 (75+), i linje med
+// den tidigare schablonen 70/50 %. Källa: Pensionsmyndighetens typfall.
+function pensionKvot(peak, band){
+  let k;
+  if(peak <= 300)      k = 0.80;
+  else if(peak <= 600) k = 0.80 - (peak-300)/300 * 0.16;          // 0,80 → 0,64
+  else                 k = Math.max(0.52, 0.64 - (peak-600)/400 * 0.12); // 0,64 → 0,52
+  if(band === 'äldre') k = Math.max(0.40, k - 0.18);              // realt lägre vid 75+
+  return k;
+}
+
 function lifecycleIncome(age, peakInc){
   if(typeof INCOME_PROFILES !== 'undefined' && typeof currentProfile !== 'undefined'
      && INCOME_PROFILES[currentProfile]) {
@@ -2613,8 +2627,8 @@ function lifecycleIncome(age, peakInc){
   if(age < 23) return peakInc * 0.20;
   if(age < 27) return peakInc * (0.20 + 0.80*(age-23)/4);
   if(age < 65) return peakInc;
-  if(age < 75) return peakInc * 0.70;
-  return peakInc * 0.50;
+  if(age < 75) return peakInc * pensionKvot(peakInc, 'ny');
+  return peakInc * pensionKvot(peakInc, 'äldre');
 }
 
 function calcCumulativeNet(toAge, peakInc) {
@@ -3042,8 +3056,8 @@ const INCOME_PROFILES = {
       if(age < 23) return peak * 0.20;
       if(age < 27) return peak * (0.20 + 0.80*(age-23)/4);
       if(age < 65) return peak;
-      if(age < 75) return peak * 0.70;
-      return peak * 0.50;
+      if(age < 75) return peak * pensionKvot(peak, 'ny');
+      return peak * pensionKvot(peak, 'äldre');
     }
   },
   kort_utb: {

@@ -124,9 +124,9 @@ De två granskningsdokumenten (`Modellgranskning_Skatteplattformen.docx`, 14 pun
 - ⬜ **Formell osäkerhetshärledning / Monte Carlo** — ±22 %/±12 %-banden saknar fortfarande formell grund. Minst: dokumentera källan ("variationskoefficient i FASIT-decildata + KPP regional variation").
 - ⬜ **Validering mot SCB sektorräkenskaper** (se §3).
 - ⬜ **Kommunväljare i UI** — `ksOverride`-infrastrukturen finns (används av tornado), men ingen slutanvändar-toggle för egen kommun (kommunalskatt varierar 29,7–35,6 %, ~17 tkr/år skillnad).
-- ⬜ **Inkomstdifferentierad pensionskvot** — fortfarande 70 %/50 % platt (för högt för hög-, för lågt för låginkomsttagare).
+- ✅ **Inkomstdifferentierad pensionskvot** (2026-10-27) — `pensionKvot(peak, band)`: 80 % vid låg inkomst → 52–55 % över taket (65–74), ~18 pp lägre vid 75+. Median oförändrad.
 - ⬜ **Förstärkt JSA för 66+** — modellen saknar det högre jobbskatteavdraget för äldre arbetande (fel 5–10 tkr/år för gruppen).
-- ⬜ **Nuvärde som default i hero-snabbkollen** — diskontering finns i livscykelvyn, men snabbkollens kumulativa saldo är nominellt (överskattar 25–40 % över lång horisont). Överväg KPI-deflator-toggle.
+- ✅ **Nuvärde** (2026-10-27) — löst i praktiken: hero-snabbkollen är borttagen och livscykeln visar nu årsflöden (ej en nominell summa); `calcCumulativeNet` diskonterar 2 % real.
 
 ---
 
@@ -164,9 +164,9 @@ De två granskningsdokumenten (`Modellgranskning_Skatteplattformen.docx`, 14 pun
 | **P3** | Responsiva + tillgängliga SVG-diagram, synligare osäkerhetsband | UX/a11y | Mobil + WCAG |
 | ~~P3~~ ✅ | Makroavstämning mot SCB i verify-skriptet (COFOG + skattekvot) | Data/QA | **Klar 2026-10-27** |
 | ~~P3~~ ✅ | Harmonisera prisårgång (förmåner → 2024 års priser) | Data | **Klar 2026-10-27** |
-| **P4** | Inkomstdifferentierad pensionskvot; förstärkt JSA 66+ | Modell | Finjustering |
+| ~~P4~~ ✅ | Inkomstdifferentierad pensionskvot (JSA 66+ dokumenterad som förenkling) | Modell | **Klar 2026-10-27** |
 | ~~P4~~ ✅ | Formalisera osäkerhetsintervall (dokumenterad envelopp) | Modell | **Klar 2026-10-27** |
-| **P4** | Nuvärde-default/KPI-toggle i hero-snabbkollen | UX | Minska överskattning |
+| ~~P4~~ ✅ | Nuvärde — löst via årsflödesvyn + 2 %-diskontering i calcCumulativeNet | UX | **Klar 2026-10-27** |
 
 ---
 

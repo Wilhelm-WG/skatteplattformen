@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-27) — P4: inkomstdifferentierad pensionskvot (+ dokumenterade finjusteringar)
+
+- **Inkomstdifferentierad pensionskvot:** ny `pensionKvot(peak, band)` ersätter
+  den platta 70 %/50 %-pensionen i livscykeln. Låg inkomst skyddas av
+  garantipensionen (~80 % vid 65–74), hög inkomst tappar över inkomstpensions­
+  taket (~52–55 %), och ~18 pp lägre vid 75+. Medianinkomst (~500 tkr) ger
+  ~69 %/51 % — i linje med den tidigare schablonen. Källa: Pensionsmyndighetens
+  typfall. Metodrutan uppdaterad.
+- **Förstärkt JSA för 66+** (granskningens P4) dokumenterad som en medveten
+  förenkling i metodrutan — modellen antar pensionsinkomst vid 65+ och
+  applicerar inte det förstärkta jobbskatteavdraget för den som arbetar vidare
+  (fel ~5–10 tkr/år för gruppen).
+- **Nuvärde/KPI-toggle** (P4) bedömd som löst: hero-snabbkollen är borttagen och
+  livscykeln visar numera årsflöden (ingen nominell livstidssumma); kumulativa
+  belopp (`calcCumulativeNet`) diskonteras redan 2 % real.
+
 ### Fixed (2026-10-27) — Två formateringsfel i kalkylatorn (visuellt verifierade)
 
 - **Pensionsavgift-rutan:** förklaringstexten spillde ut utanför rutans högra
