@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed/Changed (2026-10-27) — Data- och språkgranskning (användarfeedback)
+
+- **Kapitalskatt-kortet rättat:** stod att 30 % "tas ut via ISK/KF" — vilket är
+  fel. ISK/KF beskattas med en årlig schablon (~1 % av värdet), inte 30 % på
+  vinsten. Förtydligat att 30 % gäller direktägt sparande.
+- **Kommunalskatt förtydligad:** kortet säger nu att den finansierar både
+  **kommun och region** (tidigare otydligt). Spann uppdaterat till 28,9 %
+  (Österåker, lägst) – 35,7 % (Dorotea) i linje med SCB 2026.
+- **Ny prislista-post:** "Plats på SIS ungdomshem (tvångsvård), ett dygn" —
+  ~9 500 kr/dygn med ärligt spann (7 000–13 000 kr beroende på enhet och
+  säkerhetsnivå; vårdavgift LVM 2025 ~6 950 kr/dygn). Prislistan 36 → 37 poster.
+- **Språk:** bytte ut AI-stela begrepp mot naturligare svenska —
+  "korsningsåldern" → "vänder det runt 30 års ålder", "osäkerhetsenvelopp" →
+  "osäkerhetsspann", "livscykellogik"/"livscykelkontraktets mening" →
+  vardagligare formuleringar, "nettouttag" → "tar emot allt mer i tjänster".
+
 ### Added (2026-10-27) — Hero-krok: "Vart går din 100-lapp?" (browser-verifierad)
 
 Hero-widgeten (de roterande "Verkliga prislappar") har nu en växel
