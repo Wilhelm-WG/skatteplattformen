@@ -1991,7 +1991,7 @@ const CARDS = [
   {cat:'helse',cl:'Hälsa & sjukvård',title:'En förlossning (vaginal, okomplicerad)',unit:'per vårdtillfälle inkl. MVC och eftervård',amount:42000,suf:'kr',vs:'Du betalar: <strong>130–260 kr</strong> (1–2 dygn)',src:'SKR KPP DRG P05E ~30 000 kr + MVC/eftervård = ~42 000 kr totalt. Spann: Göteborg 27 200, Stockholm 41 000 kr (SVT/GP 2022).'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Läkarbesök, primärvård',unit:'per besök inkl. overhead och administration',amount:2400,suf:'kr',vs:'Du betalar: <strong>200–350 kr</strong> patientavgift',src:'SKR KPP-databas primärvård 2024: ~2 400 kr/besök. Patienten betalar 8–15% av faktisk kostnad.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Barnvaccinationsprogrammet (komplett)',unit:'per barn, hela programmet 0–18 år',amount:4200,suf:'kr totalt',vs:'Du betalar: <strong>0 kr</strong> — gratis via BVC',src:'Folkhälsomyndigheten 2024: ~10 sjukdomar, ~16 doser inkl. vaccin + BVC-besök + administration.'},
-  {cat:'helse',cl:'Hälsa & sjukvård',title:'Tandvård 0–23 år',unit:'per person och år (genomsnitt)',amount:3800,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — gratis t.o.m. 23 år (sedan 2024)',src:'SKR 2024: ~8,5 Mdkr / ~2,2M individer ≈ 3 860 kr/person/år. Utökades till 23 år fr.o.m. jan 2024.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Tandvård 0–19 år',unit:'per person och år (genomsnitt)',amount:3800,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — gratis t.o.m. året du fyller 19',src:'SKR: regionernas barn- och ungdomstandvård, ~3 800 kr/person/år. Åldersgränsen för fri tandvård sänktes från 23 till 19 år 1 jan 2025 (prop. 2023/24:158).'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'En höftledsoperation (primär)',unit:'per ingrepp, nationellt genomsnitt',amount:72000,suf:'kr',vs:'Du betalar: <strong>max 1 450 kr</strong> (frikortstak 2026)',src:'SKR KPP-databas DRG primär höftledsartroplastik 2024. ~18 000 ingrepp/år. Socialstyrelsens DRG-viktlista. Frikortstak höjt 1 300 → 1 450 kr 2026.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Ambulansutryckning',unit:'per insats inkl. sjuktransport',amount:8500,suf:'kr',vs:'Du betalar: <strong>0–200 kr</strong> (regionberoende)',src:'SKR/regionerna 2024: ~6,5 Mdkr / ~770 000 insatser = 8 440 kr/insats.'},
   {cat:'infra',cl:'Infrastruktur',title:'Underhåll av 1 km riksväg per år',unit:'per km och år, statliga vägar',amount:280000,suf:'kr/km/år',pp:false,vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverket underhållsplan 2024–2027: ~19 Mdkr/år / 67 800 km = 280 000 kr/km/år.'},
@@ -2224,15 +2224,14 @@ const DETAILS = {
       'HPV-vaccin ingår sedan 2012 — cervixcancer väntas minska med 90%'
     ]
   },
-  'Tandvård 0–23 år': {
+  'Tandvård 0–19 år': {
     finansiering: [
       {label:'Regionskatt',pct:85,note:'Folktandvården'},
-      {label:'Statsbidrag',pct:15,note:'Utökad åldersgräns 2024'}
+      {label:'Statsbidrag',pct:15,note:'Barn- och ungdomstandvård'}
     ],
     fakta: [
-      'Utökades till <strong>23 år</strong> fr.o.m. januari 2024 (tidigare 21 år)',
-      '<strong>2,2 miljoner individer</strong> har fri tandvård',
-      'Vuxna 24+ har tandvårdsstöd: <strong>600 kr/år</strong> i allmänt tandvårdsbidrag',
+      'Fri tandvård t.o.m. året du fyller <strong>19</strong> — åldersgränsen sänktes från 23 till 19 år 1 jan 2025 (prop. 2023/24:158)',
+      'Från 20 år betalar du själv, med <strong>allmänt tandvårdsbidrag 300–600 kr/år</strong> och högkostnadsskydd',
       'Sverige har bland <strong>bäst tandhälsa</strong> i EU (OECD Health at a Glance)'
     ]
   },
@@ -3603,11 +3602,12 @@ const VDA_FACTS = [
   'Statsskulden 2026: <strong>1 316 Mdkr</strong> (Riksgälden prognos) — ungefär 125 000 kr per person. Räntekostnaden har dubblats sedan 2024 till 27 Mdkr/år.',
   // KORRIGERAT: tidigare jämförelse "mer än försvaret 2010 (4 185 kr/inv)" var falsk — kultur ~860 kr/inv < 4 185. Källa: Myndigheten för kulturanalys 2025.
   'Staten lade <strong>9,1 Mdkr på kultur</strong> 2024 (~860 kr/invånare) — realt lägre per invånare än för tio år sedan',
-  'En nyexad sjuksköterska genomför <strong>~4 000 timmar</strong> offentligt finansierad VFU-praktik innan examen',
+  // KORRIGERAT: ~4 000 h var för högt. VFU ~25–40 veckor; EU:s yrkesdirektiv (2005/36/EG) kräver minst 2 300 h klinisk praktik.
+  'En sjuksköterskestudent gör <strong>~25–40 veckor</strong> verksamhetsförlagd utbildning (VFU) — EU:s yrkesdirektiv kräver minst 2 300 timmar klinisk praktik före examen',
   // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
   'Svenska arbetsmarknaden är känd för flexibilitet — <strong>~500 000 tjänster</strong> tillsätts varje år (SCB AKU)',
-  // KORRIGERAT: allmänt tandvårdsbidrag (ATB) är 300–600 kr/år, EJ ~3 300. Källa: Försäkringskassan / prop. 2023/24:158.
-  'Tandvård är <strong>gratis till och med 23 år</strong>. Som vuxen får du allmänt tandvårdsbidrag <strong>300–600 kr/år</strong> plus ett högkostnadsskydd vid dyra behandlingar',
+  // KORRIGERAT: fri tandvård sänktes 23→19 år (1 jan 2025, prop. 2023/24:158); ATB 300–600 kr/år, EJ ~3 300. Källa: Försäkringskassan.
+  'Tandvård är <strong>gratis t.o.m. året du fyller 19</strong> — åldersgränsen sänktes från 23 till 19 år 2025. Som vuxen: allmänt tandvårdsbidrag <strong>300–600 kr/år</strong> plus högkostnadsskydd',
   // ── KRITISKA / BALANSERADE FAKTA ─────────────────────────────────
   '<strong>~170 000 personer</strong> väntade på planerad operation eller specialistvård längre än 90 dagar (jan 2025) — trots garantins 90-dagarsgräns (SKR Väntetider i vården)',
   'Sverige saknar uppskattningsvis <strong>10 600 legitimerade lärare</strong> till 2038 — brist som ackumuleras trots satsningar (Skolverkets lärarprognos 2024)',

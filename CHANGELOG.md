@@ -28,8 +28,13 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 - **Kultur:** "1 010 kr/inv, mer än försvaret 2010" var en falsk jämförelse
   (försvar 2010 = 4 185 kr/inv) → staten lade 9,1 Mdkr på kultur 2024
   (~860 kr/inv), realt lägre per invånare än för tio år sedan (Kulturanalys).
-- **Tandvård:** "~3 300 kr/år i subvention" var fel → allmänt tandvårdsbidrag
-  300–600 kr/år + högkostnadsskydd (Försäkringskassan).
+- **Tandvård (djupverifierat):** fri tandvård gäller t.o.m. året man fyller
+  **19**, inte 23 — åldersgränsen *sänktes* 23→19 den 1 jan 2025
+  (prop. 2023/24:158). Rättat på tre ställen (faktaremsa, prislistekort
+  "Tandvård 0–19 år", detaljpanel) + ATB 300–600 kr/år (ej ~3 300).
+- **Sjuksköterske-VFU (djupverifierat):** "~4 000 timmar" var ~3× för högt →
+  ~25–40 veckor VFU; EU:s yrkesdirektiv (2005/36/EG) kräver minst 2 300 h
+  klinisk praktik.
 - **Barnvaccination:** faktaremsans 7 200 kr synkad till prislistans sourcade
   ~4 200 kr/barn; den osäkra besparingssiffran borttagen.
 - Verifierade (oförändrade): WJP Rule of Law 2025 (alla fyra nordiska i topp 4),
