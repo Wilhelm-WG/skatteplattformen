@@ -1573,7 +1573,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <!-- Skarp disclaimer ovan diagrammet -->
     <div style="margin:1rem 0 1.5rem;padding:1rem 1.2rem;background:rgba(184,74,30,.06);border-left:3px solid rgba(184,74,30,.45);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.65">
       <strong style="color:#E58060">⚠ Modellen visar mönstret — inte beloppet.</strong>
-      Att summera 85 år av schablonberäknade förmåner mot 85 år av schablonberäknad skatt ger en siffra med ±35–40 % osäkerhet. Värdet är pedagogiskt (välfärdens livscykellogik) — inte prognostiskt (din individuella balans). Ytterligare oprecision:
+      Diagrammet visar <strong>årliga flöden per ålder</strong> — förmåner du konsumerar respektive skatt du betalar varje enskilt år — inte en summerad livstidsbalans. Varje års belopp är schablonberäknade befolkningsmedel (±20–25 % på förmåner, ±10–15 % på skatt). Värdet är pedagogiskt (välfärdens livscykellogik) — inte prognostiskt (din individuella balans). Ytterligare oprecision:
       <ul style="margin:.5rem 0 .3rem 1.2rem;padding:0;line-height:1.55">
         <li>Diagrammet antar <strong>2026 års skatte- och pensionsregler i 85 år</strong> — historiskt har dessa ändrats varje decennium.</li>
         <li><strong>Mortalitet</strong> är endast markerad — den är inte aktivt nedjusterad i flödena.</li>
@@ -4139,7 +4139,6 @@ function calcLifecycle(peakInc, discount, kapitalInc){
   // peakInc fungerar som socioekonomisk proxy: hushållets livsinkomstnivå
   // bestämmer förmånsfördelningen även i åldrar utan egen inkomst.
   const ages = Array.from({length:86},(_,i)=>i);
-  const r = discount ? 0.02 : 0;
   const kap = kapitalInc || 0;
   const kapSkattÅrlig = kap * 0.30; // 30% schablonskatt på kapitalinkomst
 
@@ -4149,26 +4148,31 @@ function calcLifecycle(peakInc, discount, kapitalInc){
     return Object.values(s.w).reduce((sum,v)=>sum+v,0);
   }
 
-  let cumForman = 0, cumSkatt = 0;
+  // ÅRLIGA flöden per ålder (ej ackumulerat). Diagrammet visar välfärdslogikens
+  // FORM: mottagare (barn) → bidragsgivare (yrkesliv) → mottagare (pension).
+  // En ackumulerad vy är vilseledande här: barndomens ~18 år av förmåner utan
+  // skatt ger förmånskurvan ett försprång som (nominellt, vid snittinkomst, med
+  // inkomstpensionen exkluderad) aldrig hinns ikapp — vilket felaktigt får det
+  // att se ut som att alla är nettomottagare hela livet. Årsflödet visar i
+  // stället den faktiska bidragsgivarfasen under yrkeslivet.
   const pts = ages.map(a => {
-    const pv = 1 / Math.pow(1 + r, a); // nuvärdefaktor
     const inc = lifecycleIncome(a, peakInc);
     const t = annualTax(a, inc);
-    cumForman += formanAtAge(a) * pv;
-    // Skatt = inkomstskatt + kapitalskatt (kapital antas konstant över livet — förenkling)
-    cumSkatt += (t.tot + kapSkattÅrlig) * pv;
-    return {a, forman: cumForman, skatt: cumSkatt};
+    const forman = formanAtAge(a);
+    const skatt = t.tot + kapSkattÅrlig; // inkomstskatt + ev. kapitalskatt
+    return {a, forman, skatt};
   });
 
-  // Hitta korsningspunkt (om finns)
-  let crossover = null;
+  // Korsningspunkter: där årlig skatt går om förmån (blir bidragsgivare) och
+  // där förmån går om skatt igen (blir mottagare som äldre).
+  const crossovers = [];
   for(let i=1;i<pts.length;i++){
-    if(pts[i-1].skatt <= pts[i-1].forman && pts[i].skatt > pts[i].forman){
-      crossover = pts[i].a;
-      break;
-    }
+    const prevNet = pts[i-1].skatt - pts[i-1].forman;
+    const net = pts[i].skatt - pts[i].forman;
+    if(prevNet <= 0 && net > 0) crossovers.push({a: pts[i].a, dir: 'bidrag'});
+    else if(prevNet >= 0 && net < 0) crossovers.push({a: pts[i].a, dir: 'mottag'});
   }
-  return {pts, crossover};
+  return {pts, crossovers};
 }
 
 // Kontexttext: var i inkomstfördelningen hamnar du?
@@ -4229,42 +4233,29 @@ function renderLifecycle(inc){
   // så att livscykelvyn reflekterar samma profil som användaren ställt in ovanför.
   const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
 
-  // Badge: visa vilken hushållstyp + kapital som är applicerade
-  const appliedEl = document.getElementById('lc-applied');
-  if(appliedEl){
-    const hhLabels = {
-      ensam: '🧑 Ensamstående',
-      par: '👫 Par utan barn',
-      familj: '👨‍👩‍👧‍👦 Par med barn',
-      ensam_barn: '👩‍👧 Ensamstående m. barn'
-    };
-    const hhLbl = hhLabels[currentHousehold] || 'Ensamstående';
-    const kapLbl = kapitalInc > 0
-      ? ` · 💰 ${kapitalInc.toLocaleString('sv-SE')} tkr/år kapital (30% schablon)`
-      : '';
-    appliedEl.innerHTML = `<strong>Profilen ovan applicerad i livsloppet:</strong> ${hhLbl} · 📊 inkomstgradient enligt ${inc.toLocaleString('sv-SE')} tkr platåinkomst${kapLbl}. <span style="color:var(--ink3)">Ändra ovan för att se effekten här.</span>`;
-  }
-
-  const {pts, crossover} = calcLifecycle(inc, discount, kapitalInc);
+  const {pts, crossovers} = calcLifecycle(inc, discount, kapitalInc);
   const el = document.getElementById('lifecycle-chart');
   if(!el) return;
 
   const W=720, H=280, p={t:24,r:20,b:36,l:68};
   const iw=W-p.l-p.r, ih=H-p.t-p.b;
-  const maxVal = Math.max(...pts.map(d=>Math.max(d.forman,d.skatt)));
+  // Skala inkl. osäkerhetsbanden (+22% förmån / +12% skatt) så de inte klipps.
+  const rawMax = Math.max(...pts.map(d=>Math.max(d.forman*1.22, d.skatt*1.12)));
+  const niceMax = Math.max(100, Math.ceil(rawMax/100)*100);
   const sx=a=>p.l+(a/85)*iw;
-  const sy=v=>p.t+(1-(v/maxVal))*ih;
+  const sy=v=>p.t+(1-(v/niceMax))*ih;
 
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: skatt och förmåner över livet (0–85 år) vid vald inkomstnivå. Visar hur nettot går från mottagare i barndom till betalare i arbetslivet och åter mottagare vid pension." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid genomsnittsinkomst. Visar välfärdslogikens form — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
 
-  // Grid
-  const gridVals = [0, maxVal*0.25, maxVal*0.5, maxVal*0.75, maxVal].map(v=>Math.round(v/100)*100);
+  // Grid (årliga tkr)
+  const gridVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(niceMax*f));
   gridVals.forEach(v=>{
     const y=sy(v);
-    const lbl = v>=1000 ? (v/1000).toFixed(0)+'M' : v+'k';
+    const lbl = v>=1000 ? (v/1000).toFixed(1)+'M' : v+'k';
     svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.05)" stroke-width="1"/>`;
     svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${lbl}</text>`;
   });
+  svg+=`<text x="${p.l-5}" y="${p.t-8}" text-anchor="end" fill="rgba(242,239,232,.3)" font-size="8">tkr/år</text>`;
 
   // X axis labels
   [0,10,20,30,40,50,60,70,80,85].forEach(a=>{
@@ -4309,24 +4300,23 @@ function renderLifecycle(inc){
   svg+=`<path d="${fPath}" fill="none" stroke="var(--green)" stroke-width="2.5"/>`;
   svg+=`<path d="${sPath}" fill="none" stroke="#B84A1E" stroke-width="2.5"/>`;
 
-  // Korsningspunkt — interpolera exakt korsning mellan förmåner och skattekurvan
-  if(crossover !== null){
-    const cx = sx(crossover);
-    const cp = pts[crossover];
-    const midY = sy((cp.forman + cp.skatt) / 2);
-    // Vertikal streckad linje
+  // Korsningspunkter — där årlig skatt och förmån byter plats.
+  // 'bidrag' = blir nettobidragsgivare (yrkesliv), 'mottag' = blir mottagare igen (pension).
+  crossovers.forEach(c=>{
+    const cx = sx(c.a);
+    const cp = pts[c.a];
     svg+=`<line x1="${cx}" y1="${p.t}" x2="${cx}" y2="${H-p.b}" stroke="rgba(200,151,58,.55)" stroke-width="1.5" stroke-dasharray="4,3"/>`;
-    // Etikett med tvärrad (tspan för multiline i SVG)
     const lx = cx + (cx > W * 0.7 ? -6 : 6);
     const anchor = cx > W * 0.7 ? 'end' : 'start';
+    const lbl = c.dir === 'bidrag' ? 'Blir' : 'Åter';
+    const lbl2 = c.dir === 'bidrag' ? 'bidragsgivare' : 'mottagare';
     svg+=`<text text-anchor="${anchor}" fill="rgba(200,151,58,.9)" font-size="9">` +
-         `<tspan x="${lx}" y="${p.t+14}">Netto</tspan>` +
-         `<tspan x="${lx}" dy="11">bidrag</tspan>` +
-         `<tspan x="${lx}" dy="11">~${crossover} år</tspan></text>`;
-    // Cirkelmarkering på korsningspunkten
+         `<tspan x="${lx}" y="${p.t+14}">${lbl}</tspan>` +
+         `<tspan x="${lx}" dy="11">${lbl2}</tspan>` +
+         `<tspan x="${lx}" dy="11">~${c.a} år</tspan></text>`;
     const kY = sy(cp.forman);
     svg+=`<circle cx="${cx}" cy="${kY}" r="5" fill="rgba(200,151,58,.2)" stroke="rgba(200,151,58,.7)" stroke-width="1.5"/>`;
-  }
+  });
 
   // End labels — bara linjenamn, inga Mkr-siffror (modellen visar mönster, inte belopp)
   const lastF = pts[85];
@@ -4357,74 +4347,6 @@ function renderLifecycle(inc){
 
   svg+=`</svg>`;
   el.innerHTML = svg;
-
-  // Stats
-  const statsEl = document.getElementById('lc-stats');
-  if(statsEl){
-    const net = lastF.forman - lastF.skatt;
-    const discMode = discount ? 'diskonterat 2% real' : 'nominellt, ej diskonterat';
-
-    // ── Osäkerhetspropagering: ±22% förmåner, ±12% skatt, kvadratiskt adderade
-    // Bygger på antagandet att de två felkällorna är okorrelerade
-    // (förmåner kommer från NTA/FASIT, skatt från SCB-skattetabeller).
-    const UNC_FORMAN = 0.22, UNC_SKATT = 0.12;
-    function uncertaintyMkr(forman, skatt){
-      const sF = forman * UNC_FORMAN;
-      const sS = skatt * UNC_SKATT;
-      const sNet = Math.sqrt(sF*sF + sS*sS);
-      return {forman: Math.round(sF/1000), skatt: Math.round(sS/1000), net: Math.round(sNet/1000)};
-    }
-    const unc = uncertaintyMkr(lastF.forman, lastF.skatt);
-    const formanMkr = Math.round(lastF.forman/1000);
-    const skattMkr = Math.round(lastF.skatt/1000);
-    const netMkr = Math.round(net/1000);
-
-    // Strategiskt val: ta bort Mkr-summerade siffror, behåll mönstret.
-    // Modellen är ärlig som strukturillustration (mottagare-bidragsgivare-mottagare)
-    // men oärlig som personlig prognos. Stat-cards visar nu förhållanden och
-    // mönsteråldrar, inte multiplicerade Mkr-belopp.
-    const ratio = lastF.forman > 0 ? (lastF.skatt / lastF.forman) : 0;
-    const ratioPct = Math.round(ratio * 100);
-    const direction = net > 0 ? 'modellen ger mer än den tar' : (net < 0 ? 'modellen tar mer än den ger' : 'balans');
-    const directionColor = net > 0 ? 'var(--green)' : (net < 0 ? '#E58060' : 'var(--ink2)');
-
-    // Mortalitets-effekt: hur mycket av förmånskurvan klipps av tidig död?
-    let mortStatHTML = '';
-    if(mortAge !== null && pts[mortAge] && mortAge < 85){
-      const mp = pts[mortAge];
-      const formanShare = lastF.forman > 0 ? Math.round(mp.forman / lastF.forman * 100) : 0;
-      const skattShare = lastF.skatt > 0 ? Math.round(mp.skatt / lastF.skatt * 100) : 0;
-      const mortLbl = LIVSLANGD[currentMortality]?.label || 'vald grupp';
-      const lostBenefits = 100 - formanShare;
-      mortStatHTML = `<div class="ft-stat" style="border-left:3px solid rgba(242,239,232,.5)"><div class="ft-stat-val">${lostBenefits}%</div><div class="ft-stat-lbl">av förmånskurvan ligger efter ${mortAge} år<br><span style="font-size:.62rem;color:var(--ink3)">${mortLbl} — den klipps bort av förväntad livslängd</span></div></div>`;
-    }
-
-    statsEl.innerHTML = `
-      <div class="ft-stat"><div class="ft-stat-val">${ratioPct}%</div><div class="ft-stat-lbl">Skatt vs förmåner — modellen<br><span style="font-size:.62rem;color:var(--ink3)">${ratioPct < 100 ? 'mindre skatt än förmåner' : ratioPct > 100 ? 'mer skatt än förmåner' : 'jämvikt'} (${discMode})</span></div></div>
-      <div class="ft-stat"><div class="ft-stat-val">${crossover||'–'} år</div><div class="ft-stat-lbl">Korsningsålder — skatten passerar förmånerna<br><span style="font-size:.62rem;color:var(--ink3)">±3 år givet modellosäkerhet</span></div></div>
-      <div class="ft-stat"><div class="ft-stat-val" style="color:${directionColor}">${direction}</div><div class="ft-stat-lbl">Mönster vid valda inställningar<br><span style="font-size:.62rem;color:var(--ink3)">±35–40 % osäkerhet — modellen visar form, inte belopp</span></div></div>
-      ${mortStatHTML}`;
-  }
-
-  // Pedagogisk förklaring under stats (visas bara om mortalitet vald)
-  const explainEl = document.getElementById('lc-mortality-explain');
-  if(explainEl){
-    if(mortAge !== null && pts[mortAge] && mortAge < 85){
-      const mp = pts[mortAge];
-      const formanShare = lastF.forman > 0 ? Math.round(mp.forman / lastF.forman * 100) : 0;
-      const lostBenefitsShare = 100 - formanShare;
-      const lostYears = 85 - mortAge;
-      explainEl.style.display = 'block';
-      explainEl.innerHTML = `
-        <strong>Varför mortalitet inverterar intuitionen:</strong> Den valda gruppen har förväntad medellivslängd ${mortAge} år — ${lostYears} år kortare än diagrammets 85-års-projektion.
-        Eftersom äldreomsorg och specialistsjukvård (75-85 år) är den dyraste delen av förmånskurvan, betyder ${lostYears} förlorade år att <strong>${lostBenefitsShare} %</strong> av den potentiella förmånskurvan aldrig hämtas.
-        Höginkomsttagare har systematiskt 5–10 år längre livslängd — och alltså längre tid att konsumera de dyraste förmånerna. Den intuitiva läsningen "höginkomsttagare betalar för mycket" inverterar därför ofta jämfört med verklig dödlighet.
-        <span style="display:block;margin-top:.4rem;font-size:.62rem;color:var(--ink3)">Källa: SCB BE0701 Livslängdstabeller 2018-2022. Populationsmedel, inte individprognos.</span>`;
-    } else {
-      explainEl.style.display = 'none';
-      explainEl.innerHTML = '';
-    }
-  }
 }
 
 // Init lifecycle chart — startar på genomsnittsinkomst 460 tkr
