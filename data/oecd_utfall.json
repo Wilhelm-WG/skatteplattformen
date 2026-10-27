@@ -74,17 +74,20 @@
       }
     },
     "utfall": {
-      "pisa_matematik_2022": {
-        "Sverige": 482, "Danmark": 489, "Norge": 467, "Finland": 484, "OECD": 472,
-        "källa": "OECD PISA 2022"
+      "pisa_matematik_2025": {
+        "Sverige": 464, "Danmark": 471, "Norge": 452, "Finland": 469, "OECD": 463,
+        "förändring_sedan_2022": -18,
+        "källa": "OECD PISA 2025 (publ. 2026-09-08)"
       },
-      "pisa_läsning_2022": {
-        "Sverige": 487, "Danmark": null, "Norge": null, "Finland": 450, "OECD": 476,
-        "källa": "OECD PISA 2022"
+      "pisa_läsning_2025": {
+        "Sverige": 466, "Danmark": 460, "Norge": 453, "Finland": null, "OECD": 461,
+        "förändring_sedan_2022": -21,
+        "källa": "OECD PISA 2025 (publ. 2026-09-08). Finland ej bekräftad."
       },
-      "pisa_naturvetenskap_2022": {
-        "Sverige": 494, "Danmark": 494, "Norge": null, "Finland": 511, "OECD": 485,
-        "källa": "OECD PISA 2022"
+      "pisa_naturvetenskap_2025": {
+        "Sverige": 485, "Danmark": 478, "Norge": 470, "Finland": 504, "OECD": 482,
+        "förändring_sedan_2022": "ej statistiskt säkerställd",
+        "källa": "OECD PISA 2025 (publ. 2026-09-08)"
       },
       "högskoleutbildade_25_64_pct": {
         "Sverige": 51.8, "Danmark": 42.0, "Norge": null, "Finland": 42.3, "OECD": 40.0,

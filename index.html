@@ -1689,9 +1689,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <div class="ft-desc">Inkl. primär–tertiär utbildning + forskning vid lärosäten + vuxenutbildning (OECD EAG-definition). Sverige 45% över OECD-snittet (4,9%, samma definition). 2024 COFOG-estimat: ~6,5% (inkl. förskola, exkl. en del tertiär forskning). Kostnad per elev har inte ökat realt sedan 2012.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">PISA-trend 2003–2022</div>
-          <div class="ft-big">482<sub> p matematik (2022)</sub></div>
-          <div class="ft-desc">Sverige sjönk kraftigt 2003–2012 (från 509 till 478 p i matematik), återhämtade sig 2015–2018, och ligger nu strax över OECD-snittet (472). Men under Finland (484) och Danmark (489).</div>
+          <div class="ft-card-title">PISA-trend 2003–2025</div>
+          <div class="ft-big">464<sub> p matematik (2025)</sub></div>
+          <div class="ft-desc">Sverige sjönk kraftigt 2003–2012, återhämtade sig 2015–2018, men föll åter i PISA 2025: matematik −18 p och läsning −21 p sedan 2022 — den största nedgången i svensk PISA-historia. Ligger nu i nivå med OECD-snittet (matte 463), under Finland (469) och Danmark (471). Nedgången är bred i OECD.</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Lärarbrist 2038</div>
@@ -1699,7 +1699,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <div class="ft-desc">Skolverkets Lärarprognos 2024: ~145 100 lärare och förskollärare behöver examineras 2024–2038, men endast ~134 500 förväntas — underskott på 10 600. Störst brist: förskollärare, speciallärare, yrkeslärare och högstadielärare. Lärarutbildningen behöver +1 000 studenter/år (+7 %).</div>
         </div>
       </div>
-      <p class="ft-source">Källor: OECD Education at a Glance 2024, OECD PISA 2022, Skolverket Lärarprognos 2024.</p>
+      <p class="ft-source">Källor: OECD Education at a Glance 2024, OECD PISA 2025 (publ. 2026-09-08), Skolverket Lärarprognos 2024.</p>
     </div>
 
     <!-- DEMOGRAFI -->
@@ -2043,7 +2043,7 @@ const DETAILS = {
     oecd_enhet: 'USD PPP per elev (2022)',
     fakta: [
       'Sverige lägger <strong>~6,5% av BNP</strong> på utbildning (COFOG 2024, inkl. förskola). Exkl. förskola och tertiär forskning: 5,3% (OECD EAG, primär–tertiär)',
-      'PISA 2022: Sverige <strong>482 i matte</strong> — över OECD-snitt (472) men under Finland (484)',
+      'PISA 2025: Sverige <strong>464 i matte</strong> — i nivå med OECD-snittet (463), under Finland (469) och Danmark (471). Största raset i svensk PISA-historia (−18 p sedan 2022)',
       'Ca <strong>1,05 miljoner elever</strong> i grundskolan 2024',
       'Kommunal skola 152 000 kr/elev — fristående 129 300 kr'
     ]
@@ -3439,12 +3439,12 @@ const OECD_DATA = {
   utbildning: {
     title: 'Utbildning',
     charts: [
-      {title:'PISA 2022 — Matematik',sub:'Poäng (15-åringar)',
-       data:[{c:'Danmark',v:489,cl:'dk'},{c:'Finland',v:484,cl:'fi'},{c:'Sverige',v:482,cl:'se'},{c:'OECD-snitt',v:472,cl:'avg'},{c:'Norge',v:467,cl:'no'}],
-       max:550,unit:' p',src:'OECD PISA 2022',verdict:'Sverige över OECD-snittet men under Danmark och Finland. Norge under snittet.',vc:'mixed'},
-      {title:'PISA 2022 — Naturvetenskap',sub:'Poäng (15-åringar)',
-       data:[{c:'Finland',v:511,cl:'fi'},{c:'Danmark',v:494,cl:'dk'},{c:'Sverige',v:494,cl:'se'},{c:'OECD-snitt',v:485,cl:'avg'},{c:'Norge',v:478,cl:'no'}],
-       max:550,unit:' p',src:'OECD PISA 2022',verdict:'Finland dominerar. Sverige över OECD-snittet.',vc:'mixed'},
+      {title:'PISA 2025 — Matematik',sub:'Poäng (15-åringar)',
+       data:[{c:'Danmark',v:471,cl:'dk'},{c:'Finland',v:469,cl:'fi'},{c:'Sverige',v:464,cl:'se'},{c:'OECD-snitt',v:463,cl:'avg'},{c:'Norge',v:452,cl:'no'}],
+       max:550,unit:' p',src:'OECD PISA 2025',verdict:'Sverige föll 18 p sedan 2022 och ligger nu i nivå med OECD-snittet, under Danmark och Finland. Nedgången är bred i hela OECD.',vc:'bad'},
+      {title:'PISA 2025 — Naturvetenskap',sub:'Poäng (15-åringar)',
+       data:[{c:'Finland',v:504,cl:'fi'},{c:'Sverige',v:485,cl:'se'},{c:'OECD-snitt',v:482,cl:'avg'},{c:'Danmark',v:478,cl:'dk'},{c:'Norge',v:470,cl:'no'}],
+       max:550,unit:' p',src:'OECD PISA 2025',verdict:'Finland fortsatt främst. Sverige strax över OECD-snittet — naturvetenskap föll inte statistiskt säkert, till skillnad från matematik och läsning.',vc:'mixed'},
       {title:'Utbildningsutgifter',sub:'% av BNP, primär till tertiär (2022)',
        data:[{c:'Sverige',v:5.3,cl:'se'},{c:'Danmark',v:5.1,cl:'dk'},{c:'Norge',v:5.2,cl:'no'},{c:'Finland',v:5.1,cl:'fi'},{c:'OECD-snitt',v:4.7,cl:'avg'}],
        max:7,unit:'%',src:'OECD Education at a Glance 2025',verdict:'Sverige spenderar 13% mer än OECD-snittet — men utfallen (PISA) motiverar inte premien fullt ut.',vc:'mixed'},

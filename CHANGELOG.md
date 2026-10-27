@@ -10,6 +10,19 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-27) — PISA 2025-resultat
+
+OECD PISA 2025 publicerades 2026-09-08. Uppdaterat från PISA 2022 i
+`index.html` (OECD-jämförelsekort matematik + naturvetenskap, framtids­trend,
+utbildningsfakta) och `data/oecd_utfall.json`:
+- **Sverige:** matematik 464 (−18 sedan 2022), läsning 466 (−21),
+  naturvetenskap 485 (förändring ej statistiskt säkerställd). Största
+  nedgången i svensk PISA-historia; bred nedgång i hela OECD.
+- **Jämförelse (matematik/naturvetenskap):** Danmark 471/478, Finland 469/504,
+  Sverige 464/485, OECD-snitt 463/482, Norge 452/470.
+- Sverige ligger nu i nivå med OECD-snittet i alla tre ämnen.
+- Källa: OECD PISA 2025 Volume I + Skolverket (2026-09-08).
+
 ### Fixed (2026-10-27) — Livscykeldiagram, rubriktypsnitt, Om oss & valframing
 
 **Livscykeldiagrammet ("Mönstret i välfärdsmodellen över ett liv"):**
