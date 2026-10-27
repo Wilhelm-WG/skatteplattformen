@@ -10,6 +10,19 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed/Changed (2026-10-27) — Kriminalvård-kostnad + systematiskt språksvep
+
+- **Kriminalvård uppdaterad:** nya underlag visar högre kostnad. Dygnskostnad
+  2024 (Kriminalvårdens regeringsuppdrag): anstalt 3 874 kr/dygn ≈ **1,41 Mkr/år**
+  (tidigare 1,2 Mkr), häkte 3 563 kr/dygn. Lade till utbyggnadskontexten:
+  anslaget mångdubblas (~11 → 28,5 Mdkr) när platserna byggs ut (~9 000 → mål
+  ~27 000 till 2033) och nybyggda platser är dyrare än befintliga.
+- **Systematiskt språksvep:** bytte ut abstrakta/AI-stela begrepp i synlig copy —
+  "välfärdslogiken" → "mönstret i välfärden" / "hur välfärden fungerar" (3 ställen
+  + diagrammets aria-label), engelska "Framing" → "hur det framställs". Rättade
+  ett grammatikfel i solidaritetstexten ("Det årets nettoflöde" → "Årets
+  nettoflöde") och en inkonsekvent stavning ("netto-mottagare" → "nettomottagare").
+
 ### Fixed/Changed (2026-10-27) — Data- och språkgranskning (användarfeedback)
 
 - **Kapitalskatt-kortet rättat:** stod att 30 % "tas ut via ISK/KF" — vilket är
