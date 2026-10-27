@@ -25,7 +25,7 @@ data/
   statsskuld.json             ← Statsskuldsdata
   framtidsutmaningar.json     ← Framtidsprojektioner
 docs/
-  skatteplattformen_metodrapport_v1.docx  ← Akademisk metodrapport
+  skatteplattformen_metodrapport_v2.docx  ← Akademisk metodrapport (v2.0; v1 kvar som historik)
   MODELLFIX_PLAN.md           ← Teknisk fix-plan
   UTVECKLINGSPLAN_V3.md       ← Utvecklingsplan v3
 correspondence/

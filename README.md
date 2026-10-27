@@ -14,7 +14,7 @@ Oberoende, partipolitiskt neutral databas som visar hur svenska skattepengar anv
 |-----|-------------|
 | `index.html` | Komplett webbplats — prislista, kalkylator, budgetdiagram |
 | `skatteplattformen_data.xlsx` | Excel-modell: ESV-tidsserier 2010–2025, FASIT-analys, KPI-justering |
-| `skatteplattformen_metodrapport_v1.docx` | Akademisk metodrapport, 17 refs, redo för extern granskning |
+| `docs/skatteplattformen_metodrapport_v2.docx` | Akademisk metodrapport v2.0 (v1 kvar som historik) |
 | `data/nta_profil_v2.json` | NTA-åldersprofil: 86 åldersår × 4 kategorier × konfidensintervall |
 | `data/fasit_full.json` | FASIT-rekonstruktion: förmåner och skatt per 5-årsåldersgrupp |
 | `data/fasit_analys.json` | Kalibrerad fördelningsanalys 2022 |

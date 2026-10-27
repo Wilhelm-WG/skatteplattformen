@@ -10,6 +10,15 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-27) — Metodrapport v2.0
+
+`docs/skatteplattformen_metodrapport_v2.docx` — uppdaterad akademisk
+metodrapport som dokumenterar hela modellen sedan v1.0 (mars 2026): den nya
+skattemodellen, livscykelmodellen, hushålls-/inkomst-/kommun-dimensionerna,
+inkomstdifferentierad pension, datasynk-skriptet med SCB-makroavstämning,
+2026 års dataårgång och en detaljerad ändringslogg. v1 behålls som historik.
+README/CLAUDE.md pekar nu på v2.
+
 ### Changed (2026-10-27) — P4: inkomstdifferentierad pensionskvot (+ dokumenterade finjusteringar)
 
 - **Inkomstdifferentierad pensionskvot:** ny `pensionKvot(peak, band)` ersätter
