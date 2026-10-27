@@ -1431,8 +1431,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
         </div>
 
-        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;align-items:flex-start;gap:.6rem">
-          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2);white-space:nowrap">
+        <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;flex-direction:column;gap:.4rem">
+          <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2)">
             <input type="checkbox" id="pension-toggle" style="width:15px;height:15px;cursor:pointer;accent-color:#2E7D5C" onchange="updateCalc()">
             <span>Inkludera pensionsavgift i skatt</span>
           </label>
@@ -2976,7 +2976,7 @@ const STAGES = LIVSFASER_V2.map(f => ({
   w:{utb:f.f.utb, sjukvård:f.f.sj, socialt:f.f.soc, koll:f.f.koll, omsorg:f.f.oms}
 }));
 
-const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A'};
+const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'#8A8D94',omsorg:'#C8973A'};
 const WBAR_LABELS = {utb:'Utbildning',sjukvård:'Sjukvård & hälsa',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg'};
 
 // ═══════════════════════════════════════════════════════════════════

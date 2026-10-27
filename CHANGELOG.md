@@ -10,6 +10,19 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-27) — Två formateringsfel i kalkylatorn (visuellt verifierade)
+
+- **Pensionsavgift-rutan:** förklaringstexten spillde ut utanför rutans högra
+  kant (`display:flex` + `white-space:nowrap` gjorde raden bredare än kolumnen).
+  Rutan staplar nu etikett och förklaring vertikalt (`flex-direction:column`)
+  så texten ryms inuti.
+- **"Kollektiva nyttigheter"-stapeln:** fyllningsfärgen var halvtransparent vit
+  (`rgba(255,255,255,.25)`) och smälte ihop med det mörka spåret. Bytt till en
+  synlig grå (`#8A8D94`).
+
+Verifierat i webbläsaren (desktop): nav på en rad, kommunväljare, livscykel­
+diagrammets två korsningar och "Visste du att"-remsan renderas korrekt.
+
 ### Added/Changed (2026-10-27) — Fyra genomlysningspunkter (P3/P4)
 
 - **Kommunväljare i kalkylatorn:** ny rullgardin (Rikssnitt 32,38 %, Stockholm,
