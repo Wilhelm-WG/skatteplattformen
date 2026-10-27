@@ -10,6 +10,20 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-27) — Delbart resultatkort (prototyp, browser-verifierad)
+
+Största hävstången för yngre räckvidd: personligt + delbart. Knappen "Spara &
+dela din profil som bild" i kalkylatorn genererar en varumärkt **1080×1080-bild**
+(client-side Canvas, ingen backend) av användarens profil — ålder, inkomst,
+kommun, offentliga tjänster, skatt och netto — redo för Instagram/Snapchat.
+Ladda ner eller dela via Web Share API (med fil-fallback till nedladdning).
+Modalen ligger på body-nivå så `position:fixed` inte fångas av kalkylatorns
+transform.
+
+Bifix: `updateLifecycle` kraschade på ett borttaget element (`lc-inc-val`) utan
+null-skydd, vilket hindrade livscykeln från att uppdateras vid kommun-/hushålls-
+byte. Åtgärdat.
+
 ### Added (2026-10-27) — Metodrapport v2.0
 
 `docs/skatteplattformen_metodrapport_v2.docx` — uppdaterad akademisk

@@ -455,6 +455,20 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .hsk-inc-btn{font-size:.55rem;padding:2px 5px}
   .hsk-stat-val{font-size:1.2rem}
 }
+/* Delbart resultatkort */
+.sharecard-btn{margin-top:.9rem;width:100%;padding:.75rem;border:1px solid var(--green);background:var(--green);color:#fff;border-radius:var(--r-sm);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;transition:filter .15s}
+.sharecard-btn:hover{filter:brightness(1.08)}
+.sc-overlay{position:fixed;inset:0;background:rgba(20,18,15,.62);display:none;align-items:center;justify-content:center;z-index:2000;padding:1rem;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.sc-overlay.on{display:flex}
+.sc-modal{position:relative;background:var(--paper);border-radius:14px;padding:1rem;max-width:min(92vw,400px);box-shadow:var(--shadow-lg)}
+.sc-modal canvas{width:100%;height:auto;border-radius:9px;display:block;box-shadow:var(--shadow-sm)}
+.sc-close{position:absolute;top:-14px;right:-14px;width:34px;height:34px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-md)}
+.sc-actions{display:flex;gap:.5rem;margin-top:.7rem}
+.sc-actions button{flex:1;padding:.65rem;border-radius:7px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:filter .15s}
+.sc-dl{background:var(--green);color:#fff;border:1px solid var(--green)}
+.sc-share{background:transparent;color:var(--ink);border:1px solid var(--border2,var(--border))}
+.sc-actions button:hover{filter:brightness(1.06)}
+.sc-hint{font-size:.66rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
 </style>
 </head>
 <body>
@@ -1487,6 +1501,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           </div>
         </div>
 
+        <!-- Delbart resultatkort (modal ligger på body-nivå, se #sc-overlay) -->
+        <button type="button" class="sharecard-btn" onclick="openShareCard()">📷 Spara &amp; dela din profil som bild</button>
+
         <!-- Marginalskatt-visualisering -->
         <div class="annual-card" id="marginal-card" style="display:none">
           <div class="card-label">Marginalskatt på bruttolön — vad din nästa intjänade krona kostar</div>
@@ -1975,6 +1992,19 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </div>
 
 </main>
+
+<!-- Delbart resultatkort — modal på body-nivå (position:fixed opåverkad av transforms) -->
+<div class="sc-overlay" id="sc-overlay" onclick="if(event.target===this)closeShareCard()">
+  <div class="sc-modal">
+    <button class="sc-close" onclick="closeShareCard()" aria-label="Stäng">✕</button>
+    <canvas id="sc-canvas" width="1080" height="1080"></canvas>
+    <div class="sc-actions">
+      <button class="sc-dl" onclick="downloadShareCard()">⬇ Ladda ner</button>
+      <button class="sc-share" onclick="shareShareCard()">↗ Dela</button>
+    </div>
+    <p class="sc-hint">Fyrkantig bild redo för Instagram, Snapchat eller att skicka till en vän.</p>
+  </div>
+</div>
 
 <footer role="contentinfo">
   <div class="container">
@@ -4324,7 +4354,8 @@ function updateLifecycle(){
   // Clear preset selection if slider moved manually
   document.querySelectorAll('.lc-preset').forEach(b=>b.classList.remove('on'));
   const inc = parseInt(document.getElementById('lc-inc-slider')?.value||460);
-  document.getElementById('lc-inc-val').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+  const valEl = document.getElementById('lc-inc-val');
+  if(valEl) valEl.textContent = inc.toLocaleString('sv-SE') + ' tkr';
   const ctx = document.getElementById('lc-inc-context');
   if(ctx) ctx.textContent = lcContext(inc);
   renderLifecycle(inc);
@@ -4642,6 +4673,89 @@ function shareSkatt(e){
   } else {
     flash('Länk i adressfältet');
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DELBART RESULTATKORT — client-side Canvas (ingen backend)
+// Ritar en varumärkt 1080×1080-bild av användarens profil som kan
+// laddas ner / delas (Web Share API med fil). Största hävstången för
+// yngre räckvidd: personligt + delbart.
+// ═══════════════════════════════════════════════════════════════════
+function scState(){
+  const age = parseInt(document.getElementById('s-age')?.value || 35);
+  const inc = parseInt(document.getElementById('s-inc')?.value || 500);
+  const komSel = document.getElementById('s-kommun');
+  const kommun = komSel ? komSel.options[komSel.selectedIndex].text.split('—')[0].trim() : 'Rikssnitt';
+  const benefits = Math.round(Object.values(getStage(age, inc).w).reduce((a,b)=>a+b,0));
+  const kapital = parseInt(document.getElementById('s-kapital')?.value || 0);
+  const t = annualTax(age, inc);
+  const tax = Math.round(t.tot + (kapital > 0 ? kapital * 0.30 : 0));
+  return { age, inc, kommun, benefits, tax, net: benefits - tax };
+}
+
+function drawShareCard(){
+  const c = document.getElementById('sc-canvas'); if(!c) return;
+  const x = c.getContext('2d'); const s = scState();
+  const W = 1080, H = 1080, M = 90;
+  const kr = n => n.toLocaleString('sv-SE');
+  x.fillStyle = '#F4F1EA'; x.fillRect(0, 0, W, H);
+  x.fillStyle = '#1B4D3E'; x.fillRect(0, 0, W, 14);
+  // Wordmark + badge
+  x.fillStyle = '#1B4D3E'; x.font = '600 42px Georgia, serif';
+  x.fillText('Skatteplattformen', M, 120);
+  x.fillStyle = '#8A8D94'; x.font = '500 21px Arial';
+  x.fillText('ÖPPEN DATA · PARTIPOLITISKT OBEROENDE · 2026', M, 158);
+  // Headline
+  x.fillStyle = '#1A1814'; x.font = 'italic 700 70px Georgia, serif';
+  x.fillText('Min välfärdsprofil', M, 270);
+  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
+  x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, 322);
+  // Förmåner
+  x.fillStyle = '#2E7D5C'; x.font = '700 104px Georgia, serif';
+  x.fillText(kr(s.benefits) + ' tkr', M, 500);
+  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
+  x.fillText('offentliga tjänster jag använder i år', M, 548);
+  // Skatt
+  x.fillStyle = '#B84A1E'; x.font = '700 104px Georgia, serif';
+  x.fillText(kr(s.tax) + ' tkr', M, 710);
+  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
+  x.fillText('skatt jag betalar i år', M, 758);
+  // Netto
+  const neg = s.net < 0;
+  x.fillStyle = neg ? '#B84A1E' : '#2E7D5C'; x.fillRect(M, 812, W - 2*M, 4);
+  x.font = '700 42px Arial'; x.fillStyle = neg ? '#B84A1E' : '#2E7D5C';
+  x.fillText(neg ? 'Nettobidragsgivare i år' : 'Nettomottagare i år', M, 882);
+  x.fillStyle = '#4A4A46'; x.font = '400 27px Arial';
+  const d = kr(Math.abs(s.net));
+  x.fillText(neg ? `Jag betalar ${d} tkr mer än jag använder — normalt i arbetsför ålder.`
+                 : `Jag använder ${d} tkr mer än jag betalar — livscykelkontraktets mening.`, M, 924);
+  // Footer
+  x.fillStyle = '#1B4D3E'; x.fillRect(0, H - 92, W, 92);
+  x.fillStyle = '#FFFFFF'; x.font = '600 32px Arial';
+  x.fillText('Räkna ut din egen  →', M, H - 36);
+  x.textAlign = 'right'; x.fillStyle = 'rgba(255,255,255,.78)'; x.font = '400 26px Arial';
+  x.fillText('wilhelm-wg.github.io/skatteplattformen', W - M, H - 36);
+  x.textAlign = 'left';
+}
+
+function openShareCard(){ drawShareCard(); document.getElementById('sc-overlay')?.classList.add('on'); }
+function closeShareCard(){ document.getElementById('sc-overlay')?.classList.remove('on'); }
+function downloadShareCard(){
+  const c = document.getElementById('sc-canvas'); if(!c) return;
+  const a = document.createElement('a');
+  a.download = 'min-valfardsprofil.png'; a.href = c.toDataURL('image/png'); a.click();
+}
+function shareShareCard(){
+  const c = document.getElementById('sc-canvas'); if(!c) return;
+  c.toBlob(blob => {
+    const file = new File([blob], 'min-valfardsprofil.png', { type: 'image/png' });
+    const payload = { title: 'Min välfärdsprofil', text: 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.' };
+    if(navigator.canShare && navigator.canShare({ files: [file] })){
+      navigator.share(Object.assign({ files: [file] }, payload)).catch(()=>{});
+    } else {
+      downloadShareCard();
+    }
+  }, 'image/png');
 }
 
 // ═══════════════════════════════════════════════════════════════════
