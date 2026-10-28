@@ -107,6 +107,8 @@ ejNum.length ? ejNum.forEach(k => FEL(`Prislapp med ogiltigt belopp: ${k.title}`
 const FAKTA = vm.runInNewContext('(' + literal('const FAKTA = [').text + ')');
 const faktaFel = FAKTA.filter(f => !f.kalla || !f.ar);
 faktaFel.length ? faktaFel.forEach(f => FEL(`Faktakort utan källa eller år: ${f.h}`)) : OK(`Alla ${FAKTA.length} faktakort har källa och år`);
+const utanBild = FAKTA.filter(f => !f.bild || !f.bild.tal || !f.bild.rad);
+utanBild.length ? utanBild.forEach(f => FEL(`Faktakort utan siffra till delningsbilden (bild.tal/rad): ${f.h}`)) : OK('Alla faktakort har en siffra och en mening till delningsbilden');
 // Internationella jämförelser: sju länder, minst fem värden, källa, länk och år
 const jmfSrc = literal('const JMF_DATA = {').text.replace(/url:WDI/g, "url:'https://databank.worldbank.org'");
 const JMF = vm.runInNewContext('(' + jmfSrc + ')');

@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Lönetabell i toppen i stället för 285 000 kr
+
+- **Startsidans ledsiffra** "285 000 kr per invånare och år" ersatt med
+  "Så mycket av lönen går till skatt": staplar för 25 000, 50 000, 75 000 och
+  100 000 kr i månaden (kvar efter skatt och andel skatt: 18, 23, 31 och 36 %),
+  ur Skatteverkets skattetabell 32 för 2026, kolumn 1. Not om marginalskatten
+  (drygt 52 % på lön över cirka 55 000 kr i månaden), arbetsgivaravgiften och
+  momsen.
+- **Snabba svar:** första kortet (lönen) ersatt med ett år i grundskolan,
+  eftersom lönen nu visas i toppen.
+
+### Changed (2026-10-28) — Delningsbilder med en siffra (granskningens punkt 9)
+
+- **Faktakortens delningsbilder** visar nu en stor siffra, en mening, källa och
+  år (`FAKTA[*].bild = {tal, rad}`), centrerat. Brödtext och diagram är
+  borttagna ur bilden. Tal bryts inte mitt i ("25 000 kr").
+- **Två format:** "Bild" (1080×1350, flöde) och "Story" (1080×1920, Stories,
+  Reels och TikTok).
+- Kontrollskriptet kräver en siffra och en mening för varje faktakort.
+
 ### Added (2026-10-28) — Ledsiffror, snabba svar och tydligare quiz (granskningens punkt 5–8)
 
 - **Ledsiffra överst i varje vy** (`VYER[*].led`): ett stort tal, en mening och

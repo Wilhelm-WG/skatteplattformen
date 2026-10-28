@@ -829,6 +829,23 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 @media(max-width:640px){.unga.m-swipe{grid-auto-columns:72%!important}}
 /* Medan man gissar döljs prislistan, annars kan svaret stå synligt */
 .gq-aktiv #pgrid,.gq-aktiv .pgrid-sok,.gq-aktiv .pg-more{display:none!important}
+/* Lönetabellen i toppen: kvar efter skatt och skatt per lönenivå */
+.hero-lon{margin:1.1rem 0 1.2rem;max-width:34rem}
+.hl-rubrik{font-size:.82rem;font-weight:600;color:var(--ink2);margin:0 0 .55rem}
+.hl-rader{display:grid;gap:.45rem}
+.hl-rad{display:grid;grid-template-columns:5.6rem 1fr 3rem;align-items:center;gap:.6rem}
+.hl-lon{font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hl-bar{display:flex;height:30px;border-radius:4px;overflow:hidden;background:var(--bg2)}
+.hl-bar i{display:flex;align-items:center;height:100%}
+.hl-kvar{background:var(--green)}
+.hl-skatt{background:#C9B48A}
+.hl-bar em{font-style:normal;font-size:.74rem;font-weight:500;color:#fff;padding-left:.55rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.hl-andel{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hl-not{font-size:.74rem;color:var(--ink2);line-height:1.5;margin:.6rem 0 0}
+.hl-nyckel{display:inline-flex;align-items:center;gap:.3rem;margin-right:.7rem;font-weight:500;color:var(--ink)}
+.hl-nyckel i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.hl-kalla{display:block;font-family:var(--mono);font-size:.68rem;color:var(--ink3);margin-top:.25rem}
+@media(max-width:420px){.hl-rad{grid-template-columns:4.9rem 1fr 2.6rem;gap:.45rem}.hl-lon{font-size:.9rem}.hl-bar em{font-size:.68rem}}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
@@ -983,7 +1000,32 @@ html{scroll-padding-top:72px}
           <span class="e-text">Uppdaterad 28 oktober 2026 · källa och år på allt</span>
         </div>
         <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
-        <p class="vy-led hero-led fu fu2"><b>285 000 kr</b> <span>lägger stat, regioner och kommuner tillsammans per invånare och år.</span> <small>SCB, 2024</small></p>
+        <div class="hero-lon fu fu2">
+          <p class="hl-rubrik">Så mycket av lönen går till skatt</p>
+          <div class="hl-rader" role="list">
+      <div class="hl-rad" role="listitem" aria-label="Lön 25 000 kr: skatt 4 484 kr, kvar 20 516 kr, 18 procent i skatt">
+        <span class="hl-lon">25 000 kr</span>
+        <span class="hl-bar"><i class="hl-kvar" style="width:82.1%"><em>20 516 kr kvar</em></i><i class="hl-skatt" style="width:17.9%"></i></span>
+        <span class="hl-andel">18 %</span>
+      </div>
+      <div class="hl-rad" role="listitem" aria-label="Lön 50 000 kr: skatt 11 351 kr, kvar 38 649 kr, 23 procent i skatt">
+        <span class="hl-lon">50 000 kr</span>
+        <span class="hl-bar"><i class="hl-kvar" style="width:77.3%"><em>38 649 kr kvar</em></i><i class="hl-skatt" style="width:22.7%"></i></span>
+        <span class="hl-andel">23 %</span>
+      </div>
+      <div class="hl-rad" role="listitem" aria-label="Lön 75 000 kr: skatt 23 344 kr, kvar 51 656 kr, 31 procent i skatt">
+        <span class="hl-lon">75 000 kr</span>
+        <span class="hl-bar"><i class="hl-kvar" style="width:68.9%"><em>51 656 kr kvar</em></i><i class="hl-skatt" style="width:31.1%"></i></span>
+        <span class="hl-andel">31 %</span>
+      </div>
+      <div class="hl-rad" role="listitem" aria-label="Lön 100 000 kr: skatt 36 000 kr, kvar 64 000 kr, 36 procent i skatt">
+        <span class="hl-lon">100 000 kr</span>
+        <span class="hl-bar"><i class="hl-kvar" style="width:64.0%"><em>64 000 kr kvar</em></i><i class="hl-skatt" style="width:36.0%"></i></span>
+        <span class="hl-andel">36 %</span>
+      </div>
+          </div>
+          <p class="hl-not"><span class="hl-nyckel"><i class="hl-kvar"></i>Kvar efter skatt</span><span class="hl-nyckel"><i class="hl-skatt"></i>Skatt</span> Lön per månad, under 66 år. På den del av lönen som överstiger cirka 55 000 kr i månaden är skatten drygt 52 %. Arbetsgivaren betalar dessutom arbetsgivaravgift, och moms ingår i det du köper. <span class="hl-kalla">Skatteverket, skattetabell 32, 2026</span></p>
+        </div>
         <p class="tagline fu fu2">
           Vart skattepengarna går, i kronor och med källa för varje siffra. Ingen vinkling, inga partier.
         </p>
@@ -1041,7 +1083,7 @@ html{scroll-padding-top:72px}
     <p class="s-eye">Snabba svar</p>
     <h2 class="s-title">Vad kostar det, och vad betalar man själv?</h2>
     <ul class="unga m-swipe">
-      <li><a href="#fakta-2"><span class="unga-q">Vad blir kvar av en lön på 25 000 kr?</span><b>20 516 kr</b><span class="unga-a">i månaden efter skatt. Skatten är 4 484 kr.</span><small class="unga-k">Skatteverket, skattetabell 32, 2026</small></a></li>
+      <li><a href="#pristabell"><span class="unga-q">Vad kostar ett år i grundskolan?</span><b>143 000 kr</b><span class="unga-a">per elev. Familjen betalar ingenting.</span><small class="unga-k">Skolverket, 2025</small></a></li>
       <li><a href="#fakta-5"><span class="unga-q">Vad kostar ett år på gymnasiet?</span><b>148 100 kr</b><span class="unga-a">per elev. Eleven betalar ingenting.</span><small class="unga-k">Skolverket, 2025</small></a></li>
       <li><a href="#pristabell"><span class="unga-q">Vad kostar en förskoleplats?</span><b>199 200 kr</b><span class="unga-a">per barn och år i kommunal förskola. Föräldrarna betalar en avgift med ett tak.</span><small class="unga-k">Skolverket, 2025</small></a></li>
       <li><a href="#fakta-9"><span class="unga-q">Är tandvården gratis?</span><b>Till 19 år</b><span class="unga-a">gratis till och med det år man fyller 19. Därefter finns tandvårdsbidrag och högkostnadsskydd.</span><small class="unga-k">1177, riksdagen</small></a></li>
@@ -3897,43 +3939,43 @@ const FAKTA_UPPDATERAD = '28 okt 2026';
 const FK_MORK = {amber:1, grey:1};
 const FK_C = {green:'#1B4D3E', green2:'#2E7D5C', blue:'#1E4A8C', amber:'#C8973A', red:'#B84A1E', purple:'#5B3F8C', grey:'#8A8D94'};
 const FAKTA = [
-  {tema:'Kommunalskatten', h:'Nästan två tredjedelar av kommunalskatten går till kommunen',
+  {tema:'Kommunalskatten', bild:{tal:'32,38 %', rad:'är kommunalskatten i snitt 2026. Två tredjedelar går till kommunen, resten till regionen.'}, h:'Nästan två tredjedelar av kommunalskatten går till kommunen',
    chart:{type:'stack', unit:'%', parts:[{l:'Kommunen',v:20.69,c:'amber',txt:'20,69 %'},{l:'Regionen',v:11.69,c:'green2',txt:'11,69 %'}]},
    p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket.',
    kalla:'SCB, Kommunalskatterna 2026', ar:'2026'},
-  {tema:'Din första lön', h:'På en lön på 25 000 kronor blir skatten 4 484 kronor i månaden',
+  {tema:'Din första lön', bild:{tal:'4 484 kr', rad:'i skatt per månad på en lön på 25 000 kr. Kvar blir 20 516 kr.'}, h:'På en lön på 25 000 kronor blir skatten 4 484 kronor i månaden',
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4484,c:'red'},{l:'Kvar efter skatt',v:20516,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, skattetabell 32, kolumn 1'},
    p:'Skatten dras innan lönen betalas ut, så 20 516 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
    kalla:'Skatteverket, skattetabell 32 och arbetsgivaravgifter', ar:'2026'},
-  {tema:'Medianlönen', h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
+  {tema:'Medianlönen', bild:{tal:'7 750 kr', rad:'i skatt per månad på medianlönen 38 300 kr, ungefär var femte krona.'}, h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7750,c:'red'},{l:'Kvar efter skatt',v:30550,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
    p:'Medianlönen är 38 300 kronor i månaden. Skatten blir 7 750 kronor enligt Skatteverkets skattetabell 32, alltså ungefär 20 procent. Kommunalskatten är drygt 32 procent, men grundavdraget och jobbskatteavdraget sänker den. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
    kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
-  {tema:'Pension', h:'Drygt 17 procent av lönen sparas till din allmänna pension',
+  {tema:'Pension', bild:{tal:'17,2 %', rad:'av lönen, upp till cirka 56 000 kr i månaden, blir allmän pension.'}, h:'Drygt 17 procent av lönen sparas till din allmänna pension',
    chart:{type:'bars', unit:' kr', rows:[{l:'Inkomstpension',v:3720,c:'blue'},{l:'Premiepension',v:581,c:'purple'}], note:'pensionsrätt per månad vid en lön på 25 000 kr'},
    p:'Pensionsrätten är 18,5 % av den pensionsgrundande inkomsten, alltså lönen minus den allmänna pensionsavgiften på 7 %. På 25 000 kronor i månaden blir det 4 301 kronor. Premiepensionen placerar du själv i fonder. Det gäller lön upp till cirka 56 000 kronor i månaden.',
    kalla:'Pensionsmyndigheten, Så tjänar du in till din pension', ar:'2026'},
-  {tema:'Skolan', h:'Ett år på gymnasiet kostar 148 100 kronor per elev',
+  {tema:'Skolan', bild:{tal:'148 100 kr', rad:'kostar ett år på gymnasiet per elev. Eleven betalar ingenting.'}, h:'Ett år på gymnasiet kostar 148 100 kronor per elev',
    chart:{type:'bars', unit:' kr', rows:[{l:'Ett år',v:148100,c:'blue'},{l:'Tre år',v:444300,c:'blue'}], note:'genomsnitt för alla huvudmän, kommunala och fristående'},
    p:'Det är kommunerna som betalar, även när eleven går på en fristående skola. Gymnasieskolan kostade totalt nästan 55 miljarder kronor 2025. Kostnaden skiljer sig mycket mellan programmen: yrkesprogram med verkstäder och djur kostar mer än högskoleförberedande program.',
    kalla:'Kostnader för skolväsendet 2025 (Skolverket)', ar:'2025'},
-  {tema:'Vården', h:'Nio av tio får en medicinsk bedömning i primärvården inom tre dagar',
+  {tema:'Vården', bild:{tal:'91 %', rad:'får en medicinsk bedömning i primärvården inom tre dagar.'}, h:'Nio av tio får en medicinsk bedömning i primärvården inom tre dagar',
    chart:{type:'bars', unit:' %', rows:[{l:'Bedömning i primärvården inom 3 dagar',v:91,c:'green2'},{l:'Operation eller åtgärd inom 90 dagar',v:63,c:'amber'}], note:'andel av patienterna, hela landet, augusti 2026'},
    p:'Vårdgarantin säger att du ska få en medicinsk bedömning i primärvården inom tre dagar och en operation eller annan åtgärd inom 90 dagar efter beslut. Det första målet nås nästan alltid, det andra för knappt två av tre.',
    kalla:'Socialstyrelsen, väntetider och vårdgaranti', ar:'2026'},
-  {tema:'Skatteintäkterna', h:'Mer än hälften av skatterna kommer från arbete',
+  {tema:'Skatteintäkterna', bild:{tal:'57 %', rad:'av alla skatter kommer från arbete: inkomstskatt och arbetsgivaravgifter.'}, h:'Mer än hälften av skatterna kommer från arbete',
    chart:{type:'stack', parts:[{l:'Arbete',v:57.5,c:'green',txt:'57 %'},{l:'Konsumtion',v:26.4,c:'amber',txt:'26 %'},{l:'Kapital och företag',v:15.3,c:'blue',txt:'15 %'},{l:'Övrigt',v:0.8,c:'grey',txt:''}]},
    p:'Skatterna gav totalt 2 699 miljarder kronor 2025. Skatt på arbete är inkomstskatt och arbetsgivaravgifter. Konsumtion är framför allt moms. Kapital är skatt på företagens vinster, på hushållens kapital och på fastigheter.',
    kalla:'Årsredovisning för staten 2025 (skr. 2025/26:101)', ar:'2025'},
-  {tema:'Statsskulden', h:'Sveriges offentliga skuld är mindre än hälften av EU-snittet',
+  {tema:'Statsskulden', bild:{tal:'35,1 %', rad:'av BNP är Sveriges offentliga skuld. EU-snittet är 81,7 %.'}, h:'Sveriges offentliga skuld är mindre än hälften av EU-snittet',
    chart:{type:'bars', unit:' %', rows:[{l:'Sverige',v:35.1,c:'green'},{l:'EU-snitt',v:81.7,c:'grey'}], note:'offentlig bruttoskuld (Maastricht) som andel av BNP'},
    p:'Skulden omfattar stat, regioner, kommuner och pensionssystem. EU:s regler säger att skulden inte bör vara över 60 % av BNP.',
    kalla:'Eurostat', ar:'2025'},
-  {tema:'Tandvården', h:'Tandvården är gratis till och med det år du fyller 19',
+  {tema:'Tandvården', bild:{tal:'0 kr', rad:'kostar tandvården till och med det år du fyller 19.'}, h:'Tandvården är gratis till och med det år du fyller 19',
    chart:{type:'stack', parts:[{l:'Gratis, 0–19 år',v:20,c:'green2',txt:'0–19 år'},{l:'Du betalar själv, med bidrag och högkostnadsskydd',v:20,c:'grey',txt:'20 år →'}]},
    p:'Regionen betalar tandvården för barn och unga med skattepengar. Åldersgränsen sänktes från 23 till 19 år den 1 januari 2025. Efter det betalar du själv, men får ett tandvårdsbidrag och ett högkostnadsskydd från staten.',
    kalla:'1177 och riksdagen (bet. 2024/25:SoU4)', ar:'2026'},
-  {tema:'Kollektivtrafiken', h:'Biljetterna betalar knappt hälften av kollektivtrafiken',
+  {tema:'Kollektivtrafiken', bild:{tal:'46 %', rad:'av kollektivtrafiken betalas med biljetter och andra intäkter. Resten är skatt.'}, h:'Biljetterna betalar knappt hälften av kollektivtrafiken',
    chart:{type:'stack', parts:[{l:'Biljetter och andra intäkter',v:46,c:'amber',txt:'46 %'},{l:'Skatt via regioner och kommuner',v:54,c:'green2',txt:'54 %'}]},
    p:'Den regionala kollektivtrafiken kostade cirka 64,5 miljarder kronor 2025. Resten betalas med skatt, ungefär 3 500 kronor per invånare och år.',
    kalla:'Trafikanalys, Regional linjetrafik 2025', ar:'2025'},
@@ -3959,7 +4001,7 @@ const FAKTA = [
       '<div class="fk-chart">'+chartHTML(f.chart)+'</div>'+
       '<p class="fk-p">'+f.p+'</p>'+
       '<div class="fk-meta"><span>Källa: '+f.kalla+'</span><span>År: '+f.ar+'</span><span>Uppdaterad: '+FAKTA_UPPDATERAD+'</span></div>'+
-      '<div class="fk-act"><button type="button" data-fk-link="'+i+'">'+ico('doc')+'Kopiera länk</button><button type="button" data-fk-img="'+i+'">'+ico('camera')+'Spara som bild</button></div>'+
+      '<div class="fk-act"><button type="button" data-fk-link="'+i+'">'+ico('doc')+'Kopiera länk</button><button type="button" data-fk-img="'+i+'" data-fmt="post" aria-label="Spara som bild för flödet, 4:5">'+ico('camera')+'Bild</button><button type="button" data-fk-img="'+i+'" data-fmt="story" aria-label="Spara som bild för Stories, 9:16">'+ico('camera')+'Story</button></div>'+
     '</article>').join('');
 
   const step=()=> (track.querySelector('.fk')||{offsetWidth:360}).offsetWidth+16;
@@ -3971,7 +4013,7 @@ const FAKTA = [
     if(L){ const n=+L.dataset.fkLink+1, url=location.origin+location.pathname+'#fakta-'+n, o=L.innerHTML;
       const flash=t=>{ L.textContent=t; setTimeout(()=>{L.innerHTML=o;},2000); };
       if(navigator.clipboard) navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad')).catch(()=>flash(url)); else flash(url); }
-    if(M) faktaBild(+M.dataset.fkImg);
+    if(M) faktaBild(+M.dataset.fkImg, M.dataset.fmt);
   });
 
   function fromHash(){
@@ -3986,44 +4028,49 @@ const FAKTA = [
 })();
 
 // Delningsbild 1080×1350 (4:5) av ett faktakort
-async function faktaBild(i){
-  const f=FAKTA[i], W=1080, H=1350, P=84;
-  try{ await Promise.all(['600 64px "Source Serif 4"','400 30px Inter','600 26px Inter','400 24px "IBM Plex Mono"'].map(x=>document.fonts.load(x))); }catch(e){}
+// Delningsbild för ett faktakort: en stor siffra, en mening, källa och år.
+// format 'post' = 1080×1350 (flöde, 4:5), 'story' = 1080×1920 (Stories, Reels, TikTok, 9:16)
+async function faktaBild(i, format){
+  const f=FAKTA[i], story=format==='story', W=1080, H=story?1920:1350, P=story?96:84;
+  const tal=(f.bild&&f.bild.tal)||'', rad=(f.bild&&f.bild.rad)||f.h;
+  try{ await Promise.all(['600 200px "Source Serif 4"','600 60px "Source Serif 4"','400 30px Inter','600 26px Inter','400 24px "IBM Plex Mono"'].map(x=>document.fonts.load(x))); }catch(e){}
   const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
-  const wrap=(t,font,maxW,lh,y0,color)=>{ x.font=font; x.fillStyle=color; let line='', y=y0;
-    t.split(' ').forEach(w=>{ const tst=line?line+' '+w:w; if(x.measureText(tst).width>maxW && line){ x.fillText(line,P,y); line=w; y+=lh; } else line=tst; });
-    if(line){ x.fillText(line,P,y); y+=lh; } return y; };
+  // Radbrytning som håller ihop tal ("25 000 kr") och bara mäter när rita=false
+  const rader=(t,font,maxW)=>{ x.font=font; const ord=t.replace(/(\d) (?=\d{3}\b)/g,'$1\u00a0').replace(/(\d) (kr|%|Mdkr)/g,'$1\u00a0$2').split(' '); const ut=[]; let line='';
+    ord.forEach(w=>{ const tst=line?line+' '+w:w; if(x.measureText(tst).width>maxW && line){ ut.push(line); line=w; } else line=tst; }); if(line) ut.push(line); return ut; };
+  const wrap=(t,font,maxW,lh,y0,color)=>{ const r=rader(t,font,maxW); x.font=font; x.fillStyle=color; r.forEach((l,k)=>x.fillText(l,P,y0+k*lh)); return y0+r.length*lh; };
+  // Bakgrund och ram
   x.fillStyle='#F4F1EA'; x.fillRect(0,0,W,H);
-  x.fillStyle='#1B4D3E'; x.fillRect(0,0,W,14);
-  x.font='600 26px Inter'; x.fillStyle='#1B4D3E'; x.fillText(('Snabbfakta nr '+(i+1)+' · '+f.tema).toUpperCase(),P,P+30);
-  let y=wrap(f.h,'600 70px "Source Serif 4"',W-2*P,82,P+140,'#1A1813')+34;
-  const ch=f.chart, fmt=(v,u)=>(Number.isInteger(v)?v.toLocaleString('sv-SE'):String(v).replace('.',','))+(u||'');
-  if(ch.type==='stack'){
-    const tot=ch.parts.reduce((a,p)=>a+p.v,0); let cx=P;
-    ch.parts.forEach(p=>{ const w=(W-2*P)*p.v/tot; x.fillStyle=FK_C[p.c]; x.fillRect(cx,y,w,84); x.fillStyle=FK_MORK[p.c]?'#1A1813':'#fff'; x.font='500 28px "IBM Plex Mono"'; if(w>120) x.fillText(p.txt,cx+16,y+53); cx+=w; });
-    y+=130; x.font='400 30px Inter';
-    ch.parts.forEach(p=>{ x.fillStyle=FK_C[p.c]; x.beginPath(); x.arc(P+12,y-10,11,0,7); x.fill(); x.fillStyle='#4A4640'; x.fillText(p.l+' · '+p.txt,P+36,y); y+=46; });
-  } else {
-    const mx=Math.max.apply(null,ch.rows.map(r=>r.v)), lw=300, bw=W-2*P-lw-200;
-    ch.rows.forEach(r=>{ x.font='400 30px Inter'; x.fillStyle='#4A4640'; x.fillText(r.l,P,y+32);
-      x.fillStyle='#EAE6DC'; x.fillRect(P+lw,y+6,bw,36); x.fillStyle=FK_C[r.c]; x.fillRect(P+lw,y+6,Math.max(4,bw*r.v/mx),36);
-      x.font='500 30px "IBM Plex Mono"'; x.fillStyle='#1A1813'; x.fillText(fmt(r.v,ch.unit),P+lw+bw+20,y+35); y+=68; });
-    if(ch.note){ x.font='400 24px Inter'; x.fillStyle='#66615A'; x.fillText(ch.note,P,y+8); y+=40; }
-  }
-  y=wrap(f.p,'400 34px Inter',W-2*P,52,y+56,'#4A4640');
-  x.fillStyle='rgba(26,24,19,.12)'; x.fillRect(P,H-190,W-2*P,2);
-  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#66615A';
-  const src='Källa: '+f.kalla+' · År: '+f.ar;
-  if(x.measureText(src).width<=W-2*P) x.fillText(src,P,H-145); else { x.fillText('Källa: '+f.kalla,P,H-158); x.fillText('År: '+f.ar,P,H-128); }
-  x.font='600 34px "Source Serif 4"'; x.fillStyle='#1A1813'; x.fillText('Skatteplattformen',P,H-82);
-  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#1B4D3E'; x.textAlign='right';
-  x.fillText('wilhelm-wg.github.io/skatteplattformen/#fakta-'+(i+1),W-P,H-86); x.textAlign='left';
+  x.fillStyle='#1B4D3E'; x.fillRect(0,0,W,18);
+  // Avsändare och ämne överst
+  x.font='600 '+(story?40:36)+'px "Source Serif 4"'; x.fillStyle='#1A1813'; x.fillText('Skatteplattformen',P,P+40);
+  x.font='600 '+(story?28:26)+'px Inter'; x.fillStyle='#1B4D3E'; x.fillText(f.tema.toUpperCase(),P,P+92);
+  // Den stora siffran: så stor som får plats på bredden
+  let fs=story?300:250; x.font='600 '+fs+'px "Source Serif 4"';
+  while(x.measureText(tal).width>W-2*P && fs>90){ fs-=10; x.font='600 '+fs+'px "Source Serif 4"'; }
+  // Centrera siffra och mening vertikalt mellan sidhuvud och källrad
+  const radFont='500 '+(story?58:54)+'px Inter', lh=story?76:70, gap=story?100:92;
+  const n=rader(rad,radFont,W-2*P).length, blockH=fs*0.78+gap+(n-1)*lh;
+  const top=P+130, bottom=H-(story?280:220);
+  let y=Math.round(top+(bottom-top-blockH)/2+fs*0.78);
+  x.font='600 '+fs+'px "Source Serif 4"'; x.fillStyle='#1B4D3E'; x.fillText(tal,P-6,y);
+  // En mening
+  y = wrap(rad,radFont,W-2*P,lh,y+gap,'#1A1813');
+  // Källa, år och adress längst ned
+  x.fillStyle='rgba(26,24,19,.14)'; x.fillRect(P,H-(story?260:200),W-2*P,2);
+  x.font='400 '+(story?28:26)+'px "IBM Plex Mono"'; x.fillStyle='#4A4640';
+  const src='Källa: '+f.kalla+' · '+f.ar;
+  let sy=H-(story?205:150);
+  if(x.measureText(src).width<=W-2*P) x.fillText(src,P,sy); else { y=wrap(src,x.font,W-2*P,story?38:34,sy-(story?20:18),'#4A4640'); }
+  x.font='500 '+(story?30:26)+'px "IBM Plex Mono"'; x.fillStyle='#1B4D3E';
+  x.fillText('wilhelm-wg.github.io/skatteplattformen',P,H-(story?120:80));
   c.toBlob(blob=>{
-    const name='snabbfakta-'+(i+1)+'.png', file=new File([blob],name,{type:'image/png'});
+    const name='snabbfakta-'+(i+1)+(story?'-story':'')+'.png', file=new File([blob],name,{type:'image/png'});
     if(navigator.canShare && navigator.canShare({files:[file]}) && matchMedia('(pointer:coarse)').matches){
       navigator.share({files:[file], title:f.h}).catch(()=>{});
     } else { const a=document.createElement('a'); a.download=name; a.href=URL.createObjectURL(blob); a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }
   },'image/png');
+  return c;
 }
 
 // ═══ GISSA FÖRST — quiz på prislistan (inga poäng, ingen lagring) ═══

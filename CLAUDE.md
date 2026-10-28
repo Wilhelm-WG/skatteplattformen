@@ -54,7 +54,7 @@ correspondence/
 - `ORDLISTA` (term, regex, definition). `initOrdlista` markerar första förekomsten per `section[id]` i löptext med `<button class="term">` och visar förklaring vid hovring/tryck. Rubriker, länkar, siffror och källrader hoppas över (`SKIP`). Skriv "miljarder kronor" i ingresser, "Mdkr" i tabeller och diagram
 
 **Snabbfakta (`#snabbfakta`):**
-- Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år). Direktlänk `#fakta-N`; `faktaBild(i)` ritar 1080×1350-delningsbild. Lägg bara in siffror med källa
+- Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år, `bild:{tal, rad}`). Direktlänk `#fakta-N`; `faktaBild(i, 'post'|'story')` ritar delningsbild 1080×1350 eller 1080×1920 med den stora siffran och en mening. Lägg bara in siffror med källa
 - `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
 **Foton (`img/foton/`):**
@@ -133,6 +133,7 @@ correspondence/
 - Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar
 - `SAJT_UPPDATERAD` = datum under vyrubrikerna
 - `VYER[*].led = {tal, text, kalla}` = ledsiffran överst i vyn. Bara siffror som finns med källa på sajten
+- Heron visar `.hero-lon`: skatt och kvar efter skatt för 25/50/75/100 tkr i månaden ur skattetabell 32 (statisk HTML; uppdatera varje år med nya tabeller)
 - Startsidan har `#unga` ("Snabba svar": vardagsfrågor med direkt källa, inga modellsiffror) direkt efter heron. Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
