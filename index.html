@@ -80,6 +80,65 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* KRETSLOPPET (animerad film i #vem-gor-vad) */
+#kretslopp{--stage:#FFFFFF;--line:var(--bg3);--soft:var(--bg2);--stat:var(--blue);--stat-l:var(--blue-l);--reg:var(--green2);--reg-l:var(--green-ll);--kom:#A8761F;--kom-l:var(--amber-l);--sv:var(--ink);--sv-l:var(--bg2);--accent:var(--green);margin:1.8rem 0 .4rem;max-width:980px;scroll-margin-top:80px}
+#kretslopp [hidden]{display:none!important}
+#kretslopp .kl-eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:0 0 .6rem;display:flex;align-items:center;gap:.5rem}
+#kretslopp .film{box-shadow:var(--shadow-sm)}
+#kretslopp .transcript{margin-top:.9rem}
+#kretslopp .transcript summary{font-size:.8rem}
+#kretslopp .transcript ol{font-size:.8rem}
+#kretslopp .src{font-size:.66rem;margin-top:.5rem}
+#kretslopp .film{background:var(--stage);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+#kretslopp .stage-wrap{position:relative}
+#kretslopp svg#stage{display:block;width:100%;height:auto;font-family:var(--sans)}
+#kretslopp .playover{position:absolute;inset:0;display:grid;place-items:center;background:color-mix(in srgb,var(--stage) 35%,transparent);border:0;cursor:pointer;color:var(--ink);font:inherit}
+#kretslopp .playover span{display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:var(--stage);font-weight:600;font-size:1rem;padding:.8rem 1.3rem;border-radius:99px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+#kretslopp .playover svg{width:18px;height:18px}
+#kretslopp .cap{border-top:1px solid var(--line);padding:1rem 1.3rem 1.1rem;min-height:6.2rem;transition:opacity .22s ease,transform .22s ease}
+#kretslopp .cap.fade{opacity:0;transform:translateY(4px)}
+#kretslopp .snd{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--stage);color:var(--ink2);display:grid;place-items:center;flex:none}
+#kretslopp .snd svg{width:18px;height:18px}
+#kretslopp .snd .x{display:none}
+#kretslopp .snd.off .x{display:inline}#kretslopp .snd.off .w{display:none}
+#kretslopp svg.portrait .node-s{font-size:11.5px}
+#kretslopp svg.portrait .lbl{font-size:11.5px}
+#kretslopp svg.portrait .svc-t{font-size:11px}
+#kretslopp .cap h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2.4vw,1.45rem);margin:0 0 .25rem;letter-spacing:-.01em}
+#kretslopp .cap p{margin:0;color:var(--ink2);font-size:.95rem;max-width:75ch}
+#kretslopp .ctrl{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;border-top:1px solid var(--line);background:var(--soft);flex-wrap:wrap}
+#kretslopp .ctrl button{font:inherit;cursor:pointer}
+#kretslopp .pp{width:38px;height:38px;border-radius:50%;border:0;background:var(--accent);color:var(--stage);display:grid;place-items:center;flex:none}
+#kretslopp .pp svg{width:16px;height:16px}
+#kretslopp .chapters{display:flex;gap:4px;flex:1;min-width:200px}
+#kretslopp .chapters button{flex:1;height:28px;border:0;background:none;padding:0;position:relative}
+#kretslopp .chapters button::before{content:"";position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:var(--line)}
+#kretslopp .chapters button i{position:absolute;left:0;top:12px;height:4px;border-radius:2px;background:var(--accent);width:0}
+#kretslopp .chapters button:hover::before{background:var(--ink3)}
+#kretslopp .time{font-family:var(--mono);font-size:.78rem;color:var(--ink3);font-variant-numeric:tabular-nums;min-width:5.5em;text-align:right}
+#kretslopp button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#kretslopp .el{opacity:0;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transform:translateY(8px);transform-box:fill-box}
+#kretslopp .el.on{opacity:1;transform:none}
+#kretslopp .el.on.dim{opacity:.32;transition-delay:0s}
+#kretslopp .flow{fill:none;stroke-width:2;stroke-dasharray:3 5;opacity:0;transition:opacity .6s ease}
+#kretslopp.playing .flow.on{animation:kl-march 1.1s linear infinite}
+@keyframes kl-march{to{stroke-dashoffset:-16}}
+#kretslopp .flow.on{opacity:.9}
+#kretslopp .flow.past{opacity:.25}
+#kretslopp .node-box{fill:var(--stage);stroke-width:1.5}
+#kretslopp .node-t{font-size:15px;font-weight:600;fill:var(--ink)}
+#kretslopp .node-s{font-size:11px;fill:var(--ink3);font-family:var(--mono)}
+#kretslopp .svc-t{font-size:10.5px;fill:var(--ink2);text-anchor:middle}
+#kretslopp .lbl{font-size:11px;font-family:var(--mono);fill:var(--ink2)}
+#kretslopp .lbl-bg{fill:var(--stage)}
+#kretslopp .kl-ico{fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#kretslopp .transcript{margin-top:1.6rem}
+#kretslopp .transcript summary{cursor:pointer;font-weight:600;color:var(--accent)}
+#kretslopp .transcript ol{padding-left:1.2rem;color:var(--ink2);font-size:.92rem;display:grid;gap:.5rem;max-width:75ch}
+#kretslopp .src{font-size:.8rem;color:var(--ink3);margin-top:1rem;max-width:80ch}
+@media (max-width:560px){#kretslopp .cap{min-height:8.5rem}#kretslopp .cap p{font-size:.88rem}}
+@media (prefers-reduced-motion:reduce){#kretslopp .el, #kretslopp .flow, #kretslopp .cap{transition:none}#kretslopp.playing .flow.on{animation:none}}
+@media (max-width:640px){#kretslopp .ctrl{padding:.6rem .8rem;gap:.6rem}#kretslopp .chapters{min-width:0}#kretslopp .time{min-width:0;font-size:.7rem}}
 /* VEM GÖR VAD */
 .vgv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.8rem}
 .vgv-card{background:var(--paper);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:var(--r);padding:1.3rem 1.3rem 1.2rem;display:flex;flex-direction:column;gap:.6rem;box-shadow:var(--shadow-sm)}
@@ -833,6 +892,336 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <p class="s-eye">Tre nivåer, en lönespecifikation</p>
     <h2 class="s-title">Vem gör vad?</h2>
     <p class="s-sub">Välfärden delas mellan staten, 21 regioner och 290 kommuner. Var och en har egna folkvalda, egen budget och eget ansvar. Det här är vem som betalar för vad, och hur din skatt hittar dit.</p>
+
+    <!-- Film: hur skattepengarna går runt (SVG + vanlig JS, inga bibliotek). Kapitellänk: #kapitel-3 -->
+    <div id="kretslopp" tabindex="-1">
+      <p class="kl-eyebrow"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pulse"/></svg>Film · drygt en minut · åtta kapitel</p>
+      <div class="film">
+    <div class="stage-wrap">
+      <svg id="kl-stage" viewBox="0 0 960 540" role="img" aria-labelledby="kl-capH kl-capP">
+
+        <!-- Flödesbanor -->
+        <g id="kl-flows">
+          <path class="flow" id="kl-p-ag-du"   stroke="var(--ink3)" d="M110 128 L110 252"/>
+          <path class="flow" id="kl-p-ag-sv"   stroke="var(--sv)"   d="M190 92 C 262 92, 300 150, 318 218"/>
+          <path class="flow" id="kl-p-shop-sv" stroke="var(--sv)"   d="M182 412 C 262 412, 300 380, 318 322"/>
+          <path class="flow" id="kl-p-sv-stat" stroke="var(--stat)" d="M440 245 C 485 200, 480 105, 523 105"/>
+          <path class="flow" id="kl-p-sv-reg"  stroke="var(--reg)"  d="M440 270 L 523 270"/>
+          <path class="flow" id="kl-p-sv-kom"  stroke="var(--kom)"  d="M440 295 C 485 340, 480 425, 523 425"/>
+          <path class="flow" id="kl-p-stat-reg" stroke="var(--stat)" d="M585 147 L 585 228"/>
+          <path class="flow" id="kl-p-stat-kom" stroke="var(--stat)" d="M662 147 C 712 220, 712 330, 662 383"/>
+          <path class="flow" id="kl-p-stat-svc" stroke="var(--stat)" d="M677 105 L 718 105"/>
+          <path class="flow" id="kl-p-reg-svc"  stroke="var(--reg)"  d="M677 270 L 718 270"/>
+          <path class="flow" id="kl-p-kom-svc"  stroke="var(--kom)"  d="M677 425 L 718 425"/>
+          <path class="flow" id="kl-p-return"   stroke="var(--accent)" d="M830 470 C 790 492, 260 492, 160 348"/>
+        </g>
+
+        <!-- Belopp längs banorna -->
+        <g class="el" data-el="l-ag-sv"><rect class="lbl-bg" x="196" y="128" width="118" height="34" rx="4"/><text class="lbl" x="200" y="142">skatt ≈ 7 300 kr</text><text class="lbl" x="200" y="157">avgift ≈ 10 200 kr</text></g>
+        <g class="el" data-el="l-ag-du"><rect class="lbl-bg" x="118" y="180" width="100" height="18" rx="4"/><text class="lbl" x="122" y="193">netto ≈ 25 200 kr</text></g>
+        <g class="el" data-el="l-shop"><rect class="lbl-bg" x="196" y="356" width="104" height="18" rx="4"/><text class="lbl" x="200" y="369">moms ≈ 3 200 kr</text></g>
+        <g class="el" data-el="l-utj"><rect class="lbl-bg" x="712" y="158" width="196" height="72" rx="6" stroke="var(--stat)" stroke-width="1"/><text class="lbl" x="722" y="178">generella statsbidrag</text><text class="lbl" x="722" y="192">och utjämning, 2025:</text><text class="lbl" x="722" y="207">kommuner 146 Mdkr</text><text class="lbl" x="722" y="221">regioner 91 Mdkr</text></g>
+
+        <!-- Lönebesked -->
+        <g class="el" data-el="slip">
+          <rect x="470" y="40" width="230" height="132" rx="8" fill="var(--soft)" stroke="var(--line)"/>
+          <text x="488" y="66" class="node-s" style="letter-spacing:.08em">LÖNEBESKED · MEDIANLÖN</text>
+          <text x="488" y="94" class="lbl">Bruttolön</text><text x="682" y="94" class="lbl" text-anchor="end">32 500 kr</text>
+          <text x="488" y="114" class="lbl">Preliminärskatt</text><text x="682" y="114" class="lbl" text-anchor="end">−7 300 kr</text>
+          <line x1="488" x2="682" y1="126" y2="126" stroke="var(--line)"/>
+          <text x="488" y="146" class="lbl" style="font-weight:500;fill:var(--ink)">Utbetalt</text><text x="682" y="146" class="lbl" text-anchor="end" style="font-weight:500;fill:var(--ink)">25 200 kr</text>
+          <text x="488" y="164" class="node-s">+ arbetsgivaravgift 10 200 kr*</text>
+        </g>
+
+        <!-- Noder -->
+        <g class="el" data-el="n-ag"><rect class="node-box" x="40" y="60" width="150" height="68" rx="10" stroke="var(--ink3)"/><circle cx="65" cy="93" r="19" fill="var(--soft)" stroke="var(--ink2)" stroke-width="1.5"/><use href="#i-brief" class="kl-ico" stroke="var(--ink2)" x="52" y="80" width="26" height="26"/><text class="node-t" x="90" y="92">Arbetsgivare</text><text class="node-s" x="90" y="109">betalar lön</text></g>
+        <g class="el" data-el="n-du"><rect class="node-box" x="40" y="252" width="142" height="94" rx="10" stroke="var(--accent)" stroke-width="2"/><circle cx="69" cy="287" r="21" fill="var(--soft)" stroke="var(--accent)" stroke-width="1.5"/><use href="#i-person" class="kl-ico" stroke="var(--accent)" x="54" y="272" width="30" height="30"/><text class="node-t" x="98" y="294" style="font-size:18px">Du</text><text class="node-s" x="54" y="326">arbetar, handlar,</text><text class="node-s" x="54" y="340">använder service</text></g>
+        <g class="el" data-el="n-shop"><rect class="node-box" x="40" y="384" width="142" height="58" rx="10" stroke="var(--ink3)"/><circle cx="67" cy="412" r="19" fill="var(--soft)" stroke="var(--ink2)" stroke-width="1.5"/><use href="#i-bag" class="kl-ico" stroke="var(--ink2)" x="54" y="399" width="26" height="26"/><text class="node-t" x="94" y="418">Du handlar</text></g>
+        <g class="el" data-el="n-sv"><rect class="node-box" x="280" y="218" width="160" height="104" rx="10" stroke="var(--sv)" stroke-width="2"/><circle cx="310" cy="250" r="20" fill="var(--sv-l)" stroke="var(--sv)" stroke-width="1.5"/><use href="#i-doc" class="kl-ico" stroke="var(--sv)" x="296" y="236" width="28" height="28"/><text class="node-t" x="296" y="286">Skatteverket</text><text class="node-s" x="296" y="304">tar in all skatt</text></g>
+        <g class="el" data-el="n-stat"><rect class="node-box" x="523" y="63" width="154" height="84" rx="10" stroke="var(--stat)" stroke-width="2"/><circle cx="550" cy="90" r="19" fill="var(--stat-l)" stroke="var(--stat)" stroke-width="1.5"/><use href="#i-gov" class="kl-ico" stroke="var(--stat)" x="537" y="77" width="26" height="26"/><text class="node-t" x="576" y="96">Staten</text><text class="node-s" x="537" y="122">riksdag + regering</text><text class="node-s" x="537" y="137" id="kl-t-stat">budget 1 542 Mdkr</text></g>
+        <g class="el" data-el="n-reg"><rect class="node-box" x="523" y="228" width="154" height="84" rx="10" stroke="var(--reg)" stroke-width="2"/><circle cx="550" cy="255" r="19" fill="var(--reg-l)" stroke="var(--reg)" stroke-width="1.5"/><use href="#i-pin" class="kl-ico" stroke="var(--reg)" x="537" y="242" width="26" height="26"/><text class="node-t" x="576" y="261">Regionen</text><text class="node-s" x="537" y="287">21 regioner · skatt</text><text class="node-s" x="537" y="302" id="kl-t-reg">11,69 % · 349 Mdkr</text></g>
+        <g class="el" data-el="n-kom"><rect class="node-box" x="523" y="383" width="154" height="84" rx="10" stroke="var(--kom)" stroke-width="2"/><circle cx="550" cy="410" r="19" fill="var(--kom-l)" stroke="var(--kom)" stroke-width="1.5"/><use href="#i-home" class="kl-ico" stroke="var(--kom)" x="537" y="397" width="26" height="26"/><text class="node-t" x="576" y="416">Kommunen</text><text class="node-s" x="537" y="442">290 kommuner · skatt</text><text class="node-s" x="537" y="457" id="kl-t-kom">20,69 % · 614 Mdkr</text></g>
+
+        <!-- Verksamhet -->
+        <g class="el" data-el="svc-stat">
+          <rect x="718" y="70" width="226" height="74" rx="10" fill="var(--stat-l)"/>
+          <g transform="translate(730 80)"><use href="#i-shield" class="kl-ico" stroke="var(--stat)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Försvar</text></g>
+          <g transform="translate(784 80)"><use href="#i-scales" class="kl-ico" stroke="var(--stat)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Polis</text></g>
+          <g transform="translate(838 80)"><use href="#i-cap" class="kl-ico" stroke="var(--stat)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Högskola</text></g>
+          <g transform="translate(892 80)"><use href="#i-users" class="kl-ico" stroke="var(--stat)" width="24" height="24" x="6"/><text class="svc-t" x="18" y="44">Pension</text></g>
+        </g>
+        <g class="el" data-el="svc-reg">
+          <rect x="718" y="235" width="226" height="74" rx="10" fill="var(--reg-l)"/>
+          <g transform="translate(736 245)"><use href="#i-cross" class="kl-ico" stroke="var(--reg)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Sjukvård</text></g>
+          <g transform="translate(806 245)"><use href="#i-tooth" class="kl-ico" stroke="var(--reg)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Tandvård</text></g>
+          <g transform="translate(876 245)"><use href="#i-bus" class="kl-ico" stroke="var(--reg)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Kollektivtrafik</text></g>
+        </g>
+        <g class="el" data-el="svc-kom">
+          <rect x="718" y="390" width="226" height="74" rx="10" fill="var(--kom-l)"/>
+          <g transform="translate(736 400)"><use href="#i-blocks" class="kl-ico" stroke="var(--kom)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Förskola</text></g>
+          <g transform="translate(806 400)"><use href="#i-book" class="kl-ico" stroke="var(--kom)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Skola</text></g>
+          <g transform="translate(876 400)"><use href="#i-care" class="kl-ico" stroke="var(--kom)" width="24" height="24" x="8"/><text class="svc-t" x="20" y="44">Äldreomsorg</text></g>
+        </g>
+
+        <!-- Livslinje -->
+        <g class="el" data-el="life">
+          <rect x="230" y="500" width="160" height="10" rx="5" fill="var(--reg-l)" stroke="var(--reg)"/>
+          <rect x="390" y="500" width="330" height="10" rx="0" fill="var(--accent)"/>
+          <rect x="720" y="500" width="180" height="10" rx="5" fill="var(--reg-l)" stroke="var(--reg)"/>
+          <text class="node-s" x="230" y="528">0 år · tar emot</text>
+          <text class="node-s" x="555" y="528" text-anchor="middle">20–65 år · betalar in mer än du får</text>
+          <text class="node-s" x="900" y="528" text-anchor="end">tar emot · 85 år</text>
+        </g>
+
+        <!-- Slutbild -->
+        <g class="el" data-el="end">
+          <rect x="300" y="8" width="360" height="44" rx="22" fill="var(--accent)"/>
+          <text x="480" y="36" text-anchor="middle" style="font-family:var(--serif);font-size:19px;font-weight:600;fill:var(--stage)">Så går samhället runt</text>
+        </g>
+
+        <g id="kl-coins"></g>
+      </svg>
+      <button class="playover" id="kl-playover" type="button" aria-label="Spela filmen"><span><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>Spela filmen · <b id="kl-dur" style="font-weight:600"></b></span></button>
+    </div>
+
+    <div class="cap" aria-live="polite">
+      <h2 id="kl-capH">Hur skattepengarna går runt</h2>
+      <p id="kl-capP">Från din lön, via Skatteverket, till staten, regionen och kommunen och tillbaka till dig som skola, vård och trygghet.</p>
+    </div>
+    <div class="ctrl">
+      <button class="pp" id="kl-pp" type="button" aria-label="Spela"><svg viewBox="0 0 24 24" id="kl-ppIcon"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg></button>
+      <div class="chapters" id="kl-chapters" role="group" aria-label="Kapitel"></div>
+      <button class="snd" id="kl-snd" type="button" hidden aria-pressed="true" aria-label="Stäng av rösten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path class="w" d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      <span class="time" id="kl-time">0:00</span>
+    </div>
+  </div>
+
+  <details class="transcript">
+    <summary>Läs filmen som text</summary>
+    <ol id="kl-transcript"></ol>
+  </details>
+  <p class="src" id="kl-src">* Varav cirka 3 300 kr ålderspensionsavgift, som ger egen pensionsrätt och därför inte räknas som skatt i kalkylatorns standardläge. Belopp per månad för en medianlön (~390 tkr/år, 2026) enligt Skatteplattformens egen beräkning. Skattesatser: SCB, Kommunalskatterna 2026. Skatteintäkter och statsbidrag: SCB, kommunernas och regionernas preliminära bokslut 2025. Statsbudget 2026: budgetpropositionen. Utbetalning av kommunalskatt: Skatteverket. Ansvarsfördelning: regeringen.se, Så styrs Sverige. På Gotland sköter kommunen regionens uppgifter.</p>
+    </div>
+    <script>
+(function(){
+  // ── Manus: rubrik, text, minsta längd (s), vad som syns, vad som är i fokus, vilka flöden som rör sig ──
+  // Med röst blir varje kapitel minst lika långt som ljudet + en kort paus.
+  var SCENES = [
+    {h:"Allt börjar med arbete.", p:"En medianlön i Sverige är ungefär 32 500 kronor i månaden före skatt.", d:7,
+     show:["n-ag","n-du","slip"], focus:["n-ag","n-du","slip"], flows:[]},
+    {h:"Skatten dras innan lönen når dig.", p:"Arbetsgivaren drar din preliminärskatt, ungefär 7 300 kronor, och skickar den till Skatteverket. Ovanpå lönen betalar arbetsgivaren också en arbetsgivaravgift på ungefär 10 200 kronor, varav cirka 3 300 kronor blir din egen pension.", d:10,
+     show:["n-sv","l-ag-sv","l-ag-du"], focus:["n-ag","n-du","n-sv","slip","l-ag-sv","l-ag-du"], flows:[["kl-p-ag-sv","--sv"],["kl-p-ag-du","--ink3"]]},
+    {h:"När du handlar betalar du moms.", p:"Momsen ingår i priset och går också till Skatteverket. För en medianlöntagare blir det i snitt runt 3 200 kronor i månaden.", d:7,
+     show:["n-shop","l-shop"], focus:["n-shop","n-sv","l-shop","n-du"], flows:[["kl-p-shop-sv","--sv"]]},
+    {h:"Skatteverket fördelar pengarna.", p:"Kommunalskatten är i snitt 32,38 %: 20,69 % till kommunen och 11,69 % till regionen. Skatteverket betalar ut den direkt till dem varje månad. Statlig inkomstskatt, moms och arbetsgivaravgifter går till staten och pensionssystemet.", d:10,
+     show:["n-stat","n-reg","n-kom"], hide:["slip","l-ag-sv","l-ag-du","l-shop"], focus:["n-sv","n-stat","n-reg","n-kom"], flows:[["kl-p-sv-stat","--stat"],["kl-p-sv-reg","--reg"],["kl-p-sv-kom","--kom"]]},
+    {h:"Staten jämnar ut.", p:"Genom generella statsbidrag och kommunalekonomisk utjämning fick kommunerna 146 och regionerna 91 miljarder kronor 2025. Pengarna jämnar ut skillnader i skattekraft och behov, så att servicen kan hålla en liknande nivå i hela landet.", d:9,
+     show:["l-utj"], focus:["n-stat","n-reg","n-kom","l-utj"], flows:[["kl-p-stat-reg","--stat"],["kl-p-stat-kom","--stat"]]},
+    {h:"Pengarna blir verksamhet.", p:"Kommunen ansvarar för förskola, skola, äldreomsorg och socialtjänst. Regionen ansvarar för sjukvård, som är ungefär 90 % av dess kostnader, tandvård för unga och i regel kollektivtrafiken. Staten ansvarar för försvar, polis och domstolar, högskolor och ersättningar som sjukpenning och pension.", d:12,
+     show:["svc-stat","svc-reg","svc-kom"], hide:["l-utj"], focus:["n-stat","n-reg","n-kom","svc-stat","svc-reg","svc-kom"], flows:[["kl-p-stat-svc","--stat"],["kl-p-reg-svc","--reg"],["kl-p-kom-svc","--kom"]]},
+    {h:"Och kommer tillbaka till dig, över hela livet.", p:"Som barn och som gammal tar du emot mest. Under arbetslivet betalar de flesta in mer än de får tillbaka.", d:9,
+     show:["life"], focus:["n-du","svc-stat","svc-reg","svc-kom","life"], flows:[["kl-p-return","--accent"]]},
+    {h:"Så går samhället runt.", p:"Skatten betalar för den skola, vård och trygghet som nästa generation växer upp med. Sedan arbetar de och betalar in i sin tur. Siffrorna finns på Skatteplattformen.", d:7,
+     show:["end"], focus:null, flows:[["kl-p-ag-sv","--sv"],["kl-p-shop-sv","--sv"],["kl-p-sv-stat","--stat"],["kl-p-sv-reg","--reg"],["kl-p-sv-kom","--kom"],["kl-p-stat-svc","--stat"],["kl-p-reg-svc","--reg"],["kl-p-kom-svc","--kom"],["kl-p-return","--accent"]]}
+  ];
+  SCENES.forEach(function(s){ s.base=s.d; });
+
+  // ── Stående layout för mobil (9:16). Samma element, nya positioner. ──
+  var PORTRAIT = {
+    // Kamera per kapitel [x, y, bredd, höjd]; bildformatet hålls fast (540:700) och bilden panorerar mjukt
+    cams:[[0,-130,540,700],[0,-130,540,700],[0,-130,540,700],[0,171,540,700],[0,171,540,700],[0,171,540,700],[0,212,540,700],[-108,0,756,980]],
+    pos:{ 'n-ag':'translate(0 -20)','n-du':'translate(0 -20)','n-shop':'translate(0 -20)','n-sv':'translate(0 -20)',
+          'l-ag-sv':'translate(-12 -20)','l-ag-du':'translate(0 -20)','l-shop':'translate(0 -20)',
+          'slip':'translate(-165 -20)',
+          'n-stat':'translate(-153 377)','n-reg':'translate(-153 377)','n-kom':'translate(-153 377)',
+          'svc-stat':'translate(-698 377)','svc-reg':'translate(-698 377)','svc-kom':'translate(-698 377)',
+          'l-utj':'translate(-682 372)','life':'translate(-130.6 512) scale(.72)','end':'translate(-210 912)' },
+    paths:{ 'kl-p-ag-du':'M110 108 L110 232', 'kl-p-ag-sv':'M190 72 C 262 72, 300 130, 318 198',
+            'kl-p-shop-sv':'M182 392 C 262 392, 300 360, 318 302', 'kl-p-sv-stat':'M400 302 C 400 380, 447 380, 447 440',
+            'kl-p-sv-reg':'M440 262 C 534 262, 534 647, 524 647', 'kl-p-sv-kom':'M440 285 C 538 285, 538 802, 524 802',
+            'kl-p-stat-reg':'M432 524 L 432 605', 'kl-p-stat-kom':'M390 524 C 352 600, 352 700, 390 760',
+            'kl-p-stat-svc':'M370 482 L 246 482', 'kl-p-reg-svc':'M370 647 L 246 647', 'kl-p-kom-svc':'M370 802 L 246 802',
+            'kl-p-return':'M60 841 C 4 760, 4 420, 60 326' }
+  };
+
+  var root=document.getElementById('kretslopp');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var svg=document.getElementById('kl-stage'), coinsG=document.getElementById('kl-coins');
+  var els={}, wraps={};
+  svg.querySelectorAll('[data-el]').forEach(function(e){
+    els[e.dataset.el]=e;
+    // Positionering ligger på en yttre grupp, så att CSS-övergångar på elementet inte skriver över den
+    var g=document.createElementNS('http://www.w3.org/2000/svg','g'); e.parentNode.insertBefore(g,e); g.appendChild(e); wraps[e.dataset.el]=g;
+  });
+  var paths={}; svg.querySelectorAll('.flow').forEach(function(p){ paths[p.id]=p; p.dataset.d=p.getAttribute('d'); });
+  var capBox=root.querySelector('.cap'), capH=document.getElementById('kl-capH'), capP=document.getElementById('kl-capP');
+  var chap=document.getElementById('kl-chapters'), timeEl=document.getElementById('kl-time');
+  var pp=document.getElementById('kl-pp'), ppIcon=document.getElementById('kl-ppIcon'), over=document.getElementById('kl-playover');
+  var snd=document.getElementById('kl-snd');
+  var coins=[], nextSpawn={};
+
+  var portrait=false, cam=null, camAnim=0;
+  function camTo(i, animate){
+    cancelAnimationFrame(camAnim);
+    if(!portrait){ svg.setAttribute('viewBox','0 0 960 540'); cam=null; return; }
+    var to=PORTRAIT.cams[i<0?PORTRAIT.cams.length-1:i];
+    if(!animate || !cam || reduce){ cam=to.slice(); svg.setAttribute('viewBox',cam.join(' ')); return; }
+    var from=cam.slice(), t0=performance.now(), D=1100;
+    (function step(now){ var k=Math.min(1,(now-t0)/D), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+      cam=from.map(function(v,j){ return v+(to[j]-v)*e; }); svg.setAttribute('viewBox',cam.join(' '));
+      if(k<1) camAnim=requestAnimationFrame(step); })(t0);
+  }
+  function setLayout(p){
+    portrait=p;
+    svg.classList.toggle('portrait', portrait);
+    if(portrait){ svg.setAttribute('viewBox','0 0 540 700'); svg.setAttribute('preserveAspectRatio','xMidYMid meet'); }
+    Object.keys(wraps).forEach(function(k){ if(portrait && PORTRAIT.pos[k]) wraps[k].setAttribute('transform',PORTRAIT.pos[k]); else wraps[k].removeAttribute('transform'); });
+    Object.keys(paths).forEach(function(k){ paths[k].setAttribute('d', portrait && PORTRAIT.paths[k] ? PORTRAIT.paths[k] : paths[k].dataset.d); });
+    clearCoins(); cam=null; camTo(typeof cur==='number'?cur:-1,false);
+  }
+  var mq = window.matchMedia ? matchMedia('(max-width: 640px)') : null;
+  setLayout(!!(mq && mq.matches));
+  if(mq){ (mq.addEventListener ? mq.addEventListener('change',function(e){setLayout(e.matches);}) : mq.addListener(function(e){setLayout(e.matches);})); }
+
+  // ── Tidslinje ──
+  var starts=[], TOTAL=0;
+  function retime(){ starts=[]; TOTAL=0; SCENES.forEach(function(s){ starts.push(TOTAL); TOTAL+=s.d; }); }
+  retime();
+
+  var fills=[];
+  SCENES.forEach(function(s,i){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Kapitel '+(i+1)+': '+s.h);
+    var f=document.createElement('i'); b.appendChild(f); fills.push(f);
+    b.addEventListener('click',function(){ seek(starts[i]+0.01); });
+    chap.appendChild(b);
+    var li=document.createElement('li'); li.innerHTML='<b>'+s.h+'</b> '+s.p; document.getElementById('kl-transcript').appendChild(li);
+  });
+
+  function stateFor(i){
+    var on={};
+    for(var j=0;j<=i;j++){ (SCENES[j].show||[]).forEach(function(k){on[k]=1;}); (SCENES[j].hide||[]).forEach(function(k){delete on[k];}); }
+    return on;
+  }
+  var cur=-1, capTimer=null;
+  function setCaption(h,p,animate){
+    clearTimeout(capTimer);
+    if(!animate||reduce){ capH.textContent=h; capP.textContent=p; capBox.classList.remove('fade'); return; }
+    capBox.classList.add('fade');
+    capTimer=setTimeout(function(){ capH.textContent=h; capP.textContent=p; capBox.classList.remove('fade'); },220);
+  }
+  function apply(i, stagger){
+    var prev=cur; cur=i; var on=stateFor(i), n=0;
+    var focus=SCENES[i].focus; var fset={}; (focus||[]).forEach(function(k){fset[k]=1;});
+    Object.keys(els).forEach(function(k){
+      var e=els[k], was=e.classList.contains('on');
+      if(on[k] && !was && stagger && !reduce){ e.style.transitionDelay=(0.15+0.22*n++)+'s'; } else { e.style.transitionDelay=''; }
+      e.classList.toggle('on',!!on[k]);
+      e.classList.toggle('dim',!!on[k] && !!focus && !fset[k]);
+    });
+    var active={}; SCENES[i].flows.forEach(function(f){active[f[0]]=1;});
+    var past={}; for(var j=0;j<i;j++) SCENES[j].flows.forEach(function(f){past[f[0]]=1;});
+    Object.keys(paths).forEach(function(k){ var p=paths[k]; p.classList.toggle('on',!!active[k]); p.classList.toggle('past',!active[k]&&!!past[k]&&i>=3); });
+    setCaption(SCENES[i].h, SCENES[i].p, stagger && prev!==-1);
+    camTo(i, stagger);
+  }
+
+  // ── Mynt: jämn fart längs banan ──
+  function spawnDue(now){
+    SCENES[cur].flows.forEach(function(f){
+      var k=f[0]; if(nextSpawn[k] && now<nextSpawn[k]) return;
+      var p=paths[k], len=p.getTotalLength(), c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('r','5'); c.setAttribute('fill','var('+f[1]+')'); c.setAttribute('stroke','var(--stage)'); c.setAttribute('stroke-width','1.5'); c.setAttribute('opacity','0');
+      coinsG.appendChild(c);
+      coins.push({el:c,p:p,len:len,t0:now,dur:Math.max(900,Math.min(2600,len/0.17))});
+      nextSpawn[k]=now+560+Math.random()*220;
+    });
+  }
+  function moveCoins(now){
+    coins=coins.filter(function(o){
+      var k=(now-o.t0)/o.dur; if(k>=1){o.el.remove();return false;}
+      var e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2, pt=o.p.getPointAtLength(e*o.len);
+      o.el.setAttribute('cx',pt.x); o.el.setAttribute('cy',pt.y);
+      o.el.setAttribute('opacity', k<.12?k/.12:(k>.88?(1-k)/.12:1)); return true;
+    });
+  }
+  function clearCoins(){ coins.forEach(function(o){o.el.remove();}); coins=[]; nextSpawn={}; }
+
+  // ── Röst (valfritt): data-audio="audio/kretslopp/" → 01.m4a … 08.m4a ──
+  var base=root.getAttribute('data-audio'), audio=[], soundOn=true, voiced=false;
+  try{ soundOn = localStorage.getItem('kl-sound')!=='off'; }catch(e){}
+  if(base){
+    voiced=true; snd.hidden=false;
+    SCENES.forEach(function(s,i){
+      var a=new Audio(); a.preload='metadata'; a.src=base+String(i+1).padStart(2,'0')+'.m4a';
+      a.addEventListener('loadedmetadata',function(){ if(isFinite(a.duration)){ s.d=Math.max(s.base, a.duration+1.1); retime(); ui(); document.getElementById('kl-dur').textContent=fmt(TOTAL); } });
+      audio.push(a);
+    });
+    var credit=root.getAttribute('data-voice-credit'); if(credit){ var sp=document.getElementById('kl-src'); sp.insertAdjacentText('afterbegin', credit+' '); }
+  }
+  function stopAudio(){ audio.forEach(function(a){ if(!a.paused) a.pause(); }); }
+  function syncAudio(){
+    if(!voiced) return; stopAudio(); root.dataset.audio='av';
+    if(!playing || !soundOn) return;
+    var a=audio[cur], off=t-starts[cur];
+    if(a && off < (a.duration||99)){ try{ a.currentTime=Math.max(0,off); }catch(e){} var pr=a.play(); root.dataset.audio='kapitel-'+(cur+1); if(pr&&pr.catch) pr.catch(function(){ root.dataset.audio='blockerad'; }); }
+  }
+  function setSound(v){
+    soundOn=v; try{ localStorage.setItem('kl-sound', v?'on':'off'); }catch(e){}
+    snd.setAttribute('aria-pressed', v?'true':'false'); snd.setAttribute('aria-label', v?'Stäng av rösten':'Slå på rösten');
+    snd.classList.toggle('off',!v); syncAudio();
+  }
+  if(voiced){ snd.addEventListener('click',function(){ setSound(!soundOn); }); setSound(soundOn); }
+
+  // ── Klocka ──
+  var t=0, playing=false, last=0;
+  function fmt(s){ s=Math.floor(s); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+  function idxAt(s){ for(var i=SCENES.length-1;i>=0;i--) if(s>=starts[i]) return i; return 0; }
+  function ui(){
+    timeEl.textContent=fmt(t)+' / '+fmt(TOTAL);
+    fills.forEach(function(f,i){ var w=Math.max(0,Math.min(1,(t-starts[i])/SCENES[i].d)); f.style.width=(w*100)+'%'; });
+  }
+  function setPlaying(v){
+    playing=v; over.hidden=true;
+    pp.setAttribute('aria-label',v?'Pausa':'Spela');
+    ppIcon.innerHTML=v?'<path d="M7 4.5h3.5v15H7zM13.5 4.5H17v15h-3.5z" fill="currentColor"/>':'<path d="M7 4.5v15l13-7.5z" fill="currentColor"/>';
+    root.classList.toggle('playing',v);
+    if(v){ if(t>=TOTAL-0.05) seek(0); last=performance.now(); requestAnimationFrame(tick); }
+    syncAudio();
+  }
+  function seek(s){ t=s; clearCoins(); apply(idxAt(t), false); ui(); over.hidden=true; syncAudio(); }
+  function tick(now){
+    if(!playing) return;
+    var dt=Math.min(0.1,(now-last)/1000); last=now; t+=dt;
+    if(t>=TOTAL){ t=TOTAL; ui(); setPlaying(false); return; }
+    var i=idxAt(t); if(i!==cur){ apply(i, true); syncAudio(); }
+    if(!reduce) spawnDue(now);
+    moveCoins(now); ui(); requestAnimationFrame(tick);
+  }
+  pp.addEventListener('click',function(){ setPlaying(!playing); });
+  over.addEventListener('click',function(){ seek(0); setPlaying(true); });
+  root.addEventListener('keydown',function(e){
+    if(e.key===' '&&e.target.tagName!=='BUTTON'){ e.preventDefault(); setPlaying(!playing); }
+    if(e.key==='ArrowRight'){ seek(starts[Math.min(cur+1,SCENES.length-1)]+0.01); }
+    if(e.key==='ArrowLeft'){ seek(starts[Math.max(cur-1,0)]+0.01); }
+  });
+
+  // Viloläge: hela kretsloppet syns (bra miniatyr), med spela-knapp ovanpå.
+  apply(SCENES.length-1, false);
+  setCaption('Hur skattepengarna går runt','Från din lön, via Skatteverket, till staten, regionen och kommunen, och tillbaka till dig som skola, vård och trygghet.',false);
+  document.getElementById('kl-dur').textContent=fmt(TOTAL);
+  t=0; ui(); fills.forEach(function(f){ f.style.width='0'; });
+  Object.keys(paths).forEach(function(k){ paths[k].classList.add('past'); paths[k].classList.remove('on'); });
+
+  // Direktlänk till kapitel: #kapitel-3
+  function fromHash(){ var m=/^#kapitel-(\d+)$/.exec(location.hash); if(m){ var i=Math.min(Math.max(+m[1]-1,0),SCENES.length-1); playing=false; seek(starts[i]+0.01); root.scrollIntoView({block:'start'}); } }
+  window.addEventListener('hashchange',fromHash);
+  // Vänta tills prislistan m.m. ovanför är utritad, annars hamnar scrollen fel
+  if(document.readyState==='complete') setTimeout(fromHash,200); else window.addEventListener('load',function(){ setTimeout(fromHash,200); });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting && playing) setPlaying(false); }); },{threshold:0.25}).observe(root);
+  }
+})();
+    </script>
 
     <div class="vgv-grid">
       <article class="vgv-card" style="--c:var(--blue);--cl:var(--blue-l)">

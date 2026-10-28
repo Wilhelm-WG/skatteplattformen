@@ -10,6 +10,37 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Filmen: mobillayout, mjukare flöde och stöd för röst
+
+- **Mobil (≤ 640 px):** egen stående layout där elementen placeras om i en
+  kolumn i stället för att krympas, med större text. En kamera panorerar mjukt
+  per kapitel så att bild, text och knappar ryms på en telefonskärm.
+- **Flöde:** element tonas in ett i taget, linjerna rör sig i pengarnas riktning,
+  det som inte hör till kapitlet dämpas, texten tonar mjukt mellan kapitlen och
+  mynten rör sig i jämn fart.
+- **Röst (valfritt):** sätt `data-audio="audio/kretslopp/"` på `#kretslopp` så
+  läses `01.m4a`–`08.m4a`. Varje kapitel blir minst lika långt som sitt
+  ljudspår. Ljudknapp i kontrollraden (valet sparas), och
+  `data-voice-credit` lägger till en rad om rösten i källtexten. Ingen röst är
+  aktiverad ännu.
+- Talmanus i `docs/FILM_MANUS.md`, skrivet för uppläsning.
+
+### Added (2026-10-28) — Film: "Hur skattepengarna går runt"
+
+Animerad förklaring (drygt en minut, åtta kapitel) överst i sektionen
+"Vem gör vad?": lön → preliminärskatt och arbetsgivaravgift → moms →
+Skatteverket fördelar (kommun 20,69 %, region 11,69 %, staten) → statlig
+utjämning → verksamhet per huvudman → livslinjen → kretsloppet sluts.
+
+- Ren SVG + vanlig JS, inga bibliotek; använder sajtens ikonserie och färger.
+  All CSS skopad under `#kretslopp`, id:n prefixade `kl-`.
+- Spela/pausa, kapitelreglage, tangentbord (mellanslag, pilar), direktlänk till
+  kapitel (`#kapitel-3`), pausar när filmen scrollas ur bild, respekterar
+  `prefers-reduced-motion`. Hela manuset finns som text för skärmläsare.
+- Månadsbeloppen kontrollerade mot `annualTax(40, 390)`: skatt ≈ 7 300 kr,
+  moms ≈ 3 200 kr, netto ≈ 25 200 kr. Arbetsgivaravgiften visas som hela
+  31,42 % (≈ 10 200 kr) med fotnot om att ≈ 3 300 kr är ålderspensionsavgift.
+
 ### Added (2026-10-28) — Ny sektion "Vem gör vad?" (stat, region, kommun)
 
 Ny sektion mellan Prislistan och Budgeten som förklarar ansvarsfördelningen
