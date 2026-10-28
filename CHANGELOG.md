@@ -10,6 +10,27 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-28) — Steg 2: pensionärer och modellens kanter
+
+- **Pensionärsskatten enligt Skatteverket:** förhöjt grundavdrag för den som
+  fyllt 66 (SKV 433 avsnitt 6.2) i stället för schablonen "+40 %", som gav
+  cirka 50 % för hög skatt på pension. Lön efter 66 får det förhöjda
+  jobbskatteavdraget. Allmän pensionsavgift avräknas i rätt ordning.
+  Kontroll mot skattetabell 32 kolumn 1–3: ±1 kr för 10 000–60 000 kr/mån.
+- **Lön och pension hålls isär:** pension ger inget jobbskatteavdrag och ingen
+  arbetsgivaravgift (tidigare togs 21,21 % ut på pension vid 65). Särreglerna
+  för äldre gäller från 66 år, inte 65.
+- **Ingen tröskel vid 50 tkr:** skatten hoppade från 0 till 17 tkr; nu jämn.
+- **Hushållstyp och inkomst** påverkar bara vuxenår, inte den egna barndomen.
+  Livsloppets summering och jämförelsen mellan profiler använder samma
+  justerade förmåner som kalkylatorn.
+- **Medianlönen 460 tkr överallt:** kalkylatorns startvärde (tidigare 500),
+  delningsfunktionen (340), livsloppets texter ("genomsnittsinkomst"). Texten
+  om när man blir nettobetalare rättad till 26 års ålder (modellen).
+- **Inkomstfördelningens texter** förankrade i SCB:s lönestrukturstatistik
+  (median 38 300, medel 42 900 kr/mån) och brytpunkten, i stället för
+  percentiler utan källa.
+
 ### Fixed (2026-10-28) — Steg 1: sakfel och räknefel från helhetsgenomlysningen
 
 Alla nya värden är kontrollerade mot primärkälla innan de skrevs in.

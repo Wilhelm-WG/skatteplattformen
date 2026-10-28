@@ -2205,8 +2205,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Bruttoinkomst per år</label>
           <div class="sl-row">
-            <input type="range" min="0" max="1200" value="500" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="500">
-            <span class="sl-val" id="d-inc">500 tkr</span>
+            <input type="range" min="0" max="1200" value="460" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="460">
+            <span class="sl-val" id="d-inc">460 tkr</span>
           </div>
         </div>
 
@@ -2411,7 +2411,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <span style="color:var(--ink3)">Använd diagrammet för att förstå formen, inte för att räkna ut din egen "vinst" eller "förlust" mot systemet.</span>
     </div>
 
-    <!-- Statisk illustration vid 460 tkr (genomsnittsinkomst), standardprofil,
+    <!-- Statisk illustration vid 460 tkr (medianlön), standardprofil,
          nominellt, ingen mortalitetsmarkering. Tidigare interaktiva sliders/
          toggles borttagna 2026-05-31: modellen var pedagogiskt vilseledande
          som personlig kalkylator. Behåller renderad SVG som strukturillustration. -->
@@ -2426,7 +2426,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (19–64 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Bidragsgivare</div>
-        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar mer i skatt än konsumerar i tjänster. Vid genomsnittsinkomst vänder det runt 30 års ålder.</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar mer i skatt än konsumerar i tjänster. Vid medianlön sker det runt 26 års ålder.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
@@ -3769,7 +3769,7 @@ const PHASE_COLORS = {
 // Inkomstdifferentierad pensionskvot (pension / slutlön). Låg inkomst skyddas
 // av garantipension (hög kvot); hög inkomst tappar över inkomstpensionstaket
 // (~600 tkr brutto) där tjänstepension sällan kompenserar fullt ut. Kalibrerad
-// så att medianinkomst (~500 tkr) ger ~0,69 (65–74) / ~0,51 (75+), i linje med
+// så att 500 tkr ger ~0,69 (65–74) / ~0,51 (75+), i linje med
 // den tidigare schablonen 70/50 %. Källa: Pensionsmyndighetens typfall.
 function pensionKvot(peak, band){
   let k;
@@ -3801,10 +3801,10 @@ function calcCumulativeNet(toAge, peakInc) {
   let cumFörmåner = 0, cumTax = 0;
   for(let a = 0; a <= Math.min(toAge, 85); a++) {
     const pv = 1 / Math.pow(1 + r, a); // nuvärdefaktor
-    const s = getStage(a);
+    const s = getStage(a, peakInc);
     cumFörmåner += Object.values(s.w).reduce((x,v) => x+v, 0) * pv;
     const inc = lifecycleIncome(a, peakInc);
-    if(inc >= 50) {
+    if(inc > 0) {
       const t = annualTax(a, inc);
       cumTax += t.tot * pv;
     }
@@ -3826,7 +3826,7 @@ function calcCumulativeNet(toAge, peakInc) {
 
 // hskIncome behålls som default-inkomstantagande för delningsfunktionen som
 // fortfarande använder calcCumulativeNet för att generera text till delning.
-let hskIncome = 340;
+let hskIncome = Math.round(MEDIAN_LON_MAN*12/1000);   // medianlön, tkr/år
 
 // ── Hero: roterande prislapps-widget ────────────────────────────────
 // 8 handplockade prislappar — bredd från utbildning till äldreomsorg —
@@ -4012,7 +4012,7 @@ function buildShareURL(){
   const ageSlider = document.getElementById('s-age');
   const incSlider = document.getElementById('s-inc');
   const age = ageSlider ? parseInt(ageSlider.value) : 35;
-  const inc = incSlider ? parseInt(incSlider.value) : (hskIncome || 340);
+  const inc = incSlider ? parseInt(incSlider.value) : (hskIncome || 460);
   const pensionEl = document.getElementById('pension-toggle');
   const pension = pensionEl ? (pensionEl.checked ? '1' : '0') : '0';
   const kap = parseInt(document.getElementById('s-kapital')?.value || 0);
@@ -4313,8 +4313,9 @@ function getStage(age, inc){
   for(const s of STAGES) if(age>=s.min && age<=s.max){ stage = s; break; }
   if(!stage) stage = STAGES[STAGES.length-1];
 
-  // Om ingen inkomst angiven, returnera ojusterad
-  if(typeof inc === 'undefined' || inc === null) return stage;
+  // Om ingen inkomst angiven, eller under 19 år, returnera ojusterad.
+  // Hushållstyp och inkomstgradient gäller personen som vuxen, inte den egna barndomen.
+  if(typeof inc === 'undefined' || inc === null || age < 19) return stage;
 
   // Applicera hushållsmultiplikator
   const hm = HOUSEHOLD_MULT[currentHousehold] || HOUSEHOLD_MULT.ensam;
@@ -4376,49 +4377,73 @@ function jobbskatteavdrag2024(inc, ga, ks){
   return Math.min(jsa, Math.max(0, inc - ga) * ks);
 }
 
+// Förhöjt grundavdrag för den som fyllt 66 år vid årets ingång (SKV 433, 2026, avsnitt 6.2).
+// Läggs till det ordinarie grundavdraget; summan avrundas uppåt till hundratal kr. inc i tkr.
+function forhojtGrundavdrag2026(f){
+  const p = 59.2;
+  if(f <= 0)        return 0;
+  if(f <= 0.91*p)   return 0.687*p;
+  if(f <= 1.11*p)   return 0.885*p - 0.20*f;
+  if(f <= 1.965*p)  return 0.600*p + 0.057*f;
+  if(f <= 2.72*p)   return 0.333*p + 0.1949*f;
+  if(f <= 3.11*p)   return 0.3949*f - 0.212*p;
+  if(f <= 3.24*p)   return 0.4949*f - 0.523*p;
+  if(f <= 5.00*p)   return 0.356*f - 0.073*p;
+  if(f <= 7.88*p)   return 0.017*p + 0.338*f;
+  if(f <= 8.08*p)   return 0.703*p + 0.251*f;
+  if(f <= 11.16*p)  return 2.732*p;
+  if(f <= 12.84*p)  return 9.651*p - 0.62*f;
+  return 1.691*p;
+}
+// Jobbskatteavdrag för den som fyllt 66 år (SKV 433, 2026, avsnitt 7.5.2). Belopp i tkr, ej × kommunalskatt.
+function jobbskatteavdrag66(ai){
+  const p = 59.2, a = Math.floor(ai*10)/10;
+  if(a <= 0)       return 0;
+  if(a <= 1.75*p)  return a*0.22;
+  if(a <= 5.24*p)  return 0.2635*p + 0.07*a;
+  return 0.6293*p;
+}
+// Inkomstskattens delar, oavrundade (tkr). opts.pension: inkomsten är pension (inget jobbskatteavdrag).
+// Standard: pension från 65 år (som livsloppet), lön före. Särregler för 66+ gäller från 66 år.
+// Verifierat mot skattetabell 32 kolumn 1–3 (±1 kr, 10 000–60 000 kr/mån) med samma förenklingar som tabellen.
+function skattDelar(age, inc, opts){
+  const ks = (opts && opts.ksOverride) ? opts.ksOverride : currentKs;
+  const pension = (opts && typeof opts.pension === 'boolean') ? opts.pension : age >= 65;
+  const is66 = age >= 66;
+  if(age < 19 || inc <= 0) return {ks, pension, is66, ga:0, bb:0, komm:0, stat:0, jsa:0};
+  const ga = Math.min(inc, Math.ceil((grundavdrag2024raw(inc) + (is66 ? forhojtGrundavdrag2026(inc) : 0)) * 10 - 1e-9) / 10);
+  const bb = Math.max(0, inc - ga);
+  const komm = bb * ks;
+  const stat = Math.max(0, bb - 643.0) * 0.20;
+  let jsa = 0, apaRest = 0;
+  if(!pension){
+    jsa = is66 ? jobbskatteavdrag66(inc) : jobbskatteavdrag2024(inc, ga, ks);
+    // Allmän pensionsavgift 7 % av lönen avräknas först mot skatten (skattereduktion 100 %).
+    // Det som inte ryms kvarstår som avgift, och jobbskatteavdraget ryms bara i den kommunalskatt som är kvar.
+    const apa = Math.round(inc * 0.07 * 10) / 10;
+    const redApa = Math.min(apa, komm + stat);
+    apaRest = apa - redApa;
+    jsa = Math.min(jsa, Math.max(0, komm - Math.max(0, redApa - stat)));
+  }
+  jsa = Math.min(jsa, komm);   // kan aldrig överstiga kommunalskatten
+  return {ks, pension, is66, ga, bb, komm: komm + apaRest, stat, jsa, apaRest};
+}
+
 function annualTax(age, inc, opts){
-  // inc = bruttoinkomst i tkr/år (pension­sinkomst skickas in redan reducerad av anroparen)
-  // opts = {ksOverride: number} för sensitivitetsanalys
-  if(age < 19 || inc < 50) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
-  const isPensionar = age >= 65;
-  const ks = (opts && opts.ksOverride) ? opts.ksOverride : currentKs;  // vald kommunalskatt (default rikssnitt 0.3238, SCB 2026)
+  // inc = bruttoinkomst i tkr/år (pensionsinkomst skickas in redan reducerad av anroparen)
+  // opts = {ksOverride: number, pension: boolean}
+  if(age < 19 || inc <= 0) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
+  const d = skattDelar(age, inc, opts);
+  const effInc = inc, komm = d.komm, stat = d.stat, jsa = d.jsa;
 
-  // Pensionärer: ingen extra inkomstreduktion här — inkomsten är redan rätt skalad av anroparen.
-  // Pensionärer får förhöjt grundavdrag (67 kap 3 § IL) jämfört med arbetsinkomst.
-  // Approximation: +40% på grundavdraget för pensionärer (ger ~5–8 pp lägre effektiv skatt).
-  const effInc = inc;
-  const gaBase = grundavdrag2024(effInc);
-  const ga = isPensionar ? Math.min(gaBase * 1.40, effInc * 0.50) : gaBase;
-
-  // Kommunalskatt på beskattningsbar inkomst
-  const beskBar = Math.max(0, effInc - ga);
-  const komm = beskBar * ks;
-
-  // Statlig inkomstskatt: 20 % över skiktgränsen 643,0 tkr (2026 års värde
-  // enligt Skatteverket — indexerad från 2025 års 625,8 tkr respektive 2024
-  // års 615,3 tkr).
-  const stat = Math.max(0, beskBar - 643.0) * 0.20;
-
-  // Jobbskatteavdrag (enbart för arbetsinkomster, ej pensionärer)
-  const jsa = isPensionar ? 0 : jobbskatteavdrag2024(effInc, ga, ks);
-
-  // Arbetsgivaravgifter: toggle styr om pensionsavgift (10.21%) inkluderas
-  // Exkl pension: 31.42% − 10.21% = 21.21% (standard — pension ger individuell pensionsrätt)
-  // Inkl pension: 31.42% (brutto, varav 10.21% ålderspensionsavgift)
-  // Åldersvariation: personer fyllda 66+ betalar reducerad avgift (10,21% ålderspensionsavgift)
-  // Personer under 18: enbart ålderspensionsavgift (10,21%)
+  // Arbetsgivaravgifter (bara på lön, aldrig på pension). Toggle styr om ålderspensionsavgiften
+  // (10,21 %) räknas som skatt: standard 21,21 % (pensionsavgiften ger egen pensionsrätt), inkl. 31,42 %.
+  // Lön till den som fyllt 66: enbart ålderspensionsavgift 10,21 % (= 0 i standardläget).
   const inkludaPension = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
   let avgSats;
-  if(age < 18){
-    // Under 18: enbart ålderspensionsavgift (10,21%)
-    avgSats = inkludaPension ? 0.1021 : 0;
-  } else if(age >= 66){
-    // Fyllda 66+: reducerad avgift — enbart ålderspensionsavgift 10,21%
-    // (gäller oavsett om personen arbetar eller ej — arbetsgivare betalar reducerat)
-    avgSats = inkludaPension ? 0.1021 : 0;
-  } else {
-    avgSats = inkludaPension ? 0.3142 : 0.2121;
-  }
+  if(d.pension)       avgSats = 0;
+  else if(d.is66)     avgSats = inkludaPension ? 0.1021 : 0;
+  else                avgSats = inkludaPension ? 0.3142 : 0.2121;
   const avg = inc * avgSats;
 
   // Moms: hushåll konsumerar del av disponibel inkomst
@@ -4620,12 +4645,7 @@ function updateCalc(){
     // Följer därmed jobbskatteavdragets och grundavdragets faktiska regler.
     // Arbetsgivaravgift ingår inte (innehåller pensionsavgift som ger egen pensionsrätt).
     // Oavrundad inkomstskatt (annualTax avrundar till hela tkr, för grovt för en derivata)
-    const ks = (typeof currentKs === 'number') ? currentKs : 0.3238, pens = age >= 65;
-    const incTax = p => {
-      const gaB = grundavdrag2024(p), ga = pens ? Math.min(gaB*1.40, p*0.50) : gaB;
-      const bb = Math.max(0, p - ga);
-      return bb*ks + Math.max(0, bb - 643.0)*0.20 - (pens ? 0 : jobbskatteavdrag2024(p, ga, ks));
-    };
+    const incTax = p => { const d = skattDelar(age, p); return d.komm + d.stat - d.jsa; };
     const points = [200, 350, MEDIAN_LON_MAN*12/1000, 600, 700, 900].map(p => {
       const ga = grundavdrag2024(p);
       const hasStatlig = (p - ga) > 643.0;
@@ -5478,17 +5498,16 @@ function calcLifecycle(peakInc, discount, kapitalInc){
 }
 
 // Kontexttext: var i inkomstfördelningen hamnar du?
+// Förankrad i SCB:s lönestrukturstatistik 2025 (heltidslön): median 38 300 kr/mån (≈ 460 tkr/år),
+// medel 42 900 kr/mån (≈ 515 tkr/år). Brytpunkt för statlig skatt ≈ 660 tkr/år (2026).
 const LC_DIST = [
-  {max:200, text:'Under P10 — lägsta inkomstdecilen'},
-  {max:280, text:'P10–P20 — låg inkomst, ofta deltid'},
-  {max:340, text:'Runt medianen (P50) — hälften av Sveriges löntagare tjänar mer'},
-  {max:410, text:'P50–P65 — något över medianen'},
-  {max:480, text:'Runt genomsnittet (P65) — medelvärdet dras upp av höga inkomster'},
-  {max:580, text:'P65–P80 — övre mellanklass'},
-  {max:700, text:'P80–P90 — höginkomsttagare (t.ex. läkare, ingenjör, chef)'},
-  {max:900, text:'P90–P95 — topp 10% — statlig inkomstskatt är nu betydande'},
-  {max:1200, text:'P95–P99 — topp 5% — t.ex. höga chefer, specialister'},
-  {max:9999, text:'P99+ — topp 1% — kapitalinkomster ofta större än löneinkomst'}
+  {max:300, text:'Under 25 000 kr/mån: vanligt vid deltid, studier eller lägre lönade yrken'},
+  {max:430, text:'Under medianlönen (38 300 kr/mån, SCB 2025)'},
+  {max:495, text:'Runt medianlönen: hälften av heltidslönerna är högre (SCB 2025)'},
+  {max:560, text:'Runt medellönen (42 900 kr/mån): medelvärdet dras upp av höga löner'},
+  {max:660, text:'Över medellönen men under brytpunkten för statlig inkomstskatt'},
+  {max:1000, text:'Över brytpunkten (cirka 660 000 kr/år): statlig inkomstskatt på det som överstiger'},
+  {max:99999, text:'Hög inkomst: en stor del av lönen beskattas även med statlig skatt'}
 ];
 
 function lcContext(inc){
@@ -5548,7 +5567,7 @@ function renderLifecycle(inc){
   const sx=a=>p.l+(a/85)*iw;
   const sy=v=>p.t+(1-(v/niceMax))*ih;
 
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid genomsnittsinkomst. Visar mönstret i välfärden — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid medianlön. Visar mönstret i välfärden — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
 
   // Grid (årliga tkr)
   const gridVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(niceMax*f));
@@ -5652,7 +5671,7 @@ function renderLifecycle(inc){
   el.innerHTML = svg;
 }
 
-// Init lifecycle chart — startar på genomsnittsinkomst 460 tkr
+// Init lifecycle chart — startar på medianlön 460 tkr
 (function(){
   const ctx = document.getElementById('lc-inc-context');
   if(ctx) ctx.textContent = lcContext(460);
@@ -5820,7 +5839,7 @@ function shareSkatt(e){
   try{ history.replaceState(null, '', url.substring(url.indexOf('?'))); }catch(_){}
 
   const age = parseInt(document.getElementById('s-age')?.value || 35);
-  const inc = parseInt(document.getElementById('s-inc')?.value || (hskIncome || 340));
+  const inc = parseInt(document.getElementById('s-inc')?.value || (hskIncome || 460));
   const tax = annualTax(age, inc);
   const total = Object.values(getStage(age, inc).w).reduce((a,b)=>a+b,0);
   const text = `Min välfärdsprofil på Skatteplattformen — ${age} år, ${inc.toLocaleString('sv-SE')} tkr/år: `
@@ -5850,7 +5869,7 @@ function shareSkatt(e){
 // ═══════════════════════════════════════════════════════════════════
 function scState(){
   const age = parseInt(document.getElementById('s-age')?.value || 35);
-  const inc = parseInt(document.getElementById('s-inc')?.value || 500);
+  const inc = parseInt(document.getElementById('s-inc')?.value || 460);
   const komSel = document.getElementById('s-kommun');
   const kommun = komSel ? komSel.options[komSel.selectedIndex].text.split('—')[0].trim() : 'Rikssnitt';
   const benefits = Math.round(Object.values(getStage(age, inc).w).reduce((a,b)=>a+b,0));
@@ -5960,7 +5979,7 @@ function updateCompare(){
   const age1 = +document.getElementById('s-age').value;
   const inc1 = +document.getElementById('s-inc').value;
 
-  const stage1 = getStage(age1), stage2 = getStage(age2);
+  const stage1 = getStage(age1, inc1), stage2 = getStage(age2, inc2);
   const t1 = Object.values(stage1.w).reduce((a,b)=>a+b,0);
   const t2 = Object.values(stage2.w).reduce((a,b)=>a+b,0);
   const tax1 = annualTax(age1, inc1), tax2 = annualTax(age2, inc2);

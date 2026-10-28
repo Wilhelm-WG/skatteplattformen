@@ -38,8 +38,10 @@ correspondence/
 - `annualTax(age, inc, opts)` → returnerar `{komm, stat, avg, moms, jsa, tot}`
   - `opts.ksOverride` — alternativ kommunalskattesats (default 0.3237)
   - Ålder <19 → noll skatt
-  - Ålder ≥66 → reducerad arbetsgivaravgift (10.21%)
-  - Pensionärer (≥66) → inget jobbskatteavdrag
+  - Delarna räknas i `skattDelar(age, inc, opts)` (oavrundat); `opts.pension` (standard: från 65 år) = pensionsinkomst → inget jobbskatteavdrag, ingen arbetsgivaravgift
+  - Från 66 år: förhöjt grundavdrag (`forhojtGrundavdrag2026`), lön ger förhöjt jobbskatteavdrag (`jobbskatteavdrag66`) och 10,21 % arbetsgivaravgift
+  - Allmän pensionsavgift (7 %) avräknas före jobbskatteavdraget; ej avräknad rest läggs på kommunalskatten
+  - Verifierat mot skattetabell 32 kolumn 1–3 (±1 kr, 10 000–60 000 kr/mån)
 - `grundavdrag2024(inc)` — grundavdrag enligt 2024 års regler
 - `jobbskatteavdrag2024(inc, ga, ks)` — JSA enligt exakt formel i Skatteverkets SKV 433 (2026), ingen avtrappning. Verifierad mot skattetabell 32 (±1 kr, 20–80 tkr/mån)
 - `grundavdrag2024(inc)` avrundas uppåt till hundratal kr (SKV 433)
@@ -124,7 +126,7 @@ correspondence/
 4. Hushållsmultiplikatorer är förenklade (SCB FASIT ger mer granulär data)
 5. Inkomstgradienten är schablonbaserad, ej empiriskt skattad per decil
 6. Skattereduktion för förvärvsinkomst (max 1 500 kr/år) och public service-avgift (max 1 184 kr/år) ingår inte i `annualTax` (nettoeffekt ≈ −300 kr/år)
-7. Personer 66+ räknas utan jobbskatteavdrag och med schablonmässigt förhöjt grundavdrag (+40 %); lagens förhöjda jobbskatteavdrag för äldre som arbetar är inte modellerat
+7. Inkomster efter 65 år antas vara pension i kalkylatorn och livsloppet (lön för äldre kan anges via `opts.pension:false`)
 
 ## Konfidensintervall
 | Kategori | Osäkerhet | Källa |
