@@ -10,6 +10,23 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Lättare startsida och granskningens punkt 10
+
+- **Startsidan:** lönetabellen står kvar men noten är en rad med länken
+  "Så räknas det"; ISK-raden och länken om första lönen är borttagna ur toppen.
+  "Snabba svar" borttaget (fyra av sex kort fanns redan som faktakort). Två nya
+  faktakort: ISK (skattefritt upp till 300 000 kr) och förskola/grundskola/
+  gymnasium. Ordning nu: rubrik och lönetabell, Sex vägar in, Snabbfakta,
+  Skatter i korthet, Vem gör vad.
+- **Översikt över jämförelserna:** ny första flik "Översikt" med Sveriges
+  placering bland de sju länderna i alla 28 diagram (prickskala, plats X av Y,
+  år och riktning). En rad öppnar diagrammet.
+- **Stora tal** i en stil överallt: serif med tabellsiffror i stället för
+  maskinskrift (prislappar, sifferrutor, nyckeltal).
+- **Budget- och skatteutgiftsdiagrammen:** grått med det största området
+  markerat; färgförklaringarna borttagna. "Pilotområden" heter
+  "Välfärdsområden" och förklaras.
+
 ### Added (2026-10-28) — Skatt på sparande (ISK)
 
 - **Nytt avsnitt `#sparande`** i Din ekonomi: hur ISK beskattas (1,065 % av

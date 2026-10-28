@@ -123,6 +123,7 @@ correspondence/
 
 **Internationell jämförelse (`#oecd`):**
 - `JMF_DATA` (flikar → diagram) och `JMF_LAND` (Sverige, Norge, Danmark, Finland, Island, Tyskland, USA, fast ordning). Varje diagram: `v` (7 värden, `null` = uppgift saknas), `ref` (OECD- eller EU-snitt, streckad linje), `bast` ('hogre' | 'lagre' | null), `kalla`, `url`, `ar`, `not`
+- Första fliken "Översikt" (`#oecd-oversikt`) räknas fram ur `JMF_DATA`: Sveriges placering per diagram
 - `jmfKort(ch)` ritar ett diagram. `<div data-jmf="flik:index">` och `DETAILS[*].jmf` återanvänder samma diagram på andra ställen
 - Regler: en källa och ett år per diagram, inga värderande omdömen, minst 5 av 7 länder (kontrolleras av `scripts/kontroll.mjs`)
 
@@ -135,7 +136,7 @@ correspondence/
 - `VYER[*].led = {tal, text, kalla}` = ledsiffran överst i vyn. Bara siffror som finns med källa på sajten
 - `#sparande` (Din ekonomi): skatt på ISK. Se över varje år när statslåneräntan 30 november och budgetpropositionen är kända (räntan styr nästa års skattesats)
 - Heron visar `.hero-lon`: skatt och kvar efter skatt för 25/50/75/100 tkr i månaden ur skattetabell 32 (statisk HTML; uppdatera varje år med nya tabeller)
-- Startsidan har `#unga` ("Snabba svar": vardagsfrågor med direkt källa, inga modellsiffror) direkt efter heron. Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
+- Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
 **Sensitivitetsanalys:**
