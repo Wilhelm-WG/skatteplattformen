@@ -10,6 +10,30 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Steg 7: vyer, kortare sektioner och ett namn per verktyg
+
+- **Sju vyer i samma fil:** Start, Prislistan, Budgeten, Jämförelser, Din ekonomi,
+  Framtid och historik samt Metod och källor. Adressens #-del avgör vyn
+  (`#budget`, `#oecd`, `#kalkylator` …). Alla gamla länkar fungerar: en länk till
+  ett id öppnar vyn som innehåller det. Varje vy har brödsmula, rubrik, ingress,
+  datum, innehållsförteckning och en "Nästa"-länk. Sidtiteln följer vyn. Utan
+  JavaScript visas allt på en sida.
+- **Längd på mobil:** den längsta vyn är cirka 8 600 px (tidigare 32 900 px för
+  hela sidan).
+- **Ny meny:** Start, Prislistan, Budgeten, Jämförelser, Din ekonomi, Framtid och
+  Mer (Metod och källor, Nyckeltal, Ordlista, Om oss).
+- **Startsidan:** "Fyra siffror" ersatt av "Sex vägar in", en ingång per vy.
+- **Budgeten:** de tio största utgiftsområdena med "Visa alla 27", korta namn på
+  mobil. Diagramrubriken rättad från 2025 till 2026.
+- **Jämförelser:** ett diagram åt gången med bläddring och lista över diagrammen.
+- **Din ekonomi:** ålder och inkomst först; kommun, hushåll, pension och kapital
+  under "Fler inställningar". Modellbeskrivningen under "Så räknar vi". Verktyget
+  heter "Din ekonomi" överallt. Dela-knappen heter "Dela min profil" i Din ekonomi
+  och delar annars den vy man står på.
+- **Upprepningar:** IVA-dygnet finns nu bara i prislistan (och quizet som drar ur
+  den), inte i toppen, startsidans siffror eller "Visste du att".
+- Hopplänken går till innehållet i aktuell vy.
+
 ### Changed (2026-10-28) — Steg 6: tillgänglighet och läsbarhet
 
 - **Kontrast:** text med för låg kontrast minskade från cirka 300 till 5 av

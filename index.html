@@ -534,6 +534,8 @@ h3.pc-title{margin-top:0}
 .brow-l{font-size:.76rem;color:var(--ink2);text-align:right}
 .brow-t{height:22px;background:var(--bg2);border-radius:2px;overflow:hidden}
 .brow-f{height:100%;border-radius:2px;transition:width .5s ease}
+.brow-kort{display:none}.brow-uo{font-family:var(--mono);font-size:.62rem;color:var(--ink3)}
+.brow-mer{display:block;margin:1rem auto 0}
 .brow-v{font-family:var(--mono);font-size:.76rem;color:var(--ink2)}
 .clegend{display:flex;gap:1.25rem;flex-wrap:wrap;padding:.9rem 1.5rem 1.2rem;border-top:1px solid var(--border)}
 .leg-i{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--ink2)}
@@ -650,6 +652,15 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .oecd-val.na{font-family:var(--sans);font-style:italic;color:var(--ink3);font-size:.68rem}
 .jmf-leg{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--ink2);margin-top:.6rem}
 .jmf-ref-d{display:inline-block;width:0;height:12px;border-left:2px dashed var(--ink2)}
+.jmf-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-bottom:1rem}
+.jmf-steg{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--paper);font-size:1.3rem;line-height:1;color:var(--ink);cursor:pointer}
+.jmf-steg:hover{border-color:var(--green);color:var(--green)}
+.jmf-pos{font-family:var(--mono);font-size:.78rem;color:var(--ink2);min-width:4.5em;text-align:center}
+.jmf-lista{display:flex;flex-wrap:wrap;gap:.35rem;flex-basis:100%;margin-top:.2rem}
+.jmf-hopp{font:inherit;font-size:.74rem;padding:5px 11px;border-radius:16px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer}
+.jmf-hopp.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.jmf-steg:focus-visible,.jmf-hopp:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+@media(max-width:640px){.jmf-lista{display:none}}
 .jmf-plats{font-size:.76rem;color:var(--ink);margin-top:.35rem;font-weight:500}
 .jmf-not{font-size:.72rem;color:var(--ink2);line-height:1.55;margin-top:.35rem}
 .oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
@@ -692,6 +703,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 @media(max-width:520px){
   .footer-grid{grid-template-columns:1fr}
   .brow{grid-template-columns:120px 1fr 60px}
+  .brow-kort{display:inline}.brow-lang,.brow-uo{display:none}
 }
 @media(max-width:480px){
   .hsk-stats-row{grid-template-columns:1fr}
@@ -739,6 +751,39 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.72);text-align:right}
 @media(prefers-reduced-motion:reduce){.h100-fill{transition:none}}
 
+
+
+.calc-om{margin:1rem 0 1.5rem;border-left:3px solid rgba(200,151,58,.5);background:rgba(200,151,58,.06);border-radius:0 4px 4px 0;padding:.7rem 1rem}
+.calc-om summary{cursor:pointer;font-size:.85rem;font-weight:500;color:#E3B969}
+.calc-om-txt{font-size:.8rem;color:rgba(242,239,232,.8);line-height:1.6;margin-top:.6rem}
+.calc-mer{border-top:1px solid rgba(255,255,255,.1);padding-top:.8rem}
+.calc-mer summary{cursor:pointer;font-size:.88rem;font-weight:500;color:#F2EFE8}
+.calc-mer summary span{display:block;font-size:.72rem;font-weight:400;color:rgba(242,239,232,.72);margin-top:.15rem}
+.calc-mer-in{display:flex;flex-direction:column;gap:1.4rem;margin-top:1rem}
+.calc-om summary:focus-visible,.calc-mer summary:focus-visible{outline:2px solid #6FC29B;outline-offset:3px}
+/* ═══ VYER ═══ */
+html{scroll-padding-top:72px}
+.vy-dold{display:none!important}
+.vy-huvud{padding:2.4rem 0 1.6rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.vy-smula{font-size:.78rem;color:var(--ink3);margin-bottom:.6rem}
+.vy-smula a{color:var(--green);text-decoration:none}
+.vy-smula a:hover{text-decoration:underline}
+.vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
+.vy-ingress{font-size:1rem;color:var(--ink2);max-width:60ch;line-height:1.55;margin:0 0 .4rem}
+.vy-datum{font-family:var(--mono);font-size:.72rem;color:var(--ink3);margin:0}
+.vy-toc{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 0;padding:0}
+.vy-toc a{display:inline-block;font-size:.8rem;padding:6px 14px;border:1px solid var(--border);border-radius:20px;color:var(--ink2);text-decoration:none;background:var(--paper)}
+.vy-toc a:hover{border-color:var(--green);color:var(--green)}
+.vy-fot{padding:2rem 0 3rem}
+.vy-nasta{display:inline-flex;align-items:center;gap:.5rem;font-size:1rem;font-weight:500;color:var(--green);text-decoration:none;padding:12px 20px;border:1px solid var(--green);border-radius:var(--r-sm)}
+.vy-nasta:hover{background:var(--green-ll)}
+.vy-nasta:focus-visible,.vy-toc a:focus-visible,.vy-smula a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.vy-genvagar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1.4rem}
+.vy-gv{display:block;padding:1rem 1.1rem;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:border-color .15s}
+.vy-gv:hover{border-color:var(--green)}
+.vy-gv-tal{display:block;font-style:normal;font-family:var(--mono);font-size:.82rem;color:var(--green);margin-bottom:.35rem}
+.vy-gv b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.25rem}
+.vy-gv span{font-size:.82rem;color:var(--ink2);line-height:1.45}
 /* ═══ MOBILANPASSNING (≤ 640 px) — samlad sist så att den vinner över tidigare regler ═══ */
 .pg-more{grid-column:1/-1;justify-self:center;margin-top:.4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--green);background:var(--paper);border:1px solid var(--green);border-radius:99px;padding:.7rem 1.4rem;cursor:pointer}
 .pg-more:hover{background:var(--green-ll)}
@@ -817,7 +862,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 4C5.3 4 4 5.8 4 8c0 3 1.6 4.2 2.1 7.2.4 2.5.8 4.8 2 4.8 1.3 0 1.4-4 2.9-4h2c1.5 0 1.6 4 2.9 4 1.2 0 1.6-2.3 2-4.8.5-3 2.1-4.2 2.1-7.2 0-2.2-1.3-4-3.5-4-1.7 0-2.6 1-4.5 1S9.2 4 7.5 4z"/></symbol>
 </defs></svg>
 
-<a href="#kalkylator" class="skip-link">Hoppa till innehåll</a>
+<a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a>
 
 <nav role="navigation" aria-label="Huvudnavigering">
   <div class="container">
@@ -825,21 +870,18 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <a href="#" class="nav-logo">Skatte<em>plattformen</em></a>
       <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Meny">☰</button>
       <ul class="nav-links" onclick="this.classList.remove('open')">
-        <li><a href="#skatter">Skatter</a></li>
-        <li><a href="#vem-gor-vad">Vem gör vad</a></li>
+        <li><a href="#">Start</a></li>
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#budget">Budgeten</a></li>
-        <li><a href="#oecd">Jämförelse</a></li>
-        <li><a href="#sjukvard">Sjukvård</a></li>
-        <li><a href="#kalkylator">Din profil</a></li>
+        <li><a href="#oecd">Jämförelser</a></li>
+        <li><a href="#kalkylator">Din ekonomi</a></li>
+        <li><a href="#framtid">Framtid</a></li>
         <li class="nav-more">
           <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="nav-sub">Mer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <ul class="nav-sub" id="nav-sub">
-            <li><a href="#framtid">Framtid</a></li>
-            <li><a href="#historik">Historik</a></li>
-            <li><a href="#metod">Metod</a></li>
+            <li><a href="#metod">Metod och källor</a></li>
+            <li><a href="#nyckeltal">Nyckeltal</a></li>
             <li><a href="#ordlista">Ordlista</a></li>
-            <li><a href="#nyckeltal">Nyckeltal och källor</a></li>
             <li><a href="#om-oss">Om oss</a></li>
           </ul>
         </li>
@@ -866,7 +908,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </p>
         <div class="actions fu fu3">
           <a href="#pristabell" class="btn-p">Se vad saker kostar →</a>
-          <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
+          <a href="#kalkylator" class="btn-g">Din ekonomi</a>
         </div>
         <a href="#kalkylator" class="hero-forsta fu fu3" onclick="forstaLon(event)">Vad händer med min första lön? <span aria-hidden="true">→</span></a>
       </div>
@@ -885,13 +927,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="off">
-          <span class="hsk-prislapp-cat" id="hskPrislappCat">Hälsa &amp; sjukvård</span>
-          <div class="hsk-prislapp-title" id="hskPrislappTitle">Ett dygn på intensivvård</div>
+          <span class="hsk-prislapp-cat" id="hskPrislappCat">Utbildning</span>
+          <div class="hsk-prislapp-title" id="hskPrislappTitle">En grundskoleelev, ett år</div>
           <div class="hsk-prislapp-amount-row">
-            <span class="hsk-prislapp-amount" id="hskPrislappAmount">55 000</span>
+            <span class="hsk-prislapp-amount" id="hskPrislappAmount">133 000</span>
             <span class="hsk-prislapp-suf" id="hskPrislappSuf">kr</span>
           </div>
-          <div class="hsk-prislapp-vs" id="hskPrislappVs">Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)</div>
+          <div class="hsk-prislapp-vs" id="hskPrislappVs">Du betalar: <strong>0 kr</strong> — obligatorisk och gratis</div>
         </div>
 
         <div class="hsk-prislapp-dots" id="hskPrislappDots" role="tablist" aria-label="Prislapps-navigation"></div>
@@ -930,36 +972,17 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <hr class="div">
 
 <!-- TL;DR — fyra teser som länkar in i sajten -->
-<section class="section" id="tldr" aria-label="Sammanfattning" style="padding:2rem 0">
+<section class="section" id="tldr" aria-label="Hitta rätt" style="padding:2rem 0">
   <div class="cw">
-    <p class="s-eye" style="text-align:center;margin-bottom:.3rem">På 30 sekunder</p>
-    <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Fyra siffror som ramar in Sverige</h2>
-    <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem">
-
-      <a href="#budget" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(46,125,92,.14)';this.style.borderColor='rgba(46,125,92,.5)'" onmouseout="this.style.background='rgba(46,125,92,.08)';this.style.borderColor='rgba(46,125,92,.25)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">1 542<span style="font-size:.9rem"> Mdkr</span></div>
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Statsbudget 2026 → budget</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statens utgifter 2026 enligt Budgetpropositionen. Inkomster 1 375 miljarder kronor, underskott 167 miljarder. Hela offentliga sektorns utgifter, inklusive kommuner och regioner: cirka 3 000 miljarder (2024).</div>
-      </a>
-
-      <a href="#pristabell" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(200,151,58,.14)';this.style.borderColor='rgba(200,151,58,.5)'" onmouseout="this.style.background='rgba(200,151,58,.08)';this.style.borderColor='rgba(200,151,58,.25)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber-t);line-height:1">55 000<span style="font-size:.9rem"> kr</span></div>
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vad → prislistan</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Kostnaden för ett dygn på intensivvård. Du betalar 130 kr. Resten, och <span data-cards-other>36</span> andra prislappar, hittar du här.</div>
-      </a>
-
-      <a href="#oecd" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(91,63,140,.10);border:1px solid rgba(91,63,140,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(91,63,140,.16)';this.style.borderColor='rgba(91,63,140,.55)'" onmouseout="this.style.background='rgba(91,63,140,.10)';this.style.borderColor='rgba(91,63,140,.30)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--purple);line-height:1">41,4<span style="font-size:.9rem"> %</span></div>
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vs världen → jämförelse</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Sveriges skattekvot 2024 (skatter som andel av BNP). OECD-snittet: 34,1 %, Danmark: 45,2 %. Så står sig Sverige mot andra länder.</div>
-      </a>
-
-      <a href="#framtid" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(184,74,30,.10);border:1px solid rgba(184,74,30,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(184,74,30,.16)';this.style.borderColor='rgba(184,74,30,.55)'" onmouseout="this.style.background='rgba(184,74,30,.10)';this.style.borderColor='rgba(184,74,30,.30)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--red-t);line-height:1">−167<span style="font-size:.9rem"> Mdkr</span></div>
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Varthän → framtid</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +33 % på ett år (från 168,8 till 225 miljarder kronor) och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
-      </a>
-
+    <p class="s-eye" style="text-align:center;margin-bottom:.3rem">Hitta rätt</p>
+    <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Sex vägar in</h2>
+    <div class="vy-genvagar">
+      <a href="#pristabell" class="vy-gv"><em class="vy-gv-tal"><span data-cards-total>37</span> prislappar</em><b>Prislistan</b><span>Vad kostar en dag i förskolan, en ambulansutryckning eller en rättegång?</span></a>
+      <a href="#budget" class="vy-gv"><em class="vy-gv-tal">1 542 Mdkr</em><b>Budgeten</b><span>Statens utgifter 2026, fördelade på 27 områden, och hela den offentliga sektorn.</span></a>
+      <a href="#oecd" class="vy-gv"><em class="vy-gv-tal">7 länder</em><b>Jämförelser</b><span>Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, med en källa per diagram.</span></a>
+      <a href="#kalkylator" class="vy-gv"><em class="vy-gv-tal">Din lön</em><b>Din ekonomi</b><span>Räkna på din egen skatt och se vad du får tillbaka i olika delar av livet.</span></a>
+      <a href="#framtid" class="vy-gv"><em class="vy-gv-tal">1980–2035</em><b>Framtid och historik</b><span>Hur skatter, skuld och välfärd har förändrats, och vad som väntar.</span></a>
+      <a href="#metod" class="vy-gv"><em class="vy-gv-tal">Öppen metod</em><b>Metod och källor</b><span>Hur siffrorna räknas fram, nyckeltal med källa och år, och ordlistan.</span></a>
     </div>
   </div>
 </section>
@@ -1547,7 +1570,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
     <div class="chart-box">
       <div class="chart-topbar">
-        <span class="ctt">Statsbudgeten 2025 — alla 27 UO (Mdkr)</span>
+        <span class="ctt">Statsbudgeten 2026 per utgiftsområde (miljarder kronor)</span>
         <div class="cf2-row"><button class="cf2 on" onclick="setF2(this,'all')">Alla</button><button class="cf2" onclick="setF2(this,'pilot')">Pilotområden</button></div>
       </div>
       <div class="chart-body2"><div id="barchart"></div></div>
@@ -2169,17 +2192,17 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <!-- CALCULATOR — LIFECYCLE REDESIGN -->
 <section class="calc-wrap" id="kalkylator">
   <div class="container">
-    <p class="s-eye">Din välfärdsprofil — illustration</p>
-    <h2 class="s-title">Hur fördelas förmåner per ålder och livssituation?</h2>
+    <p class="s-eye">Din ekonomi</p>
+    <h2 class="s-title">Din skatt och vad du får tillbaka</h2>
     <p class="s-sub">Visar <em>befolkningsgenomsnittet</em> för en person i din ålder, hushållstyp och inkomstklass. Baserat på SCB FASIT och COFOG. <strong>Detta är inte din individuella prognos</strong> — verklig variation är 5–10× större än modellen visar.</p>
 
-    <!-- Modell-disclaimer: ärlig om vad detta faktiskt är -->
-    <div style="margin:1rem 0 1.5rem;padding:.9rem 1.1rem;background:rgba(200,151,58,.06);border-left:3px solid rgba(200,151,58,.4);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.6">
-      <strong style="color:var(--amber)">⚠ Vad detta är — och inte är.</strong>
-      Modellen visar <strong>befolkningens genomsnitt</strong> per åldersgrupp, hushåll och inkomstdecil, multiplicerat av tre osäkra faktorer (NTA-vikter ±25 %, FASIT-hushåll ±20 %, decilgradient ±15 %). En frisk person konsumerar 5–10× mindre sjukvård än en kroniker i samma åldersgrupp.
+    <!-- Modell-disclaimer: hopfälld, öppnas vid behov -->
+    <details class="calc-om">
+      <summary>Så räknar vi, och vad modellen inte visar</summary>
+      <div class="calc-om-txt">Modellen visar <strong>befolkningens genomsnitt</strong> per åldersgrupp, hushåll och inkomstdecil, multiplicerat av tre osäkra faktorer (NTA-vikter ±25 %, FASIT-hushåll ±20 %, decilgradient ±15 %). En frisk person konsumerar 5–10× mindre sjukvård än en kroniker i samma åldersgrupp.
       <strong>Använd den för att förstå hur välfärden fungerar — inte som din personliga prognos.</strong>
-      <a href="#metod" style="color:var(--green);text-decoration:none;font-weight:500">→ Metodikens fullständiga osäkerhetskällor</a>
-    </div>
+      <a href="#metod" style="color:var(--green);text-decoration:none;font-weight:500">→ Metodikens fullständiga osäkerhetskällor</a></div>
+    </details>
 
     <div class="calc-layout">
       <!-- Controls -->
@@ -2201,6 +2224,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           </div>
         </div>
 
+        <details class="calc-mer">
+          <summary>Fler inställningar <span>kommun, hushåll, pension och kapital</span></summary>
+          <div class="calc-mer-in">
         <div>
           <label>Kommun <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(kommunalskatten varierar 28,9–35,7 %)</span></label>
           <select id="s-kommun" onchange="setKommun(this)" aria-label="Välj kommun för kommunalskattesats" style="width:100%;margin-top:.35rem;padding:7px 10px;font-size:.78rem;font-family:var(--sans);color:#f2efe8;background:#2a2926;border:1px solid rgba(255,255,255,.14);border-radius:6px;cursor:pointer">
@@ -2252,6 +2278,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <strong>Vad visas inte?</strong><br>
           Inkomstpension är avgiftsbaserad — dina egna inbetalningar, inte en "skatteförmån". Vi visar inte heller ett "livstids-netto" — se nedan varför.
         </div>
+          </div>
+        </details>
       </div>
 
       <!-- Result -->
@@ -2767,6 +2795,128 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </div>
 
 </main>
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// VYER — sajten är en fil men visas som sju vyer via adressens #-del.
+// Varje sektion hör till en vy. En länk till ett id visar vyn som innehåller det
+// och scrollar dit. #fakta-N, #kapitel-N, #gissa-…, #ordlista och #nyckeltal fungerar som förut.
+// Utan JavaScript visas allt på en sida.
+// ═══════════════════════════════════════════════════════════════════
+const SAJT_UPPDATERAD = '28 oktober 2026';
+const VYER = [
+  {id:'start',       namn:'Start',               hash:'',          delar:['hero','vdaStrip','tldr','snabbfakta','skatter','vem-gor-vad']},
+  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? Över 30 verkliga prislappar med källa.'},
+  {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget'], ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
+  {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
+  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
+  {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
+  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
+];
+// [mönster, vy, element att scrolla till om id:t inte finns ännu]
+const VY_PREFIX = [[/^fakta-\d+$/,'start','snabbfakta'],[/^kapitel-\d+$/,'start','kretslopp'],[/^gissa/,'prislistan','gissa'],[/^(ordlista|nyckeltal)$/,'metod','metod']];
+const BAS_TITEL = document.title;
+
+(function initVyer(){
+  const main = document.querySelector('main'); if(!main) return;
+  document.querySelector('section.hero').id = document.querySelector('section.hero').id || 'hero';
+  const q = document.querySelector('section.quote-section'); if(q && !q.id) q.id = 'citat';
+  const delTillVy = {}; VYER.forEach(v => v.delar.forEach(d => delTillVy[d] = v.id));
+
+  // Tilldela vy till varje barn i <main>. Avdelare (hr) hör till nästa sektion.
+  const barn = [...main.children];
+  let vantar = [];
+  barn.forEach(el => {
+    const vy = delTillVy[el.id];
+    if(vy){ vantar.forEach(x => x.dataset.vy = vy); vantar = []; el.dataset.vy = vy; }
+    else if(el.matches('hr, .div')) vantar.push(el);
+  });
+  vantar.forEach(x => x.remove()); // avdelare efter sista sektionen
+
+  // Vyhuvud (rubrik, datum, innehåll) och "Nästa"-länk för varje vy utom start
+  VYER.forEach((v, i) => {
+    const delar = barn.filter(el => el.dataset.vy === v.id);
+    if(!delar.length) return;
+    if(v.id !== 'start'){
+      const toc = v.delar.map(id => {
+        const s = document.getElementById(id); if(!s || id === 'citat') return '';
+        const t = (s.querySelector('.s-title') || {}).textContent || s.getAttribute('aria-label') || '';
+        return t ? `<li><a href="#${id}">${t.trim()}</a></li>` : '';
+      }).filter(Boolean);
+      const h = document.createElement('div');
+      h.className = 'vy-huvud'; h.dataset.vy = v.id;
+      h.innerHTML = `<div class="container">
+        <nav class="vy-smula" aria-label="Du är här"><a href="#">Start</a> <span aria-hidden="true">›</span> <span aria-current="page">${v.namn}</span></nav>
+        <h1 class="vy-titel">${v.namn}</h1>
+        ${v.ingress ? `<p class="vy-ingress">${v.ingress}</p>` : ''}
+        <p class="vy-datum">Uppdaterad ${SAJT_UPPDATERAD}</p>
+        ${toc.length > 1 ? `<ul class="vy-toc" aria-label="Innehåll">${toc.join('')}</ul>` : ''}
+      </div>`;
+      delar[0].before(h);
+    }
+    const nasta = VYER[(i + 1) % VYER.length];
+    const f = document.createElement('div');
+    f.className = 'vy-fot'; f.dataset.vy = v.id;
+    f.innerHTML = `<div class="container"><a href="#${nasta.hash}" class="vy-nasta">Nästa: ${nasta.id === 'start' ? 'tillbaka till start' : nasta.namn} <span aria-hidden="true">→</span></a></div>`;
+    delar[delar.length - 1].after(f);
+  });
+
+  document.documentElement.classList.add('har-vyer');
+  let aktiv = null;
+
+  function vyFor(id){
+    if(!id) return 'start';
+    for(const [re, vy] of VY_PREFIX) if(re.test(id)) return vy;
+    const el = document.getElementById(id);
+    if(!el) return null;
+    const b = el.closest('[data-vy]');
+    return b ? b.dataset.vy : null;
+  }
+
+  function visa(vyId, scrollMal){
+    const byte = vyId !== aktiv;
+    if(byte){
+      aktiv = vyId; window.aktivVy = vyId;
+      const pill = document.querySelector('.nav-pill');
+      if(pill){ pill.textContent = vyId === 'din-ekonomi' ? 'Dela min profil' : 'Dela'; pill.title = vyId === 'din-ekonomi' ? 'Dela en länk som återskapar din beräkning' : 'Dela länken till den här sidan'; }
+      main.querySelectorAll(':scope > [data-vy]').forEach(el => el.classList.toggle('vy-dold', el.dataset.vy !== vyId));
+      const v = VYER.find(x => x.id === vyId);
+      document.title = vyId === 'start' ? BAS_TITEL : v.namn + ' · Skatteplattformen';
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+        const h = a.getAttribute('href').slice(1);
+        a.classList.toggle('nav-active', h === v.hash);
+        if(a.classList.contains('nav-active')) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+      });
+      window.dispatchEvent(new Event('resize')); // diagram och karuseller som mäter sin bredd
+    }
+    requestAnimationFrame(() => {
+      if(scrollMal){ const m = document.getElementById(scrollMal.id) || scrollMal; m.scrollIntoView({block:'start'}); }
+      else if(byte) window.scrollTo(0, 0);
+    });
+  }
+
+  function route(){
+    const id = decodeURIComponent(location.hash.slice(1));
+    let vy = vyFor(id);
+    // Delad kalkylatorlänk (?age=…&inc=…) utan #-del öppnar Din ekonomi
+    if(!id && /[?&](age|inc)=/.test(location.search)) vy = 'din-ekonomi';
+    if(!vy) vy = 'start';
+    const v = VYER.find(x => x.id === vy);
+    // Vyns egen adress: överst. Annat id: scrolla dit (efter att vyn visats och övriga #-hanterare körts).
+    let mal = null;
+    if(id && id !== v.hash){
+      const p = VY_PREFIX.find(([re]) => re.test(id));
+      mal = document.getElementById(id) || (p && document.getElementById(p[2]));
+    }
+    visa(vy, mal);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+  // Vid sidladdning hoppar webbläsaren själv till #id efter vår scroll; gör om scrollen när sidan laddats klart.
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', () => { aktiv = null; route(); });
+  window.visaVyFor = id => { const vy = vyFor(id); if(vy) visa(vy, null); };
+})();
+</script>
 
 <!-- Delbart resultatkort — modal på body-nivå (position:fixed opåverkad av transforms) -->
 <div class="sc-overlay" id="sc-overlay" onclick="if(event.target===this)closeShareCard()">
@@ -2789,7 +2939,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   <div class="container">
     <div class="footer-grid">
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
-      <div class="fc"><h4>Verktyg</h4><a href="#pristabell">Prislistan</a><a href="#kalkylator">Din välfärdsprofil</a><a href="#historik">Budgethistorik</a><a href="#oecd">Internationell jämförelse</a></div>
+      <div class="fc"><h4>Verktyg</h4><a href="#pristabell">Prislistan</a><a href="#kalkylator">Din ekonomi</a><a href="#historik">Historik</a><a href="#oecd">Internationell jämförelse</a></div>
       <div class="fc"><h4>Metod</h4><a href="#metod">Hur vi räknar</a><a href="#metod">Datakällor</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">GitHub</a><a href="#metod">Begränsningar</a></div>
       <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Syfte</a><a href="#om-oss">Oberoende</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues" target="_blank" rel="noopener">Bidra</a></div>
     </div>
@@ -3862,8 +4012,6 @@ let hskIncome = Math.round(MEDIAN_LON_MAN*12/1000);   // medianlön, tkr/år
 // visar konkret vad svenska skattepengar finansierar. Auto-rotation 6 sek,
 // pausa på hover, manuella dots, respektera prefers-reduced-motion.
 const HERO_PRISLAPPAR = [
-  {cat:'Hälsa & sjukvård', title:'Ett dygn på intensivvård',
-   amount:'55 000', suf:'kr', vs:'Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)'},
   {cat:'Utbildning', title:'En grundskoleelev, ett år',
    amount:'133 000', suf:'kr', vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis'},
   {cat:'Kronisk sjukdom', title:'En MS-patient, ett år',
@@ -4004,12 +4152,14 @@ function forstaLon(e){
   a.value = 19; i.value = 300;
   if(typeof hskIncome !== 'undefined') hskIncome = 300;
   a.dispatchEvent(new Event('input')); i.dispatchEvent(new Event('input'));
-  document.getElementById('kalkylator').scrollIntoView({behavior:'smooth', block:'start'});
-  history.replaceState(null, '', '#kalkylator');
+  if(location.hash === '#kalkylator') document.getElementById('kalkylator').scrollIntoView({behavior:'smooth', block:'start'});
+  else location.hash = 'kalkylator'; // visar vyn Din ekonomi
 }
 
 function readURLParams(){
   const p = new URLSearchParams(window.location.search);
+  // Delad länk med fler inställningar: visa dem utfällda
+  if(p.get('hh') || p.get('kapital') || p.get('ks')){ const m = document.querySelector('.calc-mer'); if(m) m.open = true; }
   const age = parseInt(p.get('age'));
   const inc = parseInt(p.get('inc'));
   const pension = p.get('pension');
@@ -4062,7 +4212,7 @@ function buildShareURL(){
   if(typeof currentHousehold !== 'undefined' && currentHousehold && currentHousehold !== 'ensam') params.set('hh', currentHousehold);
   if(typeof currentKs === 'number' && Math.abs(currentKs - 0.3238) > 1e-6) params.set('ks', currentKs);
   if(kap > 0) params.set('kapital', kap);
-  return window.location.origin + window.location.pathname + '?' + params.toString();
+  return window.location.origin + window.location.pathname + '?' + params.toString() + '#kalkylator';
 }
 function shareCurrentState(){
   const url = buildShareURL();
@@ -4137,15 +4287,28 @@ const SKATTEDATA=[
   {l:'Cykelförmån & laddel skattefri',v:0.7,c:'ovr',not:'Klimatreform — fri cykel + tjänstebils-laddning'},
 ];
 const BC={helse:'#2E7D5C',soc:'#5B3F8C',utb:'#1E4A8C',infra:'#C8973A',arb:'#3B6D11',kom:'#993C1D',ovr:'#888780',forv:'#4A6741',tryg:'#B84A1E',miljo:'#2E8B57',bost:'#8B6914',moms:'#6B5B8D'};
+// Korta namn för diagrammet; hela namnet och utgiftsområdet visas i verktygstips och på dator
+const UO_KORT={'Försvar & krisberedskap':'Försvar','Allmänna bidrag till kommuner':'Bidrag till kommuner','Hälsovård, sjukvård & social omsorg':'Vård och omsorg',
+  'Ekon. trygghet sjukdom/funkt.':'Sjukdom och funktionsnedsättning','Utbildning & universitetsforskning':'Utbildning och forskning','Kommunikationer':'Vägar och järnvägar',
+  'Ekon. trygghet familjer/barn':'Familjer och barn','Rättsväsendet':'Rättsväsendet','Arbetsmarknad & arbetsliv':'Arbetsmarknad','Ekon. trygghet vid ålderdom':'Ålderdom',
+  'Avgiften till EU':'Avgift till EU','Internationellt bistånd':'Bistånd','Studiestöd':'Studiestöd','Statsskuldsräntor':'Räntor på statsskulden',
+  'Areella näringar & landsbygd':'Jordbruk och landsbygd','Samhällsekonomi & finans':'Finansförvaltning','Rikets styrelse':'Rikets styrelse','Miljö- & naturvård':'Miljö',
+  'Kultur, medier & fritid':'Kultur och fritid','Skatt, tull & exekution':'Skatt och tull','Migration':'Migration','Näringsliv':'Näringsliv','Energi':'Energi',
+  'Jämställdhet & nyanländas etabl.':'Jämställdhet och etablering','Regional utveckling':'Regional utveckling','Internationell samverkan':'Internationell samverkan','Samhällsplanering & bostäder':'Bostäder'};
+let bFilter='all', bAlla=false;
 function renderBars(f){
-  const d=f==='pilot'?BDATA.filter(x=>x.p):BDATA;
-  const mx=Math.max(...d.map(x=>x.v));
-  document.getElementById('barchart').innerHTML=d.map(x=>`
-    <div class="brow">
-      <span class="brow-l">${x.l}</span>
+  if(f) bFilter=f;
+  const urval=bFilter==='pilot'?BDATA.filter(x=>x.p):BDATA;
+  const d=bAlla?urval:urval.slice(0,10);
+  const mx=Math.max(...urval.map(x=>x.v));
+  document.getElementById('barchart').innerHTML=d.map(x=>{
+    const namn=x.l.replace(/\s*\((UO\d+)\)/,''), uo=(x.l.match(/UO\d+/)||[''])[0];
+    return `
+    <div class="brow" title="${x.l}">
+      <span class="brow-l"><span class="brow-kort">${UO_KORT[namn]||namn}</span><span class="brow-lang">${namn}</span> <span class="brow-uo">${uo}</span></span>
       <div class="brow-t"><div class="brow-f" style="width:${(x.v/mx*96).toFixed(1)}%;background:${BC[x.c]}"></div></div>
-      <span class="brow-v">${x.v.toFixed(1)}</span>
-    </div>`).join('');
+      <span class="brow-v">${x.v.toFixed(1).replace('.',',')}</span>
+    </div>`;}).join('')+(urval.length>10?`<button type="button" class="pg-more brow-mer" onclick="bAlla=!bAlla;renderBars()">${bAlla?'Visa de tio största':'Visa alla '+urval.length+' utgiftsområden'}</button>`:'');
 }
 function setF2(btn,f){document.querySelectorAll('.cf2').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderBars(f)}
 renderBars('all');
@@ -4873,8 +5036,30 @@ function jmfKort(ch){
 }
 
 function initOecd() {
-  document.getElementById('oecd-panels').innerHTML = Object.entries(JMF_DATA).map(([key, s], i) =>
-    `<div class="oecd-panel${i === 0 ? ' active' : ''}" id="oecd-${key}">${s.charts.map(jmfKort).join('')}</div>`).join('');
+  // Ett diagram åt gången per flik, med bläddring
+  const box = document.getElementById('oecd-panels');
+  box.innerHTML = Object.entries(JMF_DATA).map(([key, s], i) =>
+    `<div class="oecd-panel${i === 0 ? ' active' : ''}" id="oecd-${key}" data-i="0">
+      <div class="jmf-nav" role="group" aria-label="Bläddra bland diagrammen">
+        <button type="button" class="jmf-steg" data-d="-1" aria-label="Föregående diagram">‹</button>
+        <span class="jmf-pos" aria-live="polite">1 av ${s.charts.length}</span>
+        <button type="button" class="jmf-steg" data-d="1" aria-label="Nästa diagram">›</button>
+        <span class="jmf-lista">${s.charts.map((c, j) => `<button type="button" class="jmf-hopp${j === 0 ? ' on' : ''}" data-j="${j}">${c.t}</button>`).join('')}</span>
+      </div>
+      ${s.charts.map((c, j) => `<div class="jmf-slide"${j ? ' hidden' : ''}>${jmfKort(c)}</div>`).join('')}
+    </div>`).join('');
+  if(!box.dataset.lyss){
+    box.dataset.lyss = '1';
+    box.addEventListener('click', e => {
+      const b = e.target.closest('.jmf-steg,.jmf-hopp'); if(!b) return;
+      const p = b.closest('.oecd-panel'), slides = [...p.querySelectorAll('.jmf-slide')], n = slides.length;
+      const i = b.dataset.j !== undefined ? +b.dataset.j : (+p.dataset.i + +b.dataset.d + n) % n;
+      p.dataset.i = i;
+      slides.forEach((sl, k) => sl.hidden = k !== i);
+      p.querySelector('.jmf-pos').textContent = (i + 1) + ' av ' + n;
+      p.querySelectorAll('.jmf-hopp').forEach((h, k) => h.classList.toggle('on', k === i));
+    });
+  }
   // Enskilda jämförelsediagram på andra ställen: <div data-jmf="sjukvard:6">
   document.querySelectorAll('[data-jmf]').forEach(el => {
     const [k, n] = el.dataset.jmf.split(':');
@@ -4899,7 +5084,6 @@ const VDA_FACTS = [
   // KORRIGERAT: Sverige är INTE lägst i EU — Finland (1,9) och Norge (1,8) är lägre
   'Spädbarnsdödligheten i Sverige är <strong>2,0 per 1 000 födda</strong>, i nivå med Norge (2,0) och Finland (1,9). USA: 5,5 (FN:s IGME via Världsbanken, 2024)',
   'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC och en av vårdens mest kostnadseffektiva insatser',
-  'Ett dygn på IVA kostar <strong>35 000–80 000 kr</strong> (i snitt cirka 55 000 kr), och patienten betalar högst 130 kr',
   // KORRIGERAT: 5,3% primary-gymnasie (OECD EaG 2025); inkl. förskola+högskoleforskning ~6,5%. 7,1% är överskattning.
   'Sverige satsar <strong>~6,5% av BNP</strong> på utbildning (alla nivåer inkl. forskning) — bland de högsta i OECD',
   'Kriminalvård kostar cirka <strong>1,4 Mkr per intagen och år</strong>, ungefär sex gånger så mycket som ett år på högskolan',
@@ -5877,6 +6061,15 @@ document.getElementById('s-inc').addEventListener('input', function(){ this.setA
 // ═══════════════════════════════════════════════════════════════════
 function shareSkatt(e){
   if(e) e.preventDefault();
+  // Utanför Din ekonomi delas den vy man står på
+  if(window.aktivVy && window.aktivVy !== 'din-ekonomi'){
+    const url = location.href.split('?')[0];
+    const btn = document.querySelector('.nav-pill');
+    const flash = msg => { if(!btn) return; const o = btn.textContent; btn.textContent = msg; setTimeout(() => { btn.textContent = o; }, 2000); };
+    if(navigator.share) navigator.share({title: document.title, url}).catch(() => {});
+    else if(navigator.clipboard) navigator.clipboard.writeText(url).then(() => flash('Länk kopierad!')).catch(() => flash('Kunde ej kopiera'));
+    return;
+  }
   // Delar en LÄNK som återskapar vyn (ålder, inkomst, pension, hushåll, kapital)
   // — mottagaren ser exakt samma beräkning. Uppdaterar även adressfältet.
   const url = buildShareURL();
@@ -5886,7 +6079,7 @@ function shareSkatt(e){
   const inc = parseInt(document.getElementById('s-inc')?.value || (hskIncome || 460));
   const tax = annualTax(age, inc);
   const total = Object.values(getStage(age, inc).w).reduce((a,b)=>a+b,0);
-  const text = `Min välfärdsprofil på Skatteplattformen — ${age} år, ${inc.toLocaleString('sv-SE')} tkr/år: `
+  const text = `Min ekonomi på Skatteplattformen — ${age} år, ${inc.toLocaleString('sv-SE')} tkr/år: `
     + `~${total.toLocaleString('sv-SE')} tkr/år i offentliga tjänster`
     + (tax.tot>0 ? `, ~${tax.tot.toLocaleString('sv-SE')} tkr i skatt. ` : '. ')
     + `Öppna länken för samma beräkning:`;
@@ -5952,7 +6145,7 @@ function drawShareCard(){
   x.fillText('ÖPPEN DATA · PARTIPOLITISKT OBEROENDE · 2026', M, y.badge);
   // Headline
   x.fillStyle = '#1A1814'; x.font = 'italic 700 70px Georgia, serif';
-  x.fillText('Min välfärdsprofil', M, y.head);
+  x.fillText('Min ekonomi', M, y.head);
   x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
   x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, y.prof);
   // Förmåner
@@ -5994,7 +6187,7 @@ function shareShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
   c.toBlob(blob => {
     const file = new File([blob], 'min-valfardsprofil.png', { type: 'image/png' });
-    const payload = { title: 'Min välfärdsprofil', text: 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.' };
+    const payload = { title: 'Min ekonomi', text: 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.' };
     if(navigator.canShare && navigator.canShare({ files: [file] })){
       navigator.share(Object.assign({ files: [file] }, payload)).catch(()=>{});
     } else {
@@ -6119,30 +6312,7 @@ function downloadTransparencyJSON(){
   document.addEventListener('click',e=>{ if(!li.contains(e.target)) set(false); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && li.classList.contains('open')){ set(false); btn.focus(); } });
 })();
-// NAV ACTIVE LINK — IntersectionObserver
-// ═══════════════════════════════════════════════════════════════════
-(function initNavHighlight(){
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  if(!navLinks.length || !window.IntersectionObserver) return;
-  const sections = [];
-  navLinks.forEach(a => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(el) sections.push({el, a});
-  });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const match = sections.find(s => s.el === entry.target);
-      if(match) match.a.classList.toggle('nav-active', entry.isIntersecting);
-    });
-    // If multiple visible, keep only the topmost
-    const visible = sections.filter(s => s.a.classList.contains('nav-active'));
-    if(visible.length > 1){
-      visible.forEach((s,i) => { if(i > 0) s.a.classList.remove('nav-active'); });
-    }
-  }, {rootMargin:'-10% 0px -80% 0px', threshold:0});
-  sections.forEach(s => observer.observe(s.el));
-})();
+// Menyns aktiva länk sätts av vyerna (initVyer)
 </script>
 </body>
 </html>

@@ -55,7 +55,7 @@ correspondence/
 
 **Snabbfakta (`#snabbfakta`):**
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år). Direktlänk `#fakta-N`; `faktaBild(i)` ritar 1080×1350-delningsbild. Lägg bara in siffror med källa
-- `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr
+- `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
 **Delningsbild och ikoner (`img/`):**
 - `og.png` (1200×630) skapas från `og-mall.html` med Chrome headless: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=4000 --screenshot=img/og.png img/og-mall.html`. Uppdatera siffrorna i mallen när COFOG-fördelningen ändras
@@ -116,6 +116,13 @@ correspondence/
 - `JMF_DATA` (flikar → diagram) och `JMF_LAND` (Sverige, Norge, Danmark, Finland, Island, Tyskland, USA, fast ordning). Varje diagram: `v` (7 värden, `null` = uppgift saknas), `ref` (OECD- eller EU-snitt, streckad linje), `bast` ('hogre' | 'lagre' | null), `kalla`, `url`, `ar`, `not`
 - `jmfKort(ch)` ritar ett diagram. `<div data-jmf="flik:index">` och `DETAILS[*].jmf` återanvänder samma diagram på andra ställen
 - Regler: en källa och ett år per diagram, inga värderande omdömen, minst 5 av 7 länder (kontrolleras av `scripts/kontroll.mjs`)
+
+**Vyer (`initVyer`, script direkt efter `</main>`):**
+- `VYER` listar sju vyer med namn, hash och vilka sektions-id som ingår (`delar`). Varje barn till `<main>` får `data-vy`; avdelare (`hr`) hör till nästa sektion
+- Router på `hashchange`: id → vyn som innehåller elementet; `VY_PREFIX` för id som skapas av JS (`#fakta-N`, `#kapitel-N`, `#gissa-…`, `#ordlista`/`#nyckeltal`)
+- Vyns egen hash (t.ex. `#budget`) visar vyn överst; andra id scrollar dit. `window.aktivVy` = aktuell vy
+- Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar
+- `SAJT_UPPDATERAD` = datum under vyrubrikerna
 
 **Sensitivitetsanalys:**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
