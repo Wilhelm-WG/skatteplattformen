@@ -16,10 +16,18 @@
 <meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
 <meta property="og:site_name" content="Skatteplattformen">
 <meta property="og:locale" content="sv_SE">
+<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Av varje hundralapp i skatt går 39 kr till socialt skydd, 17 kr till utbildning och 15 kr till vård.">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
 <meta name="twitter:description" content="Se exakt vart dina skattepengar går. Oberoende, politiskt neutral. Data från SCB, OECD, SKR.">
+<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png">
+<!-- Ikoner -->
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
 {
@@ -330,6 +338,8 @@ h1 em{font-style:italic;color:var(--green)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 .btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:500;padding:14px 28px;border-radius:var(--r-sm);border:none;cursor:pointer;text-decoration:none;transition:all .18s;box-shadow:0 1px 2px rgba(27,77,62,.2),0 6px 16px rgba(27,77,62,.18)}
 .btn-p:hover{background:#163d31;transform:translateY(-2px);box-shadow:0 2px 4px rgba(27,77,62,.24),0 12px 28px rgba(27,77,62,.24)}
+.hero-forsta{display:inline-block;margin-top:1.1rem;font-size:.92rem;font-weight:500;color:var(--green);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.hero-forsta:hover{text-decoration-thickness:2px}
 .btn-g{display:inline-flex;align-items:center;gap:8px;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:.9rem;font-weight:450;padding:14px 28px;border-radius:var(--r-sm);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .18s}
 .btn-g:hover{border-color:var(--ink2);background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-md)}
 /* HERO SNABBKOLL */
@@ -846,6 +856,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <a href="#pristabell" class="btn-p">Se vad saker kostar →</a>
           <a href="#kalkylator" class="btn-g">Din välfärdsprofil</a>
         </div>
+        <a href="#kalkylator" class="hero-forsta fu fu3" onclick="forstaLon(event)">Vad händer med min första lön? <span aria-hidden="true">→</span></a>
       </div>
       <!-- HERO SNABBKOLL — roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
            Direkt svar: konkreta prislappar — vad köper svenska skattepengar?
@@ -3353,6 +3364,12 @@ const KALLOR = {
   kriminalvarden:{namn:'Kriminalvården, årsredovisning', match:['Kriminalvården'], url:'https://www.kriminalvarden.se/om-kriminalvarden/publikationer/arsredovisning/'},
   skr:           {namn:'Sveriges Kommuner och Regioner', match:['SKR'], url:'https://skr.se/'},
   regeringen:    {namn:'Regeringen, Så styrs Sverige', match:['Så styrs Sverige'], url:'https://www.regeringen.se/sa-styrs-sverige/'},
+  trafikanalys:  {namn:'Trafikanalys, Regional linjetrafik 2025', match:['Trafikanalys'], url:'https://www.trafa.se/globalassets/statistik/kollektivtrafik/kollektivtrafik/2025/regional-linjetrafik-2025.pdf'},
+  arsred_staten: {namn:'Årsredovisning för staten 2025 (skr. 2025/26:101)', match:['Årsredovisning för staten 2025'], url:'https://www.regeringen.se/contentassets/1f1553b2b7f74ded921df946bd64dba8/arsredovisning-for-staten-2025-skr.-202526101.pdf'},
+  skolverket2025:{namn:'Skolverket, Kostnader för skolväsendet 2025', match:['Kostnader för skolväsendet 2025'], url:'https://www.skolverket.se/download/18.615052d71a0adaf499e4b1f6/1790336879514/pdf13436.pdf'},
+  skv_tabell:    {namn:'Skatteverket, skattetabeller 2026', match:['skattetabell 32'], url:'https://skatteverket.entryscape.net/rowstore/dataset/88320397-5c32-4c16-ae79-d36d95b17b95/json?%C3%A5r=2026&tabellnr=32'},
+  pm_intjaning:  {namn:'Pensionsmyndigheten, Så tjänar du in till din pension', match:['Så tjänar du in till din pension'], url:'https://www.pensionsmyndigheten.se/forsta-din-pension/sa-fungerar-pensionen/sa-tjanar-du-in-till-din-pension'},
+  tandvard:      {namn:'1177, kostnader inom tandvård', match:['1177'], url:'https://www.1177.se/Stockholm/sa-fungerar-varden/kostnader-och-ersattningar/kostnader-och-ersattningar-inom-tandvard/'},
   varldsbanken:  {namn:'Världsbanken, World Development Indicators', match:['IGME','Världsbanken','WDI'], url:'https://databank.worldbank.org/source/world-development-indicators'},
 };
 const NYCKELTAL = {
@@ -3367,7 +3384,7 @@ const NYCKELTAL = {
   skattekvot:     {namn:'Skattekvot',                         v:'41,4 % (OECD-snitt 34,1 %); 2025 prel. 40,5 %', ar:'2024', kalla:'oecd_rev', gamla:['51,4','46,7 %','41,2 %','−5,5','370 Mdkr']},
   brytpunkt:      {namn:'Brytpunkt för statlig inkomstskatt', v:'≈ 660 000 kr/år i lön (skiktgräns 643 000 kr)', ar:'2026', kalla:'skatteverket', gamla:['brytpunkten (643 000','55–65 %']},
   prisbasbelopp:  {namn:'Prisbasbelopp',                      v:'59 200 kr',     ar:'2026', kalla:'skatteverket', gamla:[]},
-  arbetsgivaravgift:{namn:'Arbetsgivaravgift',                v:'31,42 % (varav 10,21 % ålderspensionsavgift)', ar:'2026', kalla:'skatteverket', gamla:[]},
+  arbetsgivaravgift:{namn:'Arbetsgivaravgift',                v:'31,42 % (varav 10,21 % ålderspensionsavgift); född 2003–2007: 20,81 % upp till 25 000 kr/mån', ar:'2026', kalla:'skatteverket', gamla:[]},
   vardgaranti:    {namn:'Medicinsk bedömning i primärvården inom 3 dagar', v:'91 %', ar:'aug 2026', kalla:'socialstyrelsen', gamla:['0–7–90','~50 %<sub> (SKR','Stockholm 62 %']},
   medellivslangd: {namn:'Medellivslängd',                     v:'84,1 år (OECD-snitt 81,2)', ar:'2024', kalla:'varldsbanken', gamla:['83,5 år','80,7','83,4 år','81,1']},
   aldre80:        {namn:'Personer 80 år och äldre',           v:'≈ 650 000 (2024) → 812 000 (2030)', ar:'2025–2070', kalla:'scb_befolkning', gamla:['601 000','668 000','895 000','+11 %<sub>']},
@@ -3428,7 +3445,7 @@ const ORDLISTA = [
   {t:'Statsbidrag', re:'statsbidrag(?:et|en)?', d:'Pengar från staten till kommuner och regioner. Generella statsbidrag får användas fritt, riktade är öronmärkta.'},
   {t:'Kommunalekonomisk utjämning', re:'kommunalekonomisk(?:a)? utjämning(?:en)?', d:'System som omfördelar pengar så att kommuner och regioner med låga skatteinkomster eller dyra förutsättningar kan ge likvärdig service.'},
   {t:'Preliminärskatt', re:'preliminärskatt(?:en)?', d:'Skatten som arbetsgivaren drar från lönen varje månad. Den stäms av mot den slutliga skatten i deklarationen.'},
-  {t:'Arbetsgivaravgift', re:'arbetsgivaravgift(?:en|er|erna)?', d:'Avgift som arbetsgivaren betalar ovanpå lönen, 31,42 % år 2026. Av den är 10,21 procentenheter ålderspensionsavgift som ger dig egen pension.'},
+  {t:'Arbetsgivaravgift', re:'arbetsgivaravgift(?:en|er|erna)?', d:'Avgift som arbetsgivaren betalar ovanpå lönen, 31,42 % år 2026. Av den är 10,21 procentenheter ålderspensionsavgift som ger dig egen pension. För den som är född 2003–2007 är avgiften tillfälligt 20,81 % på lön upp till 25 000 kr i månaden (april 2026–september 2027).'},
   {t:'Grundavdrag', re:'grundavdrag(?:et)?', d:'Den del av årsinkomsten som är skattefri, mellan cirka 17 000 och 46 000 kronor beroende på inkomst (2026).'},
   {t:'Jobbskatteavdrag', re:'jobbskatteavdrag(?:et)?', d:'En skattereduktion för arbetsinkomster. Den gör att skatten på lön blir lägre än på till exempel sjukpenning eller a-kassa.'},
   {t:'Prisbasbelopp (PBB)', re:'prisbasbelopp(?:et)?|PBB', d:'Ett belopp som följer inflationen och används för att räkna ut avdrag och ersättningar. 59 200 kronor år 2026.'},
@@ -3501,42 +3518,42 @@ const FAKTA = [
    chart:{type:'stack', unit:'%', parts:[{l:'Kommunen',v:20.69,c:'amber',txt:'20,69 %'},{l:'Regionen',v:11.69,c:'green2',txt:'11,69 %'}]},
    p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket.',
    kalla:'SCB, Kommunalskatterna 2026', ar:'2026'},
-  {tema:'Kommunerna', h:'Två av tre kronor i kommunernas kassa är egen skatt',
-   chart:{type:'stack', parts:[{l:'Egen skatt',v:65,c:'green',txt:'65 %'},{l:'Statsbidrag och utjämning',v:15,c:'blue',txt:'15 %'},{l:'Avgifter m.m.',v:20,c:'grey',txt:'20 %'}]},
-   p:'Resten är bidrag från staten och avgifter, till exempel för förskola och vatten. Utjämningen flyttar pengar mellan kommuner så att skolan och omsorgen kan hålla liknande nivå i hela landet.',
-   kalla:'SCB, kommunernas preliminära bokslut 2025', ar:'2025'},
-  {tema:'Regionerna', h:'Ungefär nio av tio kronor i regionerna går till vården',
-   chart:{type:'stack', parts:[{l:'Hälso- och sjukvård',v:90,c:'green2',txt:'≈ 90 %'},{l:'Kollektivtrafik, regional utveckling m.m.',v:10,c:'grey',txt:'10 %'}]},
-   p:'Sjukhus, vårdcentraler, psykiatri och tandvård för unga är regionernas stora uppdrag. Kollektivtrafiken sköts i regel av regionen tillsammans med kommunerna.',
-   kalla:'Regeringen.se, Så styrs Sverige', ar:'2025'},
-  {tema:'Kommunerna', h:'Skola och barnomsorg är kommunernas största kostnad',
-   chart:{type:'stack', parts:[{l:'Skola och barnomsorg',v:39,c:'blue',txt:'≈ 39 %'},{l:'Äldreomsorg, LSS, socialtjänst, övrigt',v:61,c:'grey',txt:'61 %'}]},
-   p:'Av kommunernas kostnader på cirka 880 miljarder kronor går ungefär 344 miljarder till förskola, grundskola, gymnasium och fritidshem. Äldreomsorgen är den näst största posten.',
-   kalla:'Ekonomifakta, Kommunernas kostnader', ar:'2025'},
-  {tema:'Hela offentliga sektorn', h:'39 kronor av varje hundralapp i skatt går till socialt skydd',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Socialt skydd',v:39,c:'purple'},{l:'Utbildning',v:17,c:'blue'},{l:'Hälsa och sjukvård',v:15,c:'green2'},{l:'Förvaltning',v:8,c:'grey'},{l:'Försvar',v:5,c:'red'},{l:'Infrastruktur',v:5,c:'amber'},{l:'Övrigt',v:11,c:'grey'}]},
-   p:'Socialt skydd är bland annat pensioner, sjukersättning, föräldrapenning och barnbidrag. Fördelningen gäller hela offentliga sektorn: stat, regioner och kommuner tillsammans.',
-   kalla:'SCB, COFOG', ar:'2024'},
+  {tema:'Din första lön', h:'På en lön på 25 000 kronor blir skatten 4 484 kronor i månaden',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4484,c:'red'},{l:'Kvar efter skatt',v:20516,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, skattetabell 32, kolumn 1'},
+   p:'Skatten dras innan lönen betalas ut, så 20 516 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
+   kalla:'Skatteverket, skattetabell 32 och arbetsgivaravgifter', ar:'2026'},
   {tema:'Medianlönen', h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7700,c:'red'},{l:'Kvar efter skatt',v:30600,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
    p:'Medianlönen är 38 300 kronor i månaden. Skatten blir cirka 7 700 kronor. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
    kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
-  {tema:'Vården', h:'Ett dygn på IVA kostar 55 000 kronor. Patienten betalar högst 130.',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Kostnad per dygn',v:55000,c:'green2'},{l:'Patienten betalar',v:130,c:'amber'}]},
-   p:'Resten betalas av regionen, alltså av skatten. Avgiften för slutenvård är högst 130 kronor per dygn. Kostnaden varierar mellan cirka 35 000 och 80 000 kronor beroende på vårdtyngd.',
-   kalla:'SKR, KPP-databasen', ar:'2024'},
-  {tema:'Jämförelse', h:'Sveriges skattekvot ligger mellan Danmarks och OECD-snittets',
-   chart:{type:'bars', unit:' %', rows:[{l:'Danmark',v:45.2,c:'grey'},{l:'Sverige',v:41.4,c:'green'},{l:'OECD-snitt',v:34.1,c:'grey'}], note:'skatter som andel av BNP, 2024'},
-   p:'Skattekvoten är de samlade skatterna och avgifterna som andel av BNP. Skillnaden mot OECD-snittet speglar bland annat att mer av välfärden i Sverige finansieras gemensamt via skatt i stället för via privata försäkringar och avgifter.',
-   kalla:'OECD Revenue Statistics 2025', ar:'2024'},
-  {tema:'Vården', h:'Sverige har färre vårdplatser per invånare än jämförbara länder',
-   chart:{type:'bars', unit:'', rows:[{l:'Sverige',v:1.9,c:'green'},{l:'Norge',v:3.4,c:'grey'},{l:'Danmark',v:2.5,c:'grey'},{l:'Finland',v:2.6,c:'grey'},{l:'Tyskland',v:7.6,c:'grey'},{l:'USA',v:2.7,c:'grey'},{l:'OECD-snitt',v:4.4,c:'grey'}], note:'vårdplatser per 1 000 invånare (Island: uppgift saknas)'},
-   p:'Sverige har valt att vårda fler hemma och i öppenvård. År 2000 fanns 3,5 vårdplatser per 1 000 invånare, år 2022 var det 1,9. Brist på personal gör att fler platser står stängda.',
-   kalla:'Världsbanken, WDI (OECD/WHO)', ar:'2022'},
-  {tema:'Statsbudgeten', h:'Försvarets budget ökar med en tredjedel på ett år',
-   chart:{type:'bars', unit:' Mdkr', rows:[{l:'2025',v:168.8,c:'grey'},{l:'2026',v:225,c:'red'}]},
-   p:'Försvaret får 225 miljarder kronor i statsbudgeten 2026, mot 168,8 miljarder 2025. Ökningen är en del av målet att nå 3,5 procent av BNP enligt Natos nya riktmärke.',
-   kalla:'Budgetpropositionen 2026', ar:'2026'},
+  {tema:'Pension', h:'Drygt 17 procent av lönen sparas till din allmänna pension',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Inkomstpension',v:3720,c:'blue'},{l:'Premiepension',v:581,c:'purple'}], note:'pensionsrätt per månad vid en lön på 25 000 kr'},
+   p:'Pensionsrätten är 18,5 % av den pensionsgrundande inkomsten, alltså lönen minus den allmänna pensionsavgiften på 7 %. På 25 000 kronor i månaden blir det 4 301 kronor. Premiepensionen placerar du själv i fonder. Det gäller lön upp till cirka 56 000 kronor i månaden.',
+   kalla:'Pensionsmyndigheten, Så tjänar du in till din pension', ar:'2026'},
+  {tema:'Skolan', h:'Ett år på gymnasiet kostar 148 100 kronor per elev',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Ett år',v:148100,c:'blue'},{l:'Tre år',v:444300,c:'blue'}], note:'genomsnitt för alla huvudmän, kommunala och fristående'},
+   p:'Det är kommunerna som betalar, även när eleven går på en fristående skola. Gymnasieskolan kostade totalt nästan 55 miljarder kronor 2025. Kostnaden skiljer sig mycket mellan programmen: yrkesprogram med verkstäder och djur kostar mer än högskoleförberedande program.',
+   kalla:'Kostnader för skolväsendet 2025 (Skolverket)', ar:'2025'},
+  {tema:'Vården', h:'Nio av tio får en medicinsk bedömning i primärvården inom tre dagar',
+   chart:{type:'bars', unit:' %', rows:[{l:'Bedömning i primärvården inom 3 dagar',v:91,c:'green2'},{l:'Operation eller åtgärd inom 90 dagar',v:63,c:'amber'}], note:'andel av patienterna, hela landet, augusti 2026'},
+   p:'Vårdgarantin säger att du ska få en medicinsk bedömning i primärvården inom tre dagar och en operation eller annan åtgärd inom 90 dagar efter beslut. Det första målet nås nästan alltid, det andra för knappt två av tre.',
+   kalla:'Socialstyrelsen, väntetider och vårdgaranti', ar:'2026'},
+  {tema:'Skatteintäkterna', h:'Mer än hälften av skatterna kommer från arbete',
+   chart:{type:'stack', parts:[{l:'Arbete',v:57.5,c:'green',txt:'57 %'},{l:'Konsumtion',v:26.4,c:'amber',txt:'26 %'},{l:'Kapital och företag',v:15.3,c:'blue',txt:'15 %'},{l:'Övrigt',v:0.8,c:'grey',txt:''}]},
+   p:'Skatterna gav totalt 2 699 miljarder kronor 2025. Skatt på arbete är inkomstskatt och arbetsgivaravgifter. Konsumtion är framför allt moms. Kapital är skatt på företagens vinster, på hushållens kapital och på fastigheter.',
+   kalla:'Årsredovisning för staten 2025 (skr. 2025/26:101)', ar:'2025'},
+  {tema:'Statsskulden', h:'Sveriges offentliga skuld är mindre än hälften av EU-snittet',
+   chart:{type:'bars', unit:' %', rows:[{l:'Sverige',v:35.1,c:'green'},{l:'EU-snitt',v:81.7,c:'grey'}], note:'offentlig bruttoskuld (Maastricht) som andel av BNP'},
+   p:'Skulden omfattar stat, regioner, kommuner och pensionssystem. EU:s regler säger att skulden inte bör vara över 60 % av BNP.',
+   kalla:'Eurostat', ar:'2025'},
+  {tema:'Tandvården', h:'Tandvården är gratis till och med det år du fyller 19',
+   chart:{type:'stack', parts:[{l:'Gratis, 0–19 år',v:20,c:'green2',txt:'0–19 år'},{l:'Du betalar själv, med bidrag och högkostnadsskydd',v:20,c:'grey',txt:'20 år →'}]},
+   p:'Regionen betalar tandvården för barn och unga med skattepengar. Åldersgränsen sänktes från 23 till 19 år den 1 januari 2025. Efter det betalar du själv, men får ett tandvårdsbidrag och ett högkostnadsskydd från staten.',
+   kalla:'1177 och riksdagen (bet. 2024/25:SoU4)', ar:'2026'},
+  {tema:'Kollektivtrafiken', h:'Biljetterna betalar knappt hälften av kollektivtrafiken',
+   chart:{type:'stack', parts:[{l:'Biljetter och andra intäkter',v:46,c:'amber',txt:'46 %'},{l:'Skatt via regioner och kommuner',v:54,c:'green2',txt:'54 %'}]},
+   p:'Den regionala kollektivtrafiken kostade cirka 64,5 miljarder kronor 2025. Resten betalas med skatt, ungefär 3 500 kronor per invånare och år.',
+   kalla:'Trafikanalys, Regional linjetrafik 2025', ar:'2025'},
 ];
 (function initFakta(){
   const track=document.getElementById('fk-track'); if(!track) return;
@@ -3946,6 +3963,18 @@ function setHeroMode(mode, btn){
 // SHAREABLE URLs — läs/skriv URL-parametrar för delbart tillstånd
 // Parametrar: ?age=35&inc=500&pension=1
 // ═══════════════════════════════════════════════════════════════════
+// "Vad händer med min första lön?": kalkylatorn vid 19 år och 25 000 kr/mån (300 tkr/år)
+function forstaLon(e){
+  const a = document.getElementById('s-age'), i = document.getElementById('s-inc');
+  if(!a || !i) return;
+  if(e) e.preventDefault();
+  a.value = 19; i.value = 300;
+  if(typeof hskIncome !== 'undefined') hskIncome = 300;
+  a.dispatchEvent(new Event('input')); i.dispatchEvent(new Event('input'));
+  document.getElementById('kalkylator').scrollIntoView({behavior:'smooth', block:'start'});
+  history.replaceState(null, '', '#kalkylator');
+}
+
 function readURLParams(){
   const p = new URLSearchParams(window.location.search);
   const age = parseInt(p.get('age'));
@@ -4424,7 +4453,10 @@ function annualTax(age, inc, opts){
   if(d.pension)       avgSats = 0;
   else if(d.is66)     avgSats = inkludaPension ? 0.1021 : 0;
   else                avgSats = inkludaPension ? 0.3142 : 0.2121;
-  const avg = inc * avgSats;
+  let avg = inc * avgSats;
+  // Tillfälligt nedsatt avgift för unga (född 2003–2007 år 2026, dvs. 19–23 år): 20,81 % i stället för 31,42 %
+  // på lön upp till 25 000 kr/mån (300 tkr/år), lön utbetald 1 april 2026–30 september 2027. Skatteverket.
+  if(!d.pension && !d.is66 && age >= 19 && age <= 23) avg -= Math.min(inc, 300) * (0.3142 - 0.2081);
 
   // Moms: hushåll konsumerar del av disponibel inkomst
   // Sparkvot: SCB HUT — varierar med inkomst (låg: ~5%, medel: ~15%, hög: ~25%)

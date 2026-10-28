@@ -10,6 +10,29 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Steg 5: nya faktakort, första lönen och delningsbild
+
+- **Ny uppsättning faktakort (10):** kommunalskatten och medianlönen är kvar. Nya
+  kort: din första lön (25 000 kr ger 4 484 kr i skatt, tabell 32), pension
+  (18,5 % av pensionsgrundande inkomst), gymnasiet (148 100 kr per elev och år,
+  Skolverket 2025), vårdgarantin (91 % inom tre dagar), var skatterna kommer
+  ifrån (arbete 57 %, konsumtion 26 %, kapital 15 %, 2025), offentlig skuld
+  (35,1 % mot EU 81,7 %), tandvården (gratis t.o.m. 19 år) och
+  kollektivtrafiken (46 % betalas av biljetter och andra intäkter, 2025).
+  Borttaget: korten som upprepade andra sektioner, IVA-dygnet (siffran kunde inte
+  verifieras), skattekvoten, vårdplatserna och försvarsbudgeten.
+- **"Vad händer med min första lön?"** i toppen öppnar kalkylatorn vid 19 år och
+  25 000 kr i månaden (`forstaLon`).
+- **Arbetsgivaravgift för unga:** kalkylatorn räknar med den tillfälligt sänkta
+  avgiften 20,81 % på lön upp till 25 000 kr/mån för 19–23-åringar (född
+  2003–2007, lön utbetald april 2026–september 2027). Ordlistan och NYCKELTAL
+  är uppdaterade.
+- **Delningsbild och ikon:** `img/og.png` (1200×630, `og:image` och
+  `twitter:image`), `img/favicon.svg` och `img/apple-touch-icon.png`. Mallen för
+  delningsbilden finns i `img/og-mall.html`.
+- **Nya källor i `KALLOR`:** Trafikanalys, Årsredovisning för staten 2025,
+  Skolverket 2025, skattetabell 32, Pensionsmyndigheten och 1177.
+
 ### Changed (2026-10-28) — Steg 4: enhetliga och neutrala internationella jämförelser
 
 - **Samma sju länder i alla diagram:** Sverige, Norge, Danmark, Finland, Island,

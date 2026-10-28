@@ -38,6 +38,7 @@ correspondence/
   - `opts.ksOverride` — alternativ kommunalskattesats (default 0.3237)
   - Ålder <19 → noll skatt
   - Delarna räknas i `skattDelar(age, inc, opts)` (oavrundat); `opts.pension` (standard: från 65 år) = pensionsinkomst → inget jobbskatteavdrag, ingen arbetsgivaravgift
+  - 19–23 år (född 2003–2007): tillfälligt sänkt arbetsgivaravgift 20,81 % på lön upp till 300 tkr/år (april 2026–september 2027)
   - Från 66 år: förhöjt grundavdrag (`forhojtGrundavdrag2026`), lön ger förhöjt jobbskatteavdrag (`jobbskatteavdrag66`) och 10,21 % arbetsgivaravgift
   - Allmän pensionsavgift (7 %) avräknas före jobbskatteavdraget; ej avräknad rest läggs på kommunalskatten
   - Verifierat mot skattetabell 32 kolumn 1–3 (±1 kr, 10 000–60 000 kr/mån)
@@ -54,6 +55,11 @@ correspondence/
 
 **Snabbfakta (`#snabbfakta`):**
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år). Direktlänk `#fakta-N`; `faktaBild(i)` ritar 1080×1350-delningsbild. Lägg bara in siffror med källa
+- `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr
+
+**Delningsbild och ikoner (`img/`):**
+- `og.png` (1200×630) skapas från `og-mall.html` med Chrome headless: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=4000 --screenshot=img/og.png img/og-mall.html`. Uppdatera siffrorna i mallen när COFOG-fördelningen ändras
+- `favicon.svg`, `apple-touch-icon.png` (180×180)
 
 **Gissa först (`#gissa`):**
 - Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-iva`). Ingen lagring
