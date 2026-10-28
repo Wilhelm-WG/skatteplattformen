@@ -10,6 +10,23 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — Skatt på sparande (ISK)
+
+- **Nytt avsnitt `#sparande`** i Din ekonomi: hur ISK beskattas (1,065 % av
+  värdet 2026, 0,888 % 2025; skattefritt 300 000 kr från 2026, 150 000 kr
+  2025), räkneexempel, jämförelse med vanlig depå och Danmark (aktiesparekonto
+  17 %, vanligt aktiekonto 27/42 %), vem som sparar (4 miljoner med ISK 2024;
+  medianen 78 000 kr 2022), att tiondelen med högst ekonomisk standard fick nära
+  80 % av kapitalinkomsterna 2024, kostnaden (cirka 7 miljarder kronor per år)
+  och vad regeringen och remissinstanserna sa (citat från regeringen,
+  Näringslivets skattedelegation, Konjunkturinstitutet och ESV). Alla uppgifter
+  kontrollerade mot primärkällor; egna beräkningar märkta.
+- **Rad i toppen** under lönetabellen om ISK-skatten 2026, och rättade ISK-rader
+  i Skatter i korthet och kalkylatorn ("~1 %" → 1,065 % över 300 000 kr).
+- Påståendet "90 % av kapitalvinsterna går till den rikaste tiondelen" gick inte
+  att belägga; avsnittet använder SCB-baserade "nära 80 % av
+  kapitalinkomsterna (2024)".
+
 ### Changed (2026-10-28) — Lönetabell i toppen i stället för 285 000 kr
 
 - **Startsidans ledsiffra** "285 000 kr per invånare och år" ersatt med

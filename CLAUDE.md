@@ -133,6 +133,7 @@ correspondence/
 - Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar
 - `SAJT_UPPDATERAD` = datum under vyrubrikerna
 - `VYER[*].led = {tal, text, kalla}` = ledsiffran överst i vyn. Bara siffror som finns med källa på sajten
+- `#sparande` (Din ekonomi): skatt på ISK. Se över varje år när statslåneräntan 30 november och budgetpropositionen är kända (räntan styr nästa års skattesats)
 - Heron visar `.hero-lon`: skatt och kvar efter skatt för 25/50/75/100 tkr i månaden ur skattetabell 32 (statisk HTML; uppdatera varje år med nya tabeller)
 - Startsidan har `#unga` ("Snabba svar": vardagsfrågor med direkt källa, inga modellsiffror) direkt efter heron. Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
