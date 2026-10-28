@@ -81,6 +81,14 @@ correspondence/
 - `buildShareURL()` / `readURLParams()` / `shareCurrentState()`
 - Parametrar: age, inc, pension, hh (hushåll), profile, kapital
 
+**Ikonserie:**
+- Inline-SVG-sprite direkt efter `<body>` (`<symbol id="i-namn">`, 24×24, linjeikoner)
+- `ico(namn, cls)` i JS returnerar `<svg class="ico">`; färg via `currentColor`
+- `CAT_ICO` mappar prislistans kategorier till ikoner. Använd ikoner, inte emoji, i innehållet
+
+**Vem gör vad (`#vem-gor-vad`):**
+- Statisk sektion mellan Prislistan och Budgeten: ansvar för stat/region/kommun, skattens väg, intäktsandelar 2025 (SCB)
+
 **Sensitivitetsanalys:**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader

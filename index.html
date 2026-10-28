@@ -80,6 +80,62 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* VEM GÖR VAD */
+.vgv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.8rem}
+.vgv-card{background:var(--paper);border:1px solid var(--border);border-top:3px solid var(--c);border-radius:var(--r);padding:1.3rem 1.3rem 1.2rem;display:flex;flex-direction:column;gap:.6rem;box-shadow:var(--shadow-sm)}
+.vgv-head{display:flex;align-items:center;gap:.7rem}
+.vgv-badge{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cl);color:var(--c);border:1.5px solid var(--c);flex:none}
+.vgv-badge .ico{width:22px;height:22px}
+.vgv-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin:0;line-height:1.1}
+.vgv-meta{font-family:var(--mono);font-size:.68rem;color:var(--ink3);line-height:1.5}
+.vgv-big{font-family:var(--mono);font-size:1.6rem;color:var(--c);line-height:1;margin-top:.2rem}
+.vgv-bigtxt{font-size:.78rem;color:var(--ink2);line-height:1.45}
+.vgv-card ul{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.4rem;font-size:.82rem;color:var(--ink2)}
+.vgv-card li{display:flex;gap:.5rem;align-items:flex-start;line-height:1.4}
+.vgv-card li .ico{color:var(--c);margin-top:.05em;width:1.05rem;height:1.05rem}
+.vgv-fin{margin-top:auto;min-height:3.6em;padding-top:.7rem;border-top:1px solid var(--border2);font-size:.72rem;color:var(--ink3);line-height:1.5}
+.vgv-flow{margin-top:2.2rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:steg}
+.vgv-step{position:relative;padding:0 1.2rem 0 0}
+.vgv-step:not(:last-child)::after{content:"";position:absolute;top:20px;left:48px;right:10px;height:0;border-top:2px dashed var(--bg3)}
+.vgv-step .vgv-badge{width:40px;height:40px;position:relative;z-index:1;background:var(--paper)}
+.vgv-step b{display:block;font-size:.84rem;color:var(--ink);margin:.7rem 0 .25rem}
+.vgv-step b::before{counter-increment:steg;content:counter(steg) ". ";color:var(--ink3);font-family:var(--mono);font-weight:400}
+.vgv-step p{font-size:.78rem;color:var(--ink2);line-height:1.5;margin:0}
+.vgv-myth{margin-top:1.8rem;border-left:3px solid var(--amber);background:var(--amber-l);padding:.9rem 1.1rem;border-radius:0 var(--r) var(--r) 0;font-size:.82rem;color:var(--ink2);line-height:1.6}
+.vgv-myth strong{color:var(--ink)}
+.vgv-2col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;margin-top:2.4rem;align-items:start}
+.vgv-panel{background:var(--bg2);border-radius:10px;padding:1.3rem}
+.vgv-lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem}
+.vgv-panel h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0 0 .3rem}
+.vgv-panel > p{font-size:.8rem;color:var(--ink2);line-height:1.55;margin:0 0 1rem}
+.vgv-row{display:grid;grid-template-columns:6.2rem minmax(0,1fr);gap:.7rem;align-items:center;font-size:.78rem;margin-bottom:.6rem}
+.vgv-bar{display:flex;height:26px;border-radius:5px;overflow:hidden}
+.vgv-bar span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.66rem;color:#fff;white-space:nowrap;overflow:hidden}
+.vgv-s{background:var(--green)}.vgv-g{background:var(--blue)}.vgv-o{background:#8A8D94}
+.vgv-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.7rem;color:var(--ink2);margin-top:.4rem}
+.vgv-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.35rem;vertical-align:0}
+.vgv-hund{display:grid;gap:.4rem}
+.vgv-hund div{display:grid;grid-template-columns:minmax(0,10.5rem) minmax(0,1fr) 2.8rem;gap:.6rem;align-items:center;font-size:.76rem;color:var(--ink2)}
+.vgv-hund i{display:block;height:9px;border-radius:5px;background:var(--amber)}
+.vgv-hund em{font-style:normal;font-family:var(--mono);text-align:right;color:var(--ink)}
+.vgv-src{font-size:.66rem;color:var(--ink3);margin-top:1.6rem;line-height:1.6}
+@media(max-width:860px){
+  .vgv-grid,.vgv-2col{grid-template-columns:1fr}
+  .vgv-flow{grid-template-columns:1fr 1fr;row-gap:1.4rem}
+  .vgv-step:nth-child(2)::after{display:none}
+}
+@media(max-width:480px){
+  .vgv-flow{grid-template-columns:1fr}
+  .vgv-step::after{display:none}
+  .vgv-hund div{grid-template-columns:minmax(0,8.5rem) minmax(0,1fr) 2.6rem}
+}
+/* Ikonserie */
+.ico{width:1.1em;height:1.1em;display:inline-block;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.pf .ico,.ft-tab .ico,.scen-tab .ico,.hh-btn .ico{margin-right:.35em}
+span.pc-cat{display:inline-flex;align-items:center;gap:.45em}
+.pc-cat .ico{width:1.25em;height:1.25em;stroke-width:1.8}
+.stage-icon .ico{width:1.2rem;height:1.2rem}
+.sharecard-btn .ico{margin-right:.4em;vertical-align:-.22em}
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.78);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
@@ -493,6 +549,48 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </style>
 </head>
 <body>
+<!-- Ikonserie: linjeikoner 24x24, färg via currentColor. JS: ico('namn'). HTML: <svg class="ico"><use href="#i-namn"/></svg> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.4 2.7 3 6 3s6-1.6 6-3v-5M22 9v5"/></symbol>
+<symbol id="i-cross" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="i-bridge" viewBox="0 0 24 24"><path d="M2 18h20M4 18v-6M20 18v-6M2 12q10-8 20 0M9 18v-4M15 18v-4"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="8.5" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M3 19c0-3.2 2.5-5.5 5.5-5.5S14 15.8 14 19M14.5 14.2c.6-.3 1.3-.5 2-.5 2.5 0 4.5 2 4.5 4.8"/></symbol>
+<symbol id="i-shieldcheck" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+<symbol id="i-pill" viewBox="0 0 24 24"><rect x="2.8" y="8.5" width="18.4" height="7" rx="3.5" transform="rotate(-35 12 12)"/><path d="M9.3 8.2l5.4 7.6"/></symbol>
+<symbol id="i-rank" viewBox="0 0 24 24"><rect x="4" y="11" width="4" height="9" rx="1"/><rect x="10" y="5" width="4" height="15" rx="1"/><rect x="16" y="14" width="4" height="6" rx="1"/></symbol>
+<symbol id="i-gov" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5.5 10v8M10 10v8M14 10v8M18.5 10v8M3 20.5h18"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.4-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.6 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5M10 20v-5h4v5"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-blocks" viewBox="0 0 24 24"><rect x="3.5" y="12.5" width="7.5" height="7.5" rx="1"/><rect x="13" y="12.5" width="7.5" height="7.5" rx="1"/><rect x="8.2" y="3.5" width="7.5" height="7.5" rx="1"/></symbol>
+<symbol id="i-backpack" viewBox="0 0 24 24"><path d="M7 8a5 5 0 0 1 10 0v11a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19z"/><path d="M9.5 5V3.5h5V5M7 13h10M10 13v2.5h4V13"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5.5c3-1 6-1 9 1 3-2 6-2 9-1v13c-3-1-6-1-9 1-3-2-6-2-9-1z"/><path d="M12 6.5v13"/></symbol>
+<symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5v2M3 13h18"/></symbol>
+<symbol id="i-family" viewBox="0 0 24 24"><circle cx="7" cy="6.5" r="2.5"/><circle cx="17" cy="6.5" r="2.5"/><circle cx="12" cy="12.5" r="1.8"/><path d="M3 20v-3.5a4 4 0 0 1 6-3.5M21 20v-3.5a4 4 0 0 0-6-3.5M9.5 20v-1.5a2.5 2.5 0 0 1 5 0V20"/></symbol>
+<symbol id="i-couple" viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.8"/><circle cx="16" cy="7" r="2.8"/><path d="M2.5 20c0-3.3 2.5-6 5.5-6s5.5 2.7 5.5 6M13.5 14.6c.8-.4 1.6-.6 2.5-.6 3 0 5.5 2.7 5.5 6"/></symbol>
+<symbol id="i-parentchild" viewBox="0 0 24 24"><circle cx="9" cy="6" r="3"/><circle cx="17" cy="11" r="2"/><path d="M3 20.5c0-3.6 2.7-6.5 6-6.5s6 2.9 6 6.5M14 20.5c0-2 1.3-3.6 3-3.6s3 1.6 3 3.6"/></symbol>
+<symbol id="i-office" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h2M13 7.5h2M9 11h2M13 11h2M9 14.5h2M13 14.5h2M10.5 20.5v-3h3v3"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><path d="M3 18h18M7 21h10M6.5 18a5.5 5.5 0 0 1 11 0M12 6v2.5M5.6 9.6l1.6 1.6M18.4 9.6l-1.6 1.6"/></symbol>
+<symbol id="i-care" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></symbol>
+<symbol id="i-elder" viewBox="0 0 24 24"><circle cx="10" cy="5" r="2.5"/><path d="M10 8v6l-3 6.5M10 14l3 6.5M10 10.5l-3 2.5M10 10.5l4.5 1.5M16.5 12v8.5"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.2-5.5 4.4 11 2.2-5.5H21"/></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2"/><rect x="9" y="3" width="6" height="3" rx="1"/><path d="M8.5 11h7M8.5 15h5"/></symbol>
+<symbol id="i-train" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="13" rx="3"/><path d="M6 10h12M8 16l-2 4.5M16 16l2 4.5M7 19h10"/><circle cx="9" cy="13" r=".8"/><circle cx="15" cy="13" r=".8"/></symbol>
+<symbol id="i-scales" viewBox="0 0 24 24"><path d="M12 4v16M8 20.5h8M5 7h14M5 7l-2.6 6.2a2.8 2.8 0 0 0 5.2 0zM19 7l-2.6 6.2a2.8 2.8 0 0 0 5.2 0z"/></symbol>
+<symbol id="i-mask" viewBox="0 0 24 24"><path d="M5 4.5h14v6.5a7 7 0 0 1-14 0z"/><path d="M8.5 9h1.5M14 9h1.5M9 14c1.8 1.3 4.2 1.3 6 0"/></symbol>
+<symbol id="i-houses" viewBox="0 0 24 24"><path d="M2 12.5l5-4 5 4M3.5 11.3v8.2h7v-8.2M12 9l5-4.5 5 4.5M13.5 7.8v11.7h7V7.8"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15z"/><path d="M5 19l8-8"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24"><path d="M6 18L18 6"/><circle cx="7.5" cy="7.5" r="2.2"/><circle cx="16.5" cy="16.5" r="2.2"/></symbol>
+<symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.8"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20.5c0-3.9 3.1-7 7-7s7 3.1 7 7"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8.5 7l1.5-2.5h4L15.5 7"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="2.5"/><path d="M5 11h14M7.5 18v2.5M16.5 18v2.5"/><circle cx="8.5" cy="14.5" r=".8"/><circle cx="15.5" cy="14.5" r=".8"/></symbol>
+<symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 4C5.3 4 4 5.8 4 8c0 3 1.6 4.2 2.1 7.2.4 2.5.8 4.8 2 4.8 1.3 0 1.4-4 2.9-4h2c1.5 0 1.6 4 2.9 4 1.2 0 1.6-2.3 2-4.8.5-3 2.1-4.2 2.1-7.2 0-2.2-1.3-4-3.5-4-1.7 0-2.6 1-4.5 1S9.2 4 7.5 4z"/></symbol>
+</defs></svg>
 
 <a href="#kalkylator" class="skip-link">Hoppa till innehåll</a>
 
@@ -688,7 +786,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
       <strong style="color:var(--ink)">Skatteintäkterna 2026 fördelas så här:</strong>
       kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt + moms + arbetsgivaravgift finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Totalsumman — <strong>~3 280 Mdkr</strong> offentliga sektorn 2026 (statsbudget 1 542 Mdkr + kommun/region ~1 738 Mdkr) — fördelas per COFOG-funktion.
-      <a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
+      <a href="#vem-gor-vad" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem;margin-right:1.2rem">→ Vem gör vad: stat, region och kommun</a><a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
     </div>
   </div>
 </section>
@@ -706,13 +804,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
       <div class="pf-row">
         <button class="pf on" onclick="fc(this,'all')">Alla</button>
-        <button class="pf" onclick="fc(this,'top10')" style="background:rgba(200,151,58,.08);border-color:rgba(200,151,58,.4)">🏆 Topp 10 dyraste</button>
-        <button class="pf" onclick="fc(this,'helse')">Hälsa</button>
-        <button class="pf" onclick="fc(this,'utb')">Utbildning</button>
-        <button class="pf" onclick="fc(this,'infra')">Infrastruktur</button>
-        <button class="pf" onclick="fc(this,'social')">Social</button>
-        <button class="pf" onclick="fc(this,'trygghet')">Trygghet</button>
-        <button class="pf" onclick="fc(this,'kronisk')">Kroniska sjukdomar</button>
+        <button class="pf" onclick="fc(this,'top10')" style="background:rgba(200,151,58,.08);border-color:rgba(200,151,58,.4)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rank"/></svg>Topp 10 dyraste</button>
+        <button class="pf" onclick="fc(this,'helse')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>Hälsa</button>
+        <button class="pf" onclick="fc(this,'utb')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cap"/></svg>Utbildning</button>
+        <button class="pf" onclick="fc(this,'infra')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bridge"/></svg>Infrastruktur</button>
+        <button class="pf" onclick="fc(this,'social')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg>Social</button>
+        <button class="pf" onclick="fc(this,'trygghet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-shieldcheck"/></svg>Trygghet</button>
+        <button class="pf" onclick="fc(this,'kronisk')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg>Kroniska sjukdomar</button>
       </div>
     </div>
     <div style="margin-top:1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
@@ -726,6 +824,96 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
     <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
     <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
+  </div>
+</section>
+
+<!-- VEM GÖR VAD: stat, region, kommun -->
+<section class="section" id="vem-gor-vad" aria-label="Vem gör vad: staten, regionen och kommunen">
+  <div class="cw">
+    <p class="s-eye">Tre nivåer, en lönespecifikation</p>
+    <h2 class="s-title">Vem gör vad?</h2>
+    <p class="s-sub">Välfärden delas mellan staten, 21 regioner och 290 kommuner. Var och en har egna folkvalda, egen budget och eget ansvar. Det här är vem som betalar för vad, och hur din skatt hittar dit.</p>
+
+    <div class="vgv-grid">
+      <article class="vgv-card" style="--c:var(--blue);--cl:var(--blue-l)">
+        <div class="vgv-head"><span class="vgv-badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gov"/></svg></span><div><h3>Staten</h3><div class="vgv-meta">riksdag och regering</div></div></div>
+        <div class="vgv-big">1 542 Mdkr</div>
+        <div class="vgv-bigtxt">statsbudgetens utgifter 2026</div>
+        <ul>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg><span>Försvar, polis, domstolar och kriminalvård</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cap"/></svg><span>Universitet och högskolor</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg><span>Försäkringskassan: sjukpenning, föräldrapenning, barnbidrag</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-elder"/></svg><span>Pensionssystemet och garantipension</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-train"/></svg><span>Nationella vägar och järnvägar</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-brief"/></svg><span>Arbetsförmedlingen och Migrationsverket</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-percent"/></svg><span>Bidrag och utjämning till kommuner och regioner</span></li>
+        </ul>
+        <div class="vgv-fin">Finansieras främst av statlig inkomstskatt, moms och arbetsgivaravgifter.</div>
+      </article>
+      <article class="vgv-card" style="--c:var(--green2);--cl:var(--green-ll)">
+        <div class="vgv-head"><span class="vgv-badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg></span><div><h3>Regionen</h3><div class="vgv-meta">21 regioner · skattesats 11,69 %</div></div></div>
+        <div class="vgv-big">≈ 90 %</div>
+        <div class="vgv-bigtxt">av regionernas kostnader går till hälso- och sjukvård</div>
+        <ul>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg><span>Sjukhus, vårdcentraler och psykiatri</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tooth"/></svg><span>Tandvård för barn och unga</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bus"/></svg><span>Kollektivtrafik, i regel tillsammans med kommunerna</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bridge"/></svg><span>Regional utveckling</span></li>
+        </ul>
+        <div class="vgv-fin">Skatteintäkter 2025: 349 Mdkr. På Gotland sköter kommunen regionens uppgifter.</div>
+      </article>
+      <article class="vgv-card" style="--c:var(--amber);--cl:var(--amber-l)">
+        <div class="vgv-head"><span class="vgv-badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"/></svg></span><div><h3>Kommunen</h3><div class="vgv-meta">290 kommuner · skattesats 20,69 %</div></div></div>
+        <div class="vgv-big">≈ 39 %</div>
+        <div class="vgv-bigtxt">av kommunernas kostnader går till skola och barnomsorg</div>
+        <ul>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-blocks"/></svg><span>Förskola, grundskola och gymnasium</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-care"/></svg><span>Äldreomsorg och stöd enligt LSS</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg><span>Socialtjänst och ekonomiskt bistånd</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"/></svg><span>Vatten, avlopp, avfall och räddningstjänst</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"/></svg><span>Bygglov, planering och bibliotek</span></li>
+        </ul>
+        <div class="vgv-fin">Skatteintäkter 2025: 614 Mdkr.</div>
+      </article>
+    </div>
+
+    <h3 class="s-title" style="font-size:clamp(1.15rem,2vw,1.4rem);margin-top:2.6rem">Så hittar skatten fram</h3>
+    <div class="vgv-flow">
+      <div class="vgv-step"><span class="vgv-badge" style="--c:var(--ink2);--cl:var(--bg2)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-brief"/></svg></span><b>Du betalar</b><p>Arbetsgivaren drar preliminärskatt från lönen och betalar arbetsgivaravgift. Moms betalar du när du handlar.</p></div>
+      <div class="vgv-step"><span class="vgv-badge" style="--c:var(--ink);--cl:var(--bg2)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg></span><b>Skatteverket tar emot</b><p>Allt betalas in till Skatteverket, också den del av skatten som går till kommunen och regionen.</p></div>
+      <div class="vgv-step"><span class="vgv-badge" style="--c:var(--amber);--cl:var(--amber-l)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"/></svg></span><b>Kommun och region får sin del</b><p>Skatteverket betalar ut kommunalskatten direkt varje månad: 20,69 % till kommunen och 11,69 % till regionen, i förskott. Pengar från utjämningssystemet följer med i samma utbetalning.</p></div>
+      <div class="vgv-step"><span class="vgv-badge" style="--c:var(--blue);--cl:var(--blue-l)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gov"/></svg></span><b>Staten jämnar ut</b><p>Resten går till staten, som 2025 gav kommuner och regioner sammanlagt 237 Mdkr i generella statsbidrag och utjämning.</p></div>
+    </div>
+
+    <div class="vgv-myth"><strong>Vanlig missuppfattning:</strong> att kommunen tar in skatten åt både sig själv och regionen. Kommunalskatten på din lönespecifikation (i snitt 32,38 %) är egentligen två skatter, en till kommunen och en till regionen. Båda betalas till Skatteverket, som för över pengarna.</div>
+
+    <div class="vgv-2col">
+      <div class="vgv-panel">
+        <div class="vgv-lbl">Intäkternas sammansättning 2025</div>
+        <h3>Två av tre kronor är egen skatt</h3>
+        <p>Resten är bidrag från staten och avgifter, till exempel för förskola, vatten och patientbesök.</p>
+        <div role="img" aria-label="Kommunerna: 65 procent skatt, 15 procent generella statsbidrag och utjämning, 20 procent övrigt. Regionerna: 66 procent skatt, 17 procent generella statsbidrag och utjämning, 17 procent övrigt.">
+          <div class="vgv-row"><span>Kommunerna</span><div class="vgv-bar"><span class="vgv-s" style="width:65%">skatt 65 %</span><span class="vgv-g" style="width:15%">15 %</span><span class="vgv-o" style="width:20%">20 %</span></div></div>
+          <div class="vgv-row"><span>Regionerna</span><div class="vgv-bar"><span class="vgv-s" style="width:66%">skatt 66 %</span><span class="vgv-g" style="width:17%">17 %</span><span class="vgv-o" style="width:17%">17 %</span></div></div>
+        </div>
+        <div class="vgv-legend"><span><i class="vgv-s"></i>egen skatt</span><span><i class="vgv-g"></i>generella statsbidrag och utjämning</span><span><i class="vgv-o"></i>avgifter, riktade bidrag, övrigt</span></div>
+      </div>
+      <div class="vgv-panel">
+        <div class="vgv-lbl">Exempel: Malmö stad 2025</div>
+        <h3>Din hundralapp i kommunalskatt</h3>
+        <p>Fördelningen skiljer sig mellan kommuner, men skolan är nästan alltid störst.</p>
+        <div class="vgv-hund" role="img" aria-label="Malmö stad 2025, av 100 kronor: 45 till utbildning, 26 till äldreomsorg och funktionsstöd, 16 till individ- och familjeomsorg, 6 till kultur och fritid, 5 till gator, parker och räddningstjänst, 2 övrigt.">
+          <div><span>Utbildning</span><i style="width:100%"></i><em>45 kr</em></div>
+          <div><span>Äldreomsorg, funktionsstöd</span><i style="width:58%"></i><em>26 kr</em></div>
+          <div><span>Individ- och familjeomsorg</span><i style="width:36%"></i><em>16 kr</em></div>
+          <div><span>Kultur och fritid</span><i style="width:13%"></i><em>6 kr</em></div>
+          <div><span>Gator, parker, räddning</span><i style="width:11%"></i><em>5 kr</em></div>
+          <div><span>Övrigt</span><i style="width:4%"></i><em>2 kr</em></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="vgv-src">Källor: SCB, Kommunalskatterna 2026 · SCB, Kommunernas och regionernas preliminära bokslut 2025 (skatteintäkter, generella statsbidrag och utjämning, intäktsandelar) · Skatteverket, Utbetalning av skatt till kommuner och regioner · Regeringen.se, Så styrs Sverige (ansvarsfördelning, regionernas sjukvårdsandel) · Ekonomifakta, Kommunernas kostnader 2025 · Malmö stad, Så används dina skattepengar 2025 · Budgetpropositionen 2026. SCB:s generella statsbidrag omfattar mer än anslaget för kommunalekonomisk utjämning i statsbudgeten, bland annat läkemedelsbidraget.</p>
   </div>
 </section>
 
@@ -875,9 +1063,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
     <!-- TRE TEMATISKA BLOCK -->
     <div class="ft-tabs">
-      <button class="ft-tab on" onclick="showSjukv(this,'kapacitet')">🛏️ Kapacitet</button>
-      <button class="ft-tab" onclick="showSjukv(this,'utfall')">🏆 Utfall vid sjukdom</button>
-      <button class="ft-tab" onclick="showSjukv(this,'tillganglighet')">⏱️ Tillgänglighet</button>
+      <button class="ft-tab on" onclick="showSjukv(this,'kapacitet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bed"/></svg>Kapacitet</button>
+      <button class="ft-tab" onclick="showSjukv(this,'utfall')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pulse"/></svg>Utfall vid sjukdom</button>
+      <button class="ft-tab" onclick="showSjukv(this,'tillganglighet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Tillgänglighet</button>
     </div>
 
     <!-- KAPACITET -->
@@ -1433,7 +1621,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
             <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35">
             <span class="sl-val" id="d-age">35 år</span>
           </div>
-          <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon">👔</span><span id="stage-label">Mitt i arbetslivet</span></div>
+          <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-office"/></svg></span><span id="stage-label">Mitt i arbetslivet</span></div>
         </div>
 
         <div>
@@ -1461,10 +1649,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Hushållstyp</label>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
-            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">🧑 Ensamstående</button>
-            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👫 Par utan barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👨‍👩‍👧‍👦 Par med barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s">👩‍👧 Ensamstående m barn</button>
+            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-person"/></svg>Ensamstående</button>
+            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-couple"/></svg>Par utan barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-family"/></svg>Par med barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-parentchild"/></svg>Ensamstående m barn</button>
           </div>
           <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
         </div>
@@ -1526,7 +1714,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
 
         <!-- Delbart resultatkort (modal ligger på body-nivå, se #sc-overlay) -->
-        <button type="button" class="sharecard-btn" onclick="openShareCard()">📷 Spara &amp; dela din profil som bild</button>
+        <button type="button" class="sharecard-btn" onclick="openShareCard()"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg>Spara &amp; dela din profil som bild</button>
 
         <!-- Marginalskatt-visualisering -->
         <div class="annual-card" id="marginal-card" style="display:none">
@@ -1611,10 +1799,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <h2 class="s-title">Fyra livssituationer</h2>
     <p class="s-sub">Hur ser förmåner och skatt ut för olika hushållstyper? Välj ett scenario eller justera med kalkylatorn ovan.</p>
     <div class="scen-tabs">
-      <button class="scen-tab on" onclick="showScen(this,'barnfamilj')">👨‍👩‍👧‍👦 Barnfamilj</button>
-      <button class="scen-tab" onclick="showScen(this,'ensamstaende')">🧑 Ensamstående</button>
-      <button class="scen-tab" onclick="showScen(this,'kronisk')">🏥 Kronisk sjukdom</button>
-      <button class="scen-tab" onclick="showScen(this,'anhorigvardare')">❤️ Anhörigvårdare</button>
+      <button class="scen-tab on" onclick="showScen(this,'barnfamilj')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-family"/></svg>Barnfamilj</button>
+      <button class="scen-tab" onclick="showScen(this,'ensamstaende')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-person"/></svg>Ensamstående</button>
+      <button class="scen-tab" onclick="showScen(this,'kronisk')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>Kronisk sjukdom</button>
+      <button class="scen-tab" onclick="showScen(this,'anhorigvardare')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-care"/></svg>Anhörigvårdare</button>
     </div>
     <div id="scen-panels"></div>
   </div>
@@ -1987,19 +2175,19 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <h2 class="s-title">Om Skatteplattformen</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:1.5rem">
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem">🎯 Syfte</h3>
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span>Syfte</h3>
         <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen gör offentliga finanser begripliga för alla. Vi omvandlar tusentals sidor av myndighetsstatistik till interaktiva verktyg som visar vad du betalar — och vad du får tillbaka.</p>
       </div>
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem">🏛️ Oberoende</h3>
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-scales"/></svg></span>Oberoende</h3>
         <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Ingen extern finansiering. Inga annonsörer, partibidrag eller intresseorganisationer. Projektet drivs ideellt och all källkod är publik under MIT-licens. Vi skiljer strikt mellan data och tolkning.</p>
       </div>
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem">👥 Teamet</h3>
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>Teamet</h3>
         <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen drivs av Wilhelm Wennergren. Modellen har genomgått granskning av tredje part.</p>
       </div>
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem">📋 Version & uppdateringar</h3>
+        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clipboard"/></svg></span>Version & uppdateringar</h3>
         <p style="font-size:.75rem;color:var(--ink2);line-height:1.6"><strong>Data:</strong> Budgetpropositionen 2026 (prop. 2025/26:1), SCB, OECD, SKR. Skatteparametrar för 2026.<br><strong>Senaste uppdatering:</strong> juni 2026 — ny typografi och designsystem. Modellen omfattar hushållstyper, inkomstgradient, karriärprofiler, kapitalskatt och statsskuld.</p>
         <p style="font-size:.65rem;color:var(--ink3);margin-top:.4rem">Ändringslogg finns i projektets GitHub-repo.</p>
       </div>
@@ -2622,7 +2810,7 @@ function applyPgridFilters(){
 
   grid.innerHTML = d.map(c=>`
     <div class="pc" onclick="openDetail('${c.title.replace(/'/g,"\\'")}')">
-      <span class="pc-cat cat-${c.cat}">${c.cl}</span>
+      <span class="pc-cat cat-${c.cat}">${ico(CAT_ICO[c.cat]||'doc')}${c.cl}</span>
       <div class="pc-title">${c.title}</div>
       <div class="pc-unit">${c.unit}</div>
       <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
@@ -2631,6 +2819,8 @@ function applyPgridFilters(){
     </div>`).join('');
 }
 
+const ico = (n, cls='') => `<svg class="ico ${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
+const CAT_ICO = {helse:'cross', utb:'cap', infra:'bridge', social:'users', trygghet:'shieldcheck', kronisk:'pill'};
 function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
 function fc(btn,f){document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderCards(f)}
@@ -3045,43 +3235,43 @@ renderSkatteChart();
 // ── Livsfaser v2.0 — kanonisk datakälla (sync med data/livsfaser_v2.json) ────
 // VIKTIG: Uppdatera ALLTID livsfaser_v2.json parallellt om värden ändras här.
 const LIVSFASER_V2 = [
-  {id:'barn',       icon:'🍼', label:'Spädbarn & förskola',      min:0,  max:6,
+  {id:'barn',       icon:'blocks', label:'Spädbarn & förskola',      min:0,  max:6,
    f:{utb:112, sj:40, soc:38, koll:50, oms:0},
    källa:'SCB 2024: förskola 185 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 ≈ 112 tkr i åldersmedel. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
    note:'Förskola ~185 tkr/inskrivet barn/år men 0-åringar och 6-åringar går inte → åldersmedel ~112 tkr. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
-  {id:'elev',       icon:'🎒', label:'Grundskoleelev',           min:7,  max:15,
+  {id:'elev',       icon:'backpack', label:'Grundskoleelev',           min:7,  max:15,
    f:{utb:152, sj:18, soc:25, koll:50, oms:0},
    källa:'Skolverket 2025: grundskola 152 tkr/elev inkl. undervisning, skolmat, elevhälsa, lokaler (SCB 2024: 160 Mdkr / ~1,05M elever).',
    note:'Grundskola 152 tkr/elev/år inkl. skolmat, elevhälsa, lokaler. Barnbidrag, fritids.'},
-  {id:'gymn',       icon:'📚', label:'Gymnasieelev',             min:16, max:18,
+  {id:'gymn',       icon:'book', label:'Gymnasieelev',             min:16, max:18,
    f:{utb:145, sj:20, soc:26, koll:50, oms:0},
    källa:'Skolverket 2025: gymnasium 145 tkr/elev (teknik ~180, humaniora ~115).',
    note:'Gymnasiet ~145 tkr/elev/år. Teknikprogram dyrare (~180 tkr), humaniora billigare (~115 tkr).'},
-  {id:'student',    icon:'🎓', label:'Student / ung vuxen',      min:19, max:25,
+  {id:'student',    icon:'cap', label:'Student / ung vuxen',      min:19, max:25,
    f:{utb:110, sj:25, soc:37, koll:50, oms:0},
    källa:'UKÄ 2024: 240 tkr/helårsstudent × 45% studerar = ~110 tkr genomsnitt. CSN studiebidrag ~36 tkr/år.',
    note:'Högskola ~240 tkr/helårsstudent men inte alla studerar → snitt ~110 tkr. CSN-lån, bostadsbidrag.'},
-  {id:'ung_arb',    icon:'💼', label:'Ung förvärvsarbetande',    min:26, max:34,
+  {id:'ung_arb',    icon:'brief', label:'Ung förvärvsarbetande',    min:26, max:34,
    f:{utb:6,  sj:30, soc:42, koll:50, oms:0},
    källa:'FK 2024: sjukförsäkring 12 tkr. Barnbidrag+föräldrapenning 30 tkr (de med barn). SCB AKU.',
    note:'Du betalar betydligt mer i skatt än du tar emot. Du finansierar barns skola, äldres vård, och kollektiv trygghet.'},
-  {id:'barnfamilj', icon:'👨‍👩‍👧', label:'Barnfamiljsfas',          min:35, max:44,
+  {id:'barnfamilj', icon:'family', label:'Barnfamiljsfas',          min:35, max:44,
    f:{utb:42, sj:52, soc:85, koll:50, oms:2},
    källa:'FK 2024: sjukdagar toppar 35–44. Barnbidrag+VAB+föräldrapenning. NTA-profil sjukvård 35–44.',
    note:'Höga sociala transfereringar: barnbidrag, föräldrapenning, VAB, bostadsbidrag. Fortfarande nettobidragsgivare.'},
-  {id:'mitt_karriar',icon:'👔', label:'Mitt i karriären',         min:45, max:54,
+  {id:'mitt_karriar',icon:'office', label:'Mitt i karriären',         min:45, max:54,
    f:{utb:5,  sj:78, soc:52, koll:50, oms:4},
    källa:'NTA-profil 45–54 + Socialstyrelsen. Sjukvård märkbart stigande. FK: sjukpenningdagar per åldersgrupp.',
    note:'Stigande sjukvårdskonsumtion. Sjukförsäkring, A-kassa. Dina skatter finansierar ungdomars utbildning och äldres omsorg.'},
-  {id:'senior',     icon:'🏡', label:'Senior förvärvsarbetande', min:55, max:64,
+  {id:'senior',     icon:'home', label:'Senior förvärvsarbetande', min:55, max:64,
    f:{utb:3,  sj:110, soc:65, koll:50, oms:10},
    källa:'NTA-profil 55–64 + Socialstyrelsen patientregistret. Sjukvård nära dubbelt mot 45–54.',
    note:'Hög sjukvård. Sjukersättning, sjukpenning. Ungefär vid balans: mottagna tjänster ≈ betald skatt.'},
-  {id:'pensionar',  icon:'🌅', label:'Ny pensionär',             min:65, max:74,
+  {id:'pensionar',  icon:'sun', label:'Ny pensionär',             min:65, max:74,
    f:{utb:2,  sj:175, soc:65, koll:50, oms:65},
    källa:'Socialstyrelsen + SKR 2024: garantipension 34 tkr (20% av åldersgruppen × max 113 tkr). Bostadstillägg ~15 tkr (snitt). Hemtjänst 175 tkr/brukare × 15% = 26 tkr. Totalt soc ~65 tkr. Osäkerhet ±20%.',
    note:'Nu nettotagare. Garantipension, bostadstillägg, äldreförsörjningsstöd. Inkomstpension är avgiftsbaserad och ingår ej (se metod steg 05).'},
-  {id:'aldri',      icon:'🕰️', label:'Senior pensionär',         min:75, max:85,
+  {id:'aldri',      icon:'care', label:'Senior pensionär',         min:75, max:85,
    f:{utb:1,  sj:280, soc:80, koll:50, oms:240},
    källa:'SKR 2024: hemtjänst+särskilt boende vägt 240 tkr. NTA-profil 75+ sjukvård. Osäkerhet ±25%.',
    note:'Mycket hög konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat in i 45 år.'},
@@ -3361,7 +3551,7 @@ function updateCalc(){
   const total = Object.values(w).reduce((a,b)=>a+b,0);
 
   // Stage chip
-  document.getElementById('stage-icon').textContent = stage.icon;
+  document.getElementById('stage-icon').innerHTML = ico(stage.icon);
   document.getElementById('stage-label').textContent = stage.label;
 
   // Annual welfare label
@@ -3476,21 +3666,21 @@ function updateCalc(){
     // COFOG 2024 shares (3 011 Mdkr total)
     const cofogItems = [
       // Socialt skydd uppdelat (totalt 38,6% av COFOG):
-      {namn:'Ålderspension & efterlevande',     andel:0.168, col:'#7B5FBC', icon:'🧓'}, // Största posten: garantipension, bostadstillägg, efterlevandepension
-      {namn:'Sjukdom & funktionsnedsättning',   andel:0.098, col:'#9B6FCC', icon:'🤕'}, // Sjukpenning, sjukersättning, assistansersättning
-      {namn:'Familj & barn',                     andel:0.065, col:'#A87FD4', icon:'👶'}, // Barnbidrag, föräldrapenning, underhållsstöd
-      {namn:'Arbetslöshet',                      andel:0.030, col:'#B490DA', icon:'📋'}, // A-kassa, aktivitetsstöd
-      {namn:'Övrigt socialt (bostad, exklusion)',andel:0.025, col:'#C4A6E2', icon:'🏠'}, // Bostadsbidrag, ekonomiskt bistånd
-      {namn:'Utbildning (förskola → universitet)',          andel:0.170, col:'#1E4A8C', icon:'🎓'},
-      {namn:'Hälso- & sjukvård',                            andel:0.152, col:'#2E7D5C', icon:'🏥'},
-      {namn:'Allmän offentlig förvaltning',                  andel:0.084, col:'#888780', icon:'🏛️'},
-      {namn:'Försvar',                                       andel:0.048, col:'#4A6741', icon:'🪖'},
-      {namn:'Näringslivsfrågor (infrastruktur, transport)',  andel:0.045, col:'#C8973A', icon:'🚆'},
-      {namn:'Rättsväsendet & samhällsskydd',                 andel:0.032, col:'#B84A1E', icon:'⚖️'},
-      {namn:'Fritid, kultur & religion',                     andel:0.018, col:'#D4A03A', icon:'🎭'},
-      {namn:'Bostäder & samhällsutveckling',                 andel:0.016, col:'#6B8E4E', icon:'🏘️'},
-      {namn:'Miljöskydd',                                    andel:0.012, col:'#2E8B57', icon:'🌿'},
-      {namn:'Räntor & transfereringar',                      andel:0.037, col:'rgba(255,255,255,.3)', icon:'📊'},
+      {namn:'Ålderspension & efterlevande',     andel:0.168, col:'#7B5FBC', icon:'elder'}, // Största posten: garantipension, bostadstillägg, efterlevandepension
+      {namn:'Sjukdom & funktionsnedsättning',   andel:0.098, col:'#9B6FCC', icon:'pulse'}, // Sjukpenning, sjukersättning, assistansersättning
+      {namn:'Familj & barn',                     andel:0.065, col:'#A87FD4', icon:'family'}, // Barnbidrag, föräldrapenning, underhållsstöd
+      {namn:'Arbetslöshet',                      andel:0.030, col:'#B490DA', icon:'clipboard'}, // A-kassa, aktivitetsstöd
+      {namn:'Övrigt socialt (bostad, exklusion)',andel:0.025, col:'#C4A6E2', icon:'home'}, // Bostadsbidrag, ekonomiskt bistånd
+      {namn:'Utbildning (förskola → universitet)',          andel:0.170, col:'#1E4A8C', icon:'cap'},
+      {namn:'Hälso- & sjukvård',                            andel:0.152, col:'#2E7D5C', icon:'cross'},
+      {namn:'Allmän offentlig förvaltning',                  andel:0.084, col:'#888780', icon:'gov'},
+      {namn:'Försvar',                                       andel:0.048, col:'#4A6741', icon:'shield'},
+      {namn:'Näringslivsfrågor (infrastruktur, transport)',  andel:0.045, col:'#C8973A', icon:'train'},
+      {namn:'Rättsväsendet & samhällsskydd',                 andel:0.032, col:'#B84A1E', icon:'scales'},
+      {namn:'Fritid, kultur & religion',                     andel:0.018, col:'#D4A03A', icon:'mask'},
+      {namn:'Bostäder & samhällsutveckling',                 andel:0.016, col:'#6B8E4E', icon:'houses'},
+      {namn:'Miljöskydd',                                    andel:0.012, col:'#2E8B57', icon:'leaf'},
+      {namn:'Räntor & transfereringar',                      andel:0.037, col:'rgba(255,255,255,.3)', icon:'percent'},
     ];
     const maxKr = totalSkatt * cofogItems[0].andel;
     let receiptHTML = '';
@@ -3500,7 +3690,7 @@ function updateCalc(){
       const pct = (c.andel * 100).toFixed(1);
       const barW = Math.round(kr / maxKr * 88);
       receiptHTML += `<div style="display:flex;align-items:center;gap:.5rem">
-        <span style="font-size:.82rem;width:1.2rem;text-align:center">${c.icon}</span>
+        <span style="font-size:.9rem;width:1.2rem;text-align:center;color:${c.col.startsWith('rgba')?'rgba(242,239,232,.6)':c.col}">${ico(c.icon)}</span>
         <div style="flex:1;min-width:0">
           <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(242,239,232,.6);margin-bottom:.2rem">
             <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.namn}</span>
@@ -4137,7 +4327,7 @@ function showSjukv(btn, key){
 const SCENARIER = {
   barnfamilj: {
     title:'Barnfamilj med 2 barn',
-    icon:'👨‍👩‍👧‍👦',
+    icon:'family',
     profil:'Par, 37 år, 2 barn (5 och 9 år). Sammanlagd bruttoinkomst 750 tkr/år (375 tkr var).',
     inc: 750,
     age: 37,
@@ -4162,7 +4352,7 @@ const SCENARIER = {
   },
   ensamstaende: {
     title:'Ensamstående utan barn',
-    icon:'🧑',
+    icon:'person',
     profil:'Kvinna, 30 år, ensamstående, inga barn. Bruttoinkomst 340 tkr/år (median, SCB 2024).',
     inc: 340,
     age: 30,
@@ -4183,7 +4373,7 @@ const SCENARIER = {
   },
   kronisk: {
     title:'Person med MS (multipel skleros)',
-    icon:'🏥',
+    icon:'cross',
     profil:'Man, 44 år, diagnostiserad MS sedan 3 år. Bruttoinkomst 420 tkr/år (arbetar deltid).',
     inc: 420,
     age: 44,
@@ -4206,7 +4396,7 @@ const SCENARIER = {
   },
   anhorigvardare: {
     title:'Anhörigvårdare',
-    icon:'❤️',
+    icon:'care',
     profil:'Kvinna, 57 år, vårdar sin demenssjuke make hemma. Arbetar 60% → bruttoinkomst 240 tkr/år.',
     inc: 240,
     age: 57,
@@ -4274,7 +4464,7 @@ function renderScen(key){
       <div class="scen-grid">
         <div class="scen-profile">
           <div class="scen-name">Profil</div>
-          <div class="scen-title">${s.icon} ${s.title}</div>
+          <div class="scen-title">${ico(s.icon)} ${s.title}</div>
           <div style="font-size:.76rem;color:var(--ink2);line-height:1.65;margin-bottom:1rem">${s.profil}</div>
           <div class="scen-row"><span class="scen-lbl">Bruttoinkomst</span><span class="scen-val">${s.inc.toLocaleString('sv-SE')} tkr/år</span></div>
           <div class="scen-row"><span class="scen-lbl">Ålder</span><span class="scen-val">${s.age} år</span></div>

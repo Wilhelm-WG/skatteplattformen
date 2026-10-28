@@ -10,6 +10,35 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — Ny sektion "Vem gör vad?" (stat, region, kommun)
+
+Ny sektion mellan Prislistan och Budgeten som förklarar ansvarsfördelningen
+och hur skatten hittar fram:
+
+- **Tre kort** för staten, regionen och kommunen med ansvarsområden, skattesats
+  2026 (kommun 20,69 %, region 11,69 %, snitt 32,38 %) och skatteintäkter 2025
+  (kommuner 614 Mdkr, regioner 349 Mdkr). Regionerna lägger ≈ 90 % på
+  hälso- och sjukvård; kommunerna ≈ 39 % på skola och barnomsorg.
+- **"Så hittar skatten fram"** i fyra steg: arbetsgivaren/momsen → Skatteverket
+  → kommunalskatten betalas ut direkt till kommun och region varje månad →
+  staten jämnar ut (237 Mdkr i generella statsbidrag och utjämning 2025).
+- **Missuppfattningsruta:** kommunen tar inte in skatten åt regionen; båda
+  delarna betalas till Skatteverket.
+- **Intäktsdiagram** (skatt 65/66 %, generella statsbidrag 15/17 %, övrigt) och
+  **exempel** på hur en hundralapp i kommunalskatt används (Malmö stad 2025).
+- Länk till sektionen från rutan "Skatteintäkterna 2026 fördelas så här".
+
+Källor: SCB (Kommunalskatterna 2026; preliminära bokslut 2025), Skatteverket,
+regeringen.se "Så styrs Sverige", Ekonomifakta, Malmö stad, BP2026.
+
+### Changed (2026-10-28) — Egen ikonserie ersätter emoji
+
+- Ny inline-SVG-ikonserie (≈ 40 linjeikoner, 24×24, `currentColor`) och
+  hjälpfunktionen `ico(namn)`. Påverkar inte enfilsprincipen.
+- Emoji ersatta i prislistans filter och kategorietiketter, sjukvårdsflikarna,
+  livsfaserna i kalkylatorn, COFOG-kvittot, hushållsknapparna, scenarierna,
+  Om oss-rubrikerna och dela-knappen. Gränssnittstecken (✕, ✓, ☰) är kvar.
+
 ### Added (2026-10-27) — OECD-jämförelsen vidgad: läkemedel, utbildning & klimat globalt
 
 Fortsättning på den globala "vs världen"-utbyggnaden (samma länderuppsättning:
