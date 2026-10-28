@@ -10,6 +10,17 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — "Gissa först" i prislistan
+
+- Tio slumpade prislappar: gissa beloppet (reglage på logaritmisk skala
+  100 kr–2 Mkr eller skriv in), se sedan rätt svar, hur långt ifrån du låg,
+  vad du själv betalar och vardagsjämförelsen i skattetid.
+- Saklig återkoppling ("45 % för lågt", "3 gånger för högt"), inga poäng eller
+  belöningar. Sammanfattning efter tio frågor med de tre största missarna.
+- Delbara länkar: `#gissa` startar, `#gissa-iva` m.fl. börjar med en viss
+  prislapp. Knapp för att kopiera länken till aktuell fråga.
+- Ingen lagring och inga jämförelser med andra läsare (sajten är statisk).
+
 ### Fixed (2026-10-28) — Skattemodellen: jobbskatteavdraget följer nu Skatteverket exakt
 
 - `jobbskatteavdrag2024` hade en egen avtrappning över 35 000 kr/mån som inte

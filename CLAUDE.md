@@ -45,6 +45,9 @@ correspondence/
 - `grundavdrag2024(inc)` avrundas uppåt till hundratal kr (SKV 433)
 - `MEDIAN_LON_MAN` = 38 300 kr (SCB lönestrukturstatistik 2025); `skattetid(kr)` ger prislapparnas vardagsjämförelse
 
+**Gissa först (`#gissa`):**
+- Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-iva`). Ingen lagring
+
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
 - `getStage(age, inc)` — returnerar livsfas med **hushålls- och inkomstjusterade** förmåner

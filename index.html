@@ -80,6 +80,49 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* GISSA FÖRST */
+.gq [hidden]{display:none!important}
+.gq{margin-top:1.4rem;background:var(--paper);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:1.2rem 1.4rem;box-shadow:var(--shadow-sm);scroll-margin-top:80px}
+.gq-intro{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap}
+.gq-eye{display:flex;align-items:center;gap:.4rem;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:0 0 .3rem}
+.gq-h{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:0 0 .2rem;line-height:1.25}
+.gq-p{font-size:.8rem;color:var(--ink2);margin:0}
+.gq-btn{font:inherit;font-size:.82rem;font-weight:600;background:var(--green);color:#fff;border:0;border-radius:var(--r-sm);padding:.6rem 1.1rem;cursor:pointer;white-space:nowrap}
+.gq-btn:hover{background:var(--green2)}
+.gq-btn:focus-visible,.gq-link:focus-visible,.gq-x:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.gq-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.gq-step{font-family:var(--mono);font-size:.7rem;color:var(--ink3)}
+.gq-top .pc-cat{margin:0}
+.gq-x{margin-left:auto;background:none;border:0;color:var(--ink3);font-size:1rem;cursor:pointer;padding:.2rem .4rem;border-radius:4px}
+.gq-x:hover{color:var(--ink);background:var(--bg2)}
+.gq-q{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:600;margin:0;line-height:1.2}
+.gq-unit{font-size:.78rem;color:var(--ink3);margin:.2rem 0 1rem}
+.gq-lbl{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.gq input[type=range]{width:100%;margin:.6rem 0 .2rem;accent-color:var(--green)}
+.gq-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;color:var(--ink3);position:relative}
+.gq-scale span:nth-child(2){position:absolute;left:46.5%;transform:translateX(-50%)}
+.gq-row{display:flex;align-items:center;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
+.gq-num{display:flex;align-items:baseline;gap:.4rem;border-bottom:2px solid var(--ink);padding:.1rem .2rem}
+.gq-num input{font-family:var(--mono);font-size:1.6rem;width:9ch;border:0;background:none;color:var(--ink);padding:0;outline:none;text-align:right}
+.gq-num span{font-family:var(--mono);font-size:.8rem;color:var(--ink3)}
+.gq-ans{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2)}
+.gq-res{font-size:.95rem;font-weight:600;margin:0 0 .5rem}
+.gq-res.near{color:var(--green)}
+.gq-res.far{color:var(--red)}
+.gq-cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:.4rem 0 .7rem;max-width:520px}
+.gq-cmp div{font-size:.66rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
+.gq-cmp b{display:block;font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em;text-transform:none;margin-top:.15rem}
+.gq-cmp .right b{color:var(--green)}
+.gq-info{font-size:.78rem;color:var(--ink2);line-height:1.55;margin:.25rem 0 0}
+.gq-info strong{color:var(--green)}
+.gq-info .ico{color:var(--ink3);margin-right:.3rem}
+.gq-nav{display:flex;align-items:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+.gq-link{font:inherit;font-size:.74rem;color:var(--green);background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;padding:.3rem 0}
+.gq-done h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin:0 0 .4rem}
+.gq-done p{font-size:.85rem;color:var(--ink2);margin:0 0 .6rem;line-height:1.6}
+.gq-done ol{margin:.2rem 0 1rem;padding-left:1.2rem;font-size:.78rem;color:var(--ink2);display:grid;gap:.25rem}
+.gq-done ol b{font-family:var(--mono);font-weight:500;color:var(--ink)}
+@media(max-width:520px){.gq{padding:1rem}.gq-num input{font-size:1.35rem}.gq-cmp b{font-size:1.25rem}}
 /* KRETSLOPPET (animerad film i #vem-gor-vad) */
 #kretslopp{--stage:#FFFFFF;--line:var(--bg3);--soft:var(--bg2);--stat:var(--blue);--stat-l:var(--blue-l);--reg:var(--green2);--reg-l:var(--green-ll);--kom:#A8761F;--kom-l:var(--amber-l);--sv:var(--ink);--sv-l:var(--bg2);--accent:var(--green);margin:1.8rem 0 .4rem;max-width:980px;scroll-margin-top:80px}
 #kretslopp [hidden]{display:none!important}
@@ -1327,6 +1370,37 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <button class="pf" onclick="fc(this,'trygghet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-shieldcheck"/></svg>Trygghet</button>
         <button class="pf" onclick="fc(this,'kronisk')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg>Kroniska sjukdomar</button>
       </div>
+    </div>
+    <!-- GISSA FÖRST: quiz på prislistans prislappar. Direktlänk: #gissa eller #gissa-<titel> -->
+    <div class="gq" id="gissa">
+      <div class="gq-intro" id="gq-intro">
+        <div>
+          <p class="gq-eye"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg>Gissa först</p>
+          <h3 class="gq-h">Hur bra koll har du på vad välfärden kostar?</h3>
+          <p class="gq-p">Tio prislappar ur listan nedan. Gissa beloppet innan du ser svaret.</p>
+        </div>
+        <button type="button" class="gq-btn" id="gq-start">Starta</button>
+      </div>
+      <div class="gq-play" id="gq-play" hidden>
+        <div class="gq-top"><span class="gq-step" id="gq-step"></span><span id="gq-cat"></span><button type="button" class="gq-x" id="gq-close" aria-label="Avsluta gissandet">✕</button></div>
+        <h3 class="gq-q" id="gq-q"></h3>
+        <p class="gq-unit" id="gq-unit"></p>
+        <div class="gq-guess" id="gq-guess">
+          <label for="gq-range" class="gq-lbl">Din gissning</label>
+          <input type="range" id="gq-range" min="0" max="1000" step="1" value="465">
+          <div class="gq-scale" aria-hidden="true"><span>100 kr</span><span>10 000 kr</span><span>2 Mkr</span></div>
+          <div class="gq-row">
+            <div class="gq-num"><input type="text" id="gq-num" inputmode="numeric" autocomplete="off" aria-label="Din gissning i kronor"><span>kr</span></div>
+            <button type="button" class="gq-btn" id="gq-go">Visa svaret</button>
+          </div>
+        </div>
+        <div class="gq-ans" id="gq-ans" aria-live="polite" hidden></div>
+        <div class="gq-nav" id="gq-nav" hidden>
+          <button type="button" class="gq-btn" id="gq-next">Nästa fråga</button>
+          <button type="button" class="gq-link" id="gq-share"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-doc"/></svg>Kopiera länk till frågan</button>
+        </div>
+      </div>
+      <div class="gq-done" id="gq-done" hidden aria-live="polite"></div>
     </div>
     <div style="margin-top:1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
       <label for="pgrid-search" style="font-size:.7rem;color:var(--ink3);font-weight:500;letter-spacing:.05em;text-transform:uppercase">Sök i prislistan</label>
@@ -3270,6 +3344,98 @@ function skattetid(kr){
 const CAT_ICO = {helse:'cross', utb:'cap', infra:'bridge', social:'users', trygghet:'shieldcheck', kronisk:'pill'};
 function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
+
+// ═══ GISSA FÖRST — quiz på prislistan (inga poäng, ingen lagring) ═══
+(function initGissa(){
+  const $ = id => document.getElementById(id);
+  const box=$('gissa'); if(!box || typeof CARDS==='undefined') return;
+  const LO=Math.log(100), HI=Math.log(2e6), N=10;
+  const toVal = r => Math.exp(LO + (HI-LO)*r/1000);
+  const toPos = v => Math.round((Math.log(Math.min(2e6,Math.max(100,v)))-LO)/(HI-LO)*1000);
+  const nice = v => { const p=Math.pow(10,Math.max(0,Math.floor(Math.log10(v))-1)); return Math.round(v/p)*p; };
+  const kr = v => fmtN(v) + (v>=1e6 ? '' : ' kr');
+  const slug = t => t.toLowerCase().replace(/[åä]/g,'a').replace(/ö/g,'o').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const pool = CARDS.filter((c,i,a) => a.findIndex(x=>x.title===c.title)===i && c.amount>=200);
+  let qs=[], i=0, res=[];
+
+  function pick(first){
+    const rest = pool.filter(c=>c!==first).sort(()=>Math.random()-.5).slice(0, first?N-1:N);
+    return first ? [first].concat(rest) : rest;
+  }
+  function show(el,v){ $(el).hidden=!v; }
+  function setGuess(v, fromRange){
+    v=nice(v); $('gq-num').value=v.toLocaleString('sv-SE');
+    if(!fromRange) $('gq-range').value=toPos(v);
+    $('gq-range').setAttribute('aria-valuetext', kr(v));
+  }
+  function ask(){
+    const c=qs[i];
+    $('gq-step').textContent='Fråga '+(i+1)+' av '+qs.length;
+    $('gq-cat').innerHTML='<span class="pc-cat cat-'+c.cat+'">'+ico(CAT_ICO[c.cat]||'doc')+c.cl+'</span>';
+    $('gq-q').textContent=c.title+(c.suf && c.suf!=='kr' ? ' ('+c.suf+')' : '');
+    $('gq-unit').textContent=c.unit;
+    setGuess(10000,false);
+    show('gq-guess',true); show('gq-ans',false); show('gq-nav',false);
+    $('gq-next').textContent = i<qs.length-1 ? 'Nästa fråga' : 'Se sammanfattning';
+  }
+  function verdict(g,a){
+    const r=g/a;
+    if(Math.abs(r-1)<=0.10) return ['Nästan exakt.','near'];
+    if(Math.abs(r-1)<=0.25) return ['Nära, '+Math.round(Math.abs(r-1)*100)+' % för '+(r<1?'lågt':'högt')+'.','near'];
+    if(r>=2) return ['Du gissade '+(r>=10?Math.round(r):String(Math.round(r*10)/10).replace('.',','))+' gånger för högt.','far'];
+    if(r<=0.5){ const k=a/g; return ['Rätt belopp är '+(k>=10?Math.round(k):String(Math.round(k*10)/10).replace('.',','))+' gånger så stort som din gissning.','far']; }
+    return [Math.round(Math.abs(r-1)*100)+' % för '+(r<1?'lågt':'högt')+'.','far'];
+  }
+  function reveal(){
+    const c=qs[i], g=nice(parseInt(($('gq-num').value||'').replace(/\D/g,''),10)||toVal(+$('gq-range').value));
+    const [txt,cls]=verdict(g,c.amount);
+    res[i]={c, g};
+    $('gq-ans').innerHTML =
+      '<p class="gq-res '+cls+'">'+txt+'</p>'+
+      '<div class="gq-cmp"><div>Din gissning<b>'+kr(g)+'</b></div><div class="right">Rätt svar<b>'+kr(c.amount)+'</b></div></div>'+
+      '<p class="gq-info">'+c.vs+'</p>'+
+      (c.amount>=200 ? '<p class="gq-info">'+ico('clock')+'Motsvarar inkomstskatten från en medianlön under <b>'+skattetid(c.amount)+'</b>.</p>' : '');
+    show('gq-guess',false); show('gq-ans',true); show('gq-nav',true);
+    $('gq-next').focus({preventScroll:true});
+  }
+  function done(){
+    const ok=res.filter(r=>r && Math.abs(r.g/r.c.amount-1)<=0.25).length;
+    const miss=res.filter(Boolean).map(r=>({r, e:Math.abs(Math.log(r.g/r.c.amount))})).sort((a,b)=>b.e-a.e).slice(0,3);
+    $('gq-done').innerHTML =
+      '<h3>Du låg inom ±25 % på '+ok+' av '+res.filter(Boolean).length+'.</h3>'+
+      '<p>Här låg din gissning längst från det verkliga beloppet:</p>'+
+      '<ol>'+miss.map(m=>'<li>'+m.r.c.title+': du gissade <b>'+kr(m.r.g)+'</b>, rätt svar <b>'+kr(m.r.c.amount)+'</b></li>').join('')+'</ol>'+
+      '<div class="gq-nav"><button type="button" class="gq-btn" id="gq-again">Gissa tio nya</button><a class="gq-link" href="#pristabell">Se hela prislistan</a></div>';
+    show('gq-play',false); show('gq-done',true);
+    $('gq-again').addEventListener('click',()=>start());
+  }
+  function start(first){
+    qs=pick(first); i=0; res=[];
+    show('gq-intro',false); show('gq-done',false); show('gq-play',true); ask();
+  }
+  function stop(){ show('gq-play',false); show('gq-done',false); show('gq-intro',true); if(/^#gissa/.test(location.hash)) history.replaceState(null,'',location.pathname+location.search); }
+
+  $('gq-start').addEventListener('click',()=>start());
+  $('gq-close').addEventListener('click',stop);
+  $('gq-range').addEventListener('input',e=>setGuess(toVal(+e.target.value),true));
+  $('gq-num').addEventListener('input',e=>{ const v=parseInt(e.target.value.replace(/\D/g,''),10); if(v) $('gq-range').value=toPos(v); });
+  $('gq-num').addEventListener('keydown',e=>{ if(e.key==='Enter') reveal(); });
+  $('gq-go').addEventListener('click',reveal);
+  $('gq-next').addEventListener('click',()=>{ if(i<qs.length-1){ i++; ask(); $('gq-q').scrollIntoView({block:'nearest'}); } else done(); });
+  $('gq-share').addEventListener('click',()=>{
+    const url=location.origin+location.pathname+'#gissa-'+slug(qs[i].title), b=$('gq-share'), o=b.innerHTML;
+    const flash=t=>{ b.textContent=t; setTimeout(()=>{ b.innerHTML=o; },2000); };
+    if(navigator.clipboard) navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad')).catch(()=>flash(url)); else flash(url);
+  });
+  function fromHash(){
+    const m=/^#gissa(?:-([a-z0-9-]+))?$/.exec(location.hash); if(!m) return;
+    const want=m[1]||'';
+    const first = want ? (pool.find(c=>slug(c.title)===want) || pool.find(c=>slug(c.title).includes(want))) : null;
+    start(first||undefined); box.scrollIntoView({block:'start'});
+  }
+  window.addEventListener('hashchange',fromHash);
+  if(document.readyState==='complete') setTimeout(fromHash,200); else window.addEventListener('load',()=>setTimeout(fromHash,200));
+})();
 function fc(btn,f){document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderCards(f)}
 renderCards('all');
 
