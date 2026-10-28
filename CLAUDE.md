@@ -19,11 +19,10 @@ data/
   fasit_full.json             ← FASIT-rekonstruktion per 5-årsgrupp
   fasit_analys.json           ← Kalibrerad fördelningsanalys 2022
   nta_berakning.py            ← Reproducerar åldersprofilen
-  budget_analys_2025.json     ← Budgetanalys
   livsfaser_v2.json           ← 10 livsfaser med förmåner
-  oecd_utfall.json            ← EU/OECD-jämförelser
-  statsskuld.json             ← Statsskuldsdata
-  framtidsutmaningar.json     ← Framtidsprojektioner
+  arkiv/                      ← Inaktuella filer (se data/README.md)
+scripts/
+  kontroll.mjs                ← Kontroll före publicering (node scripts/kontroll.mjs)
 docs/
   skatteplattformen_metodrapport_v2.docx  ← Akademisk metodrapport (v2.0; v1 kvar som historik)
   MODELLFIX_PLAN.md           ← Teknisk fix-plan
@@ -110,6 +109,17 @@ correspondence/
 **Sensitivitetsanalys:**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader
+
+## Före publicering
+Kör `node scripts/kontroll.mjs` före varje commit som ändrar siffror eller modellen. Den kontrollerar skattemodellen mot
+Skatteverkets tabell 32 (kolumn 1–3), att inga gamla värden från `NYCKELTAL[*].gamla` finns kvar, att prislappar och
+faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
+
+## Nyckeltal och källor
+- `KALLOR` (index.html): källkatalog med namn, sökfraser och länk. `linkaKallor()` gör källnamn i källrader till länkar.
+- `NYCKELTAL` (index.html): kanoniska värden med år och källa, visas i Metod. När ett värde ändras: uppdatera `v`/`ar`,
+  flytta det gamla värdet till `gamla`, uppdatera texterna och kör kontrollen.
+- Sajten läser inga filer i `data/` (se data/README.md).
 
 ## Datakällor och metodik
 - **SCB COFOG 2024** — 3 011 Mdkr total offentlig sektor

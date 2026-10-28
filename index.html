@@ -80,6 +80,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* NYCKELTAL och källänkar */
+.nt-tbl{width:100%;border-collapse:collapse;font-size:.78rem;min-width:560px}
+.nt-tbl th,.nt-tbl td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--border2);vertical-align:top}
+.nt-tbl th{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.nt-tbl .nt-v{font-family:var(--mono);color:var(--ink);white-space:nowrap}
+.nt-tbl a,.kalla-lank{color:var(--green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.kalla-lank:hover{text-decoration-thickness:2px}
 /* ORDLISTA och förklaringar */
 .term{font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:currentColor}
 .term:hover,.term[aria-expanded="true"]{text-decoration-style:solid}
@@ -818,6 +825,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
             <li><a href="#historik">Historik</a></li>
             <li><a href="#metod">Metod</a></li>
             <li><a href="#ordlista">Ordlista</a></li>
+            <li><a href="#nyckeltal">Nyckeltal och källor</a></li>
             <li><a href="#om-oss">Om oss</a></li>
           </ul>
         </li>
@@ -2016,32 +2024,18 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
 
       <div class="ft-bar-wrap">
-        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Befolkning 80+ år (tusental) — SCB Framskrivning 2026–2070</p>
+        <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:1rem">Antal personer 80 år och äldre</p>
         <div class="ft-bar-row">
           <span class="ft-bar-label">2024</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:56%;background:var(--green)"></div></div>
-          <span class="ft-bar-val">601 000</span>
-        </div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2025</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:59%;background:var(--green)"></div></div>
-          <span class="ft-bar-val">~636 000</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:80%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">≈ 650 000</span>
         </div>
         <div class="ft-bar-row">
           <span class="ft-bar-label">2030 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:62%;background:var(--amber)"></div></div>
-          <span class="ft-bar-val">668 000</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">812 000</span>
         </div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2040 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:83%;background:#C8973A"></div></div>
-          <span class="ft-bar-val">895 000</span>
-        </div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2050 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:#B84A1E"></div></div>
-          <span class="ft-bar-val">~1 080 000</span>
-        </div>
+        <p style="font-size:.68rem;color:var(--ink3);margin-top:.6rem">Ökning med drygt 160 000 personer (+25 %). Källa: SCB, <a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/pong/statistiknyhet/sveriges-framtida-befolkning-2025-2070/" target="_blank" rel="noopener">Sveriges framtida befolkning 2025–2070</a>.</p>
       </div>
 
       <div class="ft-quote">
@@ -2552,32 +2546,18 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       </div>
 
       <div class="ft-bar-wrap">
-        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Befolkning 80+ år (tusental) — SCB Befolkningsframskrivning 2025–2070</div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2010</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:39%;background:var(--green)"></div></div>
-          <span class="ft-bar-val">489 000</span>
-        </div>
+        <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Antal personer 80 år och äldre</div>
         <div class="ft-bar-row">
           <span class="ft-bar-label">2024</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:48%;background:var(--amber)"></div></div>
-          <span class="ft-bar-val">601 000</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:80%;background:var(--green)"></div></div>
+          <span class="ft-bar-val">≈ 650 000</span>
         </div>
         <div class="ft-bar-row">
           <span class="ft-bar-label">2030 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:54%;background:#C8973A"></div></div>
-          <span class="ft-bar-val">668 000</span>
+          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:100%;background:var(--amber)"></div></div>
+          <span class="ft-bar-val">812 000</span>
         </div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2040 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:72%;background:#B84A1E"></div></div>
-          <span class="ft-bar-val">895 000</span>
-        </div>
-        <div class="ft-bar-row">
-          <span class="ft-bar-label">2050 (prognos)</span>
-          <div class="ft-bar-track"><div class="ft-bar-fill" style="width:87%;background:#B84A1E"></div></div>
-          <span class="ft-bar-val">1 080 000</span>
-        </div>
+        <p style="font-size:.68rem;color:var(--ink3);margin-top:.6rem">Ökning med drygt 160 000 personer (+25 %). Källa: SCB, <a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/pong/statistiknyhet/sveriges-framtida-befolkning-2025-2070/" target="_blank" rel="noopener">Sveriges framtida befolkning 2025–2070</a>.</p>
       </div>
 
       <p class="ft-source">Källor: SCB Befolkningsframskrivning 2025–2070, SCB Befolkningsstatistik 2024.</p>
@@ -2735,6 +2715,11 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
       </div>
     </div>
+    <details class="ordlista" id="nyckeltal">
+      <summary>Nyckeltal: värde, år och källa</summary>
+      <p style="font-size:.78rem;color:var(--ink2);margin:.8rem 0 .4rem">De viktigaste siffrorna på sajten, samlade på ett ställe. Ändras ett värde uppdateras det här och kontrolleras mot resten av sidan innan publicering.</p>
+      <div style="overflow-x:auto"><table class="nt-tbl"><thead><tr><th>Nyckeltal</th><th>Värde</th><th>År</th><th>Källa</th></tr></thead><tbody id="nyckeltal-tabell"></tbody></table></div>
+    </details>
     <details class="ordlista" id="ordlista">
       <summary>Ordlista: förkortningar och begrepp</summary>
       <dl id="ordlista-dl"></dl>
@@ -3403,6 +3388,7 @@ function applyPgridFilters(){
       ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Motsvarar inkomstskatten från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
       <details class="pc-src" onclick="event.stopPropagation()"><summary>Källa och beräkning</summary><p>${c.src}</p></details>
     </div>`).join('') + (d.length < total ? `<button type="button" class="pg-more" onclick="pgridShowAll=true;applyPgridFilters()">Visa alla ${total} prislappar <span aria-hidden="true">↓</span></button>` : '');
+  try { linkaKallor(grid); } catch(e) { /* källkatalogen laddas senare i skriptet; länkas vid start */ }
 }
 
 const ico = (n, cls='') => `<svg class="ico ${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
@@ -3432,6 +3418,91 @@ function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 document.querySelectorAll('[data-cards-total]').forEach(e=>e.textContent=CARDS.length);
 document.querySelectorAll('[data-cards-other]').forEach(e=>e.textContent=CARDS.length-1);
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
+
+// ═══ KÄLLOR OCH NYCKELTAL — en sanningskälla ═══════════════════════════════
+// KALLOR: källkatalog. Varje "Källa: …" på sidan som nämner en källa här får en länk (linkaKallor).
+// NYCKELTAL: kanoniska värden med år och källa. Visas i Metod och kontrolleras av scripts/kontroll.mjs,
+// som också letar efter de gamla värden som står under `gamla`. Ändra ett nyckeltal HÄR och kör kontrollen.
+const KALLOR = {
+  bp2026:        {namn:'Budgetpropositionen 2026 (prop. 2025/26:1)', match:['Budgetpropositionen 2026','BP2026','prop. 2025/26:1'], url:'https://www.riksdagen.se/sv/dokument-och-lagar/dokument/proposition/budgetpropositionen-for-2026_hd031/'},
+  riksgalden:    {namn:'Riksgälden, Statsupplåning 2026:1', match:['Riksgälden'], url:'https://www.riksgalden.se/sv/statistik/statsskulden/'},
+  scb_kskatt:    {namn:'SCB, Kommunalskatterna 2026', match:['Kommunalskatterna 2026'], url:'https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/'},
+  scb_cofog:     {namn:'SCB, offentlig sektors utgifter (COFOG)', match:['COFOG'], url:'https://www.scb.se/nr0103'},
+  scb_lon:       {namn:'SCB, lönestrukturstatistik', match:['lönestrukturstatistik','lönestruktur'], url:'https://www.scb.se/am0110'},
+  scb_befolkning:{namn:'SCB, Sveriges framtida befolkning 2025–2070', match:['Befolkningsframskrivning','befolkningsframskrivning'], url:'https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/pong/statistiknyhet/sveriges-framtida-befolkning-2025-2070/'},
+  skatteverket:  {namn:'Skatteverket, teknisk beskrivning SKV 433 (2026)', match:['SKV 433','Skatteverket'], url:'https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf'},
+  oecd_rev:      {namn:'OECD Revenue Statistics 2025', match:['Revenue Statistics'], url:'https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en.html'},
+  oecd_haag:     {namn:'OECD Health at a Glance 2025', match:['Health at a Glance','OECD Health'], url:'https://doi.org/10.1787/8f9e3f98-en'},
+  pisa:          {namn:'OECD PISA 2025', match:['PISA'], url:'https://www.oecd.org/en/publications/pisa-2025-results-volume-i-country-notes_2d4ff9ea-en/'},
+  socialstyrelsen:{namn:'Socialstyrelsen, statistik', match:['Socialstyrelsen'], url:'https://www.socialstyrelsen.se/statistik-och-data/'},
+  skolverket:    {namn:'Skolverket, Kostnader för skolväsendet 2023', match:['Skolverket'], url:'https://skolverket.se/download/18.24c1780b1922c1369061f/1727355109114/pdf13151.pdf'},
+  eurostat:      {namn:'Eurostat, offentlig skuld (april 2026)', match:['Eurostat'], url:'https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-22042026-bp'},
+  ekonomifakta:  {namn:'Ekonomifakta, skattekvot', match:['Ekonomifakta'], url:'https://www.ekonomifakta.se/diagram_och_tabeller/skattekvot-over-tid_1208768.html?view=table'},
+  esv:           {namn:'Ekonomistyrningsverket', match:['ESV'], url:'https://www.esv.se/statens-ekonomi/'},
+  pensionsmyndigheten:{namn:'Pensionsmyndigheten', match:['Pensionsmyndigheten'], url:'https://www.pensionsmyndigheten.se/'},
+  forsakringskassan:{namn:'Försäkringskassan, årsredovisning', match:['Försäkringskassan'], url:'https://www.forsakringskassan.se/om-forsakringskassan/arsredovisning'},
+  kriminalvarden:{namn:'Kriminalvården, årsredovisning', match:['Kriminalvården'], url:'https://www.kriminalvarden.se/om-kriminalvarden/publikationer/arsredovisning/'},
+  skr:           {namn:'Sveriges Kommuner och Regioner', match:['SKR'], url:'https://skr.se/'},
+  regeringen:    {namn:'Regeringen, Så styrs Sverige', match:['Så styrs Sverige'], url:'https://www.regeringen.se/sa-styrs-sverige/'},
+  varldsbanken:  {namn:'Världsbanken (FN:s IGME), spädbarnsdödlighet', match:['IGME','Världsbanken'], url:'https://data.worldbank.org/indicator/SP.DYN.IMRT.IN'},
+};
+const NYCKELTAL = {
+  medianlon:      {namn:'Medianlön (heltid)',                 v:'38 300 kr/mån', ar:'2025', kalla:'scb_lon',      gamla:['32 500 kr','~390 tkr','390 tkr/år']},
+  kommunalskatt:  {namn:'Kommunalskatt, rikssnitt',           v:'32,38 % (kommun 20,69 + region 11,69)', ar:'2026', kalla:'scb_kskatt', gamla:['32,37 %']},
+  statsbudget:    {namn:'Statsbudgetens utgifter',            v:'1 542 Mdkr',    ar:'2026', kalla:'bp2026',       gamla:[]},
+  budgetsaldo:    {namn:'Budgetsaldo (riksdagens beslut / Riksgäldens prognos)', v:'−167 / −196 Mdkr', ar:'2026', kalla:'riksgalden', gamla:['underskott 173','Budgetunderskott 173']},
+  offentliga:     {namn:'Offentliga sektorns utgifter',       v:'3 011 Mdkr',    ar:'2024', kalla:'scb_cofog',    gamla:['3 280 Mdkr','3 280 miljarder']},
+  statsskuld:     {namn:'Statsskuld',                         v:'1 430 Mdkr (21 % av BNP)', ar:'2026 (prognos)', kalla:'riksgalden', gamla:['1 316 Mdkr','125 000 kr']},
+  rantor:         {namn:'Räntor på statsskulden (UO26)',      v:'27,0 Mdkr',     ar:'2026', kalla:'bp2026',       gamla:['dubblats sedan 2024','Dubblat från 2024']},
+  maastricht:     {namn:'Offentlig bruttoskuld (Maastricht)', v:'35,1 % (EU 81,7 %)', ar:'2025', kalla:'eurostat', gamla:['EU-snitt ~83']},
+  skattekvot:     {namn:'Skattekvot',                         v:'41,4 % (OECD-snitt 34,1 %); 2025 prel. 40,5 %', ar:'2024', kalla:'oecd_rev', gamla:['51,4','46,7 %','41,2 %','−5,5','370 Mdkr']},
+  brytpunkt:      {namn:'Brytpunkt för statlig inkomstskatt', v:'≈ 660 000 kr/år i lön (skiktgräns 643 000 kr)', ar:'2026', kalla:'skatteverket', gamla:['brytpunkten (643 000','55–65 %']},
+  prisbasbelopp:  {namn:'Prisbasbelopp',                      v:'59 200 kr',     ar:'2026', kalla:'skatteverket', gamla:[]},
+  arbetsgivaravgift:{namn:'Arbetsgivaravgift',                v:'31,42 % (varav 10,21 % ålderspensionsavgift)', ar:'2026', kalla:'skatteverket', gamla:[]},
+  vardgaranti:    {namn:'Medicinsk bedömning i primärvården inom 3 dagar', v:'91 %', ar:'aug 2026', kalla:'socialstyrelsen', gamla:['0–7–90','~50 %<sub> (SKR','Stockholm 62 %']},
+  medellivslangd: {namn:'Medellivslängd',                     v:'83,4 år (OECD-snitt 81,1)', ar:'2023', kalla:'oecd_haag', gamla:['83,5 år','80,7']},
+  aldre80:        {namn:'Personer 80 år och äldre',           v:'≈ 650 000 (2024) → 812 000 (2030)', ar:'2025–2070', kalla:'scb_befolkning', gamla:['601 000','668 000','895 000','+11 %<sub>']},
+  grundskola:     {namn:'Grundskola, kostnad per elev',       v:'133 000 kr',    ar:'2023', kalla:'skolverket',   gamla:['152 000 kr/elev','152 tkr/elev']},
+  gymnasium:      {namn:'Gymnasieskola, kostnad per elev',    v:'141 500 kr',    ar:'2023', kalla:'skolverket',   gamla:['148 000 kr/elev']},
+  forskola:       {namn:'Förskola, kostnad per barn',         v:'181 800 kr',    ar:'2023', kalla:'skolverket',   gamla:['185 000 kr/barn']},
+};
+
+// Länka källnamn i källrader. Körs vid start och efter att prislistan ritats om.
+const KALLA_SEL = '.ft-source,.pc-src p,.fk-meta,.src-desc,.src-name,.oecd-src,.vgv-src,#kl-src,.ft-desc,.dp-src,[data-kallor]';
+function linkaKallor(root){
+  root = root || document;
+  const pats = [];
+  Object.entries(KALLOR).forEach(([id,k]) => k.match.forEach(m => pats.push({id, m, url:k.url, namn:k.namn})));
+  pats.sort((a,b) => b.m.length - a.m.length);
+  root.querySelectorAll(KALLA_SEL).forEach(box => {
+    if(box.dataset.kallorLinkad) return;
+    box.dataset.kallorLinkad = '1';
+    const used = new Set();
+    // Hoppa över källor som redan har en länk i rutan
+    box.querySelectorAll('a[href]').forEach(a => Object.entries(KALLOR).forEach(([id,k]) => { if(a.href.split('#')[0] === k.url) used.add(id); }));
+    const tw = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, {acceptNode:n => n.parentElement.closest('a,button,.term') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+    const nodes = []; while(tw.nextNode()) nodes.push(tw.currentNode);
+    nodes.forEach(node => {
+      let txt = node.nodeValue, hit = null;
+      for(const p of pats){ if(used.has(p.id)) continue; const i = txt.indexOf(p.m); if(i >= 0 && (!hit || i < hit.i)) hit = {...p, i}; }
+      if(!hit) return;
+      used.add(hit.id);
+      const after = node.splitText(hit.i); after.splitText(hit.m.length);
+      const a = document.createElement('a');
+      a.href = hit.url; a.target = '_blank'; a.rel = 'noopener'; a.className = 'kalla-lank'; a.title = hit.namn;
+      a.textContent = after.nodeValue; after.replaceWith(a);
+    });
+  });
+}
+(function initNyckeltal(){
+  const tb = document.getElementById('nyckeltal-tabell');
+  if(tb) tb.innerHTML = Object.values(NYCKELTAL).map(n => {
+    const k = KALLOR[n.kalla];
+    return `<tr><td>${n.namn}</td><td class="nt-v">${n.v}</td><td>${n.ar}</td><td>${k ? `<a href="${k.url}" target="_blank" rel="noopener">${k.namn}</a>` : ''}</td></tr>`;
+  }).join('');
+  const go = () => linkaKallor(document);
+  if(document.readyState === 'complete') setTimeout(go, 350); else window.addEventListener('load', () => setTimeout(go, 350));
+})();
 
 // ═══ ORDLISTA — förklaringar till fackord och förkortningar ═══
 // Första förekomsten per sektion i löptext markeras; hela listan visas under Metod.
@@ -3463,7 +3534,7 @@ const ORDLISTA = [
 ];
 (function initOrdlista(){
   const dl=document.getElementById('ordlista-dl');
-  const openFromHash=()=>{ if(location.hash==='#ordlista'){ const d=document.getElementById('ordlista'); if(d){ d.open=true; d.scrollIntoView({block:'start'}); } } };
+  const openFromHash=()=>{ if(location.hash==='#ordlista'||location.hash==='#nyckeltal'){ const d=document.getElementById(location.hash.slice(1)); if(d){ d.open=true; d.scrollIntoView({block:'start'}); } } };
   window.addEventListener('hashchange',openFromHash); setTimeout(openFromHash,300);
   if(dl) dl.innerHTML=ORDLISTA.slice().sort((a,b)=>a.t.localeCompare(b.t,'sv')).map(o=>'<dt>'+o.t+'</dt><dd>'+o.d+'</dd>').join('');
   const SKIP='h1,h2,h3,h4,button,a,svg,script,style,input,select,textarea,label,code,summary,.term,nav,.stage-wrap,[aria-hidden="true"],.pc-amount,.gq,.fk-chart,.fk-meta,.fk-act,.fk-eye,.vgv-big,.vgv-meta,.ordlista,.detail-panel,#sc-overlay,.vgv-src,.src,.pc-src,#kl-src,.s-eye,.pc-cat,.hsk-100';
@@ -4143,8 +4214,8 @@ renderSkatteChart();
 // Fördelningsproportioner: COFOG-funktioner → individnivå per fas.
 // Alla belopp tkr/år i 2024 års priser.
 // ═══════════════════════════════════════════════════════════════════
-// ── Livsfaser v2.0 — kanonisk datakälla (sync med data/livsfaser_v2.json) ────
-// VIKTIG: Uppdatera ALLTID livsfaser_v2.json parallellt om värden ändras här.
+// ── Livsfaser v2.0 — sajtens kanoniska förmånsvärden ────
+// Python-modellen (data/livsfaser_v2.json) använder delvis andra definitioner; scripts/kontroll.mjs redovisar skillnaderna.
 const LIVSFASER_V2 = [
   {id:'barn',       icon:'blocks', label:'Spädbarn & förskola',      min:0,  max:6,
    f:{utb:110, sj:40, soc:38, koll:50, oms:0},

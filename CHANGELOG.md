@@ -10,6 +10,29 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — Steg 3: en sanningskälla, klickbara källor och kontroll före publicering
+
+- **`NYCKELTAL`:** kanoniska värden (medianlön, kommunalskatt, statsbudget,
+  budgetsaldo, offentliga utgifter, statsskuld, räntor, Maastrichtskuld,
+  skattekvot, brytpunkt, prisbasbelopp, arbetsgivaravgift, vårdgaranti,
+  medellivslängd, 80+, skolkostnader) med år och källa. Visas som tabell under
+  Metod ("Nyckeltal och källor", även via Mer-menyn).
+- **`KALLOR` och automatiska källänkar:** 21 källor med länk. Källrader i hela
+  sajten (diagram, prislappar, faktakort, Metod) får länkar till dokumenten
+  automatiskt, cirka 90 länkar.
+- **`scripts/kontroll.mjs`** (node, inga beroenden) körs före publicering:
+  skattemodellen mot Skatteverkets tabell 32 kolumn 1–3 (39 punkter,
+  5 000–60 000 kr/mån), inga gamla värden kvar, alla prislappar och faktakort
+  har källa, modellens robusthet över ålder 0–100 och inkomst 0–2 000 tkr, samt
+  skillnader mot Python-modellens datafil.
+- **80+-diagrammen** visade fortfarande gamla prognoser (601 000 → 668 000 →
+  895 000 → 1 080 000). Ersatta med SCB:s verifierade värden (≈ 650 000 år 2024,
+  812 000 år 2030); 2040 och 2050 borttagna eftersom de inte kunde beläggas.
+- **Datafiler:** fyra inaktuella filer som sajten inte läser och som motsade
+  den flyttade till `data/arkiv/` (statsskuld, oecd_utfall, budget_analys_2025,
+  framtidsutmaningar); det gamla kontrollskriptet till `scripts/arkiv/`.
+  `data/README.md` beskriver vad som används.
+
 ### Fixed (2026-10-28) — Steg 2: pensionärer och modellens kanter
 
 - **Pensionärsskatten enligt Skatteverket:** förhöjt grundavdrag för den som
