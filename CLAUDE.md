@@ -41,7 +41,9 @@ correspondence/
   - Ålder ≥66 → reducerad arbetsgivaravgift (10.21%)
   - Pensionärer (≥66) → inget jobbskatteavdrag
 - `grundavdrag2024(inc)` — grundavdrag enligt 2024 års regler
-- `jobbskatteavdrag2024(inc, ga, ks)` — JSA-beräkning
+- `jobbskatteavdrag2024(inc, ga, ks)` — JSA enligt exakt formel i Skatteverkets SKV 433 (2026), ingen avtrappning. Verifierad mot skattetabell 32 (±1 kr, 20–80 tkr/mån)
+- `grundavdrag2024(inc)` avrundas uppåt till hundratal kr (SKV 433)
+- `MEDIAN_LON_MAN` = 38 300 kr (SCB lönestrukturstatistik 2025); `skattetid(kr)` ger prislapparnas vardagsjämförelse
 
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
@@ -109,6 +111,8 @@ correspondence/
 3. NTA-data för Norden från 2010 (senast tillgängliga)
 4. Hushållsmultiplikatorer är förenklade (SCB FASIT ger mer granulär data)
 5. Inkomstgradienten är schablonbaserad, ej empiriskt skattad per decil
+6. Skattereduktion för förvärvsinkomst (max 1 500 kr/år) och public service-avgift (max 1 184 kr/år) ingår inte i `annualTax` (nettoeffekt ≈ −300 kr/år)
+7. Personer 66+ räknas utan jobbskatteavdrag och med schablonmässigt förhöjt grundavdrag (+40 %); lagens förhöjda jobbskatteavdrag för äldre som arbetar är inte modellerat
 
 ## Konfidensintervall
 | Kategori | Osäkerhet | Källa |

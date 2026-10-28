@@ -14,12 +14,12 @@ Filmen anpassar automatiskt varje kapitels längd efter ljudet.
 ---
 
 ## 1. Allt börjar med arbete
-Allt börjar med arbete. En vanlig lön i Sverige, medianlönen, är ungefär
-trettiotvåtusen femhundra kronor i månaden före skatt.
+Allt börjar med arbete. En vanlig lön i Sverige, medianlönen, är
+trettioåttatusen trehundra kronor i månaden före skatt.
 
 ## 2. Skatten dras innan lönen når dig
 Innan lönen når dig drar arbetsgivaren av din preliminärskatt, ungefär
-sjutusen trehundra kronor, och skickar den till Skatteverket. Ovanpå lönen
+sjutusen sjuhundra kronor, och skickar den till Skatteverket. Ovanpå lönen
 betalar arbetsgivaren också arbetsgivaravgifter. En del av dem blir din egen
 pension.
 

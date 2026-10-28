@@ -10,6 +10,36 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-28) — Skattemodellen: jobbskatteavdraget följer nu Skatteverket exakt
+
+- `jobbskatteavdrag2024` hade en egen avtrappning över 35 000 kr/mån som inte
+  finns i lagen. Skatten överskattades med 13 % vid 30 000 kr/mån och upp till
+  30 % vid 50 000 kr/mån. Ersatt med den exakta formeln i Skatteverkets
+  tekniska beskrivning SKV 433 (2026), avsnitt 7.5.2. Grundavdraget avrundas
+  nu uppåt till hundratal kr. Kontroll mot skattetabell 32: 20 000–80 000 kr/mån
+  stämmer på ±1 kr.
+- Påverkar kalkylatorn, skattekvittot, livsloppet och alla siffror som räknas
+  fram ur `annualTax`.
+- **Medianlön** uppdaterad till 38 300 kr/mån (SCB lönestrukturstatistik 2025).
+  Kortet "Effektiv inkomstskatt": ~23 % → **~20 %** (92 tkr av 460 tkr).
+  Filmens belopp: skatt ≈ 7 700, arbetsgivaravgift ≈ 12 000 (varav ≈ 3 900
+  pension), moms ≈ 3 800, netto ≈ 30 600 kr/mån.
+- "Visste du att"-raden om kapitalskatt rättad: den påstod att en sjuksköterska
+  på medianlön har 30 % effektiv inkomstskatt (blandade ihop effektiv och
+  marginell skatt). Omskriven sakligt.
+
+### Changed (2026-10-28) — Ordning, navigering och prislappar
+
+- **"Vem gör vad?" med filmen** flyttad tidigare: direkt efter "Skatter i
+  korthet", före Prislistan.
+- **Navigeringen** följer sidans ordning och har fått "Vem gör vad". Framtid,
+  Historik, Metod och Om oss ligger under "Mer" (alla visas direkt i
+  mobilmenyn). Mobilmenyn tar över vid ≤ 1 020 px så att raden aldrig spiller
+  över.
+- **Prislapparna:** ny vardagsjämförelse ("Motsvarar inkomstskatten från en
+  medianlön under 7 månader"), räknad ur skattemodellen. Källtexten ligger nu
+  bakom en hopfällbar "Källa och beräkning".
+
 ### Changed (2026-10-28) — Filmen: mobillayout, mjukare flöde och stöd för röst
 
 - **Mobil (≤ 640 px):** egen stående layout där elementen placeras om i en

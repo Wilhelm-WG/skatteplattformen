@@ -200,7 +200,23 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.78);backdrop-
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
 .nav-logo{font-family:var(--serif);font-size:1.18rem;color:var(--ink);text-decoration:none;font-weight:600;letter-spacing:-.01em}
 .nav-logo em{font-style:italic;color:var(--green)}
-.nav-links{display:flex;gap:2.1rem;list-style:none}
+.nav-links{display:flex;align-items:center;gap:1.6rem;list-style:none}
+.nav-more{position:relative}
+.nav-more-btn{font:inherit;font-size:.84rem;font-weight:450;color:var(--ink2);background:none;border:0;padding:2px 0;cursor:pointer;display:inline-flex;align-items:center;gap:.25rem}
+.nav-more-btn svg{width:14px;height:14px;transition:transform .2s}
+.nav-more-btn:hover,.nav-more.open .nav-more-btn{color:var(--ink)}
+.nav-more.open .nav-more-btn svg{transform:rotate(180deg)}
+.nav-more:has(.nav-active) > .nav-more-btn{color:var(--green);font-weight:600}
+.nav-sub{display:none;position:absolute;top:calc(100% + 14px);right:-12px;min-width:170px;list-style:none;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-md);padding:.5rem;flex-direction:column;gap:0;z-index:120}
+.nav-sub::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+.nav-more.open .nav-sub,.nav-more:hover .nav-sub{display:flex}
+.nav-sub a{display:block;padding:.45rem .7rem;border-radius:var(--r-sm)}
+.nav-sub a::after{display:none}
+.nav-sub a:hover{background:var(--bg2)}
+.nav-links.open .nav-more-btn{display:none}
+.nav-links.open .nav-sub{display:flex;position:static;min-width:0;background:none;border:0;box-shadow:none;padding:0;gap:.75rem}
+.nav-links.open .nav-sub::before{display:none}
+.nav-links.open .nav-sub a{padding:2px 0}
 .nav-links a{font-size:.84rem;font-weight:450;color:var(--ink2);text-decoration:none;transition:color .15s;position:relative;padding:2px 0}
 .nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--green);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
 .nav-links a:hover{color:var(--ink)}
@@ -211,6 +227,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.78);backdrop-
 .nav-pill:hover{background:var(--ink);color:var(--bg);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
 .nav-hamburger{display:none;background:none;border:1px solid var(--border);border-radius:3px;padding:6px 8px;cursor:pointer;color:var(--ink);font-size:1.1rem;line-height:1}
 .nav-links.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.5rem;gap:.75rem;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+@media(max-width:1020px){.nav-links{display:none}.nav-hamburger{display:flex}nav .container{position:relative}}
 /* HERO */
 .hero{padding:80px 0 64px}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -311,7 +328,16 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .pc-suf{font-size:.8rem;color:var(--ink3);font-weight:400}
 .pc-vs{margin-top:.5rem;font-size:.72rem;color:var(--ink3);line-height:1.5}
 .pc-vs strong{color:var(--green);font-weight:600}
-.pc-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;padding-top:.7rem;border-top:1px solid var(--border2);font-family:var(--mono)}
+.pc-cmp{display:flex;gap:.45rem;align-items:flex-start;margin-top:.65rem;font-size:.72rem;color:var(--ink2);line-height:1.45}
+.pc-cmp .ico{color:var(--ink3);margin-top:.1em;flex:none}
+.pc-cmp b{color:var(--ink);font-weight:600}
+.pc-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono)}
+.pc-src summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:.68rem;font-weight:500;color:var(--green);display:inline-flex;align-items:center;gap:.3rem}
+.pc-src summary::-webkit-details-marker{display:none}
+.pc-src summary::before{content:"+";font-family:var(--mono);font-weight:600;width:.8em}
+.pc-src[open] summary::before{content:"−"}
+.pc-src summary:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:2px}
+.pc-src p{margin:.45rem 0 0;line-height:1.55}
 .pc{cursor:pointer;position:relative}
 .pc::after{content:'Klicka för mer →';position:absolute;bottom:10px;right:14px;font-size:.58rem;font-weight:500;color:var(--green);opacity:0;transition:opacity .2s}
 .pc:hover::after{opacity:1}
@@ -660,13 +686,21 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Meny">☰</button>
       <ul class="nav-links" onclick="this.classList.remove('open')">
         <li><a href="#skatter">Skatter</a></li>
+        <li><a href="#vem-gor-vad">Vem gör vad</a></li>
         <li><a href="#pristabell">Prislistan</a></li>
         <li><a href="#budget">Budgeten</a></li>
-        <li><a href="#sjukvard">Sjukvård</a></li>
         <li><a href="#oecd">Jämförelse</a></li>
-        <li><a href="#framtid">Framtid</a></li>
+        <li><a href="#sjukvard">Sjukvård</a></li>
         <li><a href="#kalkylator">Din profil</a></li>
-        <li><a href="#metod">Metod</a></li>
+        <li class="nav-more">
+          <button type="button" class="nav-more-btn" aria-expanded="false" aria-controls="nav-sub">Mer <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="nav-sub" id="nav-sub">
+            <li><a href="#framtid">Framtid</a></li>
+            <li><a href="#historik">Historik</a></li>
+            <li><a href="#metod">Metod</a></li>
+            <li><a href="#om-oss">Om oss</a></li>
+          </ul>
+        </li>
       </ul>
       <a href="#" class="nav-pill" onclick="shareSkatt(event)" title="Dela en länk som återskapar din vy">Dela</a>
     </div>
@@ -835,9 +869,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
       <div style="padding:1.1rem 1.2rem;background:rgba(184,74,30,.07);border:1px solid rgba(184,74,30,.28);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~23 <span style="font-size:.85rem;opacity:.6">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön ~390 tkr/år (2026)</strong>: kommunal 118 tkr − jobbskatteavdrag 30 tkr = <strong>~88 tkr i direkt inkomstskatt</strong> (23 % av brutto). Plus moms ~38 tkr = ~32 % av brutto. Plus arbetsgivaravgift (21,21 %) som arbetsgivaren betalar ovanpå = ~44 % av total arbetsgivarkostnad. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverket 2026 + SCB medianlön + sparkvot/momsmix SCB HUT</div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~20 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön 38 300 kr/mån (≈ 460 tkr/år)</strong>: kommunalskatt 143 tkr − jobbskatteavdrag 51 tkr = <strong>~92 tkr i direkt inkomstskatt</strong> (20 % av brutto). Plus moms ~46 tkr = ~30 % av brutto. Plus arbetsgivaravgift (21,21 %) som arbetsgivaren betalar ovanpå = ~42 % av total arbetsgivarkostnad. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + sparkvot/momsmix SCB HUT</div>
       </div>
 
     </div>
@@ -851,40 +885,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 </section>
 
 <hr class="div">
-
-<!-- PRICE TABLE -->
-<section class="section" id="pristabell" aria-label="Den offentliga prislistan">
-  <div class="cw">
-    <div class="price-hdr">
-      <div>
-        <p class="s-eye">Vad kostar det faktiskt?</p>
-        <h2 class="s-title">Den offentliga prislistan</h2>
-        <p class="s-sub">Faktiska samhällskostnader — vad du betalar och vad skatten täcker. Alla belopp beräknade direkt som totalkostnad delat med volym, 2024 års priser (enhetskostnader); patientavgifter och FK-belopp i 2026 års nivå.</p>
-      </div>
-      <div class="pf-row">
-        <button class="pf on" onclick="fc(this,'all')">Alla</button>
-        <button class="pf" onclick="fc(this,'top10')" style="background:rgba(200,151,58,.08);border-color:rgba(200,151,58,.4)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rank"/></svg>Topp 10 dyraste</button>
-        <button class="pf" onclick="fc(this,'helse')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>Hälsa</button>
-        <button class="pf" onclick="fc(this,'utb')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cap"/></svg>Utbildning</button>
-        <button class="pf" onclick="fc(this,'infra')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bridge"/></svg>Infrastruktur</button>
-        <button class="pf" onclick="fc(this,'social')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg>Social</button>
-        <button class="pf" onclick="fc(this,'trygghet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-shieldcheck"/></svg>Trygghet</button>
-        <button class="pf" onclick="fc(this,'kronisk')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg>Kroniska sjukdomar</button>
-      </div>
-    </div>
-    <div style="margin-top:1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
-      <label for="pgrid-search" style="font-size:.7rem;color:var(--ink3);font-weight:500;letter-spacing:.05em;text-transform:uppercase">Sök i prislistan</label>
-      <input type="search" id="pgrid-search" placeholder="t.ex. cancer · skola · fängelse · IVA · ms"
-        oninput="searchCards(this.value)"
-        style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .15s"
-        onfocus="this.style.borderColor='var(--green)'"
-        onblur="this.style.borderColor='var(--border)'" />
-      <span id="pgrid-count" style="font-size:.68rem;color:var(--ink3);font-family:var(--mono)"></span>
-    </div>
-    <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
-  </div>
-</section>
 
 <!-- VEM GÖR VAD: stat, region, kommun -->
 <section class="section" id="vem-gor-vad" aria-label="Vem gör vad: staten, regionen och kommunen">
@@ -917,20 +917,20 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </g>
 
         <!-- Belopp längs banorna -->
-        <g class="el" data-el="l-ag-sv"><rect class="lbl-bg" x="196" y="128" width="118" height="34" rx="4"/><text class="lbl" x="200" y="142">skatt ≈ 7 300 kr</text><text class="lbl" x="200" y="157">avgift ≈ 10 200 kr</text></g>
-        <g class="el" data-el="l-ag-du"><rect class="lbl-bg" x="118" y="180" width="100" height="18" rx="4"/><text class="lbl" x="122" y="193">netto ≈ 25 200 kr</text></g>
-        <g class="el" data-el="l-shop"><rect class="lbl-bg" x="196" y="356" width="104" height="18" rx="4"/><text class="lbl" x="200" y="369">moms ≈ 3 200 kr</text></g>
+        <g class="el" data-el="l-ag-sv"><rect class="lbl-bg" x="196" y="128" width="118" height="34" rx="4"/><text class="lbl" x="200" y="142">skatt ≈ 7 700 kr</text><text class="lbl" x="200" y="157">avgift ≈ 12 000 kr</text></g>
+        <g class="el" data-el="l-ag-du"><rect class="lbl-bg" x="118" y="180" width="100" height="18" rx="4"/><text class="lbl" x="122" y="193">netto ≈ 30 600 kr</text></g>
+        <g class="el" data-el="l-shop"><rect class="lbl-bg" x="196" y="356" width="104" height="18" rx="4"/><text class="lbl" x="200" y="369">moms ≈ 3 800 kr</text></g>
         <g class="el" data-el="l-utj"><rect class="lbl-bg" x="712" y="158" width="196" height="72" rx="6" stroke="var(--stat)" stroke-width="1"/><text class="lbl" x="722" y="178">generella statsbidrag</text><text class="lbl" x="722" y="192">och utjämning, 2025:</text><text class="lbl" x="722" y="207">kommuner 146 Mdkr</text><text class="lbl" x="722" y="221">regioner 91 Mdkr</text></g>
 
         <!-- Lönebesked -->
         <g class="el" data-el="slip">
           <rect x="470" y="40" width="230" height="132" rx="8" fill="var(--soft)" stroke="var(--line)"/>
           <text x="488" y="66" class="node-s" style="letter-spacing:.08em">LÖNEBESKED · MEDIANLÖN</text>
-          <text x="488" y="94" class="lbl">Bruttolön</text><text x="682" y="94" class="lbl" text-anchor="end">32 500 kr</text>
-          <text x="488" y="114" class="lbl">Preliminärskatt</text><text x="682" y="114" class="lbl" text-anchor="end">−7 300 kr</text>
+          <text x="488" y="94" class="lbl">Bruttolön</text><text x="682" y="94" class="lbl" text-anchor="end">38 300 kr</text>
+          <text x="488" y="114" class="lbl">Preliminärskatt</text><text x="682" y="114" class="lbl" text-anchor="end">−7 700 kr</text>
           <line x1="488" x2="682" y1="126" y2="126" stroke="var(--line)"/>
-          <text x="488" y="146" class="lbl" style="font-weight:500;fill:var(--ink)">Utbetalt</text><text x="682" y="146" class="lbl" text-anchor="end" style="font-weight:500;fill:var(--ink)">25 200 kr</text>
-          <text x="488" y="164" class="node-s">+ arbetsgivaravgift 10 200 kr*</text>
+          <text x="488" y="146" class="lbl" style="font-weight:500;fill:var(--ink)">Utbetalt</text><text x="682" y="146" class="lbl" text-anchor="end" style="font-weight:500;fill:var(--ink)">30 600 kr</text>
+          <text x="488" y="164" class="node-s">+ arbetsgivaravgift 12 000 kr*</text>
         </g>
 
         <!-- Noder -->
@@ -1000,18 +1000,18 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <summary>Läs filmen som text</summary>
     <ol id="kl-transcript"></ol>
   </details>
-  <p class="src" id="kl-src">* Varav cirka 3 300 kr ålderspensionsavgift, som ger egen pensionsrätt och därför inte räknas som skatt i kalkylatorns standardläge. Belopp per månad för en medianlön (~390 tkr/år, 2026) enligt Skatteplattformens egen beräkning. Skattesatser: SCB, Kommunalskatterna 2026. Skatteintäkter och statsbidrag: SCB, kommunernas och regionernas preliminära bokslut 2025. Statsbudget 2026: budgetpropositionen. Utbetalning av kommunalskatt: Skatteverket. Ansvarsfördelning: regeringen.se, Så styrs Sverige. På Gotland sköter kommunen regionens uppgifter.</p>
+  <p class="src" id="kl-src">* Varav cirka 3 900 kr ålderspensionsavgift, som ger egen pensionsrätt och därför inte räknas som skatt i kalkylatorns standardläge. Belopp per månad för medianlönen 38 300 kr (SCB 2025) enligt Skatteplattformens beräkning, som följer Skatteverkets skatteregler för 2026. Skattesatser: SCB, Kommunalskatterna 2026. Skatteintäkter och statsbidrag: SCB, kommunernas och regionernas preliminära bokslut 2025. Statsbudget 2026: budgetpropositionen. Utbetalning av kommunalskatt: Skatteverket. Ansvarsfördelning: regeringen.se, Så styrs Sverige. På Gotland sköter kommunen regionens uppgifter.</p>
     </div>
     <script>
 (function(){
   // ── Manus: rubrik, text, minsta längd (s), vad som syns, vad som är i fokus, vilka flöden som rör sig ──
   // Med röst blir varje kapitel minst lika långt som ljudet + en kort paus.
   var SCENES = [
-    {h:"Allt börjar med arbete.", p:"En medianlön i Sverige är ungefär 32 500 kronor i månaden före skatt.", d:7,
+    {h:"Allt börjar med arbete.", p:"Medianlönen i Sverige är 38 300 kronor i månaden före skatt.", d:7,
      show:["n-ag","n-du","slip"], focus:["n-ag","n-du","slip"], flows:[]},
-    {h:"Skatten dras innan lönen når dig.", p:"Arbetsgivaren drar din preliminärskatt, ungefär 7 300 kronor, och skickar den till Skatteverket. Ovanpå lönen betalar arbetsgivaren också en arbetsgivaravgift på ungefär 10 200 kronor, varav cirka 3 300 kronor blir din egen pension.", d:10,
+    {h:"Skatten dras innan lönen når dig.", p:"Arbetsgivaren drar din preliminärskatt, ungefär 7 700 kronor, och skickar den till Skatteverket. Ovanpå lönen betalar arbetsgivaren också en arbetsgivaravgift på ungefär 12 000 kronor, varav cirka 3 900 kronor blir din egen pension.", d:10,
      show:["n-sv","l-ag-sv","l-ag-du"], focus:["n-ag","n-du","n-sv","slip","l-ag-sv","l-ag-du"], flows:[["kl-p-ag-sv","--sv"],["kl-p-ag-du","--ink3"]]},
-    {h:"När du handlar betalar du moms.", p:"Momsen ingår i priset och går också till Skatteverket. För en medianlöntagare blir det i snitt runt 3 200 kronor i månaden.", d:7,
+    {h:"När du handlar betalar du moms.", p:"Momsen ingår i priset och går också till Skatteverket. För en medianlöntagare blir det i snitt runt 3 800 kronor i månaden.", d:7,
      show:["n-shop","l-shop"], focus:["n-shop","n-sv","l-shop","n-du"], flows:[["kl-p-shop-sv","--sv"]]},
     {h:"Skatteverket fördelar pengarna.", p:"Kommunalskatten är i snitt 32,38 %: 20,69 % till kommunen och 11,69 % till regionen. Skatteverket betalar ut den direkt till dem varje månad. Statlig inkomstskatt, moms och arbetsgivaravgifter går till staten och pensionssystemet.", d:10,
      show:["n-stat","n-reg","n-kom"], hide:["slip","l-ag-sv","l-ag-du","l-shop"], focus:["n-sv","n-stat","n-reg","n-kom"], flows:[["kl-p-sv-stat","--stat"],["kl-p-sv-reg","--reg"],["kl-p-sv-kom","--kom"]]},
@@ -1303,6 +1303,42 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
 
     <p class="vgv-src">Källor: SCB, Kommunalskatterna 2026 · SCB, Kommunernas och regionernas preliminära bokslut 2025 (skatteintäkter, generella statsbidrag och utjämning, intäktsandelar) · Skatteverket, Utbetalning av skatt till kommuner och regioner · Regeringen.se, Så styrs Sverige (ansvarsfördelning, regionernas sjukvårdsandel) · Ekonomifakta, Kommunernas kostnader 2025 · Malmö stad, Så används dina skattepengar 2025 · Budgetpropositionen 2026. SCB:s generella statsbidrag omfattar mer än anslaget för kommunalekonomisk utjämning i statsbudgeten, bland annat läkemedelsbidraget.</p>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PRICE TABLE -->
+<section class="section" id="pristabell" aria-label="Den offentliga prislistan">
+  <div class="cw">
+    <div class="price-hdr">
+      <div>
+        <p class="s-eye">Vad kostar det faktiskt?</p>
+        <h2 class="s-title">Den offentliga prislistan</h2>
+        <p class="s-sub">Faktiska samhällskostnader — vad du betalar och vad skatten täcker. Alla belopp beräknade direkt som totalkostnad delat med volym, 2024 års priser (enhetskostnader); patientavgifter och FK-belopp i 2026 års nivå.</p>
+      </div>
+      <div class="pf-row">
+        <button class="pf on" onclick="fc(this,'all')">Alla</button>
+        <button class="pf" onclick="fc(this,'top10')" style="background:rgba(200,151,58,.08);border-color:rgba(200,151,58,.4)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rank"/></svg>Topp 10 dyraste</button>
+        <button class="pf" onclick="fc(this,'helse')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>Hälsa</button>
+        <button class="pf" onclick="fc(this,'utb')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cap"/></svg>Utbildning</button>
+        <button class="pf" onclick="fc(this,'infra')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bridge"/></svg>Infrastruktur</button>
+        <button class="pf" onclick="fc(this,'social')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg>Social</button>
+        <button class="pf" onclick="fc(this,'trygghet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-shieldcheck"/></svg>Trygghet</button>
+        <button class="pf" onclick="fc(this,'kronisk')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"/></svg>Kroniska sjukdomar</button>
+      </div>
+    </div>
+    <div style="margin-top:1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap">
+      <label for="pgrid-search" style="font-size:.7rem;color:var(--ink3);font-weight:500;letter-spacing:.05em;text-transform:uppercase">Sök i prislistan</label>
+      <input type="search" id="pgrid-search" placeholder="t.ex. cancer · skola · fängelse · IVA · ms"
+        oninput="searchCards(this.value)"
+        style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .15s"
+        onfocus="this.style.borderColor='var(--green)'"
+        onblur="this.style.borderColor='var(--border)'" />
+      <span id="pgrid-count" style="font-size:.68rem;color:var(--ink3);font-family:var(--mono)"></span>
+    </div>
+    <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
   </div>
 </section>
 
@@ -3204,11 +3240,33 @@ function applyPgridFilters(){
       <div class="pc-unit">${c.unit}</div>
       <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
       <div class="pc-vs">${c.vs}</div>
-      <div class="pc-src">Källa: ${c.src}</div>
+      ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Motsvarar inkomstskatten från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
+      <details class="pc-src" onclick="event.stopPropagation()"><summary>Källa och beräkning</summary><p>${c.src}</p></details>
     </div>`).join('');
 }
 
 const ico = (n, cls='') => `<svg class="ico ${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
+// Vardagsjämförelse: hur länge en medianlöntagare betalar inkomstskatt för att täcka ett belopp.
+// Medianlön 38 300 kr/mån (SCB lönestrukturstatistik 2025), rikssnitt kommunalskatt 32,38 %.
+const MEDIAN_LON_MAN = 38300;
+let _skattPerDag = null;
+function skattPerDagMedian(){
+  if(_skattPerDag) return _skattPerDag;
+  const inc = MEDIAN_LON_MAN * 12 / 1000, ks = 0.3238, ga = grundavdrag2024(inc);
+  const skatt = (inc - ga) * ks - jobbskatteavdrag2024(inc, ga, ks);   // tkr/år
+  return (_skattPerDag = skatt * 1000 / 365);
+}
+function skattetid(kr){
+  const d = kr / skattPerDagMedian();
+  if(d < 1.5) return 'en dag';
+  if(d < 45) return Math.round(d) + ' dagar';
+  const m = d / 30.44;
+  if(m < 11.5) return Math.round(m) + ' månader';
+  if(m < 23.5){ const r = Math.round(m) - 12; return r <= 0 ? 'ett år' : '1 år och ' + r + (r === 1 ? ' månad' : ' månader'); }
+  const y = d / 365;
+  const yr = y < 10 ? Math.round(y * 10) / 10 : Math.round(y);
+  return String(yr).replace('.', ',') + ' år';
+}
 const CAT_ICO = {helse:'cross', utb:'cap', infra:'bridge', social:'users', trygghet:'shieldcheck', kronisk:'pill'};
 function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
@@ -3818,6 +3876,9 @@ function getStage(age, inc){
 // All amounts in tkr (thousands SEK)
 // ═══════════════════════════════════════════════════════════════════
 function grundavdrag2024(inc){
+  return Math.min(inc, Math.ceil(grundavdrag2024raw(inc) * 10 - 1e-9) / 10); // avrundas uppåt till hundratal kr
+}
+function grundavdrag2024raw(inc){
   // Grundavdrag per 67 kap IL, PBB 2026 = 59,2 tkr (Skatteverket).
   // Funktionsnamnet behållet av bakåtkompatibilitet — innehållet uppdateras
   // varje år. Senast uppdaterad 2026-06 enligt Skatteverkets fastställda värden.
@@ -3832,35 +3893,23 @@ function grundavdrag2024(inc){
 }
 
 function jobbskatteavdrag2024(inc, ga, ks){
-  // Jobbskatteavdrag 67 kap 5-7 §§ IL, under 66 år, 2026
-  // Kalibrerad mot SKV skattetabeller (tabell 32, snitt kommunalskatt 32,38 %)
-  // Funktionsnamnet behållet av bakåtkompatibilitet — innehåll uppdateras årligen.
-  // JSA platåar ~2 500 kr/mån vid 25–35k, avtrappas därefter.
-  // Verifierade ankarpunkter: 30k → 6 500 kr nettoskatt, 50k → ~14 700.
+  // Skattereduktion för arbetsinkomst (jobbskatteavdrag), under 66 år, inkomstår 2026.
+  // Exakt formel enligt Skatteverkets tekniska beskrivning SKV 433 (2026), avsnitt 7.5.2.
+  // Ingen avtrappning för höga inkomster — avdraget planar ut vid 8,08 PBB.
+  // Kontroll: 38 000 kr/mån i tabell 32 ger exakt 7 653 kr i skatteavdrag.
+  // Funktionsnamnet behållet av bakåtkompatibilitet.
   // inc = arbetsinkomst tkr, ga = grundavdrag tkr, ks = kommunalskattesats (decimal)
   if(inc <= 0) return 0;
-  const m = inc * 1000 / 12; // månadsinkomst i kr
-  let jsaM = 0; // jobbskatteavdrag per månad i kr
-  if(m <= 15000){
-    // Snabb uppbyggnad: 0 → 1 470 kr/mån
-    jsaM = m * 0.098;
-  } else if(m <= 25000){
-    // 1 470 → 2 500 kr/mån
-    jsaM = 1470 + (m - 15000) * 0.103;
-  } else if(m <= 35000){
-    // Platå: ~2 500 kr/mån (bekräftat via 30k = 6 500 kr nettoskatt)
-    jsaM = 2500;
-  } else if(m <= 50000){
-    // Avtrappning: 2 500 → 1 000 kr/mån
-    jsaM = 2500 - (m - 35000) * 0.100;
-  } else {
-    // Fortsatt avtrappning mot 0 vid ~80k
-    jsaM = Math.max(0, 1000 - (m - 50000) * 0.033);
-  }
-  const jsaÅr = jsaM * 12 / 1000; // tkr/år
+  const pbb = 59.2;
+  const ai = Math.floor(inc * 10) / 10;  // avrundas nedåt till helt hundratal kr
+  let bas;
+  if(ai <= 0.91 * pbb)      bas = ai;
+  else if(ai <= 3.24 * pbb) bas = 0.91 * pbb + 0.3874 * (ai - 0.91 * pbb);
+  else if(ai <= 8.08 * pbb) bas = 1.813 * pbb + 0.251 * (ai - 3.24 * pbb);
+  else                      bas = 3.027 * pbb;
+  const jsa = Math.max(0, bas - ga) * ks;
   // Kan aldrig överstiga kommunalskatten
-  const maxJsa = Math.max(0, inc - ga) * ks;
-  return Math.min(jsaÅr, maxJsa);
+  return Math.min(jsa, Math.max(0, inc - ga) * ks);
 }
 
 function annualTax(age, inc, opts){
@@ -4368,7 +4417,7 @@ const VDA_FACTS = [
   'Regional ojämlikhet i vård: Skillnaden i canceröverlevnad mellan bästa och sämsta region är <strong>upp till 12 procentenheter</strong> för vissa diagnoser (Socialstyrelsen Cancerregistret 2024)',
   'Psykisk ohälsa bland unga: <strong>1 av 4 gymnasieelever</strong> uppger besvärande ångest eller depressiva symtom — andelen har fördubblats sedan 2010 (Folkhälsomyndigheten 2024)',
   'Bostadsbristen: <strong>215 av 290 kommuner</strong> uppger underskott på hyresrätter (Boverket 2024). Genomsnittlig kötid i Stockholm: <strong>8–11 år</strong>',
-  'Skattesystemets regresivitet: En person med <strong>10 Mkr i kapitalinkomst</strong> betalar 30% inkomstskatt — samma effektiva skattesats som en sjuksköterska på medianlön betalar i kommunal- och statlig skatt (SCB/Riksrevisionen). <em>OBS: jämförelsen avser inkomstskatt, ej total skattebörda inkl. arbetsgivaravgifter.</em>'
+  'Kapital och arbete beskattas olika: <strong>kapitalinkomster</strong> beskattas med 30 % oavsett storlek, medan <strong>lön</strong> beskattas progressivt. Vid medianlön (38 300 kr/mån) är den direkta inkomstskatten cirka 20 % av lönen; över brytpunkten (643 000 kr/år) är marginalskatten drygt 52 %. <em>Avser inkomstskatt, ej arbetsgivaravgifter. Källa: Skatteverket 2026.</em>'
 ];
 
 (function initVda(){
@@ -5548,6 +5597,16 @@ function downloadTransparencyJSON(){
 }
 
 // ═══════════════════════════════════════════════════════════════════
+// NAV "MER" — öppna/stäng undermeny (klick, Escape, klick utanför)
+(function initNavMore(){
+  const li=document.querySelector('.nav-more'); if(!li) return;
+  const btn=li.querySelector('.nav-more-btn');
+  const set=v=>{ li.classList.toggle('open',v); btn.setAttribute('aria-expanded', v?'true':'false'); };
+  btn.addEventListener('click',e=>{ e.stopPropagation(); set(!li.classList.contains('open')); });
+  li.querySelectorAll('.nav-sub a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('click',e=>{ if(!li.contains(e.target)) set(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && li.classList.contains('open')){ set(false); btn.focus(); } });
+})();
 // NAV ACTIVE LINK — IntersectionObserver
 // ═══════════════════════════════════════════════════════════════════
 (function initNavHighlight(){
