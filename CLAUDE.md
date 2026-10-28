@@ -71,7 +71,7 @@ correspondence/
 - `favicon.svg`, `apple-touch-icon.png` (180×180)
 
 **Gissa först (`#gissa`):**
-- Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-ambulans`). Ingen lagring
+- Quiz i prislistan (`initGissa`): första frågan är fast (`FORSTA`, får inte synas bland de första korten), resten slumpas ur `CARDS`. Prislistan döljs medan man gissar (`.gq-aktiv`). Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-ambulans`). Ingen lagring
 
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
@@ -132,6 +132,8 @@ correspondence/
 - Vyns egen hash (t.ex. `#budget`) visar vyn överst; andra id scrollar dit. `window.aktivVy` = aktuell vy
 - Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar
 - `SAJT_UPPDATERAD` = datum under vyrubrikerna
+- `VYER[*].led = {tal, text, kalla}` = ledsiffran överst i vyn. Bara siffror som finns med källa på sajten
+- Startsidan har `#unga` ("Snabba svar": vardagsfrågor med direkt källa, inga modellsiffror) direkt efter heron. Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
 **Sensitivitetsanalys:**

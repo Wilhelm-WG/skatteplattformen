@@ -10,6 +10,25 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — Ledsiffror, snabba svar och tydligare quiz (granskningens punkt 5–8)
+
+- **Ledsiffra överst i varje vy** (`VYER[*].led`): ett stort tal, en mening och
+  källa, synligt på första skärmen även på mobil. Startsidan: 285 000 kr per
+  invånare och år (SCB, 2024) under rubriken, kortare ingress och daterad rad
+  ovanför rubriken. På mobil är vyfotot en smal remsa (3:1).
+- **"Snabba svar"** på startsidan: sex vardagsfrågor (lön efter skatt,
+  gymnasiet, förskolan, tandvården, pensionen, kollektivtrafiken) med svar som
+  har direkt källa, angiven på kortet. Inga modellberäkningar.
+- **"Visste du att"-snurran borttagen** (23 roterande fakta, 11 utan källa i
+  texten). Snabbfakta är sajtens faktaformat.
+- **"Gissa först"** heter nu "Gissa vad det kostar" och förklarar vad som
+  händer. Första frågan är alltid kriminalvården, resten slumpas. Prislistan
+  döljs medan man gissar så att svaren inte syns. Resultatet kan delas.
+- **Jämförelsediagrammen:** övriga nordiska länder i dämpat grönt, Tyskland och
+  USA i sandfärg, Sverige i mörkgrönt, med förklaring i varje diagram.
+- **Din ekonomi:** lönen kan skrivas in per månad (`#s-man`, synkat med
+  reglaget). Standardprofil 22 år och 25 000 kr i månaden.
+
 ### Fixed (2026-10-28) — De fyra första åtgärderna ur designgranskningen
 
 - **Trovärdighet:** svensk sifferformatering överallt (decimalkomma, mellanslag

@@ -387,19 +387,6 @@ h1 em{font-style:italic;color:var(--green)}
 .t-num sub{font-size:.72rem;color:rgba(255,255,255,.72)}
 .t-lbl{font-size:.7rem;color:rgba(255,255,255,.72);margin-top:4px;line-height:1.3}
 /* VISSTE DU ATT — hero fact ticker */
-.vda-strip{background:var(--ink);padding:18px 0;overflow:hidden;position:relative}
-.vda-inner{display:flex;align-items:center;gap:1.2rem;row-gap:.6rem;flex-wrap:wrap;max-width:1080px;margin:0 auto;padding:0 2rem}
-.vda-badge{flex-shrink:0;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(200,151,58,.3);padding:4px 12px;border-radius:2px;white-space:nowrap}
-.vda-fact{flex:1 1 280px;color:rgba(255,255,255,.88);font-size:.88rem;font-weight:300;line-height:1.5;min-height:1.5em;position:relative}
-.vda-fact span{display:inline;animation:vdaFade 0.5s ease}
-.vda-fact strong{color:#fff;font-weight:500}
-.vda-nav{display:flex;align-items:center;gap:.4rem;margin-left:auto;flex-shrink:0}
-.vda-ctrl{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.75);border-radius:5px;cursor:pointer;font-size:.92rem;line-height:1;transition:all .15s;font-family:var(--sans)}
-.vda-ctrl:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35)}
-.vda-ctrl:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-.vda-count{font-size:.68rem;color:rgba(255,255,255,.72);font-family:var(--mono);min-width:3.4em;text-align:center;white-space:nowrap}
-@media(prefers-reduced-motion:reduce){.vda-fact span{animation:none}}
-@keyframes vdaFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 /* SECTIONS */
 .section{padding:88px 0}
 .s-eye{display:inline-flex;align-items:center;gap:9px;font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem}
@@ -649,12 +636,17 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .oecd-bar-bg{height:20px;background:var(--bg2);border-radius:2px;position:relative}
 .oecd-bar-fill{max-width:100%}
 .oecd-bar-fill{height:100%;border-radius:2px;transition:width .6s ease}
-.oecd-bar-fill{background:#B8B4AB}
+.oecd-bar-fill{background:#C9B48A}
+.oecd-bar-fill.norden{background:#7FAE98}
 .oecd-bar-fill.se{background:var(--green)}
 .oecd-row.se .oecd-country,.oecd-row.se .oecd-val{color:var(--ink);font-weight:600}
 .jmf-ref{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink2);pointer-events:none}
 .oecd-val.na{font-family:var(--sans);font-style:italic;color:var(--ink3);font-size:.68rem}
 .jmf-leg{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--ink2);margin-top:.6rem}
+.jmf-leg{flex-wrap:wrap;gap:.35rem 1rem}
+.jmf-key{display:inline-flex;align-items:center;gap:.35rem}
+.jmf-key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.k-se{background:var(--green)}.k-no{background:#7FAE98}.k-ov{background:#C9B48A}
 .jmf-ref-d{display:inline-block;width:0;height:12px;border-left:2px dashed var(--ink2)}
 .jmf-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-bottom:1rem}
 .jmf-steg{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--paper);font-size:1.3rem;line-height:1;color:var(--ink);cursor:pointer}
@@ -698,7 +690,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .s-sub{font-size:.78rem}
   .hero-section{padding:48px 0 32px}
   .hero-section h1{font-size:1.8rem}
-  .vda-strip{font-size:.72rem;padding:10px 0}
   .card-label{font-size:.72rem}
   .annual-card{padding:.85rem}
   .contract-card{padding:.85rem}
@@ -814,6 +805,30 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .kpi-tal small{font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--ink3)}
 .kpi-lbl{font-size:.8rem;color:var(--ink2);margin-top:.4rem;line-height:1.4}
 @media(max-width:640px){.budget-kpi{grid-template-columns:1fr 1fr}.budget-kpi .kpi:first-child{grid-column:1/-1}}
+.man-rad{display:flex;align-items:baseline;gap:.5rem;margin:.35rem 0 .5rem}
+.man-rad input{width:9rem;font:600 1.4rem/1.2 var(--sans);font-variant-numeric:tabular-nums;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:.35rem .6rem}
+.man-rad input:focus-visible{outline:2px solid #6FC29B;outline-offset:2px}
+.man-rad span{font-size:.85rem;color:rgba(242,239,232,.78)}
+/* Ledsiffra: siffran först, sedan en mening och källa */
+.vy-led{margin:.2rem 0 .9rem;max-width:34rem;line-height:1.4}
+.vy-led b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,7vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--green);font-variant-numeric:tabular-nums;margin-bottom:.3rem}
+.vy-led span{font-size:1.02rem;color:var(--ink)}
+.vy-led small{display:block;font-family:var(--mono);font-size:.7rem;color:var(--ink3);margin-top:.3rem}
+.hero-led{margin-top:1rem}
+@media(max-width:760px){.vy-grid.har-foto .vy-foto{aspect-ratio:3/1}}
+/* Snabba svar (#unga) */
+.unga{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;list-style:none;margin:1.1rem 0 0;padding:0}
+.unga a{display:flex;flex-direction:column;gap:.2rem;height:100%;padding:1rem 1.1rem;background:var(--paper);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+.unga a:hover{border-color:var(--green);box-shadow:var(--shadow-sm)}
+.unga a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.unga-q{font-size:.88rem;font-weight:600;color:var(--ink2)}
+.unga b{font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1.05;color:var(--green);font-variant-numeric:tabular-nums}
+.unga-a{font-size:.82rem;color:var(--ink2);line-height:1.4}
+.unga-k{display:block;margin-top:auto;padding-top:.4rem;font-family:var(--mono);font-size:.66rem;color:var(--ink3)}
+@media(max-width:960px){.unga{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.unga.m-swipe{grid-auto-columns:72%!important}}
+/* Medan man gissar döljs prislistan, annars kan svaret stå synligt */
+.gq-aktiv #pgrid,.gq-aktiv .pgrid-sok,.gq-aktiv .pg-more{display:none!important}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
@@ -875,7 +890,6 @@ html{scroll-padding-top:72px}
   .src-badge{font-size:.66rem}
   .hsk-tg{font-size:.74rem;padding:7px 14px}
   .hsk-prislapp-dot{width:10px;height:10px;padding:0;box-sizing:content-box;border:9px solid transparent;background-clip:padding-box}
-  .vda-ctrl{width:36px;height:36px}
   .hsk-prislapp-foot a{display:inline-block;padding:.45rem 0}
   .hsk-prislapp-stage{min-height:0}
   .vgv-step p{font-size:.82rem}
@@ -966,13 +980,12 @@ html{scroll-padding-top:72px}
       <div>
         <div class="eyebrow fu">
           <span class="e-dot"></span>
-          <span class="e-text">Öppen data · Vetenskaplig grund · 2026</span>
+          <span class="e-text">Uppdaterad 28 oktober 2026 · källa och år på allt</span>
         </div>
         <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
+        <p class="vy-led hero-led fu fu2"><b>285 000 kr</b> <span>lägger stat, regioner och kommuner tillsammans per invånare och år.</span> <small>SCB, 2024</small></p>
         <p class="tagline fu fu2">
-          Du betalar skatt varje dag. Men vet du vad den faktiskt köper?
-          <strong>Vi räknar ut det — i kronor och ören.</strong>
-          Ingen vinkling, inga partier. Bara Sveriges skattepengar, redovisade som de är.
+          Vart skattepengarna går, i kronor och med källa för varje siffra. Ingen vinkling, inga partier.
         </p>
         <div class="actions fu fu3">
           <a href="#pristabell" class="btn-p">Se vad saker kostar →</a>
@@ -1022,20 +1035,22 @@ html{scroll-padding-top:72px}
   </div>
 </section>
 
-<!-- VISSTE DU ATT — rotating fact strip -->
-<div class="vda-strip" id="vdaStrip">
-  <div class="vda-inner">
-    <span class="vda-badge">Visste du att</span>
-    <div class="vda-fact" id="vdaFact" aria-live="off"></div>
-    <div class="vda-nav">
-      <button type="button" class="vda-ctrl" id="vdaPrev" aria-label="Föregående fakta" title="Föregående">‹</button>
-      <span class="vda-count" id="vdaCount" aria-hidden="true"></span>
-      <button type="button" class="vda-ctrl" id="vdaNext" aria-label="Nästa fakta" title="Nästa">›</button>
-      <button type="button" class="vda-ctrl" id="vdaPause" aria-label="Pausa automatisk växling" title="Pausa">❙❙</button>
-      <button type="button" class="vda-ctrl" id="vdaShare" aria-label="Dela denna fakta" title="Dela denna fakta">↗</button>
-    </div>
+<!-- SNABBA SVAR: vardagsfrågor med svar som har direkt källa (inga modellberäkningar) -->
+<section class="section" id="unga" aria-label="Snabba svar" style="padding:2rem 0 1rem">
+  <div class="cw">
+    <p class="s-eye">Snabba svar</p>
+    <h2 class="s-title">Vad kostar det, och vad betalar man själv?</h2>
+    <ul class="unga m-swipe">
+      <li><a href="#fakta-2"><span class="unga-q">Vad blir kvar av en lön på 25 000 kr?</span><b>20 516 kr</b><span class="unga-a">i månaden efter skatt. Skatten är 4 484 kr.</span><small class="unga-k">Skatteverket, skattetabell 32, 2026</small></a></li>
+      <li><a href="#fakta-5"><span class="unga-q">Vad kostar ett år på gymnasiet?</span><b>148 100 kr</b><span class="unga-a">per elev. Eleven betalar ingenting.</span><small class="unga-k">Skolverket, 2025</small></a></li>
+      <li><a href="#pristabell"><span class="unga-q">Vad kostar en förskoleplats?</span><b>199 200 kr</b><span class="unga-a">per barn och år i kommunal förskola. Föräldrarna betalar en avgift med ett tak.</span><small class="unga-k">Skolverket, 2025</small></a></li>
+      <li><a href="#fakta-9"><span class="unga-q">Är tandvården gratis?</span><b>Till 19 år</b><span class="unga-a">gratis till och med det år man fyller 19. Därefter finns tandvårdsbidrag och högkostnadsskydd.</span><small class="unga-k">1177, riksdagen</small></a></li>
+      <li><a href="#fakta-4"><span class="unga-q">Hur mycket av lönen blir pension?</span><b>Drygt 17 %</b><span class="unga-a">av lönen blir allmän pension, upp till cirka 56 000 kr i månaden.</span><small class="unga-k">Pensionsmyndigheten, 2026</small></a></li>
+      <li><a href="#fakta-10"><span class="unga-q">Vem betalar kollektivtrafiken?</span><b>46 %</b><span class="unga-a">betalas av biljetter och andra intäkter. Resten är skatt.</span><small class="unga-k">Trafikanalys, 2025</small></a></li>
+    </ul>
   </div>
-</div>
+</section>
+
 
 <hr class="div">
 
@@ -1588,10 +1603,10 @@ html{scroll-padding-top:72px}
       <div class="gq-intro" id="gq-intro">
         <div>
           <p class="gq-eye"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg>Gissa först</p>
-          <h3 class="gq-h">Hur bra koll har du på vad välfärden kostar?</h3>
-          <p class="gq-p">Tio prislappar ur listan nedan. Gissa beloppet innan du ser svaret.</p>
+          <h3 class="gq-h">Gissa vad det kostar</h3>
+          <p class="gq-p">Du får se tio saker som skatten betalar, till exempel en plats i kriminalvården eller ett år i gymnasiet. Gissa vad det kostar med reglaget eller skriv ett belopp. Sedan ser du vad det faktiskt kostar och vad man själv betalar. Det tar ett par minuter.</p>
         </div>
-        <button type="button" class="gq-btn" id="gq-start">Starta</button>
+        <button type="button" class="gq-btn" id="gq-start">Börja gissa</button>
       </div>
       <div class="gq-play" id="gq-play" hidden>
         <div class="gq-top"><span class="gq-step" id="gq-step"></span><span id="gq-cat"></span><button type="button" class="gq-x" id="gq-close" aria-label="Avsluta gissandet">✕</button></div>
@@ -2285,17 +2300,18 @@ html{scroll-padding-top:72px}
         <div>
           <label>Din ålder</label>
           <div class="sl-row">
-            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35" aria-valuetext="35 år">
-            <span class="sl-val" id="d-age">35 år</span>
+            <input type="range" min="0" max="85" value="22" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="22" aria-valuetext="22 år">
+            <span class="sl-val" id="d-age">22 år</span>
           </div>
           <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-office"/></svg></span><span id="stage-label">Mitt i arbetslivet</span></div>
         </div>
 
         <div>
-          <label>Bruttoinkomst per år</label>
+          <label for="s-man">Lön före skatt</label>
+          <div class="man-rad"><input type="text" id="s-man" inputmode="numeric" autocomplete="off" value="25 000" aria-describedby="d-inc"><span>kr i månaden</span></div>
           <div class="sl-row">
-            <input type="range" min="0" max="1200" value="460" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="460" aria-valuetext="460 000 kronor per år">
-            <span class="sl-val" id="d-inc">460 tkr</span>
+            <input type="range" min="0" max="1200" value="300" id="s-inc" step="1" aria-label="Lön före skatt per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="300" aria-valuetext="300 000 kronor per år">
+            <span class="sl-val" id="d-inc">300 tkr/år</span>
           </div>
         </div>
 
@@ -2959,13 +2975,13 @@ html{scroll-padding-top:72px}
 // ═══════════════════════════════════════════════════════════════════
 const SAJT_UPPDATERAD = '28 oktober 2026';
 const VYER = [
-  {id:'start',       namn:'Start',               hash:'',          delar:['hero','vdaStrip','tldr','snabbfakta','skatter','vem-gor-vad']},
-  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
-  {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget'], ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
-  {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
-  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
-  {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
-  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
+  {id:'start',       namn:'Start',               hash:'',          delar:['hero','unga','tldr','snabbfakta','skatter','vem-gor-vad']},
+  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
+  {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget'], led:{tal:'1 542 Mdkr', text:'är statens utgifter 2026, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
+  {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], led:{tal:'11,2 %', text:'av BNP lägger Sverige på hälso- och sjukvård, mest i Norden.', kalla:'Världsbanken, 2023'}, ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
+  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], led:{tal:'4 484 kr', text:'i skatt per månad på en lön på 25 000 kronor. Kvar blir 20 516 kronor.', kalla:'Skatteverket, skattetabell 32, 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
+  {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], led:{tal:'+25 %', text:'fler personer över 80 år 2030 än 2024, den grupp som behöver mest vård och omsorg.', kalla:'SCB, befolkningsframskrivning'}, ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
+  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], led:{tal:'Källa + år', text:'för varje siffra, och en öppen logg över allt som har rättats.', kalla:'Så arbetar vi'}, ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
 ];
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
 // Foton i vyhuvudena (Wikimedia Commons, se img/foton/KREDITER.md). Tonas i sajtens grönt med CSS.
@@ -3020,6 +3036,7 @@ const BAS_TITEL = document.title;
         <div class="vy-text">
         <nav class="vy-smula" aria-label="Du är här"><a href="#">Start</a> <span aria-hidden="true">›</span> <span aria-current="page">${v.namn}</span></nav>
         <h1 class="vy-titel">${v.namn}</h1>
+        ${v.led ? `<p class="vy-led"><b>${v.led.tal}</b> <span>${v.led.text}</span> <small>${v.led.kalla}</small></p>` : ''}
         ${v.ingress ? `<p class="vy-ingress">${v.ingress}</p>` : ''}
         <p class="vy-datum">Uppdaterad ${SAJT_UPPDATERAD}</p>
         ${toc.length > 1 ? `<ul class="vy-toc" aria-label="Innehåll">${toc.join('')}</ul>` : ''}
@@ -4069,17 +4086,29 @@ async function faktaBild(i){
       '<h3>Du låg inom ±25 % på '+ok+' av '+res.filter(Boolean).length+'.</h3>'+
       '<p>Här låg din gissning längst från det verkliga beloppet:</p>'+
       '<ol>'+miss.map(m=>'<li>'+m.r.c.title+': du gissade <b>'+kr(m.r.g)+'</b>, rätt svar <b>'+kr(m.r.c.amount)+'</b></li>').join('')+'</ol>'+
-      '<div class="gq-nav"><button type="button" class="gq-btn" id="gq-again">Gissa tio nya</button><a class="gq-link" href="#pristabell">Se hela prislistan</a></div>';
+      '<div class="gq-nav"><button type="button" class="gq-btn" id="gq-again">Gissa tio nya</button><button type="button" class="gq-link" id="gq-dela">Dela resultatet</button><a class="gq-link" href="#pristabell">Se hela prislistan</a></div>';
     show('gq-play',false); show('gq-done',true);
+    document.getElementById('pristabell').classList.remove('gq-aktiv');
     $('gq-again').addEventListener('click',()=>start());
+    $('gq-dela').addEventListener('click',()=>{
+      const n=res.filter(Boolean).length, url=location.origin+location.pathname+'#gissa';
+      const text='Jag gissade vad '+n+' saker som skatten betalar kostar och låg nära (±25 %) på '+ok+'. Testa själv:';
+      const b=$('gq-dela');
+      if(navigator.share) navigator.share({title:'Gissa vad det kostar',text,url}).catch(()=>{});
+      else if(navigator.clipboard) navigator.clipboard.writeText(text+' '+url).then(()=>{ b.textContent='Kopierat'; setTimeout(()=>{ b.textContent='Dela resultatet'; },2000); });
+    });
   }
   function start(first){
     qs=pick(first); i=0; res=[];
     show('gq-intro',false); show('gq-done',false); show('gq-play',true); ask();
+    document.getElementById('pristabell').classList.add('gq-aktiv'); // dölj listan så att svaren inte syns
   }
-  function stop(){ show('gq-play',false); show('gq-done',false); show('gq-intro',true); if(/^#gissa/.test(location.hash)) history.replaceState(null,'',location.pathname+location.search); }
+  function stop(){ document.getElementById('pristabell').classList.remove('gq-aktiv'); show('gq-play',false); show('gq-done',false); show('gq-intro',true); if(/^#gissa/.test(location.hash)) history.replaceState(null,'',location.pathname+location.search); }
 
-  $('gq-start').addEventListener('click',()=>start());
+  // Första frågan är alltid densamma (kriminalvården: belagd och oftast underskattad), resten slumpas.
+  // Välj inte en prislapp som syns bland de första korten under quizet, då står svaret synligt.
+  const FORSTA = pool.find(c => c.title === 'Kriminalvård, per intagen och år');
+  $('gq-start').addEventListener('click',()=>start(FORSTA));
   $('gq-close').addEventListener('click',stop);
   $('gq-range').addEventListener('input',e=>setGuess(toVal(+e.target.value),true));
   $('gq-num').addEventListener('input',e=>{ const v=parseInt(e.target.value.replace(/\D/g,''),10); if(v) $('gq-range').value=toPos(v); });
@@ -4329,6 +4358,19 @@ function setHeroMode(mode, btn){
 // Parametrar: ?age=35&inc=500&pension=1
 // ═══════════════════════════════════════════════════════════════════
 // "Vad händer med min första lön?": kalkylatorn vid 19 år och 25 000 kr/mån (300 tkr/år)
+// Lön per månad (kr) ↔ reglaget (tkr per år)
+(function(){
+  const man = document.getElementById('s-man'), inc = document.getElementById('s-inc');
+  if(!man || !inc) return;
+  man.addEventListener('input', () => {
+    const kr = parseInt(man.value.replace(/\D/g, ''), 10);
+    if(isNaN(kr)) return;
+    inc.value = Math.min(1200, Math.round(kr * 12 / 1000));
+    inc.dispatchEvent(new Event('input'));
+  });
+  man.addEventListener('blur', () => { man.value = Math.round(inc.value * 1000 / 12 / 100 * 100).toLocaleString('sv-SE'); });
+})();
+
 function forstaLon(e){
   const a = document.getElementById('s-age'), i = document.getElementById('s-inc');
   if(!a || !i) return;
@@ -4861,7 +4903,9 @@ function updateCalc(){
   const inc = +document.getElementById('s-inc').value;
   const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
   document.getElementById('d-age').textContent = age + ' år';
-  document.getElementById('d-inc').textContent = inc.toLocaleString('sv-SE') + ' tkr';
+  document.getElementById('d-inc').textContent = inc.toLocaleString('sv-SE') + ' tkr/år';
+  const man = document.getElementById('s-man');
+  if(man && document.activeElement !== man) man.value = Math.round(inc * 1000 / 12 / 100 * 100).toLocaleString('sv-SE');
   if(document.getElementById('d-kapital')) document.getElementById('d-kapital').textContent = kapitalInc.toLocaleString('sv-SE') + ' tkr';
 
   // Hushålls- och inkomstjusterade förmåner
@@ -5235,12 +5279,12 @@ function jmfKort(ch){
   JMF_LAND.forEach((land, i) => {
     const v = ch.v[i], se = i === 0;
     h += `<div class="oecd-row${se ? ' se' : ''}"><span class="oecd-country">${land}</span><div class="oecd-bar-bg">`;
-    if(v !== null) h += `<div class="oecd-bar-fill${se ? ' se' : ''}" style="width:${(v / max * 100).toFixed(1)}%"></div>`;
+    if(v !== null) h += `<div class="oecd-bar-fill${se ? ' se' : i <= 4 ? ' norden' : ''}" style="width:${(v / max * 100).toFixed(1)}%"></div>`;
     if(refPct !== null) h += `<span class="jmf-ref" style="left:${refPct.toFixed(1)}%"></span>`;
     h += `</div><span class="oecd-val${v === null ? ' na' : ''}">${v === null ? 'uppgift saknas' : jmfTal(v, ch) + (ch.unit || '')}</span></div>`;
   });
   h += `</div>`;
-  if(ch.ref) h += `<div class="jmf-leg"><span class="jmf-ref-d"></span>${ch.ref.lbl}: ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}</div>`;
+  h += `<div class="jmf-leg"><span class="jmf-key"><i class="k-se"></i>Sverige</span><span class="jmf-key"><i class="k-no"></i>Övriga Norden</span><span class="jmf-key"><i class="k-ov"></i>Tyskland och USA</span>${ch.ref ? `<span class="jmf-key"><span class="jmf-ref-d"></span>${ch.ref.lbl}: ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}</span>` : ''}</div>`;
   h += `<div class="jmf-plats">${platsTxt}</div>`;
   if(ch.not) h += `<div class="jmf-not">${ch.not}</div>`;
   h += `<div class="oecd-src">Källa: <a href="${ch.url}" target="_blank" rel="noopener" class="kalla-lank">${ch.kalla}</a> · ${ch.ar} · ${riktning}</div></div>`;
@@ -5291,96 +5335,7 @@ initOecd();
 // ═══════════════════════════════════════════════════════════════════
 // VISSTE DU ATT — rotating hero facts
 // ═══════════════════════════════════════════════════════════════════
-const VDA_FACTS = [
-  'Offentlig sektor spenderar cirka <strong>285 000 kr per invånare</strong> och år: stat, regioner och kommuner tillsammans (SCB, COFOG 2024)',
-  // KORRIGERAT: Sverige är INTE lägst i EU — Finland (1,9) och Norge (1,8) är lägre
-  'Spädbarnsdödligheten i Sverige är <strong>2,0 per 1 000 födda</strong>, i nivå med Norge (2,0) och Finland (1,9). USA: 5,5 (FN:s IGME via Världsbanken, 2024)',
-  'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC',
-  // Eurostat gov_10a_exp GF09 2024: 7,2 % (offentlig sektor, inkl. förskola). OECD EAG 2022: 5,3 % (grundskola–högskola).
-  'Den offentliga sektorn lägger <strong>7,2 % av BNP</strong> på utbildning, inklusive förskola (Eurostat, 2024). Med OECD:s smalare mått: 5,3 %, mot OECD-snittet 4,7 %',
-  'Kriminalvård kostar cirka <strong>1,5 Mkr per intagen och år</strong>, ungefär sex gånger så mycket som ett år på högskolan',
-  'Döda i vägtrafiken i Sverige: <strong>20 per miljon</strong> invånare 2024. EU-snittet: 44 (Eurostat)',
-  // Världsbanken WDI 2024: Sverige 84,1, OECD-snitt 81,2 (ovägt medel, 38 länder). SCB 2025: kvinnor 85,55, män 82,52.
-  'Sveriges medellivslängd: <strong>84,1 år</strong> (2024). OECD-snittet: 81,2 år (Världsbanken)',
-  // KORRIGERAT: elproduktionen är ~70% förnybar (99% fossilfri inkl. kärnkraft), ej 88% förnybar. Källa: Energiföretagen/Ekonomifakta 2024.
-  'Sveriges elproduktion är <strong>99% fossilfri</strong> — ca 70% förnybart (mest vatten- och vindkraft) och 29% kärnkraft (2024)',
-  'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP Rule of Law Index 2025)',
-  // BP2026: försvar 225 Mdkr / 10,55M inv ≈ 21 300 kr/inv. Från 4 185 (2010) → 21 300 (2026) = 5,1× nominellt.
-  'Försvarsutgiften har ökat <strong>5,1 gånger</strong> på 16 år — från 4 185 (2010) till ~21 300 kr/inv (2026 enligt BP2026)',
-  '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
-  'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong>',
-  'Statsskulden 2026: <strong>1 430 Mdkr</strong>, 21 % av BNP (Riksgälden prognos maj 2026), ungefär 135 000 kr per person. Räntorna på skulden beräknas till 27 Mdkr 2026.',
-  // KORRIGERAT: tidigare jämförelse "mer än försvaret 2010 (4 185 kr/inv)" var falsk — kultur ~860 kr/inv < 4 185. Källa: Myndigheten för kulturanalys 2025.
-  'Staten lade <strong>9,1 Mdkr på kultur</strong> 2024 (~860 kr/invånare) — realt lägre per invånare än för tio år sedan',
-  // KORRIGERAT: ~4 000 h var för högt. VFU ~25–40 veckor; EU:s yrkesdirektiv (2005/36/EG) kräver minst 2 300 h klinisk praktik.
-  'En sjuksköterskestudent gör <strong>~25–40 veckor</strong> verksamhetsförlagd utbildning (VFU) — EU:s yrkesdirektiv kräver minst 2 300 timmar klinisk praktik före examen',
-  // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
-  'Cirka <strong>500 000 tjänster</strong> tillsätts varje år på den svenska arbetsmarknaden (SCB AKU)',
-  // KORRIGERAT: fri tandvård sänktes 23→19 år (1 jan 2025, prop. 2023/24:158); ATB 300–600 kr/år, EJ ~3 300. Källa: Försäkringskassan.
-  'Tandvård är <strong>gratis t.o.m. året du fyller 19</strong> — åldersgränsen sänktes från 23 till 19 år 2025. Som vuxen: allmänt tandvårdsbidrag <strong>300–600 kr/år</strong> plus högkostnadsskydd',
-  // ── KRITISKA / BALANSERADE FAKTA ─────────────────────────────────
-  '<strong>~170 000 personer</strong> väntade på planerad operation eller specialistvård längre än 90 dagar (jan 2025) — trots garantins 90-dagarsgräns (SKR Väntetider i vården)',
-  'Sverige saknar uppskattningsvis <strong>10 600 legitimerade lärare</strong> till 2038 — brist som ackumuleras trots satsningar (Skolverkets lärarprognos 2024)',
-  'Regional ojämlikhet i vård: Skillnaden i canceröverlevnad mellan bästa och sämsta region är <strong>upp till 12 procentenheter</strong> för vissa diagnoser (Socialstyrelsen Cancerregistret 2024)',
-  'Psykisk ohälsa bland unga: <strong>1 av 4 gymnasieelever</strong> uppger besvärande ångest eller depressiva symtom — andelen har fördubblats sedan 2010 (Folkhälsomyndigheten 2024)',
-  'Bostadsbristen: <strong>215 av 290 kommuner</strong> uppger underskott på hyresrätter (Boverket 2024). Genomsnittlig kötid i Stockholm: <strong>8–11 år</strong>',
-  'Kapital och arbete beskattas olika: <strong>kapitalinkomster</strong> beskattas med 30 % oavsett storlek, medan <strong>lön</strong> beskattas progressivt. Vid medianlön (38 300 kr/mån) är den direkta inkomstskatten cirka 20 % av lönen; över brytpunkten (cirka 660 000 kr/år) är marginalskatten drygt 52 %. <em>Avser inkomstskatt, ej arbetsgivaravgifter. Källa: Skatteverket 2026.</em>'
-];
-
-(function initVda(){
-  const el = document.getElementById('vdaFact');
-  const strip = document.getElementById('vdaStrip');
-  const countEl = document.getElementById('vdaCount');
-  const prevBtn = document.getElementById('vdaPrev');
-  const nextBtn = document.getElementById('vdaNext');
-  const pauseBtn = document.getElementById('vdaPause');
-  const shareBtn = document.getElementById('vdaShare');
-  if(!el) return;
-  const N = VDA_FACTS.length;
-  const DWELL = 11000; // ms per fakta — längre uppehåll så man hinner läsa
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  let idx = 0, timer = null, paused = false, hoverPaused = false;
-
-  function show(){
-    el.innerHTML = '<span>'+VDA_FACTS[idx]+'</span>';
-    if(countEl) countEl.textContent = (idx+1)+' / '+N;
-  }
-  function go(n){ idx = (n + N) % N; show(); }
-  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
-  function start(){
-    stop();
-    if(reduceMotion || paused || hoverPaused) return;
-    timer = setInterval(()=>{ el.setAttribute('aria-live','off'); go(idx+1); }, DWELL);
-  }
-  // Skärmläsare: läs upp bara när användaren själv bläddrar, inte vid automatisk växling
-  function manual(n){ el.setAttribute('aria-live','polite'); go(n); start(); } // navigering: visa + starta om intervallet
-
-  if(prevBtn) prevBtn.onclick = ()=>manual(idx-1);
-  if(nextBtn) nextBtn.onclick = ()=>manual(idx+1);
-  if(pauseBtn) pauseBtn.onclick = ()=>{
-    paused = !paused;
-    pauseBtn.textContent = paused ? '▶' : '❙❙';
-    pauseBtn.setAttribute('aria-label', paused ? 'Spela automatisk växling' : 'Pausa automatisk växling');
-    pauseBtn.title = paused ? 'Spela' : 'Pausa';
-    start();
-  };
-  if(shareBtn) shareBtn.onclick = ()=>{
-    const plain = VDA_FACTS[idx].replace(/<[^>]+>/g,'');
-    const text = 'Visste du att: '+plain+'\n\nKälla: Skatteplattformen https://wilhelm-wg.github.io/skatteplattformen/';
-    const done = ()=>{ const o = shareBtn.textContent; shareBtn.textContent='✓'; setTimeout(()=>{shareBtn.textContent=o;},1500); };
-    if(navigator.share){ navigator.share({title:'Skatteplattformen — Visste du att',text}).then(done).catch(()=>{}); }
-    else if(navigator.clipboard){ navigator.clipboard.writeText(text).then(done).catch(()=>{}); }
-  };
-  // Pausa vid hover/fokus så man hinner läsa och interagera
-  if(strip){
-    strip.addEventListener('mouseenter', ()=>{ hoverPaused = true; stop(); });
-    strip.addEventListener('mouseleave', ()=>{ hoverPaused = false; start(); });
-    strip.addEventListener('focusin',  ()=>{ hoverPaused = true; stop(); });
-    strip.addEventListener('focusout', ()=>{ hoverPaused = false; start(); });
-  }
-  show();
-  start();
-})();
+// "Visste du att"-snurran borttagen 2026-10-28 (fakta utan källa; ersatt av Snabbfakta och Snabba svar).
 
 // ═══════════════════════════════════════════════════════════════════
 // FRAMTIDENS UTMANINGAR — tab switching
