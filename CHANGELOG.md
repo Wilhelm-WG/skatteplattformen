@@ -10,6 +10,56 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-28) — Steg 1: sakfel och räknefel från helhetsgenomlysningen
+
+Alla nya värden är kontrollerade mot primärkälla innan de skrevs in.
+
+**Sakfel**
+- **Vårdgarantin:** "~50 % inom 3 dagar" och "0–7–90–90" → **91 %** medicinsk
+  bedömning inom 3 dagar och **63 %** operationer/åtgärder inom 90 dagar
+  (Socialstyrelsen, aug 2026); garantin 0–3–90–90. Regiondiagrammet utan källa
+  och värderande text borttagna.
+- **Skattekvoten:** historiken rättad efter OECD Revenue Statistics via
+  Ekonomifakta (2000 50,0 · 2010 43,1 · 2015 42,9 · 2020 42,6 · 2024 41,4;
+  2025 40,5 prel.). "−5,5 pp ≈ 370 Mdkr" borttaget. Jämförelser görs nu för
+  samma år (2024: Sverige 41,4, OECD 34,1, Danmark 45,2).
+- **Statsskulden:** 1 316 Mdkr/19 % → **1 430 Mdkr/21 %**, underskott 196 Mdkr
+  (Riksgälden maj 2026). Räntorna: 27,0 Mdkr 2026, ≈ 31 Mdkr 2025, 45 Mdkr 2024
+  ("dubblats sedan 2024" var fel). Jämförelsen "19 % mot EU 83 %" (olika mått)
+  ersatt med Maastrichtskuld 2025: Sverige 35,1 %, EU 81,7 % (Eurostat apr 2026);
+  Japan/USA borttagna ur den jämförelsen.
+- **Skolkostnader** (Skolverket 2023): grundskola 152 000 → **133 000** kr/elev,
+  gymnasium 148 000 → **141 500**, förskola 185 000 → **181 800**. Även
+  modellens livsfaser (grundskola 133, gymnasium 142, förskola 110 tkr).
+- **Polisen:** 3 400 → **4 600** kr/invånare (anslag 48,4 Mdkr 2026).
+- **80+ år:** fel prognos ersatt: cirka 650 000 (2024) → **812 000 (2030), +25 %**
+  (SCB, Sveriges framtida befolkning 2025–2070).
+- **Medellivslängd:** 83,4 år mot OECD-snitt 81,1 (OECD 2023); SCB 2025 kvinnor
+  85,6, män 82,5. **Spädbarnsdödlighet:** 2,0 per 1 000 (FN IGME 2024); det
+  felaktiga "OECD-snitt 5,7" borttaget.
+
+**Räknefel i modellen**
+- **Marginalskatten** beräknas nu direkt ur skattemodellen (24 % upp till
+  ≈ 478 tkr, 32 % därefter, 52 % över brytpunkten) i stället för den gamla
+  avtrappningen av jobbskatteavdraget.
+- **Tornadodiagrammet:** skickade kronor där modellen räknar i tkr (340 Mkr),
+  använde fel kommunalskatt och ojusterade förmåner. Basfall nu medianlön;
+  mittlinje och etikett syns.
+- **Scenarierna:** "Kronisk sjukdom" räknade sjukvården två gånger;
+  "Barnfamilj" beskattar nu två löner à 375 tkr, räknar båda föräldrarnas
+  förmåner och hämtar skolkostnader ur prislistan. Felaktig not om negativt
+  netto borttagen. "Ensamstående" på medianlön (460 tkr).
+
+**Motsägelser mellan avsnitt**
+- "Du betalar 285 000 kr/år" → offentliga utgifter per invånare.
+- Brytpunkten ≈ 660 000 kr (643 000 är skiktgränsen); hög marginalskatt
+  "55–65 %" → drygt 52 %; kriminalvård 1,2 → 1,4 Mkr överallt; ett IVA-spann
+  (35 000–80 000 kr); "3 280 Mdkr" (dubbelräknade statsbidrag) → 3 011 Mdkr
+  (2024); "24 andra prislappar" räknas nu ur prislistan; försvaret 2025
+  ≈ 16 000 kr/inv; "mer än hela rättsväsendets budget" borttaget.
+- Den nedladdningsbara modellfilen genereras nu ur konstanterna i koden
+  (skatteregler, COFOG-andelar, statsskuld, kontrollvärde för medianlön).
+
 ### Changed (2026-10-28) — Mobilgenomgång och isotyp för hundralappen
 
 - **Mobilsidan 25 % kortare** (≈ 43 600 → 32 900 px vid 390 px bredd):
