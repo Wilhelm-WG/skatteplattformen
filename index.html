@@ -80,6 +80,32 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* SNABBFAKTA */
+.fk-hdr{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
+.fk-arrows{display:flex;gap:.5rem;flex:none}
+.fk-arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--paper);color:var(--ink2);font-size:1.3rem;line-height:1;cursor:pointer}
+.fk-arrow:hover{border-color:var(--green);color:var(--green)}
+.fk-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(360px,86%);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1.2rem .2rem 1rem;margin-top:.4rem;scrollbar-width:thin;overscroll-behavior-x:contain}
+.fk{scroll-snap-align:start;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.25rem 1rem;display:flex;flex-direction:column;gap:.7rem;box-shadow:var(--shadow-sm);scroll-margin-top:90px;transition:box-shadow .3s,border-color .3s}
+.fk.hl{border-color:var(--green);box-shadow:0 0 0 3px var(--green-l)}
+.fk-eye{font-family:var(--mono);font-size:.64rem;color:var(--ink3);margin:0;letter-spacing:.02em}
+.fk-eye b{color:var(--green);font-weight:500}
+.fk-h{font-family:var(--serif);font-size:1.18rem;font-weight:600;line-height:1.25;margin:0;color:var(--ink);text-wrap:balance}
+.fk-chart{display:grid;gap:.45rem;margin:.1rem 0}
+.fk-stack{display:flex;height:30px;border-radius:5px;overflow:hidden}
+.fk-stack span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.68rem;color:#fff;white-space:nowrap;overflow:hidden}
+.fk-leg{display:flex;flex-wrap:wrap;gap:.25rem .9rem;font-size:.7rem;color:var(--ink2)}
+.fk-leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.35rem}
+.fk-row{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr) auto;gap:.6rem;align-items:center;font-size:.72rem;color:var(--ink2)}
+.fk-row .t{height:12px;border-radius:3px;background:var(--bg2)}
+.fk-row .t i{display:block;height:100%;border-radius:3px;min-width:2px}
+.fk-row em{font-style:normal;font-family:var(--mono);color:var(--ink);font-size:.72rem}
+.fk-p{font-size:.78rem;color:var(--ink2);line-height:1.6;margin:0}
+.fk-meta{display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin-top:auto;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono);font-size:.6rem;color:var(--ink3)}
+.fk-act{display:flex;gap:1rem}
+.fk-act button{font:inherit;font-size:.72rem;font-weight:500;color:var(--green);background:none;border:0;padding:.2rem 0;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
+.fk-act button:focus-visible,.fk-arrow:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+@media(max-width:600px){.fk-arrows{display:none}}
 /* GISSA FÖRST */
 .gq [hidden]{display:none!important}
 .gq{margin-top:1.4rem;background:var(--paper);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--r);padding:1.2rem 1.4rem;box-shadow:var(--shadow-sm);scroll-margin-top:80px}
@@ -419,6 +445,7 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .calc-wrap .s-sub{color:rgba(242,239,232,.5)}
 .calc-layout{display:grid;grid-template-columns:320px 1fr;gap:3rem;margin-top:2.5rem;align-items:start}
 /* Controls */
+.calc-layout > *{min-width:0}
 .calc-ctrl{display:flex;flex-direction:column;gap:1.5rem}
 .calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,239,232,.4);margin-bottom:.5rem}
 .sl-row{display:flex;align-items:center;gap:1rem}
@@ -603,7 +630,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .oecd-leg-d{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
-  .calc-layout{grid-template-columns:1fr}
+  .calc-layout{grid-template-columns:minmax(0,1fr)}
   .metod-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
@@ -867,6 +894,26 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <hr class="div">
 
 <!-- SKATTER I KORTHET — pedagogisk grundförklaring av sex skatter -->
+<!-- SNABBFAKTA: ett diagram, en mening. Data i FAKTA (JS). Direktlänk #fakta-N -->
+<section class="section" id="snabbfakta" aria-label="Snabbfakta" style="padding:2.5rem 0">
+  <div class="cw">
+    <div class="fk-hdr">
+      <div>
+        <p class="s-eye">Snabbfakta</p>
+        <h2 class="s-title">Ett diagram, en mening</h2>
+        <p class="s-sub">Korta fakta att dela. Varje kort har en egen länk och kan sparas som bild.</p>
+      </div>
+      <div class="fk-arrows" aria-hidden="true">
+        <button type="button" class="fk-arrow" id="fk-prev" tabindex="-1">‹</button>
+        <button type="button" class="fk-arrow" id="fk-next" tabindex="-1">›</button>
+      </div>
+    </div>
+    <div class="fk-track" id="fk-track" role="list"></div>
+  </div>
+</section>
+
+<hr class="div">
+
 <section class="section" id="skatter" aria-label="Skatter i korthet" style="padding:2.5rem 0">
   <div class="cw">
     <p class="s-eye">Grunden</p>
@@ -3344,6 +3391,139 @@ function skattetid(kr){
 const CAT_ICO = {helse:'cross', utb:'cap', infra:'bridge', social:'users', trygghet:'shieldcheck', kronisk:'pill'};
 function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
+
+// ═══ SNABBFAKTA — ett diagram, en mening. Bara siffror som finns på sajten med källa. ═══
+const FAKTA_UPPDATERAD = '28 okt 2026';
+const FK_C = {green:'#1B4D3E', green2:'#2E7D5C', blue:'#1E4A8C', amber:'#C8973A', red:'#B84A1E', purple:'#5B3F8C', grey:'#8A8D94'};
+const FAKTA = [
+  {tema:'Kommunalskatten', h:'Nästan två tredjedelar av kommunalskatten går till kommunen',
+   chart:{type:'stack', unit:'%', parts:[{l:'Kommunen',v:20.69,c:'amber',txt:'20,69 %'},{l:'Regionen',v:11.69,c:'green2',txt:'11,69 %'}]},
+   p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket.',
+   kalla:'SCB, Kommunalskatterna 2026', ar:'2026'},
+  {tema:'Kommunerna', h:'Två av tre kronor i kommunernas kassa är egen skatt',
+   chart:{type:'stack', parts:[{l:'Egen skatt',v:65,c:'green',txt:'65 %'},{l:'Statsbidrag och utjämning',v:15,c:'blue',txt:'15 %'},{l:'Avgifter m.m.',v:20,c:'grey',txt:'20 %'}]},
+   p:'Resten är bidrag från staten och avgifter, till exempel för förskola och vatten. Utjämningen flyttar pengar mellan kommuner så att skolan och omsorgen kan hålla liknande nivå i hela landet.',
+   kalla:'SCB, kommunernas preliminära bokslut 2025', ar:'2025'},
+  {tema:'Regionerna', h:'Ungefär nio av tio kronor i regionerna går till vården',
+   chart:{type:'stack', parts:[{l:'Hälso- och sjukvård',v:90,c:'green2',txt:'≈ 90 %'},{l:'Kollektivtrafik, regional utveckling m.m.',v:10,c:'grey',txt:'10 %'}]},
+   p:'Sjukhus, vårdcentraler, psykiatri och tandvård för unga är regionernas stora uppdrag. Kollektivtrafiken sköts i regel av regionen tillsammans med kommunerna.',
+   kalla:'Regeringen.se, Så styrs Sverige', ar:'2025'},
+  {tema:'Kommunerna', h:'Skola och barnomsorg är kommunernas största kostnad',
+   chart:{type:'stack', parts:[{l:'Skola och barnomsorg',v:39,c:'blue',txt:'≈ 39 %'},{l:'Äldreomsorg, LSS, socialtjänst, övrigt',v:61,c:'grey',txt:'61 %'}]},
+   p:'Av kommunernas kostnader på cirka 880 miljarder kronor går ungefär 344 miljarder till förskola, grundskola, gymnasium och fritidshem. Äldreomsorgen är den näst största posten.',
+   kalla:'Ekonomifakta, Kommunernas kostnader', ar:'2025'},
+  {tema:'Hela offentliga sektorn', h:'39 kronor av varje hundralapp i skatt går till socialt skydd',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Socialt skydd',v:39,c:'purple'},{l:'Utbildning',v:17,c:'blue'},{l:'Hälsa och sjukvård',v:15,c:'green2'},{l:'Förvaltning',v:8,c:'grey'},{l:'Försvar',v:5,c:'red'},{l:'Infrastruktur',v:5,c:'amber'},{l:'Övrigt',v:11,c:'grey'}]},
+   p:'Socialt skydd är bland annat pensioner, sjukersättning, föräldrapenning och barnbidrag. Fördelningen gäller hela offentliga sektorn: stat, regioner och kommuner tillsammans.',
+   kalla:'SCB, COFOG', ar:'2024'},
+  {tema:'Medianlönen', h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7700,c:'red'},{l:'Kvar efter skatt',v:30600,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
+   p:'Medianlönen är 38 300 kronor i månaden. Skatten blir cirka 7 700 kronor. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
+   kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
+  {tema:'Vården', h:'Ett dygn på IVA kostar 55 000 kronor. Patienten betalar högst 130.',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Kostnad per dygn',v:55000,c:'green2'},{l:'Patienten betalar',v:130,c:'amber'}]},
+   p:'Resten betalas av regionen, alltså av skatten. Avgiften för slutenvård är högst 130 kronor per dygn. Kostnaden varierar mellan cirka 35 000 och 80 000 kronor beroende på vårdtyngd.',
+   kalla:'SKR, KPP-databasen', ar:'2024'},
+  {tema:'Jämförelse', h:'Sveriges skattekvot är sju procentenheter över OECD-snittet',
+   chart:{type:'bars', unit:' %', rows:[{l:'Sverige 2025',v:41.2,c:'green'},{l:'OECD-snitt 2024',v:34.1,c:'grey'}]},
+   p:'Skattekvoten är de samlade skatterna och avgifterna som andel av BNP. Skillnaden mot OECD-snittet speglar bland annat att mer av välfärden i Sverige finansieras gemensamt via skatt i stället för via privata försäkringar och avgifter.',
+   kalla:'OECD Revenue Statistics, SCB', ar:'2024–2025'},
+  {tema:'Vården', h:'Sverige har färst vårdplatser per invånare i EU',
+   chart:{type:'bars', unit:'', rows:[{l:'Tyskland',v:7.8,c:'grey'},{l:'OECD-snitt',v:4.3,c:'amber'},{l:'Finland',v:2.8,c:'grey'},{l:'Sverige',v:1.9,c:'green'}], note:'vårdplatser per 1 000 invånare'},
+   p:'Sverige har valt att vårda fler hemma och i öppenvård. År 2000 fanns 3,5 vårdplatser per 1 000 invånare, år 2022 var det 1,9. Brist på personal gör att fler platser står stängda.',
+   kalla:'OECD Health Statistics', ar:'2022'},
+  {tema:'Statsbudgeten', h:'Försvarets budget ökar med en tredjedel på ett år',
+   chart:{type:'bars', unit:' Mdkr', rows:[{l:'2025',v:168.8,c:'grey'},{l:'2026',v:225,c:'red'}]},
+   p:'Försvaret får 225 miljarder kronor i statsbudgeten 2026, mot 168,8 miljarder 2025. Ökningen är en del av målet att nå 3,5 procent av BNP enligt Natos nya riktmärke.',
+   kalla:'Budgetpropositionen 2026', ar:'2026'},
+];
+(function initFakta(){
+  const track=document.getElementById('fk-track'); if(!track) return;
+  const fmt=(v,u)=> (Number.isInteger(v)? v.toLocaleString('sv-SE') : String(v).replace('.',',')) + (u||'');
+  function chartHTML(ch){
+    if(ch.type==='stack'){
+      const tot=ch.parts.reduce((a,p)=>a+p.v,0);
+      return '<div class="fk-stack" role="img" aria-label="'+ch.parts.map(p=>p.l+' '+p.txt).join(', ')+'">'+ch.parts.map(p=>'<span style="width:'+(p.v/tot*100)+'%;background:'+FK_C[p.c]+'">'+p.txt+'</span>').join('')+'</div>'+
+        '<div class="fk-leg">'+ch.parts.map(p=>'<span><i style="background:'+FK_C[p.c]+'"></i>'+p.l+'</span>').join('')+'</div>';
+    }
+    const mx=Math.max.apply(null,ch.rows.map(r=>r.v));
+    return '<div role="img" aria-label="'+ch.rows.map(r=>r.l+' '+fmt(r.v,ch.unit)).join(', ')+'" style="display:grid;gap:.45rem">'+
+      ch.rows.map(r=>'<div class="fk-row"><span>'+r.l+'</span><div class="t"><i style="width:'+(r.v/mx*100)+'%;background:'+FK_C[r.c]+'"></i></div><em>'+fmt(r.v,ch.unit)+'</em></div>').join('')+'</div>'+
+      (ch.note?'<div class="fk-leg">'+ch.note+'</div>':'');
+  }
+  track.innerHTML = FAKTA.map((f,i)=>
+    '<article class="fk" id="fakta-'+(i+1)+'" role="listitem" aria-labelledby="fk-h-'+(i+1)+'">'+
+      '<p class="fk-eye"><b>Snabbfakta nr '+(i+1)+'</b> · '+f.tema+'</p>'+
+      '<h3 class="fk-h" id="fk-h-'+(i+1)+'">'+f.h+'</h3>'+
+      '<div class="fk-chart">'+chartHTML(f.chart)+'</div>'+
+      '<p class="fk-p">'+f.p+'</p>'+
+      '<div class="fk-meta"><span>Källa: '+f.kalla+'</span><span>År: '+f.ar+'</span><span>Uppdaterad: '+FAKTA_UPPDATERAD+'</span></div>'+
+      '<div class="fk-act"><button type="button" data-fk-link="'+i+'">'+ico('doc')+'Kopiera länk</button><button type="button" data-fk-img="'+i+'">'+ico('camera')+'Spara som bild</button></div>'+
+    '</article>').join('');
+
+  const step=()=> (track.querySelector('.fk')||{offsetWidth:360}).offsetWidth+16;
+  document.getElementById('fk-prev').addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+  document.getElementById('fk-next').addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+
+  track.addEventListener('click',e=>{
+    const L=e.target.closest('[data-fk-link]'), M=e.target.closest('[data-fk-img]');
+    if(L){ const n=+L.dataset.fkLink+1, url=location.origin+location.pathname+'#fakta-'+n, o=L.innerHTML;
+      const flash=t=>{ L.textContent=t; setTimeout(()=>{L.innerHTML=o;},2000); };
+      if(navigator.clipboard) navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad')).catch(()=>flash(url)); else flash(url); }
+    if(M) faktaBild(+M.dataset.fkImg);
+  });
+
+  function fromHash(){
+    const m=/^#fakta-(\d+)$/.exec(location.hash); if(!m) return;
+    const el=document.getElementById('fakta-'+m[1]); if(!el) return;
+    document.getElementById('snabbfakta').scrollIntoView({block:'start'});
+    track.scrollTo({left:el.offsetLeft-track.offsetLeft, behavior:'smooth'});
+    el.classList.add('hl'); setTimeout(()=>el.classList.remove('hl'),2500);
+  }
+  window.addEventListener('hashchange',fromHash);
+  if(document.readyState==='complete') setTimeout(fromHash,200); else window.addEventListener('load',()=>setTimeout(fromHash,200));
+})();
+
+// Delningsbild 1080×1350 (4:5) av ett faktakort
+async function faktaBild(i){
+  const f=FAKTA[i], W=1080, H=1350, P=84;
+  try{ await Promise.all(['600 64px "Source Serif 4"','400 30px Inter','600 26px Inter','400 24px "IBM Plex Mono"'].map(x=>document.fonts.load(x))); }catch(e){}
+  const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  const wrap=(t,font,maxW,lh,y0,color)=>{ x.font=font; x.fillStyle=color; let line='', y=y0;
+    t.split(' ').forEach(w=>{ const tst=line?line+' '+w:w; if(x.measureText(tst).width>maxW && line){ x.fillText(line,P,y); line=w; y+=lh; } else line=tst; });
+    if(line){ x.fillText(line,P,y); y+=lh; } return y; };
+  x.fillStyle='#F4F1EA'; x.fillRect(0,0,W,H);
+  x.fillStyle='#1B4D3E'; x.fillRect(0,0,W,14);
+  x.font='600 26px Inter'; x.fillStyle='#1B4D3E'; x.fillText(('Snabbfakta nr '+(i+1)+' · '+f.tema).toUpperCase(),P,P+30);
+  let y=wrap(f.h,'600 70px "Source Serif 4"',W-2*P,82,P+140,'#1A1813')+34;
+  const ch=f.chart, fmt=(v,u)=>(Number.isInteger(v)?v.toLocaleString('sv-SE'):String(v).replace('.',','))+(u||'');
+  if(ch.type==='stack'){
+    const tot=ch.parts.reduce((a,p)=>a+p.v,0); let cx=P;
+    ch.parts.forEach(p=>{ const w=(W-2*P)*p.v/tot; x.fillStyle=FK_C[p.c]; x.fillRect(cx,y,w,84); x.fillStyle='#fff'; x.font='500 28px "IBM Plex Mono"'; if(w>120) x.fillText(p.txt,cx+16,y+53); cx+=w; });
+    y+=130; x.font='400 30px Inter';
+    ch.parts.forEach(p=>{ x.fillStyle=FK_C[p.c]; x.beginPath(); x.arc(P+12,y-10,11,0,7); x.fill(); x.fillStyle='#4A4640'; x.fillText(p.l+' · '+p.txt,P+36,y); y+=46; });
+  } else {
+    const mx=Math.max.apply(null,ch.rows.map(r=>r.v)), lw=300, bw=W-2*P-lw-200;
+    ch.rows.forEach(r=>{ x.font='400 30px Inter'; x.fillStyle='#4A4640'; x.fillText(r.l,P,y+32);
+      x.fillStyle='#EAE6DC'; x.fillRect(P+lw,y+6,bw,36); x.fillStyle=FK_C[r.c]; x.fillRect(P+lw,y+6,Math.max(4,bw*r.v/mx),36);
+      x.font='500 30px "IBM Plex Mono"'; x.fillStyle='#1A1813'; x.fillText(fmt(r.v,ch.unit),P+lw+bw+20,y+35); y+=68; });
+    if(ch.note){ x.font='400 24px Inter'; x.fillStyle='#8A857C'; x.fillText(ch.note,P,y+8); y+=40; }
+  }
+  y=wrap(f.p,'400 34px Inter',W-2*P,52,y+56,'#4A4640');
+  x.fillStyle='rgba(26,24,19,.12)'; x.fillRect(P,H-190,W-2*P,2);
+  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#8A857C';
+  const src='Källa: '+f.kalla+' · År: '+f.ar;
+  if(x.measureText(src).width<=W-2*P) x.fillText(src,P,H-145); else { x.fillText('Källa: '+f.kalla,P,H-158); x.fillText('År: '+f.ar,P,H-128); }
+  x.font='600 34px "Source Serif 4"'; x.fillStyle='#1A1813'; x.fillText('Skatteplattformen',P,H-82);
+  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#1B4D3E'; x.textAlign='right';
+  x.fillText('wilhelm-wg.github.io/skatteplattformen/#fakta-'+(i+1),W-P,H-86); x.textAlign='left';
+  c.toBlob(blob=>{
+    const name='snabbfakta-'+(i+1)+'.png', file=new File([blob],name,{type:'image/png'});
+    if(navigator.canShare && navigator.canShare({files:[file]}) && matchMedia('(pointer:coarse)').matches){
+      navigator.share({files:[file], title:f.h}).catch(()=>{});
+    } else { const a=document.createElement('a'); a.download=name; a.href=URL.createObjectURL(blob); a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }
+  },'image/png');
+}
 
 // ═══ GISSA FÖRST — quiz på prislistan (inga poäng, ingen lagring) ═══
 (function initGissa(){

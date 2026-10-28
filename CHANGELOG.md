@@ -10,6 +10,25 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-28) — Snabbfakta: ett diagram, en mening
+
+- Ny sektion `#snabbfakta` efter "Fyra siffror som ramar in Sverige": tio
+  numrerade faktakort i en svepbar rad. Varje kort har en rubrik skriven som
+  påstående, ett litet diagram med direkta etiketter, en kort text och en
+  källremsa (källa · år · uppdaterad).
+- Bara siffror som redan finns på sajten eller verifierats mot källa:
+  kommunalskattens delning, kommunernas intäkter, regionernas vårdandel,
+  kommunernas skolkostnad, hundralappen (COFOG), medianlönens skatt,
+  IVA-dygnet, skattekvoten mot OECD, vårdplatser och försvarsbudgeten.
+- Delning: egen länk per kort (`#fakta-3`) och "Spara som bild" som ritar en
+  1080×1350-bild (4:5) i sajtens typografi; på mobil öppnas delningsmenyn.
+- Data i `FAKTA` i `index.html` (en post per kort).
+
+### Fixed (2026-10-28) — Kalkylatorn spillde över på mobil
+
+- Kalkylatorns kolumn växte några pixel bredare än skärmen på smala telefoner
+  (reglagen klipptes i högerkanten). Rättat med `min-width:0`.
+
 ### Added (2026-10-28) — "Gissa först" i prislistan
 
 - Tio slumpade prislappar: gissa beloppet (reglage på logaritmisk skala

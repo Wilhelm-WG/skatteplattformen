@@ -45,6 +45,9 @@ correspondence/
 - `grundavdrag2024(inc)` avrundas uppåt till hundratal kr (SKV 433)
 - `MEDIAN_LON_MAN` = 38 300 kr (SCB lönestrukturstatistik 2025); `skattetid(kr)` ger prislapparnas vardagsjämförelse
 
+**Snabbfakta (`#snabbfakta`):**
+- Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år). Direktlänk `#fakta-N`; `faktaBild(i)` ritar 1080×1350-delningsbild. Lägg bara in siffror med källa
+
 **Gissa först (`#gissa`):**
 - Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-iva`). Ingen lagring
 
