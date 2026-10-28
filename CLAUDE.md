@@ -57,6 +57,13 @@ correspondence/
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år). Direktlänk `#fakta-N`; `faktaBild(i)` ritar 1080×1350-delningsbild. Lägg bara in siffror med källa
 - `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
+**Foton (`img/foton/`):**
+- Endast Wikimedia Commons (CC0, CC BY, CC BY-SA). `VY_FOTON` i index.html: alt-text, fotograf, licens, länk, `pos` (object-position), `ljus` (för mörka bilder)
+- Filnamn = vyns id (`budgeten.jpg` 1 600 px + `budgeten-800.jpg`). Filerna bearbetas inte utöver nedskalning; tonningen görs i CSS (`.vy-foto`)
+- Uppdatera `img/foton/KREDITER.md` vid byte av foto
+
+**Licens:** text, siffror och diagram CC BY 4.0; kod MIT; foton enligt kreditraden.
+
 **Delningsbild och ikoner (`img/`):**
 - `og.png` (1200×630) skapas från `og-mall.html` med Chrome headless: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=4000 --screenshot=img/og.png img/og-mall.html`. Uppdatera siffrorna i mallen när COFOG-fördelningen ändras
 - `favicon.svg`, `apple-touch-icon.png` (180×180)

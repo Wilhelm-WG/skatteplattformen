@@ -7,6 +7,7 @@
 <meta name="description" content="Oberoende, politiskt neutral faktasajt om svenska skatter och välfärd. Se exakt vad du betalar, vad du får tillbaka, och hur Sverige jämförs med OECD. Data från SCB, OECD, SKR.">
 <meta name="keywords" content="skatt, Sverige, välfärd, statsbudget, OECD, skattekvitto, transparens, offentliga finanser, 2026">
 <meta name="author" content="Skatteplattformen">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://wilhelm-wg.github.io/skatteplattformen/">
 <!-- Open Graph -->
@@ -40,6 +41,7 @@
   "operatingSystem": "Web",
   "inLanguage": "sv",
   "isAccessibleForFree": true,
+  "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": {
     "@type": "Organization",
     "name": "Skatteplattformen"
@@ -47,7 +49,7 @@
   "about": [
     {"@type": "Thing", "name": "Skatter i Sverige"},
     {"@type": "Thing", "name": "Välfärd"},
-    {"@type": "Thing", "name": "Statsbudgeten 2025"}
+    {"@type": "Thing", "name": "Statsbudgeten 2026"}
   ]
 }
 </script>
@@ -561,7 +563,8 @@ h3.pc-title{margin-top:0}
 .ft-bar-fill{height:100%;border-radius:2px;transition:width .4s}
 .ft-bar-val{font-size:.68rem;font-family:var(--mono);color:var(--ink);width:60px;text-align:right;flex-shrink:0}
 .ft-quote{margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg2);border-left:3px solid var(--amber);border-radius:0 3px 3px 0;font-size:.78rem;color:var(--ink2);line-height:1.7}
-.ft-source{font-size:.65rem;color:var(--ink3);margin-top:1rem;line-height:1.5}
+.ft-source{font-size:.68rem;color:var(--ink3);margin-top:1rem;line-height:1.5;border-top:1px solid var(--border);padding-top:.6rem}
+.chart-src{font-size:.68rem;color:var(--ink3);line-height:1.5;margin:0;padding:.7rem 1.2rem;border-top:1px solid var(--border);background:var(--bg)}
 .ft-heading{font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
 .ft-intro{font-size:.8rem;color:var(--ink2);line-height:1.65;margin-bottom:1rem}
 .ft-stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
@@ -623,7 +626,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .fc a{display:block;font-size:.78rem;color:var(--ink2);text-decoration:none;margin-bottom:.42rem;transition:color .15s}
 .fc a:hover{color:var(--ink)}
 .footer-bottom{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
-.footer-legal{font-size:.7rem;color:var(--ink3)}
+.footer-legal{font-size:.7rem;color:var(--ink3);max-width:62ch;line-height:1.55}
+.footer-legal a{color:inherit}
 .ind{display:flex;align-items:center;gap:8px;font-size:.7rem;color:var(--ink3)}
 .ind-badge{font-size:.63rem;font-weight:500;padding:3px 10px;border-radius:12px;background:var(--green-ll);color:var(--green);letter-spacing:.04em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -761,11 +765,28 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .calc-mer summary span{display:block;font-size:.72rem;font-weight:400;color:rgba(242,239,232,.72);margin-top:.15rem}
 .calc-mer-in{display:flex;flex-direction:column;gap:1.4rem;margin-top:1rem}
 .calc-om summary:focus-visible,.calc-mer summary:focus-visible{outline:2px solid #6FC29B;outline-offset:3px}
+
+/* Sifferrutor: en accentfärg (grönt streck), siffran i bläck */
+.kpi{padding:1.1rem 1.2rem;background:var(--paper);border:1px solid var(--border);border-top:3px solid var(--green);border-radius:6px;box-shadow:var(--shadow-sm)}
+
+/* Linjeillustrationer (ikonserien i större format) */
+.illu{display:block;width:100%;max-width:520px;height:auto;margin:.4rem 0 1.2rem;color:var(--green)}
+.illu-c{fill:var(--green-ll);stroke:var(--green);stroke-width:1.2}
+.illu-lin{stroke:var(--green);stroke-width:1.2;stroke-dasharray:4 5;opacity:.6}
+.illu-i{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+
+/* Duotonfoto i vyhuvud: gråskala multiplicerad mot ljusgrönt, mörka partier lyfts till sajtens gröna */
+.vy-foto{margin:0;position:relative}
+.vy-foto-bild{position:relative;height:clamp(150px,26vw,320px);overflow:hidden;background:#CFE3D8}
+.vy-foto-bild img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,center);filter:grayscale(1) brightness(var(--ljus,1)) contrast(1.08);mix-blend-mode:multiply;display:block}
+.vy-foto-bild::after{content:'';position:absolute;inset:0;background:#1B4D3E;mix-blend-mode:lighten;pointer-events:none}
+.vy-foto figcaption{max-width:1200px;margin:0 auto;padding:.35rem 1.5rem 0;font-size:.66rem;color:var(--ink3);text-align:right}
+.vy-foto figcaption a{color:inherit}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
-.vy-huvud{padding:2.4rem 0 1.6rem;border-bottom:1px solid var(--border);background:var(--bg)}
-.vy-smula{font-size:.78rem;color:var(--ink3);margin-bottom:.6rem}
+.vy-huvud{padding:0 0 1.6rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.vy-smula{font-size:.78rem;color:var(--ink3);margin:1.6rem 0 .6rem}
 .vy-smula a{color:var(--green);text-decoration:none}
 .vy-smula a:hover{text-decoration:underline}
 .vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
@@ -1018,44 +1039,44 @@ html{scroll-padding-top:72px}
 
     <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension — finansierar både <strong>kommun och region</strong> (skola, omsorg, sjukvård, kollektivtrafik). <strong>Rikssnitt 2026: 32,38 %</strong>, varierar 28,9 % (Österåker) till 35,7 % (Dorotea) mellan kommuner.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SKR / Skatteverket 2026</div>
       </div>
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">20 <span style="font-size:.85rem">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på lön <strong>över cirka 660 000 kr/år</strong> (cirka 55 000 kr/mån), den så kallade brytpunkten 2026. Skiktgränsen 643 000 kr gäller den beskattningsbara inkomsten efter grundavdrag. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 67 kap inkomstskattelagen</div>
       </div>
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.25);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber-t);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> livsmedel + hotell + restaurang. <strong>6 %</strong> böcker, tidningar, kollektivtrafik, kultur.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200)</div>
       </div>
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--purple);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. ~10 % är pensionsavgift (din egen rätt), ~21 % är "skatte"-del. Reducerad för 66+.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SAL — Socialavgiftslagen</div>
       </div>
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--purple);line-height:1">30 <span style="font-size:.85rem">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">30 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">30 % på <strong>utdelning, ränta och realiserad vinst</strong> vid direktägt sparande — lägre än marginalskatten på höga löner (drygt 52 %). <strong>ISK/KF beskattas i stället med en årlig schablon (~1 % av värdet), inte 30 % på vinsten.</strong></div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
       </div>
 
-      <div style="padding:1.1rem 1.2rem;background:rgba(184,74,30,.07);border:1px solid rgba(184,74,30,.28);border-radius:6px">
+      <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--red-t);line-height:1">~20 <span style="font-size:.85rem">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">~20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön 38 300 kr/mån (≈ 460 tkr/år)</strong>: kommunalskatt 143 tkr − jobbskatteavdrag 51 tkr = <strong>~92 tkr i direkt inkomstskatt</strong> (20 % av brutto). Plus moms ~46 tkr = ~30 % av brutto. Plus arbetsgivaravgift (21,21 %) som arbetsgivaren betalar ovanpå = ~42 % av total arbetsgivarkostnad. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + sparkvot/momsmix SCB HUT</div>
       </div>
@@ -1586,8 +1607,8 @@ html{scroll-padding-top:72px}
         <div class="leg-i"><div class="leg-d" style="background:#993C1D"></div>Kommunbidrag</div>
         <div class="leg-i"><div class="leg-d" style="background:#888780"></div>Övrigt</div>
       </div>
+      <p class="chart-src">Källa: Budgetpropositionen 2025/26:1, ESV. Statsbudgeten täcker ej kommunal skola och sjukvård direkt — dessa finansieras via kommunalskatt och generella statsbidrag (UO25).</p>
     </div>
-    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: Budgetpropositionen 2025/26:1, ESV. Statsbudgeten täcker ej kommunal skola och sjukvård direkt — dessa finansieras via kommunalskatt och generella statsbidrag (UO25).</p>
 
     <!-- SKATTEUTGIFTER -->
     <div style="margin-top:3rem">
@@ -1606,8 +1627,8 @@ html{scroll-padding-top:72px}
         <div class="leg-i"><div class="leg-d" style="background:#6B5B8D"></div>Nedsatt moms</div>
         <div class="leg-i"><div class="leg-d" style="background:#888780"></div>Övrigt</div>
       </div>
+      <p class="chart-src">Källa: Skr. 2025/26:98 Redovisning av skatteutgifter 2026 (publicerad april 2026). Skatteutgifter = intäkter staten avstår genom avdrag och nedsatta skattesatser. Jobbskatteavdraget (218,8 Mdkr) är klart största posten — nästan dubbelt så stor som det näst största, förhöjt grundavdrag för äldre (68,7 Mdkr).</p>
     </div>
-    <p style="font-size:.7rem;color:var(--ink3);margin-top:.75rem">Källa: Skr. 2025/26:98 Redovisning av skatteutgifter 2026 (publicerad april 2026). Skatteutgifter = intäkter staten avstår genom avdrag och nedsatta skattesatser. Jobbskatteavdraget (218,8 Mdkr) är klart största posten — nästan dubbelt så stor som det näst största, förhöjt grundavdrag för äldre (68,7 Mdkr).</p>
 
     <!-- HELHETSBILD -->
     <div style="margin-top:3rem;padding:1.5rem;background:var(--bg2);border-radius:4px;border:1px solid var(--border)">
@@ -1677,27 +1698,28 @@ html{scroll-padding-top:72px}
   <div class="container">
     <p class="s-eye">Hälso- och sjukvård</p>
     <h2 class="s-title">Svensk sjukvård — vad får vi för pengarna?</h2>
+    <svg class="illu" viewBox="0 0 480 112" aria-hidden="true" focusable="false"><line x1="56" y1="56" x2="424" y2="56" class="illu-lin"/><circle cx="60" cy="56" r="44" class="illu-c"/><use href="#i-clipboard" x="34" y="30" width="52" height="52" class="illu-i"/><circle cx="180" cy="56" r="44" class="illu-c"/><use href="#i-bed" x="154" y="30" width="52" height="52" class="illu-i"/><circle cx="300" cy="56" r="44" class="illu-c"/><use href="#i-pulse" x="274" y="30" width="52" height="52" class="illu-i"/><circle cx="420" cy="56" r="44" class="illu-c"/><use href="#i-care" x="394" y="30" width="52" height="52" class="illu-i"/></svg>
     <p class="s-sub">Sverige lade <strong>11,2 % av BNP</strong> på hälso- och sjukvård 2023. Det är mest i Norden, men mindre än Tyskland (11,7 %) och USA (16,7 %). Här visas tre sidor av vården: <em>kapacitet</em>, <em>utfall vid sjukdom</em> och <em>tillgänglighet</em>.</p>
 
     <!-- Snabbfakta-rad -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1.5rem 0 2rem">
-      <div style="padding:1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">84,1<span style="font-size:.85rem"> år</span></div>
+      <div class="kpi">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">84,1<span style="font-size:.85rem"> år</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 81,2 år (2024)</div>
       </div>
-      <div style="padding:1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">164</div>
+      <div class="kpi">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">164</div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Undvikbar dödlighet</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Per 100 000 invånare. EU-snittet: 238 (2023)</div>
       </div>
-      <div style="padding:1rem;background:rgba(184,74,30,.08);border:1px solid rgba(184,74,30,.3);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--red-t);line-height:1">1,9<span style="font-size:.85rem"> /1000</span></div>
+      <div class="kpi">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">1,9<span style="font-size:.85rem"> /1000</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 4,4 (2022)</div>
       </div>
-      <div style="padding:1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.3);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber-t);line-height:1">91<span style="font-size:.85rem"> %</span></div>
+      <div class="kpi">
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">91<span style="font-size:.85rem"> %</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Bedömning inom 3 dagar (aug 2026)</div>
       </div>
@@ -2415,6 +2437,7 @@ html{scroll-padding-top:72px}
   <div class="cw">
     <p class="s-eye">Djupdyk · ålder 0–85</p>
     <h2 class="s-title">Mönstret i välfärdsmodellen över ett liv</h2>
+    <svg class="illu" viewBox="0 0 600 112" aria-hidden="true" focusable="false"><line x1="56" y1="56" x2="544" y2="56" class="illu-lin"/><circle cx="60" cy="56" r="44" class="illu-c"/><use href="#i-backpack" x="34" y="30" width="52" height="52" class="illu-i"/><circle cx="180" cy="56" r="44" class="illu-c"/><use href="#i-cap" x="154" y="30" width="52" height="52" class="illu-i"/><circle cx="300" cy="56" r="44" class="illu-c"/><use href="#i-brief" x="274" y="30" width="52" height="52" class="illu-i"/><circle cx="420" cy="56" r="44" class="illu-c"/><use href="#i-family" x="394" y="30" width="52" height="52" class="illu-i"/><circle cx="540" cy="56" r="44" class="illu-c"/><use href="#i-elder" x="514" y="30" width="52" height="52" class="illu-i"/></svg>
     <p class="s-sub">Diagrammet visar <strong>mönstret</strong> i välfärden: mottagare som barn → bidragsgivare i yrkeslivet → mottagare som äldre. Det <strong>visar inte din individuella balans</strong> — de absoluta beloppen är populationsmedel med stor osäkerhet.</p>
 
     <!-- Skarp disclaimer ovan diagrammet -->
@@ -2729,9 +2752,9 @@ html{scroll-padding-top:72px}
         <h3 style="font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem">Primärkällor</h3>
         <div class="src-list">
           <div class="src-card"><div class="src-head"><span class="src-name">SCB FASIT — offentliga välfärdstjänster 2022</span><span class="src-badge">CC0</span></div><div class="src-desc">Fördelning av välfärdstjänster per inkomstdecil och hushållstyp. Basen för årsförmåns-kalkylatorn.</div></div>
-          <div class="src-card"><div class="src-head"><span class="src-name">Eurostat COFOG via SCB NR 2024</span><span class="src-badge">CC0</span></div><div class="src-desc">Total offentlig sektor per COFOG-funktion. 3 011 Mdkr fördelat på hälsa, utbildning, socialt skydd etc.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">Eurostat COFOG via SCB NR 2024</span><span class="src-badge">CC BY 4.0</span></div><div class="src-desc">Total offentlig sektor per COFOG-funktion. 3 011 Mdkr fördelat på hälsa, utbildning, socialt skydd etc.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">Skolverket — kostnader för skolväsendet 2023</span><span class="src-badge">Offentlig</span></div><div class="src-desc">133 000 kr/elev grundskola, 141 500 kr gymnasium, 181 800 kr per barn i förskola (alla huvudmän, publicerad okt 2024).</div></div>
-          <div class="src-card"><div class="src-head"><span class="src-name">SKR KPP-databas + sektorn i siffror 2024</span><span class="src-badge">CC0</span></div><div class="src-desc">Kostnad per patient per DRG-grupp. Kommunal ekonomi, sjukvård och omsorg per verksamhet.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">SKR KPP-databas + sektorn i siffror 2024</span><span class="src-badge">Offentlig</span></div><div class="src-desc">Kostnad per patient per DRG-grupp. Kommunal ekonomi, sjukvård och omsorg per verksamhet.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">ESV tidsserier + BP2026</span><span class="src-badge">CC0</span></div><div class="src-desc">Utfall per utgiftsområde 1995–2024 + Budgetpropositionen 2026 (prop. 2025/26:1). Basen för statsbudgetdata 2010–2026.</div></div>
         </div>
         <div style="margin-top:1.2rem">
@@ -2813,6 +2836,15 @@ const VYER = [
   {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
 ];
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
+// Foton i vyhuvudena (Wikimedia Commons, se img/foton/KREDITER.md). Tonas i sajtens grönt med CSS.
+const VY_FOTON = {
+  'prislistan': {alt:"Gul-grön ambulans kör på en gata i Göteborg", av:"Marcusroos", lic:'CC BY-SA 3.0', licUrl:'https://creativecommons.org/licenses/by-sa/3.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Ambulance_in_Gothenburg.jpg", pos:'center 55%'},
+  'budgeten': {alt:"Pendeltåg av typen X60 vid perrongen i Knivsta", av:"AleWi", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:X60_i_Knivsta,_20220729.jpg", pos:'center 55%'},
+  'jamforelser': {alt:"Tomt klassrum med bänkar, stolar och whiteboard i Viktoriaskolan i Skara", av:"Joel Grafström", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Viktoriaskolan_Skara_klassrum_20170819.jpg", pos:'center 45%'},
+  'din-ekonomi': {alt:"Förskolegård med lekstuga och sandlåda vid Kvarnens förskola i Brastad", av:"W.carter", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Kvarnen_nursery_school_in_Brastad_4.jpg", pos:'center 55%'},
+  'framtid': {alt:"Långa rader av rostfria rör i en bergtunnel i Henriksdals reningsverk", av:"Freediving-beava", lic:'CC BY-SA 3.0', licUrl:'https://creativecommons.org/licenses/by-sa/3.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Stainless_pipes_at_Henriksdals_reningsverk.JPG", pos:'center 45%'},
+  'metod': {alt:"Bokhyllor och besökare i Stockholms stadsbibliotek", av:"Seier + Seier", lic:'CC BY 2.0', licUrl:'https://creativecommons.org/licenses/by/2.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Asplund_Stockholms_stadsbibliotek_04_(photo_by_Seier_on_Flickr).jpg", pos:'center 30%', ljus:1.8},
+};
 const VY_PREFIX = [[/^fakta-\d+$/,'start','snabbfakta'],[/^kapitel-\d+$/,'start','kretslopp'],[/^gissa/,'prislistan','gissa'],[/^(ordlista|nyckeltal)$/,'metod','metod']];
 const BAS_TITEL = document.title;
 
@@ -2844,7 +2876,12 @@ const BAS_TITEL = document.title;
       }).filter(Boolean);
       const h = document.createElement('div');
       h.className = 'vy-huvud'; h.dataset.vy = v.id;
-      h.innerHTML = `<div class="container">
+      const ft = VY_FOTON[v.id];
+      const foto = ft ? `<figure class="vy-foto" style="--pos:${ft.pos||'center'};--ljus:${ft.ljus||1}">
+          <div class="vy-foto-bild"><img src="img/foton/${v.id}.jpg" srcset="img/foton/${v.id}-800.jpg 800w, img/foton/${v.id}.jpg 1600w" sizes="(max-width:800px) 100vw, 1200px" alt="${ft.alt}" width="1600" height="500" loading="lazy" decoding="async"></div>
+          <figcaption>Foto: ${ft.av}, <a href="${ft.licUrl}" target="_blank" rel="noopener license">${ft.lic}</a>, via <a href="${ft.kalla}" target="_blank" rel="noopener">Wikimedia Commons</a> (färgtonad)</figcaption>
+        </figure>` : '';
+      h.innerHTML = foto + `<div class="container">
         <nav class="vy-smula" aria-label="Du är här"><a href="#">Start</a> <span aria-hidden="true">›</span> <span aria-current="page">${v.namn}</span></nav>
         <h1 class="vy-titel">${v.namn}</h1>
         ${v.ingress ? `<p class="vy-ingress">${v.ingress}</p>` : ''}
@@ -2888,10 +2925,12 @@ const BAS_TITEL = document.title;
       });
       window.dispatchEvent(new Event('resize')); // diagram och karuseller som mäter sin bredd
     }
-    requestAnimationFrame(() => {
+    // Webbläsarens egen #-scroll kan komma efter vår; scrolla både direkt och strax efter.
+    const scrolla = () => {
       if(scrollMal){ const m = document.getElementById(scrollMal.id) || scrollMal; m.scrollIntoView({block:'start'}); }
       else if(byte) window.scrollTo(0, 0);
-    });
+    };
+    requestAnimationFrame(scrolla); setTimeout(scrolla, 80);
   }
 
   function route(){
@@ -2939,13 +2978,13 @@ const BAS_TITEL = document.title;
   <div class="container">
     <div class="footer-grid">
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
-      <div class="fc"><h4>Verktyg</h4><a href="#pristabell">Prislistan</a><a href="#kalkylator">Din ekonomi</a><a href="#historik">Historik</a><a href="#oecd">Internationell jämförelse</a></div>
-      <div class="fc"><h4>Metod</h4><a href="#metod">Hur vi räknar</a><a href="#metod">Datakällor</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">GitHub</a><a href="#metod">Begränsningar</a></div>
-      <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Syfte</a><a href="#om-oss">Oberoende</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues" target="_blank" rel="noopener">Bidra</a></div>
+      <div class="fc"><h4>Vyer</h4><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
+      <div class="fc"><h4>Metod</h4><a href="#metod">Så räknar vi</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
+      <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Om oss</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-legal">Data: CC0. Kod: MIT-licens. © 2026 Skatteplattformen.</span>
-      <div class="ind"><span class="ind-badge">Partipolitiskt oberoende</span>Ingen reklam · Inga partibidrag</div>
+      <span class="footer-legal">Text, siffror och diagram: <a href="https://creativecommons.org/licenses/by/4.0/deed.sv" target="_blank" rel="noopener license">CC BY 4.0</a>, fri att använda med källhänvisning till Skatteplattformen. Kod: MIT. Foton: licens enligt kreditraden vid varje bild. Underliggande statistik enligt respektive källas villkor.</span>
+      <div class="ind"><span class="ind-badge">Partipolitiskt oberoende</span>Ingen reklam · Inga partibidrag · Ingen besöksstatistik · Varje siffra har källa och år</div>
     </div>
   </div>
 </footer>
@@ -3574,7 +3613,7 @@ const NYCKELTAL = {
 };
 
 // Länka källnamn i källrader. Körs vid start och efter att prislistan ritats om.
-const KALLA_SEL = '.ft-source,.pc-src p,.fk-meta,.src-desc,.src-name,.oecd-src,.vgv-src,#kl-src,.ft-desc,.dp-src,[data-kallor]';
+const KALLA_SEL = '.ft-source,.chart-src,.pc-src p,.fk-meta,.src-desc,.src-name,.oecd-src,.vgv-src,#kl-src,.ft-desc,.dp-src,[data-kallor]';
 function linkaKallor(root){
   root = root || document;
   const pats = [];

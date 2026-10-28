@@ -10,6 +10,25 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Steg 8: foton, sifferrutor, källrader och sidfot
+
+- **Foton i vyhuvudena:** sex foton från Wikimedia Commons (ambulans, pendeltåg,
+  klassrum, förskolegård, reningsverk, bibliotek), färgtonade i sajtens grönt med
+  CSS (`VY_FOTON`). Kreditrad vid varje bild; förteckning i
+  `img/foton/KREDITER.md`. 1 600 och 800 px breda, laddas först när de behövs.
+- **Linjeillustrationer** (ikonserien i stort format) i sjukvårdsdelen och i
+  livsloppsdiagrammet, där fria foton saknas.
+- **Sifferrutor:** en accentfärg (grönt streck, siffran i svart) i "Skatter i
+  korthet" och sjukvårdens nyckeltal i stället för fyra färger.
+- **Källrader** i budgetdiagrammens ram, och samma avgränsade format för
+  källraderna under övriga diagram.
+- **Licens:** text, siffror och diagram under CC BY 4.0 (sidfot,
+  `<link rel="license">`, strukturerad data). Tidigare stod "Data: CC0".
+  Eurostats licens rättad till CC BY 4.0 i källistan.
+- **Sidfoten:** vyerna, Så räknar vi, Nyckeltal, Ordlista, Ändringslogg,
+  Rapportera fel (GitHub-ärende) och principerna (partipolitiskt oberoende, ingen
+  reklam, ingen besöksstatistik, varje siffra har källa och år).
+
 ### Changed (2026-10-28) — Steg 7: vyer, kortare sektioner och ett namn per verktyg
 
 - **Sju vyer i samma fil:** Start, Prislistan, Budgeten, Jämförelser, Din ekonomi,
