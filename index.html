@@ -60,7 +60,7 @@
 <style>
 :root{
   --bg:#F4F1EA;--bg2:#EAE6DC;--bg3:#DEDAD0;--paper:#FBFAF6;
-  --ink:#1A1813;--ink2:#4A4640;--ink3:#8A857C;
+  --ink:#1A1813;--ink2:#4A4640;--ink3:#66615A;--amber-t:#7A5916;--red-t:#9A3C16;
   --green:#1B4D3E;--green2:#2E7D5C;--green-l:#C8E6DA;--green-ll:#EAF4EE;
   --amber:#C8973A;--amber-l:#F5EDD8;
   --red:#B84A1E;--red-l:#F5E0D4;
@@ -161,7 +161,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .gq-ans{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2)}
 .gq-res{font-size:.95rem;font-weight:600;margin:0 0 .5rem}
 .gq-res.near{color:var(--green)}
-.gq-res.far{color:var(--red)}
+.gq-res.far{color:var(--red-t)}
 .gq-cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:.4rem 0 .7rem;max-width:520px}
 .gq-cmp div{font-size:.66rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
 .gq-cmp b{display:block;font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em;text-transform:none;margin-top:.15rem}
@@ -200,8 +200,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 #kretslopp svg.portrait .node-s{font-size:11.5px}
 #kretslopp svg.portrait .lbl{font-size:11.5px}
 #kretslopp svg.portrait .svc-t{font-size:11px}
-#kretslopp .cap h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2.4vw,1.45rem);margin:0 0 .25rem;letter-spacing:-.01em}
 #kretslopp .cap p{margin:0;color:var(--ink2);font-size:.95rem;max-width:75ch}
+#kretslopp .cap .cap-h{font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2.4vw,1.45rem);margin:0 0 .25rem;letter-spacing:-.01em;color:var(--ink)}
 #kretslopp .ctrl{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;border-top:1px solid var(--line);background:var(--soft);flex-wrap:wrap}
 #kretslopp .ctrl button{font:inherit;cursor:pointer}
 #kretslopp .pp{width:38px;height:38px;border-radius:50%;border:0;background:var(--accent);color:var(--stage);display:grid;place-items:center;flex:none}
@@ -243,7 +243,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-badge .ico{width:22px;height:22px}
 .vgv-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin:0;line-height:1.1}
 .vgv-meta{font-family:var(--mono);font-size:.68rem;color:var(--ink3);line-height:1.5}
-.vgv-big{font-family:var(--mono);font-size:1.6rem;color:var(--c);line-height:1;margin-top:.2rem}
+.vgv-big{font-family:var(--mono);font-size:1.6rem;color:var(--ct,var(--c));line-height:1;margin-top:.2rem}
 .vgv-bigtxt{font-size:.78rem;color:var(--ink2);line-height:1.45}
 .vgv-card ul{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.4rem;font-size:.82rem;color:var(--ink2)}
 .vgv-card li{display:flex;gap:.5rem;align-items:flex-start;line-height:1.4}
@@ -266,7 +266,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-row{display:grid;grid-template-columns:6.2rem minmax(0,1fr);gap:.7rem;align-items:center;font-size:.78rem;margin-bottom:.6rem}
 .vgv-bar{display:flex;height:26px;border-radius:5px;overflow:hidden}
 .vgv-bar span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.66rem;color:#fff;white-space:nowrap;overflow:hidden}
-.vgv-s{background:var(--green)}.vgv-g{background:var(--blue)}.vgv-o{background:#8A8D94}
+.vgv-s{background:var(--green)}.vgv-g{background:var(--blue)}.vgv-o{background:#8A8D94;color:#1A1813!important}
 .vgv-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.7rem;color:var(--ink2);margin-top:.4rem}
 .vgv-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.35rem;vertical-align:0}
 .vgv-hund{display:grid;gap:.4rem}
@@ -352,22 +352,22 @@ h1 em{font-style:italic;color:var(--green)}
 .lc-profile-btn.on{background:var(--green);border-color:var(--green);color:#fff}
 /* Hero: roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
    Visar konkreta prislappar — direkt svar på "vad köper Sveriges skatt?". */
-.hsk-prislapp-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
+.hsk-prislapp-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-top:.2rem}
 .hsk-prislapp-heading{font-family:var(--serif);font-size:1.3rem;font-weight:700;line-height:1.2;color:#fff;margin:.05rem 0 .8rem}
 .hsk-prislapp-stage{min-height:175px;display:flex;flex-direction:column;justify-content:center;padding:.4rem 0;transition:opacity .35s ease}
 .hsk-prislapp-stage.fading{opacity:0}
-.hsk-prislapp-cat{display:inline-block;font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:10px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.55);margin-bottom:.5rem;align-self:flex-start}
+.hsk-prislapp-cat{display:inline-block;font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:10px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.72);margin-bottom:.5rem;align-self:flex-start}
 .hsk-prislapp-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:.6rem}
 .hsk-prislapp-amount-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem}
 .hsk-prislapp-amount{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--green2);line-height:1;letter-spacing:-.03em}
-.hsk-prislapp-suf{font-family:var(--mono);font-size:.85rem;color:rgba(255,255,255,.4)}
+.hsk-prislapp-suf{font-family:var(--mono);font-size:.85rem;color:rgba(255,255,255,.72)}
 .hsk-prislapp-vs{font-size:.78rem;color:rgba(255,255,255,.75);line-height:1.45}
 .hsk-prislapp-vs strong{color:#fff}
 .hsk-prislapp-dots{display:flex;gap:6px;margin:.6rem 0 .3rem;justify-content:flex-start;align-items:center;flex-wrap:wrap}
 .hsk-prislapp-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);border:none;cursor:pointer;padding:0;transition:background .15s,transform .15s}
 .hsk-prislapp-dot:hover{background:rgba(255,255,255,.4)}
 .hsk-prislapp-dot.on{background:var(--green);transform:scale(1.15)}
-.hsk-prislapp-foot{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
+.hsk-prislapp-foot{font-size:.7rem;color:rgba(255,255,255,.72);margin-top:.7rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
 .hsk-prislapp-foot a{color:var(--green2);text-decoration:none;font-weight:500}
 .hsk-prislapp-foot a:hover{text-decoration:underline}
 @media (prefers-reduced-motion: reduce){
@@ -378,12 +378,12 @@ h1 em{font-style:italic;color:var(--green)}
   .hsk-prislapp-stage{min-height:200px}
 }
 .ticker-box{background:var(--ink);border-radius:4px;padding:1.75rem}
-.ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
+.ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:1.25rem}
 .ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
 .t-cell{background:var(--ink);padding:1rem 1.1rem}
 .t-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:#fff;letter-spacing:-.02em;line-height:1}
-.t-num sub{font-size:.72rem;color:rgba(255,255,255,.35)}
-.t-lbl{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.3}
+.t-num sub{font-size:.72rem;color:rgba(255,255,255,.72)}
+.t-lbl{font-size:.7rem;color:rgba(255,255,255,.72);margin-top:4px;line-height:1.3}
 /* VISSTE DU ATT — hero fact ticker */
 .vda-strip{background:var(--ink);padding:18px 0;overflow:hidden;position:relative}
 .vda-inner{display:flex;align-items:center;gap:1.2rem;row-gap:.6rem;flex-wrap:wrap;max-width:1080px;margin:0 auto;padding:0 2rem}
@@ -395,7 +395,7 @@ h1 em{font-style:italic;color:var(--green)}
 .vda-ctrl{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.75);border-radius:5px;cursor:pointer;font-size:.92rem;line-height:1;transition:all .15s;font-family:var(--sans)}
 .vda-ctrl:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35)}
 .vda-ctrl:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
-.vda-count{font-size:.68rem;color:rgba(255,255,255,.5);font-family:var(--mono);min-width:3.4em;text-align:center;white-space:nowrap}
+.vda-count{font-size:.68rem;color:rgba(255,255,255,.72);font-family:var(--mono);min-width:3.4em;text-align:center;white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.vda-fact span{animation:none}}
 @keyframes vdaFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 /* SECTIONS */
@@ -419,7 +419,7 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .cat-utb{background:var(--blue-l);color:var(--blue)}
 .cat-infra{background:var(--amber-l);color:#7A5A1A}
 .cat-social{background:var(--purple-l);color:var(--purple)}
-.cat-trygghet{background:var(--red-l);color:var(--red)}
+.cat-trygghet{background:var(--red-l);color:var(--red-t)}
 .pc-title{font-size:.86rem;font-weight:500;color:var(--ink);margin-bottom:.2rem;line-height:1.35}
 .pc-unit{font-size:.68rem;color:var(--ink3);margin-bottom:.75rem}
 .pc-amount{font-family:var(--mono);font-size:1.6rem;font-weight:500;color:var(--ink);letter-spacing:-.03em;line-height:1}
@@ -446,9 +446,12 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .detail-panel.open{transform:translateX(0)}
 .dp-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--ink2);transition:all .15s;z-index:1}
 .dp-close:hover{background:var(--bg2);color:var(--ink)}
+.pc-btn{all:unset;cursor:pointer;display:inline}
+.pc-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
+h3.pc-title{margin-top:0}
 .dp-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border)}
 .dp-cat{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:.75rem}
-.dp-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;line-height:1.25}
+.dp-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);margin:0 0 .3rem;line-height:1.25}
 .dp-amount{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--green);margin-bottom:.15rem}
 .dp-unit{font-size:.76rem;color:var(--ink3)}
 .dp-body{padding:1.5rem 2rem 3rem}
@@ -463,50 +466,56 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .dp-fact strong{color:var(--green)}
 .dp-source{font-size:.62rem;color:var(--ink3);font-family:var(--mono);line-height:1.5;margin-top:.5rem}
 /* ══ CALCULATOR — LIFECYCLE REDESIGN ══════════════════════════ */
-.calc-wrap{background:var(--ink);padding:72px 0}
-.calc-wrap .s-eye{color:var(--green2)}
+.calc-wrap{background:var(--ink);padding:72px 0;--ink2:#C9C3B6;--ink3:#A8A294}
+/* Grönt på mörk bakgrund: ljusare ton för text */
+.calc-wrap a[style*="color:var(--green)"],.calc-wrap summary[style*="color:var(--green)"]{color:#6FC29B!important}
+.calc-wrap .s-eye,.calc-wrap .stage-chip{color:#6FC29B}
 .calc-wrap .s-title{color:rgba(242,239,232,.9)}
-.calc-wrap .s-sub{color:rgba(242,239,232,.5)}
+.calc-wrap .s-sub{color:rgba(242,239,232,.72)}
 .calc-layout{display:grid;grid-template-columns:320px 1fr;gap:3rem;margin-top:2.5rem;align-items:start}
 /* Controls */
 .calc-layout > *{min-width:0}
 .calc-ctrl{display:flex;flex-direction:column;gap:1.5rem}
-.calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,239,232,.4);margin-bottom:.5rem}
+.calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,239,232,.72);margin-bottom:.5rem}
 .sl-row{display:flex;align-items:center;gap:1rem}
 .sl-row input[type=range]{flex:1;-webkit-appearance:none;height:2px;background:rgba(255,255,255,.1);border-radius:2px;outline:none;cursor:pointer}
 .sl-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--green2);cursor:pointer;transition:transform .1s}
 .sl-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
+/* Synlig fokusmarkering för reglage och sökfält */
+.sl-row input[type=range]:focus-visible{outline:2px solid #6FC29B;outline-offset:4px;border-radius:4px}
+.sl-row input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(111,194,155,.45)}
+#pgrid-search:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .sl-val{font-family:var(--mono);font-size:1rem;color:#fff;min-width:68px;text-align:right}
 /* Life stage chip */
 .stage-chip{display:inline-flex;align-items:center;gap:8px;padding:.6rem .9rem;background:rgba(46,125,92,.15);border:1px solid rgba(46,125,92,.3);border-radius:4px;font-size:.78rem;color:var(--green2);font-weight:500;margin-top:.25rem}
 .stage-icon{font-size:1.1rem;line-height:1}
 /* Method note */
-.method-note{padding:.9rem 1rem;background:rgba(255,255,255,.04);border-left:2px solid rgba(255,255,255,.15);border-radius:0 4px 4px 0;font-size:.72rem;color:rgba(242,239,232,.4);line-height:1.65}
-.method-note strong{color:rgba(242,239,232,.7)}
+.method-note{padding:.9rem 1rem;background:rgba(255,255,255,.04);border-left:2px solid rgba(255,255,255,.15);border-radius:0 4px 4px 0;font-size:.72rem;color:rgba(242,239,232,.72);line-height:1.65}
+.method-note strong{color:rgba(242,239,232,.72)}
 /* Result area */
 .c-result{display:flex;flex-direction:column;gap:1.5rem}
 /* Annual welfare card */
 .annual-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:1.5rem}
-.card-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:1.1rem}
+.card-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:1.1rem}
 .welfare-bars{display:flex;flex-direction:column;gap:.7rem}
 .wbar{display:grid;grid-template-columns:140px 1fr 80px;gap:10px;align-items:center}
-.wbar-n{font-size:.72rem;color:rgba(242,239,232,.65);line-height:1.3}
+.wbar-n{font-size:.72rem;color:rgba(242,239,232,.72);line-height:1.3}
 .wbar-t{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
 .wbar-f{height:100%;border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-.wbar-v{font-family:var(--mono);font-size:.72rem;color:rgba(242,239,232,.55);text-align:right}
+.wbar-v{font-family:var(--mono);font-size:.72rem;color:rgba(242,239,232,.72);text-align:right}
 .w-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.07)}
-.wt-l{font-size:.8rem;color:rgba(242,239,232,.5)}
+.wt-l{font-size:.8rem;color:rgba(242,239,232,.72)}
 .wt-v{font-family:var(--mono);font-size:1.45rem;font-weight:500;color:#fff;letter-spacing:-.02em}
 /* Solidarity contract */
 .contract-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.5rem}
 .lifecycle-bar{position:relative;height:44px;border-radius:3px;overflow:hidden;margin:1rem 0 .5rem;display:flex}
-.lc-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.7);transition:all .3s;white-space:nowrap;overflow:hidden;min-width:0}
+.lc-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:500;letter-spacing:.04em;color:#fff;transition:all .3s;white-space:nowrap;overflow:hidden;min-width:0}
 .lc-taker{background:rgba(46,125,92,.55)}
 .lc-payer{background:rgba(200,151,58,.45)}
 .lc-marker{position:absolute;top:0;bottom:0;width:2px;background:#fff;transition:left .4s;pointer-events:none}
 .lc-marker::after{content:'Du';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:.62rem;color:#fff;white-space:nowrap;font-family:var(--mono)}
 .lc-legend{display:flex;gap:1.25rem;margin-top:.5rem}
-.lc-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:rgba(242,239,232,.45)}
+.lc-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:rgba(242,239,232,.72)}
 .lc-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 /* Solidarity quote */
 .solidarity-box{padding:1.25rem 1.35rem;background:rgba(46,125,92,.12);border:1px solid rgba(46,125,92,.22);border-radius:4px}
@@ -575,7 +584,7 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .scen-val{font-family:var(--mono);font-size:.9rem;font-weight:500}
 .scen-netto{margin-top:1rem;padding:.75rem 1rem;border-radius:4px;font-size:.82rem;font-weight:500}
 .scen-netto.pos{background:rgba(46,125,92,.12);color:var(--green)}
-.scen-netto.neg{background:rgba(184,74,30,.1);color:#B84A1E}
+.scen-netto.neg{background:rgba(184,74,30,.1);color:var(--red-t)}
 .scen-not{font-size:.7rem;color:var(--ink3);line-height:1.6;margin-top:.75rem}
 /* LIFECYCLE PRESETS */
 .lc-preset{display:flex;flex-direction:column;align-items:flex-start;padding:.65rem 1rem;border:1px solid var(--border);border-radius:6px;background:transparent;cursor:pointer;transition:all .15s;font-family:var(--sans);text-align:left;gap:1px}
@@ -601,7 +610,7 @@ hr.div{border:none;border-top:1px solid var(--border)}
 /* QUOTE */
 .quote-section{background:linear-gradient(165deg,#1F5848 0%,#163d31 100%);padding:64px 0;text-align:center}
 .big-q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,3vw,2.15rem);color:#fff;max-width:720px;margin:0 auto 1rem;line-height:1.32;letter-spacing:-.01em}
-.q-note{font-size:.8rem;color:rgba(255,255,255,.5)}
+.q-note{font-size:.8rem;color:rgba(255,255,255,.72)}
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:36px 0}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
@@ -710,9 +719,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sc-hint{font-size:.66rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
 /* Hero: växel + "Din 100-lapp"-fördelning */
 .hsk-toggle{display:flex;gap:.35rem;margin:-.2rem 0 .7rem}
-.hsk-tg{font-size:.64rem;font-weight:500;padding:4px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.55);cursor:pointer;font-family:var(--sans);transition:all .15s}
+.hsk-tg{font-size:.64rem;font-weight:500;padding:4px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s}
 .hsk-tg.on{background:var(--green);color:#fff;border-color:var(--green)}
-.hsk-100-sub{font-size:.74rem;color:rgba(255,255,255,.6);margin:.1rem 0 .75rem}
+.hsk-100-sub{font-size:.74rem;color:rgba(255,255,255,.72);margin:.1rem 0 .75rem}
 .hsk-100-sub strong{color:#fff}
 .hsk-100-rows{display:flex;flex-direction:column;gap:.9rem;min-height:175px}
 .iso100{display:grid;grid-template-rows:repeat(5,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
@@ -721,13 +730,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .iso100-leg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem 1rem;font-size:.7rem;color:rgba(255,255,255,.8)}
 .iso100-leg span{display:flex;align-items:center;gap:.4rem;min-width:0}
 .iso100-leg i{width:9px;height:9px;border-radius:50%;flex:none}
-.iso100-leg b{margin-left:auto;font-family:var(--mono);font-weight:400;color:rgba(255,255,255,.65);white-space:nowrap;padding-left:.3rem}
+.iso100-leg b{margin-left:auto;font-family:var(--mono);font-weight:400;color:rgba(255,255,255,.72);white-space:nowrap;padding-left:.3rem}
 @media(prefers-reduced-motion:reduce){.iso100 i{transition:none;transform:none;opacity:1}}
 .h100-row{display:grid;grid-template-columns:92px 1fr 46px;align-items:center;gap:.55rem}
 .h100-lbl{font-size:.68rem;color:rgba(255,255,255,.82);line-height:1.1}
 .h100-track{height:9px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
 .h100-fill{height:100%;width:0;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-.h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.7);text-align:right}
+.h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.72);text-align:right}
 @media(prefers-reduced-motion:reduce){.h100-fill{transition:none}}
 
 /* ═══ MOBILANPASSNING (≤ 640 px) — samlad sist så att den vinner över tidigare regler ═══ */
@@ -736,6 +745,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .pg-more:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .ft-bar-val,.oecd-val{white-space:nowrap}
 @media(max-width:640px){
+  /* Diagramtext minst cirka 11 px på mobil */
+  .chart-svg text{font-size:12.5px}
+  .chart-svg .m-hide{display:none}
   .m-swipe{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem!important;padding:.2rem .1rem .8rem;margin-left:-.1rem;scrollbar-width:thin;overscroll-behavior-x:contain}
   .m-swipe > *{scroll-snap-align:start;min-width:0}
   .ft-bar-val{width:auto;min-width:56px}
@@ -865,14 +877,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll" role="region" aria-label="Roterande prislappar — vad samhällskostnader är">
         <div class="hsk-accent-line" style="background:var(--green)"></div>
         <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · 2026 års budget</div>
-        <h3 class="hsk-prislapp-heading" id="hskHeading">Verkliga prislappar — vad samhället faktiskt betalar</h3>
+        <h2 class="hsk-prislapp-heading" id="hskHeading">Verkliga prislappar — vad samhället faktiskt betalar</h2>
 
         <div class="hsk-toggle" role="tablist" aria-label="Byt vy">
           <button type="button" class="hsk-tg on" onclick="setHeroMode('pris',this)">Prislappar</button>
           <button type="button" class="hsk-tg" onclick="setHeroMode('hundra',this)">Din 100-lapp</button>
         </div>
 
-        <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="polite">
+        <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="off">
           <span class="hsk-prislapp-cat" id="hskPrislappCat">Hälsa &amp; sjukvård</span>
           <div class="hsk-prislapp-title" id="hskPrislappTitle">Ett dygn på intensivvård</div>
           <div class="hsk-prislapp-amount-row">
@@ -904,7 +916,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 <div class="vda-strip" id="vdaStrip">
   <div class="vda-inner">
     <span class="vda-badge">Visste du att</span>
-    <div class="vda-fact" id="vdaFact" aria-live="polite" role="status"></div>
+    <div class="vda-fact" id="vdaFact" aria-live="off"></div>
     <div class="vda-nav">
       <button type="button" class="vda-ctrl" id="vdaPrev" aria-label="Föregående fakta" title="Föregående">‹</button>
       <span class="vda-count" id="vdaCount" aria-hidden="true"></span>
@@ -925,25 +937,25 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem">
 
       <a href="#budget" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(46,125,92,.14)';this.style.borderColor='rgba(46,125,92,.5)'" onmouseout="this.style.background='rgba(46,125,92,.08)';this.style.borderColor='rgba(46,125,92,.25)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">1 542<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">1 542<span style="font-size:.9rem"> Mdkr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Statsbudget 2026 → budget</div>
         <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statens utgifter 2026 enligt Budgetpropositionen. Inkomster 1 375 miljarder kronor, underskott 167 miljarder. Hela offentliga sektorns utgifter, inklusive kommuner och regioner: cirka 3 000 miljarder (2024).</div>
       </a>
 
       <a href="#pristabell" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(200,151,58,.14)';this.style.borderColor='rgba(200,151,58,.5)'" onmouseout="this.style.background='rgba(200,151,58,.08)';this.style.borderColor='rgba(200,151,58,.25)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber);line-height:1">55 000<span style="font-size:.9rem;opacity:.7"> kr</span></div>
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--amber-t);line-height:1">55 000<span style="font-size:.9rem"> kr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vad → prislistan</div>
         <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Kostnaden för ett dygn på intensivvård. Du betalar 130 kr. Resten, och <span data-cards-other>36</span> andra prislappar, hittar du här.</div>
       </a>
 
       <a href="#oecd" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(91,63,140,.10);border:1px solid rgba(91,63,140,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(91,63,140,.16)';this.style.borderColor='rgba(91,63,140,.55)'" onmouseout="this.style.background='rgba(91,63,140,.10)';this.style.borderColor='rgba(91,63,140,.30)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#9B7FD4;line-height:1">41,4<span style="font-size:.9rem;opacity:.7"> %</span></div>
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--purple);line-height:1">41,4<span style="font-size:.9rem"> %</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Vs världen → jämförelse</div>
         <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Sveriges skattekvot 2024 (skatter som andel av BNP). OECD-snittet: 34,1 %, Danmark: 45,2 %. Så står sig Sverige mot andra länder.</div>
       </a>
 
       <a href="#framtid" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(184,74,30,.10);border:1px solid rgba(184,74,30,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(184,74,30,.16)';this.style.borderColor='rgba(184,74,30,.55)'" onmouseout="this.style.background='rgba(184,74,30,.10)';this.style.borderColor='rgba(184,74,30,.30)'">
-        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#E58060;line-height:1">−167<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
+        <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--red-t);line-height:1">−167<span style="font-size:.9rem"> Mdkr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Varthän → framtid</div>
         <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +33 % på ett år (från 168,8 till 225 miljarder kronor) och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
       </a>
@@ -985,42 +997,42 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
       <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">32,4 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension — finansierar både <strong>kommun och region</strong> (skola, omsorg, sjukvård, kollektivtrafik). <strong>Rikssnitt 2026: 32,38 %</strong>, varierar 28,9 % (Österåker) till 35,7 % (Dorotea) mellan kommuner.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SKR / Skatteverket 2026</div>
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">20 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på lön <strong>över cirka 660 000 kr/år</strong> (cirka 55 000 kr/mån), den så kallade brytpunkten 2026. Skiktgränsen 643 000 kr gäller den beskattningsbara inkomsten efter grundavdrag. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 67 kap inkomstskattelagen</div>
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.25);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber);line-height:1">25 <span style="font-size:.85rem;opacity:.6">/ 12 / 6 %</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber-t);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> livsmedel + hotell + restaurang. <strong>6 %</strong> böcker, tidningar, kollektivtrafik, kultur.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200)</div>
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#9B7FD4;line-height:1">31,42 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--purple);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. ~10 % är pensionsavgift (din egen rätt), ~21 % är "skatte"-del. Reducerad för 66+.</div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SAL — Socialavgiftslagen</div>
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(91,63,140,.08);border:1px solid rgba(91,63,140,.3);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#9B7FD4;line-height:1">30 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--purple);line-height:1">30 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">30 % på <strong>utdelning, ränta och realiserad vinst</strong> vid direktägt sparande — lägre än marginalskatten på höga löner (drygt 52 %). <strong>ISK/KF beskattas i stället med en årlig schablon (~1 % av värdet), inte 30 % på vinsten.</strong></div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
       </div>
 
       <div style="padding:1.1rem 1.2rem;background:rgba(184,74,30,.07);border:1px solid rgba(184,74,30,.28);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">~20 <span style="font-size:.85rem;opacity:.6">%</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--red-t);line-height:1">~20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön 38 300 kr/mån (≈ 460 tkr/år)</strong>: kommunalskatt 143 tkr − jobbskatteavdrag 51 tkr = <strong>~92 tkr i direkt inkomstskatt</strong> (20 % av brutto). Plus moms ~46 tkr = ~30 % av brutto. Plus arbetsgivaravgift (21,21 %) som arbetsgivaren betalar ovanpå = ~42 % av total arbetsgivarkostnad. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
         <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + sparkvot/momsmix SCB HUT</div>
       </div>
@@ -1136,7 +1148,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     </div>
 
     <div class="cap" aria-live="polite">
-      <h2 id="kl-capH">Hur skattepengarna går runt</h2>
+      <p class="cap-h" id="kl-capH">Hur skattepengarna går runt</p>
       <p id="kl-capP">Från din lön, via Skatteverket, till staten, regionen och kommunen och tillbaka till dig som skola, vård och trygghet.</p>
     </div>
     <div class="ctrl">
@@ -1402,7 +1414,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </ul>
         <div class="vgv-fin">Skatteintäkter 2025: 349 Mdkr. På Gotland sköter kommunen regionens uppgifter.</div>
       </article>
-      <article class="vgv-card" style="--c:var(--amber);--cl:var(--amber-l)">
+      <article class="vgv-card" style="--c:var(--amber);--ct:var(--amber-t);--cl:var(--amber-l)">
         <div class="vgv-head"><span class="vgv-badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"/></svg></span><div><h3>Kommunen</h3><div class="vgv-meta">290 kommuner · skattesats 20,69 %</div></div></div>
         <div class="vgv-big">≈ 39 %</div>
         <div class="vgv-bigtxt">av kommunernas kostnader går till skola och barnomsorg</div>
@@ -1647,7 +1659,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <!-- Snabbfakta-rad -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1.5rem 0 2rem">
       <div style="padding:1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">84,1<span style="font-size:.85rem;opacity:.6"> år</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--green);line-height:1">84,1<span style="font-size:.85rem"> år</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 81,2 år (2024)</div>
       </div>
@@ -1657,12 +1669,12 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Per 100 000 invånare. EU-snittet: 238 (2023)</div>
       </div>
       <div style="padding:1rem;background:rgba(184,74,30,.08);border:1px solid rgba(184,74,30,.3);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:#E58060;line-height:1">1,9<span style="font-size:.85rem;opacity:.6"> /1000</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--red-t);line-height:1">1,9<span style="font-size:.85rem"> /1000</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 4,4 (2022)</div>
       </div>
       <div style="padding:1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.3);border-radius:5px">
-        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber);line-height:1">91<span style="font-size:.85rem;opacity:.6"> %</span></div>
+        <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--amber-t);line-height:1">91<span style="font-size:.85rem"> %</span></div>
         <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Bedömning inom 3 dagar (aug 2026)</div>
       </div>
@@ -2175,7 +2187,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Din ålder</label>
           <div class="sl-row">
-            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35">
+            <input type="range" min="0" max="85" value="35" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="35" aria-valuetext="35 år">
             <span class="sl-val" id="d-age">35 år</span>
           </div>
           <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-office"/></svg></span><span id="stage-label">Mitt i arbetslivet</span></div>
@@ -2184,7 +2196,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Bruttoinkomst per år</label>
           <div class="sl-row">
-            <input type="range" min="0" max="1200" value="460" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="460">
+            <input type="range" min="0" max="1200" value="460" id="s-inc" step="10" aria-label="Bruttoinkomst per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="460" aria-valuetext="460 000 kronor per år">
             <span class="sl-val" id="d-inc">460 tkr</span>
           </div>
         </div>
@@ -2206,10 +2218,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div>
           <label>Hushållstyp</label>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
-            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-person"/></svg>Ensamstående</button>
-            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-couple"/></svg>Par utan barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-family"/></svg>Par med barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-parentchild"/></svg>Ensamstående m barn</button>
+            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-person"/></svg>Ensamstående</button>
+            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-couple"/></svg>Par utan barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-family"/></svg>Par med barn</button>
+            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-parentchild"/></svg>Ensamstående m barn</button>
           </div>
           <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
         </div>
@@ -2265,7 +2277,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="annual-card" id="receipt-card" style="display:none">
           <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
           <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
-          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.35);line-height:1.5">
+          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.72);line-height:1.5">
             Fördelningen baseras på COFOG 2024 (3 011 Mdkr, senast publicerade värde). Alla skatter (kommunal, statlig, moms, arbetsgivaravgifter minus jobbskatteavdrag) fördelas proportionellt.
           </div>
         </div>
@@ -2277,7 +2289,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         <div class="annual-card" id="marginal-card" style="display:none">
           <div class="card-label">Marginalskatt på bruttolön — vad din nästa intjänade krona kostar</div>
           <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
-          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.4);line-height:1.55">
+          <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.72);line-height:1.55">
             <strong>Marginalskatt</strong> = skatten på din nästa intjänade krona, räknad direkt ur skattemodellen. Upp till cirka 478 000 kr/år växer jobbskatteavdraget med lönen, så marginalskatten blir cirka 24 % (vid medianlön). Därefter är den cirka 32 % (kommunalskatt), och över brytpunkten, cirka 660 000 kr/år, tillkommer 20 % statlig skatt: cirka 52 %.
             Arbetsgivaravgiften (21-31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
           </div>
@@ -2301,7 +2313,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
         <!-- Solidarity quote — normativ tolkning, ej empirisk fakta -->
         <div class="solidarity-box">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Perspektiv</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Perspektiv</span></div>
           <p class="solidarity-text" id="solidarity-text"></p>
         </div>
 
@@ -2317,11 +2329,11 @@ footer{border-top:1px solid var(--border);padding:36px 0}
           <div class="annual-card">
             <div class="card-label">Jämför — ange en annan profil</div>
             <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem">
-              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+              <label style="font-size:.72rem;color:rgba(242,239,232,.72)">
                 Ålder <span id="d-age2" style="font-family:var(--mono);color:var(--amber)">65 år</span>
                 <input type="range" id="s-age2" min="0" max="85" value="65" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
               </label>
-              <label style="font-size:.72rem;color:rgba(242,239,232,.5)">
+              <label style="font-size:.72rem;color:rgba(242,239,232,.72)">
                 Inkomst <span id="d-inc2" style="font-family:var(--mono);color:var(--amber)">300 tkr</span>
                 <input type="range" id="s-inc2" min="0" max="1500" step="10" value="300" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
               </label>
@@ -2379,7 +2391,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
     <!-- Skarp disclaimer ovan diagrammet -->
     <div style="margin:1rem 0 1.5rem;padding:1rem 1.2rem;background:rgba(184,74,30,.06);border-left:3px solid rgba(184,74,30,.45);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.65">
-      <strong style="color:#E58060">⚠ Modellen visar mönstret — inte beloppet.</strong>
+      <strong style="color:var(--red-t)">⚠ Modellen visar mönstret — inte beloppet.</strong>
       Diagrammet visar <strong>årliga flöden per ålder</strong> — förmåner du konsumerar respektive skatt du betalar varje enskilt år — inte en summerad livstidsbalans. Varje års belopp är schablonberäknade befolkningsmedel (±20–25 % på förmåner, ±10–15 % på skatt). Värdet är pedagogiskt (hur välfärden fördelas över ett liv) — inte prognostiskt (din individuella balans). Ytterligare oprecision:
       <ul style="margin:.5rem 0 .3rem 1.2rem;padding:0;line-height:1.55">
         <li>Diagrammet antar <strong>2026 års skatte- och pensionsregler i 85 år</strong> — historiskt har dessa ändrats varje decennium.</li>
@@ -2749,8 +2761,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
 <!-- DETAIL PANEL -->
 <div class="detail-overlay" id="detail-overlay" onclick="closeDetail()"></div>
-<div class="detail-panel" id="detail-panel">
-  <button class="dp-close" onclick="closeDetail()">✕</button>
+<div class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="dp-title" inert>
+  <button class="dp-close" onclick="closeDetail()" aria-label="Stäng">✕</button>
   <div id="dp-content"></div>
 </div>
 
@@ -3176,7 +3188,7 @@ function openDetail(cardTitle) {
 
   let html = `<div class="dp-header">
     <span class="dp-cat cat-${card.cat}">${card.cl}</span>
-    <div class="dp-title">${card.title}</div>
+    <h2 class="dp-title" id="dp-title">${card.title}</h2>
     <div class="dp-amount">${fmtN(card.amount)} ${card.suf}</div>
     <div class="dp-unit">${card.unit}</div>
   </div><div class="dp-body">`;
@@ -3236,16 +3248,34 @@ function openDetail(cardTitle) {
   html += `</div>`;
 
   document.getElementById('dp-content').innerHTML = html;
+  const panel = document.getElementById('detail-panel');
+  dpTillbaka = document.activeElement;
   document.getElementById('detail-overlay').classList.add('open');
-  document.getElementById('detail-panel').classList.add('open');
+  panel.inert = false;
+  panel.classList.add('open');
   document.body.style.overflow = 'hidden';
+  panel.querySelector('.dp-close').focus();
 }
+let dpTillbaka = null; // elementet som hade fokus innan panelen öppnades
 
 function closeDetail() {
+  const panel = document.getElementById('detail-panel');
+  if(!panel.classList.contains('open')) return;
   document.getElementById('detail-overlay').classList.remove('open');
-  document.getElementById('detail-panel').classList.remove('open');
+  panel.classList.remove('open');
+  panel.inert = true;
   document.body.style.overflow = '';
+  if(dpTillbaka && dpTillbaka.focus) dpTillbaka.focus();
 }
+// Håll tangentbordsfokus i panelen medan den är öppen
+document.addEventListener('keydown', e => {
+  const panel = document.getElementById('detail-panel');
+  if(e.key !== 'Tab' || !panel.classList.contains('open')) return;
+  const f = [...panel.querySelectorAll('a[href],button,summary,input,select,[tabindex]:not([tabindex="-1"])')].filter(x => x.offsetParent !== null);
+  if(!f.length) return;
+  if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+  else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+});
 
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetail(); });
 
@@ -3301,7 +3331,7 @@ function applyPgridFilters(){
   grid.innerHTML = d.map(c=>`
     <div class="pc" onclick="openDetail('${c.title.replace(/'/g,"\\'")}')">
       <span class="pc-cat cat-${c.cat}">${ico(CAT_ICO[c.cat]||'doc')}${c.cl}</span>
-      <div class="pc-title">${c.title}</div>
+      <h3 class="pc-title"><button type="button" class="pc-btn" aria-haspopup="dialog" onclick="event.stopPropagation();openDetail('${c.title.replace(/'/g,"\\'")}')">${c.title}</button></h3>
       <div class="pc-unit">${c.unit}</div>
       <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
       <div class="pc-vs">${c.vs}</div>
@@ -3512,6 +3542,8 @@ const ORDLISTA = [
 
 // ═══ SNABBFAKTA — ett diagram, en mening. Bara siffror som finns på sajten med källa. ═══
 const FAKTA_UPPDATERAD = '28 okt 2026';
+// Ljusa segment får mörk text (kontrast ≥ 4,5:1)
+const FK_MORK = {amber:1, grey:1};
 const FK_C = {green:'#1B4D3E', green2:'#2E7D5C', blue:'#1E4A8C', amber:'#C8973A', red:'#B84A1E', purple:'#5B3F8C', grey:'#8A8D94'};
 const FAKTA = [
   {tema:'Kommunalskatten', h:'Nästan två tredjedelar av kommunalskatten går till kommunen',
@@ -3561,7 +3593,7 @@ const FAKTA = [
   function chartHTML(ch){
     if(ch.type==='stack'){
       const tot=ch.parts.reduce((a,p)=>a+p.v,0);
-      return '<div class="fk-stack" role="img" aria-label="'+ch.parts.map(p=>p.l+' '+p.txt).join(', ')+'">'+ch.parts.map(p=>'<span style="width:'+(p.v/tot*100)+'%;background:'+FK_C[p.c]+'">'+p.txt+'</span>').join('')+'</div>'+
+      return '<div class="fk-stack" role="img" aria-label="'+ch.parts.map(p=>p.l+' '+p.txt).join(', ')+'">'+ch.parts.map(p=>'<span style="width:'+(p.v/tot*100)+'%;background:'+FK_C[p.c]+(FK_MORK[p.c]?';color:#1A1813':'')+'">'+p.txt+'</span>').join('')+'</div>'+
         '<div class="fk-leg">'+ch.parts.map(p=>'<span><i style="background:'+FK_C[p.c]+'"></i>'+p.l+'</span>').join('')+'</div>';
     }
     const mx=Math.max.apply(null,ch.rows.map(r=>r.v));
@@ -3617,7 +3649,7 @@ async function faktaBild(i){
   const ch=f.chart, fmt=(v,u)=>(Number.isInteger(v)?v.toLocaleString('sv-SE'):String(v).replace('.',','))+(u||'');
   if(ch.type==='stack'){
     const tot=ch.parts.reduce((a,p)=>a+p.v,0); let cx=P;
-    ch.parts.forEach(p=>{ const w=(W-2*P)*p.v/tot; x.fillStyle=FK_C[p.c]; x.fillRect(cx,y,w,84); x.fillStyle='#fff'; x.font='500 28px "IBM Plex Mono"'; if(w>120) x.fillText(p.txt,cx+16,y+53); cx+=w; });
+    ch.parts.forEach(p=>{ const w=(W-2*P)*p.v/tot; x.fillStyle=FK_C[p.c]; x.fillRect(cx,y,w,84); x.fillStyle=FK_MORK[p.c]?'#1A1813':'#fff'; x.font='500 28px "IBM Plex Mono"'; if(w>120) x.fillText(p.txt,cx+16,y+53); cx+=w; });
     y+=130; x.font='400 30px Inter';
     ch.parts.forEach(p=>{ x.fillStyle=FK_C[p.c]; x.beginPath(); x.arc(P+12,y-10,11,0,7); x.fill(); x.fillStyle='#4A4640'; x.fillText(p.l+' · '+p.txt,P+36,y); y+=46; });
   } else {
@@ -3625,11 +3657,11 @@ async function faktaBild(i){
     ch.rows.forEach(r=>{ x.font='400 30px Inter'; x.fillStyle='#4A4640'; x.fillText(r.l,P,y+32);
       x.fillStyle='#EAE6DC'; x.fillRect(P+lw,y+6,bw,36); x.fillStyle=FK_C[r.c]; x.fillRect(P+lw,y+6,Math.max(4,bw*r.v/mx),36);
       x.font='500 30px "IBM Plex Mono"'; x.fillStyle='#1A1813'; x.fillText(fmt(r.v,ch.unit),P+lw+bw+20,y+35); y+=68; });
-    if(ch.note){ x.font='400 24px Inter'; x.fillStyle='#8A857C'; x.fillText(ch.note,P,y+8); y+=40; }
+    if(ch.note){ x.font='400 24px Inter'; x.fillStyle='#66615A'; x.fillText(ch.note,P,y+8); y+=40; }
   }
   y=wrap(f.p,'400 34px Inter',W-2*P,52,y+56,'#4A4640');
   x.fillStyle='rgba(26,24,19,.12)'; x.fillRect(P,H-190,W-2*P,2);
-  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#8A857C';
+  x.font='400 22px "IBM Plex Mono"'; x.fillStyle='#66615A';
   const src='Källa: '+f.kalla+' · År: '+f.ar;
   if(x.measureText(src).width<=W-2*P) x.fillText(src,P,H-145); else { x.fillText('Källa: '+f.kalla,P,H-158); x.fillText('År: '+f.ar,P,H-128); }
   x.font='600 34px "Source Serif 4"'; x.fillStyle='#1A1813'; x.fillText('Skatteplattformen',P,H-82);
@@ -3926,6 +3958,7 @@ function setHeroMode(mode, btn){
   }
 
   function goTo(idx, manual){
+    const st = document.getElementById('hskPrislappStage'); if(st) st.setAttribute('aria-live', manual ? 'polite' : 'off');
     if(idx === current) return;
     current = idx;
     if(reducedMotion){
@@ -4526,7 +4559,7 @@ function updateCalc(){
     if(kapSkatt > 0) items.push(['Kapitalskatt (30 % på direktägt — ISK/KF beskattas annars)', kapSkatt]);
     taxHTML = items.filter(([,v])=>v!==0).map(([l,v])=>{
       const isNeg = v < 0;
-      const col = isNeg ? '#2E7D5C' : 'rgba(242,239,232,.65)';
+      const col = isNeg ? '#6FC29B' : 'rgba(242,239,232,.78)';
       const prefix = isNeg ? '−' : '';
       const abs = Math.abs(v);
       return `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:${col}">
@@ -4541,7 +4574,7 @@ function updateCalc(){
     // Modell-not: vad förhållandet säger om välfärdslogiken (inte personlig vinst/förlust)
     const balance = total - totalSkatt;
     const isNegative = balance < 0;
-    taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:${isNegative?'rgba(200,151,58,.12)':'rgba(46,125,92,.12)'};border-left:2px solid ${isNegative?'#C8973A':'#2E7D5C'};border-radius:0 3px 3px 0;font-size:.72rem;color:rgba(242,239,232,.6);line-height:1.6">
+    taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:${isNegative?'rgba(200,151,58,.12)':'rgba(46,125,92,.12)'};border-left:2px solid ${isNegative?'#C8973A':'#2E7D5C'};border-radius:0 3px 3px 0;font-size:.72rem;color:rgba(242,239,232,.72);line-height:1.6">
       <strong style="color:${isNegative?'#C8973A':'#2E7D5C'}">I modellen vid denna ålder:</strong>
       ${isNegative
         ? `befolkningssnittet betalar ~${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än det <em>i år</em> konsumerar i offentliga tjänster. Detta är välfärdsmodellens kärna: yrkesaktiva finansierar både barn och äldre, samt sin egen framtida vård.`
@@ -4549,7 +4582,7 @@ function updateCalc(){
       <span style="display:block;margin-top:.3rem;font-size:.65rem;color:var(--ink3)">Detta är inte din individuella balans — verklig konsumtion varierar 5–10× per person inom samma ålders- och inkomstgrupp.</span>
     </div>`;
   } else {
-    taxHTML = `<div style="font-size:.78rem;color:rgba(242,239,232,.4);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
+    taxHTML = `<div style="font-size:.78rem;color:rgba(242,239,232,.72);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
   }
   document.getElementById('tax-breakdown').innerHTML = taxHTML;
 
@@ -4571,13 +4604,13 @@ function updateCalc(){
   const isTaker = age <= 18 || age >= 55;
   let lcText = '';
   if(age <= 18){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du är i uppväxtfasen — systemet investerar i dig. Dina föräldrar, din generation och de som arbetar nu finansierar din utbildning och vård.</p>`;
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Du är i uppväxtfasen — systemet investerar i dig. Dina föräldrar, din generation och de som arbetar nu finansierar din utbildning och vård.</p>`;
   } else if(age <= 54){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du befinner dig i den fas då de flesta betalar mer i skatt än de tar emot direkt. Dina skattepengar finansierar just nu: barn i förskola och skola, äldres vård och pension, infrastruktur och försvar.</p>`;
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Du befinner dig i den fas då de flesta betalar mer i skatt än de tar emot direkt. Dina skattepengar finansierar just nu: barn i förskola och skola, äldres vård och pension, infrastruktur och försvar.</p>`;
   } else if(age <= 64){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du närmar dig balansen. Under de kommande åren tar du emot allt mer i tjänster — i takt med ökad sjukvård och pension.</p>`;
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Du närmar dig balansen. Under de kommande åren tar du emot allt mer i tjänster — i takt med ökad sjukvård och pension.</p>`;
   } else {
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.55);line-height:1.65">Du är nu en klar nettotagare. Det är systemets avsikt. Under dina arbetsår finansierade du andras barn och föräldrar. Nu gör yngre generationer detsamma för dig.</p>`;
+    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Du är nu en klar nettotagare. Det är systemets avsikt. Under dina arbetsår finansierade du andras barn och föräldrar. Nu gör yngre generationer detsamma för dig.</p>`;
   }
   document.getElementById('lifecycle-text').innerHTML = lcText;
 
@@ -4631,7 +4664,7 @@ function updateCalc(){
       receiptHTML += `<div style="display:flex;align-items:center;gap:.5rem">
         <span style="font-size:.9rem;width:1.2rem;text-align:center;color:${c.col.startsWith('rgba')?'rgba(242,239,232,.6)':c.col}">${ico(c.icon)}</span>
         <div style="flex:1;min-width:0">
-          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(242,239,232,.6);margin-bottom:.2rem">
+          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(242,239,232,.72);margin-bottom:.2rem">
             <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.namn}</span>
             <span style="font-family:var(--mono);white-space:nowrap;margin-left:.5rem">${kr.toLocaleString('sv-SE')} tkr</span>
           </div>
@@ -4639,7 +4672,7 @@ function updateCalc(){
             <div style="height:100%;width:${barW}%;background:${c.col};border-radius:3px;transition:width .4s"></div>
           </div>
         </div>
-        <span style="font-size:.65rem;color:rgba(242,239,232,.3);font-family:var(--mono);width:2.8rem;text-align:right">${pct}%</span>
+        <span style="font-size:.65rem;color:rgba(242,239,232,.72);font-family:var(--mono);width:2.8rem;text-align:right">${pct}%</span>
       </div>`;
     });
     document.getElementById('receipt-bars').innerHTML = receiptHTML;
@@ -4672,12 +4705,12 @@ function updateCalc(){
       const isActive = p.inc === currentP.inc;
       const col = p.hasStatlig ? '#C8973A' : 'rgba(242,239,232,.45)';
       return `<div style="display:flex;align-items:center;gap:.5rem;${isActive?'background:rgba(255,255,255,.06);border-radius:3px;padding:2px 4px;margin:-2px -4px':''}">
-        <span style="font-size:.68rem;color:rgba(242,239,232,.5);width:52px;text-align:right;font-family:var(--mono)">${p.inc} tkr</span>
+        <span style="font-size:.68rem;color:rgba(242,239,232,.72);width:52px;text-align:right;font-family:var(--mono)">${p.inc} tkr</span>
         <div style="flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden">
           <div style="height:100%;width:${Math.round(p.marg/maxM*90)}%;background:${col};border-radius:3px;transition:width .3s"></div>
         </div>
         <span style="font-size:.72rem;font-family:var(--mono);color:${isActive?'#fff':'rgba(242,239,232,.5)'};width:36px;text-align:right;font-weight:${isActive?'600':'400'}">${p.marg}%</span>
-        ${p.hasStatlig ? '<span style="font-size:.55rem;color:rgba(200,151,58,.6)">+statlig</span>' : ''}
+        ${p.hasStatlig ? '<span style="font-size:.6rem;color:#D9AE5C">+statlig</span>' : ''}
       </div>`;
     }).join('');
   } else if(margCard) {
@@ -4921,9 +4954,10 @@ const VDA_FACTS = [
   function start(){
     stop();
     if(reduceMotion || paused || hoverPaused) return;
-    timer = setInterval(()=>go(idx+1), DWELL);
+    timer = setInterval(()=>{ el.setAttribute('aria-live','off'); go(idx+1); }, DWELL);
   }
-  function manual(n){ go(n); start(); } // navigering: visa + starta om intervallet
+  // Skärmläsare: läs upp bara när användaren själv bläddrar, inte vid automatisk växling
+  function manual(n){ el.setAttribute('aria-live','polite'); go(n); start(); } // navigering: visa + starta om intervallet
 
   if(prevBtn) prevBtn.onclick = ()=>manual(idx-1);
   if(nextBtn) nextBtn.onclick = ()=>manual(idx+1);
@@ -4997,21 +5031,21 @@ function showSjukv(btn, key){
   ];
   const el = document.getElementById('hist-skatt-chart');
   if(!el) return;
-  const W = 680, H = 220, pad = {t:20,r:55,b:35,l:45};
+  const W = chartW(680), H = 220, pad = {t:20,r:55,b:35,l:45};
   const iw = W-pad.l-pad.r, ih = H-pad.t-pad.b;
   const minY = 30, maxY = 54;
   const sx = i => pad.l + (i/(data.length-1))*iw;
   const sy = v => pad.t + (1-(v-minY)/(maxY-minY))*ih;
-  let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${ARIA_SKATTEKVOT}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg = `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ARIA_SKATTEKVOT}" style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   // Grid lines
   for(let v=32;v<=52;v+=4){
     const y=sy(v);
-    svg+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
-    svg+=`<text x="${pad.l-6}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}%</text>`;
+    svg+=`<line x1="${pad.l}" y1="${y}" x2="${W-pad.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${pad.l-6}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${v}%</text>`;
   }
   // X labels
   data.forEach((d,i)=>{
-    if(i%2===0) svg+=`<text x="${sx(i)}" y="${H-5}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.year}</text>`;
+    if(i%2===0) svg+=`<text x="${sx(i)}" y="${H-5}" text-anchor="middle" fill="#66615A" font-size="9">${d.year}</text>`;
   });
   // OECD line
   let oecdPath=`M${sx(0)},${sy(data[0].oecd)}`;
@@ -5044,24 +5078,24 @@ function showSjukv(btn, key){
   ];
   const el = document.getElementById('hist-skuld-chart');
   if(!el) return;
-  const W=680,H=200,p={t:18,r:55,b:32,l:42};
+  const W=chartW(680),H=200,p={t:18,r:55,b:32,l:42};
   const iw=W-p.l-p.r, ih=H-p.t-p.b;
   const minY=0,maxY=80;
   const sx=i=>p.l+(i/(data.length-1))*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Sveriges statsskuld som andel av BNP 1980–2026. Topp 74 % år 1994, ned till 18 % år 2024, stiger till 20 % 2026." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Sveriges statsskuld som andel av BNP 1980–2026. Topp 74 % år 1994, ned till 18 % år 2024, stiger till 20 % 2026." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   // Grid
   [0,20,40,60,80].forEach(v=>{
     const y=sy(v);
-    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
-    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}%</text>`;
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${v}%</text>`;
   });
   // Crisis annotation
   svg+=`<line x1="${sx(4)}" y1="${p.t}" x2="${sx(4)}" y2="${H-p.b}" stroke="rgba(184,74,30,.4)" stroke-width="1" stroke-dasharray="3,3"/>`;
   svg+=`<text x="${sx(4)}" y="${p.t-4}" text-anchor="middle" fill="rgba(184,74,30,.7)" font-size="8">Kris -94</text>`;
   // X labels
   data.forEach((d,i)=>{
-    if(i%3===0||d.y===2025) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.y}</text>`;
+    if(i%3===0||d.y===2025) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="#66615A" font-size="9">${d.y}</text>`;
   });
   // Area fill
   let areaPath=`M${sx(0)},${sy(data[0].v)}`;
@@ -5109,22 +5143,22 @@ function showSjukv(btn, key){
   ];
   const W=680,H=measures.length*52+30,pl=210,pr=90,pt=20,pb=20;
   const iw=W-pl-pr;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Horisontellt stapeldiagram: Sveriges olika Gini-mått — förmögenhet 0,75, marknadsinkomst 0,48, inkl. kapital 0,32, disponibel 0,29." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Horisontellt stapeldiagram: Sveriges olika Gini-mått — förmögenhet 0,75, marknadsinkomst 0,48, inkl. kapital 0,32, disponibel 0,29." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
   // x scale 0→0.85
   const sx=v=>pl+(v/0.85)*iw;
   // Grid
   [0,0.2,0.4,0.6,0.75].forEach(v=>{
-    svg+=`<line x1="${sx(v)}" y1="${pt}" x2="${sx(v)}" y2="${H-pb}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
-    svg+=`<text x="${sx(v)}" y="${H-pb+12}" text-anchor="middle" fill="rgba(242,239,232,.3)" font-size="9">${v.toFixed(1)}</text>`;
+    svg+=`<line x1="${sx(v)}" y1="${pt}" x2="${sx(v)}" y2="${H-pb}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${sx(v)}" y="${H-pb+12}" text-anchor="middle" fill="#66615A" font-size="9">${v.toFixed(1)}</text>`;
   });
   measures.forEach((m,i)=>{
     const y=pt+i*52;
     const bh=28,by=y+12;
     const bw=sx(m.val)-pl;
-    svg+=`<text x="${pl-8}" y="${by+10}" text-anchor="end" fill="rgba(242,239,232,.7)" font-size="11" font-weight="500">${m.label}</text>`;
+    svg+=`<text x="${pl-8}" y="${by+10}" text-anchor="end" fill="#1A1813" font-size="11" font-weight="500">${m.label}</text>`;
     svg+=`<rect x="${pl}" y="${by}" width="${bw}" height="${bh}" rx="2" fill="${m.col}" opacity=".85"/>`;
     svg+=`<text x="${sx(m.val)+6}" y="${by+18}" fill="${m.col}" font-size="12" font-weight="700">${m.val.toFixed(2)}</text>`;
-    svg+=`<text x="${pl}" y="${by+bh+14}" fill="rgba(242,239,232,.35)" font-size="9">${m.not}</text>`;
+    svg+=`<text x="${pl}" y="${by+bh+14}" fill="#66615A" font-size="9">${m.not}</text>`;
   });
   svg+=`</svg>`;
   el.innerHTML=svg;
@@ -5147,17 +5181,17 @@ function showSjukv(btn, key){
   ];
   const el=document.getElementById('hist-gini-chart');
   if(!el) return;
-  const W=680,H=210,p={t:20,r:80,b:32,l:48};
+  const W=chartW(680),H=210,p={t:20,r:80,b:32,l:48};
   const iw=W-p.l-p.r, ih=H-p.t-p.b;
   const minY=0.17,maxY=0.36;
   const minX=1975,maxX=2024;
   const sx=y=>p.l+(y-minX)/(maxX-minX)*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Gini-koefficient i Sverige 1975–2024. Disponibel inkomst steg från 0,20 till 0,29. Inkl. kapitalinkomster högre, kring 0,32." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: Gini-koefficient i Sverige 1975–2024. Disponibel inkomst steg från 0,20 till 0,29. Inkl. kapitalinkomster högre, kring 0,32." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   [0.20,0.25,0.30,0.35].forEach(v=>{
     const y=sy(v);
-    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
-    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v.toFixed(2)}</text>`;
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${v.toFixed(2)}</text>`;
   });
   // EU ref
   const euY=sy(0.30);
@@ -5165,7 +5199,7 @@ function showSjukv(btn, key){
   svg+=`<text x="${W-p.r+4}" y="${euY+4}" fill="rgba(200,151,58,.65)" font-size="9">EU-27</text>`;
   // X labels
   [1975,1985,1995,2000,2010,2020,2024].forEach(y=>{
-    svg+=`<text x="${sx(y)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${y}</text>`;
+    svg+=`<text x="${sx(y)}" y="${H-4}" text-anchor="middle" fill="#66615A" font-size="9">${y}</text>`;
   });
   // Disponibel area+line
   let aD=`M${sx(disp[0].y)},${sy(disp[0].v)}`;
@@ -5205,23 +5239,23 @@ function showSjukv(btn, key){
   ];
   const el=document.getElementById('hist-sjuk-chart');
   if(!el) return;
-  const W=680,H=200,p={t:18,r:55,b:32,l:42};
+  const W=chartW(680),H=200,p={t:18,r:55,b:32,l:42};
   const iw=W-p.l-p.r, ih=H-p.t-p.b;
   const minY=0,maxY=24;
   const sx=i=>p.l+(i/(data.length-1))*iw;
   const sy=v=>p.t+(1-(v-minY)/(maxY-minY))*ih;
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: sjukfrånvaro i Sverige 2000–2024 (nettodagar per försäkrad). Topp 20 dagar 2003, lägst 8 dagar 2011, nu ca 11 dagar." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Linjediagram: sjukfrånvaro i Sverige 2000–2024 (nettodagar per försäkrad). Topp 20 dagar 2003, lägst 8 dagar 2011, nu ca 11 dagar." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
   [0,6,12,18,24].forEach(v=>{
     const y=sy(v);
-    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.06)" stroke-width="1"/>`;
-    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${v}</text>`;
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${v}</text>`;
   });
   // Reform annotation 2008
   const ri=data.findIndex(d=>d.y===2008);
   svg+=`<line x1="${sx(ri)}" y1="${p.t}" x2="${sx(ri)}" y2="${H-p.b}" stroke="rgba(88,135,88,.4)" stroke-width="1" stroke-dasharray="3,3"/>`;
   svg+=`<text x="${sx(ri)}" y="${p.t-4}" text-anchor="middle" fill="rgba(88,135,88,.7)" font-size="8">Reform</text>`;
   data.forEach((d,i)=>{
-    if(d.y%4===0) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${d.y}</text>`;
+    if(d.y%4===0) svg+=`<text x="${sx(i)}" y="${H-4}" text-anchor="middle" fill="#66615A" font-size="9">${d.y}</text>`;
   });
   let areaPath=`M${sx(0)},${sy(data[0].v)}`;
   data.slice(1).forEach((d,i)=>areaPath+=` L${sx(i+1)},${sy(d.v)}`);
@@ -5233,7 +5267,7 @@ function showSjukv(btn, key){
   const last=data[data.length-1];
   svg+=`<circle cx="${sx(data.length-1)}" cy="${sy(last.v)}" r="4" fill="var(--amber)"/>`;
   svg+=`<text x="${sx(data.length-1)+7}" y="${sy(last.v)+4}" fill="var(--amber)" font-size="10" font-weight="500">${last.v}</text>`;
-  svg+=`<text x="${W-p.r+5}" y="${sy(last.v)+14}" fill="rgba(242,239,232,.45)" font-size="8">dagar</text>`;
+  svg+=`<text x="${W-p.r+5}" y="${sy(last.v)+14}" fill="#66615A" font-size="8">dagar</text>`;
   svg+=`</svg>`;
   el.innerHTML=svg;
 })();
@@ -5359,7 +5393,7 @@ function renderScen(key){
     .filter(([k,v])=> typeof v === 'number' && v > 0)
     .sort((a,b)=>b[1]-a[1]);
 
-  const wColors = {utb:'#1E4A8C',sjukvård:'#2E7D5C',sj:'#2E7D5C',socialt:'#5B3F8C',koll:'rgba(255,255,255,.25)',omsorg:'#C8973A',oms:'#C8973A'};
+  const wColors = {utb:'#1E4A8C',sjukvård:'#2E7D5C',sj:'#2E7D5C',socialt:'#5B3F8C',koll:'#8A8D94',omsorg:'#C8973A',oms:'#C8973A'};
   const wLabels = {utb:'Utbildning',sjukvård:'Sjukvård',sj:'Sjukvård (inkl. kronisk behandling)',socialt:'Social trygghet',koll:'Kollektiva nyttigheter',omsorg:'Äldreomsorg',oms:'Äldreomsorg'};
   const maxW = Math.max(...wEntries.map(([,v])=>v), 1);
 
@@ -5375,7 +5409,7 @@ function renderScen(key){
   const oavlönat = r.oavlönatArbete ? `
     <div class="scen-row">
       <span class="scen-lbl">Oavlönat anhörigarbete (marknadsvärde)</span>
-      <span class="scen-val" style="color:var(--amber)">≈ ${r.oavlönatArbete} tkr/år</span>
+      <span class="scen-val" style="color:var(--amber-t)">≈ ${r.oavlönatArbete} tkr/år</span>
     </div>` : '';
 
   const noterHtml = s.noter.map(n=>`<div style="margin-bottom:.3rem">· ${n}</div>`).join('');
@@ -5390,7 +5424,7 @@ function renderScen(key){
           <div class="scen-row"><span class="scen-lbl">Bruttoinkomst</span><span class="scen-val">${s.inc.toLocaleString('sv-SE')} tkr/år</span></div>
           <div class="scen-row"><span class="scen-lbl">Ålder</span><span class="scen-val">${s.age} år</span></div>
           <div class="scen-row"><span class="scen-lbl">Offentliga förmåner totalt</span><span class="scen-val" style="color:var(--green)">${Math.round(r.forman).toLocaleString('sv-SE')} tkr/år</span></div>
-          <div class="scen-row"><span class="scen-lbl">Skatt totalt (inkl. avg.)</span><span class="scen-val" style="color:#B84A1E">${Math.round(r.skatt).toLocaleString('sv-SE')} tkr/år</span></div>
+          <div class="scen-row"><span class="scen-lbl">Skatt totalt (inkl. avg.)</span><span class="scen-val" style="color:var(--red-t)">${Math.round(r.skatt).toLocaleString('sv-SE')} tkr/år</span></div>
           ${oavlönat}
           <div class="scen-netto ${nettoPos?'pos':'neg'}">
             ${nettoPos ? '▲ Nettotagare' : '▼ Nettobidragsgivare'}: ${fmtT(r.netto)} tkr/år
@@ -5553,6 +5587,9 @@ function updateLifecycle(){
   renderLifecycle(inc);
 }
 
+// Linjediagram ritas smalare på mobil så att texten inte skalas ner till oläslig storlek
+function chartW(w){ return window.innerWidth <= 640 ? Math.round(w * 0.6) : w; }
+
 function renderLifecycle(inc){
   const discountEl = document.getElementById('lc-discount');
   const discount = discountEl ? discountEl.checked : false;
@@ -5566,7 +5603,7 @@ function renderLifecycle(inc){
   const el = document.getElementById('lifecycle-chart');
   if(!el) return;
 
-  const W=720, H=280, p={t:24,r:20,b:36,l:68};
+  const W=chartW(720), H=280, p={t:24,r:20,b:36,l:68};
   const iw=W-p.l-p.r, ih=H-p.t-p.b;
   // Skala inkl. osäkerhetsbanden (+22% förmån / +12% skatt) så de inte klipps.
   const rawMax = Math.max(...pts.map(d=>Math.max(d.forman*1.22, d.skatt*1.12)));
@@ -5574,29 +5611,29 @@ function renderLifecycle(inc){
   const sx=a=>p.l+(a/85)*iw;
   const sy=v=>p.t+(1-(v/niceMax))*ih;
 
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid medianlön. Visar mönstret i välfärden — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid medianlön. Visar mönstret i välfärden — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
 
   // Grid (årliga tkr)
   const gridVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(niceMax*f));
   gridVals.forEach(v=>{
     const y=sy(v);
     const lbl = v>=1000 ? (v/1000).toFixed(1)+'M' : v+'k';
-    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(255,255,255,.05)" stroke-width="1"/>`;
-    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="rgba(242,239,232,.35)" font-size="9">${lbl}</text>`;
+    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
+    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${lbl}</text>`;
   });
-  svg+=`<text x="${p.l-5}" y="${p.t-8}" text-anchor="end" fill="rgba(242,239,232,.3)" font-size="8">tkr/år</text>`;
+  svg+=`<text x="${p.l-5}" y="${p.t-8}" text-anchor="end" fill="#66615A" font-size="8">tkr/år</text>`;
 
   // X axis labels
   [0,10,20,30,40,50,60,70,80,85].forEach(a=>{
-    svg+=`<text x="${sx(a)}" y="${H-6}" text-anchor="middle" fill="rgba(242,239,232,.35)" font-size="9">${a}</text>`;
+    svg+=`<text x="${sx(a)}" y="${H-6}" text-anchor="middle" fill="#66615A" font-size="9">${a}</text>`;
   });
-  svg+=`<text x="${W/2}" y="${H}" text-anchor="middle" fill="rgba(242,239,232,.3)" font-size="9">Ålder</text>`;
+  svg+=`<text class="m-hide" x="${W/2}" y="${H}" text-anchor="middle" fill="#66615A" font-size="9">Ålder</text>`;
 
   // Livsfas-bakgrundsband
   const bands=[{min:0,max:18,col:'rgba(30,74,140,.08)',lbl:'Barn/\nUngdom'},{min:19,max:64,col:'rgba(46,125,92,.08)',lbl:'Yrkesliv'},{min:65,max:85,col:'rgba(200,151,58,.08)',lbl:'Pension'}];
   bands.forEach(b=>{
     svg+=`<rect x="${sx(b.min)}" y="${p.t}" width="${sx(b.max)-sx(b.min)}" height="${ih}" fill="${b.col}" rx="0"/>`;
-    svg+=`<text x="${(sx(b.min)+sx(b.max))/2}" y="${p.t+10}" text-anchor="middle" fill="rgba(242,239,232,.2)" font-size="8">${b.lbl}</text>`;
+    svg+=`<text class="m-hide" x="${(sx(b.min)+sx(b.max))/2}" y="${p.t+10}" text-anchor="middle" fill="#66615A" font-size="8">${b.lbl}</text>`;
   });
 
   // Mortalitets-overlay: dimma område efter förväntad livslängd (om vald)
@@ -5639,7 +5676,7 @@ function renderLifecycle(inc){
     const anchor = cx > W * 0.7 ? 'end' : 'start';
     const lbl = c.dir === 'bidrag' ? 'Blir' : 'Åter';
     const lbl2 = c.dir === 'bidrag' ? 'bidragsgivare' : 'mottagare';
-    svg+=`<text text-anchor="${anchor}" fill="rgba(200,151,58,.9)" font-size="9">` +
+    svg+=`<text class="m-hide" text-anchor="${anchor}" fill="#7A5916" font-size="9">` +
          `<tspan x="${lx}" y="${p.t+14}">${lbl}</tspan>` +
          `<tspan x="${lx}" dy="11">${lbl2}</tspan>` +
          `<tspan x="${lx}" dy="11">~${c.a} år</tspan></text>`;
@@ -5657,20 +5694,20 @@ function renderLifecycle(inc){
   // Mortalitets-markering: vertikal streckad linje + label (ritas ovanpå allt)
   if(mortAge !== null){
     const mx = sx(mortAge);
-    svg+=`<line x1="${mx}" y1="${p.t}" x2="${mx}" y2="${H-p.b}" stroke="rgba(242,239,232,.55)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
+    svg+=`<line x1="${mx}" y1="${p.t}" x2="${mx}" y2="${H-p.b}" stroke="rgba(26,24,19,.45)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
     // Label placering: vänster om linjen om den är nära höger kant, annars höger
     const labelLeft = mortAge > 70;
     const lx = mx + (labelLeft ? -5 : 5);
     const anch = labelLeft ? 'end' : 'start';
-    svg+=`<text text-anchor="${anch}" fill="rgba(242,239,232,.8)" font-size="9" font-weight="500">` +
+    svg+=`<text text-anchor="${anch}" fill="#1A1813" font-size="9" font-weight="500">` +
          `<tspan x="${lx}" y="${p.t+24}">Förv. livslängd</tspan>` +
          `<tspan x="${lx}" dy="11">${mortAge} år</tspan>` +
          `</text>`;
     // Punkter på kurvorna vid mortAge
     const mp = pts[mortAge];
     if(mp){
-      svg+=`<circle cx="${mx}" cy="${sy(mp.forman)}" r="3.5" fill="var(--green)" stroke="rgba(242,239,232,.6)" stroke-width="1"/>`;
-      svg+=`<circle cx="${mx}" cy="${sy(mp.skatt)}" r="3.5" fill="#B84A1E" stroke="rgba(242,239,232,.6)" stroke-width="1"/>`;
+      svg+=`<circle cx="${mx}" cy="${sy(mp.forman)}" r="3.5" fill="var(--green)" stroke="#FBFAF6" stroke-width="1"/>`;
+      svg+=`<circle cx="${mx}" cy="${sy(mp.skatt)}" r="3.5" fill="#B84A1E" stroke="#FBFAF6" stroke-width="1"/>`;
     }
   }
 
@@ -5744,7 +5781,7 @@ function renderLifecycle(inc){
   const cx = pl + iw/2; // center (basfall = 0)
   const sx = v => cx + (v/maxAbs)*(iw/2);
 
-  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tornadodiagram: sensitivitetsanalys som visar hur nettot ändras vid variation i kommunalskatt, inkomst, förmånsdata och moms." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Tornadodiagram: sensitivitetsanalys som visar hur nettot ändras vid variation i kommunalskatt, inkomst, förmånsdata och moms." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
 
   // Center line (basfall)
   svg+=`<line x1="${cx}" y1="${pt-10}" x2="${cx}" y2="${H-pb}" stroke="var(--ink3)" stroke-width="1" stroke-dasharray="4,3"/>`;
@@ -5832,8 +5869,8 @@ if('IntersectionObserver' in window){
 // ═══════════════════════════════════════════════════════════════════
 // A11Y — Update aria-valuenow on sliders
 // ═══════════════════════════════════════════════════════════════════
-document.getElementById('s-age').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); });
-document.getElementById('s-inc').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); });
+document.getElementById('s-age').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); this.setAttribute('aria-valuetext', this.value + ' år'); });
+document.getElementById('s-inc').addEventListener('input', function(){ this.setAttribute('aria-valuenow', this.value); this.setAttribute('aria-valuetext', (this.value * 1000).toLocaleString('sv-SE') + ' kronor per år'); });
 
 // ═══════════════════════════════════════════════════════════════════
 // DELA FAKTA — Web Share API + clipboard fallback
@@ -5998,8 +6035,8 @@ function updateCompare(){
     {l:'Effektiv skattesats', v1:inc1>0?Math.round(tax1.tot/inc1*100):0, v2:inc2>0?Math.round(tax2.tot/inc2*100):0, unit:'%'},
   ];
 
-  let html = `<div style="display:grid;grid-template-columns:1fr 90px 90px;gap:.3rem .5rem;font-size:.72rem;color:rgba(242,239,232,.6)">
-    <div style="font-weight:500;color:rgba(242,239,232,.35)"></div>
+  let html = `<div style="display:grid;grid-template-columns:1fr 90px 90px;gap:.3rem .5rem;font-size:.72rem;color:rgba(242,239,232,.72)">
+    <div style="font-weight:500;color:rgba(242,239,232,.72)"></div>
     <div style="text-align:right;font-weight:500;color:var(--green)">${age1} år</div>
     <div style="text-align:right;font-weight:500;color:var(--amber)">${age2} år</div>`;
   rows.forEach(r => {

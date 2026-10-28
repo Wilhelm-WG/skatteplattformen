@@ -121,6 +121,13 @@ correspondence/
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader
 
+## Tillgänglighet
+- Färger för text: `--ink2`/`--ink3` på ljus bakgrund, `--amber-t`/`--red-t` för ockra och röd text. `--amber`/`--red` bara för ytor och stora siffror på mörk bakgrund
+- Kalkylatorn (`.calc-wrap`) har mörk bakgrund och egna värden för `--ink2`/`--ink3`; grön text där är `#6FC29B`
+- SVG-diagram: `class="chart-svg"`, bredd via `chartW(w)` (smalare på mobil), etiketter som får krocka på mobil får `class="m-hide"`. Axeltext `#66615A`, stödlinjer `rgba(26,24,19,.09)`
+- Klickbara kort ska ha en riktig `<button>`; dialoger flyttar fokus in och tillbaka. Automatiskt roterande innehåll har `aria-live="off"`
+- Mät kontrasten med `scripts/kontrast.js` i webbläsarens konsol efter större färgändringar (mål: under 10 fall)
+
 ## Före publicering
 Kör `node scripts/kontroll.mjs` före varje commit som ändrar siffror eller modellen. Den kontrollerar skattemodellen mot
 Skatteverkets tabell 32 (kolumn 1–3), att inga gamla värden från `NYCKELTAL[*].gamla` finns kvar, att prislappar och

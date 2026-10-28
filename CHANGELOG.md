@@ -10,6 +10,28 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Steg 6: tillgänglighet och läsbarhet
+
+- **Kontrast:** text med för låg kontrast minskade från cirka 300 till 5 av
+  2 000 textställen (resten är avsiktligt nedtonade eller rör sig). Grå metadata
+  (`--ink3`) är mörkare (#66615A). Nya texttoner `--amber-t` och `--red-t` för
+  ockra och röda siffror på ljus bakgrund. Mörk text på ljusa stapelsegment i
+  faktakorten och "Vem gör vad?". I kalkylatorn (mörk bakgrund) är grå text
+  ljusare och grön text ljusgrön.
+- **Osynliga axlar:** axeltexter och stödlinjer i diagrammen under "Hur har det
+  förändrats?" och i livsloppsdiagrammet var ljusa på ljus bakgrund. De är nu
+  mörka. Kollektivtrafikens stapel i scenarierna var osynlig.
+- **Diagram på mobil:** linjediagrammen ritas smalare på mobil (`chartW`) och
+  texten är minst cirka 11 px. Etiketter som krockar döljs på mobil (`.m-hide`).
+- **Tangentbord:** prislapparna öppnas med en knapp i rubriken. Detaljpanelen är
+  en dialog: fokus flyttas till Stäng, stannar i panelen och går tillbaka till
+  prislappen vid Escape. Synlig fokusmarkering på reglage och sökfält.
+- **Skärmläsare:** filmens textruta har inte längre en växlande rubrik. Den
+  roterande prislappen och "Visste du att" läses bara upp när användaren själv
+  bläddrar. Reglagen läser upp "19 år" och "300 000 kronor per år". Rubriknivån
+  i toppen är rättad (h3 → h2).
+- **`scripts/kontrast.js`:** kontrastmätningen som användes, för framtida kontroller.
+
 ### Changed (2026-10-28) — Steg 5: nya faktakort, första lönen och delningsbild
 
 - **Ny uppsättning faktakort (10):** kommunalskatten och medianlönen är kvar. Nya
