@@ -10,6 +10,23 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Mobilgenomgång och isotyp för hundralappen
+
+- **Mobilsidan 25 % kortare** (≈ 43 600 → 32 900 px vid 390 px bredd):
+  - Prislistan visar 6 prislappar på mobil och 12 på dator, med knappen
+    "Visa alla 37 prislappar" (11 500 → 2 600 px på mobil). Filter, sökning och
+    "Gissa först" når fortfarande alla.
+  - Sifferrutorna, Skatter i korthet och korten i "Vem gör vad?" ligger i
+    svepbara rader på mobil i stället för en lång kolumn.
+- **Ordlistan** markerar inte längre ord i versala etiketter och ögonbrynsrader
+  (gav en konstig knapp i Budgetens rubrikrad).
+- **Läsbarhet och tryckytor på mobil:** större text i prislappar, snabbfakta,
+  diagramflikar och etiketter; större tryckytor för heroprickarna,
+  "Visste du att"-knapparna och kortens länkar. Belopp i stapeldiagram bryts
+  inte längre ("13 818 $").
+- **Isotyp:** "Din 100-lapp" i heron visas som 100 prickar (en per krona) i
+  kolumnvisa band per ändamål, med förklaring. Respekterar reducerad rörelse.
+
 ### Changed (2026-10-28) — Språket: begripligare för fler
 
 - **Ordlista med förklaringar:** 24 fackord och förkortningar (Mdkr, tkr, BNP,

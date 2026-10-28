@@ -45,6 +45,9 @@ correspondence/
 - `grundavdrag2024(inc)` avrundas uppåt till hundratal kr (SKV 433)
 - `MEDIAN_LON_MAN` = 38 300 kr (SCB lönestrukturstatistik 2025); `skattetid(kr)` ger prislapparnas vardagsjämförelse
 
+**Mobil:**
+- Samlad mobil-CSS (`≤ 640 px`) sist i första `<style>` ("MOBILANPASSNING"). Klassen `m-swipe` gör en kortgrupp till svepbar rad på mobil. Prislistan begränsas (6/12) via `pgridShowAll`. Kontrollera sidhöjd och överspill vid 390 px efter större ändringar
+
 **Ordlista (`#ordlista`):**
 - `ORDLISTA` (term, regex, definition). `initOrdlista` markerar första förekomsten per `section[id]` i löptext med `<button class="term">` och visar förklaring vid hovring/tryck. Rubriker, länkar, siffror och källrader hoppas över (`SKIP`). Skriv "miljarder kronor" i ingresser, "Mdkr" i tabeller och diagram
 

@@ -706,13 +706,50 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .hsk-tg.on{background:var(--green);color:#fff;border-color:var(--green)}
 .hsk-100-sub{font-size:.74rem;color:rgba(255,255,255,.6);margin:.1rem 0 .75rem}
 .hsk-100-sub strong{color:#fff}
-.hsk-100-rows{display:flex;flex-direction:column;gap:.5rem;min-height:175px}
+.hsk-100-rows{display:flex;flex-direction:column;gap:.9rem;min-height:175px}
+.iso100{display:grid;grid-template-rows:repeat(5,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
+.iso100 i{display:block;aspect-ratio:1;border-radius:50%;transform:scale(0);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.3,1.2),opacity .35s}
+.iso100.on i{transform:none;opacity:1}
+.iso100-leg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem 1rem;font-size:.7rem;color:rgba(255,255,255,.8)}
+.iso100-leg span{display:flex;align-items:center;gap:.4rem;min-width:0}
+.iso100-leg i{width:9px;height:9px;border-radius:50%;flex:none}
+.iso100-leg b{margin-left:auto;font-family:var(--mono);font-weight:400;color:rgba(255,255,255,.65);white-space:nowrap;padding-left:.3rem}
+@media(prefers-reduced-motion:reduce){.iso100 i{transition:none;transform:none;opacity:1}}
 .h100-row{display:grid;grid-template-columns:92px 1fr 46px;align-items:center;gap:.55rem}
 .h100-lbl{font-size:.68rem;color:rgba(255,255,255,.82);line-height:1.1}
 .h100-track{height:9px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
 .h100-fill{height:100%;width:0;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
 .h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.7);text-align:right}
 @media(prefers-reduced-motion:reduce){.h100-fill{transition:none}}
+
+/* ═══ MOBILANPASSNING (≤ 640 px) — samlad sist så att den vinner över tidigare regler ═══ */
+.pg-more{grid-column:1/-1;justify-self:center;margin-top:.4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--green);background:var(--paper);border:1px solid var(--green);border-radius:99px;padding:.7rem 1.4rem;cursor:pointer}
+.pg-more:hover{background:var(--green-ll)}
+.pg-more:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.ft-bar-val,.oecd-val{white-space:nowrap}
+@media(max-width:640px){
+  .m-swipe{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem!important;padding:.2rem .1rem .8rem;margin-left:-.1rem;scrollbar-width:thin;overscroll-behavior-x:contain}
+  .m-swipe > *{scroll-snap-align:start;min-width:0}
+  .ft-bar-val{width:auto;min-width:56px}
+  .oecd-row{grid-template-columns:70px 1fr auto}
+  .pc{padding:1.1rem 1.15rem}
+  .pc-cat{font-size:.66rem}
+  .pc-src p,.pc-src{font-size:.68rem}
+  .fk-meta{font-size:.66rem}
+  .fk-eye{font-size:.7rem}
+  .fk-act button{padding:.55rem 0;font-size:.76rem}
+  .oecd-src{font-size:.68rem}
+  .ft-bar-label{font-size:.72rem}
+  .ft-tab,.oecd-tab{font-size:.74rem;padding:8px 14px}
+  .src-badge{font-size:.66rem}
+  .hsk-tg{font-size:.74rem;padding:7px 14px}
+  .hsk-prislapp-dot{width:10px;height:10px;padding:0;box-sizing:content-box;border:9px solid transparent;background-clip:padding-box}
+  .vda-ctrl{width:36px;height:36px}
+  .hsk-prislapp-foot a{display:inline-block;padding:.45rem 0}
+  .hsk-prislapp-stage{min-height:0}
+  .vgv-step p{font-size:.82rem}
+  #tldr .s-eye,#tldr .s-title{text-align:left!important}
+}
 </style>
 </head>
 <body>
@@ -838,7 +875,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
         <!-- Vy 2: Din 100-lapp — animerad fördelning (COFOG 2024) -->
         <div class="hsk-100" id="hsk100" style="display:none">
-          <div class="hsk-100-sub">Av varje <strong>100-lapp</strong> i skatt går, 2024:</div>
+          <div class="hsk-100-sub">Av varje <strong>100-lapp</strong> i skatt går, 2024 (en prick = en krona):</div>
           <div class="hsk-100-rows" id="hsk100rows"></div>
         </div>
 
@@ -874,7 +911,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   <div class="cw">
     <p class="s-eye" style="text-align:center;margin-bottom:.3rem">På 30 sekunder</p>
     <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Fyra siffror som ramar in Sverige</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem">
+    <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-top:1rem">
 
       <a href="#budget" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(46,125,92,.14)';this.style.borderColor='rgba(46,125,92,.5)'" onmouseout="this.style.background='rgba(46,125,92,.08)';this.style.borderColor='rgba(46,125,92,.25)'">
         <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">1 542<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
@@ -933,7 +970,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <h2 class="s-title">Skatter i korthet</h2>
     <p class="s-sub">Sex skatter som tillsammans utgör <strong>41 % av Sveriges BNP</strong>. Vad de är, vem som betalar, och hur stora de är. <span style="color:var(--ink3)">2026 års värden enligt Skatteverket.</span></p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
+    <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
 
       <div style="padding:1.1rem 1.2rem;background:rgba(46,125,92,.06);border:1px solid rgba(46,125,92,.22);border-radius:6px">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
@@ -1326,7 +1363,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 })();
     </script>
 
-    <div class="vgv-grid">
+    <div class="vgv-grid m-swipe">
       <article class="vgv-card" style="--c:var(--blue);--cl:var(--blue-l)">
         <div class="vgv-head"><span class="vgv-badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gov"/></svg></span><div><h3>Staten</h3><div class="vgv-meta">riksdag och regering</div></div></div>
         <div class="vgv-big">1 542 Mdkr</div>
@@ -3329,6 +3366,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDetail()
 // Prislista — filter + sök. Filter och sök kombineras (sök inom valt filter).
 let pgridFilter = 'all';
 let pgridSearch = '';
+let pgridShowAll = false;  // visa alla prislappar (annars ett urval: 6 på mobil, 12 på dator)
 
 function applyPgridFilters(){
   let d;
@@ -3371,6 +3409,9 @@ function applyPgridFilters(){
     return;
   }
 
+  const LIMIT = matchMedia('(max-width:640px)').matches ? 6 : 12;
+  const total = d.length;
+  if(!pgridShowAll && total > LIMIT + 2) d = d.slice(0, LIMIT);
   grid.innerHTML = d.map(c=>`
     <div class="pc" onclick="openDetail('${c.title.replace(/'/g,"\\'")}')">
       <span class="pc-cat cat-${c.cat}">${ico(CAT_ICO[c.cat]||'doc')}${c.cl}</span>
@@ -3380,7 +3421,7 @@ function applyPgridFilters(){
       <div class="pc-vs">${c.vs}</div>
       ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Motsvarar inkomstskatten från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
       <details class="pc-src" onclick="event.stopPropagation()"><summary>Källa och beräkning</summary><p>${c.src}</p></details>
-    </div>`).join('');
+    </div>`).join('') + (d.length < total ? `<button type="button" class="pg-more" onclick="pgridShowAll=true;applyPgridFilters()">Visa alla ${total} prislappar <span aria-hidden="true">↓</span></button>` : '');
 }
 
 const ico = (n, cls='') => `<svg class="ico ${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
@@ -3442,7 +3483,7 @@ const ORDLISTA = [
   const openFromHash=()=>{ if(location.hash==='#ordlista'){ const d=document.getElementById('ordlista'); if(d){ d.open=true; d.scrollIntoView({block:'start'}); } } };
   window.addEventListener('hashchange',openFromHash); setTimeout(openFromHash,300);
   if(dl) dl.innerHTML=ORDLISTA.slice().sort((a,b)=>a.t.localeCompare(b.t,'sv')).map(o=>'<dt>'+o.t+'</dt><dd>'+o.d+'</dd>').join('');
-  const SKIP='h1,h2,h3,h4,button,a,svg,script,style,input,select,textarea,label,code,summary,.term,nav,.stage-wrap,[aria-hidden="true"],.pc-amount,.gq,.fk-chart,.fk-meta,.fk-act,.fk-eye,.vgv-big,.vgv-meta,.ordlista,.detail-panel,#sc-overlay,.vgv-src,.src,.pc-src,#kl-src';
+  const SKIP='h1,h2,h3,h4,button,a,svg,script,style,input,select,textarea,label,code,summary,.term,nav,.stage-wrap,[aria-hidden="true"],.pc-amount,.gq,.fk-chart,.fk-meta,.fk-act,.fk-eye,.vgv-big,.vgv-meta,.ordlista,.detail-panel,#sc-overlay,.vgv-src,.src,.pc-src,#kl-src,.s-eye,.pc-cat,.hsk-100';
   const L='\\p{L}\\d';
   const terms=ORDLISTA.map((o,i)=>({i, rx:new RegExp('(?<!['+L+'])(?:'+o.re+')(?![' +L+'])', o.cs?'u':'iu')}));
   let pop=null, cur=null;
@@ -3453,6 +3494,7 @@ const ORDLISTA = [
         if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
         const el=n.parentElement; if(!el || el.closest(SKIP)) return NodeFilter.FILTER_REJECT;
         if((el.getAttribute('style')||'').includes('var(--mono)')) return NodeFilter.FILTER_REJECT;
+        if(getComputedStyle(el).textTransform==='uppercase') return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT; }});
       const nodes=[]; while(tw.nextNode()) nodes.push(tw.currentNode);
       nodes.forEach(node=>{
@@ -3834,25 +3876,22 @@ const HERO_100 = [
   {k:'Förvaltning',       v:8,  c:'#9A988F'},
   {k:'Försvar',           v:5,  c:'#6E8A58'},
   {k:'Infrastruktur',     v:5,  c:'#C8973A'},
-  {k:'Övrigt',            v:11, c:'#8A8D94'},   // rätt, kultur, miljö, räntor
+  {k:'Övrigt',            v:11, c:'#5E6166'},   // rätt, kultur, miljö, räntor
 ];
 let heroMode = 'pris';
 function buildHundra(){
+  // Isotyp: 100 prickar, en per krona. Kolumnvis fyllning ger ett band per kategori.
   const el = document.getElementById('hsk100rows'); if(!el) return;
-  const mx = Math.max(...HERO_100.map(d => d.v));
-  el.innerHTML = HERO_100.map((d,i) => `
-    <div class="h100-row">
-      <span class="h100-lbl">${d.k}</span>
-      <div class="h100-track"><div class="h100-fill" data-w="${Math.round(d.v/mx*100)}" style="background:${d.c};transition-delay:${(i*0.08).toFixed(2)}s"></div></div>
-      <span class="h100-amt">${d.v} kr</span>
-    </div>`).join('');
+  let k = 0;
+  const dots = HERO_100.map(d => Array.from({length:d.v}, () => `<i style="background:${d.c};transition-delay:${(k++ * 0.012).toFixed(3)}s"></i>`).join('')).join('');
+  el.innerHTML =
+    `<div class="iso100" role="img" aria-label="${HERO_100.map(d=>d.k+' '+d.v+' kronor').join(', ')}">${dots}</div>` +
+    `<div class="iso100-leg">${HERO_100.map(d=>`<span><i style="background:${d.c}"></i>${d.k}<b>${d.v} kr</b></span>`).join('')}</div>`;
 }
 function animateHundra(){
-  const fills = document.querySelectorAll('#hsk100rows .h100-fill');
-  fills.forEach(f => { f.style.width = '0'; });
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    fills.forEach(f => { f.style.width = f.dataset.w + '%'; });
-  }));
+  const g = document.querySelector('#hsk100rows .iso100'); if(!g) return;
+  g.classList.remove('on');
+  requestAnimationFrame(() => requestAnimationFrame(() => g.classList.add('on')));
 }
 function setHeroMode(mode, btn){
   heroMode = mode;
