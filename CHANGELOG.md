@@ -10,6 +10,34 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Steg 4: enhetliga och neutrala internationella jämförelser
+
+- **Samma sju länder i alla diagram:** Sverige, Norge, Danmark, Finland, Island,
+  Tyskland och USA, alltid i den ordningen. Sverige grönt, övriga grå. Saknade
+  värden visas som "uppgift saknas". Japan, Italien, Frankrike, Storbritannien och
+  Polen är borttagna.
+- **OECD-snittet som streckad referenslinje.** Där OECD inte publicerar ett snitt
+  är det ett ovägt medel av medlemsländerna (antal anges när det inte är 38).
+  Eurostat-mått visar EU-snittet i stället.
+- **En källa och ett år per diagram,** med klickbar källa och raden
+  "Källa · År · Högre/Lägre är bättre". Värderande omdömen är ersatta med
+  "Sverige: plats X av Y".
+- **Ny data (hämtad 2026-10-28):** Världsbanken WDI (hälsoutgifter, medellivslängd
+  2024, spädbarnsdödlighet, läkare, vårdplatser, förnybar energi), Eurostat
+  (undvikbar dödlighet, döda i vägtrafiken, friska levnadsår, återvinning),
+  OECD (PISA 2025, utbildningsutgifter, eftergymnasial utbildning, Gini,
+  barn i hushåll med låg inkomst, äldreomsorgspersonal), Transparency
+  International, World Justice Project 2026 och Global Carbon Project.
+- **Borttaget i brist på jämförbar källa:** läkemedelsutgifter, bröstcancer-
+  överlevnad (diagram), vuxnas läskunnighet, bostadskostnad, järnvägens
+  elektrifiering, tillit till regeringen, samt fem jämförelser i detaljpanelerna
+  (utgift per elev, väntetid höftled, mord, fångar, försvar med Polen).
+- **Sjukvårdssektionen:** jämförelsediagrammen återanvänder de nya diagrammen
+  (`data-jmf`). Vårdgarantin i nyckeltalsraden rättad till 91 % (aug 2026).
+  Medellivslängd harmoniserad till 84,1 år (OECD-snitt 81,2, 2024).
+- **Kontrollskriptet** kontrollerar nu att varje jämförelsediagram har sju länder,
+  minst fem värden, källa, https-länk och år.
+
 ### Added (2026-10-28) — Steg 3: en sanningskälla, klickbara källor och kontroll före publicering
 
 - **`NYCKELTAL`:** kanoniska värden (medianlön, kommunalskatt, statsbudget,

@@ -105,6 +105,19 @@ ejNum.length ? ejNum.forEach(k => FEL(`Prislapp med ogiltigt belopp: ${k.title}`
 const FAKTA = vm.runInNewContext('(' + literal('const FAKTA = [').text + ')');
 const faktaFel = FAKTA.filter(f => !f.kalla || !f.ar);
 faktaFel.length ? faktaFel.forEach(f => FEL(`Faktakort utan källa eller år: ${f.h}`)) : OK(`Alla ${FAKTA.length} faktakort har källa och år`);
+// Internationella jämförelser: sju länder, minst fem värden, källa, länk och år
+const jmfSrc = literal('const JMF_DATA = {').text.replace(/url:WDI/g, "url:'https://databank.worldbank.org'");
+const JMF = vm.runInNewContext('(' + jmfSrc + ')');
+const jmfFel = [];
+let jmfN = 0;
+for (const s of Object.values(JMF)) for (const ch of s.charts) {
+  jmfN++;
+  if (!Array.isArray(ch.v) || ch.v.length !== 7) jmfFel.push(`${ch.t}: ska ha 7 värden`);
+  else if (ch.v.filter(v => v !== null).length < 5) jmfFel.push(`${ch.t}: färre än 5 länder med uppgift`);
+  if (!ch.kalla || !/^https:\/\//.test(ch.url || '') || !ch.ar) jmfFel.push(`${ch.t}: saknar källa, https-länk eller år`);
+  if (ch.v && ch.v[0] === null) jmfFel.push(`${ch.t}: Sverige saknar värde`);
+}
+jmfFel.length ? jmfFel.forEach(f => FEL('Jämförelse: ' + f)) : OK(`Alla ${jmfN} jämförelsediagram har 7 länder (minst 5 med uppgift), källa och år`);
 const titlar = CARDS.map(k => k.title), dubbla = titlar.filter((t, i) => titlar.indexOf(t) !== i);
 dubbla.length ? dubbla.forEach(t => FEL(`Prislappen "${t}" finns två gånger`)) : OK('Inga dubbletter i prislistan');
 

@@ -106,6 +106,11 @@ correspondence/
 - Innehåller filmen `#kretslopp` (SVG + JS i en IIFE). Manus och tider i `SCENES`; CSS skopad under `#kretslopp`, id:n prefixade `kl-`; direktlänk `#kapitel-N`
 - Filmen: `PORTRAIT` = stående mobillayout (positioner, banor, kamera per kapitel). Röst via `data-audio` (mapp med `01.m4a`–`08.m4a`) och `data-voice-credit`; talmanus i `docs/FILM_MANUS.md`
 
+**Internationell jämförelse (`#oecd`):**
+- `JMF_DATA` (flikar → diagram) och `JMF_LAND` (Sverige, Norge, Danmark, Finland, Island, Tyskland, USA, fast ordning). Varje diagram: `v` (7 värden, `null` = uppgift saknas), `ref` (OECD- eller EU-snitt, streckad linje), `bast` ('hogre' | 'lagre' | null), `kalla`, `url`, `ar`, `not`
+- `jmfKort(ch)` ritar ett diagram. `<div data-jmf="flik:index">` och `DETAILS[*].jmf` återanvänder samma diagram på andra ställen
+- Regler: en källa och ett år per diagram, inga värderande omdömen, minst 5 av 7 länder (kontrolleras av `scripts/kontroll.mjs`)
+
 **Sensitivitetsanalys:**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader
