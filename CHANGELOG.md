@@ -10,6 +10,19 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Språket: begripligare för fler
+
+- **Ordlista med förklaringar:** 24 fackord och förkortningar (Mdkr, tkr, BNP,
+  COFOG, jobbskatteavdrag, grundavdrag, utgiftsområde, statsbidrag,
+  kommunalekonomisk utjämning, prisbasbelopp m.fl.) får en prickad
+  understrykning första gången de förekommer i varje sektion. Hovra eller tryck
+  för en kort förklaring på enkel svenska. Källrader, siffror och rubriker
+  markeras inte.
+- **Ordlistan samlad** under Metod (`#ordlista`) och länkad från "Mer" i menyn.
+- **"Miljarder kronor" i stället för "Mdkr"** i de mest lästa ingresserna:
+  Budgeten, Skatteutgifter, Sensitivitet, sammanfattningsrutorna och rutan i
+  Skatter i korthet. Sifferrutor, diagram och tabeller behåller "Mdkr".
+
 ### Added (2026-10-28) — Snabbfakta: ett diagram, en mening
 
 - Ny sektion `#snabbfakta` efter "Fyra siffror som ramar in Sverige": tio

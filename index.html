@@ -80,6 +80,18 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .skip-link:focus{top:0}
 .container{max-width:1080px;margin:0 auto;padding:0 2rem}
 .cw{max-width:1280px;margin:0 auto;padding:0 2rem}
+/* ORDLISTA och förklaringar */
+.term{font:inherit;color:inherit;text-transform:inherit;letter-spacing:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:currentColor}
+.term:hover,.term[aria-expanded="true"]{text-decoration-style:solid}
+.term:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:2px}
+#term-pop{position:fixed;z-index:300;max-width:300px;background:var(--ink);color:#F2EFE8;font-size:.78rem;line-height:1.55;padding:.7rem .85rem;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,.25);border:1px solid rgba(242,239,232,.15);pointer-events:none}
+#term-pop b{display:block;font-weight:600;margin-bottom:.15rem;color:#fff}
+.ordlista{scroll-margin-top:80px;margin-top:2rem;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.2rem}
+.ordlista summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink)}
+.ordlista dl{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:.55rem 1.2rem;margin:1rem 0 .3rem;font-size:.8rem}
+.ordlista dt{font-weight:600;color:var(--ink)}
+.ordlista dd{margin:0;color:var(--ink2);line-height:1.55}
+@media(max-width:600px){.ordlista dl{grid-template-columns:1fr;gap:.15rem}.ordlista dd{margin-bottom:.6rem}}
 /* SNABBFAKTA */
 .fk-hdr{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
 .fk-arrows{display:flex;gap:.5rem;flex:none}
@@ -768,6 +780,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
             <li><a href="#framtid">Framtid</a></li>
             <li><a href="#historik">Historik</a></li>
             <li><a href="#metod">Metod</a></li>
+            <li><a href="#ordlista">Ordlista</a></li>
             <li><a href="#om-oss">Om oss</a></li>
           </ul>
         </li>
@@ -866,7 +879,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <a href="#budget" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(46,125,92,.08);border:1px solid rgba(46,125,92,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(46,125,92,.14)';this.style.borderColor='rgba(46,125,92,.5)'" onmouseout="this.style.background='rgba(46,125,92,.08)';this.style.borderColor='rgba(46,125,92,.25)'">
         <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--green);line-height:1">1 542<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Statsbudget 2026 → budget</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statens utgifter 2026 enligt Budgetpropositionen. Inkomster 1 375 Mdkr — underskott 167 Mdkr. Hela offentliga sektorn ~3 280 Mdkr inkl. kommuner.</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statens utgifter 2026 enligt Budgetpropositionen. Inkomster 1 375 miljarder kronor, underskott 167 miljarder. Hela offentliga sektorn cirka 3 280 miljarder inklusive kommuner och regioner.</div>
       </a>
 
       <a href="#pristabell" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(200,151,58,.08);border:1px solid rgba(200,151,58,.25);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(200,151,58,.14)';this.style.borderColor='rgba(200,151,58,.5)'" onmouseout="this.style.background='rgba(200,151,58,.08)';this.style.borderColor='rgba(200,151,58,.25)'">
@@ -884,7 +897,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
       <a href="#framtid" style="text-decoration:none;color:inherit;display:block;padding:1.2rem 1rem;background:rgba(184,74,30,.10);border:1px solid rgba(184,74,30,.30);border-radius:6px;transition:all .15s" onmouseover="this.style.background='rgba(184,74,30,.16)';this.style.borderColor='rgba(184,74,30,.55)'" onmouseout="this.style.background='rgba(184,74,30,.10)';this.style.borderColor='rgba(184,74,30,.30)'">
         <div style="font-family:var(--mono);font-size:2rem;font-weight:700;color:#E58060;line-height:1">−167<span style="font-size:.9rem;opacity:.7"> Mdkr</span></div>
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:.3rem 0 .4rem">Varthän → framtid</div>
-        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +33 % på ett år (168,8 → 225 Mdkr) och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.4">Statsbudgetens underskott 2026. Försvaret +33 % på ett år (från 168,8 till 225 miljarder kronor) och stigande räntekostnader driver lånebehovet. Statsskulden stiger till ~20 % av BNP 2026–2028.</div>
       </a>
 
     </div>
@@ -968,7 +981,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 
     <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
       <strong style="color:var(--ink)">Skatteintäkterna 2026 fördelas så här:</strong>
-      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt + moms + arbetsgivaravgift finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Totalsumman — <strong>~3 280 Mdkr</strong> offentliga sektorn 2026 (statsbudget 1 542 Mdkr + kommun/region ~1 738 Mdkr) — fördelas per COFOG-funktion.
+      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt + moms + arbetsgivaravgift finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Totalsumman för offentliga sektorn 2026 är <strong>cirka 3 280 miljarder kronor</strong> (statsbudget 1 542 miljarder och kommuner och regioner cirka 1 738 miljarder) — fördelas per COFOG-funktion.
       <a href="#vem-gor-vad" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem;margin-right:1.2rem">→ Vem gör vad: stat, region och kommun</a><a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
     </div>
   </div>
@@ -1470,7 +1483,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div style="max-width:1080px">
       <p class="s-eye">Statsbudgeten 2026 — alla 27 utgiftsområden</p>
       <h2 class="s-title">Hur fördelas pengarna?</h2>
-      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 Mdkr</strong> fördelat på 27 utgiftsområden (UO) — inkomster 1 375 Mdkr, budgetsaldo <strong>−167 Mdkr</strong>. Statsbudgeten ≈ 47 % av total offentlig sektor (ca 3 280 Mdkr inkl. kommuner & regioner). Stora förändringar 2026 vs 2025: <strong>försvaret +33 %</strong> (NATO-mål 3,5 %), sjukvård/omsorg +25 %, räntekostnader −11 %. Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
+      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 miljarder kronor</strong> fördelat på 27 utgiftsområden — inkomster 1 375 miljarder, budgetsaldo <strong>−167 miljarder</strong>. Statsbudgeten ≈ 47 % av total offentlig sektor (ca 3 280 miljarder inkl. kommuner & regioner). Stora förändringar 2026 vs 2025: <strong>försvaret +33 %</strong> (NATO-mål 3,5 %), sjukvård/omsorg +25 %, räntekostnader −11 %. Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
     </div>
     <div class="chart-box">
       <div class="chart-topbar">
@@ -1497,7 +1510,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
     <div style="margin-top:3rem">
       <p class="s-eye">Den dolda budgeten</p>
       <h2 class="s-title" style="font-size:clamp(1.3rem,2.5vw,1.8rem)">Skatteutgifter — subventioner via skattesystemet</h2>
-      <p class="s-sub">Utöver statsbudgeten finns ~385 Mdkr i <strong>skatteutgifter</strong> — intäkter staten avstår genom avdrag, reduktioner och nedsatt moms. De syns inte i budgeten men kostar lika mycket.</p>
+      <p class="s-sub">Utöver statsbudgeten finns cirka 385 miljarder kronor i <strong>skatteutgifter</strong> — intäkter staten avstår genom avdrag, reduktioner och nedsatt moms. De syns inte i budgeten men kostar lika mycket.</p>
     </div>
     <div class="chart-box" style="margin-top:1.5rem">
       <div class="chart-topbar">
@@ -2330,7 +2343,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   <div class="cw">
     <p class="s-eye">Hur känslig är modellen?</p>
     <h2 class="s-title">Sensitivitetsanalys</h2>
-    <p class="s-sub">Tornadodiagrammet visar hur ditt nettoresultat ändras vid rimliga variationer i modellens nyckelparametrar. Basfall: 35 år, 340 tkr inkomst.</p>
+    <p class="s-sub">Tornadodiagrammet visar hur ditt nettoresultat ändras vid rimliga variationer i modellens nyckelparametrar. Basfall: 35 år och 340 000 kronor i årsinkomst.</p>
     <div id="tornado-chart" style="margin-top:1.5rem"></div>
     <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar effekten av att variera en parameter medan övriga hålls konstanta (ceteris paribus). Avläses som ändring i kronor/år relativt basfallet.</p>
   </div>
@@ -2704,6 +2717,10 @@ footer{border-top:1px solid var(--border);padding:36px 0}
         </div>
       </div>
     </div>
+    <details class="ordlista" id="ordlista">
+      <summary>Ordlista: förkortningar och begrepp</summary>
+      <dl id="ordlista-dl"></dl>
+    </details>
   </div>
 </section>
 
@@ -3391,6 +3408,85 @@ function skattetid(kr){
 const CAT_ICO = {helse:'cross', utb:'cap', infra:'bridge', social:'users', trygghet:'shieldcheck', kronisk:'pill'};
 function renderCards(f){ pgridFilter = f; applyPgridFilters(); }
 function searchCards(q){ pgridSearch = (q||'').trim(); applyPgridFilters(); }
+
+// ═══ ORDLISTA — förklaringar till fackord och förkortningar ═══
+// Första förekomsten per sektion i löptext markeras; hela listan visas under Metod.
+const ORDLISTA = [
+  {t:'Mdkr', re:'Mdkr', cs:1, d:'Miljarder kronor. 1 Mdkr = 1 000 miljoner kronor.'},
+  {t:'tkr', re:'tkr', cs:1, d:'Tusen kronor. 460 tkr = 460 000 kronor.'},
+  {t:'BNP', re:'BNP', cs:1, d:'Bruttonationalprodukt: värdet av allt som produceras i landet under ett år. Används för att jämföra storlekar mellan länder och år.'},
+  {t:'Skattekvot', re:'skattekvot(?:en|er)?', d:'Alla skatter och avgifter som andel av BNP.'},
+  {t:'OECD', re:'OECD', cs:1, d:'Organisationen för ekonomiskt samarbete och utveckling, 38 medlemsländer. Används ofta som jämförelsegrupp.'},
+  {t:'COFOG', re:'COFOG', cs:1, d:'FN:s indelning av offentliga utgifter efter ändamål, till exempel utbildning, hälsa och socialt skydd. Gör det möjligt att jämföra länder.'},
+  {t:'Utgiftsområde (UO)', re:'UO ?\\d{1,2}|utgiftsområden?', d:'Statsbudgeten är indelad i 27 utgiftsområden, till exempel UO6 Försvar och UO25 Allmänna bidrag till kommuner.'},
+  {t:'Transfereringar', re:'transfereringar(?:na)?|transferering', d:'Pengar som betalas direkt till hushåll, som pension, barnbidrag och sjukpenning. Skiljer sig från tjänster som skola och vård.'},
+  {t:'Skatteutgifter', re:'skatteutgifter(?:na)?', d:'Skatt som staten avstår genom avdrag, reduktioner och sänkt moms, till exempel ROT och RUT. Syns inte som utgifter i budgeten.'},
+  {t:'Statsbidrag', re:'statsbidrag(?:et|en)?', d:'Pengar från staten till kommuner och regioner. Generella statsbidrag får användas fritt, riktade är öronmärkta.'},
+  {t:'Kommunalekonomisk utjämning', re:'kommunalekonomisk(?:a)? utjämning(?:en)?', d:'System som omfördelar pengar så att kommuner och regioner med låga skatteinkomster eller dyra förutsättningar kan ge likvärdig service.'},
+  {t:'Preliminärskatt', re:'preliminärskatt(?:en)?', d:'Skatten som arbetsgivaren drar från lönen varje månad. Den stäms av mot den slutliga skatten i deklarationen.'},
+  {t:'Arbetsgivaravgift', re:'arbetsgivaravgift(?:en|er|erna)?', d:'Avgift som arbetsgivaren betalar ovanpå lönen, 31,42 % år 2026. Av den är 10,21 procentenheter ålderspensionsavgift som ger dig egen pension.'},
+  {t:'Grundavdrag', re:'grundavdrag(?:et)?', d:'Den del av årsinkomsten som är skattefri, mellan cirka 17 000 och 46 000 kronor beroende på inkomst (2026).'},
+  {t:'Jobbskatteavdrag', re:'jobbskatteavdrag(?:et)?', d:'En skattereduktion för arbetsinkomster. Den gör att skatten på lön blir lägre än på till exempel sjukpenning eller a-kassa.'},
+  {t:'Prisbasbelopp (PBB)', re:'prisbasbelopp(?:et)?|PBB', d:'Ett belopp som följer inflationen och används för att räkna ut avdrag och ersättningar. 59 200 kronor år 2026.'},
+  {t:'Brytpunkt', re:'brytpunkt(?:en)?', d:'Den årsinkomst där statlig inkomstskatt börjar tas ut, cirka 660 000 kronor 2026. Över den betalar man 20 % extra på det som överstiger.'},
+  {t:'Marginalskatt', re:'marginalskatt(?:en)?', d:'Hur mycket skatt man betalar på sin nästa intjänade krona.'},
+  {t:'Medianlön', re:'medianlön(?:en)?', d:'Den mittersta lönen när alla löner sorteras. 38 300 kronor i månaden år 2025 (SCB).'},
+  {t:'SGI', re:'SGI', cs:1, d:'Sjukpenninggrundande inkomst: den inkomst Försäkringskassan räknar sjukpenning och föräldrapenning på.'},
+  {t:'LSS', re:'LSS', cs:1, d:'Lagen om stöd och service till vissa funktionshindrade. Ger rätt till till exempel personlig assistans och gruppbostad.'},
+  {t:'KPP', re:'KPP', cs:1, d:'Kostnad per patient: regionernas databas över vad vårdkontakter faktiskt kostar, sammanställd av SKR.'},
+  {t:'FASIT', re:'FASIT', cs:1, d:'SCB:s modell för att räkna på hur skatter och bidrag påverkar olika hushåll.'},
+  {t:'NTA', re:'NTA', cs:1, d:'National Transfer Accounts: en FN-metod för att fördela offentliga och privata utgifter efter ålder.'},
+];
+(function initOrdlista(){
+  const dl=document.getElementById('ordlista-dl');
+  const openFromHash=()=>{ if(location.hash==='#ordlista'){ const d=document.getElementById('ordlista'); if(d){ d.open=true; d.scrollIntoView({block:'start'}); } } };
+  window.addEventListener('hashchange',openFromHash); setTimeout(openFromHash,300);
+  if(dl) dl.innerHTML=ORDLISTA.slice().sort((a,b)=>a.t.localeCompare(b.t,'sv')).map(o=>'<dt>'+o.t+'</dt><dd>'+o.d+'</dd>').join('');
+  const SKIP='h1,h2,h3,h4,button,a,svg,script,style,input,select,textarea,label,code,summary,.term,nav,.stage-wrap,[aria-hidden="true"],.pc-amount,.gq,.fk-chart,.fk-meta,.fk-act,.fk-eye,.vgv-big,.vgv-meta,.ordlista,.detail-panel,#sc-overlay,.vgv-src,.src,.pc-src,#kl-src';
+  const L='\\p{L}\\d';
+  const terms=ORDLISTA.map((o,i)=>({i, rx:new RegExp('(?<!['+L+'])(?:'+o.re+')(?![' +L+'])', o.cs?'u':'iu')}));
+  let pop=null, cur=null;
+  function annotate(){
+    document.querySelectorAll('section[id]').forEach(sec=>{
+      const done=new Set();
+      const tw=document.createTreeWalker(sec, NodeFilter.SHOW_TEXT, {acceptNode:n=>{
+        if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const el=n.parentElement; if(!el || el.closest(SKIP)) return NodeFilter.FILTER_REJECT;
+        if((el.getAttribute('style')||'').includes('var(--mono)')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT; }});
+      const nodes=[]; while(tw.nextNode()) nodes.push(tw.currentNode);
+      nodes.forEach(node=>{
+        let best=null;
+        terms.forEach(t=>{ if(done.has(t.i)) return; const m=t.rx.exec(node.nodeValue); if(m && (!best || m.index<best.m.index)) best={t,m}; });
+        if(!best) return;
+        done.add(best.t.i);
+        const after=node.splitText(best.m.index); after.splitText(best.m[0].length);
+        const b=document.createElement('button'); b.type='button'; b.className='term'; b.dataset.term=best.t.i;
+        b.setAttribute('aria-expanded','false'); b.textContent=after.nodeValue; after.replaceWith(b);
+      });
+    });
+  }
+  function show(b){
+    if(!pop){ pop=document.createElement('div'); pop.id='term-pop'; pop.setAttribute('role','tooltip'); document.body.appendChild(pop); }
+    const o=ORDLISTA[+b.dataset.term]; pop.innerHTML='<b>'+o.t+'</b>'+o.d; pop.hidden=false;
+    if(cur && cur!==b) cur.setAttribute('aria-expanded','false');
+    cur=b; b.setAttribute('aria-expanded','true'); b.setAttribute('aria-describedby','term-pop');
+    const r=b.getBoundingClientRect(), pw=Math.min(300, innerWidth-24), ph=pop.offsetHeight;
+    let left=Math.max(12, Math.min(r.left, innerWidth-pw-12)), top=r.bottom+8;
+    if(top+ph>innerHeight-8) top=r.top-ph-8;
+    pop.style.left=left+'px'; pop.style.top=top+'px';
+  }
+  function hide(){ if(pop) pop.hidden=true; if(cur){ cur.setAttribute('aria-expanded','false'); cur.removeAttribute('aria-describedby'); cur=null; } }
+  document.addEventListener('mouseover',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b) show(b); });
+  document.addEventListener('mouseout',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b && !b.contains(e.relatedTarget)) hide(); });
+  document.addEventListener('focusin',e=>{ if(e.target.classList&&e.target.classList.contains('term')) show(e.target); });
+  document.addEventListener('focusout',e=>{ if(e.target.classList&&e.target.classList.contains('term')) hide(); });
+  document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b){ e.stopPropagation(); show(b); } else hide(); }, true);
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') hide(); });
+  window.addEventListener('scroll',hide,{passive:true});
+  // Kör när innehåll som ritas med JS (faktakort, Vem gör vad) finns på plats
+  if(document.readyState==='complete') setTimeout(annotate,300); else window.addEventListener('load',()=>setTimeout(annotate,300));
+})();
 
 // ═══ SNABBFAKTA — ett diagram, en mening. Bara siffror som finns på sajten med källa. ═══
 const FAKTA_UPPDATERAD = '28 okt 2026';
