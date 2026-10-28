@@ -13,7 +13,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
-<meta property="og:description" content="Oberoende faktasajt: se exakt vart dina skattepengar går, jämfört med Norden och OECD. 3 011 Mdkr i offentlig sektor — fördelat per tjänst och livsfas.">
+<meta property="og:description" content="Oberoende faktasajt: se vart skattepengarna går, med källa och år för varje siffra, och hur Sverige står sig mot andra länder. 3 011 Mdkr i offentlig sektor — fördelat per tjänst och livsfas.">
 <meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
 <meta property="og:site_name" content="Skatteplattformen">
 <meta property="og:locale" content="sv_SE">
@@ -24,7 +24,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
-<meta name="twitter:description" content="Se exakt vart dina skattepengar går. Oberoende, politiskt neutral. Data från SCB, OECD, SKR.">
+<meta name="twitter:description" content="Se vart skattepengarna går, med källa för varje siffra. Partipolitiskt oberoende. Data från SCB, OECD, SKR.">
 <meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png">
 <!-- Ikoner -->
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -324,7 +324,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.78);backdrop-
 .nav-pill{font-size:.7rem;font-weight:600;padding:8px 17px;border:1px solid var(--ink);border-radius:var(--r-sm);background:transparent;color:var(--ink);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .18s;text-decoration:none}
 .nav-pill:hover{background:var(--ink);color:var(--bg);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
 .nav-hamburger{display:none;background:none;border:1px solid var(--border);border-radius:3px;padding:6px 8px;cursor:pointer;color:var(--ink);font-size:1.1rem;line-height:1}
-.nav-links.open{display:flex;flex-direction:column;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.5rem;gap:.75rem;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.nav-links.open{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 1.5rem;gap:.75rem;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 @media(max-width:1020px){.nav-links{display:none}.nav-hamburger{display:flex}nav .container{position:relative}}
 /* HERO */
 .hero{padding:80px 0 64px}
@@ -444,8 +444,8 @@ hr.div{border:none;border-top:1px solid var(--border)}
 /* DETAIL MODAL */
 .detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,26,22,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
 .detail-overlay.open{opacity:1;pointer-events:all}
-.detail-panel{position:fixed;top:0;right:0;bottom:0;width:min(560px,92vw);background:var(--bg);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,.12)}
-.detail-panel.open{transform:translateX(0)}
+.detail-panel{position:fixed;top:0;right:0;bottom:0;width:min(560px,92vw);background:var(--bg);z-index:201;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s .3s;overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,.12);visibility:hidden}
+.detail-panel.open{transform:translateX(0);visibility:visible;transition:transform .3s cubic-bezier(.4,0,.2,1)}
 .dp-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--ink2);transition:all .15s;z-index:1}
 .dp-close:hover{background:var(--bg2);color:var(--ink)}
 .pc-btn{all:unset;cursor:pointer;display:inline}
@@ -809,11 +809,16 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .rattelser li b{display:block}
 .rattelser b{color:var(--ink);font-weight:600}
 @media(max-width:520px){.rattelser li{grid-template-columns:1fr}}
+.budget-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:1.4rem}
+.kpi-tal{font-family:var(--serif);font-size:2rem;font-weight:600;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpi-tal small{font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--ink3)}
+.kpi-lbl{font-size:.8rem;color:var(--ink2);margin-top:.4rem;line-height:1.4}
+@media(max-width:640px){.budget-kpi{grid-template-columns:1fr 1fr}.budget-kpi .kpi:first-child{grid-column:1/-1}}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
 .vy-huvud{padding:0 0 1.6rem;border-bottom:1px solid var(--border);background:var(--bg)}
-.vy-smula{font-size:.78rem;color:var(--ink3);margin:1.6rem 0 .6rem}
+.vy-smula{font-size:.78rem;color:var(--ink3);margin:1.6rem 0 .6rem;position:static;z-index:auto;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
 .vy-smula a{color:var(--green);text-decoration:none}
 .vy-smula a:hover{text-decoration:underline}
 .vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
@@ -981,7 +986,7 @@ html{scroll-padding-top:72px}
            Datapunkter handplockade från CARDS-arrayen för bästa pedagogiska spann. -->
       <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll" role="region" aria-label="Roterande prislappar — vad samhällskostnader är">
         <div class="hsk-accent-line" style="background:var(--green)"></div>
-        <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · 2026 års budget</div>
+        <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · kostnad och källa per prislapp</div>
         <h2 class="hsk-prislapp-heading" id="hskHeading">Verkliga prislappar — vad samhället faktiskt betalar</h2>
 
         <div class="hsk-toggle" role="tablist" aria-label="Byt vy">
@@ -1099,8 +1104,8 @@ html{scroll-padding-top:72px}
       <div class="kpi">
         <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
         <div style="font-family:var(--mono);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> livsmedel + hotell + restaurang. <strong>6 %</strong> böcker, tidningar, kollektivtrafik, kultur.</div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200)</div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> hotell och restaurang. <strong>6 %</strong> livsmedel (tillfälligt 1 april 2026–31 december 2027), böcker, tidningar, kollektivtrafik och kultur.</div>
+        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200), prop. 2025/26:55 (sänkt moms på livsmedel)</div>
       </div>
 
       <div class="kpi">
@@ -1625,12 +1630,17 @@ html{scroll-padding-top:72px}
 
 <hr class="div">
 <!-- BUDGET -->
-<section class="budget-section" id="budget" aria-label="Statsbudgeten">
+<section class="budget-section" id="budget" aria-label="Statsbudgeten" data-toc="Statsbudgeten">
   <div class="cw">
     <div style="max-width:1080px">
-      <p class="s-eye">Statsbudgeten 2026 — alla 27 utgiftsområden</p>
-      <h2 class="s-title">Hur fördelas pengarna?</h2>
+      <p class="s-eye">Statsbudgeten 2026: vart går pengarna?</p>
+      <h2 class="s-title">Försvaret är statens största utgiftsområde 2026</h2>
       <p class="s-sub">Statsbudgeten 2026: <strong>1 542 miljarder kronor</strong> fördelat på 27 utgiftsområden — inkomster 1 375 miljarder, budgetsaldo <strong>−167 miljarder</strong>. Den offentliga sektorns samlade utgifter är cirka 3 000 miljarder kronor (2024); en del av statsbudgeten förs vidare till kommuner och regioner. Stora förändringar 2026 jämfört med 2025: <strong>försvaret +33 %</strong> (Nato-mål 3,5 % av BNP), sjukvård och omsorg +25 %, räntekostnader −12 %. Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
+    </div>
+    <div class="budget-kpi">
+      <div class="kpi"><div class="kpi-tal">1 542 <small>Mdkr</small></div><div class="kpi-lbl">Statens utgifter 2026</div></div>
+      <div class="kpi"><div class="kpi-tal">+33 %</div><div class="kpi-lbl">Försvaret, från 168,8 till 225 Mdkr</div></div>
+      <div class="kpi"><div class="kpi-tal">−167 <small>Mdkr</small></div><div class="kpi-lbl">Budgetsaldo 2026 (underskott)</div></div>
     </div>
     <div class="chart-box">
       <div class="chart-topbar">
@@ -1675,7 +1685,7 @@ html{scroll-padding-top:72px}
 
     <!-- HELHETSBILD -->
     <div style="margin-top:3rem;padding:1.5rem;background:var(--bg2);border-radius:4px;border:1px solid var(--border)">
-      <p style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Hela bilden — offentlig sektor 2024 (COFOG/SCB)</p>
+      <p style="font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Hela bilden — offentlig sektor 2024, utfall (COFOG/SCB)</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
         <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
           <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">3 011 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
@@ -1683,7 +1693,7 @@ html{scroll-padding-top:72px}
         </div>
         <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
           <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">1 442 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
-          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Statsbudgeten (47%)</div>
+          <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Staten, utfall 2024 (47 %). Budgeten 2026: 1 542 Mdkr</div>
         </div>
         <div style="padding:.75rem;background:var(--bg);border-radius:3px;border:1px solid var(--border)">
           <div style="font-family:var(--mono);font-size:1.2rem;font-weight:500;color:var(--ink)">892 <span style="font-size:.7rem;color:var(--ink3)">Mdkr</span></div>
@@ -1737,10 +1747,10 @@ html{scroll-padding-top:72px}
      Egen sektion eftersom sjukvård är 20% av offentliga utgifter och har
      starka utfallsmått (cancer/hjärta i världstopp, kapacitet bland EU:s
      svagaste) som förtjänar mer plats än en flik under #oecd. -->
-<section class="framtid-section" id="sjukvard" aria-label="Svensk sjukvård — utfall">
+<section class="framtid-section" id="sjukvard" aria-label="Svensk sjukvård — utfall" data-toc="Sjukvården">
   <div class="container">
     <p class="s-eye">Hälso- och sjukvård</p>
-    <h2 class="s-title">Svensk sjukvård — vad får vi för pengarna?</h2>
+    <h2 class="s-title">Sverige lägger störst andel av BNP på vård i Norden, men har minst antal vårdplatser</h2>
     <svg class="illu" viewBox="0 0 480 112" aria-hidden="true" focusable="false"><line x1="56" y1="56" x2="424" y2="56" class="illu-lin"/><circle cx="60" cy="56" r="44" class="illu-c"/><use href="#i-clipboard" x="34" y="30" width="52" height="52" class="illu-i"/><circle cx="180" cy="56" r="44" class="illu-c"/><use href="#i-bed" x="154" y="30" width="52" height="52" class="illu-i"/><circle cx="300" cy="56" r="44" class="illu-c"/><use href="#i-pulse" x="274" y="30" width="52" height="52" class="illu-i"/><circle cx="420" cy="56" r="44" class="illu-c"/><use href="#i-care" x="394" y="30" width="52" height="52" class="illu-i"/></svg>
     <p class="s-sub">Sverige lade <strong>11,2 % av BNP</strong> på hälso- och sjukvård 2023. Det är mest i Norden, men mindre än Tyskland (11,7 %) och USA (16,7 %). Här visas tre sidor av vården: <em>kapacitet</em>, <em>utfall vid sjukdom</em> och <em>tillgänglighet</em>.</p>
 
@@ -1793,14 +1803,14 @@ html{scroll-padding-top:72px}
         <div class="ft-card">
           <div class="ft-card-title">Läkare per 1 000 invånare</div>
           <div class="ft-big">4,7<sub> (2024)</sub></div>
-          <div class="ft-desc">Över OECD-snittet (3,8 år 2021). Läkartätheten skiljer sig mellan regionerna: den är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</div>
+          <div class="ft-desc">År 2021 hade Sverige 4,4 läkare per 1 000 invånare, mot OECD-snittet 3,8. Läkartätheten skiljer sig mellan regionerna: den är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</div>
         </div>
       </div>
 
       <div data-jmf="sjukvard:7"></div>
 
       <div class="ft-callout" style="margin-top:1.2rem">
-        <strong>Strukturellt val, inte slump:</strong> Sveriges strategi sedan 1990-talet har varit att flytta vård ut ur sjukhus — till primärvård, hemsjukvård och öppenvård. Den klarar normalläget med färre sängar. Men under covid-pandemin och vinterns influensa-toppar blottas systemets svagaste länk: inga "buffert"-platser att skala upp till.
+        <strong>Bakgrund:</strong> Sedan 1990-talet har vård flyttats från sjukhus till primärvård, hemsjukvård och öppenvård. Med färre vårdplatser per invånare finns mindre marginal när behovet toppar, till exempel under covid-pandemin och influensasäsonger.
       </div>
       <p class="ft-source">Källor: Eurostat (vårdplatser och läkare), Världsbanken WDI, Socialstyrelsen (Plats för vård, maj 2024; tillgång till vårdpersonal, mars 2024), Läkarförbundet (enkät om vårdplatsbrist, 2025), IVO.</p>
     </div>
@@ -1874,10 +1884,10 @@ html{scroll-padding-top:72px}
 <hr class="div">
 
 <!-- FRAMTIDENS UTMANINGAR -->
-<section class="framtid-section" id="framtid" aria-label="Framtidens utmaningar">
+<section class="framtid-section" id="framtid" aria-label="Framtidens utmaningar" data-toc="Framtidens utmaningar">
   <div class="container">
     <p class="s-eye">2025–2035</p>
-    <h2 class="s-title">Framtidens utmaningar</h2>
+    <h2 class="s-title">Fler äldre och ett större försvar ökar utgifterna de kommande åren</h2>
     <p class="s-sub">Investeringsbehov, finansieringsgap och personalbrist — vad krävs för att upprätthålla välfärden det kommande decenniet?</p>
 
     <div class="ft-tabs">
@@ -1910,7 +1920,7 @@ html{scroll-padding-top:72px}
         <div class="ft-card">
           <div class="ft-card-title">163 riktade statsbidrag</div>
           <div class="ft-big">163<sub> separata bidrag</sub></div>
-          <div class="ft-desc">Istället för permanent basfinansiering styrs välfärden genom 163 olika riktade statsbidrag (Statskontoret 2024), administrerade av ~40 myndigheter. Det försvårar långsiktig planering.</div>
+          <div class="ft-desc">Istället för permanent basfinansiering styrs välfärden genom 163 olika riktade statsbidrag (Statskontoret 2024), administrerade av cirka 40 myndigheter. Statskontoret har pekat på att det stora antalet riktade bidrag gör kommunernas och regionernas planering svårare.</div>
         </div>
       </div>
 
@@ -2197,8 +2207,8 @@ html{scroll-padding-top:72px}
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Andel av BNP</div>
-          <div class="ft-big">19 %<sub> av BNP</sub></div>
-          <div class="ft-desc">19 % vid årets slut 2026 enligt Riksgälden — finansplanens snitt 2026–2028: ~20 %. Lägst i EU (Maastrichtskulden inkl. kommuner: ~34 %). Japan 252 %, USA 122 %. Sverige är fortfarande bland världens minst skuldsatta — men skulden stiger för första gången sedan 1994.</div>
+          <div class="ft-big">21 %<sub> av BNP</sub></div>
+          <div class="ft-desc">Statsskulden beräknas till 21 % av BNP vid slutet av 2026 (Riksgäldens prognos, maj 2026). Den offentliga bruttoskulden, som även omfattar kommuner och regioner, var 35,1 % av BNP 2025, mot EU-snittet 81,7 % (Eurostat).</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Räntekänslighetens effekt</div>
@@ -2538,10 +2548,10 @@ html{scroll-padding-top:72px}
 
 
 <!-- HISTORIK -->
-<section class="framtid-section" id="historik" aria-label="Historiska trender">
+<section class="framtid-section" id="historik" aria-label="Historiska trender" data-toc="Historik sedan 1980">
   <div class="container">
     <p class="s-eye">Trender 2000–2025</p>
-    <h2 class="s-title">Hur har det förändrats?</h2>
+    <h2 class="s-title">Skattekvoten har sjunkit från 50 till 40,5 procent av BNP sedan 2000</h2>
     <p class="s-sub">Skattekvot, sjukvårdsutgifter, statsskuld och välfärdsnivåer — trender sedan 1980 som visar Sveriges förändrade ambitionsnivå och ekonomiska historia.</p>
 
     <div class="ft-tabs">
@@ -2678,7 +2688,7 @@ html{scroll-padding-top:72px}
     <!-- ── GINI panel ── -->
     <div class="ft-panel" id="hist-gini">
       <h3 class="ft-heading">Ojämlikhet — tre mått som berättar tre olika historier</h3>
-      <p class="ft-intro">Den vanligast citerade siffran (0.28 disponibel Gini) är sann men ofullständig. Lägg till kapitalinkomster och ojämlikheten ökar märkbart. Mät förmögenheter och bilden förändras dramatiskt.</p>
+      <p class="ft-intro">Gini-koefficienten beror på vad man mäter. För disponibel inkomst är den cirka 0,29. Räknas kapitalinkomster in blir den högre, och för förmögenheter är den betydligt högre, cirka 0,75.</p>
       <p style="font-size:.72rem;color:var(--ink3);background:rgba(200,151,58,.08);border-left:3px solid rgba(200,151,58,.5);padding:.5rem .7rem;border-radius:0 4px 4px 0;margin:.6rem 0 1rem"><strong>OBS — jämför inte dessa fyra siffror rakt av.</strong> De mäter helt olika fenomen: förmögenhets-Gini (0.75) mäter ackumulerat kapital och ärvda tillgångar; marknadsinkomst-Gini (0.48) mäter inkomst <em>innan</em> skatter och bidrag; Gini inkl. kapital (0.316) lägger till realiserade kapitalvinster; disponibel Gini (0.287) är inkomst <em>efter</em> alla omfördelningar. De är kompletterande perspektiv, inte en skala från "bäst" till "sämst".</p>
 
       <!-- Three-measure comparison chart -->
@@ -2870,6 +2880,9 @@ html{scroll-padding-top:72px}
     <h2 class="s-title">Rättelser</h2>
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Momsen på livsmedel</b>Angavs som 12 %. Den är tillfälligt 6 % från 1 april 2026 till och med 31 december 2027. Källa: prop. 2025/26:55, skatteutskottets betänkande 2025/26:SkU9.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Statsskulden som andel av BNP</b>Ett kort angav 19 %, övriga delar 21 % (Riksgäldens prognos för 2026). Kortet är rättat. Obelagda jämförelser ("lägst i EU", Japan och USA) är borttagna.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Motsägelser mellan avsnitt</b>Utbildningsutgifterna angavs både som 6,5 % och 5,3 % av BNP; nu anges båda måtten med källa (7,2 % enligt Eurostat inklusive förskola, 5,3 % enligt OECD:s smalare mått). Statsbudgeten 1 442 Mdkr i helhetsbilden är utfallet 2024 och märks nu så. Toppens prislappar märktes "2026 års budget" trots att flera kostnader gäller 2024–2025.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Försvarets andel av BNP</b>"Sverige når 3,5 % av BNP 2026" var fel. Försvarsutgifterna beräknas till 2,8 % av BNP 2026 och 3,1 % från 2028; 3,5 % är målet till 2030. Källa: regeringen, september 2025.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Internationella jämförelser återställda</b>Vuxnas läsförmåga, läkemedelsutgifter, utgifter per elev, förtroende för regeringen, boendekostnader, dödligt våld och försvarsutgifter togs bort tidigare samma dag eftersom källorna inte gick att hämta automatiskt. De är tillbaka med kontrollerade värden. Flera gamla värden var fel: Norges väntetid för höftled var 176 dagar, inte 90; läkemedelsutgifterna och boendekostnaderna stämde inte med källorna.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Sjukvårdens utfall</b>Stroke: 7,2 % (OECD-snitt 12,4) gick inte att belägga → 4,9 % (OECD-snitt 8,3), ischemisk stroke 2023. Hjärtinfarkt: Socialstyrelsens siffra inklusive dödsfall utanför sjukhus är 21 %, inte 13 %. Bröstcancer: 93 % (2020) i stället för 92,3 % (2016–2020); OECD-snittet 87,0 % gick inte att belägga. Källor: OECD, Socialstyrelsen.</div></li>
@@ -2947,7 +2960,7 @@ html{scroll-padding-top:72px}
 const SAJT_UPPDATERAD = '28 oktober 2026';
 const VYER = [
   {id:'start',       namn:'Start',               hash:'',          delar:['hero','vdaStrip','tldr','snabbfakta','skatter','vem-gor-vad']},
-  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? Över 30 verkliga prislappar med källa.'},
+  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget'], ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
@@ -2990,7 +3003,7 @@ const BAS_TITEL = document.title;
     if(v.id !== 'start'){
       const toc = v.delar.map(id => {
         const s = document.getElementById(id); if(!s || id === 'citat') return '';
-        const t = (s.querySelector('.s-title') || {}).textContent || s.getAttribute('aria-label') || '';
+        const t = s.dataset.toc || (s.querySelector('.s-title') || {}).textContent || s.getAttribute('aria-label') || '';
         return t ? `<li><a href="#${id}">${t.trim()}</a></li>` : '';
       }).filter(Boolean);
       const h = document.createElement('div');
@@ -3187,7 +3200,7 @@ const DETAILS = {
       {label:'Skolskjuts',val:7500}
     ],
     fakta: [
-      'Sverige lägger <strong>~6,5% av BNP</strong> på utbildning (COFOG 2024, inkl. förskola). Exkl. förskola och tertiär forskning: 5,3% (OECD EAG, primär–tertiär)',
+      'Den offentliga sektorn lägger <strong>7,2 % av BNP</strong> på utbildning, inklusive förskola (Eurostat, COFOG, 2024). OECD:s smalare mått, grundskola till högskola: 5,3 % (2022)',
       'PISA 2025: Sverige <strong>464 i matte</strong> — i nivå med OECD-snittet (463), under Finland (469) och Danmark (471). Största raset i svensk PISA-historia (−18 p sedan 2022)',
       'Ca <strong>1,05 miljoner elever</strong> i grundskolan 2024',
       'Grundskola: kommunal huvudman 135 400 kr/elev, enskild 121 700 kr (Skolverket 2023)'
@@ -3333,7 +3346,7 @@ const DETAILS = {
     ],
     fakta: [
       'Skyddar mot <strong>10 sjukdomar</strong> med ~16 doser under 0–18 år',
-      'Täckningsgrad: <strong>>97%</strong> — bland världens högsta',
+      'Täckningsgrad: <strong>över 97 %</strong>',
       'Sparar uppskattningsvis <strong>15–20 Mdkr/år</strong> i undvikna sjukvårdskostnader',
       'HPV-vaccin ingår sedan 2012 — cervixcancer väntas minska med 90%'
     ]
@@ -3410,7 +3423,7 @@ const DETAILS = {
       'Sverige materialåtervann <strong>46 %</strong> av det kommunala avfallet 2024 (EU-snitt 49 %, Eurostat). Siffran bygger på en ny mätmetod',
       'Danmark: <strong>787 kg avfall per capita</strong> — Europas högsta',
       'Sverige energiåtervinner (förbränner) en stor del — <strong>>50%</strong> av restavfall',
-      'Pant på burkar/flaskor: <strong>~85% återvinningsgrad</strong> — bland världens bästa'
+      'Pant på burkar och flaskor: <strong>cirka 85 % återvinningsgrad</strong>'
     ]
   },
   'En brandkårsutryckning': {
@@ -3729,7 +3742,7 @@ const NYCKELTAL = {
   statsbudget:    {namn:'Statsbudgetens utgifter',            v:'1 542 Mdkr',    ar:'2026', kalla:'bp2026',       gamla:[]},
   budgetsaldo:    {namn:'Budgetsaldo (riksdagens beslut / Riksgäldens prognos)', v:'−167 / −196 Mdkr', ar:'2026', kalla:'riksgalden', gamla:['underskott 173','Budgetunderskott 173']},
   offentliga:     {namn:'Offentliga sektorns utgifter',       v:'3 011 Mdkr',    ar:'2024', kalla:'scb_cofog',    gamla:['3 280 Mdkr','3 280 miljarder']},
-  statsskuld:     {namn:'Statsskuld',                         v:'1 430 Mdkr (21 % av BNP)', ar:'2026 (prognos)', kalla:'riksgalden', gamla:['1 316 Mdkr','125 000 kr']},
+  statsskuld:     {namn:'Statsskuld',                         v:'1 430 Mdkr (21 % av BNP)', ar:'2026 (prognos)', kalla:'riksgalden', gamla:['1 316 Mdkr','125 000 kr','19 % vid årets slut']},
   rantor:         {namn:'Räntor på statsskulden (UO26)',      v:'27,0 Mdkr',     ar:'2026', kalla:'bp2026',       gamla:['dubblats sedan 2024','Dubblat från 2024']},
   maastricht:     {namn:'Offentlig bruttoskuld (Maastricht)', v:'35,1 % (EU 81,7 %)', ar:'2025', kalla:'eurostat', gamla:['EU-snitt ~83']},
   skattekvot:     {namn:'Skattekvot',                         v:'41,4 % (OECD-snitt 34,1 %); 2025 prel. 40,5 %', ar:'2024', kalla:'oecd_rev', gamla:['51,4','46,7 %','41,2 %','−5,5','370 Mdkr']},
@@ -4447,7 +4460,7 @@ const BDATA=[
 const SKATTEDATA=[
   {l:'Jobbskatteavdrag (under 66)',v:218.8,c:'arb',not:'Största enskilda skatteutgiften 2026. Höjt från 152 Mdkr 2024 efter JSA-utvidgning + indexering.'},
   {l:'Förhöjt grundavdrag för äldre',v:68.7,c:'arb',not:'66+ år får lägre skatt på pension/arbetsinkomst'},
-  {l:'Nedsatt moms — livsmedel (12 %)',v:62.2,c:'moms',not:'Bredaste momslättnaden 2026. Stor ökning från 27,3 Mdkr 2024.'},
+  {l:'Nedsatt moms — livsmedel (6 % från april 2026)',v:62.2,c:'moms',not:'Största momslättnaden 2026. Ökningen från 27,3 Mdkr 2024 beror på att momsen på livsmedel sänktes från 12 till 6 % den 1 april 2026.'},
   {l:'Avkastning eget hem (ej beskattad)',v:29.3,c:'bost',not:'Eget hem genererar implicit hyresintäkt som inte beskattas'},
   {l:'Avkastningsskatt pensionsmedel (nedsatt)',v:24.7,c:'arb',not:'Pensionsfonder beskattas lägre än annat kapital'},
   {l:'Nedsatt moms — restaurang (12 %)',v:18.5,c:'moms',not:'Sänkt 2012 från 25 % till 12 %'},
@@ -5282,9 +5295,9 @@ const VDA_FACTS = [
   'Offentlig sektor spenderar cirka <strong>285 000 kr per invånare</strong> och år: stat, regioner och kommuner tillsammans (SCB, COFOG 2024)',
   // KORRIGERAT: Sverige är INTE lägst i EU — Finland (1,9) och Norge (1,8) är lägre
   'Spädbarnsdödligheten i Sverige är <strong>2,0 per 1 000 födda</strong>, i nivå med Norge (2,0) och Finland (1,9). USA: 5,5 (FN:s IGME via Världsbanken, 2024)',
-  'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC och en av vårdens mest kostnadseffektiva insatser',
-  // KORRIGERAT: 5,3% primary-gymnasie (OECD EaG 2025); inkl. förskola+högskoleforskning ~6,5%. 7,1% är överskattning.
-  'Sverige satsar <strong>~6,5% av BNP</strong> på utbildning (alla nivåer inkl. forskning) — bland de högsta i OECD',
+  'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC',
+  // Eurostat gov_10a_exp GF09 2024: 7,2 % (offentlig sektor, inkl. förskola). OECD EAG 2022: 5,3 % (grundskola–högskola).
+  'Den offentliga sektorn lägger <strong>7,2 % av BNP</strong> på utbildning, inklusive förskola (Eurostat, 2024). Med OECD:s smalare mått: 5,3 %, mot OECD-snittet 4,7 %',
   'Kriminalvård kostar cirka <strong>1,5 Mkr per intagen och år</strong>, ungefär sex gånger så mycket som ett år på högskolan',
   'Döda i vägtrafiken i Sverige: <strong>20 per miljon</strong> invånare 2024. EU-snittet: 44 (Eurostat)',
   // Världsbanken WDI 2024: Sverige 84,1, OECD-snitt 81,2 (ovägt medel, 38 länder). SCB 2025: kvinnor 85,55, män 82,52.
@@ -5295,14 +5308,14 @@ const VDA_FACTS = [
   // BP2026: försvar 225 Mdkr / 10,55M inv ≈ 21 300 kr/inv. Från 4 185 (2010) → 21 300 (2026) = 5,1× nominellt.
   'Försvarsutgiften har ökat <strong>5,1 gånger</strong> på 16 år — från 4 185 (2010) till ~21 300 kr/inv (2026 enligt BP2026)',
   '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
-  'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong> — Sverige är bland världens generösaste länder',
+  'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong>',
   'Statsskulden 2026: <strong>1 430 Mdkr</strong>, 21 % av BNP (Riksgälden prognos maj 2026), ungefär 135 000 kr per person. Räntorna på skulden beräknas till 27 Mdkr 2026.',
   // KORRIGERAT: tidigare jämförelse "mer än försvaret 2010 (4 185 kr/inv)" var falsk — kultur ~860 kr/inv < 4 185. Källa: Myndigheten för kulturanalys 2025.
   'Staten lade <strong>9,1 Mdkr på kultur</strong> 2024 (~860 kr/invånare) — realt lägre per invånare än för tio år sedan',
   // KORRIGERAT: ~4 000 h var för högt. VFU ~25–40 veckor; EU:s yrkesdirektiv (2005/36/EG) kräver minst 2 300 h klinisk praktik.
   'En sjuksköterskestudent gör <strong>~25–40 veckor</strong> verksamhetsförlagd utbildning (VFU) — EU:s yrkesdirektiv kräver minst 2 300 timmar klinisk praktik före examen',
   // KORRIGERAT: "byta arbete via AF" var fel framing. AF är arbetsförmedling för arbetssökande.
-  'Svenska arbetsmarknaden är känd för flexibilitet — <strong>~500 000 tjänster</strong> tillsätts varje år (SCB AKU)',
+  'Cirka <strong>500 000 tjänster</strong> tillsätts varje år på den svenska arbetsmarknaden (SCB AKU)',
   // KORRIGERAT: fri tandvård sänktes 23→19 år (1 jan 2025, prop. 2023/24:158); ATB 300–600 kr/år, EJ ~3 300. Källa: Försäkringskassan.
   'Tandvård är <strong>gratis t.o.m. året du fyller 19</strong> — åldersgränsen sänktes från 23 till 19 år 2025. Som vuxen: allmänt tandvårdsbidrag <strong>300–600 kr/år</strong> plus högkostnadsskydd',
   // ── KRITISKA / BALANSERADE FAKTA ─────────────────────────────────
@@ -6000,7 +6013,7 @@ function renderLifecycle(inc){
   const gridVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(niceMax*f));
   gridVals.forEach(v=>{
     const y=sy(v);
-    const lbl = v>=1000 ? (v/1000).toFixed(1)+'M' : v+'k';
+    const lbl = v.toLocaleString('sv-SE');
     svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
     svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${lbl}</text>`;
   });
@@ -6512,6 +6525,32 @@ function downloadTransparencyJSON(){
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && li.classList.contains('open')){ set(false); btn.focus(); } });
 })();
 // Menyns aktiva länk sätts av vyerna (initVyer)
+// ═══════════════════════════════════════════════════════════════════
+// SVENSK SIFFERFORMATERING — decimalkomma och mellanslag före %
+// Körs på all synlig text (även SVG-diagram och text som ritas om av
+// kalkylatorn). Licensnamn och externa länkar lämnas orörda.
+// ═══════════════════════════════════════════════════════════════════
+(function svSiffror(){
+  const SKIP = 'script,style,code,textarea,input,.foto-info,.bk-lista,.vy-gv-krediter,.footer-legal,a[href^="http"]';
+  function fixa(root){
+    const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n =>
+      (!n.parentElement || n.parentElement.closest(SKIP)) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT});
+    const lista = []; while(w.nextNode()) lista.push(w.currentNode);
+    lista.forEach(n => {
+      const t = n.nodeValue;
+      if(!/\d[.%]/.test(t)) return;
+      const ny = t
+        .replace(/(^|[^\w.])(\d+)\.(\d+)(?![\w.])/g, '$1$2,$3')  // 16.8 → 16,8
+        .replace(/(\d)%/g, '$1\u00a0%');                            // 16,8% → 16,8 %
+      if(ny !== t) n.nodeValue = ny;
+    });
+  }
+  let vantar = false;
+  const kör = () => { if(vantar) return; vantar = true; requestAnimationFrame(() => { vantar = false; fixa(document.body); }); };
+  fixa(document.body);
+  new MutationObserver(kör).observe(document.body, {childList:true, subtree:true, characterData:true});
+})();
+
 </script>
 </body>
 </html>

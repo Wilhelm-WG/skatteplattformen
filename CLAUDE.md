@@ -145,6 +145,9 @@ correspondence/
 - Klickbara kort ska ha en riktig `<button>`; dialoger flyttar fokus in och tillbaka. Automatiskt roterande innehåll har `aria-live="off"`
 - Mät kontrasten med `scripts/kontrast.js` i webbläsarens konsol efter större färgändringar (mål: under 10 fall)
 
+## Sifferformat
+- Skriv decimalkomma och mellanslag före % ("16,8 %"). `svSiffror` (sist i sista scriptet) rättar också text som ritas av JS och SVG-diagram, men skriv rätt i källan. Licensnamn och externa länktexter lämnas orörda.
+
 ## Före publicering
 Kör `node scripts/kontroll.mjs` före varje commit som ändrar siffror eller modellen. Den kontrollerar skattemodellen mot
 Skatteverkets tabell 32 (kolumn 1–3), att inga gamla värden från `NYCKELTAL[*].gamla` finns kvar, att prislappar och

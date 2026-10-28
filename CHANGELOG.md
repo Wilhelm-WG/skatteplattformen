@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-28) — De fyra första åtgärderna ur designgranskningen
+
+- **Trovärdighet:** svensk sifferformatering överallt (decimalkomma, mellanslag
+  före %), även i diagram och kalkylatorn (`svSiffror`, körs på all text och vid
+  ändringar). Livsloppets axel i tkr i stället för "200k". Matmomsen 6 % från
+  1 april 2026 (prop. 2025/26:55). Statsskulden 21 % av BNP även i
+  räntekortet. Årsetiketten i toppen rättad. Statsbudgeten 1 442 Mdkr märkt som
+  utfall 2024. Utbildning: 7,2 % (Eurostat, inkl. förskola) och 5,3 % (OECD)
+  med källa. "37 prislappar". Läkartätheten jämförs för samma år.
+- **Mobil:** brödsmulan i vyhuvudet ärvde menyns `nav`-stil (klistrad, lager
+  100) och låg över den öppna menyn. Mobilmenyn vänsterjusterad. Den stängda
+  detaljpanelens skugga syntes längs högerkanten.
+- **Rubriker som svar:** Budgeten ("Försvaret är statens största
+  utgiftsområde 2026") med tre sifferrutor (1 542 Mdkr, försvaret +33 %,
+  −167 Mdkr), Sjukvården, Framtiden och Historiken. Korta namn i vyernas
+  innehållsförteckning (`data-toc`).
+- **Neutralitet:** omskrivna formuleringar i sjukvården ("blottas systemets
+  svagaste länk"), statsbidragen, Gini-texten, vaccin, föräldrapenning,
+  arbetsmarknaden och metabeskrivningarna ("exakt").
+
 ### Changed (2026-10-28) — "Sex vägar in" som fotokort, diskretare fotokrediter
 
 - **"Sex vägar in"** visas som fotokort: vyns foto med siffran i vitt på bilden,
