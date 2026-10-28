@@ -10,6 +10,33 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — Så arbetar vi, rättelser, faktakontroll och nya foton
+
+- **Så arbetar vi** (`#sa-arbetar-vi`) och **Rättelser** (`#rattelser`) i vyn
+  Metod och källor, länkade från menyn Mer och sidfoten. Rättelseloggen tar upp
+  sakfel som rättats, med datum, vad som var fel och källa.
+- **Faktakontroll:** stroke 7,2 → 4,9 % (OECD-snitt 8,3, 2023); hjärtinfarkt,
+  Socialstyrelsens siffra inklusive dödsfall utanför sjukhus 13 → 21 %;
+  bröstcancer 93 % (2020); utbildningsutgifter 7,1 % → 5,3 % av BNP (2022, cirka
+  13 % över OECD-snittet); kriminalvård 1,4 → 1,5 Mkr per intagen och år, 107
+  intagna per 100 000 (2024); läkare 4,7 per 1 000 (2024). Vårdplatser: 2 230
+  saknade platser enligt Socialstyrelsen (maj 2024), inte "stängda enligt IVO";
+  "43 % av patienterna" var svarsfrekvensen i Läkarförbundets enkät (var fjärde
+  läkare skriver varje vecka ut patienter för tidigt). Läkartäthet per region
+  enligt Socialstyrelsen. IVA: 50 000–80 000 kr per vårddygn (Svenska
+  Intensivvårdsregistret), 4,5 platser per 100 000 (2022).
+- **Skolans kostnader** enligt Skolverket 2025: grundskola 143 000, gymnasium
+  148 100 och kommunal förskola 199 200 kr (även i modellens livsfaser).
+- **Medianlönens skatt** 7 750 kr enligt skattetabell 32, med förklaring i filmen
+  av varför skatten är cirka 20 % och inte 32 %.
+- **Nya foton:** Riksdagshuset, Öresundsbron, Västra hamnen i Malmö, Stockholm
+  City-stationen och stadsbibliotekets rotunda (de flesta kvalitetsmärkta på
+  Wikimedia Commons); ambulansen behålls. Vyhuvudet har text till vänster och
+  foto till höger i naturliga färger, med fotokredit som diskret etikett i
+  bildens hörn. Duotonen är borttagen.
+- **Citatet** om "solidariskt samhällskontrakt" ersatt med en neutral formulering: "Skatten betalar för skola, vård och pension som var och en använder under olika delar av livet."
+  "Granskning av tredje part" i Om oss ersatt med en inbjudan till granskning.
+
 ### Changed (2026-10-28) — Steg 8: foton, sifferrutor, källrader och sidfot
 
 - **Foton i vyhuvudena:** sex foton från Wikimedia Commons (ambulans, pendeltåg,

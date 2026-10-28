@@ -82,7 +82,9 @@ const ntLit = literal('const NYCKELTAL = {');
 const NYCKELTAL = vm.runInNewContext('(' + ntLit.text + ')');
 const kLit = literal('const KALLOR = {');
 const KALLOR = vm.runInNewContext('(' + kLit.text + ')');
-const utanKatalog = html.slice(0, kLit.start) + html.slice(ntLit.end); // KALLOR ligger direkt före NYCKELTAL
+let utanKatalog = html.slice(0, kLit.start) + html.slice(ntLit.end); // KALLOR ligger direkt före NYCKELTAL
+// Rättelseloggen nämner gamla värden med avsikt
+{ const a = utanKatalog.indexOf('id="rattelser"'); if (a >= 0) { const b = utanKatalog.indexOf('</section>', a); utanKatalog = utanKatalog.slice(0, a) + utanKatalog.slice(b); } }
 for (const [id, n] of Object.entries(NYCKELTAL)) {
   const traffar = (n.gamla || []).filter(g => utanKatalog.includes(g));
   if (traffar.length) traffar.forEach(g => {

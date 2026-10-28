@@ -58,8 +58,9 @@ correspondence/
 - `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
 **Foton (`img/foton/`):**
-- Endast Wikimedia Commons (CC0, CC BY, CC BY-SA). `VY_FOTON` i index.html: alt-text, fotograf, licens, länk, `pos` (object-position), `ljus` (för mörka bilder)
-- Filnamn = vyns id (`budgeten.jpg` 1 600 px + `budgeten-800.jpg`). Filerna bearbetas inte utöver nedskalning; tonningen görs i CSS (`.vy-foto`)
+- Endast Wikimedia Commons (CC0, CC BY, CC BY-SA), helst kvalitetsmärkta bilder. `VY_FOTON` i index.html: alt-text, fotograf, licens, länk, `pos` (object-position)
+- Filnamn = vyns id (`budgeten.jpg` 1 200 px + `budgeten-800.jpg`). Filerna bearbetas inte utöver nedskalning. Visas i naturliga färger till höger om vyrubriken, kredit som etikett i bildens hörn
+- Byts en bildfil: öka `FOTO_VER` så att webbläsarnas cache hämtar den nya
 - Uppdatera `img/foton/KREDITER.md` vid byte av foto
 
 **Licens:** text, siffror och diagram CC BY 4.0; kod MIT; foton enligt kreditraden.
@@ -69,7 +70,7 @@ correspondence/
 - `favicon.svg`, `apple-touch-icon.png` (180×180)
 
 **Gissa först (`#gissa`):**
-- Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-iva`). Ingen lagring
+- Quiz i prislistan (`initGissa`), drar 10 slumpade poster ur `CARDS`. Direktlänk `#gissa-<slug av titel>` (delmatchning, t.ex. `#gissa-ambulans`). Ingen lagring
 
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
@@ -130,6 +131,7 @@ correspondence/
 - Vyns egen hash (t.ex. `#budget`) visar vyn överst; andra id scrollar dit. `window.aktivVy` = aktuell vy
 - Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar
 - `SAJT_UPPDATERAD` = datum under vyrubrikerna
+- Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
 **Sensitivitetsanalys:**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter

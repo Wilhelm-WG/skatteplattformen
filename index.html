@@ -775,13 +775,29 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .illu-lin{stroke:var(--green);stroke-width:1.2;stroke-dasharray:4 5;opacity:.6}
 .illu-i{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 
-/* Duotonfoto i vyhuvud: gråskala multiplicerad mot ljusgrönt, mörka partier lyfts till sajtens gröna */
-.vy-foto{margin:0;position:relative}
-.vy-foto-bild{position:relative;height:clamp(150px,26vw,320px);overflow:hidden;background:#CFE3D8}
-.vy-foto-bild img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,center);filter:grayscale(1) brightness(var(--ljus,1)) contrast(1.08);mix-blend-mode:multiply;display:block}
-.vy-foto-bild::after{content:'';position:absolute;inset:0;background:#1B4D3E;mix-blend-mode:lighten;pointer-events:none}
-.vy-foto figcaption{max-width:1200px;margin:0 auto;padding:.35rem 1.5rem 0;font-size:.66rem;color:var(--ink3);text-align:right}
-.vy-foto figcaption a{color:inherit}
+/* Foto i vyhuvud: text till vänster, foto till höger (dator); foto överst (mobil). Diskret kredit i bildens hörn. */
+.vy-grid.har-foto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.5rem;align-items:center}
+.vy-foto{position:relative;margin:1.6rem 0 0;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:var(--bg2);box-shadow:0 1px 2px rgba(26,24,19,.06),0 12px 32px rgba(26,24,19,.12)}
+.vy-foto img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03)}
+.vy-foto figcaption{position:absolute;right:.6rem;bottom:.6rem;font-size:.62rem;line-height:1;padding:.35rem .55rem;border-radius:999px;background:rgba(20,20,18,.48);color:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:.85;transition:opacity .2s}
+.vy-foto figcaption a{color:inherit;text-decoration:none}
+.vy-foto figcaption a:hover{text-decoration:underline}
+.vy-foto:hover figcaption,.vy-foto figcaption:focus-within{opacity:1}
+@media(max-width:760px){
+  .vy-grid.har-foto{grid-template-columns:1fr;gap:0}
+  .vy-grid.har-foto .vy-foto{order:-1;margin:0 -16px;border-radius:0;aspect-ratio:16/9;box-shadow:none}
+}
+/* Så arbetar vi och rättelser */
+.policy{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem 2rem;margin-top:1.4rem}
+.policy-del h3{font-size:1rem;font-weight:600;margin:0 0 .35rem;color:var(--ink)}
+.policy-del p{font-size:.9rem;line-height:1.6;color:var(--ink2);margin:0}
+.policy-del a,.rattelser a,#rattelser .s-sub a{color:var(--green)}
+.rattelser{list-style:none;margin:1.4rem 0 0;padding:0;border-top:1px solid var(--border)}
+.rattelser li{display:grid;grid-template-columns:7.5rem 1fr;gap:.2rem 1rem;padding:.9rem 0;border-bottom:1px solid var(--border);font-size:.88rem;line-height:1.55;color:var(--ink2)}
+.rattelser time{font-family:var(--mono);font-size:.75rem;color:var(--ink3);padding-top:.15rem}
+.rattelser li b{display:block}
+.rattelser b{color:var(--ink);font-weight:600}
+@media(max-width:520px){.rattelser li{grid-template-columns:1fr}}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
@@ -903,6 +919,8 @@ html{scroll-padding-top:72px}
             <li><a href="#metod">Metod och källor</a></li>
             <li><a href="#nyckeltal">Nyckeltal</a></li>
             <li><a href="#ordlista">Ordlista</a></li>
+            <li><a href="#sa-arbetar-vi">Så arbetar vi</a></li>
+            <li><a href="#rattelser">Rättelser</a></li>
             <li><a href="#om-oss">Om oss</a></li>
           </ul>
         </li>
@@ -951,7 +969,7 @@ html{scroll-padding-top:72px}
           <span class="hsk-prislapp-cat" id="hskPrislappCat">Utbildning</span>
           <div class="hsk-prislapp-title" id="hskPrislappTitle">En grundskoleelev, ett år</div>
           <div class="hsk-prislapp-amount-row">
-            <span class="hsk-prislapp-amount" id="hskPrislappAmount">133 000</span>
+            <span class="hsk-prislapp-amount" id="hskPrislappAmount">143 000</span>
             <span class="hsk-prislapp-suf" id="hskPrislappSuf">kr</span>
           </div>
           <div class="hsk-prislapp-vs" id="hskPrislappVs">Du betalar: <strong>0 kr</strong> — obligatorisk och gratis</div>
@@ -1124,8 +1142,8 @@ html{scroll-padding-top:72px}
         </g>
 
         <!-- Belopp längs banorna -->
-        <g class="el" data-el="l-ag-sv"><rect class="lbl-bg" x="196" y="128" width="118" height="34" rx="4"/><text class="lbl" x="200" y="142">skatt ≈ 7 700 kr</text><text class="lbl" x="200" y="157">avgift ≈ 12 000 kr</text></g>
-        <g class="el" data-el="l-ag-du"><rect class="lbl-bg" x="118" y="180" width="100" height="18" rx="4"/><text class="lbl" x="122" y="193">netto ≈ 30 600 kr</text></g>
+        <g class="el" data-el="l-ag-sv"><rect class="lbl-bg" x="196" y="128" width="118" height="34" rx="4"/><text class="lbl" x="200" y="142">skatt ≈ 7 750 kr</text><text class="lbl" x="200" y="157">avgift ≈ 12 000 kr</text></g>
+        <g class="el" data-el="l-ag-du"><rect class="lbl-bg" x="118" y="180" width="100" height="18" rx="4"/><text class="lbl" x="122" y="193">netto ≈ 30 550 kr</text></g>
         <g class="el" data-el="l-shop"><rect class="lbl-bg" x="196" y="356" width="104" height="18" rx="4"/><text class="lbl" x="200" y="369">moms ≈ 3 800 kr</text></g>
         <g class="el" data-el="l-utj"><rect class="lbl-bg" x="712" y="158" width="196" height="72" rx="6" stroke="var(--stat)" stroke-width="1"/><text class="lbl" x="722" y="178">generella statsbidrag</text><text class="lbl" x="722" y="192">och utjämning, 2025:</text><text class="lbl" x="722" y="207">kommuner 146 Mdkr</text><text class="lbl" x="722" y="221">regioner 91 Mdkr</text></g>
 
@@ -1134,9 +1152,9 @@ html{scroll-padding-top:72px}
           <rect x="470" y="40" width="230" height="132" rx="8" fill="var(--soft)" stroke="var(--line)"/>
           <text x="488" y="66" class="node-s" style="letter-spacing:.08em">LÖNEBESKED · MEDIANLÖN</text>
           <text x="488" y="94" class="lbl">Bruttolön</text><text x="682" y="94" class="lbl" text-anchor="end">38 300 kr</text>
-          <text x="488" y="114" class="lbl">Preliminärskatt</text><text x="682" y="114" class="lbl" text-anchor="end">−7 700 kr</text>
+          <text x="488" y="114" class="lbl">Preliminärskatt</text><text x="682" y="114" class="lbl" text-anchor="end">−7 750 kr</text>
           <line x1="488" x2="682" y1="126" y2="126" stroke="var(--line)"/>
-          <text x="488" y="146" class="lbl" style="font-weight:500;fill:var(--ink)">Utbetalt</text><text x="682" y="146" class="lbl" text-anchor="end" style="font-weight:500;fill:var(--ink)">30 600 kr</text>
+          <text x="488" y="146" class="lbl" style="font-weight:500;fill:var(--ink)">Utbetalt</text><text x="682" y="146" class="lbl" text-anchor="end" style="font-weight:500;fill:var(--ink)">30 550 kr</text>
           <text x="488" y="164" class="node-s">+ arbetsgivaravgift 12 000 kr*</text>
         </g>
 
@@ -1216,7 +1234,7 @@ html{scroll-padding-top:72px}
   var SCENES = [
     {h:"Allt börjar med arbete.", p:"Medianlönen i Sverige är 38 300 kronor i månaden före skatt.", d:7,
      show:["n-ag","n-du","slip"], focus:["n-ag","n-du","slip"], flows:[]},
-    {h:"Skatten dras innan lönen når dig.", p:"Arbetsgivaren drar din preliminärskatt, ungefär 7 700 kronor, och skickar den till Skatteverket. Ovanpå lönen betalar arbetsgivaren också en arbetsgivaravgift på ungefär 12 000 kronor, varav cirka 3 900 kronor blir din egen pension.", d:10,
+    {h:"Skatten dras innan lönen når dig.", p:"Arbetsgivaren drar din preliminärskatt, 7 750 kronor, och skickar den till Skatteverket. Det är ungefär var femte krona och inte 32 procent, eftersom grundavdraget och jobbskatteavdraget sänker skatten. Ovanpå lönen betalar arbetsgivaren också en arbetsgivaravgift på ungefär 12 000 kronor, varav cirka 3 900 kronor blir din egen pension.", d:12,
      show:["n-sv","l-ag-sv","l-ag-du"], focus:["n-ag","n-du","n-sv","slip","l-ag-sv","l-ag-du"], flows:[["kl-p-ag-sv","--sv"],["kl-p-ag-du","--ink3"]]},
     {h:"När du handlar betalar du moms.", p:"Momsen ingår i priset och går också till Skatteverket. För en medianlöntagare blir det i snitt runt 3 800 kronor i månaden.", d:7,
      show:["n-shop","l-shop"], focus:["n-shop","n-sv","l-shop","n-du"], flows:[["kl-p-shop-sv","--sv"]]},
@@ -1740,17 +1758,17 @@ html{scroll-padding-top:72px}
         <div class="ft-card">
           <div class="ft-card-title">Vårdplatser per 1 000 invånare</div>
           <div class="ft-big">1,9<sub> (2022)</sub></div>
-          <div class="ft-desc">År 2000: 3,5. År 2022: 1,9. Norge 3,4 · Finland 2,6 · Danmark 2,5 · USA 2,7 · Tyskland 7,6 · OECD-snitt 4,4.</div>
+          <div class="ft-desc">År 2000: 3,6. År 2022: 1,9, lägst i EU 2023 (Eurostat). Norge 3,4 · Finland 2,6 · Danmark 2,5 · USA 2,7 · Tyskland 7,6 · OECD-snitt 4,4 (Världsbanken, 2022).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Disponibla vårdplatser stängda</div>
-          <div class="ft-big">2 230<sub> (IVO 2024)</sub></div>
-          <div class="ft-desc">Sjuksköterskebrist är primär orsak — inte byggnader. 21 av 21 regioner rapporterar bemanningsbrist. 43 % av patienter märker bristen i form av tidigare hemskrivning eller utebliven plats.</div>
+          <div class="ft-card-title">Vårdplatser som saknas</div>
+          <div class="ft-big">2 230<sub> (Socialstyrelsen 2024)</sub></div>
+          <div class="ft-desc">Socialstyrelsen bedömde i maj 2024 att det saknas cirka 2 230 vårdplatser i den somatiska vården, 15 procent, och cirka 50 intensivvårdsplatser. Främsta orsaken är brist på sjuksköterskor, inte lokaler. Var fjärde läkare uppger att de varje vecka tvingas skriva ut patienter för tidigt på grund av vårdplatsbrist (Läkarförbundets enkät, 2025).</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Läkare per 1 000 invånare</div>
-          <div class="ft-big">4,4<sub> (2021)</sub></div>
-          <div class="ft-desc">Över OECD-snittet (3,8). Men distribution är skev: Stockholm 5,8 / Norrbotten 3,1. Brist i primärvården — specialistläkare är fler än allmänläkare per capita.</div>
+          <div class="ft-big">4,7<sub> (2024)</sub></div>
+          <div class="ft-desc">Över OECD-snittet (3,8 år 2021). Läkartätheten skiljer sig mellan regionerna: den är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</div>
         </div>
       </div>
 
@@ -1759,28 +1777,28 @@ html{scroll-padding-top:72px}
       <div class="ft-callout" style="margin-top:1.2rem">
         <strong>Strukturellt val, inte slump:</strong> Sveriges strategi sedan 1990-talet har varit att flytta vård ut ur sjukhus — till primärvård, hemsjukvård och öppenvård. Den klarar normalläget med färre sängar. Men under covid-pandemin och vinterns influensa-toppar blottas systemets svagaste länk: inga "buffert"-platser att skala upp till.
       </div>
-      <p class="ft-source">Källor: OECD Health at a Glance: Europe 2024, IVO Tillsynsrapport 2024, Socialstyrelsen Nationella vårdkapaciteten 2024, SKR.</p>
+      <p class="ft-source">Källor: Eurostat (vårdplatser och läkare), Världsbanken WDI, Socialstyrelsen (Plats för vård, maj 2024; tillgång till vårdpersonal, mars 2024), Läkarförbundet (enkät om vårdplatsbrist, 2025), IVO.</p>
     </div>
 
     <!-- UTFALL VID SJUKDOM -->
     <div class="ft-panel" id="sjukv-utfall">
-      <p class="ft-intro">Här jämförs hur det går för patienter med allvarliga sjukdomar. Sverige har lägre dödlighet än OECD-snittet vid hjärtinfarkt och stroke, och lägre undvikbar dödlighet än EU-snittet.</p>
+      <p class="ft-intro">Här jämförs hur det går för patienter med allvarliga sjukdomar. På sjukhus är dödligheten vid hjärtinfarkt och stroke lägre i Sverige än OECD-snittet, och den undvikbara dödligheten är lägre än EU-snittet.</p>
 
       <div class="ft-grid">
         <div class="ft-card">
           <div class="ft-card-title">Bröstcancer 5-årsöverlevnad</div>
-          <div class="ft-big">92,3 %<sub> (2016–2020)</sub></div>
-          <div class="ft-desc">OECD-snitt 87,0 %. Tidig upptäckt (mammografi-program 40–74 år) ger 30 % bättre överlevnad än sen upptäckt.</div>
+          <div class="ft-big">93 %<sub> (2020)</sub></div>
+          <div class="ft-desc">Relativ femårsöverlevnad. Upptäcks cancern i stadium I överlever drygt 99 procent, i stadium IV cirka 29 procent. Alla regioner erbjuder mammografi till kvinnor 40–74 år. I OECD:s jämförelse (diagnos 2010–2014) låg Sverige på 88,8 procent och OECD-snittet på 84,3.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Hjärtinfarkt — 30-dagars dödlighet</div>
-          <div class="ft-big">3,4 %<sub> (OECD Health 2025)</sub></div>
-          <div class="ft-desc">OECD-snitt 6,5 %. Sjukhus-case-fatality för akut hjärtinfarkt (AMI). PCI-tillgång inom 90 min för 95 % av fall. (Socialstyrelsen rapporterar 13 % om man räknar in alla som dör innan sjukhus.)</div>
+          <div class="ft-card-title">Hjärtinfarkt — dödlighet inom 30 dagar</div>
+          <div class="ft-big">3,4 %<sub> (2023)</sub></div>
+          <div class="ft-desc">Dödsfall inom 30 dagar under samma sjukhusvistelse, personer 45 år och äldre. OECD-snitt 6,6 procent. Räknas även de som dör innan de når sjukhus avled 21 procent inom 28 dagar (Socialstyrelsen, 2024).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Stroke — 30-dagars dödlighet</div>
-          <div class="ft-big">7,2 %<sub> (2023)</sub></div>
-          <div class="ft-desc">OECD-snitt 12,4 %. Snabb trombolys + trombektomi ger Sverige nästan halverad dödlighet jämfört med snittet. Riksstroke-registret driver kvalitetsförbättring.</div>
+          <div class="ft-card-title">Stroke — dödlighet inom 30 dagar</div>
+          <div class="ft-big">4,9 %<sub> (2023)</sub></div>
+          <div class="ft-desc">Ischemisk stroke, dödsfall inom 30 dagar på sjukhus. OECD-snitt 8,3 procent. Räknas alla strokefall in, även dödsfall utanför sjukhus, avled 22 procent inom 28 dagar 2024 (Socialstyrelsen).</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Spädbarnsdödlighet</div>
@@ -1794,7 +1812,7 @@ html{scroll-padding-top:72px}
       <div class="ft-callout" style="margin-top:1.2rem">
         <strong>Att tänka på:</strong> Dödlighet påverkas inte bara av vården utan också av levnadsvanor, ålder och inkomster i befolkningen. Väntetider och hur patienter upplever vården syns inte i de här måtten.
       </div>
-      <p class="ft-source">Källor: OECD Cancer Profiles 2025, Swedeheart Annual Report 2024, Riksstroke 2024, OECD Health at a Glance 2025, Världsbanken WDI.</p>
+      <p class="ft-source">Källor: Socialstyrelsen (statistik om bröstcancer 2023, hjärtinfarkter 2024 och stroke 2024), OECD Health Care Quality Indicators (via DBnomics), Världsbanken WDI. OECD-snitten är ovägda medelvärden.</p>
     </div>
 
     <!-- TILLGÄNGLIGHET -->
@@ -1995,7 +2013,7 @@ html{scroll-padding-top:72px}
         <div class="ft-card">
           <div class="ft-card-title">Sjuksköterskor utanför yrket</div>
           <div class="ft-big">13 000<sub> arbetar ej i vården</sub></div>
-          <div class="ft-desc">Alla 21 regioner rapporterar sjuksköterskebrist. 2 230 vårdplatser är stängda p.g.a. personalbrist. 43% av patienter märker bristen.</div>
+          <div class="ft-desc">Samtliga 21 regioner uppgav 2022 brist på vårdpersonal, främst sjuksköterskor (IVO). Socialstyrelsen bedömde i maj 2024 att det saknas cirka 2 230 vårdplatser, främst på grund av sjuksköterskebrist.</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Äldreomsorg till 2033</div>
@@ -2556,8 +2574,8 @@ html{scroll-padding-top:72px}
       <div class="ft-grid">
         <div class="ft-card">
           <div class="ft-card-title">Utbildningsutgifter (% av BNP)</div>
-          <div class="ft-big">7,1%<sub> (2021, OECD EAG)</sub></div>
-          <div class="ft-desc">Inkl. primär–tertiär utbildning + forskning vid lärosäten + vuxenutbildning (OECD EAG-definition). Sverige 45% över OECD-snittet (4,9%, samma definition). 2024 COFOG-estimat: ~6,5% (inkl. förskola, exkl. en del tertiär forskning). Kostnad per elev har inte ökat realt sedan 2012.</div>
+          <div class="ft-big">5,3 %<sub> (2022, OECD EAG)</sub></div>
+          <div class="ft-desc">Utgifter för utbildningsinstitutioner från grundskola till högskola, alla finansieringskällor (OECD:s definition). OECD-snittet är 4,7 procent, så Sverige ligger cirka 13 procent högre. Med det bredare COFOG-måttet, som även omfattar förskola, låg den offentliga sektorns utbildningsutgifter på 7,2 procent av BNP 2024 (EU-snitt 4,7 procent, Eurostat).</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">PISA-trend 2003–2025</div>
@@ -2753,7 +2771,7 @@ html{scroll-padding-top:72px}
         <div class="src-list">
           <div class="src-card"><div class="src-head"><span class="src-name">SCB FASIT — offentliga välfärdstjänster 2022</span><span class="src-badge">CC0</span></div><div class="src-desc">Fördelning av välfärdstjänster per inkomstdecil och hushållstyp. Basen för årsförmåns-kalkylatorn.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">Eurostat COFOG via SCB NR 2024</span><span class="src-badge">CC BY 4.0</span></div><div class="src-desc">Total offentlig sektor per COFOG-funktion. 3 011 Mdkr fördelat på hälsa, utbildning, socialt skydd etc.</div></div>
-          <div class="src-card"><div class="src-head"><span class="src-name">Skolverket — kostnader för skolväsendet 2023</span><span class="src-badge">Offentlig</span></div><div class="src-desc">133 000 kr/elev grundskola, 141 500 kr gymnasium, 181 800 kr per barn i förskola (alla huvudmän, publicerad okt 2024).</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">Skolverket — kostnader för skolväsendet 2025</span><span class="src-badge">Offentlig</span></div><div class="src-desc">143 000 kr/elev grundskola och 148 100 kr gymnasium (alla huvudmän), 199 200 kr per barn i kommunal förskola. Kostnader 2025, publicerad okt 2026.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">SKR KPP-databas + sektorn i siffror 2024</span><span class="src-badge">Offentlig</span></div><div class="src-desc">Kostnad per patient per DRG-grupp. Kommunal ekonomi, sjukvård och omsorg per verksamhet.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">ESV tidsserier + BP2026</span><span class="src-badge">CC0</span></div><div class="src-desc">Utfall per utgiftsområde 1995–2024 + Budgetpropositionen 2026 (prop. 2025/26:1). Basen för statsbudgetdata 2010–2026.</div></div>
         </div>
@@ -2775,10 +2793,74 @@ html{scroll-padding-top:72px}
   </div>
 </section>
 
-<section class="quote-section">
+
+<section class="quote-section" id="citat">
   <div class="container">
-    <p class="big-q">"Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt."</p>
-    <p class="q-note">Skatteplattformen är partipolitiskt oberoende. Inga annonsörer. Inga partibidrag. Data och tolkningar presenteras separat.</p>
+    <p class="big-q">Skatten betalar för skola, vård och pension som var och en använder under olika delar av livet.</p>
+  </div>
+</section>
+
+<!-- SÅ ARBETAR VI (redaktionell policy) -->
+<section class="section" id="sa-arbetar-vi" aria-label="Så arbetar vi" style="padding:3rem 0">
+  <div class="cw">
+    <p class="s-eye">Redaktionell policy</p>
+    <h2 class="s-title">Så arbetar vi</h2>
+    <div class="policy">
+      <div class="policy-del">
+        <h3>Vad vi gör</h3>
+        <p>Skatteplattformen visar vad skatterna betalar för, i kronor och med källa. Vi vill att det ska gå att förstå hur stat, regioner och kommuner använder pengarna, utan att man behöver läsa budgetpropositioner.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Källor</h3>
+        <p>Vi använder bara offentliga källor: myndigheter som SCB, Skatteverket, Ekonomistyrningsverket, Socialstyrelsen och Skolverket, regeringens propositioner och internationella organisationer som OECD, Eurostat och Världsbanken. Varje siffra ska ha källa och år. De viktigaste siffrorna finns samlade under <a href="#nyckeltal">Nyckeltal</a>.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Neutralitet</h3>
+        <p>Vi tar inte ställning i politiska frågor och har inga annonsörer eller partibidrag. Vi försöker skriva utan värderande ord. När ett mått kan tolkas på olika sätt förklarar vi hur det mäts. Internationella jämförelser visar alltid samma länder, med en källa och ett år per diagram.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Beräkningar</h3>
+        <p>Skattemodellen och alla beräkningar är öppna på <a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">GitHub</a>. Före varje publicering kontrolleras skattemodellen mot Skatteverkets skattetabeller, och ett skript letar efter gamla värden och siffror utan källa. Där vi gör egna beräkningar skriver vi det.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Uppdateringar</h3>
+        <p>Siffrorna uppdateras när nya uppgifter publiceras: budgetpropositionen i september, vårändringsbudgeten i april, kommunalskatterna och skattetabellerna i december, lönestatistiken i juni och de internationella jämförelserna under hösten. Datumet under varje rubrik visar när sidan senast uppdaterades.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Rättelser</h3>
+        <p>Hittar du ett fel? <a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Skapa ett ärende på GitHub</a> eller mejla <a href="mailto:wennergrenf@gmail.com">wennergrenf@gmail.com</a>. Vi rättar fel så snart vi har kontrollerat dem, och redovisar rättelsen nedan med datum, vad som var fel och vad som gäller nu.</p>
+      </div>
+      <div class="policy-del">
+        <h3>Vem står bakom</h3>
+        <p>Skatteplattformen drivs av Wilhelm Wennergren, utan extern finansiering. Text, siffror och diagram får användas fritt med källhänvisning (CC BY 4.0).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÄTTELSELOGG -->
+<section class="section" id="rattelser" aria-label="Rättelser" style="padding:2rem 0 3rem">
+  <div class="cw">
+    <p class="s-eye">Öppen rättelselogg</p>
+    <h2 class="s-title">Rättelser</h2>
+    <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
+    <ol class="rattelser" reversed>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Sjukvårdens utfall</b>Stroke: 7,2 % (OECD-snitt 12,4) gick inte att belägga → 4,9 % (OECD-snitt 8,3), ischemisk stroke 2023. Hjärtinfarkt: Socialstyrelsens siffra inklusive dödsfall utanför sjukhus är 21 %, inte 13 %. Bröstcancer: 93 % (2020) i stället för 92,3 % (2016–2020); OECD-snittet 87,0 % gick inte att belägga. Källor: OECD, Socialstyrelsen.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Vårdplatser och läkare</b>"2 230 stängda vårdplatser (IVO 2024)": siffran kommer från Socialstyrelsen (maj 2024) och avser vårdplatser som saknas, inte stängda platser. "43 % av patienterna märker bristen" var en felläsning: 43 % var svarsfrekvensen i Läkarförbundets enkät, där var fjärde läkare uppgav att de varje vecka tvingas skriva ut patienter för tidigt. Läkartätheten "Stockholm 5,8, Norrbotten 3,1" gick inte att belägga; enligt Socialstyrelsen är den högst i Uppsala och Västerbotten och lägst i Norrbotten. Läkare per 1 000 invånare: 4,7 (2024).</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Utbildningsutgifter</b>"7,1 % av BNP, 45 % över OECD-snittet" → 5,3 % (2022), cirka 13 % över OECD-snittet 4,7 %. Källa: OECD Education at a Glance.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Kriminalvården</b>1,4 → 1,5 Mkr per intagen och år (4 110 kr per dygn 2025). Intagna per 100 000 invånare: 107 (2024), inte 80. Källor: Kriminalvårdens årsredovisning 2025, Eurostat.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Intensivvård</b>"Ett dygn på IVA, 55 000 kr (SKR KPP)" hade fel källa. Svenska Intensivvårdsregistret uppskattar kostnaden till 50 000–80 000 kr per vårddygn; prislappen visar nu den lägre gränsen. "5,2 IVA-platser per 100 000" → 4,5 (2022), mot 17,6 i snitt bland OECD-länderna i Europa.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skolans kostnader</b>Grundskola 133 000 → 143 000 kr per elev, gymnasium 141 500 → 148 100 kr, kommunal förskola 199 200 kr per barn. Siffrorna var från 2023 och motsade faktakortet. Källa: Skolverket, Kostnader för skolväsendet 2025.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skatten på medianlönen</b>"Ungefär 7 700 kr" → 7 750 kr i månaden på 38 300 kr, enligt Skatteverkets skattetabell 32 för 2026.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Arbetsgivaravgift för unga</b>Kalkylatorn räknade med full arbetsgivaravgift för 19–23-åringar. Från april 2026 är avgiften tillfälligt 20,81 % på lön upp till 25 000 kr i månaden. Källa: Skatteverket.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Budgetdiagrammet</b>Rubriken angav 2025, men siffrorna gällde statsbudgeten 2026.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Vårdgarantin</b>"Cirka 50 % inom 3 dagar" → 91 % får en medicinsk bedömning i primärvården inom 3 dagar och 63 % en operation eller åtgärd inom 90 dagar. Garantin är 0–3–90–90, inte 0–7–90–90. Källa: Socialstyrelsen, augusti 2026.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skattekvoten</b>Historiken rättad: 2000 50,0 %, 2010 43,1 %, 2024 41,4 %. Uppgiften att skattekvoten sjunkit 5,5 procentenheter sedan 2010 var fel. Källa: OECD Revenue Statistics.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Statsskulden</b>1 316 miljarder kr (19 % av BNP) → 1 430 miljarder kr (21 %). Jämförelsen med EU-snittet gjordes mellan olika mått och är ersatt med den offentliga bruttoskulden: Sverige 35,1 %, EU 81,7 %. Källor: Riksgälden, Eurostat.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Medellivslängd och spädbarnsdödlighet</b>Medellivslängden uppdaterad till 84,1 år (OECD-snitt 81,2, 2024). Ett felaktigt OECD-snitt för spädbarnsdödlighet (5,7) är borttaget. Källa: Världsbanken.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Marginalskatten</b>Kortet räknade med en gammal regel för jobbskatteavdraget och visade för hög marginalskatt, till exempel 42 % i stället för 32 % vid 500 000 kr om året.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Polisen</b>3 400 → 4 600 kr per invånare och år (anslag 48,4 miljarder kr 2026). Källa: budgetpropositionen 2026.</div></li>
+    </ol>
   </div>
 </section>
 
@@ -2798,7 +2880,7 @@ html{scroll-padding-top:72px}
       </div>
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
         <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>Teamet</h3>
-        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen drivs av Wilhelm Wennergren. Modellen har genomgått granskning av tredje part.</p>
+        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen drivs av Wilhelm Wennergren. Modellen är öppen, och granskning och synpunkter är välkomna. Se <a href="#sa-arbetar-vi" style="color:var(--green)">Så arbetar vi</a>.</p>
       </div>
       <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
         <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clipboard"/></svg></span>Version & uppdateringar</h3>
@@ -2833,17 +2915,18 @@ const VYER = [
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
-  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
+  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
 ];
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
 // Foton i vyhuvudena (Wikimedia Commons, se img/foton/KREDITER.md). Tonas i sajtens grönt med CSS.
+const FOTO_VER = 2; // öka när en bildfil byts ut, så att webbläsarens cache inte visar den gamla
 const VY_FOTON = {
   'prislistan': {alt:"Gul-grön ambulans kör på en gata i Göteborg", av:"Marcusroos", lic:'CC BY-SA 3.0', licUrl:'https://creativecommons.org/licenses/by-sa/3.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Ambulance_in_Gothenburg.jpg", pos:'center 55%'},
-  'budgeten': {alt:"Pendeltåg av typen X60 vid perrongen i Knivsta", av:"AleWi", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:X60_i_Knivsta,_20220729.jpg", pos:'center 55%'},
-  'jamforelser': {alt:"Tomt klassrum med bänkar, stolar och whiteboard i Viktoriaskolan i Skara", av:"Joel Grafström", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Viktoriaskolan_Skara_klassrum_20170819.jpg", pos:'center 45%'},
-  'din-ekonomi': {alt:"Förskolegård med lekstuga och sandlåda vid Kvarnens förskola i Brastad", av:"W.carter", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Kvarnen_nursery_school_in_Brastad_4.jpg", pos:'center 55%'},
-  'framtid': {alt:"Långa rader av rostfria rör i en bergtunnel i Henriksdals reningsverk", av:"Freediving-beava", lic:'CC BY-SA 3.0', licUrl:'https://creativecommons.org/licenses/by-sa/3.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Stainless_pipes_at_Henriksdals_reningsverk.JPG", pos:'center 45%'},
-  'metod': {alt:"Bokhyllor och besökare i Stockholms stadsbibliotek", av:"Seier + Seier", lic:'CC BY 2.0', licUrl:'https://creativecommons.org/licenses/by/2.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Asplund_Stockholms_stadsbibliotek_04_(photo_by_Seier_on_Flickr).jpg", pos:'center 30%', ljus:1.8},
+  'budgeten': {alt:"Riksdagshuset på Helgeandsholmen i sommarsol, sett över Norrström", av:"ArildV", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Sveriges_riksdag_July_2025_01.jpg", pos:'45% 60%'},
+  'jamforelser': {alt:"Öresundsbron mellan Sverige och Danmark, sedd från luften över ett blått Öresund", av:"Nick-D", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:%C3%98resund_Bridge_from_the_air_in_September_2015.jpg", pos:'center 55%'},
+  'din-ekonomi': {alt:"Bostadshus vid en kanal i Västra hamnen i Malmö, med Turning Torso i bakgrunden", av:"ArildV", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:V%C3%A4stra_Hamnen_2026_01.jpg", pos:'center 40%'},
+  'framtid': {alt:"Ljus perrong med plattformsdörrar på Citybanans station Stockholm City", av:"Arild Vågen", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Stockholm_city_station_July_2017_01.jpg", pos:'center 50%'},
+  'metod': {alt:"Den ljusa rotundan i Stockholms stadsbibliotek med böcker längs de runda väggarna", av:"Arild Vågen", lic:'CC BY-SA 4.0', licUrl:'https://creativecommons.org/licenses/by-sa/4.0/deed.sv', kalla:"https://commons.wikimedia.org/wiki/File:Stockholm_Public_Library_January_2015_03.jpg", pos:'center 45%'},
 };
 const VY_PREFIX = [[/^fakta-\d+$/,'start','snabbfakta'],[/^kapitel-\d+$/,'start','kretslopp'],[/^gissa/,'prislistan','gissa'],[/^(ordlista|nyckeltal)$/,'metod','metod']];
 const BAS_TITEL = document.title;
@@ -2851,7 +2934,6 @@ const BAS_TITEL = document.title;
 (function initVyer(){
   const main = document.querySelector('main'); if(!main) return;
   document.querySelector('section.hero').id = document.querySelector('section.hero').id || 'hero';
-  const q = document.querySelector('section.quote-section'); if(q && !q.id) q.id = 'citat';
   const delTillVy = {}; VYER.forEach(v => v.delar.forEach(d => delTillVy[d] = v.id));
 
   // Tilldela vy till varje barn i <main>. Avdelare (hr) hör till nästa sektion.
@@ -2877,17 +2959,23 @@ const BAS_TITEL = document.title;
       const h = document.createElement('div');
       h.className = 'vy-huvud'; h.dataset.vy = v.id;
       const ft = VY_FOTON[v.id];
-      const foto = ft ? `<figure class="vy-foto" style="--pos:${ft.pos||'center'};--ljus:${ft.ljus||1}">
-          <div class="vy-foto-bild"><img src="img/foton/${v.id}.jpg" srcset="img/foton/${v.id}-800.jpg 800w, img/foton/${v.id}.jpg 1600w" sizes="(max-width:800px) 100vw, 1200px" alt="${ft.alt}" width="1600" height="500" loading="lazy" decoding="async"></div>
-          <figcaption>Foto: ${ft.av}, <a href="${ft.licUrl}" target="_blank" rel="noopener license">${ft.lic}</a>, via <a href="${ft.kalla}" target="_blank" rel="noopener">Wikimedia Commons</a> (färgtonad)</figcaption>
-        </figure>` : '';
-      h.innerHTML = foto + `<div class="container">
+      const foto = ft ? `<figure class="vy-foto">
+            <img src="img/foton/${v.id}.jpg?v=${FOTO_VER}" srcset="img/foton/${v.id}-800.jpg?v=${FOTO_VER} 800w, img/foton/${v.id}.jpg?v=${FOTO_VER} 1200w" sizes="(max-width:760px) 100vw, 560px" alt="${ft.alt}" width="1200" height="800" loading="lazy" decoding="async" style="object-position:${ft.pos||'center'}">
+            <figcaption><a href="${ft.kalla}" target="_blank" rel="noopener" title="Bildens sida på Wikimedia Commons">Foto: ${ft.av}</a> · <a href="${ft.licUrl}" target="_blank" rel="noopener license">${ft.lic}</a></figcaption>
+          </figure>` : '';
+      // Samma bredd som vyns första sektion, så att rubriken linjerar med innehållet
+      const inre = delar[0].querySelector(':scope > .cw, :scope > .container');
+      const bredd = inre && inre.classList.contains('cw') ? 'cw' : 'container';
+      h.innerHTML = `<div class="${bredd}"><div class="vy-grid${ft ? ' har-foto' : ''}">
+        <div class="vy-text">
         <nav class="vy-smula" aria-label="Du är här"><a href="#">Start</a> <span aria-hidden="true">›</span> <span aria-current="page">${v.namn}</span></nav>
         <h1 class="vy-titel">${v.namn}</h1>
         ${v.ingress ? `<p class="vy-ingress">${v.ingress}</p>` : ''}
         <p class="vy-datum">Uppdaterad ${SAJT_UPPDATERAD}</p>
         ${toc.length > 1 ? `<ul class="vy-toc" aria-label="Innehåll">${toc.join('')}</ul>` : ''}
-      </div>`;
+        </div>
+        ${foto}
+      </div></div>`;
       delar[0].before(h);
     }
     const nasta = VYER[(i + 1) % VYER.length];
@@ -2980,7 +3068,7 @@ const BAS_TITEL = document.title;
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
       <div class="fc"><h4>Vyer</h4><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
       <div class="fc"><h4>Metod</h4><a href="#metod">Så räknar vi</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
-      <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Om oss</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
+      <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Om oss</a><a href="#sa-arbetar-vi">Så arbetar vi</a><a href="#rattelser">Rättelser</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
     </div>
     <div class="footer-bottom">
       <span class="footer-legal">Text, siffror och diagram: <a href="https://creativecommons.org/licenses/by/4.0/deed.sv" target="_blank" rel="noopener license">CC BY 4.0</a>, fri att använda med källhänvisning till Skatteplattformen. Kod: MIT. Foton: licens enligt kreditraden vid varje bild. Underliggande statistik enligt respektive källas villkor.</span>
@@ -2995,14 +3083,14 @@ const BAS_TITEL = document.title;
 // Each amount = total_cost / volume directly from official statistics
 // ═══════════════════════════════════════════════════════════════════
 const CARDS = [
-  {cat:'utb',cl:'Utbildning',title:'Ett år i grundskolan',unit:'per elev och läsår (alla kostnadsslag)',amount:133000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis 6–16 år',src:'Skolverket, Kostnader för skolväsendet 2023 (okt 2024): cirka 133 000 kr per elev, alla huvudmän (undervisning 74 400, lokaler 22 900, skolmåltider 7 700, lärverktyg 5 800, elevhälsa 4 650, övrigt 17 800 kr). Kommunal huvudman 135 400 kr, enskild 121 700 kr.'},
-  {cat:'utb',cl:'Utbildning',title:'Ett år i gymnasiet',unit:'per elev och läsår',amount:141500,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — frivillig men gratis',src:'Skolverket, Kostnader för skolväsendet 2023 (okt 2024): 141 500 kr per elev, alla huvudmän (137 600 kr exklusive skolskjuts). Kostnaden varierar mellan program.'},
+  {cat:'utb',cl:'Utbildning',title:'Ett år i grundskolan',unit:'per elev och läsår (alla kostnadsslag)',amount:143000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis 6–16 år',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): cirka 143 000 kr per elev 2025, alla huvudmän (undervisning 78 700, lokaler 26 200, övrigt 18 400, skolmåltider 8 200, lärverktyg 6 400, elevhälsa 5 100 kr). Kommunal huvudman 145 300 kr, enskild 131 700 kr.'},
+  {cat:'utb',cl:'Utbildning',title:'Ett år i gymnasiet',unit:'per elev och läsår',amount:148100,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — frivillig men gratis',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): 148 100 kr per elev 2025, alla huvudmän (144 000 kr exklusive skolskjuts m.m.). Kommunal huvudman 148 400 kr, enskild 132 600 kr. Kostnaden varierar mellan program.'},
   {cat:'utb',cl:'Utbildning',title:'Ett år på högskola / universitetet',unit:'per helårsstudent (genomsnitt alla program)',amount:240000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> i studieavgift (EU/EES)',src:'SCB 2024: 93,6 Mdkr / 390 000 helårsstuderande = 240 000 kr. Läkarprogrammet ~350 tkr, humaniora ~80 tkr.'},
-  {cat:'utb',cl:'Utbildning',title:'Förskola, ett år',unit:'per inskrivet barn och år',amount:181800,suf:'kr',vs:'Maxtaxa: max <strong>1 614 kr/mån</strong> — kommunen betalar resten',src:'Skolverket, Kostnader för skolväsendet 2023 (okt 2024): 181 800 kr per inskrivet barn, alla huvudmän (kommunal förskola 184 600 kr). Personalen är den största kostnaden.'},
-  {cat:'helse',cl:'Hälsa & sjukvård',title:'Ett dygn på IVA',unit:'intensivvård, per dygn (snitt kat. II–III)',amount:55000,suf:'kr',vs:'Du betalar: <strong>130 kr/dygn</strong> (lagstadgad max)',src:'SKR KPP-databas 2024 + SWEsicReg. Spann 35 000–80 000 kr. Karolinska prislista 2025 bekräftar storleksordning.'},
+  {cat:'utb',cl:'Utbildning',title:'Förskola, ett år',unit:'per inskrivet barn och år, kommunal förskola',amount:199200,suf:'kr',vs:'Maxtaxa: max <strong>1 614 kr/mån</strong> — kommunen betalar resten',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): kommunernas kostnad för egna förskolor 199 200 kr per inskrivet barn 2025. Ersättningen till fristående förskolor var 172 800 kr per barn. Personalen är den största kostnaden.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'En förlossning (vaginal, okomplicerad)',unit:'per vårdtillfälle inkl. MVC och eftervård',amount:42000,suf:'kr',vs:'Du betalar: <strong>130–260 kr</strong> (1–2 dygn)',src:'SKR KPP DRG P05E ~30 000 kr + MVC/eftervård = ~42 000 kr totalt. Spann: Göteborg 27 200, Stockholm 41 000 kr (SVT/GP 2022).'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Läkarbesök, primärvård',unit:'per besök inkl. overhead och administration',amount:2400,suf:'kr',vs:'Du betalar: <strong>200–350 kr</strong> patientavgift',src:'SKR KPP-databas primärvård 2024: ~2 400 kr/besök. Patienten betalar 8–15% av faktisk kostnad.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Barnvaccinationsprogrammet (komplett)',unit:'per barn, hela programmet 0–18 år',amount:4200,suf:'kr totalt',vs:'Du betalar: <strong>0 kr</strong> — gratis via BVC',src:'Folkhälsomyndigheten 2024: ~10 sjukdomar, ~16 doser inkl. vaccin + BVC-besök + administration.'},
+  {cat:'helse',cl:'Hälsa & sjukvård',title:'Ett dygn på IVA',unit:'intensivvård, per vårddygn (uppskattning)',amount:50000,suf:'kr',vs:'Du betalar: <strong>högst 130 kr/dygn</strong> (avgift för slutenvård)',src:'Svenska Intensivvårdsregistret, årsrapport 2018: kostnaden för ett vårddygn på IVA kan uppskattas till 50 000–80 000 kr. Beloppet här är den lägre gränsen.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Tandvård 0–19 år',unit:'per person och år (genomsnitt)',amount:3800,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> — gratis t.o.m. året du fyller 19',src:'SKR: regionernas barn- och ungdomstandvård, ~3 800 kr/person/år. Åldersgränsen för fri tandvård sänktes från 23 till 19 år 1 jan 2025 (prop. 2023/24:158).'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'En höftledsoperation (primär)',unit:'per ingrepp, nationellt genomsnitt',amount:72000,suf:'kr',vs:'Du betalar: <strong>max 1 450 kr</strong> (frikortstak 2026)',src:'SKR KPP-databas DRG primär höftledsartroplastik 2024. ~18 000 ingrepp/år. Socialstyrelsens DRG-viktlista. Frikortstak höjt 1 300 → 1 450 kr 2026.'},
   {cat:'helse',cl:'Hälsa & sjukvård',title:'Ambulansutryckning',unit:'per insats inkl. sjuktransport',amount:8500,suf:'kr',vs:'Du betalar: <strong>0–200 kr</strong> (regionberoende)',src:'SKR/regionerna 2024: ~6,5 Mdkr / ~770 000 insatser = 8 440 kr/insats.'},
@@ -3019,7 +3107,7 @@ const CARDS = [
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Polisen per invånare och år',unit:'enbart polismyndigheten',amount:4600,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Budgetpropositionen 2026, UO4 anslag 1:1 Polismyndigheten: 48,4 Mdkr / 10,6 miljoner invånare ≈ 4 600 kr per invånare.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'En rättegång, tingsrätten',unit:'per mål (genomsnitt alla måltyper)',amount:38000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> som part i brottmål',src:'Domstolsverket 2024: ~600 000 mål / ~7,5 Mdkr = ~12 500 kr (ej rätt denominator). Brottmål med häktad: ~120 000 kr.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Försvaret per invånare, 2026',unit:'per invånare och år',amount:21300,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'UO6 2026: 225,0 Mdkr / 10,55M = ~21 300 kr/inv. Jmf 2010: 4 185 kr/inv = 5,1× nominellt. 2025: 168,8 Mdkr (cirka 16 000 kr/inv). Drivet av NATO-mål 3,5 % av BNP (Haag-toppmötet juni 2025) — största upprustningen sedan kalla krigets slut.'},
-  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Kriminalvård, per intagen och år',unit:'per plats i anstalt (dygnskostnad × 365)',amount:1390000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvården: cirka 3 800 kr per dygn i anstalt (2023) ≈ 1,4 Mkr per år. Kostnaden per plats varierar mellan säkerhetsklasser. Siffran bör stämmas av mot Kriminalvårdens senaste årsredovisning.'},
+  {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Kriminalvård, per intagen och år',unit:'per plats i anstalt (dygnskostnad × 365)',amount:1500000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvårdens årsredovisning 2025: vårddygnskostnad i anstalt 4 110 kr (2025) × 365 ≈ 1,5 Mkr per år. Kostnaden varierar mellan säkerhetsklasser.'},
   {cat:'trygghet',cl:'Trygghet & säkerhet',title:'Plats på SIS ungdomshem (tvångsvård), ett dygn',unit:'per plats och dygn — varierar med enhet och säkerhetsnivå',amount:9500,suf:'kr/dygn',vs:'Du betalar: <strong>0 kr</strong> — vård enligt LVU/LVM',src:'Statens institutionsstyrelse (SIS): vårdavgiften som kommunen betalar är ~6 950 kr/vårddygn (LVM 2025). Faktisk kostnad per plats varierar ~7 000–13 000 kr/dygn beroende på enhet och säkerhetsnivå — en låst plats är dyrast. ~9 500 kr/dygn ≈ 3,5 Mkr/år, i nivå med en anstaltsplats.'},
 
   // ── KRONISKA SJUKDOMAR ──────────────────────────────────────────
@@ -3072,7 +3160,7 @@ const DETAILS = {
     fakta: [
       'Teknikprogrammet kostar <strong>~180 000 kr/elev</strong>, humanistiska <strong>~115 000 kr</strong>',
       'Ca <strong>360 000 gymnasieelever</strong> 2024',
-      'Fristående gymnasieskola: <strong>129 300 kr/elev</strong> — 13% billigare',
+      'Gymnasieskola med enskild huvudman: <strong>132 600 kr/elev</strong> 2025, kommunal 148 400 kr',
       'Gymnasiet är frivilligt men gratis — avgiftsförbud i skollagen'
     ]
   },
@@ -3126,15 +3214,14 @@ const DETAILS = {
   },
   'Ett dygn på IVA': {
     finansiering: [
-      {label:'Regionskatt',pct:85,note:'Via hälso- och sjukvårdsbudgeten'},
-      {label:'Statsbidrag',pct:12,note:'Riktade medel'},
-      {label:'Patientavgift',pct:3,note:'130 kr/dygn — 0,2% av faktisk kostnad'}
+      {label:'Regionen (skatt)',pct:99.7,note:'Via hälso- och sjukvårdsbudgeten'},
+      {label:'Patientavgift',pct:0.3,note:'högst 130 kr/dygn'}
     ],
     fakta: [
-      'Spann: <strong>35 000–80 000 kr/dygn</strong> beroende på vårdnivå',
-      'Sverige har ca <strong>5,2 IVA-platser per 100 000</strong> invånare — bland lägst i EU',
-      'COVID-pandemin blottade kapacitetsproblem — platserna har utökats sedan dess',
-      'Lagstadgad maxavgift: <strong>130 kr/dygn</strong> — du betalar alltså 0,2% av kostnaden'
+      'Uppskattad kostnad: <strong>50 000–80 000 kr per vårddygn</strong> (Svenska Intensivvårdsregistret)',
+      'Sverige hade <strong>4,5 intensivvårdsplatser</strong> för vuxna per 100 000 invånare 2022. Snittet bland OECD-länderna i Europa var 17,6 (Läkarförbundet, efter OECD)',
+      'Socialstyrelsen bedömde 2024 att det saknas cirka <strong>50 intensivvårdsplatser</strong>',
+      'Patientavgiften är högst <strong>130 kr per dygn</strong>, mindre än en procent av kostnaden'
     ]
   },
   'Barnbidrag per år': {
@@ -3240,8 +3327,8 @@ const DETAILS = {
     fakta: [
       '<strong>770 000 ambulansinsatser</strong> per år i Sverige',
       'Medianresponstid: <strong>~14 minuter</strong> i tätort, längre på landsbygd',
-      'Hjärtinfarkt (AMI) 30-dagars dödlighet: <strong>≤7%</strong> — bland OECD:s bästa',
-      'Sverige: <strong>3,8 dagar</strong> genomsnittlig sjukhusvistelse vid AMI — kortast i EU'
+      'Hjärtinfarkt: <strong>3,4 %</strong> dör inom 30 dagar på sjukhus (2023), OECD-snitt 6,6 %',
+      'Sverige: <strong>3,9 dagar</strong> genomsnittlig vårdtid vid hjärtinfarkt (2021), kortast bland EU-länderna med uppgifter (Eurostat)'
     ]
   },
   'Ny asfaltbeläggning, 1 km riksväg': {
@@ -3338,7 +3425,7 @@ const DETAILS = {
       'Dödligt skjutvapenvåld 2024: <strong>45 döda</strong> (ned från 53 år 2023)',
       'Sverige leder EU i <strong>dödliga skjutningar per capita</strong> — ~4 per miljon',
       'Upplevd trygghet kvällstid: Sverige rankas <strong>#38 av 40</strong> europeiska länder',
-      'Fängelsepopulation: <strong>80 per 100 000</strong> — under OECD-snitt men stigande (+15,5% 2023–2024)'
+      'Intagna i fängelse: <strong>107 per 100 000</strong> invånare 2024, upp från 93 året innan (Eurostat)'
     ]
   },
   'En rättegång, tingsrätten': {
@@ -3357,10 +3444,10 @@ const DETAILS = {
       {label:'Statlig (Kriminalvården)',pct:100,note:'UO4 rättsväsendet'}
     ],
     fakta: [
-      '<strong>9 200 intagna</strong> i snitt — anstalterna är <strong>överfulla</strong>',
+      'I snitt cirka <strong>8 500 inskrivna i anstalt</strong> och 3 600 i häkte (2025)',
       'Återfall: ca <strong>20% återfaller inom 2 år</strong> — sjunkande trend sedan 2000',
-      'Norges modell: <strong>56 per 100 000</strong> — bland världens lägsta',
-      'Sverige: <strong>cirka 1,4 Mkr per intagen och år</strong> (Kriminalvården)'
+      'Norge: <strong>61 per 100 000</strong> invånare i fängelse (2024, Eurostat)',
+      'Sverige: <strong>cirka 1,5 Mkr per intagen och år</strong> (Kriminalvården, 2025)'
     ]
   }
 };
@@ -3607,9 +3694,9 @@ const NYCKELTAL = {
   vardgaranti:    {namn:'Medicinsk bedömning i primärvården inom 3 dagar', v:'91 %', ar:'aug 2026', kalla:'socialstyrelsen', gamla:['0–7–90','~50 %<sub> (SKR','Stockholm 62 %']},
   medellivslangd: {namn:'Medellivslängd',                     v:'84,1 år (OECD-snitt 81,2)', ar:'2024', kalla:'varldsbanken', gamla:['83,5 år','80,7','83,4 år','81,1']},
   aldre80:        {namn:'Personer 80 år och äldre',           v:'≈ 650 000 (2024) → 812 000 (2030)', ar:'2025–2070', kalla:'scb_befolkning', gamla:['601 000','668 000','895 000','+11 %<sub>']},
-  grundskola:     {namn:'Grundskola, kostnad per elev',       v:'133 000 kr',    ar:'2023', kalla:'skolverket',   gamla:['152 000 kr/elev','152 tkr/elev']},
-  gymnasium:      {namn:'Gymnasieskola, kostnad per elev',    v:'141 500 kr',    ar:'2023', kalla:'skolverket',   gamla:['148 000 kr/elev']},
-  forskola:       {namn:'Förskola, kostnad per barn',         v:'181 800 kr',    ar:'2023', kalla:'skolverket',   gamla:['185 000 kr/barn']},
+  grundskola:     {namn:'Grundskola, kostnad per elev',       v:'143 000 kr',    ar:'2025', kalla:'skolverket2025', gamla:['152 000 kr/elev','152 tkr/elev','133 000 kr','133 tkr/elev']},
+  gymnasium:      {namn:'Gymnasieskola, kostnad per elev',    v:'148 100 kr',    ar:'2025', kalla:'skolverket2025', gamla:['148 000 kr/elev','141 500 kr','141,5 tkr','142 tkr/elev']},
+  forskola:       {namn:'Förskola, kostnad per barn (kommunal)', v:'199 200 kr', ar:'2025', kalla:'skolverket2025', gamla:['185 000 kr/barn','181 800 kr']},
 };
 
 // Länka källnamn i källrader. Körs vid start och efter att prislistan ritats om.
@@ -3744,8 +3831,8 @@ const FAKTA = [
    p:'Skatten dras innan lönen betalas ut, så 20 516 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
    kalla:'Skatteverket, skattetabell 32 och arbetsgivaravgifter', ar:'2026'},
   {tema:'Medianlönen', h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7700,c:'red'},{l:'Kvar efter skatt',v:30600,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
-   p:'Medianlönen är 38 300 kronor i månaden. Skatten blir cirka 7 700 kronor. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7750,c:'red'},{l:'Kvar efter skatt',v:30550,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
+   p:'Medianlönen är 38 300 kronor i månaden. Skatten blir 7 750 kronor enligt Skatteverkets skattetabell 32, alltså ungefär 20 procent. Kommunalskatten är drygt 32 procent, men grundavdraget och jobbskatteavdraget sänker den. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
    kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
   {tema:'Pension', h:'Drygt 17 procent av lönen sparas till din allmänna pension',
    chart:{type:'bars', unit:' kr', rows:[{l:'Inkomstpension',v:3720,c:'blue'},{l:'Premiepension',v:581,c:'purple'}], note:'pensionsrätt per månad vid en lön på 25 000 kr'},
@@ -4052,13 +4139,13 @@ let hskIncome = Math.round(MEDIAN_LON_MAN*12/1000);   // medianlön, tkr/år
 // pausa på hover, manuella dots, respektera prefers-reduced-motion.
 const HERO_PRISLAPPAR = [
   {cat:'Utbildning', title:'En grundskoleelev, ett år',
-   amount:'133 000', suf:'kr', vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis'},
+   amount:'143 000', suf:'kr', vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis'},
   {cat:'Kronisk sjukdom', title:'En MS-patient, ett år',
    amount:'380 000', suf:'kr', vs:'Du betalar: <strong>max 2 950 kr/år</strong> (högkostnadsskydd)'},
   {cat:'Funktionsnedsättning', title:'En person med personlig assistans (LSS)',
    amount:'1,3', suf:'Mkr/år', vs:'Du betalar: <strong>0 kr</strong> — ingen avgift för LSS-insatser'},
   {cat:'Förskola', title:'En förskoleplats, ett år',
-   amount:'181 800', suf:'kr', vs:'Du betalar: <strong>max 1 614 kr/mån</strong> via maxtaxan'},
+   amount:'199 200', suf:'kr', vs:'Du betalar: <strong>max 1 614 kr/mån</strong> via maxtaxan'},
   {cat:'Äldreomsorg', title:'Demens-vård i livets slutskede, per år',
    amount:'680 000', suf:'kr', vs:'Du betalar: <strong>max 2 365 kr/mån</strong> (~4 % av faktisk kostnad)'},
   {cat:'Hälsa & sjukvård', title:'En cancerbehandling, hela perioden',
@@ -4395,13 +4482,13 @@ const LIVSFASER_V2 = [
    källa:'Skolverket 2023: förskola 181,8 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 ≈ 110 tkr i åldersmedel. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
    note:'Förskola cirka 182 tkr/inskrivet barn/år men 0-åringar och 6-åringar går inte → åldersmedel cirka 110 tkr. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
   {id:'elev',       icon:'backpack', label:'Grundskoleelev',           min:7,  max:15,
-   f:{utb:133, sj:18, soc:25, koll:50, oms:0},
-   källa:'Skolverket 2023: grundskola cirka 133 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa och lokaler.',
-   note:'Grundskola cirka 133 tkr/elev/år inkl. skolmat, elevhälsa och lokaler. Barnbidrag, fritids.'},
+   f:{utb:143, sj:18, soc:25, koll:50, oms:0},
+   källa:'Skolverket 2025: grundskola cirka 143 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa och lokaler.',
+   note:'Grundskola cirka 143 tkr/elev/år inkl. skolmat, elevhälsa och lokaler. Barnbidrag, fritids.'},
   {id:'gymn',       icon:'book', label:'Gymnasieelev',             min:16, max:18,
-   f:{utb:142, sj:20, soc:26, koll:50, oms:0},
-   källa:'Skolverket 2023: gymnasieskola 141,5 tkr/elev, alla huvudmän.',
-   note:'Gymnasiet cirka 142 tkr/elev/år. Kostnaden varierar mellan program.'},
+   f:{utb:148, sj:20, soc:26, koll:50, oms:0},
+   källa:'Skolverket 2025: gymnasieskola 148,1 tkr/elev, alla huvudmän.',
+   note:'Gymnasiet cirka 148 tkr/elev/år. Kostnaden varierar mellan program.'},
   {id:'student',    icon:'cap', label:'Student / ung vuxen',      min:19, max:25,
    f:{utb:110, sj:25, soc:37, koll:50, oms:0},
    källa:'UKÄ 2024: 240 tkr/helårsstudent × 45% studerar = ~110 tkr genomsnitt. CSN studiebidrag ~36 tkr/år.',
@@ -4819,7 +4906,7 @@ function updateCalc(){
   // Solidarity text — varies by life stage
   const solidarityTexts = {
     'barn': 'Samhället investerar i varje barn — skola, vård, trygghet — innan de ännu betalat en krona i skatt. Det är fundamentet i den svenska modellen.',
-    'elev': 'Din skolgång kostar samhället cirka 133 000 kr per år (se prislistan). Den betalas av dem som arbetar: föräldrar, mor- och farföräldrar och grannar utan barn.',
+    'elev': 'Din skolgång kostar samhället cirka 143 000 kr per år (se prislistan). Den betalas av dem som arbetar: föräldrar, mor- och farföräldrar och grannar utan barn.',
     'gymn': 'Gymnasiet är frivilligt men gratis. Samhällets investering i dig fortsätter. Pengarna kommer från de som befinner sig i arbetslivet.',
     'student': 'En högre utbildning kostar ~240 000 kr/år per student. Sverige är ett av få länder som gör detta gratis — finansierat av skattebetalarna.',
     'ung_arb': 'I år betalar du mer i skatt än du konsumerar i direkta förmåner — men räknat från födseln (skola, vård, barnår) är de flesta fortfarande nettomottagare. Systemet är ett kollektivt försäkringsarrangemang, inte ett lån.',
@@ -5125,7 +5212,7 @@ const VDA_FACTS = [
   'Barnvaccinationsprogrammet kostar <strong>~4 200 kr per barn</strong> (hela programmet 0–18 år, ~16 doser) — gratis via BVC och en av vårdens mest kostnadseffektiva insatser',
   // KORRIGERAT: 5,3% primary-gymnasie (OECD EaG 2025); inkl. förskola+högskoleforskning ~6,5%. 7,1% är överskattning.
   'Sverige satsar <strong>~6,5% av BNP</strong> på utbildning (alla nivåer inkl. forskning) — bland de högsta i OECD',
-  'Kriminalvård kostar cirka <strong>1,4 Mkr per intagen och år</strong>, ungefär sex gånger så mycket som ett år på högskolan',
+  'Kriminalvård kostar cirka <strong>1,5 Mkr per intagen och år</strong>, ungefär sex gånger så mycket som ett år på högskolan',
   'Döda i vägtrafiken i Sverige: <strong>20 per miljon</strong> invånare 2024. EU-snittet: 44 (Eurostat)',
   // Världsbanken WDI 2024: Sverige 84,1, OECD-snitt 81,2 (ovägt medel, 38 länder). SCB 2025: kvinnor 85,55, män 82,52.
   'Sveriges medellivslängd: <strong>84,1 år</strong> (2024). OECD-snittet: 81,2 år (Världsbanken)',
