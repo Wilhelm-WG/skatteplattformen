@@ -61,6 +61,7 @@ correspondence/
 - Endast Wikimedia Commons (CC0, CC BY, CC BY-SA), helst kvalitetsmärkta bilder. `VY_FOTON` i index.html: alt-text, fotograf, licens, länk, `pos` (object-position)
 - Filnamn = vyns id (`budgeten.jpg` 1 200 px + `budgeten-800.jpg`). Filerna bearbetas inte utöver nedskalning. Visas i naturliga färger till höger om vyrubriken, kredit som etikett i bildens hörn
 - Byts en bildfil: öka `FOTO_VER` så att webbläsarnas cache hämtar den nya
+- Kredit: i-knapp i bildens hörn (`.foto-info`) som länkar till `#bildkrediter`; listan där genereras ur `VY_FOTON`. Startsidans fotokort (`.vy-gv`) använder `<vy>-560.jpg` och har en samlad kreditrad
 - Uppdatera `img/foton/KREDITER.md` vid byte av foto
 
 **Licens:** text, siffror och diagram CC BY 4.0; kod MIT; foton enligt kreditraden.

@@ -10,6 +10,30 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-28) — "Sex vägar in" som fotokort, diskretare fotokrediter
+
+- **"Sex vägar in"** visas som fotokort: vyns foto med siffran i vitt på bilden,
+  vyns namn med pil och en fråga riktad till läsaren. Tre kolumner på dator,
+  två på surfplatta, svepbar rad på mobil. Nya 560 px-versioner av fotona.
+- **Fotokrediter:** i vyhuvudena en liten i-knapp i bildens hörn som visar
+  fotograf och licens vid hovring eller fokus och leder till den nya sidan
+  **Bildkrediter** (`#bildkrediter`, i Metod och källor, genereras ur
+  `VY_FOTON`). Fotokorten på startsidan har en samlad rad "Foton: Wikimedia
+  Commons · Bildkrediter". Länk även i sidfoten.
+
+### Fixed (2026-10-28) — Återställda jämförelser och försvarets andel av BNP
+
+- **Återställda jämförelser** som togs bort i steg 4 för att källorna inte gick att
+  hämta automatiskt: vuxnas läsförmåga (PIAAC 2023), läkemedelsutgifter per
+  invånare (2022), utgifter per elev (2022), förtroende för regeringen (2023),
+  höga boendekostnader (Eurostat 2025), dödligt våld (UNODC 2023) och
+  försvarsutgifter (Nato 2024). Nu 28 jämförelsediagram. Detaljpanelerna för
+  grundskolan, polisen och försvaret visar motsvarande diagram; höftledspanelen
+  har väntetiderna (OECD 2023) som faktarad.
+- **Försvaret:** "3,5 % av BNP 2026" → 2,8 % 2026 och 3,1 % från 2028; 3,5 % är
+  målet till 2030 (regeringen, september 2025). Värderande formulering i
+  försvarskortet borttagen.
+
 ### Changed (2026-10-28) — Så arbetar vi, rättelser, faktakontroll och nya foton
 
 - **Så arbetar vi** (`#sa-arbetar-vi`) och **Rättelser** (`#rattelser`) i vyn

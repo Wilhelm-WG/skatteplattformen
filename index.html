@@ -779,10 +779,21 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .vy-grid.har-foto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.5rem;align-items:center}
 .vy-foto{position:relative;margin:1.6rem 0 0;border-radius:14px;overflow:hidden;aspect-ratio:3/2;background:var(--bg2);box-shadow:0 1px 2px rgba(26,24,19,.06),0 12px 32px rgba(26,24,19,.12)}
 .vy-foto img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03)}
-.vy-foto figcaption{position:absolute;right:.6rem;bottom:.6rem;font-size:.62rem;line-height:1;padding:.35rem .55rem;border-radius:999px;background:rgba(20,20,18,.48);color:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:.85;transition:opacity .2s}
-.vy-foto figcaption a{color:inherit;text-decoration:none}
-.vy-foto figcaption a:hover{text-decoration:underline}
-.vy-foto:hover figcaption,.vy-foto figcaption:focus-within{opacity:1}
+/* Fotokredit: liten i-knapp i hörnet; namn och licens visas vid hovring/fokus, klick leder till bildkrediterna */
+.vy-foto figcaption{position:absolute;right:.55rem;bottom:.55rem}
+.foto-info{display:flex;align-items:center;height:24px;border-radius:999px;background:rgba(20,20,18,.5);color:#fff;text-decoration:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);font-size:.62rem;line-height:1;overflow:hidden;max-width:24px;transition:max-width .3s ease,background .2s}
+.foto-info-i{flex:none;width:24px;text-align:center;font-family:var(--serif);font-style:italic;font-weight:600;font-size:.82rem}
+.foto-info-txt{white-space:nowrap;padding-right:.6rem;opacity:0;transition:opacity .2s}
+.vy-foto:hover .foto-info,.foto-info:focus-visible{max-width:22rem;background:rgba(20,20,18,.62)}
+.vy-foto:hover .foto-info-txt,.foto-info:focus-visible .foto-info-txt{opacity:1}
+.foto-info:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.foto-info,.foto-info-txt{transition:none}}
+/* Bildkrediter */
+.bk-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1.2rem;padding:0;list-style:none}
+.bk-lista li{display:grid;grid-template-columns:88px 1fr;gap:.8rem;align-items:start;font-size:.8rem;line-height:1.5;color:var(--ink2)}
+.bk-lista img{width:88px;height:62px;object-fit:cover;border-radius:6px;display:block}
+.bk-lista b{display:block;color:var(--ink);font-weight:600}
+.bk-lista a{color:var(--green)}
 @media(max-width:760px){
   .vy-grid.har-foto{grid-template-columns:1fr;gap:0}
   .vy-grid.har-foto .vy-foto{order:-1;margin:0 -16px;border-radius:0;aspect-ratio:16/9;box-shadow:none}
@@ -815,12 +826,24 @@ html{scroll-padding-top:72px}
 .vy-nasta{display:inline-flex;align-items:center;gap:.5rem;font-size:1rem;font-weight:500;color:var(--green);text-decoration:none;padding:12px 20px;border:1px solid var(--green);border-radius:var(--r-sm)}
 .vy-nasta:hover{background:var(--green-ll)}
 .vy-nasta:focus-visible,.vy-toc a:focus-visible,.vy-smula a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-.vy-genvagar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1.4rem}
-.vy-gv{display:block;padding:1rem 1.1rem;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:border-color .15s}
-.vy-gv:hover{border-color:var(--green)}
-.vy-gv-tal{display:block;font-style:normal;font-family:var(--mono);font-size:.82rem;color:var(--green);margin-bottom:.35rem}
-.vy-gv b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:600;margin-bottom:.25rem}
-.vy-gv span{font-size:.82rem;color:var(--ink2);line-height:1.45}
+.vy-genvagar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem;margin:1.4rem 0 0;padding:0;list-style:none}
+.vy-gv{display:flex;flex-direction:column;height:100%;background:var(--paper);border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s,border-color .2s}
+.vy-gv-foto{position:relative;aspect-ratio:16/9;background:var(--bg2);overflow:hidden}
+.vy-gv-foto img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.03);transition:transform .5s ease}
+.vy-gv-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,20,18,0) 30%,rgba(20,20,18,.35) 60%,rgba(20,20,18,.78))}
+.vy-gv-tal{position:absolute;left:.75rem;bottom:.7rem;z-index:1;font-style:normal;font-family:var(--mono);font-size:1.15rem;font-weight:500;line-height:1;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.vy-gv-tal small{display:block;font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-top:.3rem}
+.vy-gv-text{display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.1rem 1.05rem;flex:1}
+.vy-gv b{display:flex;justify-content:space-between;gap:.5rem;font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1.15}
+.vy-gv b .ico{color:var(--green);margin-top:.2rem;transition:transform .2s}
+.vy-gv-text > span{font-size:.86rem;color:var(--ink2);line-height:1.45}
+.vy-gv:hover{box-shadow:0 2px 4px rgba(26,24,19,.06),0 12px 28px rgba(26,24,19,.12);border-color:rgba(27,77,62,.35);transform:translateY(-2px)}
+.vy-gv:hover img{transform:scale(1.04)}.vy-gv:hover b .ico{transform:translateX(3px)}
+.vy-gv:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.vy-gv-krediter{margin-top:.9rem;font-size:.7rem;color:var(--ink3)}.vy-gv-krediter a{color:var(--ink3)}
+@media(max-width:960px){.vy-genvagar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.vy-genvagar.m-swipe{grid-auto-columns:78%!important}.vy-gv b{font-size:1.15rem}}
+@media(prefers-reduced-motion:reduce){.vy-gv,.vy-gv img,.vy-gv b .ico{transition:none}.vy-gv:hover{transform:none}.vy-gv:hover img{transform:none}}
 /* ═══ MOBILANPASSNING (≤ 640 px) — samlad sist så att den vinner över tidigare regler ═══ */
 .pg-more{grid-column:1/-1;justify-self:center;margin-top:.4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--green);background:var(--paper);border:1px solid var(--green);border-radius:99px;padding:.7rem 1.4rem;cursor:pointer}
 .pg-more:hover{background:var(--green-ll)}
@@ -897,6 +920,7 @@ html{scroll-padding-top:72px}
 <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></symbol>
 <symbol id="i-bus" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="2.5"/><path d="M5 11h14M7.5 18v2.5M16.5 18v2.5"/><circle cx="8.5" cy="14.5" r=".8"/><circle cx="15.5" cy="14.5" r=".8"/></symbol>
 <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 4C5.3 4 4 5.8 4 8c0 3 1.6 4.2 2.1 7.2.4 2.5.8 4.8 2 4.8 1.3 0 1.4-4 2.9-4h2c1.5 0 1.6 4 2.9 4 1.2 0 1.6-2.3 2-4.8.5-3 2.1-4.2 2.1-7.2 0-2.2-1.3-4-3.5-4-1.7 0-2.6 1-4.5 1S9.2 4 7.5 4z"/></symbol>
+<symbol id="i-pil" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
 </defs></svg>
 
 <a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a>
@@ -1015,14 +1039,15 @@ html{scroll-padding-top:72px}
   <div class="cw">
     <p class="s-eye" style="text-align:center;margin-bottom:.3rem">Hitta rätt</p>
     <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Sex vägar in</h2>
-    <div class="vy-genvagar">
-      <a href="#pristabell" class="vy-gv"><em class="vy-gv-tal"><span data-cards-total>37</span> prislappar</em><b>Prislistan</b><span>Vad kostar en dag i förskolan, en ambulansutryckning eller en rättegång?</span></a>
-      <a href="#budget" class="vy-gv"><em class="vy-gv-tal">1 542 Mdkr</em><b>Budgeten</b><span>Statens utgifter 2026, fördelade på 27 områden, och hela den offentliga sektorn.</span></a>
-      <a href="#oecd" class="vy-gv"><em class="vy-gv-tal">7 länder</em><b>Jämförelser</b><span>Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, med en källa per diagram.</span></a>
-      <a href="#kalkylator" class="vy-gv"><em class="vy-gv-tal">Din lön</em><b>Din ekonomi</b><span>Räkna på din egen skatt och se vad du får tillbaka i olika delar av livet.</span></a>
-      <a href="#framtid" class="vy-gv"><em class="vy-gv-tal">1980–2035</em><b>Framtid och historik</b><span>Hur skatter, skuld och välfärd har förändrats, och vad som väntar.</span></a>
-      <a href="#metod" class="vy-gv"><em class="vy-gv-tal">Öppen metod</em><b>Metod och källor</b><span>Hur siffrorna räknas fram, nyckeltal med källa och år, och ordlistan.</span></a>
-    </div>
+    <ul class="vy-genvagar m-swipe">
+      <li><a href="#pristabell" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/prislistan-560.jpg?v=2" srcset="img/foton/prislistan-560.jpg?v=2 560w, img/foton/prislistan-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:center 55%"><em class="vy-gv-tal"><span data-cards-total>37</span><small>prislappar</small></em></span><span class="vy-gv-text"><b>Prislistan <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vad kostar en ambulansutryckning, en dag i förskolan eller en rättegång?</span></span></a></li>
+      <li><a href="#budget" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/budgeten-560.jpg?v=2" srcset="img/foton/budgeten-560.jpg?v=2 560w, img/foton/budgeten-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:45% 60%"><em class="vy-gv-tal">1 542 Mdkr<small>statens budget 2026</small></em></span><span class="vy-gv-text"><b>Budgeten <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vart går pengarna? Statens 27 utgiftsområden och hela den offentliga sektorn.</span></span></a></li>
+      <li><a href="#oecd" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/jamforelser-560.jpg?v=2" srcset="img/foton/jamforelser-560.jpg?v=2 560w, img/foton/jamforelser-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:center 55%"><em class="vy-gv-tal">7 länder<small>jämförs</small></em></span><span class="vy-gv-text"><b>Jämförelser <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur står sig Sverige mot Norden, Tyskland, USA och OECD-snittet?</span></span></a></li>
+      <li><a href="#kalkylator" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/din-ekonomi-560.jpg?v=2" srcset="img/foton/din-ekonomi-560.jpg?v=2 560w, img/foton/din-ekonomi-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:center 40%"><em class="vy-gv-tal">Din lön<small>räkna själv</small></em></span><span class="vy-gv-text"><b>Din ekonomi <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur mycket skatt betalar du, och vad får du tillbaka i olika delar av livet?</span></span></a></li>
+      <li><a href="#framtid" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/framtid-560.jpg?v=2" srcset="img/foton/framtid-560.jpg?v=2 560w, img/foton/framtid-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:center 50%"><em class="vy-gv-tal">1980–2035<small>55 år</small></em></span><span class="vy-gv-text"><b>Framtid och historik <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur har skatter, skuld och välfärd förändrats, och vad väntar?</span></span></a></li>
+      <li><a href="#metod" class="vy-gv"><span class="vy-gv-foto"><img src="img/foton/metod-560.jpg?v=2" srcset="img/foton/metod-560.jpg?v=2 560w, img/foton/metod-800.jpg?v=2 800w" sizes="(max-width:640px) 78vw, (max-width:960px) 50vw, 400px" alt="" loading="lazy" decoding="async" width="560" height="420" style="object-position:center 45%"><em class="vy-gv-tal">Källa + år<small>för varje siffra</small></em></span><span class="vy-gv-text"><b>Metod och källor <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur siffrorna räknas fram, nyckeltalen med källa och år, och ordlistan.</span></span></a></li>
+    </ul>
+    <p class="vy-gv-krediter">Foton: Wikimedia Commons · <a href="#bildkrediter">Bildkrediter</a></p>
   </div>
 </section>
 
@@ -1772,7 +1797,7 @@ html{scroll-padding-top:72px}
         </div>
       </div>
 
-      <div data-jmf="sjukvard:6"></div>
+      <div data-jmf="sjukvard:7"></div>
 
       <div class="ft-callout" style="margin-top:1.2rem">
         <strong>Strukturellt val, inte slump:</strong> Sveriges strategi sedan 1990-talet har varit att flytta vård ut ur sjukhus — till primärvård, hemsjukvård och öppenvård. Den klarar normalläget med färre sängar. Men under covid-pandemin och vinterns influensa-toppar blottas systemets svagaste länk: inga "buffert"-platser att skala upp till.
@@ -2114,14 +2139,14 @@ html{scroll-padding-top:72px}
           <div class="ft-desc">Från 168,8 Mdkr (2025) till <strong>225,0 Mdkr (2026)</strong> = +56,2 Mdkr / +33 %. Största enskilda årsökningen någonsin — beslut nov 2025 enligt BP2026.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">NATO-mål 2030</div>
-          <div class="ft-big">3,5 %<sub> av BNP</sub></div>
-          <div class="ft-desc">Från 2,0 % (2024) till ~3,5 % (2026) — Sverige når NATO:s nya Haag-mål redan 2026. Vid BNP ~6 700 Mdkr 2026 innebär 3,5 % = 234 Mdkr/år. 2030: BNP ~7 200 Mdkr → 3,5 % = 252 Mdkr.</div>
+          <div class="ft-card-title">Andel av BNP 2026</div>
+          <div class="ft-big">2,8 %<sub> av BNP</sub></div>
+          <div class="ft-desc">Försvarsutgifterna beräknas till 2,8 procent av BNP 2026 enligt Natos definition, och 3,1 procent från 2028. Natos nya mål, som Sverige ställt sig bakom, är 3,5 procent till 2030. År 2024 låg Sverige på 2,3 procent (Nato).</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Totalförsvarets ökning 2025→2030</div>
           <div class="ft-big">+85<sub> Mdkr/år</sub></div>
-          <div class="ft-desc">Ökningen från 168 (2025) till ~252 (2030) Mdkr/år motsvarar ungefär hela utbildningsbudgeten (UO16). Pengar som måste tas från annat — eller finansieras med lån. Budgetunderskottet 2026 är 167 Mdkr.</div>
+          <div class="ft-desc">Om utgifterna når 3,5 procent av BNP 2030 blir de cirka 252 Mdkr per år (uppskattning vid en BNP på cirka 7 200 Mdkr). Ökningen från 2025 motsvarar ungefär statens utgifter för utbildning och universitetsforskning (UO16). Statens budgetunderskott 2026 är 167 Mdkr.</div>
         </div>
       </div>
 
@@ -2154,7 +2179,7 @@ html{scroll-padding-top:72px}
         </div>
       </div>
 
-      <p class="ft-source">Källor: Budgetpropositionen 2026 (prop. 2025/26:1) UO6 = 225,0 Mdkr, Försvarsbeslut 2025–2030 (Prop. 2024/25:121), NATO Defence Expenditure 2024, NATO Haag-toppmöte 25 juni 2025 (3,5 %-beslut).</p>
+      <p class="ft-source">Källor: Budgetpropositionen 2026 (prop. 2025/26:1) UO6 = 225,0 Mdkr, Försvarsbeslut 2025–2030 (Prop. 2024/25:121), Nato, Defence Expenditure of NATO Countries 2014–2025, Natos toppmöte i Haag juni 2025 (mål 3,5 %), regeringen (pressmeddelande sept 2025: 2,8 % av BNP 2026).</p>
     </div>
 
     <!-- ── STATSSKULD & RÄNTOR ── -->
@@ -2845,6 +2870,8 @@ html{scroll-padding-top:72px}
     <h2 class="s-title">Rättelser</h2>
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Försvarets andel av BNP</b>"Sverige når 3,5 % av BNP 2026" var fel. Försvarsutgifterna beräknas till 2,8 % av BNP 2026 och 3,1 % från 2028; 3,5 % är målet till 2030. Källa: regeringen, september 2025.</div></li>
+      <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Internationella jämförelser återställda</b>Vuxnas läsförmåga, läkemedelsutgifter, utgifter per elev, förtroende för regeringen, boendekostnader, dödligt våld och försvarsutgifter togs bort tidigare samma dag eftersom källorna inte gick att hämta automatiskt. De är tillbaka med kontrollerade värden. Flera gamla värden var fel: Norges väntetid för höftled var 176 dagar, inte 90; läkemedelsutgifterna och boendekostnaderna stämde inte med källorna.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Sjukvårdens utfall</b>Stroke: 7,2 % (OECD-snitt 12,4) gick inte att belägga → 4,9 % (OECD-snitt 8,3), ischemisk stroke 2023. Hjärtinfarkt: Socialstyrelsens siffra inklusive dödsfall utanför sjukhus är 21 %, inte 13 %. Bröstcancer: 93 % (2020) i stället för 92,3 % (2016–2020); OECD-snittet 87,0 % gick inte att belägga. Källor: OECD, Socialstyrelsen.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Vårdplatser och läkare</b>"2 230 stängda vårdplatser (IVO 2024)": siffran kommer från Socialstyrelsen (maj 2024) och avser vårdplatser som saknas, inte stängda platser. "43 % av patienterna märker bristen" var en felläsning: 43 % var svarsfrekvensen i Läkarförbundets enkät, där var fjärde läkare uppgav att de varje vecka tvingas skriva ut patienter för tidigt. Läkartätheten "Stockholm 5,8, Norrbotten 3,1" gick inte att belägga; enligt Socialstyrelsen är den högst i Uppsala och Västerbotten och lägst i Norrbotten. Läkare per 1 000 invånare: 4,7 (2024).</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Utbildningsutgifter</b>"7,1 % av BNP, 45 % över OECD-snittet" → 5,3 % (2022), cirka 13 % över OECD-snittet 4,7 %. Källa: OECD Education at a Glance.</div></li>
@@ -2861,6 +2888,16 @@ html{scroll-padding-top:72px}
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Marginalskatten</b>Kortet räknade med en gammal regel för jobbskatteavdraget och visade för hög marginalskatt, till exempel 42 % i stället för 32 % vid 500 000 kr om året.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Polisen</b>3 400 → 4 600 kr per invånare och år (anslag 48,4 miljarder kr 2026). Källa: budgetpropositionen 2026.</div></li>
     </ol>
+  </div>
+</section>
+
+<!-- BILDKREDITER (genereras ur VY_FOTON) -->
+<section class="section" id="bildkrediter" aria-label="Bildkrediter" style="padding:2rem 0 3rem">
+  <div class="cw">
+    <p class="s-eye">Foton</p>
+    <h2 class="s-title">Bildkrediter</h2>
+    <p class="s-sub">Fotona på sajten kommer från Wikimedia Commons och används enligt sina licenser. De är bara nedskalade.</p>
+    <ul class="bk-lista" id="bk-lista"></ul>
   </div>
 </section>
 
@@ -2915,7 +2952,7 @@ const VYER = [
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp'], ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
-  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
+  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
 ];
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
 // Foton i vyhuvudena (Wikimedia Commons, se img/foton/KREDITER.md). Tonas i sajtens grönt med CSS.
@@ -2961,7 +2998,7 @@ const BAS_TITEL = document.title;
       const ft = VY_FOTON[v.id];
       const foto = ft ? `<figure class="vy-foto">
             <img src="img/foton/${v.id}.jpg?v=${FOTO_VER}" srcset="img/foton/${v.id}-800.jpg?v=${FOTO_VER} 800w, img/foton/${v.id}.jpg?v=${FOTO_VER} 1200w" sizes="(max-width:760px) 100vw, 560px" alt="${ft.alt}" width="1200" height="800" loading="lazy" decoding="async" style="object-position:${ft.pos||'center'}">
-            <figcaption><a href="${ft.kalla}" target="_blank" rel="noopener" title="Bildens sida på Wikimedia Commons">Foto: ${ft.av}</a> · <a href="${ft.licUrl}" target="_blank" rel="noopener license">${ft.lic}</a></figcaption>
+            <figcaption><a class="foto-info" href="#bildkrediter" aria-label="Foto: ${ft.av}, ${ft.lic}. Visa bildkrediter"><span class="foto-info-i" aria-hidden="true">i</span><span class="foto-info-txt" aria-hidden="true">Foto: ${ft.av} · ${ft.lic}</span></a></figcaption>
           </figure>` : '';
       // Samma bredd som vyns första sektion, så att rubriken linjerar med innehållet
       const inre = delar[0].querySelector(':scope > .cw, :scope > .container');
@@ -2985,6 +3022,10 @@ const BAS_TITEL = document.title;
     delar[delar.length - 1].after(f);
   });
 
+  // Bildkrediter ur VY_FOTON
+  const bk = document.getElementById('bk-lista');
+  if(bk) bk.innerHTML = VYER.filter(v => VY_FOTON[v.id]).map(v => { const f = VY_FOTON[v.id];
+    return `<li><img src="img/foton/${v.id}-560.jpg?v=${FOTO_VER}" alt="" loading="lazy" decoding="async" width="88" height="62"><div><b>${f.alt}</b>Foto: ${f.av} · <a href="${f.licUrl}" target="_blank" rel="noopener license">${f.lic}</a> · <a href="${f.kalla}" target="_blank" rel="noopener">Originalet på Wikimedia Commons</a><br>Används i ${v.namn} och på startsidan</div></li>`; }).join('');
   document.documentElement.classList.add('har-vyer');
   let aktiv = null;
 
@@ -3067,11 +3108,11 @@ const BAS_TITEL = document.title;
     <div class="footer-grid">
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara data.</p></div>
       <div class="fc"><h4>Vyer</h4><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
-      <div class="fc"><h4>Metod</h4><a href="#metod">Så räknar vi</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
+      <div class="fc"><h4>Metod</h4><a href="#metod">Så räknar vi</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="#bildkrediter">Bildkrediter</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
       <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Om oss</a><a href="#sa-arbetar-vi">Så arbetar vi</a><a href="#rattelser">Rättelser</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-legal">Text, siffror och diagram: <a href="https://creativecommons.org/licenses/by/4.0/deed.sv" target="_blank" rel="noopener license">CC BY 4.0</a>, fri att använda med källhänvisning till Skatteplattformen. Kod: MIT. Foton: licens enligt kreditraden vid varje bild. Underliggande statistik enligt respektive källas villkor.</span>
+      <span class="footer-legal">Text, siffror och diagram: <a href="https://creativecommons.org/licenses/by/4.0/deed.sv" target="_blank" rel="noopener license">CC BY 4.0</a>, fri att använda med källhänvisning till Skatteplattformen. Kod: MIT. Foton: licens enligt <a href="#bildkrediter">bildkrediterna</a>. Underliggande statistik enligt respektive källas villkor.</span>
       <div class="ind"><span class="ind-badge">Partipolitiskt oberoende</span>Ingen reklam · Inga partibidrag · Ingen besöksstatistik · Varje siffra har källa och år</div>
     </div>
   </div>
@@ -3129,6 +3170,7 @@ const CARDS = [
 // ═══════════════════════════════════════════════════════════════════
 const DETAILS = {
   'Ett år i grundskolan': {
+    jmf: 'utbildning:5',
     finansiering: [
       {label:'Kommunalskatt',pct:68,note:'Ca 109 Mdkr'},
       {label:'Statsbidrag (UO25)',pct:22,note:'Ca 35 Mdkr'},
@@ -3260,11 +3302,12 @@ const DETAILS = {
     ]
   },
   'Försvaret per invånare, 2026': {
+    jmf: 'samhalle:5',
     finansiering: [
       {label:'Statlig (UO6)',pct:100,note:'225,0 Mdkr 2026 (+33 % från 2025, +54 % från 2024)'}
     ],
     fakta: [
-      'Sverige når <strong>3,5 % av BNP</strong> till försvar 2026 — NATO:s nya Haag-mål',
+      'Försvarsutgifterna beräknas till <strong>2,8 % av BNP</strong> 2026 och 3,1 % från 2028. Målet är 3,5 % till 2030 (regeringen)',
       '2010 var försvarsutgiften <strong>4 185 kr/invånare</strong> — 2026: ~21 300 kr/inv (5,1× nominellt)',
       '2026-budgeten <strong>+56,2 Mdkr</strong> från 2025 — största enskilda årsökningen någonsin',
       'Värnplikten utökas — målet 10 000 mönstrade/år från 2026'
@@ -3313,6 +3356,7 @@ const DETAILS = {
       {label:'Patientavgift',pct:2,note:'Max 1 100 kr (frikort)'}
     ],
     fakta: [
+      'Medianväntetid från specialistbedömning till operation 2023: <strong>82 dagar</strong> i Sverige, Danmark 49, Finland 134 och Norge 176 (OECD Health Statistics). Tyskland och USA mäter inte på samma sätt',
       'Ca <strong>18 000 höftledsoperationer</strong> per år i Sverige',
       'Väntetiderna har <strong>ökat sedan pandemin</strong> — andelen som väntar >3 månader stiger',
       'Svenska höftledsregistret: <strong>95% nöjda</strong> efter 1 år',
@@ -3418,6 +3462,7 @@ const DETAILS = {
     ]
   },
   'Polisen per invånare och år': {
+    jmf: 'samhalle:4',
     finansiering: [
       {label:'Statlig (UO4)',pct:100,note:'Polismyndigheten + hela rättsväsendet'}
     ],
@@ -5051,6 +5096,10 @@ const JMF_DATA = {
       {t:'Läkare per 1 000 invånare', enh:'antal', ar:2021, bast:null, dec:1,
        v:[4.4,4.8,4.5,3.6,4.4,4.5,3.6], ref:{v:3.8,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (WHO)', url:WDI},
+      {t:'Läkemedelsutgifter per invånare', enh:'US-dollar, köpkraftsjusterat, läkemedel i öppenvård', ar:2022, bast:null, unit:' $', dec:0,
+       v:[666,609,426,666,650,1166,1558], ref:{v:711,lbl:'OECD-snitt (35 länder)'},
+       kalla:'OECD Health Statistics, hälsoräkenskaper (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_SHA@DF_SHA',
+       not:'Läkemedel som ges på sjukhus ingår inte, vilket gör att länder där mycket ges på sjukhus, som Danmark, får lägre värden.'},
       {t:'Sjukhussängar per 1 000 invånare', enh:'antal', ar:2022, bast:null, dec:1,
        v:[1.9,3.4,2.5,2.6,null,7.6,2.7], ref:{v:4.4,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (OECD/WHO)', url:WDI,
@@ -5073,7 +5122,15 @@ const JMF_DATA = {
       {t:'Eftergymnasial utbildning', enh:'procent av befolkningen 25–64 år', ar:2023, bast:null, unit:' %', dec:0,
        v:[49.4,48.8,42.9,42.5,44.5,33.4,50.7], ref:{v:40.9,lbl:'OECD-snitt'},
        kalla:'OECD Education at a Glance', url:'https://www.oecd.org/en/topics/sub-issues/educational-attainment-and-labour-market-outcomes.html',
-       not:'Högskola, universitet och kortare eftergymnasiala utbildningar. Tyskland har en stor yrkesutbildning som inte räknas hit.'}
+       not:'Högskola, universitet och kortare eftergymnasiala utbildningar. Tyskland har en stor yrkesutbildning som inte räknas hit.'},
+      {t:'Vuxnas läsförmåga (PIAAC)', enh:'medelpoäng för 16–65-åringar', ar:2023, bast:'hogre', dec:0,
+       v:[284,281,273,296,null,266,258], ref:{v:260,lbl:'OECD-snitt'},
+       kalla:'OECD Survey of Adult Skills 2023 (via CSO Irland)', url:'https://www.cso.ie/en/releasesandpublications/ep/p-piaac/programmefortheinternationalassessmentofadultcompetenciespiaac2023/internationalcomparison/',
+       not:'Island deltog inte i undersökningen.'},
+      {t:'Utgifter per elev och student', enh:'US-dollar per heltidsstudent, köpkraftsjusterat, grundskola till högskola', ar:2022, bast:null, unit:' $', dec:0,
+       v:[17804,22558,19229,15000,18707,17960,null], ref:{v:14865,lbl:'OECD-snitt'},
+       kalla:'OECD Education at a Glance (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_EAG_UOE_FIN@DF_UOE_INDIC_FIN_PERSTUD',
+       not:'Inklusive forskning vid universitet och högskolor. USA saknas för 2022.'}
     ] },
   socialt: { title: 'Socialt skydd och omsorg', charts: [
       {t:'Inkomstskillnader (Gini-koefficient)', enh:'disponibel inkomst efter skatter och bidrag, 0 = alla har lika mycket', ar:2022, bast:null, dec:2,
@@ -5091,7 +5148,11 @@ const JMF_DATA = {
       {t:'Anställda i äldreomsorgen', enh:'per 100 invånare som är 65 år eller äldre', ar:2021, bast:null, dec:1,
        v:[11.7,13.3,7.2,4.1,null,5.5,4.5], ref:{v:5.0,lbl:'OECD-snitt (25 länder)'},
        kalla:'OECD Health Statistics, långvarig vård', url:'https://www.oecd.org/en/topics/long-term-care.html',
-       not:'Antal personer, inte heltidstjänster. Senaste året med uppgifter för de flesta länderna. Island saknas.'}
+       not:'Antal personer, inte heltidstjänster. Senaste året med uppgifter för de flesta länderna. Island saknas.'},
+      {t:'Höga boendekostnader', enh:'andel av befolkningen som lägger mer än 40 procent av den disponibla inkomsten på boendet', ar:2025, bast:'lagre', unit:' %', dec:1,
+       v:[10.8,13.5,14.7,4.7,null,11.2,null], ref:{v:7.7,lbl:'EU-snitt'},
+       kalla:'Eurostat, EU-SILC (ilc_lvho07a)', url:'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a/default/table',
+       not:'Eurostat redovisar inte USA och Island. Danmark har ett tidsseriebrott 2025.'}
     ] },
   samhalle: {
     title: 'Samhälle',
@@ -5106,7 +5167,19 @@ const JMF_DATA = {
       {t:'Rättsstatsindex', enh:'poäng 0–1', ar:2026, bast:'hogre', dec:2,
        v:[0.857,0.890,0.898,0.870,null,0.830,0.668], ref:{v:0.7225,lbl:'OECD-snitt (35 länder)'},
        kalla:'World Justice Project, Rule of Law Index', url:'https://worldjusticeproject.org/rule-of-law-index/',
-       not:'Island ingår inte i indexet. Plats i världen 2026: Danmark 1, Norge 2, Finland 3, Sverige 4, Tyskland 6, USA 30 (av 143).'}
+       not:'Island ingår inte i indexet. Plats i världen 2026: Danmark 1, Norge 2, Finland 3, Sverige 4, Tyskland 6, USA 30 (av 143).'},
+      {t:'Förtroende för regeringen', enh:'procent som har högt eller ganska högt förtroende för den nationella regeringen', ar:2023, bast:null, unit:' %', dec:0,
+       v:[42.9,47.6,44.0,47.0,36.4,36.0,null], ref:{v:39.3,lbl:'OECD-snitt (30 länder)'},
+       kalla:'OECD Trust Survey 2023, Government at a Glance 2025 (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_GOV_INT@DF_GOV_TDG_2025',
+       not:'USA deltog inte i undersökningen.'},
+      {t:'Dödligt våld', enh:'avsiktligt dödande per 100 000 invånare', ar:2023, bast:'lagre', dec:2,
+       v:[1.15,0.72,0.84,0.98,1.29,0.91,5.76], ref:{v:0.89,lbl:'OECD-median (32 länder)'},
+       kalla:'UNODC via Världsbanken, WDI', url:'https://data.worldbank.org/indicator/VC.IHR.PSRC.P5',
+       not:'Medianen används som referens eftersom några länder med mycket höga tal drar upp medelvärdet (3,41). Islands siffra bygger på mycket få fall och varierar mellan åren.'},
+      {t:'Försvarsutgifter', enh:'procent av BNP, Natos definition', ar:2024, bast:null, unit:' %', dec:1,
+       v:[2.31,2.27,2.27,2.40,null,2.00,3.22], ref:{v:2.61,lbl:'Nato totalt'},
+       kalla:'Nato, Defence Expenditure of NATO Countries 2014–2025', url:'https://www.nato.int/content/dam/nato/webready/documents/finance/def-exp-2025-en.pdf',
+       not:'Uppskattning för 2024. Island har ingen försvarsmakt. Sverige beräknas nå 2,8 procent 2026 och har som mål 3,5 procent till 2030 (regeringen).'}
     ]
   },
   miljo: {
@@ -5220,7 +5293,7 @@ const VDA_FACTS = [
   'Sveriges elproduktion är <strong>99% fossilfri</strong> — ca 70% förnybart (mest vatten- och vindkraft) och 29% kärnkraft (2024)',
   'Rättsstatsindex: alla fyra nordiska länder i <strong>topp 4 i världen</strong> (WJP Rule of Law Index 2025)',
   // BP2026: försvar 225 Mdkr / 10,55M inv ≈ 21 300 kr/inv. Från 4 185 (2010) → 21 300 (2026) = 5,1× nominellt.
-  'Försvarsutgiften har ökat <strong>5,1 gånger</strong> på 16 år — från 4 185 (2010) till ~21 300 kr/inv (2026 enligt BP2026, NATO-mål 3,5 %)',
+  'Försvarsutgiften har ökat <strong>5,1 gånger</strong> på 16 år — från 4 185 (2010) till ~21 300 kr/inv (2026 enligt BP2026)',
   '<strong>51,8%</strong> av svenskar 25–64 har högskoleutbildning — #7 i OECD',
   'Föräldrapenning kan tas ut i <strong>480 dagar per barn</strong> — Sverige är bland världens generösaste länder',
   'Statsskulden 2026: <strong>1 430 Mdkr</strong>, 21 % av BNP (Riksgälden prognos maj 2026), ungefär 135 000 kr per person. Räntorna på skulden beräknas till 27 Mdkr 2026.',
