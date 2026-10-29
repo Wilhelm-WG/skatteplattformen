@@ -106,7 +106,14 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
-- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startsidans löneskala och faktakortet "Din första lön" använder skattetabell 32 och anger det som källa
+- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startkvittot och faktakorten räknar likadant. Bara lönebeskedet i filmen visar skattetabellens avdrag (7 750 kr)
+
+**Startkvittot (heron):**
+- Lönerutan `#start-lon` → `startKvitto()` ritar `#start-kvitto`: skatt på lönen (`skattDelar(40, …, {ksOverride:0.3238})`), fördelad på `START_GRUPPER` (summor av kvittots 15 COFOG-andelar). Raderna summerar exakt
+- Jämförelserna i `START_JMF`: hemtjänst, IVA-dygn, grundskola (178 skoldagar), riksväg ur `CARDS`; polisens medellön 43 900 kr (SCB 2025), riksdagsarvode 81 400 kr (riksdagen 2026), Archer 5 Mdkr/48 (FMV 2023). Uppdatera när källorna uppdateras. Bråk formuleras av `svAndel()`
+- Knappen "Hela kvittot" för över lönen till kalkylatorns reglage
+
+**Två kvitton i Din ekonomi (`#receipt-card`, `.kvitto-par`):** arbetstagarens (`#kvitto`, skatt på lön och kapital) och arbetsgivarens (`#kvitto-ag`, `agKvitto()`, satserna i `AG_AVG`, 31,42 % 2026, nedsättning för 19–23 år).
 
 **Hundralappen (`#hundralapp`):**
 - Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.

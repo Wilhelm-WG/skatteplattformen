@@ -10,6 +10,27 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Kvittot på startsidan
+
+- **Startsidans topp är ett kvitto.** Skriv in din lön (förifyllt med
+  medianlönen 38 300 kr), så skrivs ett kvitto ut med skatten på lönen fördelad
+  på sju grupper. Varje rad visar vad pengarna räcker till: dagar i hemtjänst,
+  minuter på intensiven, skoldagar, meter riksväg, del av en polislön, del av en
+  riksdagsledamots arvode och del av en Archer-pjäs. Löneskalan och det
+  roterande prislappskortet är borttagna.
+- Kvittot räknar bara skatt på lönen (kommunalskatt och statlig skatt minus
+  jobbskatteavdraget, rikssnittet 32,38 %). Arbetsgivaravgiften nämns på en rad
+  under kvittot.
+- **Två kvitton i Din ekonomi:** arbetstagarens kvitto (skatten på lönen och vad
+  den går till) och arbetsgivarens kvitto (arbetsgivaravgiftens sju delar och
+  lönekostnaden, med nedsättningen för unga). Moms anges i texten under.
+- **Ordningen på startsidan:** kvittot, Sex vägar in, Hundralappen (hela
+  landet), Snabbfakta, Vem gör vad.
+- Faktakorten "Din första lön" och "Medianlönen" räknar med samma modell som
+  kvittona (4 466 kr och 7 692 kr). Lönebeskedet i filmen visar fortfarande
+  skatteavdraget enligt skattetabellen.
+- Sedeln säger inte längre "illustration, ej betalmedel".
+
 ### Changed (2026-10-29) — Enhetlig grafik
 
 - **Ett bildspråk:** vyhuvudena och Sex vägar in visar tecknade scener i

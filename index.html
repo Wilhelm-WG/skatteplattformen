@@ -1018,6 +1018,35 @@ html{scroll-padding-top:72px}
 .kvitto-not{font-size:.78rem;color:var(--ink2);line-height:1.6;margin:0;max-width:34ch}
 .kvitto-rum{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:2rem;align-items:center;background:var(--bg2);border-radius:var(--r);padding:1.75rem}
 @media(max-width:700px){.kvitto-rum{grid-template-columns:minmax(0,1fr);padding:1.25rem .75rem}.kvitto-not{max-width:none}}
+
+/* ═══ STARTKVITTOT ═══ */
+.start-lead{font-size:1.12rem;line-height:1.55;color:var(--ink2);max-width:30em;margin:1.2rem 0 1.4rem}
+.start-lon{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.4rem}
+.start-lon label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+.start-lon-rad{display:flex;align-items:center;gap:.7rem}
+.start-lon input{width:9.5rem;font:700 1.9rem/1.15 var(--serif);font-variant-numeric:tabular-nums;color:var(--ink);background:var(--paper);border:1.5px solid var(--green);border-radius:6px;padding:.35rem .75rem}
+.start-lon input:focus-visible{outline:3px solid rgba(27,77,62,.3);outline-offset:1px}
+.start-lon-rad span{font-size:.95rem;color:var(--ink2)}
+.start-lon p{font-size:.78rem;color:var(--ink3);margin:0}
+.start-metod{font-size:.76rem;color:var(--ink3);line-height:1.55;max-width:36em;margin-top:1.2rem}
+.start-kv{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding-top:.4rem}
+.start-kv .kvitto{max-width:400px}
+.start-kv-not{font-size:.74rem;color:var(--ink3);line-height:1.55;text-align:center;max-width:26rem;margin:0}
+.start-kv-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kv-rad.tva{grid-template-columns:14px minmax(0,1fr) auto;row-gap:1px;align-items:baseline}
+.kv-rad.tva svg{align-self:center}
+.kv-rad .kv-ekv{grid-column:2 / 4;font-family:var(--sans);font-size:11.5px;color:var(--green);font-weight:500;text-transform:none;letter-spacing:0}
+.start-kv .kv-rader{gap:8px}
+@media(max-width:860px){.start-kv{padding-top:1.5rem}.start-lon input{width:8.5rem}}
+/* Två kvitton i Din ekonomi */
+.kvitto-par{margin-top:3rem;display:flex;flex-direction:column;gap:1.4rem}
+.kvitto-par-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;background:var(--bg2);border-radius:var(--r);padding:2rem 1.5rem}
+.kvitto-par-grid > div{display:flex;flex-direction:column;align-items:center;gap:.8rem;min-width:0}
+.kvitto-par h3{font-family:var(--serif);font-size:1.5rem;margin:0}
+.kvitto-par h4{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:0;font-weight:600}
+.kvitto-par > p{font-size:.92rem;color:var(--ink2);line-height:1.6;max-width:44em;margin:0}
+.kvitto-par .kvitto-not{text-align:center;max-width:30em}
+@media(max-width:760px){.kvitto-par-grid{grid-template-columns:minmax(0,1fr);padding:1.25rem .75rem}}
 </style>
 </head>
 <body>
@@ -1285,73 +1314,46 @@ html{scroll-padding-top:72px}
       <div>
         <div class="eyebrow fu">
           <span class="e-dot"></span>
-          <span class="e-text">Uppdaterad 28 oktober 2026 · källa och år på allt</span>
+          <span class="e-text">Uppdaterad 29 oktober 2026 · källa och år på allt</span>
         </div>
         <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
-        <div class="hero-lon fu fu2">
-          <p class="hl-rubrik">Så mycket av lönen går till skatt</p>
-          <div class="hl-rader" role="list">
-      <div class="hl-rad" role="listitem" aria-label="Lön 25 000 kr: skatt 4 484 kr, kvar 20 516 kr, 18 procent i skatt">
-        <span class="hl-lon">25 000 kr</span>
-        <span class="hl-bar"><i class="hl-kvar" style="width:82.1%"><em>20 516 kr kvar</em></i><i class="hl-skatt" style="width:17.9%"></i></span>
-        <span class="hl-andel">18 %</span>
-      </div>
-      <div class="hl-rad" role="listitem" aria-label="Lön 50 000 kr: skatt 11 351 kr, kvar 38 649 kr, 23 procent i skatt">
-        <span class="hl-lon">50 000 kr</span>
-        <span class="hl-bar"><i class="hl-kvar" style="width:77.3%"><em>38 649 kr kvar</em></i><i class="hl-skatt" style="width:22.7%"></i></span>
-        <span class="hl-andel">23 %</span>
-      </div>
-      <div class="hl-rad" role="listitem" aria-label="Lön 75 000 kr: skatt 23 344 kr, kvar 51 656 kr, 31 procent i skatt">
-        <span class="hl-lon">75 000 kr</span>
-        <span class="hl-bar"><i class="hl-kvar" style="width:68.9%"><em>51 656 kr kvar</em></i><i class="hl-skatt" style="width:31.1%"></i></span>
-        <span class="hl-andel">31 %</span>
-      </div>
-      <div class="hl-rad" role="listitem" aria-label="Lön 100 000 kr: skatt 36 000 kr, kvar 64 000 kr, 36 procent i skatt">
-        <span class="hl-lon">100 000 kr</span>
-        <span class="hl-bar"><i class="hl-kvar" style="width:64.0%"><em>64 000 kr kvar</em></i><i class="hl-skatt" style="width:36.0%"></i></span>
-        <span class="hl-andel">36 %</span>
-      </div>
-          </div>
-          <p class="hl-not"><span class="hl-nyckel"><i class="hl-kvar"></i>Kvar</span><span class="hl-nyckel"><i class="hl-skatt"></i>Skatt</span> Lön per månad, under 66 år. Skatteverket, skattetabell 32, 2026. <a href="#skatter">Så räknas det</a></p>
-        </div>
-        <p class="tagline fu fu2">
-          Vart skattepengarna går, i kronor och med källa för varje siffra. Ingen vinkling, inga partier.
-        </p>
+        <p class="start-lead fu fu2">Skriv in din lön. Kvittot visar vad skatten på din lön betalar varje månad, och vad det räcker till.</p>
+        <form class="start-lon fu fu2" id="start-lon-form" onsubmit="event.preventDefault()">
+          <label for="start-lon">Din lön före skatt</label>
+          <div class="start-lon-rad"><input id="start-lon" type="text" inputmode="numeric" autocomplete="off" value="38 300" aria-describedby="start-lon-hjalp"><span>kr i månaden</span></div>
+          <p id="start-lon-hjalp">Förifyllt med medianlönen (SCB, 2025). Inget sparas eller skickas.</p>
+        </form>
         <div class="actions fu fu3">
-          <a href="#pristabell" class="btn-p">Se vad saker kostar →</a>
-          <a href="#kalkylator" class="btn-g">Din ekonomi</a>
+          <a href="#kalkylator" class="btn-p" id="start-till-ekonomi">Hela kvittot och vad du får tillbaka →</a>
+          <a href="#pristabell" class="btn-g">Se vad saker kostar</a>
         </div>
-        
+        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och rikssnittet för kommunalskatt (32,38 %), för den som är under 66 år. Skatten fördelas som den offentliga sektorns utgifter 2024.</p>
       </div>
-      <!-- HERO SNABBKOLL — roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
-           Direkt svar: konkreta prislappar — vad köper svenska skattepengar?
-           Auto-rotation 6 sek, pausa på hover, manuella dots.
-           Datapunkter handplockade från CARDS-arrayen för bästa pedagogiska spann. -->
-      <div class="hero-snabbkoll fu fu4" id="heroSnabbkoll" role="region" aria-label="Roterande prislappar — vad samhällskostnader är">
-        <div class="hsk-accent-line" style="background:var(--green)"></div>
-        <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · kostnad och källa per prislapp</div>
-        <h2 class="hsk-prislapp-heading" id="hskHeading">Prislappar: vad det kostar och vem som betalar</h2>
-
-
-        <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="off">
-          <span class="hsk-prislapp-cat" id="hskPrislappCat">Utbildning</span>
-          <div class="hsk-prislapp-title" id="hskPrislappTitle">En grundskoleelev, ett år</div>
-          <div class="hsk-prislapp-amount-row">
-            <span class="hsk-prislapp-amount" id="hskPrislappAmount">143 000</span>
-            <span class="hsk-prislapp-suf" id="hskPrislappSuf">kr</span>
-          </div>
-          <div class="hsk-prislapp-vs" id="hskPrislappVs">Du betalar: <strong>0 kr</strong> — obligatorisk och gratis</div>
-        </div>
-
-        <div class="hsk-prislapp-dots" id="hskPrislappDots" role="tablist" aria-label="Prislapps-navigation"></div>
-
-        <div class="hsk-prislapp-foot">
-          <a href="#pristabell">Hela prislistan (<span data-cards-total>35</span> prislappar) →</a>
-          <span style="opacity:.5;margin:0 .3rem">·</span>
-          <a href="#budget">Vart pengarna går →</a>
-        </div>
+      <!-- STARTKVITTOT: skatten på lönen, fördelad på sju grupper, med vad den räcker till (START_GRUPPER i JS). -->
+      <div class="start-kv fu fu4">
+        <figure class="kvitto" id="start-kvitto" style="margin:0" aria-label="Skattekvitto"></figure>
+        <p class="start-kv-not" id="start-kv-not"></p>
+        <p class="start-kv-live" aria-live="polite" id="start-kv-live"></p>
       </div>
     </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TL;DR — fyra teser som länkar in i sajten -->
+<section class="section" id="tldr" aria-label="Hitta rätt" style="padding:2rem 0">
+  <div class="cw">
+    <p class="s-eye" style="text-align:center;margin-bottom:.3rem">Hitta rätt</p>
+    <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Sex vägar in</h2>
+    <ul class="vy-genvagar m-swipe">
+      <li><a href="#kalkylator" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-din-ekonomi"/></svg><em class="vy-gv-tal">Din lön<small>räkna själv</small></em></span><span class="vy-gv-text"><b>Din ekonomi <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur mycket skatt betalar du, och vad får du tillbaka i olika delar av livet?</span></span></a></li>
+      <li><a href="#budget" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-budgeten"/></svg><em class="vy-gv-tal">1 542 Mdkr<small>statens budget 2026</small></em></span><span class="vy-gv-text"><b>Budgeten <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vart går pengarna? Statens 27 utgiftsområden och hela den offentliga sektorn.</span></span></a></li>
+      <li><a href="#pristabell" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-prislistan"/></svg><em class="vy-gv-tal"><span data-cards-total>37</span><small>prislappar</small></em></span><span class="vy-gv-text"><b>Prislistan <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vad kostar en ambulansutryckning, en dag i förskolan eller ett år i fängelse?</span></span></a></li>
+      <li><a href="#oecd" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-jamforelser"/></svg><em class="vy-gv-tal">7 länder<small>jämförs</small></em></span><span class="vy-gv-text"><b>Jämförelser <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur står sig Sverige mot Norden, Tyskland, USA och OECD-snittet?</span></span></a></li>
+      <li><a href="#framtid" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-framtid"/></svg><em class="vy-gv-tal">1980–2035<small>55 år</small></em></span><span class="vy-gv-text"><b>Framtid och historik <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur har skatter, skuld och välfärd förändrats, och vad väntar?</span></span></a></li>
+      <li><a href="#metod" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-metod"/></svg><em class="vy-gv-tal">Källa + år<small>för varje siffra</small></em></span><span class="vy-gv-text"><b>Metod och källor <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur siffrorna räknas fram, nyckeltalen med källa och år, och ordlistan.</span></span></a></li>
+    </ul>
   </div>
 </section>
 
@@ -1362,7 +1364,7 @@ html{scroll-padding-top:72px}
   <div class="cw">
     <div class="hl100-head">
       <div>
-        <p class="s-eye">Din hundralapp</p>
+        <p class="s-eye">Hela landet</p>
         <h2 class="s-title" id="hl100-rubrik">Vart går varje hundralapp?</h2>
         <p class="s-sub" id="hl100-ingress" style="margin-bottom:0">Så fördelas varje hundralapp som den offentliga sektorn gör av med. Tryck på en bit för att se vad den betalar.</p>
       </div>
@@ -1387,21 +1389,6 @@ html{scroll-padding-top:72px}
 
 <hr class="div">
 
-<!-- TL;DR — fyra teser som länkar in i sajten -->
-<section class="section" id="tldr" aria-label="Hitta rätt" style="padding:2rem 0">
-  <div class="cw">
-    <p class="s-eye" style="text-align:center;margin-bottom:.3rem">Hitta rätt</p>
-    <h2 class="s-title" style="text-align:center;margin-bottom:1.5rem">Sex vägar in</h2>
-    <ul class="vy-genvagar m-swipe">
-      <li><a href="#kalkylator" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-din-ekonomi"/></svg><em class="vy-gv-tal">Din lön<small>räkna själv</small></em></span><span class="vy-gv-text"><b>Din ekonomi <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur mycket skatt betalar du, och vad får du tillbaka i olika delar av livet?</span></span></a></li>
-      <li><a href="#budget" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-budgeten"/></svg><em class="vy-gv-tal">1 542 Mdkr<small>statens budget 2026</small></em></span><span class="vy-gv-text"><b>Budgeten <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vart går pengarna? Statens 27 utgiftsområden och hela den offentliga sektorn.</span></span></a></li>
-      <li><a href="#pristabell" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-prislistan"/></svg><em class="vy-gv-tal"><span data-cards-total>37</span><small>prislappar</small></em></span><span class="vy-gv-text"><b>Prislistan <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Vad kostar en ambulansutryckning, en dag i förskolan eller ett år i fängelse?</span></span></a></li>
-      <li><a href="#oecd" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-jamforelser"/></svg><em class="vy-gv-tal">7 länder<small>jämförs</small></em></span><span class="vy-gv-text"><b>Jämförelser <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur står sig Sverige mot Norden, Tyskland, USA och OECD-snittet?</span></span></a></li>
-      <li><a href="#framtid" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-framtid"/></svg><em class="vy-gv-tal">1980–2035<small>55 år</small></em></span><span class="vy-gv-text"><b>Framtid och historik <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur har skatter, skuld och välfärd förändrats, och vad väntar?</span></span></a></li>
-      <li><a href="#metod" class="vy-gv"><span class="vy-gv-foto"><svg viewBox="0 0 360 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#vh-metod"/></svg><em class="vy-gv-tal">Källa + år<small>för varje siffra</small></em></span><span class="vy-gv-text"><b>Metod och källor <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pil"/></svg></b><span>Hur siffrorna räknas fram, nyckeltalen med källa och år, och ordlistan.</span></span></a></li>
-    </ul>
-  </div>
-</section>
 
 <hr class="div">
 
@@ -2747,19 +2734,6 @@ html{scroll-padding-top:72px}
           <div id="tax-breakdown" style="display:flex;flex-direction:column;gap:.5rem"></div>
         </div>
 
-        <!-- Ditt skattekvitto -->
-        <div id="receipt-card" style="display:none">
-          <div class="card-label">Ditt skattekvitto, vart går dina pengar?</div>
-          <div class="kvitto-rum">
-            <div class="kvitto-wrap">
-              <figure class="kvitto" id="kvitto" aria-label="Ditt skattekvitto" style="margin:0"></figure>
-            </div>
-            <p class="kvitto-not">
-            Fördelningen följer den offentliga sektorns utgifter 2024 (Eurostat, COFOG): 3 223 Mdkr utom inkomstpensionen (cirka 400 Mdkr), som betalas med pensionsavgiften och inte med skatt. Din skatt fördelas i samma proportioner. Beloppen är uppskattningar, inte ett riktigt kvitto.
-          </p>
-          </div>
-        </div>
-
         <!-- Delbart resultatkort (modal ligger på body-nivå, se #sc-overlay) -->
         <button type="button" class="sharecard-btn" onclick="openShareCard()"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg>Spara &amp; dela din profil som bild</button>
 
@@ -2787,6 +2761,18 @@ html{scroll-padding-top:72px}
 
 
       </div>
+    </div>
+
+    <!-- TVÅ KVITTON: arbetstagarens (skatt på lönen) och arbetsgivarens (avgifter ovanpå lönen) -->
+    <div class="kvitto-par" id="receipt-card" style="display:none">
+      <p class="s-eye">Samma lön, två kvitton</p>
+      <h3>Det du betalar och det arbetsgivaren betalar</h3>
+      <p>Ditt kvitto visar skatten som dras från lönen och vad den går till. Arbetsgivarens kvitto visar avgifterna som betalas ovanpå lönen. De syns inte på lönebeskedet, men är en del av vad ditt arbete kostar. Ålderspensionsavgiften blir din egen allmänna pension.</p>
+      <div class="kvitto-par-grid">
+        <div><h4>Arbetstagarens kvitto</h4><div class="kvitto-wrap"><figure class="kvitto" id="kvitto" aria-label="Ditt skattekvitto" style="margin:0"></figure></div></div>
+        <div><h4>Arbetsgivarens kvitto</h4><div class="kvitto-wrap"><figure class="kvitto" id="kvitto-ag" aria-label="Arbetsgivarens kvitto" style="margin:0"></figure></div></div>
+      </div>
+      <p class="kvitto-not" id="kvitto-not" style="align-self:center"></p>
     </div>
   </div>
 </section>
@@ -3110,7 +3096,7 @@ html{scroll-padding-top:72px}
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
       <li><time datetime="2026-10-29">29 okt 2026</time><div><b>Förmånsmodellen i Din ekonomi</b>Modellens sjukvård summerade till cirka 940 miljarder kronor över befolkningen, men de faktiska utgifterna för hälso- och sjukvård var 474 miljarder 2024 (Eurostat). Äldreomsorgen summerade till cirka 366 miljarder mot 166 miljarder (Kolada). Nivåerna är nu kalibrerade mot de faktiska utgifterna, Gemensamma utgifter (försvar, vägar, förvaltning m.m., cirka 100 000 kr per invånare) räknades tidigare in med en schablon på 50 000 kr, trots att skattesidan bara har personens egna skatter. Nu visas de separat. Livsloppsdiagrammet bygger på svenskarnas verkliga inkomster i stället för en påhittad inkomstbana. Skattekvittot räknar inte längre inkomstpensionen, som betalas med pensionsavgiften. Scenariot Barnfamilj räknade barnbidraget två gånger.</div></li>
-      <li><time datetime="2026-10-29">29 okt 2026</time><div><b>Skatten på 25 000 kr i Din ekonomi</b>Toppen visade 4 484 kr enligt skattetabell 32, medan kalkylatorn och kvittot räknade med rikssnittet för kommunalskatt (32,38 %) och fick 4 466 kr. Nu visar alla tre 4 466 kr. Startsidans löneskala anger fortfarande skattetabell 32 som källa.</div></li>
+      <li><time datetime="2026-10-29">29 okt 2026</time><div><b>Skatten på 25 000 kr i Din ekonomi</b>Toppen visade 4 484 kr enligt skattetabell 32, medan kalkylatorn och kvittot räknade med rikssnittet för kommunalskatt (32,38 %) och fick 4 466 kr. Nu visar alla 4 466 kr, och faktakorten om första lönen och medianlönen räknar på samma sätt (7 692 kr på medianlönen). Lönebeskedet i filmen visar fortfarande skatteavdraget enligt skattetabellen.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Offentliga sektorns utgifter</b>Totalen angavs som 3 011 Mdkr. Eurostat anger 3 223 Mdkr för 2024 (gov_10a_exp). Hundralappen, skattekvittots andelar, rutan om hela offentliga sektorn och delningsbilden är uppdaterade. Rutans uppdelning på stat, kommuner och regioner saknade källa och följer nu Eurostats delsektorer.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skatteutgifterna</b>Summan angavs som cirka 385 miljarder kronor. Det går inte att härleda ur skrivelsen, och de elva posterna i diagrammet summerar ensamma till 461,5 Mdkr. Alla poster summerar till drygt 600 Mdkr 2026, cirka 565 Mdkr efter skattesanktioner. Källa: skr. 2025/26:98.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skattekvoten, två serier</b>Sverige-uppgifterna blandade OECD:s serie (2000 och 2024) med SCB:s (2025). Framtid använder nu SCB:s serie (48,6 % år 2000, 40,8 % år 2024, 40,5 % år 2025), och jämförelsen med OECD-snittet använder OECD:s serie.</div></li>
@@ -3200,9 +3186,9 @@ html{scroll-padding-top:72px}
 // och scrollar dit. #fakta-N, #kapitel-N, #gissa-…, #ordlista och #nyckeltal fungerar som förut.
 // Utan JavaScript visas allt på en sida.
 // ═══════════════════════════════════════════════════════════════════
-const SAJT_UPPDATERAD = '28 oktober 2026';
+const SAJT_UPPDATERAD = '29 oktober 2026';
 const VYER = [
-  {id:'start',       namn:'Start',               hash:'',          delar:['hero','hundralapp','tldr','snabbfakta','vem-gor-vad']},
+  {id:'start',       namn:'Start',               hash:'',          delar:['hero','tldr','hundralapp','snabbfakta','vem-gor-vad']},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','scenarion','livslopp','skatter','sparande'], led:{tal:'4 466 kr', text:'i skatt per månad på en lön på 25 000 kronor, med genomsnittlig kommunalskatt (32,38 %). Kvar blir 20 534 kronor.', kalla:'Skattemodellen, Skatteverkets regler 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget','skuld-forsvar'], led:{tal:'1 542 Mdkr', text:'är statens utgifter 2026, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
   {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
@@ -4092,13 +4078,13 @@ const FAKTA = [
    chart:{type:'stack', unit:'%', parts:[{l:'Kommunen',v:20.69,c:'amber',txt:'20,69 %'},{l:'Regionen',v:11.69,c:'green2',txt:'11,69 %'}]},
    p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket.',
    kalla:'SCB, Kommunalskatterna 2026', ar:'2026'},
-  {tema:'Din första lön', bild:{tal:'4 484 kr', rad:'i skatt per månad på en lön på 25 000 kr. Kvar blir 20 516 kr.'}, h:'På en lön på 25 000 kronor blir skatten 4 484 kronor i månaden',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4484,c:'red'},{l:'Kvar efter skatt',v:20516,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, skattetabell 32, kolumn 1'},
-   p:'Skatten dras innan lönen betalas ut, så 20 516 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
-   kalla:'Skatteverket, skattetabell 32 och arbetsgivaravgifter', ar:'2026'},
-  {tema:'Medianlönen', bild:{tal:'7 750 kr', rad:'i skatt per månad på medianlönen 38 300 kr, ungefär var femte krona.'}, h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7750,c:'red'},{l:'Kvar efter skatt',v:30550,c:'green2'},{l:'Arbetsgivaravgift',v:12000,c:'grey'}]},
-   p:'Medianlönen är 38 300 kronor i månaden. Skatten blir 7 750 kronor enligt Skatteverkets skattetabell 32, alltså ungefär 20 procent. Kommunalskatten är drygt 32 procent, men grundavdraget och jobbskatteavdraget sänker den. Ovanpå lönen betalar arbetsgivaren cirka 12 000 kronor i avgifter, varav cirka 3 900 blir din egen pension.',
+  {tema:'Din första lön', bild:{tal:'4 466 kr', rad:'i skatt per månad på en lön på 25 000 kr. Kvar blir 20 534 kr.'}, h:'På en lön på 25 000 kronor blir skatten 4 466 kronor i månaden',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4466,c:'red'},{l:'Kvar efter skatt',v:20534,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, rikssnittet för kommunalskatt (32,38 %)'},
+   p:'Skatten dras innan lönen betalas ut, så 20 534 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
+   kalla:'Skatteverket, skatteregler och arbetsgivaravgifter 2026, SCB kommunalskatter', ar:'2026'},
+  {tema:'Medianlönen', bild:{tal:'7 692 kr', rad:'i skatt per månad på medianlönen 38 300 kr, ungefär var femte krona.'}, h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7692,c:'red'},{l:'Kvar efter skatt',v:30608,c:'green2'},{l:'Arbetsgivaravgift',v:12034,c:'grey'}]},
+   p:'Medianlönen är 38 300 kronor i månaden. Skatten blir 7 692 kronor med rikssnittet för kommunalskatt (32,38 %), alltså ungefär 20 procent. Kommunalskatten är drygt 32 procent, men grundavdraget och jobbskatteavdraget sänker den. Ovanpå lönen betalar arbetsgivaren 12 034 kronor i arbetsgivaravgift, varav 3 910 kronor blir din egen pension.',
    kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
   {tema:'Pension', bild:{tal:'17,2 %', rad:'av lönen, upp till cirka 56 000 kr i månaden, blir allmän pension.'}, h:'Drygt 17 procent av lönen sparas till din allmänna pension',
    chart:{type:'bars', unit:' kr', rows:[{l:'Inkomstpension',v:3720,c:'blue'},{l:'Premiepension',v:581,c:'purple'}], note:'pensionsrätt per månad vid en lön på 25 000 kr'},
@@ -4455,13 +4441,105 @@ const HERO_100 = [  // Eurostat COFOG 2024, andel av 3 223 Mdkr, avrundat till h
   {k:'Försvar',           v:4,  c:'#3B5566'},
   {k:'Övrigt',            v:10, c:'#9A948A'},   // rätt, kultur, bostäder, miljö, räntor
 ];
+
+// Arbetsgivarens kvitto: arbetsgivaravgifterna 2026 (Skatteverket), 31,42 % totalt.
+const AG_AVG = [['Ålderspensionsavgift', .1021, 'blir din allmänna pension'], ['Efterlevandepensionsavgift', .006], ['Sjukförsäkringsavgift', .0355], ['Föräldraförsäkringsavgift', .02], ['Arbetsmarknadsavgift', .0264], ['Arbetsskadeavgift', .001], ['Allmän löneavgift', .1232, 'går till statsbudgeten']];
+function agKvitto(age, inc, kant, kr2){
+  const fig = document.getElementById('kvitto-ag'); if(!fig) return;
+  const lon = Math.round(inc * 1000 / 12), d = skattDelar(age, inc);
+  let rader = d.is66 ? [AG_AVG[0]] : AG_AVG;
+  let belopp = rader.map(r => Math.round(lon * r[1]));
+  let ned = 0; // tillfälligt nedsatt avgift för 19–23 år (lön april 2026–september 2027), på lön upp till 25 000 kr
+  if(!d.is66 && age >= 19 && age <= 23) ned = Math.round(Math.min(lon, 25000) * (0.3142 - 0.2081));
+  const summa = belopp.reduce((a, b) => a + b, 0) - ned;
+  fig.innerHTML = `${kant(true)}<div class="kvitto-papper">
+    <div class="kv-huvud"><strong>Arbetsgivaren</strong><span>KVITTO · LÖNEKOSTNAD 2026</span><span class="kv-liten">LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR</span></div>
+    <hr class="kv-streck">
+    <div class="kv-del" style="color:#2E2C28;font-size:12.5px"><span>BRUTTOLÖN</span><span>${kr2(lon)}</span></div>
+    <hr class="kv-streck">
+    <div class="kv-rader">${rader.map((r, i) => `<div class="kv-rad tva"><span></span><span>${r[0]} ${(r[1]*100).toLocaleString('sv-SE', {minimumFractionDigits:2})} %</span><span>${kr2(belopp[i])}</span>${r[2] ? `<span class="kv-ekv">${r[2]}</span>` : ''}</div>`).join('')}
+    ${ned ? `<div class="kv-rad"><span></span><span>Nedsättning för unga</span><span>−${kr2(ned)}</span></div>` : ''}</div>
+    <hr class="kv-streck">
+    <div class="kv-del"><span>ARBETSGIVARAVGIFTER</span><span>${kr2(summa)}</span></div>
+    <div class="kv-sum"><span>LÖNEKOSTNAD PER MÅNAD</span><b>${kr2(lon + summa)}</b></div>
+    <hr class="kv-streck"><div class="kv-fot"><span>BETALT AV: ARBETSGIVAREN</span><span>Källa: Skatteverket, arbetsgivaravgifter 2026</span></div>
+  </div>${kant(false)}`;
+  fig.setAttribute('aria-label', `Arbetsgivarens kvitto: lön ${lon.toLocaleString('sv-SE')} kronor plus arbetsgivaravgifter ${summa.toLocaleString('sv-SE')} kronor, lönekostnad ${(lon + summa).toLocaleString('sv-SE')} kronor per månad.`);
+}
+// ── Startkvittot ───────────────────────────────────────────────────────
+// Skatten på lönen (kommunalskatt + statlig skatt − jobbskatteavdrag, rikssnittet 32,38 %, under 66 år),
+// fördelad som skattekvittots 15 poster (COFOG 2024 utan inkomstpensionen) i sju grupper.
+// Jämförelserna: prislapparna i CARDS samt Archer (FMV 2023: 48 pjäser för cirka 5 Mdkr),
+// polisens medellön (SCB 2025: 43 900 kr/mån) och riksdagsledamöternas arvode (riksdagen 2026: 81 400 kr/mån).
+const START_JMF = {hemtjanstAr:385000, ivaDygn:50000, grundskolaLasar:143000, skoldagar:178, riksvagKm:163000, polislon:43900, riksdagsarvode:81400, archer:5e9/48};
+const START_GRUPPER = [
+  {n:'Socialt skydd', pk:'soc', c:'#5B3F8C', a:.1097+.0809+.0521+.0245+.0245, j:kr => { const d = kr / (START_JMF.hemtjanstAr/365); return d >= 1 ? `≈ ${svTal(d)} ${d < 1.25 ? 'dags' : 'dagars'} hemtjänst för en äldre` : `≈ ${Math.max(1, Math.round(d*24))} timmars hemtjänst för en äldre`; }},
+  {n:'Hälso- och sjukvård', pk:'vard', c:'#2E7D5C', a:.1678, j:kr => { const m = kr / (START_JMF.ivaDygn/1440); return m < 90 ? `≈ ${Math.max(1, Math.round(m))} minuter på intensiven` : `≈ ${svTal(m/60)} timmar på intensiven`; }},
+  {n:'Utbildning', pk:'utb', c:'#1E4A8C', a:.1646, j:kr => { const d = kr / (START_JMF.grundskolaLasar/START_JMF.skoldagar); return d >= 1 ? `≈ ${svTal(d)} ${d < 1.25 ? 'skoldag' : 'skoldagar'} för en elev` : `≈ ${svAndel(d, 'en skoldag för en elev')}`; }},
+  {n:'Polis, kultur, miljö, räntor', pk:'ratt', c:'#9A948A', a:.0361+.0316+.018+.0177+.0124, j:kr => `≈ ${svAndel(kr / START_JMF.polislon, 'en polis månadslön')}`},
+  {n:'Vägar, järnväg, näringsliv', pk:'infra', c:'#B07B24', a:.1092, j:kr => { const m = kr / (START_JMF.riksvagKm/1000); return m >= 1 ? `≈ ${Math.round(m).toLocaleString('sv-SE')} meter riksväg underhålls ett år` : `≈ ${Math.max(1, Math.round(m*100))} cm riksväg underhålls ett år`; }},
+  {n:'Förvaltning', pk:'forv', c:'#66615A', a:.1065, j:kr => `≈ ${svAndel(kr / START_JMF.riksdagsarvode, 'en riksdagsledamots månadsarvode')}`},
+  {n:'Försvar', pk:'forsv', c:'#3B5566', a:.0444, j:kr => `≈ ${svAndel(kr / START_JMF.archer, 'en Archer-pjäs')}`},
+];
+// Tal med halvor: 1, 1½, 2 …
+function svTal(x){ if(x >= 10) return Math.round(x).toLocaleString('sv-SE'); const h = Math.round(x*2)/2; return (Math.floor(h) || '') + (h % 1 ? '½' : '') || '½'; }
+// Andel som bråk: "en tiondel av …", "1/49 av …", "en 300 000-del av …", eller "2 gånger …" om större än 1
+function svAndel(r, sak){
+  if(r >= .9) return r < 1.25 ? `ungefär ${sak}` : `${svTal(r)} gånger ${sak}`;
+  const N = 1 / r, n = Math.round(N), ord = {2:'en halv',3:'en tredjedel',4:'en fjärdedel',5:'en femtedel',6:'en sjättedel',7:'en sjundedel',8:'en åttondel',9:'en niondel',10:'en tiondel'};
+  let b;
+  if(ord[n]) b = ord[n];
+  else if(N < 1000) b = Math.abs(N/100 - 1) < .06 ? 'en hundradel' : `1/${n}`;
+  else if(Math.abs(N/1000 - 1) < .06) b = 'en tusendel';
+  else if(Math.abs(N/1e6 - 1) < .06) b = 'en miljondel';
+  else { const sig = Math.pow(10, Math.floor(Math.log10(N)) - 1); b = `en ${(Math.round(N/sig)*sig).toLocaleString('sv-SE')}-del`; }
+  return `${b} av ${sak}`;
+}
+function startKvitto(){
+  const inp = document.getElementById('start-lon'), fig = document.getElementById('start-kvitto'); if(!inp || !fig) return;
+  const lon = Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0);
+  const d = lon > 0 ? skattDelar(40, lon*12/1000, {ksOverride:0.3238}) : null;
+  const skatt = d ? Math.round((d.komm + d.stat - d.jsa) * 1000 / 12) : 0;
+  const kr = START_GRUPPER.map(g => Math.round(skatt * g.a)); const iMax = kr.indexOf(Math.max(...kr));
+  kr[iMax] += skatt - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
+  const ordning = START_GRUPPER.map((g, i) => i).sort((x, y) => kr[y] - kr[x]);
+  const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const kant = upp => `<svg class="kvitto-kant" viewBox="0 0 360 10" preserveAspectRatio="none" aria-hidden="true"><path d="${upp ? 'M0 10' : 'M0 0'} ${Array.from({length:36}, (_, i) => `L${i*10+5} ${upp ? 0 : 10} L${i*10+10} ${upp ? 10 : 0}`).join(' ')} Z" fill="#FCFBF7"></path></svg>`;
+  const streck = Array.from({length:42}, (_, i) => `<rect x="${i*4.3}" y="0" width="${[1,2,1,3,1,1,2][(i*5 + lon) % 7]}" height="30"></rect>`).join('');
+  const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true" style="fill:${g.c};color:${g.c}"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
+    : '<div class="kv-del"><span>Ingen skatt på den lönen.</span><span></span></div>';
+  fig.innerHTML = `${kant(true)}<div class="kvitto-papper">
+    <div class="kv-huvud"><strong>Skatteplattformen</strong><span>KVITTO · DIN SKATT 2026</span><span class="kv-liten">LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %</span></div>
+    <hr class="kv-streck"><div class="kv-rader">${rader}</div><hr class="kv-streck">
+    <div class="kv-sum"><span>SKATT PER MÅNAD</span><b>${k2(skatt)}</b></div>
+    <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${k2(Math.max(0, lon - skatt))}</span></div>
+    <hr class="kv-streck"><div class="kv-fot"><span>BETALT MED: LÖN · INGET BYTE</span><svg viewBox="0 0 180 30" fill="#2E2C28" aria-hidden="true" style="width:180px;height:30px">${streck}</svg></div>
+  </div>${kant(false)}`;
+  fig.setAttribute('aria-label', `Skattekvitto för ${lon.toLocaleString('sv-SE')} kronor i månaden: skatt ${skatt.toLocaleString('sv-SE')} kronor, kvar ${Math.max(0, lon - skatt).toLocaleString('sv-SE')} kronor.`);
+  const ag = Math.round(lon * 0.3142);
+  document.getElementById('start-kv-not').innerHTML = lon > 0 ? `Dessutom betalar arbetsgivaren ${ag.toLocaleString('sv-SE')} kr i arbetsgivaravgift, och du betalar moms när du handlar. <a href="#kalkylator">Båda kvittona finns i Din ekonomi</a>.<br>Jämförelserna bygger på prislapparna, polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.` : '';
+  document.getElementById('start-kv-live').textContent = lon > 0 ? `Skatt ${skatt.toLocaleString('sv-SE')} kronor i månaden, kvar ${Math.max(0, lon - skatt).toLocaleString('sv-SE')} kronor.` : '';
+  return lon;
+}
+(function initStartKvitto(){
+  const inp = document.getElementById('start-lon'); if(!inp) return;
+  let t; inp.addEventListener('input', () => { clearTimeout(t); t = setTimeout(startKvitto, 120); });
+  inp.addEventListener('blur', () => { const v = parseInt(inp.value.replace(/\D/g, ''), 10); if(v) inp.value = v.toLocaleString('sv-SE'); });
+  const knapp = document.getElementById('start-till-ekonomi');
+  if(knapp) knapp.addEventListener('click', () => { // för över lönen till kalkylatorn
+    const lon = parseInt(inp.value.replace(/\D/g, ''), 10); const sl = document.getElementById('s-inc');
+    if(lon && sl){ sl.value = Math.round(lon*12/1000); sl.dispatchEvent(new Event('input', {bubbles:true})); }
+  });
+  startKvitto();
+})();
+
 // ── Hundralappen (variant A) ───────────────────────────────────────────
 // 2024: Eurostat/SCB COFOG, 3 223 Mdkr (HERO_100). 2026: statsbudgeten 1 542 Mdkr (BDATA, prop. 2025/26:1).
 const HL100 = {
   '2024': {
     rubrik:'Vart går varje hundralapp?', titel:'Din hundralapp i offentliga utgifter', rad:'2024 · 3 223 miljarder kronor',
     ingress:'Så fördelas varje hundralapp som den offentliga sektorn gör av med: stat, kommuner och regioner. Tryck på en bit för att se vad den betalar.',
-    src:'Källa: Eurostat och SCB, offentliga utgifter efter ändamål (COFOG), 2024. Andelar av 3 223 miljarder kronor, avrundade till hela kronor. Sedeln är en egen illustration, inte en avbildning av en riktig sedel.',
+    src:'Källa: Eurostat och SCB, offentliga utgifter efter ändamål (COFOG), 2024. Andelar av 3 223 miljarder kronor, avrundade till hela kronor.',
     why:'',
     d:[
       {k:'soc',  n:'Socialt skydd', v:38, mdkr:1224, c:'#5B3F8C', l:'#E7DFF2', pk:'soc', il:'soc', sub:'', t:'Pensioner, äldreomsorg, sjuk- och föräldraersättning, barnbidrag och arbetslöshetsersättning.', lapp:'Hemtjänst, ett år'},
@@ -4512,15 +4590,12 @@ function hlNote(set, sel, portrait){
   const text = portrait
     ? `<text x="26" y="86" font-family="${serif}" font-weight="700" font-size="68" fill="#1E4A8C" letter-spacing="-2">100</text>
        <text x="30" y="110" font-family="Inter, sans-serif" font-weight="600" font-size="13" letter-spacing="5" fill="#1E4A8C">KRONOR</text>
-       <text x="30" y="132" font-family="${serif}" font-style="italic" font-size="13" fill="#2A2620">${S.titel.replace('Din hundralapp ', '')}</text>
-       <text x="316" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.8" fill="#1E4A8C" fill-opacity=".75">ILLUSTRATION · EJ BETALMEDEL</text>`
-    : `<text x="30" y="34" font-family="Inter, sans-serif" font-size="8" letter-spacing="2.5" fill="#1E4A8C" fill-opacity=".55">SKATTEPLATTFORMEN · HUNDRA KRONOR · ILLUSTRATION</text>
+       <text x="30" y="132" font-family="${serif}" font-style="italic" font-size="13" fill="#2A2620">${S.titel.replace('Din hundralapp ', '')}</text>`
+    : `<text x="30" y="34" font-family="Inter, sans-serif" font-size="8" letter-spacing="2.5" fill="#1E4A8C" fill-opacity=".55">SKATTEPLATTFORMEN · HUNDRA KRONOR</text>
        <text x="44" y="174" font-family="${serif}" font-weight="700" font-size="150" fill="#1E4A8C" letter-spacing="-4">100</text>
        <text x="50" y="220" font-family="Inter, sans-serif" font-weight="600" font-size="24" letter-spacing="10" fill="#1E4A8C">KRONOR</text>
        <text x="50" y="262" font-family="${serif}" font-style="italic" font-size="19" fill="#2A2620">${S.titel}</text>
        <text x="50" y="286" font-family="Inter, sans-serif" font-size="13" fill="#4A4640">${S.rad}</text>
-       <rect x="50" y="326" width="252" height="28" rx="2" fill="none" stroke="#1E4A8C" stroke-opacity=".5"></rect>
-       <text x="177" y="345" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" letter-spacing="2.4" fill="#1E4A8C">ILLUSTRATION · EJ BETALMEDEL</text>
        <text x="736" y="382" text-anchor="end" font-family="${serif}" font-weight="700" font-size="22" fill="#1E4A8C">100</text>`;
   const ringar = portrait ? [50, 72, 94, 116].map(x => `<ellipse cx="90" cy="76" rx="${x}" ry="${x * .72}"></ellipse>`).join('')
                           : [60, 82, 104, 126, 148, 170, 192, 214].map(x => `<ellipse cx="150" cy="200" rx="${x}" ry="${x * .76}"></ellipse>`).join('');
@@ -5346,8 +5421,8 @@ function updateCalc(){
     const indMan = Math.max(0, totMan - lonMan - kapMan);
     const nu = new Date(), pad = n => String(n).padStart(2, '0');
     const kvNr = String(1000 + (Math.round(inc * 7 + age * 13) % 9000));
-    const totKr = Math.round(totMan), lonKr = Math.round(lonMan), kapKr = Math.round(kapMan);
-    const radKr = cofogItems.map(c => Math.round(totMan * c.andel));
+    const lonKr = Math.round(lonMan), kapKr = Math.round(kapMan), totKr = lonKr + kapKr; // skatt på lön (och kapital), inte arbetsgivaravgift eller moms
+    const radKr = cofogItems.map(c => Math.round(totKr * c.andel));
     const iMax = radKr.indexOf(Math.max(...radKr));
     radKr[iMax] += totKr - radKr.reduce((a, b) => a + b, 0); // avrundningsresten på största raden, så att summan stämmer
     const rader = cofogItems.map((c, i) => {
@@ -5370,11 +5445,10 @@ function updateCalc(){
       <div class="kv-rader">${rader}</div>
       <hr class="kv-streck">
       <div class="kv-del"><span>ANTAL ARTIKLAR</span><span>${cofogItems.length}</span></div>
-      <div class="kv-sum"><span>TOTALT PER MÅNAD</span><b>${kr2(totKr)}</b></div>
-      <div class="kv-del"><span>varav dras från lönen</span><span>${kr2(lonKr)}</span></div>
+      <div class="kv-sum"><span>SKATT PER MÅNAD</span><b>${kr2(totKr)}</b></div>
       ${kapMan > 0 ? `<div class="kv-del"><span>varav skatt på kapital</span><span>${kr2(kapKr)}</span></div>` : ''}
-      <div class="kv-del"><span>varav arbetsgivaravgift och moms</span><span>${kr2(totKr - lonKr - kapKr)}</span></div>
-      <div class="kv-del"><span>PER ÅR</span><span>${totalSkatt.toLocaleString('sv-SE')} TKR</span></div>
+      <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${kr2(Math.max(0, Math.round(inc * 1000 / 12) - lonKr))}</span></div>
+      <div class="kv-del"><span>PER ÅR</span><span>${(totKr * 12).toLocaleString('sv-SE')} KR</span></div>
       <hr class="kv-streck">
       <div class="kv-fot">
         <span>BETALT MED: LÖN</span>
@@ -5383,7 +5457,9 @@ function updateCalc(){
         <span>wilhelm-wg.github.io/skatteplattformen</span>
       </div>
     </div>${kant(false)}`;
-    document.getElementById('kvitto').setAttribute('aria-label', `Ditt skattekvitto: totalt ${totKr.toLocaleString('sv-SE')} kronor per månad, varav ${lonKr.toLocaleString('sv-SE')} kronor dras från lönen.`);
+    document.getElementById('kvitto').setAttribute('aria-label', `Ditt skattekvitto: ${totKr.toLocaleString('sv-SE')} kronor i skatt per månad.`);
+    agKvitto(age, inc, kant, kr2);
+    document.getElementById('kvitto-not').textContent = `Skatten fördelas som den offentliga sektorns utgifter 2024 (Eurostat, COFOG), utan inkomstpensionen som betalas med pensionsavgiften. Moms när du handlar kommer till: cirka ${(Math.round(tax.moms * 1000 / 12 / 10) * 10).toLocaleString('sv-SE')} kr i månaden (uppskattning).`;
   } else {
     receiptCard.style.display = 'none';
   }
