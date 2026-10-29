@@ -257,15 +257,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-card li{display:flex;gap:.5rem;align-items:flex-start;line-height:1.4}
 .vgv-card li .pk{flex:none;margin-top:.05em;width:1.1rem;height:1.1rem}
 .vgv-fin{margin-top:auto;min-height:3.6em;padding-top:.7rem;border-top:1px solid var(--border2);font-size:.72rem;color:var(--ink3);line-height:1.5}
-.vgv-flow{margin-top:2.2rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:steg}
-.vgv-step{position:relative;padding:0 1.2rem 0 0}
-.vgv-step:not(:last-child)::after{content:"";position:absolute;top:20px;left:48px;right:10px;height:0;border-top:2px dashed var(--bg3)}
-.vgv-step .vgv-badge{width:40px;height:40px;position:relative;z-index:1;background:var(--paper)}
-.vgv-step b{display:block;font-size:.84rem;color:var(--ink);margin:.7rem 0 .25rem}
-.vgv-step b::before{counter-increment:steg;content:counter(steg) ". ";color:var(--ink3);font-family:var(--mono);font-weight:400}
-.vgv-step p{font-size:.78rem;color:var(--ink2);line-height:1.5;margin:0}
-.vgv-myth{margin-top:1.8rem;background:var(--bg2);padding:.9rem 1.1rem;border-radius:var(--r-sm);font-size:.82rem;color:var(--ink2);line-height:1.6}
-.vgv-myth strong{color:var(--ink)}
+
+
+
+
+
+
+
+
+
 .vgv-2col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;margin-top:2.4rem;align-items:start}
 .vgv-panel{background:var(--bg2);border-radius:10px;padding:1.3rem}
 .vgv-lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem}
@@ -285,12 +285,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-src{font-size:.66rem;color:var(--ink3);margin-top:1.6rem;line-height:1.6}
 @media(max-width:860px){
   .vgv-grid,.vgv-2col{grid-template-columns:1fr}
-  .vgv-flow{grid-template-columns:1fr 1fr;row-gap:1.4rem}
-  .vgv-step:nth-child(2)::after{display:none}
+  
+  
 }
 @media(max-width:480px){
-  .vgv-flow{grid-template-columns:1fr}
-  .vgv-step::after{display:none}
+  
+  
   .vgv-hund div{grid-template-columns:minmax(0,8.5rem) minmax(0,1fr) 2.6rem}
 }
 /* Ikonserie */
@@ -347,13 +347,13 @@ h1 em{font-style:italic;color:var(--green)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 .btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:500;padding:14px 28px;border-radius:var(--r-sm);border:none;cursor:pointer;text-decoration:none;transition:all .18s;box-shadow:0 1px 2px rgba(27,77,62,.2),0 6px 16px rgba(27,77,62,.18)}
 .btn-p:hover{background:#163d31;transform:translateY(-2px);box-shadow:0 2px 4px rgba(27,77,62,.24),0 12px 28px rgba(27,77,62,.24)}
-.hero-forsta{display:inline-block;margin-top:1.1rem;font-size:.92rem;font-weight:500;color:var(--green);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
-.hero-forsta:hover{text-decoration-thickness:2px}
+
+
 .btn-g{display:inline-flex;align-items:center;gap:8px;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:.9rem;font-weight:450;padding:14px 28px;border-radius:var(--r-sm);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .18s}
 .btn-g:hover{border-color:var(--ink2);background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-md)}
 /* HERO SNABBKOLL */
 .hero-snabbkoll{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.9rem 1.9rem 1.5rem;display:flex;flex-direction:column;gap:.52rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-.hsk-accent-line{position:absolute;top:0;left:0;right:0;height:3px;background:var(--green2);transition:background .4s ease;border-radius:var(--r) var(--r) 0 0}
+
 /* Kalkylator/livslopps-knappar i botten av sajten — kvar trots att hero-snabbkollens livscykel togs bort 2026-05 (städning gjord 2026-05-31) */
 .hh-btn:hover{border-color:var(--green);color:var(--green)}
 .hh-btn.on{background:var(--green);border-color:var(--green);color:#fff}
@@ -361,35 +361,30 @@ h1 em{font-style:italic;color:var(--green)}
 .lc-profile-btn.on{background:var(--green);border-color:var(--green);color:#fff}
 /* Hero: roterande prislapps-widget (ersatte COFOG-vyn 2026-05-31).
    Visar konkreta prislappar — direkt svar på "vad köper Sveriges skatt?". */
-.hsk-prislapp-eyebrow{font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-top:.2rem}
-.hsk-prislapp-heading{font-family:var(--serif);font-size:1.3rem;font-weight:700;line-height:1.2;color:var(--ink);margin:.05rem 0 .8rem}
-.hsk-prislapp-stage{min-height:175px;display:flex;flex-direction:column;justify-content:center;padding:.4rem 0;transition:opacity .35s ease}
-.hsk-prislapp-stage.fading{opacity:0}
-.hsk-prislapp-cat{display:inline-block;font-size:.58rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:10px;background:var(--bg2);color:var(--ink2);margin-bottom:.5rem;align-self:flex-start}
-.hsk-prislapp-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:.6rem}
-.hsk-prislapp-amount-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem}
-.hsk-prislapp-amount{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--green2);line-height:1;letter-spacing:-.03em}
-.hsk-prislapp-suf{font-family:var(--mono);font-size:.85rem;color:var(--ink2)}
-.hsk-prislapp-vs{font-size:.78rem;color:var(--ink2);line-height:1.45}
-.hsk-prislapp-vs strong{color:var(--ink)}
-.hsk-prislapp-dots{display:flex;gap:6px;margin:.6rem 0 .3rem;justify-content:flex-start;align-items:center;flex-wrap:wrap}
-.hsk-prislapp-dot{width:7px;height:7px;border-radius:50%;background:var(--bg2);border:none;cursor:pointer;padding:0;transition:background .15s,transform .15s}
-.hsk-prislapp-dot:hover{background:rgba(255,255,255,.4)}
-.hsk-prislapp-dot.on{background:var(--green);transform:scale(1.15)}
-.hsk-prislapp-foot{font-size:.7rem;color:var(--ink2);margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--border);line-height:1.5}
-.hsk-prislapp-foot a{color:var(--green2);text-decoration:none;font-weight:500}
-.hsk-prislapp-foot a:hover{text-decoration:underline}
-@media (prefers-reduced-motion: reduce){
-  .hsk-prislapp-stage{transition:none}
-}
-@media (max-width:520px){
-  .hsk-prislapp-amount{font-size:1.6rem}
-  .hsk-prislapp-stage{min-height:200px}
-}
-.ticker-box{background:var(--paper);border-radius:4px;padding:1.75rem}
-.ticker-title{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:1.25rem}
-.ticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bg2);border:1px solid var(--border);border-radius:2px;overflow:hidden}
-.t-cell{background:var(--paper);padding:1rem 1.1rem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .t-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--ink);letter-spacing:-.02em;line-height:1}
 .t-num sub{font-size:.72rem;color:var(--ink2)}
 .t-lbl{font-size:.7rem;color:var(--ink2);margin-top:4px;line-height:1.3}
@@ -474,12 +469,15 @@ h3.pc-title{margin-top:0}
 .calc-ctrl{display:flex;flex-direction:column;gap:1.5rem}
 .calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:.5rem}
 .sl-row{display:flex;align-items:center;gap:1rem}
-.sl-row input[type=range]{flex:1;-webkit-appearance:none;height:2px;background:var(--bg2);border-radius:2px;outline:none;cursor:pointer}
+.sl-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:28px;background:transparent;outline:none;cursor:pointer}
+.sl-row input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--bg3);border-radius:2px}
+.sl-row input[type=range]::-moz-range-track{height:3px;background:var(--bg3);border-radius:2px}
+.sl-row input[type=range]::-webkit-slider-thumb{margin-top:-6.5px}
 .sl-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--green2);cursor:pointer;transition:transform .1s}
 .sl-row input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.25)}
 /* Synlig fokusmarkering för reglage och sökfält */
 .sl-row input[type=range]:focus-visible{outline:2px solid var(--green2);outline-offset:4px;border-radius:4px}
-.sl-row input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(111,194,155,.45)}
+.sl-row input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(46,125,92,.3)}
 #pgrid-search:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .sl-val{font-family:var(--mono);font-size:1rem;color:var(--ink);min-width:68px;text-align:right}
 /* Life stage chip */
@@ -504,15 +502,15 @@ h3.pc-title{margin-top:0}
 .wt-v{font-family:var(--mono);font-size:1.45rem;font-weight:500;color:var(--ink);letter-spacing:-.02em}
 /* Solidarity contract */
 .contract-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;box-shadow:var(--shadow-sm)}
-.lifecycle-bar{position:relative;height:44px;border-radius:3px;overflow:hidden;margin:1rem 0 .5rem;display:flex}
-.lc-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:500;letter-spacing:.04em;color:var(--ink);transition:all .3s;white-space:nowrap;overflow:hidden;min-width:0}
-.lc-taker{background:var(--emot)}
-.lc-payer{background:var(--skatt)}
-.lc-marker{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);transition:left .4s;pointer-events:none}
-.lc-marker::after{content:'Du';position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:.62rem;color:var(--ink);white-space:nowrap;font-family:var(--mono)}
-.lc-legend{display:flex;gap:1.25rem;margin-top:.5rem}
-.lc-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--ink2)}
-.lc-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+
+
+
+
+
+
+
+
 /* Solidarity quote */
 .solidarity-box{padding:1.25rem 1.35rem;background:rgba(46,125,92,.12);border:1px solid rgba(46,125,92,.22);border-radius:4px}
 .solidarity-text{font-size:.82rem;color:var(--ink2);line-height:1.7;font-style:italic}
@@ -523,7 +521,7 @@ h3.pc-title{margin-top:0}
 .chart-topbar{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg)}
 .ctt{font-size:.8rem;font-weight:500;color:var(--ink)}
 .cf2-row{display:flex;gap:5px}
-.cf2{font-size:.7rem;padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.cf2{font-size:.7rem;padding:4px 12px;min-height:32px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
 .cf2.on{background:var(--green);color:#fff;border-color:var(--green)}
 .chart-body2{padding:1.5rem}
 .brow{display:grid;grid-template-columns:200px 1fr 80px;gap:12px;align-items:center;margin-bottom:8px}
@@ -533,9 +531,9 @@ h3.pc-title{margin-top:0}
 .brow-kort{display:none}.brow-uo{font-family:var(--mono);font-size:.62rem;color:var(--ink3)}
 .brow-mer{display:block;margin:1rem auto 0}
 .brow-v{font-family:var(--mono);font-size:.76rem;color:var(--ink2)}
-.clegend{display:flex;gap:1.25rem;flex-wrap:wrap;padding:.9rem 1.5rem 1.2rem;border-top:1px solid var(--border)}
-.leg-i{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--ink2)}
-.leg-d{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+
+
 /* METOD */
 /* FRAMTID */
 .framtid-section{padding:72px 0}
@@ -590,10 +588,10 @@ h3.pc-title{margin-top:0}
 .lc-preset{display:flex;flex-direction:column;align-items:flex-start;padding:.65rem 1rem;border:1px solid var(--border);border-radius:6px;background:transparent;cursor:pointer;transition:all .15s;font-family:var(--sans);text-align:left;gap:1px}
 .lc-preset:hover{border-color:var(--green);background:rgba(46,125,92,.06)}
 .lc-preset.on{border-color:var(--green);background:rgba(46,125,92,.1)}
-.lc-preset-lbl{font-size:.65rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
-.lc-preset-val{font-family:var(--mono);font-size:1rem;font-weight:500;color:var(--ink)}
-.lc-preset.on .lc-preset-val{color:var(--green)}
-.lc-preset-sub{font-size:.62rem;color:var(--ink3)}
+
+
+
+
 .metod-section{background:var(--bg2);padding:72px 0}
 .metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
 .step-list{display:flex;flex-direction:column;gap:1.35rem}
@@ -610,14 +608,14 @@ h3.pc-title{margin-top:0}
 /* QUOTE */
 .quote-section{background:linear-gradient(165deg,#1F5848 0%,#163d31 100%);padding:64px 0;text-align:center}
 .big-q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,3vw,2.15rem);color:#fff;max-width:720px;margin:0 auto 1rem;line-height:1.32;letter-spacing:-.01em}
-.q-note{font-size:.8rem;color:rgba(255,255,255,.72)}
+
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:36px 0}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem}
 .footer-logo{font-family:var(--serif);font-size:1.15rem;color:var(--ink);font-weight:600;margin-bottom:.6rem}
 .footer-logo em{color:var(--green);font-style:italic}
 .footer-tagline{font-size:.76rem;color:var(--ink3);line-height:1.6;font-weight:300;max-width:200px}
-.fc h4{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem}
+.fc h4,.fc-h{font-family:var(--sans);line-height:1.4;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem}
 .fc a{display:block;font-size:.78rem;color:var(--ink2);text-decoration:none;margin-bottom:.42rem;transition:color .15s}
 .fc a:hover{color:var(--ink)}
 .footer-bottom{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
@@ -669,9 +667,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .jmf-not{font-size:.72rem;color:var(--ink2);line-height:1.55;margin-top:.35rem}
 .oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
 .oecd-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
-.oecd-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.oecd-leg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--ink2)}
-.oecd-leg-d{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+
+
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
   .calc-layout{grid-template-columns:minmax(0,1fr)}
@@ -696,8 +694,8 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .ft-bar-label{width:90px;font-size:.62rem}
   .s-title{font-size:1.25rem}
   .s-sub{font-size:.78rem}
-  .hero-section{padding:48px 0 32px}
-  .hero-section h1{font-size:1.8rem}
+  
+  
   .card-label{font-size:.72rem}
   .annual-card{padding:.85rem}
   .contract-card{padding:.85rem}
@@ -708,13 +706,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .brow{grid-template-columns:120px 1fr 60px}
   .brow-kort{display:inline}.brow-lang,.brow-uo{display:none}
 }
-@media(max-width:480px){
-  .hsk-stats-row{grid-template-columns:1fr}
-  .hsk-net{font-size:.6rem}
-  .hsk-inc-row{gap:3px}
-  .hsk-inc-btn{font-size:.55rem;padding:2px 5px}
-  .hsk-stat-val{font-size:1.2rem}
-}
+
 /* Delbart resultatkort */
 .sharecard-btn{margin-top:.9rem;width:100%;padding:.75rem;border:1px solid var(--green);background:var(--green);color:#fff;border-radius:var(--r-sm);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);letter-spacing:.01em;transition:filter .15s}
 .sharecard-btn:hover{filter:brightness(1.08)}
@@ -733,26 +725,26 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sc-actions button:hover{filter:brightness(1.06)}
 .sc-hint{font-size:.66rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
 /* Hero: växel + "Din 100-lapp"-fördelning */
-.hsk-toggle{display:flex;gap:.35rem;margin:-.2rem 0 .7rem}
-.hsk-tg{font-size:.64rem;font-weight:500;padding:4px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s}
-.hsk-tg.on{background:var(--green);color:#fff;border-color:var(--green)}
-.hsk-100-sub{font-size:.74rem;color:rgba(255,255,255,.72);margin:.1rem 0 .75rem}
-.hsk-100-sub strong{color:#fff}
-.hsk-100-rows{display:flex;flex-direction:column;gap:.9rem;min-height:175px}
-.iso100{display:grid;grid-template-rows:repeat(5,1fr);grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
-.iso100 i{display:block;aspect-ratio:1;border-radius:50%;transform:scale(0);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.3,1.2),opacity .35s}
-.iso100.on i{transform:none;opacity:1}
-.iso100-leg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem 1rem;font-size:.7rem;color:rgba(255,255,255,.8)}
-.iso100-leg span{display:flex;align-items:center;gap:.4rem;min-width:0}
-.iso100-leg i{width:9px;height:9px;border-radius:50%;flex:none}
-.iso100-leg b{margin-left:auto;font-family:var(--mono);font-weight:400;color:rgba(255,255,255,.72);white-space:nowrap;padding-left:.3rem}
-@media(prefers-reduced-motion:reduce){.iso100 i{transition:none;transform:none;opacity:1}}
-.h100-row{display:grid;grid-template-columns:92px 1fr 46px;align-items:center;gap:.55rem}
-.h100-lbl{font-size:.68rem;color:rgba(255,255,255,.82);line-height:1.1}
-.h100-track{height:9px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
-.h100-fill{height:100%;width:0;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-.h100-amt{font-family:var(--mono);font-size:.74rem;color:rgba(255,255,255,.72);text-align:right}
-@media(prefers-reduced-motion:reduce){.h100-fill{transition:none}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -774,9 +766,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .pk-rad li{display:flex;flex-direction:column;align-items:center;gap:.3rem;font-size:.72rem;color:var(--ink2)}
 .pk-rad svg{width:34px;height:34px}
 .illu-scen{display:block;width:100%;max-width:260px;height:auto;margin:.4rem 0 1.2rem;border-radius:var(--r)}
-.illu-c{fill:var(--green-ll);stroke:var(--green);stroke-width:1.2}
-.illu-lin{stroke:var(--green);stroke-width:1.2;stroke-dasharray:4 5;opacity:.6}
-.illu-i{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+
+
+
 
 /* Foto i vyhuvud: text till vänster, foto till höger (dator); foto överst (mobil). Diskret kredit i bildens hörn. */
 .vy-grid.har-foto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2.5rem;align-items:center}
@@ -784,13 +776,13 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .vy-foto svg{width:100%;height:100%;display:block}
 /* Fotokredit: liten i-knapp i hörnet; namn och licens visas vid hovring/fokus, klick leder till bildkrediterna */
 .vy-foto figcaption{position:absolute;right:.55rem;bottom:.55rem}
-.foto-info{display:flex;align-items:center;height:24px;border-radius:999px;background:rgba(20,20,18,.5);color:#fff;text-decoration:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);font-size:.62rem;line-height:1;overflow:hidden;max-width:24px;transition:max-width .3s ease,background .2s}
-.foto-info-i{flex:none;width:24px;text-align:center;font-family:var(--serif);font-style:italic;font-weight:600;font-size:.82rem}
-.foto-info-txt{white-space:nowrap;padding-right:.6rem;opacity:0;transition:opacity .2s}
-.vy-foto:hover .foto-info,.foto-info:focus-visible{max-width:22rem;background:rgba(20,20,18,.62)}
-.vy-foto:hover .foto-info-txt,.foto-info:focus-visible .foto-info-txt{opacity:1}
-.foto-info:focus-visible{outline:2px solid #fff;outline-offset:2px}
-@media(prefers-reduced-motion:reduce){.foto-info,.foto-info-txt{transition:none}}
+
+
+
+
+
+
+
 /* Bildkrediter */
 .bk-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1.2rem;padding:0;list-style:none}
 .bk-lista li{display:grid;grid-template-columns:88px 1fr;gap:.8rem;align-items:start;font-size:.8rem;line-height:1.5;color:var(--ink2)}
@@ -826,43 +818,44 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .vy-led b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,7vw,3.4rem);line-height:1;letter-spacing:-.02em;color:var(--green);font-variant-numeric:tabular-nums;margin-bottom:.3rem}
 .vy-led span{font-size:1.02rem;color:var(--ink)}
 .vy-led small{display:block;font-family:var(--mono);font-size:.7rem;color:var(--ink3);margin-top:.3rem}
-.hero-led{margin-top:1rem}
+
 @media(max-width:760px){.vy-grid.har-foto .vy-foto{aspect-ratio:3/1}}
 /* Snabba svar (#unga) */
 .unga{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;list-style:none;margin:1.1rem 0 0;padding:0}
 .unga a{display:flex;flex-direction:column;gap:.2rem;height:100%;padding:1rem 1.1rem;background:var(--paper);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--ink);transition:border-color .15s,box-shadow .15s}
 .unga a:hover{border-color:var(--green);box-shadow:var(--shadow-sm)}
 .unga a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
-.unga-q{font-size:.88rem;font-weight:600;color:var(--ink2)}
+
 .unga b{font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1.05;color:var(--green);font-variant-numeric:tabular-nums}
-.unga-a{font-size:.82rem;color:var(--ink2);line-height:1.4}
-.unga-k{display:block;margin-top:auto;padding-top:.4rem;font-family:var(--mono);font-size:.66rem;color:var(--ink3)}
+
+
 @media(max-width:960px){.unga{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.unga.m-swipe{grid-auto-columns:72%!important}}
 /* Medan man gissar döljs prislistan, annars kan svaret stå synligt */
-.gq-aktiv #pgrid,.gq-aktiv .pgrid-sok,.gq-aktiv .pg-more{display:none!important}
+.gq-aktiv #pgrid,.gq-aktiv .pg-more{display:none!important}
 /* Lönetabellen i toppen: kvar efter skatt och skatt per lönenivå */
-.hero-lon{margin:1.1rem 0 1.2rem;max-width:34rem}
-.hl-rubrik{font-size:.82rem;font-weight:600;color:var(--ink2);margin:0 0 .55rem}
-.hl-rader{display:grid;gap:.45rem}
-.hl-rad{display:grid;grid-template-columns:5.6rem 1fr 3rem;align-items:center;gap:.6rem}
-.hl-lon{font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.hl-bar{display:flex;height:30px;border-radius:4px;overflow:hidden;background:var(--bg2)}
-.hl-bar i{display:flex;align-items:center;height:100%}
-.hl-kvar{background:var(--green)}
-.hl-skatt{background:var(--skatt)}
-.hl-bar em{font-style:normal;font-size:.74rem;font-weight:500;color:#fff;padding-left:.55rem;white-space:nowrap;font-variant-numeric:tabular-nums}
-.hl-andel{font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
-.hl-not{font-size:.74rem;color:var(--ink2);line-height:1.5;margin:.6rem 0 0}
-.hl-not a{color:var(--green)}
-.hl-nyckel{display:inline-flex;align-items:center;gap:.3rem;margin-right:.7rem;font-weight:500;color:var(--ink)}
-.hl-nyckel i{width:10px;height:10px;border-radius:2px;display:inline-block}
- .hl-isk{font-size:.8rem;color:var(--ink);margin:.7rem 0 0;padding:.5rem .7rem;background:var(--paper);border:1px solid var(--border);border-radius:6px}
-.hl-isk a{color:var(--green)}
-.hl-kalla{display:block;font-family:var(--mono);font-size:.68rem;color:var(--ink3);margin-top:.25rem}
-@media(max-width:420px){.hl-rad{grid-template-columns:4.9rem 1fr 2.6rem;gap:.45rem}.hl-lon{font-size:.9rem}.hl-bar em{font-size:.68rem}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
 /* Skatt på sparande (#sparande) */
-.isk-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:1.8rem 0}
+.isk-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;margin:1.8rem 0}
+.isk-grid > *{min-width:0}
 .isk-h{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:1.6rem 0 .6rem;color:var(--ink)}
 .isk-grid .isk-h{margin-top:0}
 .isk-lista{margin:0;padding-left:1.1rem;font-size:.9rem;line-height:1.6;color:var(--ink2)}
@@ -879,9 +872,9 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .isk-cit{margin:0 0 .7rem;padding:.6rem .9rem;border-left:3px solid var(--border);background:var(--paper);border-radius:0 6px 6px 0}
 .isk-cit p{margin:0;font-size:.86rem;line-height:1.5;color:var(--ink);font-style:italic}
 .isk-cit cite{display:block;margin-top:.3rem;font-style:normal;font-size:.72rem;color:var(--ink3)}
-@media(max-width:760px){.isk-grid{grid-template-columns:1fr;gap:1.2rem}}
+@media(max-width:760px){.isk-grid{grid-template-columns:minmax(0,1fr);gap:1.2rem}}
 /* Stora tal: en stil överallt (serif, tabellsiffror) */
-.vgv-big,.hsk-prislapp-amount,.pc-amount,.ft-big,.ft-stat-val,.wt-v,.t-num{font-family:var(--serif)!important;font-weight:600!important;letter-spacing:-.01em!important;font-variant-numeric:tabular-nums}
+.vgv-big,.pc-amount,.ft-big,.ft-stat-val,.wt-v,.t-num{font-family:var(--serif)!important;font-weight:600!important;letter-spacing:-.01em!important;font-variant-numeric:tabular-nums}
 /* Översikt över jämförelserna */
 .ov-intro{font-size:.88rem;color:var(--ink2);margin:0 0 1rem;max-width:44rem}
 .ov-grupp{margin-bottom:1.4rem}
@@ -904,7 +897,7 @@ html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
 .vy-huvud{padding:0 0 1.6rem;border-bottom:1px solid var(--border);background:var(--bg)}
 .vy-smula{font-size:.78rem;color:var(--ink3);margin:1.6rem 0 .6rem;position:static;z-index:auto;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
-.vy-smula a{color:var(--green);text-decoration:none}
+.vy-smula a{color:var(--green);text-decoration:underline;text-underline-offset:2px}
 .vy-smula a:hover{text-decoration:underline}
 .vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
 .vy-ingress{font-size:1rem;color:var(--ink2);max-width:60ch;line-height:1.55;margin:0 0 .4rem}
@@ -957,11 +950,11 @@ html{scroll-padding-top:72px}
   .ft-bar-label{font-size:.72rem}
   .ft-tab,.oecd-tab{font-size:.74rem;padding:8px 14px}
   .src-badge{font-size:.66rem}
-  .hsk-tg{font-size:.74rem;padding:7px 14px}
-  .hsk-prislapp-dot{width:10px;height:10px;padding:0;box-sizing:content-box;border:9px solid transparent;background-clip:padding-box}
-  .hsk-prislapp-foot a{display:inline-block;padding:.45rem 0}
-  .hsk-prislapp-stage{min-height:0}
-  .vgv-step p{font-size:.82rem}
+  
+  
+  
+  
+  
   #tldr .s-eye,#tldr .s-title{text-align:left!important}
 }
 
@@ -1016,8 +1009,8 @@ html{scroll-padding-top:72px}
 .kv-fot{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;font-size:11px;color:#55524C}
 .kv-fot svg{width:200px;height:36px}
 .kvitto-not{font-size:.78rem;color:var(--ink2);line-height:1.6;margin:0;max-width:34ch}
-.kvitto-rum{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:2rem;align-items:center;background:var(--bg2);border-radius:var(--r);padding:1.75rem}
-@media(max-width:700px){.kvitto-rum{grid-template-columns:minmax(0,1fr);padding:1.25rem .75rem}.kvitto-not{max-width:none}}
+
+@media(max-width:700px){.kvitto-not{max-width:none}}
 
 /* ═══ STARTKVITTOT ═══ */
 .start-lead{font-size:1.12rem;line-height:1.55;color:var(--ink2);max-width:30em;margin:1.2rem 0 1.4rem}
@@ -1031,6 +1024,8 @@ html{scroll-padding-top:72px}
 .start-metod{font-size:.76rem;color:var(--ink3);line-height:1.55;max-width:36em;margin-top:1.2rem}
 .start-kv{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding-top:.4rem}
 .start-kv .kvitto{max-width:400px}
+.start-kv-citat{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.45;color:var(--green);text-align:center;max-width:24rem;margin:.4rem 0 0;text-wrap:balance}
+.start-kv-not a{color:var(--green)}
 .start-kv-not{font-size:.74rem;color:var(--ink3);line-height:1.55;text-align:center;max-width:26rem;margin:0}
 .start-kv-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .kv-rad.tva{grid-template-columns:14px minmax(0,1fr) auto;row-gap:1px;align-items:baseline}
@@ -1047,6 +1042,7 @@ html{scroll-padding-top:72px}
 .kvitto-par > p{font-size:.92rem;color:var(--ink2);line-height:1.6;max-width:44em;margin:0}
 .kvitto-par .kvitto-not{text-align:center;max-width:30em}
 @media(max-width:760px){.kvitto-par-grid{grid-template-columns:minmax(0,1fr);padding:1.25rem .75rem}}
+@media(max-width:420px){.wbar{grid-template-columns:minmax(0,1fr) auto;row-gap:.3rem}.wbar-t{grid-column:1 / -1;order:3}}
 </style>
 </head>
 <body>
@@ -1276,7 +1272,7 @@ html{scroll-padding-top:72px}
 </defs></svg>
 
 
-<a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a>
+<nav aria-label="Genväg"><a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a></nav>
 
 <nav role="navigation" aria-label="Huvudnavigering">
   <div class="container">
@@ -1332,6 +1328,7 @@ html{scroll-padding-top:72px}
       <!-- STARTKVITTOT: skatten på lönen, fördelad på sju grupper, med vad den räcker till (START_GRUPPER i JS). -->
       <div class="start-kv fu fu4">
         <figure class="kvitto" id="start-kvitto" style="margin:0" aria-label="Skattekvitto"></figure>
+        <p class="start-kv-citat">Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.</p>
         <p class="start-kv-not" id="start-kv-not"></p>
         <p class="start-kv-live" aria-live="polite" id="start-kv-live"></p>
       </div>
@@ -3046,7 +3043,7 @@ html{scroll-padding-top:72px}
 
 <section class="quote-section" id="citat">
   <div class="container">
-    <p class="big-q">Skatten betalar för skola, vård och pension som var och en använder under olika delar av livet.</p>
+    <p class="big-q">"Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt."</p>
   </div>
 </section>
 
@@ -3270,7 +3267,7 @@ const BAS_TITEL = document.title;
     if(byte){
       aktiv = vyId; window.aktivVy = vyId;
       const pill = document.querySelector('.nav-pill');
-      if(pill){ pill.textContent = vyId === 'din-ekonomi' ? 'Dela min beräkning' : 'Dela'; pill.title = vyId === 'din-ekonomi' ? 'Dela en länk som återskapar din beräkning' : 'Dela länken till den här sidan'; }
+      if(pill){ pill.textContent = vyId === 'din-ekonomi' && innerWidth > 420 ? 'Dela min beräkning' : 'Dela'; pill.title = vyId === 'din-ekonomi' ? 'Dela en länk som återskapar din beräkning' : 'Dela länken till den här sidan'; }
       main.querySelectorAll(':scope > [data-vy]').forEach(el => el.classList.toggle('vy-dold', el.dataset.vy !== vyId));
       const v = VYER.find(x => x.id === vyId);
       document.title = vyId === 'start' ? BAS_TITEL : v.namn + ' · Skatteplattformen';
@@ -3315,8 +3312,8 @@ const BAS_TITEL = document.title;
 
 <!-- Delbart resultatkort — modal på body-nivå (position:fixed opåverkad av transforms) -->
 <div class="sc-overlay" id="sc-overlay" onclick="if(event.target===this)closeShareCard()">
-  <div class="sc-modal">
-    <button class="sc-close" onclick="closeShareCard()" aria-label="Stäng">✕</button>
+  <div class="sc-modal" role="dialog" aria-modal="true" aria-label="Spara din profil som bild">
+    <button type="button" class="sc-close" onclick="closeShareCard()" aria-label="Stäng">✕</button>
     <div class="sc-format" role="group" aria-label="Bildformat">
       <button type="button" class="sc-fmt on" data-fmt="square" onclick="setScFormat(this,'square')">⬛ Inlägg (1:1)</button>
       <button type="button" class="sc-fmt" data-fmt="story" onclick="setScFormat(this,'story')">▬ Story (9:16)</button>
@@ -3334,9 +3331,9 @@ const BAS_TITEL = document.title;
   <div class="container">
     <div class="footer-grid">
       <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara siffror, med källa.</p></div>
-      <div class="fc"><h4>Vyer</h4><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
-      <div class="fc"><h4>Metod</h4><a href="#metod">Metod och källor</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="#bildkrediter">Bildkrediter</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
-      <div class="fc"><h4>Om projektet</h4><a href="#om-oss">Om oss</a><a href="#sa-arbetar-vi">Så arbetar vi</a><a href="#rattelser">Rättelser</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
+      <div class="fc"><h2 class="fc-h">Vyer</h2><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
+      <div class="fc"><h2 class="fc-h">Metod</h2><a href="#metod">Metod och källor</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="#bildkrediter">Bildkrediter</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
+      <div class="fc"><h2 class="fc-h">Om projektet</h2><a href="#om-oss">Om oss</a><a href="#sa-arbetar-vi">Så arbetar vi</a><a href="#rattelser">Rättelser</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
     </div>
     <div class="footer-bottom">
       <span class="footer-legal">Text, siffror och diagram: <a href="https://creativecommons.org/licenses/by/4.0/deed.sv" target="_blank" rel="noopener license">CC BY 4.0</a>, fri att använda med källhänvisning till Skatteplattformen. Kod: MIT. Illustrationer: CC BY 4.0, se <a href="#bildkrediter">Illustrationerna</a>. Underliggande statistik enligt respektive källas villkor.</span>
@@ -4137,14 +4134,14 @@ const FAKTA = [
       (ch.note?'<div class="fk-leg">'+ch.note+'</div>':'');
   }
   track.innerHTML = FAKTA.map((f,i)=>
-    '<article class="fk" id="fakta-'+(i+1)+'" role="listitem" aria-labelledby="fk-h-'+(i+1)+'">'+
+    '<div class="fk" id="fakta-'+(i+1)+'" role="listitem" aria-labelledby="fk-h-'+(i+1)+'">'+
       '<p class="fk-eye"><b>Snabbfakta nr '+(i+1)+'</b> · '+f.tema+'</p>'+
       '<h3 class="fk-h" id="fk-h-'+(i+1)+'">'+f.h+'</h3>'+
       '<div class="fk-chart">'+chartHTML(f.chart)+'</div>'+
       '<p class="fk-p">'+f.p+'</p>'+
       '<div class="fk-meta"><span>Källa: '+f.kalla+'</span><span>År: '+f.ar+'</span><span>Uppdaterad: '+FAKTA_UPPDATERAD+'</span></div>'+
       '<div class="fk-act"><button type="button" data-fk-link="'+i+'">'+ico('doc')+'Kopiera länk</button><button type="button" data-fk-img="'+i+'" data-fmt="post" aria-label="Spara som bild för flödet, 4:5">'+ico('camera')+'Bild</button><button type="button" data-fk-img="'+i+'" data-fmt="story" aria-label="Spara som bild för Stories, 9:16">'+ico('camera')+'Story</button></div>'+
-    '</article>').join('');
+    '</div>').join('');
 
   const step=()=> (track.querySelector('.fk')||{offsetWidth:360}).offsetWidth+16;
   document.getElementById('fk-prev').addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
@@ -4645,76 +4642,7 @@ function hlRender(){
   hlRender();
 })();
 
-(function initHeroPrislappar(){
-  const stage   = document.getElementById('hskPrislappStage');
-  const catEl   = document.getElementById('hskPrislappCat');
-  const titleEl = document.getElementById('hskPrislappTitle');
-  const amtEl   = document.getElementById('hskPrislappAmount');
-  const sufEl   = document.getElementById('hskPrislappSuf');
-  const vsEl    = document.getElementById('hskPrislappVs');
-  const dotsEl  = document.getElementById('hskPrislappDots');
-  if(!stage || !dotsEl) return;
 
-  let current = 0;
-  let timer = null;
-  const ROTATE_MS = 6000;
-  const FADE_MS   = 350;
-  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Bygg dots
-  HERO_PRISLAPPAR.forEach((_, i) => {
-    const b = document.createElement('button');
-    b.className = 'hsk-prislapp-dot' + (i === 0 ? ' on' : '');
-    b.setAttribute('role', 'tab');
-    b.setAttribute('aria-label', `Visa prislapp ${i+1} av ${HERO_PRISLAPPAR.length}`);
-    b.onclick = () => goTo(i, true);
-    dotsEl.appendChild(b);
-  });
-
-  function render(idx){
-    const p = HERO_PRISLAPPAR[idx];
-    catEl.textContent   = p.cat;
-    titleEl.textContent = p.title;
-    amtEl.textContent   = p.amount;
-    sufEl.textContent   = p.suf;
-    vsEl.innerHTML      = p.vs;
-    dotsEl.querySelectorAll('.hsk-prislapp-dot').forEach((d, i) => d.classList.toggle('on', i === idx));
-  }
-
-  function goTo(idx, manual){
-    const st = document.getElementById('hskPrislappStage'); if(st) st.setAttribute('aria-live', manual ? 'polite' : 'off');
-    if(idx === current) return;
-    current = idx;
-    if(reducedMotion){
-      render(current);
-    } else {
-      stage.classList.add('fading');
-      setTimeout(() => { render(current); stage.classList.remove('fading'); }, FADE_MS);
-    }
-    if(manual){ stopTimer(); startTimer(); }  // återstart efter manuell navigation
-  }
-
-  function next(){
-    goTo((current + 1) % HERO_PRISLAPPAR.length, false);
-  }
-
-  function startTimer(){
-    if(reducedMotion) return;
-    stopTimer();
-    timer = setInterval(next, ROTATE_MS);
-  }
-  function stopTimer(){
-    if(timer){ clearInterval(timer); timer = null; }
-  }
-
-  // Pausera vid hover/focus
-  stage.parentElement.addEventListener('mouseenter', stopTimer);
-  stage.parentElement.addEventListener('mouseleave', startTimer);
-  stage.parentElement.addEventListener('focusin',    stopTimer);
-  stage.parentElement.addEventListener('focusout',   startTimer);
-
-  startTimer();
-})();
 
 // ═══════════════════════════════════════════════════════════════════
 // SHAREABLE URLs — läs/skriv URL-parametrar för delbart tillstånd
@@ -5382,7 +5310,7 @@ function updateCalc(){
     'aldri': 'Efter 80 är kostnaden för vård och omsorg som högst, ofta flera hundra tusen kronor om året. Den betalas med skatt från dem som arbetar i dag.',
   };
   document.getElementById('solidarity-text').textContent = solidarityTexts[stage.id] ||
-    'Din skatt går till andras barn, vård och pension, och deras skatt till din.';
+    'Du finansierar också andras barn, sjukvård och pension, och de finansierar dina. Det är innebörden av ett solidariskt samhällskontrakt.';
 
   // ─── DITT SKATTEKVITTO ─────────────────────────────────────────
   // Proportional breakdown of user's total tax across COFOG functions
@@ -6690,8 +6618,17 @@ function drawShareCard(){
   x.textAlign = 'left';
 }
 
-function openShareCard(){ drawShareCard(); document.getElementById('sc-overlay')?.classList.add('on'); }
-function closeShareCard(){ document.getElementById('sc-overlay')?.classList.remove('on'); }
+let scTillbaka = null;
+function openShareCard(){ drawShareCard(); const o = document.getElementById('sc-overlay'); if(!o) return; scTillbaka = document.activeElement; o.classList.add('on'); document.body.style.overflow = 'hidden'; o.querySelector('.sc-close').focus(); }
+function closeShareCard(){ const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return; o.classList.remove('on'); document.body.style.overflow = ''; if(scTillbaka && scTillbaka.focus) scTillbaka.focus(); }
+document.addEventListener('keydown', e => {
+  const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return;
+  if(e.key === 'Escape'){ closeShareCard(); return; }
+  if(e.key !== 'Tab') return; // håll fokus i dialogen
+  const f = [...o.querySelectorAll('button')].filter(x => x.offsetParent !== null);
+  if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+  else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+});
 function downloadShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
   const a = document.createElement('a');
@@ -6781,6 +6718,13 @@ function downloadTransparencyJSON(){
 }
 
 // ═══════════════════════════════════════════════════════════════════
+// Växlingsknappar (flikar, filter, format): aria-pressed följer klassen "on", så att skärmläsare hör vilken som är vald
+(function vaxlingsknappar(){
+  const SEL = '.ft-tab,.scen-tab,.jmf-hopp,.pf,.cf2,.hh-btn,.lc-profile-btn,.sc-fmt';
+  const synka = () => document.querySelectorAll(SEL).forEach(b => { if(b.getAttribute('role') !== 'tab') b.setAttribute('aria-pressed', b.classList.contains('on')); }); // riktiga flikar har aria-selected
+  document.addEventListener('click', e => { if(e.target.closest(SEL)) setTimeout(synka, 0); });
+  synka();
+})();
 // NAV "MER" — öppna/stäng undermeny (klick, Escape, klick utanför)
 (function initNavMore(){
   const li=document.querySelector('.nav-more'); if(!li) return;

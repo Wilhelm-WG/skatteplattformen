@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Tillgänglighet och designsystem (steg 6)
+
+- **Axe (WCAG 2.1 AA och best practice) ger inga fel i någon vy.** Rättat:
+  brödsmulans länk är understruken, sidfotens rubriker har rätt nivå,
+  faktakorten har tillåten listroll och hopplänken ligger i ett landmärke.
+- **Dela-dialogen** är en riktig dialog: fokus flyttas in, stannar kvar,
+  Escape stänger och fokus går tillbaka till knappen.
+- **Växlingsknappar** (filter, scenarier, format) säger med `aria-pressed`
+  vilken som är vald. Flikarna i Framtid har kvar sina flikroller.
+- **320 px bredd:** ingen sidledsrullning i någon vy (ISK-avsnittet bröt
+  layouten). Staplarna i förmånskortet ligger på egen rad på smal skärm, och
+  delningsknappen heter bara "Dela" på mobil.
+- **Klickytor:** reglagen är 28 px höga och filterknapparna minst 32 px.
+- **Citatet är tillbaka:** "Du finansierar också andras barn, sjukvård och
+  pension — det är innebörden av ett solidariskt samhällskontrakt." i det gröna
+  bandet i Metod, under kvittot på startsidan och som standardtext i Din
+  ekonomi.
+- **Städning:** 132 CSS-regler och koden för det borttagna prislappskortet
+  (cirka 14 kB) som inte längre användes.
+
 ### Changed (2026-10-29) — Metod på klarspråk (steg 5)
 
 - **Så räknar vi** är omskrivet utan fackord: fem punkter om att vi räknar på

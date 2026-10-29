@@ -66,6 +66,11 @@ correspondence/
 - Filmen "Så går samhället runt" har egna färger för stat, region och kommun och följer inte kategoripaletten
 - `img/foton/` används inte längre av sidan (finns kvar i repot). Ankaret `#bildkrediter` är kvar men sektionen heter Illustrationerna
 
+**Tillgänglighet (steg 6, 2026-10-29):**
+- Kör axe-core i webbläsaren på alla sju vyer före större ändringar (ladda axe från cdnjs i en lokal kopia, ta bort filen efteråt). Mål: inga fel för `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` och `best-practice`
+- Dialoger (`#detail-panel`, `.sc-modal`): `role="dialog"`, `aria-modal`, fokus in, fokusfälla, Escape och fokus tillbaka. Växlingsknappar får `aria-pressed` automatiskt via `vaxlingsknappar()`; element med `role="tab"` använder `aria-selected`
+- Ingen sidledsrullning på 320 px. Grid-kolumner skrivs `minmax(0,1fr)`. Klickytor minst 24 px (reglage 28 px)
+
 **Licens:** text, siffror, diagram och illustrationer CC BY 4.0; kod MIT.
 
 **Delningsbild och ikoner (`img/`):**
