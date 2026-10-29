@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Typografi och termokvitto (art director-förslag 1 och 2)
+
+- **Typografi:** en typskala i sju steg (variabler `--fs-…`), minsta
+  textstorlek 11 px (cirka 90 ställen var mindre), en gemensam etikettstil och
+  tabellsiffror där tal står under varandra. Tusental skrivs med smalt hårt
+  mellanslag, talet och enheten bryts aldrig isär, minus är ett riktigt
+  minustecken och ≈ har smalt mellanslag (`svSiffror`). Enheten i vyernas
+  ledsiffra är mindre och grå.
+- **Kvittona** (startsidan och båda i Din ekonomi) ser ut som riktiga
+  termokvitton: papper som är kallare i kanterna, termotryckets brus och slitna
+  stråk, ojämn rivkant, bitmapplogotyp, kassa, kvittonummer och kassör, summan
+  i dubbel höjd, svarta pictogram med jämförelserna i grönt som andra
+  tryckfärg, streckkod med siffror och en perforerad flik längst ned.
+
+### Fixed (2026-10-29)
+
+- Hopplänken låg i ett `nav`-element och fick därför menyns klistriga, suddiga
+  stil, som syntes som en fläck uppe till vänster. Den ligger nu i ett märkt
+  landmärke (`role="region"`).
+
 ### Fixed (2026-10-29) — Städning och noggrannhet
 
 - **Inkomstpensionen:** uppskattningen cirka 400 Mdkr är ersatt med 363,7 Mdkr

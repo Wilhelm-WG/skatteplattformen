@@ -73,6 +73,8 @@
   --shadow-md:0 2px 6px rgba(26,24,19,.05),0 8px 20px rgba(26,24,19,.06);
   --shadow-lg:0 12px 40px rgba(26,24,19,.12);
   --r:8px;--r-sm:5px;
+  /* Typskala, sju steg (1,25 från 16 px): 64 hjälterubrik, 40 avsnitt, 28 underrubrik, 20 ingress, 16 bröd, 13 liten, 11 etikett */
+  --fs-hjalte:4rem;--fs-avsnitt:2.5rem;--fs-under:1.75rem;--fs-ingress:1.25rem;--fs-brod:1rem;--fs-liten:.8125rem;--fs-etikett:.6875rem;
   /* Kategorifärger: samma färg och pictogram (pk-…) i hundralappen, kvittot, kalkylatorn, diagram och prislistan */
   --k-soc:#5B3F8C;--k-vard:#2E7D5C;--k-utb:#1E4A8C;--k-infra:#B07B24;--k-forv:#66615A;--k-forsv:#3B5566;
   --k-kommun:#B84A1E;--k-ratt:#8E3816;--k-eu:#3E6FB0;--k-arbete:#4E7A63;--k-ranta:#8C6A2C;--k-ovrigt:#9A948A;--k-fritid:#B07B24;
@@ -99,7 +101,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 /* NYCKELTAL och källänkar */
 .nt-tbl{width:100%;border-collapse:collapse;font-size:.78rem;min-width:560px}
 .nt-tbl th,.nt-tbl td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--border2);vertical-align:top}
-.nt-tbl th{font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.nt-tbl th{font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:600}
 .nt-tbl .nt-v{font-family:var(--mono);color:var(--ink);white-space:nowrap}
 .nt-tbl a,.kalla-lank{color:var(--green);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 .kalla-lank:hover{text-decoration-thickness:2px}
@@ -123,12 +125,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .fk-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(360px,86%);gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1.2rem .2rem 1rem;margin-top:.4rem;scrollbar-width:thin;overscroll-behavior-x:contain}
 .fk{scroll-snap-align:start;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.25rem 1rem;display:flex;flex-direction:column;gap:.7rem;box-shadow:var(--shadow-sm);scroll-margin-top:90px;transition:box-shadow .3s,border-color .3s}
 .fk.hl{border-color:var(--green);box-shadow:0 0 0 3px var(--green-l)}
-.fk-eye{font-family:var(--mono);font-size:.64rem;color:var(--ink3);margin:0;letter-spacing:.02em}
+.fk-eye{font-family:var(--mono);font-size:.6875rem;color:var(--ink3);margin:0;letter-spacing:.02em}
 .fk-eye b{color:var(--green);font-weight:500}
 .fk-h{font-family:var(--serif);font-size:1.18rem;font-weight:600;line-height:1.25;margin:0;color:var(--ink);text-wrap:balance}
 .fk-chart{display:grid;gap:.45rem;margin:.1rem 0}
 .fk-stack{display:flex;height:30px;border-radius:5px;overflow:hidden}
-.fk-stack span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.68rem;color:#fff;white-space:nowrap;overflow:hidden}
+.fk-stack span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.6875rem;color:#fff;white-space:nowrap;overflow:hidden}
 .fk-leg{display:flex;flex-wrap:wrap;gap:.25rem .9rem;font-size:.7rem;color:var(--ink2)}
 .fk-leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.35rem}
 .fk-row{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr) auto;gap:.6rem;align-items:center;font-size:.72rem;color:var(--ink2)}
@@ -136,7 +138,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .fk-row .t i{display:block;height:100%;border-radius:3px;min-width:2px}
 .fk-row em{font-style:normal;font-family:var(--mono);color:var(--ink);font-size:.72rem}
 .fk-p{font-size:.78rem;color:var(--ink2);line-height:1.6;margin:0}
-.fk-meta{display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin-top:auto;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono);font-size:.6rem;color:var(--ink3)}
+.fk-meta{display:flex;flex-wrap:wrap;gap:.2rem .9rem;margin-top:auto;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono);font-size:.6875rem;color:var(--ink3)}
 .fk-act{display:flex;gap:1rem}
 .fk-act button{font:inherit;font-size:.72rem;font-weight:500;color:var(--green);background:none;border:0;padding:.2rem 0;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
 .fk-act button:focus-visible,.fk-arrow:focus-visible{outline:2px solid var(--green);outline-offset:2px}
@@ -145,7 +147,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .gq [hidden]{display:none!important}
 .gq{margin-top:1.4rem;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem;box-shadow:var(--shadow-sm);scroll-margin-top:80px}
 .gq-intro{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap}
-.gq-eye{display:flex;align-items:center;gap:.4rem;font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:0 0 .3rem}
+.gq-eye{display:flex;align-items:center;gap:.4rem;font-size:.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:0 0 .3rem}
 .gq-h{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:0 0 .2rem;line-height:1.25}
 .gq-p{font-size:.8rem;color:var(--ink2);margin:0}
 .gq-btn{font:inherit;font-size:.82rem;font-weight:600;background:var(--green);color:#fff;border:0;border-radius:var(--r-sm);padding:.6rem 1.1rem;cursor:pointer;white-space:nowrap}
@@ -158,9 +160,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .gq-x:hover{color:var(--ink);background:var(--bg2)}
 .gq-q{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.6rem);font-weight:600;margin:0;line-height:1.2}
 .gq-unit{font-size:.78rem;color:var(--ink3);margin:.2rem 0 1rem}
-.gq-lbl{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.gq-lbl{font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
 .gq input[type=range]{width:100%;margin:.6rem 0 .2rem;accent-color:var(--green)}
-.gq-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;color:var(--ink3);position:relative}
+.gq-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6875rem;color:var(--ink3);position:relative}
 .gq-scale span:nth-child(2){position:absolute;left:46.5%;transform:translateX(-50%)}
 .gq-row{display:flex;align-items:center;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
 .gq-num{display:flex;align-items:baseline;gap:.4rem;border-bottom:2px solid var(--ink);padding:.1rem .2rem}
@@ -171,7 +173,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .gq-res.near{color:var(--green)}
 .gq-res.far{color:var(--red-t)}
 .gq-cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:.4rem 0 .7rem;max-width:520px}
-.gq-cmp div{font-size:.66rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
+.gq-cmp div{font-size:.6875rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
 .gq-cmp b{display:block;font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em;text-transform:none;margin-top:.15rem}
 .gq-cmp .right b{color:var(--green)}
 .gq-info{font-size:.78rem;color:var(--ink2);line-height:1.55;margin:.25rem 0 0}
@@ -187,12 +189,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 /* KRETSLOPPET (animerad film i #vem-gor-vad) */
 #kretslopp{--stage:#FFFFFF;--line:var(--bg3);--soft:var(--bg2);--stat:var(--blue);--stat-l:var(--blue-l);--reg:var(--green2);--reg-l:var(--green-ll);--kom:#A8761F;--kom-l:var(--amber-l);--sv:var(--ink);--sv-l:var(--bg2);--accent:var(--green);margin:1.8rem 0 .4rem;max-width:980px;scroll-margin-top:80px}
 #kretslopp [hidden]{display:none!important}
-#kretslopp .kl-eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:0 0 .6rem;display:flex;align-items:center;gap:.5rem}
+#kretslopp .kl-eyebrow{font-size:.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:0 0 .6rem;display:flex;align-items:center;gap:.5rem}
 #kretslopp .film{box-shadow:var(--shadow-sm)}
 #kretslopp .transcript{margin-top:.9rem}
 #kretslopp .transcript summary{font-size:.8rem}
 #kretslopp .transcript ol{font-size:.8rem}
-#kretslopp .src{font-size:.66rem;margin-top:.5rem}
+#kretslopp .src{font-size:.6875rem;margin-top:.5rem}
 #kretslopp .film{background:var(--stage);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 #kretslopp .stage-wrap{position:relative}
 #kretslopp svg#stage{display:block;width:100%;height:auto;font-family:var(--sans)}
@@ -250,7 +252,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-badge{width:30px;height:30px;display:grid;place-items:center;color:var(--ink);flex:none}
 .vgv-badge .ico{width:26px;height:26px}
 .vgv-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin:0;line-height:1.1}
-.vgv-meta{font-family:var(--mono);font-size:.68rem;color:var(--ink3);line-height:1.5}
+.vgv-meta{font-family:var(--mono);font-size:.6875rem;color:var(--ink3);line-height:1.5}
 .vgv-big{font-family:var(--mono);font-size:1.6rem;color:var(--ct,var(--c));line-height:1;margin-top:.2rem}
 .vgv-bigtxt{font-size:.78rem;color:var(--ink2);line-height:1.45}
 .vgv-card ul{list-style:none;margin:.2rem 0 0;padding:0;display:grid;gap:.4rem;font-size:.82rem;color:var(--ink2)}
@@ -261,12 +263,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 
 .vgv-2col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;margin-top:2.4rem;align-items:start}
 .vgv-panel{background:var(--bg2);border-radius:10px;padding:1.3rem}
-.vgv-lbl{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem}
+.vgv-lbl{font-family:var(--mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem}
 .vgv-panel h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0 0 .3rem}
 .vgv-panel > p{font-size:.8rem;color:var(--ink2);line-height:1.55;margin:0 0 1rem}
 .vgv-row{display:grid;grid-template-columns:6.2rem minmax(0,1fr);gap:.7rem;align-items:center;font-size:.78rem;margin-bottom:.6rem}
 .vgv-bar{display:flex;height:26px;border-radius:5px;overflow:hidden}
-.vgv-bar span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.66rem;color:#fff;white-space:nowrap;overflow:hidden}
+.vgv-bar span{display:flex;align-items:center;padding-left:.45rem;font-family:var(--mono);font-size:.6875rem;color:#fff;white-space:nowrap;overflow:hidden}
 .vgv-s{background:var(--green)}.vgv-g{background:var(--d-neutral2);color:#1A1813!important}.vgv-o{background:var(--d-neutral);color:#1A1813!important}
 .vgv-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.7rem;color:var(--ink2);margin-top:.4rem}
 .vgv-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.35rem;vertical-align:0}
@@ -275,7 +277,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .vgv-hund i{display:block;height:9px;border-radius:5px;background:var(--k,var(--d-neutral2))}
 .vgv-hund .pk{width:1.1rem;height:1.1rem}
 .vgv-hund em{font-style:normal;font-family:var(--mono);text-align:right;color:var(--ink)}
-.vgv-src{font-size:.66rem;color:var(--ink3);margin-top:1.6rem;line-height:1.6}
+.vgv-src{font-size:.6875rem;color:var(--ink3);margin-top:1.6rem;line-height:1.6}
 @media(max-width:860px){
   .vgv-grid,.vgv-2col{grid-template-columns:1fr}
   
@@ -333,7 +335,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.78);backdrop-
 .e-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 2.4s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .e-text{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
-h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4.2rem);line-height:1.06;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.5rem;font-weight:700}
+h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,var(--fs-hjalte));line-height:1.06;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.5rem;font-weight:700}
 h1 em{font-style:italic;color:var(--green)}
 .tagline{font-size:1rem;color:var(--ink2);line-height:1.8;font-weight:300;max-width:480px;margin-bottom:2rem}
 .tagline strong{font-weight:500;color:var(--ink)}
@@ -360,10 +362,10 @@ h1 em{font-style:italic;color:var(--green)}
 /* VISSTE DU ATT — hero fact ticker */
 /* SECTIONS */
 .section{padding:88px 0}
-.s-eye{display:inline-flex;align-items:center;gap:9px;font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem}
+.s-eye{display:inline-flex;align-items:center;gap:9px;font-size:.6875rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem}
 .s-eye::before{content:'';width:22px;height:2px;background:var(--green);border-radius:2px}
-.s-title{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.6rem);letter-spacing:-.02em;line-height:1.12;color:var(--ink);margin-bottom:.9rem;font-weight:600}
-.s-sub{font-size:.95rem;color:var(--ink2);font-weight:400;max-width:580px;line-height:1.75}
+.s-title{font-family:var(--serif);font-size:clamp(1.75rem,3.2vw,var(--fs-avsnitt));letter-spacing:-.02em;line-height:1.12;color:var(--ink);margin-bottom:.9rem;font-weight:600}
+.s-sub{font-size:var(--fs-brod);color:var(--ink2);font-weight:400;max-width:580px;line-height:1.75}
 hr.div{border:none;border-top:1px solid var(--border)}
 /* PRICE TABLE */
 .price-hdr{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem}
@@ -374,14 +376,14 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .pc{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.45rem 1.55rem;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .pc:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(26,24,19,.16)}
-.pc-cat{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:.8rem}
+.pc-cat{font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:.8rem}
 .cat-helse{background:var(--green-ll);color:var(--green)}
 .cat-utb{background:var(--blue-l);color:var(--blue)}
 .cat-infra{background:var(--amber-l);color:#7A5A1A}
 .cat-social{background:var(--purple-l);color:var(--purple)}
 .cat-trygghet{background:var(--red-l);color:var(--red-t)}
 .pc-title{font-size:.86rem;font-weight:500;color:var(--ink);margin-bottom:.2rem;line-height:1.35}
-.pc-unit{font-size:.68rem;color:var(--ink3);margin-bottom:.75rem}
+.pc-unit{font-size:.6875rem;color:var(--ink3);margin-bottom:.75rem}
 .pc-amount{font-family:var(--mono);font-size:1.6rem;font-weight:500;color:var(--ink);letter-spacing:-.03em;line-height:1}
 .pc-suf{font-size:.8rem;color:var(--ink3);font-weight:400}
 .pc-vs{margin-top:.5rem;font-size:.72rem;color:var(--ink3);line-height:1.5}
@@ -389,15 +391,15 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .pc-cmp{display:flex;gap:.45rem;align-items:flex-start;margin-top:.65rem;font-size:.72rem;color:var(--ink2);line-height:1.45}
 .pc-cmp .ico{color:var(--ink3);margin-top:.1em;flex:none}
 .pc-cmp b{color:var(--ink);font-weight:600}
-.pc-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono)}
-.pc-src summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:.68rem;font-weight:500;color:var(--green);display:inline-flex;align-items:center;gap:.3rem}
+.pc-src{font-size:.6875rem;color:var(--ink3);margin-top:.75rem;padding-top:.6rem;border-top:1px solid var(--border2);font-family:var(--mono)}
+.pc-src summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:.6875rem;font-weight:500;color:var(--green);display:inline-flex;align-items:center;gap:.3rem}
 .pc-src summary::-webkit-details-marker{display:none}
 .pc-src summary::before{content:"+";font-family:var(--mono);font-weight:600;width:.8em}
 .pc-src[open] summary::before{content:"−"}
 .pc-src summary:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:2px}
 .pc-src p{margin:.45rem 0 0;line-height:1.55}
 .pc{cursor:pointer;position:relative}
-.pc::after{content:'Klicka för mer →';position:absolute;bottom:10px;right:14px;font-size:.58rem;font-weight:500;color:var(--green);opacity:0;transition:opacity .2s}
+.pc::after{content:'Klicka för mer →';position:absolute;bottom:10px;right:14px;font-size:.6875rem;font-weight:500;color:var(--green);opacity:0;transition:opacity .2s}
 .pc:hover::after{opacity:1}
 /* DETAIL MODAL */
 .detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,26,22,.55);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -410,13 +412,13 @@ hr.div{border:none;border-top:1px solid var(--border)}
 .pc-btn:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
 h3.pc-title{margin-top:0}
 .dp-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border)}
-.dp-cat{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:.75rem}
+.dp-cat{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 9px;border-radius:12px;display:inline-block;margin-bottom:.75rem}
 .dp-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);margin:0 0 .3rem;line-height:1.25}
 .dp-amount{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--green);margin-bottom:.15rem}
 .dp-unit{font-size:.76rem;color:var(--ink3)}
 .dp-body{padding:1.5rem 2rem 3rem}
 .dp-section{margin-bottom:1.75rem}
-.dp-section-title{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.65rem}
+.dp-section-title{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.65rem}
 .dp-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .dp-bar-label{font-size:.72rem;color:var(--ink2);min-width:100px;text-align:right}
 .dp-bar-track{flex:1;height:14px;background:var(--bg2);border-radius:2px;overflow:hidden}
@@ -424,7 +426,7 @@ h3.pc-title{margin-top:0}
 .dp-bar-val{font-family:var(--mono);font-size:.72rem;color:var(--ink2);min-width:55px}
 .dp-fact{padding:.75rem 1rem;background:var(--bg2);border-radius:4px;margin-bottom:.5rem;font-size:.8rem;color:var(--ink);line-height:1.6}
 .dp-fact strong{color:var(--green)}
-.dp-source{font-size:.62rem;color:var(--ink3);font-family:var(--mono);line-height:1.5;margin-top:.5rem}
+.dp-source{font-size:.6875rem;color:var(--ink3);font-family:var(--mono);line-height:1.5;margin-top:.5rem}
 /* ══ CALCULATOR — LIFECYCLE REDESIGN ══════════════════════════ */
 .calc-wrap{background:var(--bg);padding:72px 0;border-top:1px solid var(--border)}
 /* Grönt på mörk bakgrund: ljusare ton för text */
@@ -436,7 +438,7 @@ h3.pc-title{margin-top:0}
 /* Controls */
 .calc-layout > *{min-width:0}
 .calc-ctrl{display:flex;flex-direction:column;gap:1.5rem}
-.calc-ctrl label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:.5rem}
+.calc-ctrl label{display:block;font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:.5rem}
 .sl-row{display:flex;align-items:center;gap:1rem}
 .sl-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:28px;background:transparent;outline:none;cursor:pointer}
 .sl-row input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--bg3);border-radius:2px}
@@ -459,7 +461,7 @@ h3.pc-title{margin-top:0}
 .c-result{display:flex;flex-direction:column;gap:1.5rem}
 /* Annual welfare card */
 .annual-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;box-shadow:var(--shadow-sm)}
-.card-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);margin-bottom:1.1rem}
+.card-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);margin-bottom:1.1rem}
 .welfare-bars{display:flex;flex-direction:column;gap:.7rem}
 .wbar{display:grid;grid-template-columns:140px 1fr 80px;gap:10px;align-items:center}
 .wbar-n{font-size:.72rem;color:var(--ink2);line-height:1.3}
@@ -490,7 +492,7 @@ h3.pc-title{margin-top:0}
 .brow-l{font-size:.76rem;color:var(--ink2);text-align:right}
 .brow-t{height:22px;background:var(--bg2);border-radius:2px;overflow:hidden}
 .brow-f{height:100%;border-radius:2px;transition:width .5s ease}
-.brow-kort{display:none}.brow-uo{font-family:var(--mono);font-size:.62rem;color:var(--ink3)}
+.brow-kort{display:none}.brow-uo{font-family:var(--mono);font-size:.6875rem;color:var(--ink3)}
 .brow-mer{display:block;margin:1rem auto 0}
 .brow-v{font-family:var(--mono);font-size:.76rem;color:var(--ink2)}
 
@@ -507,7 +509,7 @@ h3.pc-title{margin-top:0}
 .ft-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-sm);padding:1.2rem;box-shadow:var(--shadow-sm)}
 .ft-card-title{font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
 .ft-big{font-family:var(--mono);font-size:1.6rem;font-weight:500;color:var(--ink);line-height:1}
-.ft-big sub{font-size:.65rem;color:var(--ink3)}
+.ft-big sub{font-size:.6875rem;color:var(--ink3)}
 .ft-desc{font-size:.72rem;color:var(--ink2);line-height:1.6;margin-top:.5rem}
 .ft-bar-wrap{margin-top:1.5rem}
 .ft-bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
@@ -515,16 +517,16 @@ h3.pc-title{margin-top:0}
 .ft-bar-track{flex:1;height:18px;background:var(--bg2);border-radius:2px;overflow:hidden;position:relative}
 .ft-bar-fill{height:100%;border-radius:2px;transition:width .4s}
 .ft-bar-fill.prognos{background:var(--d-prognos);box-shadow:inset 0 0 0 1.5px var(--green)}
-.ft-bar-val{font-size:.68rem;font-family:var(--mono);color:var(--ink);width:60px;text-align:right;flex-shrink:0}
+.ft-bar-val{font-size:.6875rem;font-family:var(--mono);color:var(--ink);width:60px;text-align:right;flex-shrink:0}
 .ft-quote{margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg2);border-radius:var(--r-sm);font-size:.78rem;color:var(--ink2);line-height:1.7}
-.ft-source{font-size:.68rem;color:var(--ink3);margin-top:1rem;line-height:1.5;border-top:1px solid var(--border);padding-top:.6rem}
-.chart-src{font-size:.68rem;color:var(--ink3);line-height:1.5;margin:0;padding:.7rem 1.2rem;border-top:1px solid var(--border);background:var(--bg)}
+.ft-source{font-size:.6875rem;color:var(--ink3);margin-top:1rem;line-height:1.5;border-top:1px solid var(--border);padding-top:.6rem}
+.chart-src{font-size:.6875rem;color:var(--ink3);line-height:1.5;margin:0;padding:.7rem 1.2rem;border-top:1px solid var(--border);background:var(--bg)}
 .ft-heading{font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
 .ft-intro{font-size:.8rem;color:var(--ink2);line-height:1.65;margin-bottom:1rem}
 .ft-stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem}
 .ft-stat{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:.85rem 1rem}
 .ft-stat-val{font-family:var(--mono);font-size:1.15rem;font-weight:500;color:var(--green);line-height:1.1;margin-bottom:.25rem}
-.ft-stat-lbl{font-size:.65rem;color:var(--ink3);line-height:1.4}
+.ft-stat-lbl{font-size:.6875rem;color:var(--ink3);line-height:1.4}
 .ft-callout{padding:1rem 1.25rem;background:var(--bg2);border-radius:var(--r-sm);font-size:.78rem;color:var(--ink2);line-height:1.7}
 .ft-callout strong{color:var(--ink);font-weight:500}
 /* SCENARIO TABS */
@@ -535,7 +537,7 @@ h3.pc-title{margin-top:0}
 .scen-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem}
 @media(max-width:680px){.scen-grid{grid-template-columns:1fr}}
 .scen-profile{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:1.4rem}
-.scen-name{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem}
+.scen-name{font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem}
 .scen-title{font-size:1.1rem;font-weight:500;color:var(--ink);margin-bottom:.8rem}
 .scen-row{display:flex;justify-content:space-between;align-items:baseline;padding:.4rem 0;border-bottom:1px solid var(--border)}
 .scen-row:last-child{border-bottom:none}
@@ -555,14 +557,14 @@ h3.pc-title{margin-top:0}
 .metod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem;align-items:start}
 .step-list{display:flex;flex-direction:column;gap:1.35rem}
 .step{display:flex;gap:1.1rem}
-.step-n{font-family:var(--mono);font-size:.68rem;color:var(--green);font-weight:500;min-width:22px;padding-top:2px}
+.step-n{font-family:var(--mono);font-size:.6875rem;color:var(--green);font-weight:500;min-width:22px;padding-top:2px}
 .step-t{font-size:.88rem;font-weight:500;margin-bottom:.22rem}
 .step-d{font-size:.8rem;color:var(--ink2);line-height:1.65;font-weight:300}
 .src-list{display:flex;flex-direction:column;gap:.8rem}
 .src-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-sm);padding:.85rem 1.1rem;box-shadow:var(--shadow-sm)}
 .src-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
 .src-name{font-size:.82rem;font-weight:500}
-.src-badge{font-size:.6rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:12px;background:var(--green-ll);color:var(--green)}
+.src-badge{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:12px;background:var(--green-ll);color:var(--green)}
 .src-desc{font-size:.73rem;color:var(--ink3);line-height:1.5}
 /* QUOTE */
 .quote-section{background:linear-gradient(165deg,#1F5848 0%,#163d31 100%);padding:64px 0;text-align:center}
@@ -574,14 +576,14 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .footer-logo{font-family:var(--serif);font-size:1.15rem;color:var(--ink);font-weight:600;margin-bottom:.6rem}
 .footer-logo em{color:var(--green);font-style:italic}
 .footer-tagline{font-size:.76rem;color:var(--ink3);line-height:1.6;font-weight:300;max-width:200px}
-.fc h4,.fc-h{font-family:var(--sans);line-height:1.4;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem}
+.fc h4,.fc-h{font-family:var(--sans);line-height:1.4;font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.7rem}
 .fc a{display:block;font-size:.78rem;color:var(--ink2);text-decoration:none;margin-bottom:.42rem;transition:color .15s}
 .fc a:hover{color:var(--ink)}
 .footer-bottom{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
 .footer-legal{font-size:.7rem;color:var(--ink3);max-width:62ch;line-height:1.55}
 .footer-legal a{color:inherit}
 .ind{display:flex;align-items:center;gap:8px;font-size:.7rem;color:var(--ink3)}
-.ind-badge{font-size:.63rem;font-weight:500;padding:3px 10px;border-radius:12px;background:var(--green-ll);color:var(--green);letter-spacing:.04em}
+.ind-badge{font-size:.6875rem;font-weight:500;padding:3px 10px;border-radius:12px;background:var(--green-ll);color:var(--green);letter-spacing:.04em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .fu{animation:fadeUp .55s ease both}
 .fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}.fu4{animation-delay:.42s}
@@ -606,7 +608,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .oecd-bar-fill.se{background:var(--green)}
 .oecd-row.se .oecd-country,.oecd-row.se .oecd-val{color:var(--ink);font-weight:600}
 .jmf-ref{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink2);pointer-events:none}
-.oecd-val.na{font-family:var(--sans);font-style:italic;color:var(--ink3);font-size:.68rem}
+.oecd-val.na{font-family:var(--sans);font-style:italic;color:var(--ink3);font-size:.6875rem}
 .jmf-leg{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--ink2);margin-top:.6rem}
 .jmf-leg{flex-wrap:wrap;gap:.35rem 1rem}
 .jmf-key{display:inline-flex;align-items:center;gap:.35rem}
@@ -625,7 +627,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .jmf-plats{font-size:.76rem;color:var(--ink);margin-top:.35rem;font-weight:500}
 .jmf-not{font-size:.72rem;color:var(--ink2);line-height:1.55;margin-top:.35rem}
 .oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
-.oecd-src{font-size:.6rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
+.oecd-src{font-size:.6875rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
 
 
 @media(max-width:900px){
@@ -645,11 +647,11 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 @media(max-width:600px){
   .ft-grid{grid-template-columns:1fr}
   .ft-tabs{gap:4px}
-  .ft-tab{font-size:.65rem;padding:6px 12px}
+  .ft-tab{font-size:.6875rem;padding:6px 12px}
   .oecd-tabs{gap:4px}
-  .oecd-tab{font-size:.65rem;padding:6px 10px}
+  .oecd-tab{font-size:.6875rem;padding:6px 10px}
   .ft-big{font-size:1.3rem}
-  .ft-bar-label{width:90px;font-size:.62rem}
+  .ft-bar-label{width:90px;font-size:.6875rem}
   .s-title{font-size:1.25rem}
   .s-sub{font-size:.78rem}
   
@@ -657,7 +659,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .card-label{font-size:.72rem}
   .annual-card{padding:.85rem}
   .contract-card{padding:.85rem}
-  #receipt-card .ft-source{font-size:.6rem}
+  #receipt-card .ft-source{font-size:.6875rem}
 }
 @media(max-width:520px){
   .footer-grid{grid-template-columns:1fr}
@@ -681,7 +683,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sc-dl{background:var(--green);color:#fff;border:1px solid var(--green)}
 .sc-share{background:transparent;color:var(--ink);border:1px solid var(--border2,var(--border))}
 .sc-actions button:hover{filter:brightness(1.06)}
-.sc-hint{font-size:.66rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
+.sc-hint{font-size:.6875rem;color:var(--ink3);text-align:center;margin:.55rem 0 .1rem}
 /* Hero: växel + "Din 100-lapp"-fördelning */
 
 
@@ -805,7 +807,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .ov-skala{display:inline-flex;align-items:center;gap:6px}
 .ov-skala i{width:12px;height:12px;border-radius:50%;background:#D8D2C5;display:block}
 .ov-skala i.se{background:var(--green);box-shadow:0 0 0 3px var(--green-ll)}
-.ov-ande{font-size:.62rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.ov-ande{font-size:.6875rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
 .ov-p{font-size:.8rem;font-weight:600;color:var(--ink);text-align:right;white-space:nowrap}
 @media(max-width:640px){.ov-rad{grid-template-columns:1fr auto;gap:.3rem .8rem}.ov-skala{grid-column:1/-1;grid-row:2}.ov-ande{display:none}}
 /* ═══ VYER ═══ */
@@ -815,7 +817,7 @@ html{scroll-padding-top:72px}
 .vy-smula{font-size:.78rem;color:var(--ink3);margin:1.6rem 0 .6rem;position:static;z-index:auto;background:none;border:0;-webkit-backdrop-filter:none;backdrop-filter:none}
 .vy-smula a{color:var(--green);text-decoration:underline;text-underline-offset:2px}
 .vy-smula a:hover{text-decoration:underline}
-.vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
+.vy-titel{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,var(--fs-avsnitt));line-height:1.05;letter-spacing:-.02em;margin:0 0 .5rem;color:var(--ink)}
 .vy-ingress{font-size:1rem;color:var(--ink2);max-width:60ch;line-height:1.55;margin:0 0 .4rem}
 .vy-datum{font-family:var(--mono);font-size:.72rem;color:var(--ink3);margin:0}
 .vy-toc{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;margin:1.1rem 0 0;padding:0}
@@ -830,7 +832,7 @@ html{scroll-padding-top:72px}
 .vy-gv-foto{position:relative;aspect-ratio:16/9;background:var(--bg2);overflow:hidden}
 .vy-gv-foto svg{width:100%;height:100%;display:block;transition:transform .5s ease}
 .vy-gv-tal{position:absolute;left:.6rem;bottom:.6rem;z-index:1;font-style:normal;font-family:var(--mono);font-size:.95rem;font-weight:500;line-height:1;color:var(--ink);background:var(--paper);padding:.4rem .55rem;border-radius:var(--r-sm);box-shadow:var(--shadow-sm)}
-.vy-gv-tal small{font-family:var(--sans);font-size:.62rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-left:.45em}
+.vy-gv-tal small{font-family:var(--sans);font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-left:.45em}
 .vy-gv-text{display:flex;flex-direction:column;gap:.3rem;padding:.95rem 1.1rem 1.05rem;flex:1}
 .vy-gv b{display:flex;justify-content:space-between;gap:.5rem;font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1.15}
 .vy-gv b .ico{color:var(--green);margin-top:.2rem;transition:transform .2s}
@@ -855,17 +857,17 @@ html{scroll-padding-top:72px}
   .m-swipe > *{scroll-snap-align:start;min-width:0}
   .ft-bar-val{width:auto;min-width:56px}
   .oecd-row{grid-template-columns:70px 1fr 64px}
-  .oecd-val.na{white-space:normal;line-height:1.15;font-size:.62rem}
+  .oecd-val.na{white-space:normal;line-height:1.15;font-size:.6875rem}
   .pc{padding:1.1rem 1.15rem}
-  .pc-cat{font-size:.66rem}
-  .pc-src p,.pc-src{font-size:.68rem}
-  .fk-meta{font-size:.66rem}
+  .pc-cat{font-size:.6875rem}
+  .pc-src p,.pc-src{font-size:.6875rem}
+  .fk-meta{font-size:.6875rem}
   .fk-eye{font-size:.7rem}
   .fk-act button{padding:.55rem 0;font-size:.76rem}
-  .oecd-src{font-size:.68rem}
+  .oecd-src{font-size:.6875rem}
   .ft-bar-label{font-size:.72rem}
   .ft-tab,.oecd-tab{font-size:.74rem;padding:8px 14px}
-  .src-badge{font-size:.66rem}
+  .src-badge{font-size:.6875rem}
   
   
   
@@ -907,29 +909,41 @@ html{scroll-padding-top:72px}
 @media(max-width:860px){.hl100-grid{grid-template-columns:minmax(0,1fr)}.hl100-side{display:flex;flex-direction:column-reverse;gap:1rem}}
 
 .kvitto-wrap{display:flex;justify-content:center;padding:1rem 0 .5rem}
-.kvitto{width:100%;max-width:360px;transform:rotate(-.7deg);filter:drop-shadow(0 10px 14px rgba(42,38,32,.22));font-family:var(--mono);color:#2E2C28}
-.kvitto-kant{display:block;width:100%;height:10px}
-.kvitto-papper{background:#FCFBF7;padding:1.1rem 1.35rem 1.2rem;font-size:12.5px;line-height:1.45;position:relative;overflow:hidden}
-.kvitto-papper::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.kvitto{width:100%;max-width:360px;transform:rotate(-.6deg);filter:drop-shadow(0 1px 1px rgba(42,38,32,.18)) drop-shadow(0 14px 18px rgba(42,38,32,.2));font-family:var(--mono);color:#2B2925}
+.kvitto-kant{display:block;width:100%;height:8px}
+.kvitto-papper{background:linear-gradient(90deg,#F2EFE6 0,#F8F6EF 6%,#FAF8F2 50%,#F6F3EB 93%,#ECE8DD 100%);padding:1.1rem 1.35rem 1rem;font-size:12.5px;line-height:1.45;position:relative;overflow:hidden}
+/* Termotryck: ljusa prickar där svärtan inte fäst, och två slitna stråk från skrivhuvudet */
+.kvitto-papper::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.55;mix-blend-mode:lighten;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 .98 0 0 0 0 .97 0 0 0 0 .95 0 0 0 -2.2 1.35'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.kvitto-papper::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(90deg,transparent 23%,rgba(250,248,242,.5) 23%,rgba(250,248,242,.5) calc(23% + 2px),transparent calc(23% + 2px),transparent 61%,rgba(250,248,242,.45) 61%,rgba(250,248,242,.45) calc(61% + 7px),transparent calc(61% + 7px))}
 .kv-huvud{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
-.kv-huvud strong{font-family:var(--serif);font-size:1.25rem;color:#1A1813;letter-spacing:.01em}
-.kv-liten{font-size:11px;color:#55524C}
-.kv-streck{border:0;border-top:1.5px dashed #BDB4A3;margin:.65rem 0}
+.kv-huvud strong{font-weight:600;font-size:15px;letter-spacing:.06em;color:#2B2925;margin-top:.55rem}
+.kv-logo{width:44px;height:44px;fill:#2B2925}
+.kv-hog{display:inline-block;transform:scaleY(1.9);transform-origin:50% 100%}
+.kv-meta{display:flex;justify-content:space-between;gap:.5rem;font-size:11px}
+.kv-meta + .kv-meta{margin-top:-1px}
+.kv-liten{font-size:11px;color:#4A4640}
+.kv-streck{border:0;height:1px;margin:.6rem 0;background:repeating-linear-gradient(90deg,#2B2925 0 5px,transparent 5px 9px);opacity:.7}
+.kv-streck.dubbel{height:4px;background:repeating-linear-gradient(90deg,#2B2925 0 5px,transparent 5px 9px) top/100% 1px no-repeat,repeating-linear-gradient(90deg,#2B2925 0 5px,transparent 5px 9px) bottom/100% 1px no-repeat}
 .kv-rad{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:.5rem;align-items:center}
-.kv-rad svg{width:13px;height:13px;fill:#2E2C28;color:#2E2C28}
+.kv-rad svg{width:13px;height:13px;fill:#2B2925;color:#2B2925}
 .kv-rad span:nth-child(2){text-transform:uppercase;font-size:11.5px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kv-rader{display:flex;flex-direction:column;gap:3px}
-.kv-sum{display:flex;justify-content:space-between;align-items:baseline;font-weight:600}
-.kv-sum b{font-family:var(--serif);font-size:1.5rem;color:#1A1813}
-.kv-del{display:flex;justify-content:space-between;color:#55524C;font-size:11.5px}
-.kv-fot{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;font-size:11px;color:#55524C}
-.kv-fot svg{width:200px;height:36px}
+.kv-sum{display:flex;justify-content:space-between;align-items:flex-end;font-weight:600;padding-top:1.35rem}
+.kv-sum b{font-family:var(--mono);font-size:1.45rem;font-weight:600;color:#2B2925;line-height:1}
+.kv-sum > span{font-size:13px}
+.kv-del{display:flex;justify-content:space-between;color:#3F3C36;font-size:11.5px}
+.kv-fot{display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;font-size:11px;color:#3F3C36}
+.kv-kod{font-size:10px;letter-spacing:.3em;margin-top:-.15rem}
+.kv-fot svg{width:190px;height:32px}
+/* Perforerad flik längst ned */
+.kv-flik{position:relative;text-align:center;font-size:11px;padding:.7rem 1.35rem .5rem;background:linear-gradient(90deg,#F2EFE6 0,#F8F6EF 6%,#FAF8F2 50%,#F6F3EB 93%,#ECE8DD 100%);color:#3F3C36}
+.kv-flik::before{content:"";position:absolute;left:4px;right:4px;top:0;height:3px;background:radial-gradient(circle,#D9D3C6 1.3px,transparent 1.6px) 0 0/7px 3px repeat-x}
 .kvitto-not{font-size:.78rem;color:var(--ink2);line-height:1.6;margin:0;max-width:34ch}
 
 @media(max-width:700px){.kvitto-not{max-width:none}}
 
 /* ═══ STARTKVITTOT ═══ */
-.start-lead{font-size:1.12rem;line-height:1.55;color:var(--ink2);max-width:30em;margin:1.2rem 0 1.4rem}
+.start-lead{font-size:var(--fs-ingress);line-height:1.55;color:var(--ink2);max-width:30em;margin:1.2rem 0 1.4rem}
 .start-lon{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.4rem}
 .start-lon label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);font-weight:600}
 .start-lon-rad{display:flex;align-items:center;gap:.7rem}
@@ -946,7 +960,8 @@ html{scroll-padding-top:72px}
 .start-kv-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .kv-rad.tva{grid-template-columns:14px minmax(0,1fr) auto;row-gap:1px;align-items:baseline}
 .kv-rad.tva svg{align-self:center}
-.kv-rad .kv-ekv{grid-column:2 / 4;font-family:var(--sans);font-size:11.5px;color:var(--green);font-weight:500;text-transform:none;letter-spacing:0}
+/* Andra tryckfärgen: det pengarna räcker till trycks i grönt */
+.kv-rad .kv-ekv{grid-column:2 / 4;font-family:var(--mono);font-size:11px;color:#1F5A47;font-weight:400;text-transform:none;letter-spacing:0}
 .start-kv .kv-rader{gap:8px}
 @media(max-width:860px){.start-kv{padding-top:1.5rem}.start-lon input{width:8.5rem}}
 /* Två kvitton i Din ekonomi */
@@ -959,6 +974,15 @@ html{scroll-padding-top:72px}
 .kvitto-par .kvitto-not{text-align:center;max-width:30em}
 @media(max-width:760px){.kvitto-par-grid{grid-template-columns:minmax(0,1fr);padding:1.25rem .75rem}}
 @media(max-width:420px){.wbar{grid-template-columns:minmax(0,1fr) auto;row-gap:.3rem}.wbar-t{grid-column:1 / -1;order:3}}
+
+/* ═══ TYPOGRAFI (art director-förslag 1) ═══ */
+/* En etikettstil: Inter 600, 11 px, spärrning 0,12 em, versaler. Kvittot och sedeln har egen röst och ingår inte. */
+.s-eye,.card-label,.vgv-lbl,.fc-h,.calc-ctrl label,.start-lon label,.kvitto-par h4,.lab,.hl100-head .s-eye,.dp-section-title,.ctt-eye{font-family:var(--sans);font-size:var(--fs-etikett);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+/* Tabellsiffror i versalhöjd där tal står under varandra eller ändras */
+body{font-variant-numeric:lining-nums}
+table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-del,.kv-sum,.pc-amount,.vgv-big,.ft-big,.ft-stat-val,.kpi,.hl100-list b,.hl100-card .amt b,.vy-led b,.t-num,.mr b,.vgv-hund em,.isk-tbl,.nt-tbl,.start-lon input,.man-rad input,.sl-val,.lc-caption,.dp-amount,.dp-bar-val{font-variant-numeric:tabular-nums lining-nums}
+/* Enheten i stora tal: ett steg mindre och grå */
+.vy-led b small,.enhet{font-family:var(--sans);font-size:.42em;font-weight:500;color:var(--ink3);letter-spacing:0;margin-left:.15em}
 </style>
 </head>
 <body>
@@ -1005,6 +1029,7 @@ html{scroll-padding-top:72px}
 <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 4C5.3 4 4 5.8 4 8c0 3 1.6 4.2 2.1 7.2.4 2.5.8 4.8 2 4.8 1.3 0 1.4-4 2.9-4h2c1.5 0 1.6 4 2.9 4 1.2 0 1.6-2.3 2-4.8.5-3 2.1-4.2 2.1-7.2 0-2.2-1.3-4-3.5-4-1.7 0-2.6 1-4.5 1S9.2 4 7.5 4z"/></symbol>
 <symbol id="i-pil" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
 </defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="kv-logo" viewBox="0 0 52.8 52.8"><path d="M24.0 0.0h2.4v2.4h-2.4zM26.4 0.0h2.4v2.4h-2.4zM14.4 2.4h2.4v2.4h-2.4zM16.8 2.4h2.4v2.4h-2.4zM19.2 2.4h2.4v2.4h-2.4zM21.6 2.4h2.4v2.4h-2.4zM24.0 2.4h2.4v2.4h-2.4zM26.4 2.4h2.4v2.4h-2.4zM28.8 2.4h2.4v2.4h-2.4zM31.2 2.4h2.4v2.4h-2.4zM33.6 2.4h2.4v2.4h-2.4zM36.0 2.4h2.4v2.4h-2.4zM12.0 4.8h2.4v2.4h-2.4zM14.4 4.8h2.4v2.4h-2.4zM36.0 4.8h2.4v2.4h-2.4zM38.4 4.8h2.4v2.4h-2.4zM9.6 7.2h2.4v2.4h-2.4zM12.0 7.2h2.4v2.4h-2.4zM38.4 7.2h2.4v2.4h-2.4zM40.8 7.2h2.4v2.4h-2.4zM7.2 9.6h2.4v2.4h-2.4zM14.4 9.6h2.4v2.4h-2.4zM19.2 9.6h2.4v2.4h-2.4zM24.0 9.6h2.4v2.4h-2.4zM28.8 9.6h2.4v2.4h-2.4zM33.6 9.6h2.4v2.4h-2.4zM43.2 9.6h2.4v2.4h-2.4zM4.8 12.0h2.4v2.4h-2.4zM7.2 12.0h2.4v2.4h-2.4zM43.2 12.0h2.4v2.4h-2.4zM45.6 12.0h2.4v2.4h-2.4zM2.4 14.4h2.4v2.4h-2.4zM4.8 14.4h2.4v2.4h-2.4zM9.6 14.4h2.4v2.4h-2.4zM14.4 14.4h2.4v2.4h-2.4zM19.2 14.4h2.4v2.4h-2.4zM24.0 14.4h2.4v2.4h-2.4zM28.8 14.4h2.4v2.4h-2.4zM33.6 14.4h2.4v2.4h-2.4zM38.4 14.4h2.4v2.4h-2.4zM45.6 14.4h2.4v2.4h-2.4zM48.0 14.4h2.4v2.4h-2.4zM2.4 16.8h2.4v2.4h-2.4zM21.6 16.8h2.4v2.4h-2.4zM24.0 16.8h2.4v2.4h-2.4zM26.4 16.8h2.4v2.4h-2.4zM28.8 16.8h2.4v2.4h-2.4zM31.2 16.8h2.4v2.4h-2.4zM48.0 16.8h2.4v2.4h-2.4zM2.4 19.2h2.4v2.4h-2.4zM9.6 19.2h2.4v2.4h-2.4zM14.4 19.2h2.4v2.4h-2.4zM19.2 19.2h2.4v2.4h-2.4zM21.6 19.2h2.4v2.4h-2.4zM24.0 19.2h2.4v2.4h-2.4zM28.8 19.2h2.4v2.4h-2.4zM31.2 19.2h2.4v2.4h-2.4zM33.6 19.2h2.4v2.4h-2.4zM38.4 19.2h2.4v2.4h-2.4zM43.2 19.2h2.4v2.4h-2.4zM48.0 19.2h2.4v2.4h-2.4zM2.4 21.6h2.4v2.4h-2.4zM19.2 21.6h2.4v2.4h-2.4zM21.6 21.6h2.4v2.4h-2.4zM48.0 21.6h2.4v2.4h-2.4zM0.0 24.0h2.4v2.4h-2.4zM2.4 24.0h2.4v2.4h-2.4zM9.6 24.0h2.4v2.4h-2.4zM14.4 24.0h2.4v2.4h-2.4zM19.2 24.0h2.4v2.4h-2.4zM21.6 24.0h2.4v2.4h-2.4zM24.0 24.0h2.4v2.4h-2.4zM26.4 24.0h2.4v2.4h-2.4zM28.8 24.0h2.4v2.4h-2.4zM33.6 24.0h2.4v2.4h-2.4zM38.4 24.0h2.4v2.4h-2.4zM43.2 24.0h2.4v2.4h-2.4zM48.0 24.0h2.4v2.4h-2.4zM50.4 24.0h2.4v2.4h-2.4zM0.0 26.4h2.4v2.4h-2.4zM2.4 26.4h2.4v2.4h-2.4zM26.4 26.4h2.4v2.4h-2.4zM28.8 26.4h2.4v2.4h-2.4zM31.2 26.4h2.4v2.4h-2.4zM48.0 26.4h2.4v2.4h-2.4zM50.4 26.4h2.4v2.4h-2.4zM2.4 28.8h2.4v2.4h-2.4zM9.6 28.8h2.4v2.4h-2.4zM14.4 28.8h2.4v2.4h-2.4zM19.2 28.8h2.4v2.4h-2.4zM24.0 28.8h2.4v2.4h-2.4zM28.8 28.8h2.4v2.4h-2.4zM31.2 28.8h2.4v2.4h-2.4zM33.6 28.8h2.4v2.4h-2.4zM38.4 28.8h2.4v2.4h-2.4zM43.2 28.8h2.4v2.4h-2.4zM48.0 28.8h2.4v2.4h-2.4zM2.4 31.2h2.4v2.4h-2.4zM19.2 31.2h2.4v2.4h-2.4zM21.6 31.2h2.4v2.4h-2.4zM31.2 31.2h2.4v2.4h-2.4zM33.6 31.2h2.4v2.4h-2.4zM48.0 31.2h2.4v2.4h-2.4zM2.4 33.6h2.4v2.4h-2.4zM9.6 33.6h2.4v2.4h-2.4zM14.4 33.6h2.4v2.4h-2.4zM19.2 33.6h2.4v2.4h-2.4zM21.6 33.6h2.4v2.4h-2.4zM24.0 33.6h2.4v2.4h-2.4zM26.4 33.6h2.4v2.4h-2.4zM28.8 33.6h2.4v2.4h-2.4zM31.2 33.6h2.4v2.4h-2.4zM33.6 33.6h2.4v2.4h-2.4zM38.4 33.6h2.4v2.4h-2.4zM48.0 33.6h2.4v2.4h-2.4zM2.4 36.0h2.4v2.4h-2.4zM4.8 36.0h2.4v2.4h-2.4zM45.6 36.0h2.4v2.4h-2.4zM48.0 36.0h2.4v2.4h-2.4zM4.8 38.4h2.4v2.4h-2.4zM7.2 38.4h2.4v2.4h-2.4zM14.4 38.4h2.4v2.4h-2.4zM19.2 38.4h2.4v2.4h-2.4zM24.0 38.4h2.4v2.4h-2.4zM28.8 38.4h2.4v2.4h-2.4zM33.6 38.4h2.4v2.4h-2.4zM38.4 38.4h2.4v2.4h-2.4zM43.2 38.4h2.4v2.4h-2.4zM45.6 38.4h2.4v2.4h-2.4zM7.2 40.8h2.4v2.4h-2.4zM43.2 40.8h2.4v2.4h-2.4zM9.6 43.2h2.4v2.4h-2.4zM12.0 43.2h2.4v2.4h-2.4zM19.2 43.2h2.4v2.4h-2.4zM24.0 43.2h2.4v2.4h-2.4zM28.8 43.2h2.4v2.4h-2.4zM38.4 43.2h2.4v2.4h-2.4zM40.8 43.2h2.4v2.4h-2.4zM12.0 45.6h2.4v2.4h-2.4zM14.4 45.6h2.4v2.4h-2.4zM36.0 45.6h2.4v2.4h-2.4zM38.4 45.6h2.4v2.4h-2.4zM14.4 48.0h2.4v2.4h-2.4zM16.8 48.0h2.4v2.4h-2.4zM19.2 48.0h2.4v2.4h-2.4zM21.6 48.0h2.4v2.4h-2.4zM24.0 48.0h2.4v2.4h-2.4zM26.4 48.0h2.4v2.4h-2.4zM28.8 48.0h2.4v2.4h-2.4zM31.2 48.0h2.4v2.4h-2.4zM33.6 48.0h2.4v2.4h-2.4zM36.0 48.0h2.4v2.4h-2.4zM24.0 50.4h2.4v2.4h-2.4zM26.4 50.4h2.4v2.4h-2.4z"/></symbol></defs></svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="vSh" x="-15%" y="-15%" width="140%" height="140%"><feDropShadow dx="1.4" dy="2.4" stdDeviation="1.1" flood-color="#2A2620" flood-opacity=".28"></feDropShadow></filter><filter id="vGr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><symbol id="vh-start" viewBox="0 0 360 270"><rect width="360" height="270" fill="#E9E2D3"></rect>
         <g filter="url(#vSh)">
           <g transform="rotate(-8 180 140)">
@@ -1188,7 +1213,7 @@ html{scroll-padding-top:72px}
 </defs></svg>
 
 
-<nav aria-label="Genväg"><a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a></nav>
+<div role="region" aria-label="Genväg"><a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a></div>
 
 <nav role="navigation" aria-label="Huvudnavigering">
   <div class="container">
@@ -1795,10 +1820,10 @@ html{scroll-padding-top:72px}
         style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .15s"
         onfocus="this.style.borderColor='var(--green)'"
         onblur="this.style.borderColor='var(--border)'" />
-      <span id="pgrid-count" style="font-size:.68rem;color:var(--ink3);font-family:var(--mono)"></span>
+      <span id="pgrid-count" style="font-size:.6875rem;color:var(--ink3);font-family:var(--mono)"></span>
     </div>
     <div class="pgrid" id="pgrid" style="margin-top:1rem"></div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
+    <p style="font-size:.6875rem;color:var(--ink3);margin-top:.8rem">Källor: SCB Kostnader utbildningsväsendet 2024 · Skolverket rapport 2025 · SKR KPP-databas 2024 · Socialstyrelsen DRG-vikter 2024 · Trafikverket underhållsplan 2024 · NCC-avtal 2025 · Folkhälsomyndigheten · FK årsredovisning 2024 · MSB räddningstjänst i siffror 2024 · Polismyndigheten · Domstolsverket · Kriminalvården · Avfall Sverige. Enhetskostnader i 2024 års priser; avgifter och FK-belopp i 2026 års nivå.</p>
   </div>
 </section>
 
@@ -1860,7 +1885,7 @@ html{scroll-padding-top:72px}
           <div style="font-size:.7rem;color:var(--ink3);margin-top:2px">Socialförsäkringssektorn (främst ålderspensionssystemet)</div>
         </div>
       </div>
-      <p style="font-size:.68rem;color:var(--ink3);margin-top:.75rem;line-height:1.6">
+      <p style="font-size:.6875rem;color:var(--ink3);margin-top:.75rem;line-height:1.6">
         Delarna summerar till mer än totalen, eftersom pengar som förs mellan sektorerna, till exempel statsbidrag till kommunerna, räknas hos både givare och mottagare. Totalen räknar dem bara en gång. Statsbudgeten 2026 är 1 542 Mdkr.
         <br>Källa: Eurostat, offentliga utgifter efter ändamål (gov_10a_exp), Sverige 2024.
       </p>
@@ -1956,7 +1981,7 @@ html{scroll-padding-top:72px}
 
       <div class="ft-bar-wrap" style="margin-top:1.5rem">
         <p style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.4rem">Statsskuld som andel av BNP — historik och framåtblick</p>
-        <p style="font-size:.68rem;color:var(--ink3);margin-bottom:1rem">Från 1980-talet via finanskrisen i början av 1990-talet (som högst 74 % av BNP) till åren då skulden minskade</p>
+        <p style="font-size:.6875rem;color:var(--ink3);margin-bottom:1rem">Från 1980-talet via finanskrisen i början av 1990-talet (som högst 74 % av BNP) till åren då skulden minskade</p>
         <div class="ft-bar-row">
           <span class="ft-bar-label">1980</span>
           <div class="ft-bar-track"><div class="ft-bar-fill" style="width:22%;background:var(--d-neutral2)"></div></div>
@@ -2066,22 +2091,22 @@ html{scroll-padding-top:72px}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1.5rem 0 2rem">
       <div class="kpi">
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">84,1<span style="font-size:.85rem"> år</span></div>
-        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 81,2 år (2024)</div>
       </div>
       <div class="kpi">
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">164</div>
-        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Undvikbar dödlighet</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Undvikbar dödlighet</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Per 100 000 invånare. EU-snittet: 238 (2023)</div>
       </div>
       <div class="kpi">
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">1,9<span style="font-size:.85rem"> /1000</span></div>
-        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 4,4 (2022)</div>
       </div>
       <div class="kpi">
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">91<span style="font-size:.85rem"> %</span></div>
-        <div style="font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
         <div style="font-size:.7rem;color:var(--ink2);margin-top:.2rem">Bedömning inom 3 dagar (aug 2026)</div>
       </div>
     </div>
@@ -2215,7 +2240,7 @@ html{scroll-padding-top:72px}
           <div class="ft-bar-track"><div class="ft-bar-fill prognos" style="width:100%"></div></div>
           <span class="ft-bar-val">812 000</span>
         </div>
-        <p style="font-size:.68rem;color:var(--ink3);margin-top:.6rem">Ökning med drygt 160 000 personer (+25 %). Källa: SCB, <a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/pong/statistiknyhet/sveriges-framtida-befolkning-2025-2070/" target="_blank" rel="noopener">Sveriges framtida befolkning 2025–2070</a>.</p>
+        <p style="font-size:.6875rem;color:var(--ink3);margin-top:.6rem">Ökning med drygt 160 000 personer (+25 %). Källa: SCB, <a href="https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/pong/statistiknyhet/sveriges-framtida-befolkning-2025-2070/" target="_blank" rel="noopener">Sveriges framtida befolkning 2025–2070</a>.</p>
       </div>
 
       <div class="ft-quote">
@@ -2469,7 +2494,7 @@ html{scroll-padding-top:72px}
       <!-- Capital income distribution -->
       <div style="margin-top:1.5rem">
         <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.3rem">Hur kapitalinkomsterna fördelas (utdelningar och kapitalvinster)</div>
-        <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.75rem">Fördelning av totala kapitalinkomster mellan inkomstgrupper — Sverige 2023. Källa: SCB; Karimi et al. Fiscal Studies 2024.</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-bottom:.75rem">Fördelning av totala kapitalinkomster mellan inkomstgrupper — Sverige 2023. Källa: SCB; Karimi et al. Fiscal Studies 2024.</div>
         <div class="ft-bar-row">
           <span class="ft-bar-label" style="width:110px">Topp 1 %</span>
           <div class="ft-bar-track"><div class="ft-bar-fill" style="width:54%;background:var(--d-mark)"></div></div>
@@ -2490,13 +2515,13 @@ html{scroll-padding-top:72px}
           <div class="ft-bar-track"><div class="ft-bar-fill" style="width:2%;background:var(--d-neutral2)"></div></div>
           <span class="ft-bar-val">2 %</span>
         </div>
-        <div style="font-size:.65rem;color:var(--ink3);margin-top:.3rem">Den procent som har högst inkomst får 67 % av utdelningarna. Kapitalinkomster är 15 % av den totala disponibla inkomsten.</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.3rem">Den procent som har högst inkomst får 67 % av utdelningarna. Kapitalinkomster är 15 % av den totala disponibla inkomsten.</div>
       </div>
 
       <!-- Wealth distribution -->
       <div style="margin-top:1.5rem">
         <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.3rem">Förmögenhetsfördelning — nettoförmögenhet 2024</div>
-        <div style="font-size:.68rem;color:var(--ink3);margin-bottom:.75rem">Finansiella tillgångar + fastigheter − skulder. Förmögenhetsskatten avskaffades 2007. Källa: UBS Global Wealth Report 2024; Roine &amp; Waldenström, WID.world.</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-bottom:.75rem">Finansiella tillgångar + fastigheter − skulder. Förmögenhetsskatten avskaffades 2007. Källa: UBS Global Wealth Report 2024; Roine &amp; Waldenström, WID.world.</div>
         <div class="ft-bar-row">
           <span class="ft-bar-label" style="width:110px">Topp 1 %</span>
           <div class="ft-bar-track"><div class="ft-bar-fill" style="width:35.8%;background:var(--d-mark)"></div></div>
@@ -2512,7 +2537,7 @@ html{scroll-padding-top:72px}
           <div class="ft-bar-track"><div class="ft-bar-fill" style="width:25.6%;background:var(--d-neutral2)"></div></div>
           <span class="ft-bar-val">25,6 %</span>
         </div>
-        <div style="font-size:.65rem;color:var(--ink3);margin-top:.3rem">Medianförmögenhet: ~3,3 Mkr (319 000 USD). Medelförmögenhet: ~3,5 Mkr (336 000 USD). Närheten beror på utbrett bostadsägande — finansiella tillgångar är långt mer koncentrerade.</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.3rem">Medianförmögenhet: ~3,3 Mkr (319 000 USD). Medelförmögenhet: ~3,5 Mkr (336 000 USD). Närheten beror på utbrett bostadsägande — finansiella tillgångar är långt mer koncentrerade.</div>
       </div>
 
       <div class="ft-callout" style="margin-top:1.2rem">
@@ -2588,7 +2613,7 @@ html{scroll-padding-top:72px}
           <summary>Fler inställningar <span>kommun och pensionsavgift</span></summary>
           <div class="calc-mer-in">
         <div>
-          <label>Kommun <span style="font-size:.65rem;color:var(--ink3);font-weight:400">(kommunalskatten varierar 28,9–35,7 %)</span></label>
+          <label>Kommun <span style="font-size:.6875rem;color:var(--ink3);font-weight:400">(kommunalskatten varierar 28,9–35,7 %)</span></label>
           <select id="s-kommun" onchange="setKommun(this)" aria-label="Välj kommun för kommunalskattesats" style="width:100%;margin-top:.35rem;padding:7px 10px;font-size:.78rem;font-family:var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;cursor:pointer">
             <option value="0.3238">Rikssnitt — 32,38 %</option>
             <option value="0.3055">Stockholm — 30,55 %</option>
@@ -2598,7 +2623,7 @@ html{scroll-padding-top:72px}
             <option value="0.2893">Österåker (lägst i landet) — 28,93 %</option>
             <option value="0.3565">Dorotea (högst i landet) — 35,65 %</option>
           </select>
-          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Total kommunalskatt (kommun + region). Källa: SCB Kommunalskatterna 2026.</span>
+          <span style="color:var(--ink3);font-size:.6875rem;line-height:1.3;display:block;margin-top:.3rem">Total kommunalskatt (kommun + region). Källa: SCB Kommunalskatterna 2026.</span>
         </div>
 
 
@@ -2638,7 +2663,7 @@ html{scroll-padding-top:72px}
             <span>Därtill det alla delar på: försvar, polis, vägar, förvaltning m.m. Ingår inte i jämförelsen.</span>
             <span style="font-family:var(--mono);white-space:nowrap">≈ <span id="koll-val">100</span> tkr/person</span>
           </div>
-          <div style="margin-top:.6rem;font-size:.62rem;color:var(--ink3);line-height:1.5">Genomsnitt för alla i samma ålder. Summerat över befolkningen stämmer beloppen med den offentliga sektorns utgifter 2024 (Eurostat COFOG, Kolada). Utbildning: Skolverket och UKÄ 2025. Det gemensamma är COFOG:s övriga funktioner (1 061 Mdkr) delat på alla invånare.</div>
+          <div style="margin-top:.6rem;font-size:.6875rem;color:var(--ink3);line-height:1.5">Genomsnitt för alla i samma ålder. Summerat över befolkningen stämmer beloppen med den offentliga sektorns utgifter 2024 (Eurostat COFOG, Kolada). Utbildning: Skolverket och UKÄ 2025. Det gemensamma är COFOG:s övriga funktioner (1 061 Mdkr) delat på alla invånare.</div>
         </div>
 
         <!-- Annual tax context -->
@@ -2654,7 +2679,7 @@ html{scroll-padding-top:72px}
         <div class="annual-card" id="marginal-card" style="display:none">
           <div class="card-label">Marginalskatt på bruttolön — vad din nästa intjänade krona kostar</div>
           <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
-          <div style="margin-top:.65rem;font-size:.62rem;color:var(--ink2);line-height:1.55">
+          <div style="margin-top:.65rem;font-size:.6875rem;color:var(--ink2);line-height:1.55">
             <strong>Marginalskatt</strong> = skatten på din nästa intjänade krona, räknad direkt ur skattemodellen. Upp till cirka 478 000 kr/år växer jobbskatteavdraget med lönen, så marginalskatten blir cirka 24 % (vid medianlön). Därefter är den cirka 32 % (kommunalskatt), och över brytpunkten, cirka 660 000 kr/år, tillkommer 20 % statlig skatt: cirka 52 %.
             Arbetsgivaravgiften (21–31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
           </div>
@@ -2668,7 +2693,7 @@ html{scroll-padding-top:72px}
 
         <!-- Kort saklig text per livsfas -->
         <div class="solidarity-box">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--border);padding:1px 6px;border-radius:2px">Så fungerar det</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--border);padding:1px 6px;border-radius:2px">Så fungerar det</span></div>
           <p class="solidarity-text" id="solidarity-text"></p>
         </div>
 
@@ -2730,25 +2755,25 @@ html{scroll-padding-top:72px}
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-top:1rem">
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
-        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Barn (0–18 år)</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Barn (0–18 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Tar emot mer</div>
         <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Cirka 180 000 kr per år i skola, vård och barnomsorg, i genomsnitt.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
-        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (19–64 år)</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (19–64 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Betalar mer</div>
         <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 80 000–185 000 kr mer i skatt än man tar emot per år.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
-        <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
+        <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Tar emot mer igen</div>
         <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Efter 75 år cirka 280 000 kr mer per år än man betalar, mest vård och omsorg.</div>
       </div>
     </div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånerna ungefär ±20–25 % (bedömning); inkomstskatten följer Skatteverkets regler, momsen är en uppskattning. <span style="font-size:.62rem;color:var(--ink3)">Förmåner i 2024 års priser (COFOG), skatt enligt 2026 års regler. Nominella, ej diskonterade.</span></p>
+    <p style="font-size:.6875rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånerna ungefär ±20–25 % (bedömning); inkomstskatten följer Skatteverkets regler, momsen är en uppskattning. <span style="font-size:.6875rem;color:var(--ink3)">Förmåner i 2024 års priser (COFOG), skatt enligt 2026 års regler. Nominella, ej diskonterade.</span></p>
     <details style="margin-top:.4rem">
-      <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
-      <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
+      <summary style="font-size:.6875rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
+      <div style="font-size:.6875rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
         <strong>Modell:</strong> Förmånerna är genomsnitt per åldersgrupp. Sjukvård, socialt skydd och äldreomsorg är kalibrerade så att summan över befolkningen 2024 stämmer med de faktiska utgifterna (Eurostat COFOG: hälso- och sjukvård 474 Mdkr; Kolada: äldreomsorg 166 Mdkr; socialt skydd utom äldreomsorg och inkomstpension cirka 658 Mdkr). Åldersprofilen för sjukvård följer NTA-metoden. Utbildning bygger på kostnad per elev och student (Skolverket, UKÄ 2025). Skatt: Skatteverkets regler 2026 med kommunalskatt 32,38 % (rikssnitt), statlig skatt 20 % över brytpunkten, arbetsgivaravgift 21,21 % utan pensionsavgift (10,21 % från 66 år), moms cirka 15 % av konsumtionen (antagande: sparkvot 5–25 % beroende på inkomst).<br><br>
         <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag på pension. Modellen antar att inkomsten efter 65 är pension. Lön efter 66 ger ett förhöjt jobbskatteavdrag, som modellen räknar med när inkomsten anges som lön. <br><br>
         <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 765 Mdkr och skatter 1 575 Mdkr; skillnaden beror främst på att momsen är en försiktig uppskattning.<br><br>
@@ -2771,45 +2796,45 @@ html{scroll-padding-top:72px}
     <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension — finansierar både <strong>kommun och region</strong> (skola, omsorg, sjukvård, kollektivtrafik). <strong>Rikssnitt 2026: 32,38 %</strong>, varierar 28,9 % (Österåker) till 35,7 % (Dorotea) mellan kommuner.</div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: SKR / Skatteverket 2026</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Källa: SKR / Skatteverket 2026</div>
       </div>
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på lön <strong>över cirka 660 000 kr/år</strong> (cirka 55 000 kr/mån), den så kallade brytpunkten 2026. Skiktgränsen 643 000 kr gäller den beskattningsbara inkomsten efter grundavdrag. Cirka <strong>15 %</strong> av löntagare betalar statlig skatt.</div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 67 kap inkomstskattelagen</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 67 kap inkomstskattelagen</div>
       </div>
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> hotell och restaurang. <strong>6 %</strong> livsmedel (tillfälligt 1 april 2026–31 december 2027), böcker, tidningar, kollektivtrafik och kultur.</div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200), prop. 2025/26:55 (sänkt moms på livsmedel)</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200), prop. 2025/26:55 (sänkt moms på livsmedel)</div>
       </div>
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. Cirka 10 procentenheter är pensionsavgift som ger dig egen pension. Resten, cirka 21 procentenheter, är skatt. Lägre avgift från 66 år.</div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: socialavgiftslagen (2000:980)</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Källa: socialavgiftslagen (2000:980)</div>
       </div>
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">30 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">30 % på <strong>utdelning, ränta och realiserad vinst</strong> vid direktägt sparande. <strong>ISK och kapitalförsäkring beskattas i stället med en årlig schablonskatt: 1,065 % av värdet 2026, och de första 300 000 kr är skattefria.</strong> <a href="#sparande" style="color:var(--green)">Mer om skatt på sparande</a></div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
       </div>
 
       <div class="kpi">
-        <div style="font-size:.62rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
+        <div style="font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
         <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">~20 <span style="font-size:.85rem">%</span></div>
         <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön 38 300 kr/mån (≈ 460 tkr/år)</strong>: kommunalskatt 143 tkr − jobbskatteavdrag 51 tkr = <strong>~92 tkr i direkt inkomstskatt</strong> (20 % av brutto). Plus moms ~46 tkr = ~30 % av brutto. Plus arbetsgivaravgiften utöver pensionsavgiften (21,21 %, ~98 tkr). Totalt ~236 tkr, cirka 42 % av lönen plus den avgiften (558 tkr). <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
-        <div style="font-size:.62rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + SCB:s hushållsundersökning (sparande och konsumtion)</div>
+        <div style="font-size:.6875rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + SCB:s hushållsundersökning (sparande och konsumtion)</div>
       </div>
 
     </div>
@@ -2917,7 +2942,7 @@ html{scroll-padding-top:72px}
         <div class="step"><span class="step-n">05</span><div><div class="step-t">Inkomstpensionen räknas inte som skatt</div><div class="step-d">Inkomstpensionen betalas med pensionsavgifter, 18,5 % av lönen, som ger dig egen rätt till pension. Därför räknar vi den inte som något andra betalar för dig. Garantipensionen och bostadstillägget för pensionärer betalas med skatt och räknas med (59,3 miljarder kronor 2026).</div></div></div>
       </div>
       <div>
-        <h3 style="font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem">Primärkällor</h3>
+        <h3 style="font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.8rem">Primärkällor</h3>
         <div class="src-list">
           <div class="src-card"><div class="src-head"><span class="src-name">SCB, FASIT: vem använder välfärden, 2022</span><span class="src-badge">CC0</span></div><div class="src-desc">Hur skola, vård, omsorg och ersättningar fördelas på olika åldrar. Används för vad du får tillbaka.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">Eurostat, offentliga utgifter efter ändamål (COFOG), 2024</span><span class="src-badge">CC BY 4.0</span></div><div class="src-desc">Vad hela den offentliga sektorn gjorde av med 2024, 3 223 miljarder kronor, uppdelat på socialt skydd, vård, utbildning med mera. Används för kvittona och hundralappen.</div></div>
@@ -3080,7 +3105,7 @@ html{scroll-padding-top:72px}
         <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatterna gäller 2026: Skatteverkets regler, kommunalskatterna och statens budget för 2026. Utgifterna för hela den offentliga sektorn gäller 2024, det senaste året med färdig statistik. Datumet överst i varje vy visar när den uppdaterades senast. Alla ändringar finns i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener" style="color:var(--green)">ändringsloggen</a>.</p>
       </div>
     </div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:1.5rem;text-align:center">Har du frågor, hittat ett fel eller vill bidra? Skriv ett ärende på GitHub eller mejla <a href="mailto:wennergrenf@gmail.com" style="color:var(--green)">wennergrenf@gmail.com</a>.</p>
+    <p style="font-size:.6875rem;color:var(--ink3);margin-top:1.5rem;text-align:center">Har du frågor, hittat ett fel eller vill bidra? Skriv ett ärende på GitHub eller mejla <a href="mailto:wennergrenf@gmail.com" style="color:var(--green)">wennergrenf@gmail.com</a>.</p>
   </div>
 </section>
 
@@ -3151,7 +3176,7 @@ const BAS_TITEL = document.title;
         <div class="vy-text">
         <nav class="vy-smula" aria-label="Du är här"><a href="#">Start</a> <span aria-hidden="true">›</span> <span aria-current="page">${v.namn}</span></nav>
         <h1 class="vy-titel">${v.namn}</h1>
-        ${v.led ? `<p class="vy-led"><b>${v.led.tal}</b> <span>${v.led.text}</span> <small>${v.led.kalla}</small></p>` : ''}
+        ${v.led ? `<p class="vy-led"><b>${v.led.tal.replace(/ (kr|Mdkr|%)$/, ' <small>$1</small>')}</b> <span>${v.led.text}</span> <small>${v.led.kalla}</small></p>` : ''}
         ${v.ingress ? `<p class="vy-ingress">${v.ingress}</p>` : ''}
         <p class="vy-datum">Uppdaterad ${SAJT_UPPDATERAD}</p>
         ${toc.length > 1 ? `<ul class="vy-toc" aria-label="Innehåll">${toc.join('')}</ul>` : ''}
@@ -4257,17 +4282,44 @@ const HERO_100 = [  // Eurostat COFOG 2024, andel av 3 223 Mdkr, avrundat till h
   {k:'Övrigt',            v:10, c:'#9A948A'},   // rätt, kultur, bostäder, miljö, räntor
 ];
 
+// ── Termokvitto: gemensamma delar för alla kvitton (art director-förslag 2) ──
+const KV = {
+  // Ojämn rivkant: tänder med varierande bredd och höjd, samma mönster för samma frö
+  kant(upp, fro = 1){
+    let r = (fro * 7919) % 233280; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+    let x = 0, d = upp ? 'M0 8' : 'M0 0';
+    while(x < 400){ const w = 4 + rnd() * 4, h = 2 + rnd() * 5.5; d += ` L${(x + w / 2).toFixed(1)} ${(upp ? 8 - h : h).toFixed(1)} L${Math.min(400, x + w).toFixed(1)} ${upp ? 8 : 0}`; x += w; }
+    return `<svg class="kvitto-kant" viewBox="0 0 400 8" preserveAspectRatio="none" aria-hidden="true"><path d="${d} Z" fill="#F7F5EE"></path></svg>`;
+  },
+  // Kassans huvud: bitmapplogotyp, namn i dubbel höjd, rubrik och kassarader
+  huvud(namn, rubrik, nr, kassor, rad){
+    const nu = new Date(), p = n => String(n).padStart(2, '0');
+    return `<div class="kv-huvud"><svg class="kv-logo" viewBox="0 0 52.8 52.8" aria-hidden="true" shape-rendering="crispEdges"><use href="#kv-logo"></use></svg><strong><span class="kv-hog">${namn}</span></strong><span>${rubrik}</span></div>
+      <div class="kv-meta"><span>KASSA 01</span><span>KVITTO NR ${String(nr).padStart(7, '0')}</span></div>
+      <div class="kv-meta"><span>${nu.toLocaleDateString('sv-SE')} ${p(nu.getHours())}:${p(nu.getMinutes())}</span><span>KASSÖR: ${kassor}</span></div>
+      ${rad ? `<div class="kv-meta"><span>${rad}</span></div>` : ''}`;
+  },
+  // Streckkod med siffror under
+  kod(nr){
+    const siffror = `${String(nr).padStart(7, '0')} 2026 ${String(new Date().getMonth() + 1).padStart(2, '0')}`;
+    let x = 0, i = 0, rects = '';
+    for(const ch of (siffror.replace(/\D/g, '') + '7319').repeat(3)){ const w = [1, 1.6, 2.2, 3][(+ch + i++) % 4]; if(x + w > 190) break; rects += `<rect x="${x.toFixed(1)}" y="0" width="${w}" height="32"></rect>`; x += w + 1.4 + ((+ch) % 3) * .6; }
+    return `<svg viewBox="0 0 190 32" fill="#2B2925" aria-hidden="true">${rects}</svg><span class="kv-kod">${siffror}</span>`;
+  },
+  flik: text => `<div class="kv-flik">${text}</div>`,
+  k2: v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2}),
+};
 // Skattekvittots fördelning: Eurostat COFOG 2024 (gov_10a_exp), 3 223 Mdkr utan inkomst- och tilläggspensionen
 // (363,7 Mdkr 2024, Pensionsmyndigheten, Orange rapport 2024 tabell 2.1), som betalas med pensionsavgifter och inte med skatt.
 // Premiepensionen ingår inte i den offentliga sektorn i nationalräkenskaperna och behöver inte dras av. Bas: 2 859 Mdkr. Summa 1.
 const KVITTO_ANDELAR = {vard:0.1658, utb:0.1625, aldre:0.121, infra:0.1078, forv:0.1051, sjuk:0.0799, familj:0.0514, forsv:0.0438, ratt:0.0356, fritid:0.0312, arbetsl:0.0242, ovrsoc:0.0242, bostad:0.0178, ranta:0.0175, miljo:0.0122};
 // Arbetsgivarens kvitto: arbetsgivaravgifterna 2026 (Skatteverket), 31,42 % totalt.
 const AG_AVG = [['Ålderspensionsavgift', .1021, 'blir din allmänna pension'], ['Efterlevandepensionsavgift', .006], ['Sjukförsäkringsavgift', .0355], ['Föräldraförsäkringsavgift', .02], ['Arbetsmarknadsavgift', .0264], ['Arbetsskadeavgift', .001], ['Allmän löneavgift', .1232, 'går till statsbudgeten']];
-function agKvitto(age, inc, kant, kr2){
+function agKvitto(age, inc, _, kr2){
   const fig = document.getElementById('kvitto-ag'); if(!fig) return;
   const lon = Math.round(inc * 1000 / 12), d = skattDelar(age, inc);
   if(d.pension){ // pension: ingen arbetsgivare, inga avgifter
-    fig.innerHTML = `${kant(true)}<div class="kvitto-papper"><div class="kv-huvud"><strong>Arbetsgivaren</strong><span>KVITTO · LÖNEKOSTNAD 2026</span></div><hr class="kv-streck"><div class="kv-del" style="color:#2E2C28;font-size:12.5px"><span>PENSION ${lon.toLocaleString('sv-SE')} KR/MÅN</span><span></span></div><hr class="kv-streck"><div class="kv-fot"><span>På pension betalas ingen arbetsgivaravgift.</span><span>Kalkylatorn räknar inkomst efter 65 år som pension.</span></div></div>${kant(false)}`;
+    fig.innerHTML = `${KV.kant(true, 13)}<div class="kvitto-papper">${KV.huvud('ARBETSGIVAREN', 'KVITTO · LÖNEKOSTNAD 2026', lon, 'LÖNEKONTORET', `PENSION ${lon.toLocaleString('sv-SE')} KR/MÅN`)}<hr class="kv-streck dubbel"><div class="kv-fot"><span>PÅ PENSION BETALAS INGEN ARBETSGIVARAVGIFT.</span><span>Kalkylatorn räknar inkomst efter 65 år som pension.</span></div></div>${KV.kant(false, 17)}`;
     fig.setAttribute('aria-label', 'Arbetsgivarens kvitto: på pension betalas ingen arbetsgivaravgift.');
     return;
   }
@@ -4276,18 +4328,18 @@ function agKvitto(age, inc, kant, kr2){
   let ned = 0; // tillfälligt nedsatt avgift för 19–23 år (lön april 2026–september 2027), på lön upp till 25 000 kr
   if(!d.is66 && age >= 19 && age <= 23) ned = Math.round(Math.min(lon, 25000) * (0.3142 - 0.2081));
   const summa = belopp.reduce((a, b) => a + b, 0) - ned;
-  fig.innerHTML = `${kant(true)}<div class="kvitto-papper">
-    <div class="kv-huvud"><strong>Arbetsgivaren</strong><span>KVITTO · LÖNEKOSTNAD 2026</span><span class="kv-liten">LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR</span></div>
+  fig.innerHTML = `${KV.kant(true, 13)}<div class="kvitto-papper">
+    ${KV.huvud('ARBETSGIVAREN', 'KVITTO · LÖNEKOSTNAD 2026', lon, 'LÖNEKONTORET', `LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR`)}
     <hr class="kv-streck">
-    <div class="kv-del" style="color:#2E2C28;font-size:12.5px"><span>BRUTTOLÖN</span><span>${kr2(lon)}</span></div>
+    <div class="kv-del" style="color:#2B2925;font-size:12.5px"><span>BRUTTOLÖN</span><span>${kr2(lon)}</span></div>
     <hr class="kv-streck">
     <div class="kv-rader">${rader.map((r, i) => `<div class="kv-rad tva"><span></span><span>${r[0]} ${(r[1]*100).toLocaleString('sv-SE', {minimumFractionDigits:2})} %</span><span>${kr2(belopp[i])}</span>${r[2] ? `<span class="kv-ekv">${r[2]}</span>` : ''}</div>`).join('')}
     ${ned ? `<div class="kv-rad"><span></span><span>Nedsättning för unga</span><span>−${kr2(ned)}</span></div>` : ''}</div>
     <hr class="kv-streck">
     <div class="kv-del"><span>ARBETSGIVARAVGIFTER</span><span>${kr2(summa)}</span></div>
-    <div class="kv-sum"><span>LÖNEKOSTNAD PER MÅNAD</span><b>${kr2(lon + summa)}</b></div>
-    <hr class="kv-streck"><div class="kv-fot"><span>BETALT AV: ARBETSGIVAREN</span><span>Källa: Skatteverket, arbetsgivaravgifter 2026</span></div>
-  </div>${kant(false)}`;
+    <div class="kv-sum"><span>KOSTNAD/MÅN</span><b><span class="kv-hog">${kr2(lon + summa)}</span></b></div>
+    <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT AV: ARBETSGIVAREN</span>${KV.kod(lon + summa)}<span>Källa: Skatteverket, arbetsgivaravgifter 2026</span></div>
+  </div>${KV.flik(`AVGIFTERNA ÄR ${((summa / lon) * 100).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % OVANPÅ LÖNEN`)}${KV.kant(false, 17)}`;
   fig.setAttribute('aria-label', `Arbetsgivarens kvitto: lön ${lon.toLocaleString('sv-SE')} kronor plus arbetsgivaravgifter ${summa.toLocaleString('sv-SE')} kronor, lönekostnad ${(lon + summa).toLocaleString('sv-SE')} kronor per månad.`);
 }
 // ── Startkvittot ───────────────────────────────────────────────────────
@@ -4328,17 +4380,16 @@ function startKvitto(){
   kr[iMax] += skatt - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
   const ordning = START_GRUPPER.map((g, i) => i).sort((x, y) => kr[y] - kr[x]);
   const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
-  const kant = upp => `<svg class="kvitto-kant" viewBox="0 0 360 10" preserveAspectRatio="none" aria-hidden="true"><path d="${upp ? 'M0 10' : 'M0 0'} ${Array.from({length:36}, (_, i) => `L${i*10+5} ${upp ? 0 : 10} L${i*10+10} ${upp ? 10 : 0}`).join(' ')} Z" fill="#FCFBF7"></path></svg>`;
-  const streck = Array.from({length:42}, (_, i) => `<rect x="${i*4.3}" y="0" width="${[1,2,1,3,1,1,2][(i*5 + lon) % 7]}" height="30"></rect>`).join('');
-  const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true" style="fill:${g.c};color:${g.c}"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
+  const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
     : '<div class="kv-del"><span>Ingen skatt på den lönen.</span><span></span></div>';
-  fig.innerHTML = `${kant(true)}<div class="kvitto-papper">
-    <div class="kv-huvud"><strong>Skatteplattformen</strong><span>KVITTO · DIN SKATT 2026</span><span class="kv-liten">LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %</span></div>
+  fig.innerHTML = `${KV.kant(true, 3)}<div class="kvitto-papper">
+    ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lon, 'ARBETSGIVAREN', `LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %`)}
     <hr class="kv-streck"><div class="kv-rader">${rader}</div><hr class="kv-streck">
-    <div class="kv-sum"><span>SKATT PER MÅNAD</span><b>${k2(skatt)}</b></div>
+    <div class="kv-sum"><span>SKATT/MÅN</span><b><span class="kv-hog">${k2(skatt)}</span></b></div>
     <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${k2(Math.max(0, lon - skatt))}</span></div>
-    <hr class="kv-streck"><div class="kv-fot"><span>BETALT MED: LÖN · INGET BYTE</span><svg viewBox="0 0 180 30" fill="#2E2C28" aria-hidden="true" style="width:180px;height:30px">${streck}</svg></div>
-  </div>${kant(false)}`;
+    <div class="kv-del"><span>ANTAL RADER</span><span>${skatt > 0 ? START_GRUPPER.length : 0}</span></div>
+    <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT MED: LÖN · INGET BYTE</span>${KV.kod(lon)}<span>VÄLKOMMEN ÅTER NÄSTA LÖNEDAG</span></div>
+  </div>${KV.flik(`SPARA: SKATTEN ÄR ${((lon) > 0 ? (skatt) / (lon) * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % AV LÖNEN`)}${KV.kant(false, 5)}`;
   fig.setAttribute('aria-label', `Skattekvitto för ${lon.toLocaleString('sv-SE')} kronor i månaden: skatt ${skatt.toLocaleString('sv-SE')} kronor, kvar ${Math.max(0, lon - skatt).toLocaleString('sv-SE')} kronor.`);
   const ag = Math.round(lon * 0.3142);
   document.getElementById('start-kv-not').innerHTML = lon > 0 ? `Dessutom betalar arbetsgivaren ${ag.toLocaleString('sv-SE')} kr i arbetsgivaravgift, och du betalar moms när du handlar. <a href="#kalkylator">Båda kvittona finns i Din ekonomi</a>.<br>Jämförelserna bygger på prislapparna, polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.` : '';
@@ -4945,7 +4996,7 @@ function updateCalc(){
         <span style="font-family:var(--mono)">${isNeg ? '−' : ''}${Math.abs(v).toLocaleString('sv-SE')} tkr</span>
       </div>`;
     };
-    const rubr = t => `<div style="font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.35rem">${t}</div>`;
+    const rubr = t => `<div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.35rem">${t}</div>`;
     const summa = (l, v) => `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink);padding-top:.3rem;border-top:1px dashed var(--border)">
         <span>${l}</span><span style="font-family:var(--mono)">${v.toLocaleString('sv-SE')} tkr</span></div>`;
     const sumDirekt = direkt.reduce((x,[,v])=>x+v,0), sumIndirekt = indirekt.reduce((x,[,v])=>x+v,0);
@@ -4961,7 +5012,7 @@ function updateCalc(){
         <span>Totalt per år</span>
         <span style="font-family:var(--mono)">${totalSkatt.toLocaleString('sv-SE')} tkr</span>
       </div>
-      <div style="font-size:.62rem;color:var(--ink3);line-height:1.5">Skatten räknas med Skatteverkets regler 2026 och den kommunalskatt du har valt (rikssnittet 32,38 % om du inte valt kommun). Skattetabellen kan skilja några tior, eftersom den räknar med hela procent. Arbetsgivaravgiften betalar arbetsgivaren utöver lönen. Momsen är en uppskattning utifrån hur mycket som sparas och konsumeras (SCB).</div>`;
+      <div style="font-size:.6875rem;color:var(--ink3);line-height:1.5">Skatten räknas med Skatteverkets regler 2026 och den kommunalskatt du har valt (rikssnittet 32,38 % om du inte valt kommun). Skattetabellen kan skilja några tior, eftersom den räknar med hela procent. Arbetsgivaravgiften betalar arbetsgivaren utöver lönen. Momsen är en uppskattning utifrån hur mycket som sparas och konsumeras (SCB).</div>`;
     // Modell-not: vad förhållandet säger om välfärdslogiken (inte personlig vinst/förlust)
     const balance = total - totalSkatt;
     const isNegative = balance < 0;
@@ -4970,7 +5021,7 @@ function updateCalc(){
       ${isNegative
         ? `en genomsnittlig person i din ålder och inkomstgrupp betalar cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än den tar emot i offentliga tjänster <em>i år</em>. Skillnaden går till barn, äldre och sådant alla delar på, som vägar och försvar.`
         : `en genomsnittlig person i din ålder och inkomstgrupp tar emot cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i offentliga tjänster än den betalar i skatt <em>i år</em>. Skillnaden betalas av skatt från dem som arbetar.`}
-      <span style="display:block;margin-top:.3rem;font-size:.65rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Jämförelsen gäller det personen själv använder (skola, vård, omsorg, ersättningar) och de skatter personen själv betalar. Det gemensamma, som försvar och vägar, betalas därutöver också av bolagsskatt, punktskatter, avgifter och lån.</span>
+      <span style="display:block;margin-top:.3rem;font-size:.6875rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Jämförelsen gäller det personen själv använder (skola, vård, omsorg, ersättningar) och de skatter personen själv betalar. Det gemensamma, som försvar och vägar, betalas därutöver också av bolagsskatt, punktskatter, avgifter och lån.</span>
     </div>`;
   } else {
     taxHTML = `<div style="font-size:.78rem;color:var(--ink2);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
@@ -5046,8 +5097,6 @@ function updateCalc(){
     const lonMan = Math.max(0, (dK.komm + dK.stat - dK.jsa) * 1000 / 12);
     const kapMan = kapSkatt * 1000 / 12;
     const indMan = Math.max(0, totMan - lonMan - kapMan);
-    const nu = new Date(), pad = n => String(n).padStart(2, '0');
-    const kvNr = String(1000 + (Math.round(inc * 7 + age * 13) % 9000));
     const lonKr = Math.round(lonMan), kapKr = Math.round(kapMan), totKr = lonKr + kapKr; // skatt på lön (och kapital), inte arbetsgivaravgift eller moms
     const radKr = cofogItems.map(c => Math.round(totKr * c.andel));
     const iMax = radKr.indexOf(Math.max(...radKr));
@@ -5056,36 +5105,22 @@ function updateCalc(){
       const v = radKr[i];
       return `<div class="kv-rad"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${pkMap[c.icon]}"></use></svg><span>${kort[c.namn] || c.namn}</span><span>${kr2(v)}</span></div>`;
     }).join('');
-    const kant = upp => `<svg class="kvitto-kant" viewBox="0 0 360 10" preserveAspectRatio="none" aria-hidden="true"><path d="${upp ? 'M0 10' : 'M0 0'} ${Array.from({length:36}, (_, i) => `L${i * 10 + 5} ${upp ? 0 : 10} L${i * 10 + 10} ${upp ? 10 : 0}`).join(' ')} Z" fill="#FCFBF7"></path></svg>`;
-    const streck = Array.from({length:46}, (_, i) => { const w = [1, 2, 1, 3, 1, 1, 2][(i * 5 + inc) % 7]; return `<rect x="${i * 4.3}" y="0" width="${w}" height="36"></rect>`; }).join('');
-    document.getElementById('kvitto').innerHTML = `${kant(true)}<div class="kvitto-papper">
-      <div class="kv-huvud">
-        <svg viewBox="0 0 48 48" width="26" height="26" fill="#2E2C28" aria-hidden="true"><path d="M14 18h20v4h4a5 5 0 0 1 0 10h-4.6A12 12 0 0 1 24 40h0a12 12 0 0 1-10-10Zm20 8v2h4a1 1 0 0 0 0-2ZM19 6c-2 3 2 5 0 8M25 6c-2 3 2 5 0 8" fill-rule="evenodd" stroke="#2E2C28" stroke-width="2" stroke-linecap="round"></path></svg>
-        <strong>Skatteplattformen</strong>
-        <span>KVITTO · DIN SKATT 2026</span>
-        <span class="kv-liten">${nu.toLocaleDateString('sv-SE')} ${pad(nu.getHours())}:${pad(nu.getMinutes())} · KVITTO ${kvNr} · KASSA 1</span>
-      </div>
-      <hr class="kv-streck">
-      <div class="kv-del"><span>${dK.pension ? 'PENSION' : 'LÖN'}</span><span>${Math.round(inc * 1000 / 12).toLocaleString('sv-SE')} KR/MÅN</span></div>
-      <div class="kv-del"><span>ÅLDER · KOMMUNALSKATT</span><span>${age} ÅR · ${(dK.ks * 100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2})} %</span></div>
+    const lonManKr = Math.round(inc * 1000 / 12);
+    document.getElementById('kvitto').innerHTML = `${KV.kant(true, 7)}<div class="kvitto-papper">
+      ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lonManKr, dK.pension ? 'PENSIONSMYNDIGHETEN' : 'ARBETSGIVAREN', `${dK.pension ? 'PENSION' : 'LÖN'} ${lonManKr.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR · ${(dK.ks * 100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2})} %`)}
       <hr class="kv-streck">
       <div class="kv-rader">${rader}</div>
       <hr class="kv-streck">
-      <div class="kv-del"><span>ANTAL ARTIKLAR</span><span>${cofogItems.length}</span></div>
-      <div class="kv-sum"><span>SKATT PER MÅNAD</span><b>${kr2(totKr)}</b></div>
-      ${kapMan > 0 ? `<div class="kv-del"><span>varav skatt på kapital</span><span>${kr2(kapKr)}</span></div>` : ''}
-      <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${kr2(Math.max(0, Math.round(inc * 1000 / 12) - lonKr))}</span></div>
-      <div class="kv-del"><span>PER ÅR</span><span>${(totKr * 12).toLocaleString('sv-SE')} KR</span></div>
-      <hr class="kv-streck">
-      <div class="kv-fot">
-        <span>BETALT MED: LÖN</span>
-        <span>INGET BYTE · INGEN RETUR</span>
-        <svg viewBox="0 0 198 36" fill="#2E2C28" aria-hidden="true">${streck}</svg>
-        <span>wilhelm-wg.github.io/skatteplattformen</span>
-      </div>
-    </div>${kant(false)}`;
+      <div class="kv-sum"><span>SKATT/MÅN</span><b><span class="kv-hog">${kr2(totKr)}</span></b></div>
+      ${kapMan > 0 ? `<div class="kv-del"><span>VARAV SKATT PÅ KAPITAL</span><span>${kr2(kapKr)}</span></div>` : ''}
+      <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${kr2(Math.max(0, lonManKr - lonKr))}</span></div>
+      <div class="kv-del"><span>PER ÅR</span><span>${kr2(totKr * 12)}</span></div>
+      <div class="kv-del"><span>ANTAL RADER</span><span>${cofogItems.length}</span></div>
+      <hr class="kv-streck dubbel">
+      <div class="kv-fot"><span>BETALT MED: ${dK.pension ? 'PENSION' : 'LÖN'} · INGET BYTE</span>${KV.kod(lonManKr)}<span>wilhelm-wg.github.io/skatteplattformen</span></div>
+    </div>${KV.flik(`SPARA: SKATTEN ÄR ${((lonManKr) > 0 ? (lonKr) / (lonManKr) * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % AV ${dK.pension ? 'PENSIONEN' : 'LÖNEN'}`)}${KV.kant(false, 11)}`;
     document.getElementById('kvitto').setAttribute('aria-label', `Ditt skattekvitto: ${totKr.toLocaleString('sv-SE')} kronor i skatt per månad.`);
-    agKvitto(age, inc, kant, kr2);
+    agKvitto(age, inc, null, kr2);
     document.getElementById('kvitto-not').textContent = `Skatten fördelas som den offentliga sektorns utgifter 2024 (Eurostat, COFOG), utan inkomstpensionen som betalas med pensionsavgiften. Moms när du handlar kommer till: cirka ${(Math.round(tax.moms * 1000 / 12 / 10) * 10).toLocaleString('sv-SE')} kr i månaden (uppskattning).`;
   } else {
     receiptCard.style.display = 'none';
@@ -5116,12 +5151,12 @@ function updateCalc(){
       const isActive = p.inc === currentP.inc;
       const col = p.hasStatlig ? 'var(--skatt)' : 'var(--d-neutral2)';
       return `<div style="display:flex;align-items:center;gap:.5rem;${isActive?'background:var(--bg2);border-radius:3px;padding:2px 4px;margin:-2px -4px':''}">
-        <span style="font-size:.68rem;color:var(--ink2);width:52px;text-align:right;font-family:var(--mono)">${p.inc} tkr</span>
+        <span style="font-size:.6875rem;color:var(--ink2);width:52px;text-align:right;font-family:var(--mono)">${p.inc} tkr</span>
         <div style="flex:1;height:8px;background:var(--bg2);border-radius:3px;overflow:hidden">
           <div style="height:100%;width:${Math.round(p.marg/maxM*90)}%;background:${col};border-radius:3px;transition:width .3s"></div>
         </div>
         <span style="font-size:.72rem;font-family:var(--mono);color:${isActive?'var(--ink)':'var(--ink3)'};width:36px;text-align:right;font-weight:${isActive?'600':'400'}">${p.marg}%</span>
-        ${p.hasStatlig ? '<span style="font-size:.6rem;color:var(--amber-t)">+statlig</span>' : ''}
+        ${p.hasStatlig ? '<span style="font-size:.6875rem;color:var(--amber-t)">+statlig</span>' : ''}
       </div>`;
     }).join('');
   } else if(margCard) {
@@ -5819,7 +5854,7 @@ function renderScen(key){
         <div>
           <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Förmåner per kategori (tkr/år)</div>
           ${barsHtml}
-          <div style="font-size:.68rem;color:var(--ink3);margin-top:1rem">Förmånerna är genomsnittet för varje persons ålder i modellen (kalibrerad mot Eurostat COFOG 2024 och Kolada 2024). Gemensamma utgifter ingår inte i nettot. Skolkostnad och MS-vård enligt prislistan. Skatt enligt Skatteverkets regler 2026.</div>
+          <div style="font-size:.6875rem;color:var(--ink3);margin-top:1rem">Förmånerna är genomsnittet för varje persons ålder i modellen (kalibrerad mot Eurostat COFOG 2024 och Kolada 2024). Gemensamma utgifter ingår inte i nettot. Skolkostnad och MS-vård enligt prislistan. Skatt enligt Skatteverkets regler 2026.</div>
         </div>
       </div>
     </div>`;
@@ -6350,11 +6385,15 @@ function downloadTransparencyJSON(){
     const lista = []; while(w.nextNode()) lista.push(w.currentNode);
     lista.forEach(n => {
       const t = n.nodeValue;
-      if(!/\d[.%]/.test(t)) return;
+      if(!/\d|≈/.test(t)) return;
       const ny = t
         .replace(/(^|[^\w.])(\d+)\.(\d+)(?![\w.])/g, '$1$2,$3')  // 16.8 → 16,8
         .replace(/(\d)%/g, '$1\u00a0%')                             // 16,8% → 16,8 %
-        .replace(/CC BY(-SA)? (\d),(\d)/g, 'CC BY$1 $2.$3');        // licensnamn lämnas orörda
+        .replace(/CC BY(-SA)? (\d),(\d)/g, 'CC BY$1 $2.$3')         // licensnamn lämnas orörda
+        .replace(/(?<![\d,.])(\d{1,3})((?:[ \u00a0]\d{3})+)(?![\d,]?\d)/g, (m, a, b) => a + b.replace(/[ \u00a0]/g, '\u202f')) // 38 300 → smalt hårt mellanslag
+        .replace(/(\d)[ ](kr|tkr|Mdkr|Mkr|kronor|%|procent|år\b)/g, '$1\u00a0$2') // talet och enheten bryts aldrig isär
+        .replace(/(^|[\s(\u00a0])-(?=\d)/g, '$1\u2212')          // riktigt minustecken
+        .replace(/≈[ \u00a0]/g, '≈\u202f');                        // ≈ med smalt mellanslag
       if(ny !== t) n.nodeValue = ny;
     });
   }

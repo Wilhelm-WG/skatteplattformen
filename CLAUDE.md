@@ -70,6 +70,12 @@ correspondence/
 - Filmen "Så går samhället runt" har egna färger för stat, region och kommun och följer inte kategoripaletten
 - Fotona i `img/foton/` togs bort 2026-10-29, se `docs/FOTON_ARKIV.md`. Ankaret `#bildkrediter` är kvar men sektionen heter Illustrationerna
 
+**Typografi och kvitton (art director-förslag 1 och 2, 2026-10-29):**
+- Typskala i `:root`: `--fs-hjalte` 64, `--fs-avsnitt` 40, `--fs-under` 28, `--fs-ingress` 20, `--fs-brod` 16, `--fs-liten` 13, `--fs-etikett` 11 px. Ingen text under 11 px. En etikettstil (Inter 600, 11 px, 0,12 em, versaler) för `.s-eye`, `.card-label` m.fl.; kvittot och sedeln har egen typografi
+- `svSiffror` (sist i sista scriptet) sätter smalt hårt mellanslag i tusental, hårt mellanslag före enheter, riktigt minus och smalt mellanslag efter ≈ i all text, även den som ritas av JS. Skriv vanliga mellanslag i källan
+- Kvitton byggs med `KV` (`KV.kant` ojämn rivkant, `KV.huvud` logotyp och kassarader, `KV.kod` streckkod, `KV.flik` perforerad flik). Logotypen är symbolen `kv-logo`. Termobrus och slitna stråk är `::before`/`::after` på `.kvitto-papper` (inga SVG-filter på HTML, för Safari). `.kv-hog` = dubbel höjd
+- Ingen `<nav>` för annat än menyn: den globala regeln `nav{position:sticky…}` gäller alla nav-element
+
 **Tillgänglighet (steg 6, 2026-10-29):**
 - Kör axe-core i webbläsaren på alla sju vyer före större ändringar (ladda axe från cdnjs i en lokal kopia, ta bort filen efteråt). Mål: inga fel för `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` och `best-practice`
 - Dialoger (`#detail-panel`, `.sc-modal`): `role="dialog"`, `aria-modal`, fokus in, fokusfälla, Escape och fokus tillbaka. Växlingsknappar får `aria-pressed` automatiskt via `vaxlingsknappar()`; element med `role="tab"` använder `aria-selected`
