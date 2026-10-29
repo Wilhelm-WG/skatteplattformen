@@ -10,6 +10,39 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Enhetlig grafik
+
+- **Ett bildspråk:** vyhuvudena och Sex vägar in visar tecknade scener i
+  papperssnitt i stället för foton. Linjeikoner i cirklar (Livsloppet, Vården,
+  Vem gör vad) är ersatta med pictogram eller en scen.
+- **Ljust överallt:** kalkylatorn i Din ekonomi och prislappskortet på
+  startsidan är inte längre svarta. Kvittot ligger på en beige yta med
+  förklaringen bredvid.
+- **Fasta kategorifärger** (variabler `--k-…`) i hundralappen, kvittot,
+  kalkylatorn, Vem gör vad och Malmö-diagrammet. Försvaret har fått en egen
+  skiffergrå färg.
+- **Diagramregel:** grått för de flesta staplar, grönt för det texten handlar
+  om, randigt för prognoser. Tar emot är grönt och skatt är sand överallt.
+  Gäller Budgeten, Framtid, Jämförelser, Livsloppet och känslighetsanalysen.
+- **Ett kort och en notisruta:** inga färgade kanter på kort eller rutor.
+  Aktiva flikar är gröna.
+- **Malmö-diagrammet** heter "Så används 100 kr i kommunalskatt", så att
+  hundralappen bara betyder sedeln.
+- **Hundralappen:** kompaktare lista och liggande detaljruta på dator, så att
+  bilden syns utan att man scrollar. Lägre sedel på mobil. Fokus stannar kvar
+  på den valda biten vid tangentbordsval.
+- **Bildkrediter** har blivit Illustrationerna, eftersom sajten inte längre
+  använder foton.
+
+### Fixed (2026-10-29)
+
+- Din ekonomi: toppen visar nu samma skatt som kalkylatorn och kvittot
+  (4 466 kr på 25 000 kr med rikssnittet 32,38 %). Tidigare visade toppen
+  skattetabell 32 (4 484 kr). Kalkylatorns månadsbelopp är exakt i stället för
+  avrundat till tiotal.
+- Kvittots rader summerar exakt till totalsumman.
+- Kontrast: grön och gul text i kalkylatorn klarar nu WCAG AA.
+
 ### Added (2026-10-29) — Hundralappen och termokvittot
 
 - **Hundralappen** (`#hundralapp`) direkt efter startsidans topp: en tecknad

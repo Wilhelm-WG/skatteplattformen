@@ -57,14 +57,16 @@ correspondence/
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år, `bild:{tal, rad}`). Direktlänk `#fakta-N`; `faktaBild(i, 'post'|'story')` ritar delningsbild 1080×1350 eller 1080×1920 med den stora siffran och en mening. Lägg bara in siffror med källa
 - `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
-**Foton (`img/foton/`):**
-- Endast Wikimedia Commons (CC0, CC BY, CC BY-SA), helst kvalitetsmärkta bilder. `VY_FOTON` i index.html: alt-text, fotograf, licens, länk, `pos` (object-position)
-- Filnamn = vyns id (`budgeten.jpg` 1 200 px + `budgeten-800.jpg`). Filerna bearbetas inte utöver nedskalning. Visas i naturliga färger till höger om vyrubriken, kredit som etikett i bildens hörn
-- Byts en bildfil: öka `FOTO_VER` så att webbläsarnas cache hämtar den nya
-- Kredit: i-knapp i bildens hörn (`.foto-info`) som länkar till `#bildkrediter`; listan där genereras ur `VY_FOTON`. Startsidans fotokort (`.vy-gv`) använder `<vy>-560.jpg` och har en samlad kreditrad
-- Uppdatera `img/foton/KREDITER.md` vid byte av foto
+**Bildspråk och designsystem (2026-10-29):**
+- Ett bildspråk: scener i papperssnitt (`vh-…` vyhuvuden och Sex vägar in, `il-…` kategoriscener), fyllda pictogram (`pk-…`) för allt som är en kategori, linjeikoner (`i-…`) bara för knappar och gränssnitt. Inga ikoner i cirklar, inga foton. Alla symboler ligger i spriten direkt efter `<body>`; filtren får inte ligga i `display:none`. Alt-text för vyhuvudena i `VY_SCEN`
+- Kategorifärger som variabler i `:root` (`--k-soc`, `--k-vard`, `--k-utb`, `--k-infra`, `--k-forv`, `--k-forsv`, `--k-kommun`, `--k-ratt`, `--k-eu`, `--k-arbete`, `--k-ranta`, `--k-ovrigt`, `--k-fritid`). Samma färg och pictogram i hundralappen, kvittot, kalkylatorn, Vem gör vad och Malmö-diagrammet. I SVG-attribut och `HL100` står hexvärdena utskrivna; ändras en färg ska båda ändras
+- Diagramregel: övriga staplar `--d-neutral2` (eller `--d-neutral`), det texten handlar om `--d-mark` (grönt), prognos randig (`.ft-bar-fill.prognos`, `--d-prognos`). Tar emot `--emot` (grönt), skatt/betalar `--skatt` (sand). Grönt betyder aldrig en kategori
+- Ytor: ljust överallt. Kort = papper, `--r`, `--shadow-sm`, ingen färgad kant. Notisruta = `--bg2`, `--r-sm`, ingen kant. Enda mörka ytan är det gröna citatbandet i Metod. Aktiva flikar och knappar är gröna
+- Kalkylatorn (`.calc-wrap`) var tidigare mörk; inline-stilar i dess JS använder nu `var(--ink…)`, `var(--bg2)` och `var(--border)`. Skriv inte nya `rgba(242,239,232,…)`
+- Filmen "Så går samhället runt" har egna färger för stat, region och kommun och följer inte kategoripaletten
+- `img/foton/` används inte längre av sidan (finns kvar i repot). Ankaret `#bildkrediter` är kvar men sektionen heter Illustrationerna
 
-**Licens:** text, siffror och diagram CC BY 4.0; kod MIT; foton enligt kreditraden.
+**Licens:** text, siffror, diagram och illustrationer CC BY 4.0; kod MIT.
 
 **Delningsbild och ikoner (`img/`):**
 - `og.png` (1200×630) skapas från `og-mall.html` med Chrome headless: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=4000 --screenshot=img/og.png img/og-mall.html`. Uppdatera siffrorna i mallen när COFOG-fördelningen ändras
@@ -104,7 +106,7 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
-- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). "Varav dras från lönen" räknas med `skattDelar` (modellens kommunalskatt), så det kan skilja några tior från skattetabellen i Din ekonomis topp.
+- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startsidans löneskala och faktakortet "Din första lön" använder skattetabell 32 och anger det som källa
 
 **Hundralappen (`#hundralapp`):**
 - Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.
