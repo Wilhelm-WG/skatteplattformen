@@ -10,6 +10,13 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Filmens lönebesked
+
+- Lönebeskedet i filmen "Hur skattepengarna går runt" visar samma skatt som
+  resten av sajten: 7 692 kr på medianlönen, utbetalt 30 608 kr och
+  arbetsgivaravgift 12 034 kr (varav 3 910 kr pension). Talmanuset i
+  `docs/FILM_MANUS.md` är uppdaterat.
+
 ### Changed (2026-10-29) — Tillgänglighet och designsystem (steg 6)
 
 - **Axe (WCAG 2.1 AA och best practice) ger inga fel i någon vy.** Rättat:

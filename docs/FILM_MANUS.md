@@ -19,7 +19,7 @@ trettioåttatusen trehundra kronor i månaden före skatt.
 
 ## 2. Skatten dras innan lönen når dig
 Innan lönen når dig drar arbetsgivaren av din preliminärskatt, sjutusen
-sjuhundrafemtio kronor, och skickar den till Skatteverket. Det är ungefär var
+sexhundranittiotvå kronor, och skickar den till Skatteverket. Det är ungefär var
 femte krona, eftersom grundavdraget och jobbskatteavdraget sänker skatten. Ovanpå lönen
 betalar arbetsgivaren också arbetsgivaravgifter. En del av dem blir din egen
 pension.

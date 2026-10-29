@@ -111,7 +111,7 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
-- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startkvittot och faktakorten räknar likadant. Bara lönebeskedet i filmen visar skattetabellens avdrag (7 750 kr)
+- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startkvittot och faktakorten räknar likadant. Filmens lönebesked visar också 7 692 kr
 
 **Startkvittot (heron):**
 - Lönerutan `#start-lon` → `startKvitto()` ritar `#start-kvitto`: skatt på lönen (`skattDelar(40, …, {ksOverride:0.3238})`), fördelad på `START_GRUPPER` (summor av kvittots 15 COFOG-andelar). Raderna summerar exakt
