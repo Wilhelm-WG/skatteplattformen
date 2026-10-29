@@ -10,6 +10,33 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Helhetsgenomgången steg 2: neutralt språk och klarspråk
+
+Neutralt i sak, men tonen och rubriken "Vad fan får vi för pengarna?" är kvar.
+
+- **Kalkylatorn:** livsfastexterna och kommentaren under skattekortet utan
+  omdömen ("civiliserat samhälle", "systemets avsikt", "fundamentet i den
+  svenska modellen"). "5–10×" utan källa borttaget i ingress och modellrutor.
+  Ett begreppspar: "tar emot mer än man betalar" / "betalar mer än man tar
+  emot" i stället för nettotagare, mottagare och bidragsgivare.
+- **Framtid och historik:** "krävs"-meningar, "Färre producerar — fler
+  konsumerar", "minst uppmärksammad", "medvetet valt" och Gini-rutans
+  "dolda effektivitet och blinda fläck" omskrivna. SKR-kortet om 53 %
+  skattekvot borttaget (källa saknades). Oxfam borttagen som källa.
+  "Största årsökningen någonsin" och påståendet om pandemins BNP-effekt
+  borttagna (källa saknades).
+- **Budgeten:** ögonraden "Den dolda budgeten" heter "Skatteutgifter".
+- **Klarspråk:** "miljarder kronor" och "cirka" i löptext i stället för "Mdkr"
+  och "~"; "procentenheter" i stället för "pp"; "och" i stället för "&" i
+  etiketter; LPIK, SAL, HUT, BP2026, "overhead", "matte", "80+ segmentet",
+  "1994-krisen" utskrivna. Sensitivitetsanalysen heter "Hur säker är
+  beräkningen?".
+- **Samma namn för samma sak:** Hälso- och sjukvård, Livsloppet, Så räknar
+  vi / Metod och källor, Dela min beräkning, 35 prislappar.
+- **Format:** licensnamn "CC BY 4.0" rättas inte längre till "4,0";
+  tornadodiagrammet har minustecken och etiketter som får plats på mobil.
+- **Sidfoten:** "Ingen agenda. Bara siffror, med källa."
+
 ### Fixed (2026-10-28) — Helhetsgenomgången steg 1: grundsiffror
 
 Alla rättelser loggas också i `#rattelser` på sajten.
