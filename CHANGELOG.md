@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Metod på klarspråk (steg 5)
+
+- **Så räknar vi** är omskrivet utan fackord: fem punkter om att vi räknar på
+  hela offentliga sektorn, att det du får tillbaka bara beror på ålder, att vi
+  visar ett år i taget, att livsloppet är ett mönster och inte en skuld, och
+  att inkomstpensionen inte räknas som skatt.
+- Punkten om förmånerna sa att de fördelas per inkomstgrupp och hushåll. Sedan
+  steg 3 beror de bara på ålder och stämmer med de faktiska utgifterna 2024.
+- **Primärkällorna** säger vad varje källa används till.
+- **Hur säker är beräkningen?** förklarar vad svaret är och vad färgerna
+  betyder. Etiketterna heter Lönen, Förmånerna, Momsen och Kommunalskatten.
+- **Om Skatteplattformen** nämner inte längre hushållstyper eller en
+  uppdatering i juni, och säger vilket år siffrorna gäller.
+- Antagandefilen (JSON) innehåller kvittonas regler, jämförelser och
+  arbetsgivaravgifter.
+
 ### Changed (2026-10-29) — Kvittot på startsidan
 
 - **Startsidans topp är ett kvitto.** Skriv in din lön (förifyllt med
