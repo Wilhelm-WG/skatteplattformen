@@ -10,6 +10,34 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-28) — Helhetsgenomgången steg 1: grundsiffror
+
+Alla rättelser loggas också i `#rattelser` på sajten.
+
+- **Offentliga sektorns utgifter** 3 011 → 3 223 Mdkr (Eurostat gov_10a_exp,
+  2024). Hundralappen (38/15/14 kr), skattekvittots 15 andelar, rutan om hela
+  offentliga sektorn (nu Eurostats delsektorer), og:description, og:image:alt
+  och `img/og.png` uppdaterade. Ny källa `eurostat_cofog`.
+- **Skatteutgifter:** "cirka 385 Mdkr" → drygt 600 Mdkr (cirka 565 Mdkr netto).
+- **Skattekvot:** en serie per diagram: SCB i Framtid, OECD i jämförelsen.
+- **Taxor:** läkemedelstak 3 800 kr, frikort 1 450 kr, förskolans maxtaxa
+  1 547 kr, äldreomsorgens maxtaxa 2 660 kr, SiS 7 850 kr/dygn, barnbidrag
+  oförändrat sedan 2018, sjukpenningens tak 1 116 kr gällde 2023.
+- **Prislappar:** hemtjänst, personlig assistans, ambulans, högskola, väg- och
+  järnvägsunderhåll och föräldrapenning räknade om med verifierade täljare och
+  nämnare. Räddningstjänsten visas per invånare. Asfalt och rättegång
+  borttagna (källorna stödde inte beloppen).
+- **Framtid:** lärarprognosen, transportplanen (ingen dubbelräkning), elnät,
+  försvarsökning cirka 83 Mdkr, vårdplatser år 2000; obelagd kostnadskalkyl
+  borttagen.
+- **Övrigt:** grundskolans kostnadsposter 2025, UO11/UO22, inkomstpension
+  384 Mdkr, högskolan i livsfasmodellen (51 tkr), förskolan (121 tkr),
+  prislistans prisår ("år står på varje prislapp"), DETAILS-nyckel för
+  gymnasiet, länkmålet för Skolverket.
+- **Kontrollskriptet** kontrollerar nu också att varje detaljruta hör till en
+  prislapp, att hundralappen och skattekvittot summerar till 100 % och att
+  rättade värden inte kommer tillbaka.
+
 ### Changed (2026-10-28) — Lättare startsida och granskningens punkt 10
 
 - **Startsidan:** lönetabellen står kvar men noten är en rad med länken

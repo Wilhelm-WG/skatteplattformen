@@ -104,7 +104,7 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
-- 15 poster baserade på SCB COFOG 2024 (3 011 Mdkr total offentlig sektor)
+- 15 poster baserade på Eurostat COFOG 2024 (gov_10a_exp, 3 223 Mdkr total offentlig sektor); `HERO_100` på startsidan använder samma källa. Andelarna ska summera till 1 (kontrolleras)
 - "Socialt skydd" uppdelat i 5 underkategorier (pension, sjukdom, familj, arbetslöshet, övrigt)
 
 **URL-delning:**
@@ -165,7 +165,7 @@ faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
 - Sajten läser inga filer i `data/` (se data/README.md).
 
 ## Datakällor och metodik
-- **SCB COFOG 2024** — 3 011 Mdkr total offentlig sektor
+- **Eurostat COFOG 2024 (gov_10a_exp)** — 3 223 Mdkr total offentlig sektor
 - **Skolverket 2024** — enhetskostnader per skolform
 - **SCB ESSPROS 2022** — socialt skydd per funktion
 - **NTA-metodik (UN 2013)** — åldersprofil sjukvård
@@ -174,7 +174,7 @@ faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
 
 ## Kända begränsningar
 1. Sjukvårdsprofil baseras på NTA-vikter, ej faktisk SKR KPP per åldersår
-2. Inkomstpension (~800 Mdkr/år) ingår inte (avgiftsbaserad, ej skattesubvention)
+2. Inkomst- och tilläggspension (~384 Mdkr 2025, Orange rapport) ingår inte (avgiftsbaserad, ej skattesubvention)
 3. NTA-data för Norden från 2010 (senast tillgängliga)
 4. Hushållsmultiplikatorer är förenklade (SCB FASIT ger mer granulär data)
 5. Inkomstgradienten är schablonbaserad, ej empiriskt skattad per decil

@@ -122,6 +122,21 @@ for (const s of Object.values(JMF)) for (const ch of s.charts) {
   if (ch.v && ch.v[0] === null) jmfFel.push(`${ch.t}: Sverige saknar värde`);
 }
 jmfFel.length ? jmfFel.forEach(f => FEL('Jämförelse: ' + f)) : OK(`Alla ${jmfN} jämförelsediagram har 7 länder (minst 5 med uppgift), källa och år`);
+// Detaljrutor (DETAILS) ska höra till en prislapp med exakt samma titel
+const DETAILS = vm.runInNewContext('(' + literal('const DETAILS = {').text + ')');
+const lösa = Object.keys(DETAILS).filter(t => !CARDS.some(k => k.title === t));
+lösa.length ? lösa.forEach(t => FEL(`DETAILS["${t}"] matchar ingen prislapp`)) : OK(`Alla ${Object.keys(DETAILS).length} detaljrutor hör till en prislapp`);
+// Fördelningarna ska gå jämnt upp
+const HERO_100 = vm.runInNewContext('(' + literal('const HERO_100 = [').text + ')');
+const h100 = HERO_100.reduce((a, x) => a + x.v, 0);
+h100 === 100 ? OK('Hundralappen summerar till 100 kr') : FEL(`Hundralappen summerar till ${h100} kr, inte 100`);
+const COFOG = vm.runInNewContext('(' + literal('const cofogItems = [').text + ')');
+const cSum = COFOG.reduce((a, x) => a + x.andel, 0);
+Math.abs(cSum - 1) < 0.002 ? OK(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}`) : FEL(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}, inte 1`);
+// Gamla värden som inte hör till ett nyckeltal men har rättats (se #rattelser)
+for (const g of ['181,8 tkr', '135 400', '2 950 kr', 'max 113 tkr', '1 116 kr 2024', '3 011', 'Max 1 100 kr', 'oförändrat sedan 2006', 'i nivå med en anstaltsplats', '23 700 lärare'])
+  if (utanKatalog.includes(g)) FEL(`Rättat värde "${g}" finns kvar (ungefär rad ${utanKatalog.slice(0, utanKatalog.indexOf(g)).split('\n').length})`);
+OK('Inga tidigare rättade värden har kommit tillbaka');
 const titlar = CARDS.map(k => k.title), dubbla = titlar.filter((t, i) => titlar.indexOf(t) !== i);
 dubbla.length ? dubbla.forEach(t => FEL(`Prislappen "${t}" finns två gånger`)) : OK('Inga dubbletter i prislistan');
 
