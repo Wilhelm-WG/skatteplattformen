@@ -953,6 +953,56 @@ html{scroll-padding-top:72px}
   .vgv-step p{font-size:.82rem}
   #tldr .s-eye,#tldr .s-title{text-align:left!important}
 }
+
+/* ═══ HUNDRALAPPEN (startsidan) och KVITTOT (Din ekonomi) — illustrationer i stil A, pictogram i stil B ═══ */
+.hl100{padding:3rem 0 3.5rem}
+.hl100-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1.25rem 2rem;flex-wrap:wrap;margin-bottom:1.75rem}
+.hl100-toggle{display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--bg2)}
+.hl100-toggle button{border:0;background:none;font:inherit;font-size:.85rem;font-weight:500;color:var(--green);padding:.55rem 1rem;border-radius:999px;cursor:pointer;white-space:nowrap;min-height:40px}
+.hl100-toggle button[aria-pressed="true"]{background:var(--green);color:#fff}
+.hl100-toggle button:focus-visible,.hl100-list button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.hl100-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:2rem;align-items:start}
+.hl100-note svg{width:100%;height:auto;display:block;overflow:visible}
+.hl100-note .slice{cursor:pointer;outline:none}
+.hl100-note .slice:focus-visible path{stroke:#1A1813;stroke-width:3}
+.hl100-src{font-size:.75rem;color:var(--ink3);margin-top:.7rem;line-height:1.55}
+.hl100-why{font-size:.82rem;color:var(--ink2);line-height:1.55;margin-top:.5rem;padding:.6rem .8rem;background:var(--bg2);border-radius:6px}
+.hl100-list{display:flex;flex-direction:column;gap:2px;margin-bottom:1rem}
+.hl100-list button{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:.65rem;align-items:center;width:100%;min-height:44px;padding:.3rem .65rem;border:0;border-radius:6px;background:none;font:inherit;font-size:.9rem;text-align:left;cursor:pointer;color:var(--ink)}
+.hl100-list button:hover{background:var(--bg2)}
+.hl100-list button[aria-pressed="true"]{background:var(--sel);font-weight:600}
+.hl100-list b{font-family:var(--serif);font-size:1.05rem;font-variant-numeric:tabular-nums}
+.hl100-card{background:var(--paper);border-radius:8px;padding:1rem;box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:.6rem}
+.hl100-card svg{width:100%;height:auto;display:block;border-radius:4px}
+.hl100-card .amt{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.hl100-card .amt b{font-family:var(--serif);font-weight:700;font-size:2rem;line-height:1}
+.hl100-card .amt span{font-weight:600}
+.hl100-card p{font-size:.88rem;color:var(--ink2);line-height:1.55;margin:0}
+.hl100-card .mdkr{font-size:.78rem;color:var(--ink3)}
+.hl100-lapp{align-self:flex-start;display:inline-flex;padding:.45rem .9rem .45rem 1.15rem;background:var(--amber-l);color:var(--ink);font-size:.82rem;text-decoration:none;clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%)}
+.hl100-lapp:hover{background:#EEDFB8}
+@media(max-width:560px){.hl100-toggle{width:100%}.hl100-toggle button{flex:1 1 0;white-space:normal;line-height:1.25;padding:.5rem .6rem}}
+@media(max-width:860px){.hl100-grid{grid-template-columns:minmax(0,1fr)}.hl100-side{display:flex;flex-direction:column-reverse;gap:1rem}}
+
+.kvitto-wrap{display:flex;justify-content:center;padding:1rem 0 .5rem}
+.kvitto{width:100%;max-width:360px;transform:rotate(-.7deg);filter:drop-shadow(0 12px 18px rgba(0,0,0,.35));font-family:var(--mono);color:#2E2C28}
+.kvitto-kant{display:block;width:100%;height:10px}
+.kvitto-papper{background:#FCFBF7;padding:1.1rem 1.35rem 1.2rem;font-size:12.5px;line-height:1.45;position:relative;overflow:hidden}
+.kvitto-papper::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.018) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.kv-huvud{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.kv-huvud strong{font-family:var(--serif);font-size:1.25rem;color:#1A1813;letter-spacing:.01em}
+.kv-liten{font-size:11px;color:#55524C}
+.kv-streck{border:0;border-top:1.5px dashed #BDB4A3;margin:.65rem 0}
+.kv-rad{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:.5rem;align-items:center}
+.kv-rad svg{width:13px;height:13px;fill:#2E2C28;color:#2E2C28}
+.kv-rad span:nth-child(2){text-transform:uppercase;font-size:11.5px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kv-rader{display:flex;flex-direction:column;gap:3px}
+.kv-sum{display:flex;justify-content:space-between;align-items:baseline;font-weight:600}
+.kv-sum b{font-family:var(--serif);font-size:1.5rem;color:#1A1813}
+.kv-del{display:flex;justify-content:space-between;color:#55524C;font-size:11.5px}
+.kv-fot{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-align:center;font-size:11px;color:#55524C}
+.kv-fot svg{width:200px;height:36px}
+.kvitto-not{font-size:.68rem;color:rgba(242,239,232,.72);line-height:1.5;margin-top:.6rem}
 </style>
 </head>
 <body>
@@ -999,6 +1049,44 @@ html{scroll-padding-top:72px}
 <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 4C5.3 4 4 5.8 4 8c0 3 1.6 4.2 2.1 7.2.4 2.5.8 4.8 2 4.8 1.3 0 1.4-4 2.9-4h2c1.5 0 1.6 4 2.9 4 1.2 0 1.6-2.3 2-4.8.5-3 2.1-4.2 2.1-7.2 0-2.2-1.3-4-3.5-4-1.7 0-2.6 1-4.5 1S9.2 4 7.5 4z"/></symbol>
 <symbol id="i-pil" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
 </defs></svg>
+<!-- Illustrationer (stil A, papperssnitt) och pictogram (stil B). Källa: designduken "Skatteplattformen illustrationssystem". Scener: <svg viewBox="0 0 360 300"><use href="#il-namn"/></svg>. Pictogram: <svg viewBox="0 0 48 48" fill="färg"><use href="#pk-namn"/></svg> -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><defs>
+<filter id="ilSh" x="-15%" y="-15%" width="140%" height="140%"><feDropShadow dx="1.4" dy="2.4" stdDeviation="1.1" flood-color="#2A2620" flood-opacity=".28"/></filter>
+<filter id="ilGr"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+<filter id="pkSh" x="-5%" y="-5%" width="112%" height="112%"><feDropShadow dx="1.5" dy="3" stdDeviation="2" flood-color="#2A2620" flood-opacity=".22"/></filter>
+<symbol id="pk-soc" viewBox="0 0 48 48"><circle cx="17" cy="9" r="5"></circle><path d="M11 16 H23 L24 30 H21 V42 H18 V32 H16 V42 H13 V30 H10 Z"></path><circle cx="33" cy="20" r="3.6"></circle><path d="M29 25 H37 L38 34 H36 V42 H34 V35 H32 V42 H30 V34 H28 Z"></path><path d="M23 22 L29 27" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></symbol>
+<symbol id="pk-vard" viewBox="0 0 48 48"><path d="M18 6 H30 V18 H42 V30 H30 V42 H18 V30 H6 V18 H18 Z"></path></symbol>
+<symbol id="pk-utb" viewBox="0 0 48 48"><path d="M4 11 C12 8 19 9 22.5 13 V39 C19 36 12 35 4 38 Z M25.5 13 C29 9 36 8 44 11 V38 C36 35 29 36 25.5 39 Z"></path></symbol>
+<symbol id="pk-infra" viewBox="0 0 48 48"><path fill-rule="evenodd" d="M19 4 H29 C33 4 36 7 36 11 V27 C36 31 33 34 29 34 H19 C15 34 12 31 12 27 V11 C12 7 15 4 19 4 Z M16 10 V19 H32 V10 Z M16.5 26 A2.2 2.2 0 1 0 20.9 26 A2.2 2.2 0 1 0 16.5 26 Z M27.1 26 A2.2 2.2 0 1 0 31.5 26 A2.2 2.2 0 1 0 27.1 26 Z"></path><path d="M14 36 L8 44 M34 36 L40 44 M10 41 H38" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></symbol>
+<symbol id="pk-forv" viewBox="0 0 48 48"><path d="M24 4 L44 14 H4 Z"></path><rect x="8" y="17" width="5" height="18"></rect><rect x="17" y="17" width="5" height="18"></rect><rect x="26" y="17" width="5" height="18"></rect><rect x="35" y="17" width="5" height="18"></rect><rect x="4" y="37" width="40" height="6"></rect></symbol>
+<symbol id="pk-forsv" viewBox="0 0 48 48"><path d="M24 4 L41 10 V24 C41 34 33 40 24 44 C15 40 7 34 7 24 V10 Z"></path></symbol>
+<symbol id="pk-ratt" viewBox="0 0 48 48"><path d="M24 6 V40 M14 42 H34 M8 12 H40" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M8 13 L3 26 H13 Z M40 13 L35 26 H45 Z"></path><path d="M2 26 C4 32 12 32 14 26 Z M34 26 C36 32 44 32 46 26 Z"></path></symbol>
+<symbol id="pk-miljo" viewBox="0 0 48 48"><path d="M40 6 C18 6 8 16 8 30 C8 34 9 38 11 41 C14 30 22 22 32 18 C24 24 18 32 15 42 C30 44 42 34 40 6 Z"></path></symbol>
+<symbol id="pk-bostad" viewBox="0 0 48 48"><path fill-rule="evenodd" d="M24 4 L44 20 H39 V43 H9 V20 H4 Z M20 29 V43 H28 V29 Z M13 23 V29 H19 V23 Z M29 23 V29 H35 V23 Z"></path></symbol>
+<symbol id="pk-fritid" viewBox="0 0 48 48"><path fill-rule="evenodd" d="M24 5 A19 19 0 1 0 24 43 A19 19 0 1 0 24 5 Z M24 15 L32 21 L29 31 H19 L16 21 Z"></path></symbol>
+<symbol id="pk-ranta" viewBox="0 0 48 48"><circle cx="13" cy="13" r="7"></circle><circle cx="35" cy="35" r="7"></circle><path d="M38 8 L10 40" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path></symbol>
+<symbol id="pk-kommun" viewBox="0 0 48 48"><path fill-rule="evenodd" d="M19 3 H29 V18 H42 V43 H6 V18 H19 Z M21 10 A3 3 0 1 0 27 10 A3 3 0 1 0 21 10 Z M20 31 V43 H28 V31 Z M11 23 V29 H17 V23 Z M31 23 V29 H37 V23 Z"></path></symbol>
+<symbol id="pk-eu" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3.4"></circle><path d="M6 24 H42 M24 6 C14 14 14 34 24 42 C34 34 34 14 24 6" stroke="currentColor" stroke-width="2.6" fill="none"></path></symbol>
+<symbol id="pk-arbete" viewBox="0 0 48 48"><path d="M17 12 V8 C17 6 18 5 20 5 H28 C30 5 31 6 31 8 V12" stroke="currentColor" stroke-width="3" fill="none"></path><path fill-rule="evenodd" d="M8 12 H40 C42 12 44 14 44 16 V36 C44 38 42 40 40 40 H8 C6 40 4 38 4 36 V16 C4 14 6 12 8 12 Z M4 22 V25 H44 V22 Z"></path></symbol>
+<symbol id="pk-ovrigt" viewBox="0 0 48 48"><circle cx="10" cy="24" r="5.5"></circle><circle cx="24" cy="24" r="5.5"></circle><circle cx="38" cy="24" r="5.5"></circle></symbol>
+<symbol id="pk-aldre" viewBox="0 0 48 48"><circle cx="22" cy="8" r="5"></circle><path d="M16 15 H27 C29 15 31 17 31 19 L32 30 H28 V43 H24 V33 H22 V43 H18 V30 H14 Z"></path><path d="M33 22 L37 26 L38 43" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+      <symbol id="pk-sjuk" viewBox="0 0 48 48"><path d="M24 42 C10 32 4 24 4 16 C4 10 9 6 14 6 C18 6 22 8 24 12 C26 8 30 6 34 6 C39 6 44 10 44 16 C44 24 38 32 24 42 Z"></path></symbol>
+<symbol id="il-soc" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <circle cx="300" cy="62" r="24" fill="#F1D9A6"></circle> <g filter="url(#ilSh)"> <path d="M0 210 C90 200 270 204 360 196 L360 300 L0 300 Z" fill="#9DB8A6"></path> <path d="M150 300 C172 262 230 238 360 228 L360 252 C254 258 206 276 194 300 Z" fill="#E9E2D3"></path> <rect x="52" y="86" width="10" height="132" fill="#FBFAF6"></rect> <path d="M53 110 L60 108 M52 136 L58 138 M54 162 L61 160 M52 188 L57 190" stroke="#2A2620" stroke-width="2.4" stroke-linecap="round"></path> <ellipse cx="58" cy="88" rx="36" ry="26" fill="#7FA48E"></ellipse> <ellipse cx="34" cy="108" rx="22" ry="15" fill="#9DB8A6"></ellipse> <ellipse cx="84" cy="110" rx="20" ry="14" fill="#6A917B"></ellipse> <rect x="72" y="174" width="112" height="7" rx="2" fill="#8C6A2C"></rect> <rect x="72" y="196" width="112" height="8" rx="2" fill="#8C6A2C"></rect> <path d="M80 204 L78 232 M176 204 L178 232" stroke="#5E4A36" stroke-width="4" stroke-linecap="round"></path> <path d="M100 198 C100 178 110 168 122 168 C134 168 144 178 144 198 Z" fill="#C8973A"></path> <circle cx="122" cy="151" r="13.5" fill="#E2B795"></circle> <path d="M108 150 C107 136 118 131 126 132 C135 133 138 140 136 146 C130 140 118 140 112 147 Z" fill="#D6D0C6"></path> <circle cx="110" cy="139" r="6.5" fill="#D6D0C6"></circle> <rect x="112" y="192" width="44" height="12" rx="4" fill="#3A342C"></rect> <rect x="144" y="200" width="9" height="30" rx="3" fill="#3A342C"></rect> <rect x="132" y="200" width="9" height="30" rx="3" fill="#3A342C"></rect> <ellipse cx="139" cy="232" rx="8" ry="4" fill="#2A2620"></ellipse> <ellipse cx="151" cy="232" rx="8" ry="4" fill="#2A2620"></ellipse> <path d="M162 178 L166 234" stroke="#2A2620" stroke-width="3.5" stroke-linecap="round"></path> <path d="M140 180 C150 182 158 180 163 178" stroke="#B07B24" stroke-width="6" stroke-linecap="round" fill="none"></path> <path d="M232 222 C232 202 248 192 268 192 L292 192 L292 222 Z" fill="#1E4A8C"></path> <path d="M232 214 C234 196 246 186 262 184 L262 214 Z" fill="#183D74"></path> <rect x="230" y="220" width="64" height="7" rx="3" fill="#2A2620"></rect> <circle cx="244" cy="240" r="10" fill="#2A2620"></circle><circle cx="244" cy="240" r="4" fill="#E9E2D3"></circle> <circle cx="282" cy="240" r="10" fill="#2A2620"></circle><circle cx="282" cy="240" r="4" fill="#E9E2D3"></circle> <path d="M292 196 L308 176" stroke="#2A2620" stroke-width="4" stroke-linecap="round"></path> <rect x="314" y="226" width="9" height="46" rx="3" fill="#2A2620"></rect> <rect x="326" y="226" width="9" height="46" rx="3" fill="#2A2620"></rect> <path d="M308 228 L310 188 C310 178 316 172 324 172 C332 172 338 178 338 188 L340 228 Z" fill="#B84A1E"></path> <path d="M312 190 C306 186 304 180 308 176" stroke="#8E3816" stroke-width="6" stroke-linecap="round" fill="none"></path> <circle cx="324" cy="158" r="12.5" fill="#A8714E"></circle> <path d="M311 157 C310 144 320 139 328 140 C337 141 339 149 337 155 C330 149 318 149 311 157 Z" fill="#2A2620"></path> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-vard" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <rect x="14" y="56" width="200" height="176" fill="#E9E2D3"></rect> <rect x="14" y="50" width="200" height="10" fill="#C9BFAE"></rect> <g fill="#BFD0E6"><rect x="30" y="74" width="26" height="22"></rect><rect x="68" y="74" width="26" height="22"></rect><rect x="134" y="74" width="26" height="22"></rect><rect x="172" y="74" width="26" height="22"></rect><rect x="30" y="110" width="26" height="22"></rect><rect x="68" y="110" width="26" height="22"></rect><rect x="134" y="110" width="26" height="22"></rect><rect x="172" y="110" width="26" height="22"></rect><rect x="30" y="146" width="26" height="22"></rect><rect x="172" y="146" width="26" height="22"></rect></g> <rect x="102" y="68" width="24" height="24" rx="2" fill="#FBFAF6"></rect> <path d="M110 72 H118 V76 H122 V84 H118 V88 H110 V84 H106 V76 H110 Z" fill="#2E7D5C"></path> <rect x="70" y="182" width="88" height="8" fill="#52625A"></rect> <rect x="84" y="190" width="60" height="42" fill="#BFD0E6"></rect> <path d="M114 190 V232" stroke="#FBFAF6" stroke-width="3"></path> <path d="M0 232 L360 228 L360 300 L0 300 Z" fill="#D8CDB8"></path> <path d="M160 238 L160 186 C160 178 166 172 174 172 L280 172 L320 198 L342 204 C348 206 350 212 350 218 L350 238 Z" fill="#EBD77A"></path> <path d="M282 176 L316 199 L282 199 Z" fill="#BFD0E6"></path> <g fill="#2E7D5C"><rect x="160" y="210" width="14" height="12"></rect><rect x="188" y="210" width="14" height="12"></rect><rect x="216" y="210" width="14" height="12"></rect><rect x="244" y="210" width="14" height="12"></rect><rect x="272" y="210" width="14" height="12"></rect><rect x="300" y="210" width="14" height="12"></rect><rect x="174" y="222" width="14" height="12"></rect><rect x="202" y="222" width="14" height="12"></rect><rect x="230" y="222" width="14" height="12"></rect><rect x="258" y="222" width="14" height="12"></rect><rect x="286" y="222" width="14" height="12"></rect><rect x="314" y="222" width="14" height="12"></rect></g> <rect x="196" y="164" width="40" height="8" rx="2" fill="#1E4A8C"></rect> <rect x="186" y="182" width="40" height="18" rx="2" fill="#FBFAF6" opacity=".6"></rect> <path d="M199 184 H213 M206 177 V191" stroke="#2E7D5C" stroke-width="4"></path> <circle cx="198" cy="240" r="14" fill="#2A2620"></circle><circle cx="198" cy="240" r="5.5" fill="#C9BFAE"></circle> <circle cx="316" cy="240" r="14" fill="#2A2620"></circle><circle cx="316" cy="240" r="5.5" fill="#C9BFAE"></circle> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-utb" viewBox="0 0 360 300"><rect width="360" height="300" fill="#E9E2D3"></rect> <path d="M0 240 L360 236 L360 300 L0 300 Z" fill="#D8CDB8"></path> <g filter="url(#ilSh)"> <rect x="30" y="34" width="196" height="116" rx="3" fill="#C9A46A"></rect> <rect x="37" y="41" width="182" height="102" rx="1.5" fill="#1B4D3E"></rect> <g stroke="#F4F1EA" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".92"><path d="M56 94 L67 58 L78 94 M60 82 L74 82"></path><path d="M88 58 L88 94 M88 58 C104 58 104 75 88 75 C108 75 108 94 88 94"></path><path d="M132 64 C124 54 110 60 111 76 C112 94 126 98 133 88"></path><path d="M60 114 L64 110 L64 132 M76 121 L88 121 M82 115 L82 127 M96 114 C98 108 108 108 108 115 C108 121 96 126 96 132 L109 132 M118 119 L128 119 M118 125 L128 125 M138 112 C142 108 152 110 150 117 C148 121 144 121 142 121 C150 121 154 127 150 131 C146 135 138 133 136 129"></path><circle cx="190" cy="72" r="11"></circle><path d="M190 52 L190 56 M190 88 L190 92 M170 72 L174 72 M206 72 L210 72"></path></g> <rect x="248" y="36" width="84" height="110" rx="2" fill="#FBFAF6"></rect> <rect x="256" y="44" width="68" height="94" fill="#BFD0E6"></rect> <path d="M256 112 L324 108 L324 138 L256 138 Z" fill="#9DB8A6"></path> <path d="M266 112 L266 84 L284 70 L302 84 L302 112 Z" fill="#B84A1E"></path> <rect x="280" y="100" width="8" height="12" fill="#FBFAF6"></rect> <path d="M290 44 L290 138" stroke="#FBFAF6" stroke-width="4"></path> <rect x="242" y="144" width="96" height="7" rx="1.5" fill="#FBFAF6"></rect> <rect x="56" y="206" width="124" height="9" rx="2" fill="#C9A46A"></rect> <rect x="186" y="204" width="124" height="9" rx="2" fill="#C9A46A"></rect> <path d="M64 214 L62 284 M172 214 L174 284 M194 212 L192 284 M302 212 L304 284" stroke="#8C6A2C" stroke-width="4" stroke-linecap="round"></path> <path d="M96 222 C96 196 106 186 120 186 C134 186 144 196 144 222 Z" fill="#B84A1E"></path> <rect x="114" y="176" width="12" height="12" fill="#E2B795"></rect> <circle cx="120" cy="164" r="15" fill="#E3C27E"></circle> <path d="M210 220 C210 194 220 184 234 184 C248 184 258 194 258 220 Z" fill="#1E4A8C"></path> <path d="M247 194 C252 172 256 152 258 132 L268 134 C267 154 262 176 255 198 Z" fill="#1E4A8C"></path> <circle cx="263" cy="127" r="7.5" fill="#8A5A3C"></circle> <rect x="228" y="174" width="12" height="12" fill="#8A5A3C"></rect> <circle cx="234" cy="162" r="15" fill="#2A2620"></circle> <rect x="104" y="206" width="32" height="28" rx="4" fill="#2E7D5C"></rect> <rect x="218" y="204" width="32" height="28" rx="4" fill="#2E7D5C"></rect> <path d="M108 234 L106 284 M132 234 L134 284 M222 232 L220 284 M246 232 L248 284" stroke="#1B4D3E" stroke-width="4" stroke-linecap="round"></path> <path d="M152 286 L152 256 C152 246 160 240 168 240 C176 240 184 246 184 256 L184 286 Z" fill="#C8973A"></path> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-infra" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <path d="M0 150 C40 140 70 146 96 152 L96 300 L0 300 Z" fill="#9DB8A6"></path> <path d="M264 150 C300 142 330 144 360 150 L360 300 L264 300 Z" fill="#9DB8A6"></path> <path d="M0 210 C120 204 240 214 360 206 L360 300 L0 300 Z" fill="#2B5C8F"></path> <path d="M20 236 C40 232 56 238 70 234 M190 252 C210 248 226 254 240 250" stroke="#BFD0E6" stroke-width="2.4" fill="none" stroke-linecap="round"></path> <path d="M60 140 L300 140 L300 154 L60 154 Z" fill="#B3A79A"></path> <path d="M84 154 L84 230 L100 230 C100 196 124 178 150 178 C176 178 200 196 200 230 L216 230 C216 196 240 178 266 178 L276 178 L276 154 Z" fill="#B3A79A"></path> <path d="M84 154 L276 154" stroke="#9C8F81" stroke-width="3"></path> <path d="M56 136 L304 136" stroke="#2A2620" stroke-width="2.4"></path> <path d="M80 136 L80 106 C80 100 86 96 92 96 L268 96 C292 96 304 112 306 136 Z" fill="#FBFAF6"></path> <path d="M80 122 L304 122" stroke="#1E4A8C" stroke-width="7"></path> <g fill="#2A2620"><rect x="96" y="104" width="22" height="10" rx="2"></rect><rect x="126" y="104" width="22" height="10" rx="2"></rect><rect x="156" y="104" width="22" height="10" rx="2"></rect><rect x="186" y="104" width="22" height="10" rx="2"></rect><rect x="216" y="104" width="22" height="10" rx="2"></rect><path d="M262 104 L280 104 C288 106 292 110 294 114 L262 114 Z"></path></g> <path d="M140 96 V136 M232 96 V136" stroke="#C9BFAE" stroke-width="2"></path> <path d="M0 268 L360 262" stroke="#52625A" stroke-width="18"></path> <path d="M10 268 L40 267 M70 266 L100 265.5 M130 265 L160 264.5" stroke="#FBFAF6" stroke-width="2.4"></path> <path d="M276 262 L280 248 C282 244 286 242 290 242 L314 242 C318 242 322 246 324 250 L330 260 L332 268 L276 270 Z" fill="#B84A1E"></path> <rect x="288" y="246" width="26" height="10" rx="2" fill="#BFD0E6"></rect> <circle cx="290" cy="272" r="6" fill="#2A2620"></circle><circle cx="320" cy="271" r="6" fill="#2A2620"></circle> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-forv" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <path d="M0 236 L360 232 L360 300 L0 300 Z" fill="#D8CDB8"></path> <path d="M44 92 L180 40 L316 92 Z" fill="#C9BFAE"></path> <circle cx="180" cy="74" r="11" fill="#FBFAF6"></circle> <path d="M180 67 L180 74 L185 77" stroke="#2A2620" stroke-width="2" fill="none" stroke-linecap="round"></path> <rect x="52" y="92" width="256" height="12" fill="#E9E2D3"></rect> <g fill="#E9E2D3"><rect x="66" y="104" width="20" height="104"></rect><rect x="114" y="104" width="20" height="104"></rect><rect x="226" y="104" width="20" height="104"></rect><rect x="274" y="104" width="20" height="104"></rect></g> <rect x="52" y="104" width="256" height="104" fill="#C9BFAE" opacity=".35"></rect> <rect x="154" y="130" width="52" height="78" rx="26" fill="#52625A"></rect> <path d="M180 130 V208" stroke="#3F4D46" stroke-width="2"></path> <rect x="40" y="208" width="280" height="10" fill="#E9E2D3"></rect> <rect x="30" y="218" width="300" height="10" fill="#D8CDB8"></rect> <rect x="20" y="228" width="320" height="10" fill="#C9BFAE"></rect> <path d="M226 290 L232 252 L310 248 L316 286 Z" fill="#FBFAF6"></path> <path d="M222 294 L230 256 L306 252 L312 290 Z" fill="#F4F1EA"></path> <path d="M240 266 L292 264 M242 274 L282 272" stroke="#8C877E" stroke-width="2" stroke-linecap="round"></path> <circle cx="292" cy="280" r="9" fill="none" stroke="#B84A1E" stroke-width="2.6"></circle> <path d="M318 258 L334 236 L344 242 L330 264 Z" fill="#8C6A2C"></path> <rect x="314" y="260" width="22" height="8" rx="2" fill="#B84A1E"></rect> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-forsv" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <circle cx="244" cy="128" r="34" fill="#F1D9A6"></circle> <g filter="url(#ilSh)"> <path d="M150 170 C170 156 196 158 214 166 C236 158 262 160 280 170 Z" fill="#B7C6BC"></path> <path d="M280 170 C292 162 312 162 328 170 Z" fill="#B7C6BC"></path> <path d="M314 166 L316 140 L322 140 L324 166 Z" fill="#FBFAF6"></path> <rect x="315" y="148" width="8" height="5" fill="#B84A1E"></rect> <path d="M312 140 L326 140 L319 132 Z" fill="#B84A1E"></path> <path d="M-4 236 C6 200 30 184 62 182 C94 180 118 196 132 222 L140 240 L-4 244 Z" fill="#B3A79A"></path> <path d="M24 136 L44 180 L4 180 Z" fill="#1B4D3E"></path> <path d="M24 120 L40 158 L8 158 Z" fill="#244F40"></path> <rect x="21" y="178" width="6" height="12" fill="#5E4A36"></rect> <path d="M54 186 L54 162 L74 146 L94 162 L94 186 Z" fill="#B84A1E"></path> <path d="M50 164 L74 142 L98 164" stroke="#FBFAF6" stroke-width="3.5" fill="none" stroke-linejoin="round"></path> <rect x="60" y="168" width="10" height="9" fill="#FBFAF6"></rect> <rect x="78" y="166" width="9" height="20" fill="#FBFAF6"></rect> <path d="M150 204 L340 198 L326 222 L170 226 Z" fill="#52625A"></path> <path d="M150 204 L340 198 L338 204 L152 210 Z" fill="#3F4D46"></path> <path d="M198 200 L214 172 L274 170 L292 198 Z" fill="#62746B"></path> <path d="M222 172 L232 154 L258 153 L266 170 Z" fill="#62746B"></path> <path d="M242 153 L246 132 L250 153 Z" fill="#3F4D46"></path> <path d="M-4 226 C40 216 80 232 124 224 C168 216 210 232 254 224 C300 216 336 226 364 222 L364 300 L-4 300 Z" fill="#2B5C8F"></path> <path d="M-4 252 C40 244 80 258 124 250 C168 242 210 258 254 250 C300 242 336 252 364 248 L364 300 L-4 300 Z" fill="#1E4A8C"></path> <path d="M150 74 C156 68 162 68 166 74 C170 68 176 68 182 74" stroke="#2A2620" stroke-width="2" fill="none" stroke-linecap="round"></path> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-ratt" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <rect x="10" y="70" width="190" height="162" fill="#B84A1E"></rect> <path d="M4 74 L105 34 L206 74 Z" fill="#8E3816"></path> <rect x="24" y="104" width="160" height="128" fill="#2A2620"></rect> <path d="M24 104 H184" stroke="#FBFAF6" stroke-width="4"></path> <rect x="84" y="80" width="40" height="14" fill="#FBFAF6"></rect> <path d="M0 232 L360 228 L360 300 L0 300 Z" fill="#D8CDB8"></path> <path d="M40 240 L40 150 C40 142 46 136 54 136 L132 136 L132 240 Z" fill="#C4302A"></path> <path d="M132 240 L132 162 L176 162 C186 162 194 170 196 180 L198 240 Z" fill="#C4302A"></path> <rect x="140" y="170" width="44" height="26" rx="3" fill="#BFD0E6"></rect> <rect x="44" y="140" width="84" height="8" fill="#E9E2D3"></rect> <path d="M48 128 L128 120" stroke="#C9BFAE" stroke-width="6" stroke-linecap="round"></path> <path d="M40 212 L198 212" stroke="#FBFAF6" stroke-width="5"></path> <rect x="150" y="154" width="22" height="8" rx="2" fill="#1E4A8C"></rect> <circle cx="76" cy="242" r="14" fill="#2A2620"></circle><circle cx="76" cy="242" r="5.5" fill="#C9BFAE"></circle> <circle cx="166" cy="242" r="14" fill="#2A2620"></circle><circle cx="166" cy="242" r="5.5" fill="#C9BFAE"></circle> <path d="M218 246 L222 222 C224 214 230 208 238 206 L262 196 C268 194 276 194 282 196 L320 206 C332 210 340 218 342 228 L344 246 Z" fill="#FBFAF6"></path> <g fill="#1E4A8C"><rect x="222" y="226" width="12" height="10"></rect><rect x="246" y="226" width="12" height="10"></rect><rect x="270" y="226" width="12" height="10"></rect><rect x="294" y="226" width="12" height="10"></rect><rect x="318" y="226" width="12" height="10"></rect></g> <g fill="#EBD77A"><rect x="234" y="226" width="12" height="10"></rect><rect x="258" y="226" width="12" height="10"></rect><rect x="282" y="226" width="12" height="10"></rect><rect x="306" y="226" width="12" height="10"></rect><rect x="330" y="226" width="12" height="10"></rect></g> <path d="M244 210 L264 200 L286 200 L306 210 Z" fill="#BFD0E6"></path> <rect x="262" y="190" width="28" height="7" rx="2" fill="#1E4A8C"></rect> <circle cx="244" cy="248" r="12" fill="#2A2620"></circle><circle cx="244" cy="248" r="4.5" fill="#C9BFAE"></circle> <circle cx="320" cy="248" r="12" fill="#2A2620"></circle><circle cx="320" cy="248" r="4.5" fill="#C9BFAE"></circle> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-miljo" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <path d="M0 160 L20 112 L40 160 Z M28 160 L52 96 L76 160 Z M300 160 L322 104 L344 160 Z M330 160 L352 118 L372 160 Z" fill="#1B4D3E"></path> <path d="M60 160 L80 120 L100 160 Z M270 160 L288 124 L306 160 Z" fill="#244F40"></path> <path d="M0 160 C120 152 240 152 360 160 L360 210 L0 210 Z" fill="#2B5C8F"></path> <path d="M120 176 C140 172 156 178 170 174 M210 190 C230 186 246 192 260 188" stroke="#BFD0E6" stroke-width="2.4" fill="none" stroke-linecap="round"></path> <path d="M150 140 C150 130 158 124 166 126 L170 132 L184 132 L182 138 L168 140 Z" fill="#52625A"></path> <path d="M166 140 L164 160" stroke="#52625A" stroke-width="2"></path> <path d="M0 206 C120 198 240 202 360 196 L360 300 L0 300 Z" fill="#9DB8A6"></path> <rect x="40" y="236" width="290" height="10" rx="2" fill="#C9BFAE"></rect> <rect x="54" y="190" width="56" height="50" rx="5" fill="#2E7D5C"></rect> <rect x="122" y="190" width="56" height="50" rx="5" fill="#1E4A8C"></rect> <rect x="190" y="190" width="56" height="50" rx="5" fill="#C8973A"></rect> <rect x="258" y="190" width="56" height="50" rx="5" fill="#8C877E"></rect> <g fill="#2A2620"><rect x="68" y="202" width="28" height="5" rx="2.5"></rect><rect x="136" y="202" width="28" height="5" rx="2.5"></rect><rect x="204" y="202" width="28" height="5" rx="2.5"></rect><rect x="272" y="202" width="28" height="5" rx="2.5"></rect></g> <g fill="#FBFAF6"><circle cx="82" cy="222" r="6"></circle><rect x="144" y="216" width="12" height="12" rx="1"></rect><path d="M218 214 L226 228 L210 228 Z"></path><rect x="280" y="218" width="16" height="8" rx="1"></rect></g> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-bostad" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <path d="M248 238 L248 30 M248 34 L340 34 M248 34 L200 34 M200 34 L200 46 L214 46 L214 34" stroke="#C8973A" stroke-width="6" fill="none" stroke-linejoin="round"></path> <path d="M248 40 L272 34 M248 60 L272 34" stroke="#C8973A" stroke-width="3"></path> <path d="M318 34 L318 92" stroke="#2A2620" stroke-width="1.6"></path> <rect x="290" y="92" width="56" height="8" fill="#52625A"></rect> <rect x="16" y="96" width="120" height="142" fill="#C8973A"></rect> <rect x="12" y="88" width="128" height="10" fill="#8C6A2C"></rect> <g fill="#FBFAF6"><rect x="28" y="108" width="20" height="22"></rect><rect x="66" y="108" width="20" height="22"></rect><rect x="104" y="108" width="20" height="22"></rect><rect x="28" y="146" width="20" height="22"></rect><rect x="66" y="146" width="20" height="22"></rect><rect x="104" y="146" width="20" height="22"></rect><rect x="28" y="184" width="20" height="22"></rect><rect x="104" y="184" width="20" height="22"></rect></g> <rect x="64" y="200" width="24" height="38" fill="#5E4A36"></rect> <rect x="146" y="124" width="96" height="114" fill="#B84A1E"></rect> <path d="M140 126 L194 96 L248 126 Z" fill="#8E3816"></path> <g fill="#FBFAF6"><rect x="158" y="138" width="18" height="20"></rect><rect x="212" y="138" width="18" height="20"></rect><rect x="158" y="174" width="18" height="20"></rect><rect x="212" y="174" width="18" height="20"></rect></g> <rect x="184" y="200" width="20" height="38" fill="#FBFAF6"></rect> <path d="M270 238 L270 168 L344 168 L344 238" stroke="#8C877E" stroke-width="4" fill="none"></path> <path d="M270 190 L344 190 M270 214 L344 214 M296 168 L296 238 M320 168 L320 238" stroke="#8C877E" stroke-width="2"></path> <path d="M0 236 L360 232 L360 300 L0 300 Z" fill="#9DB8A6"></path> <ellipse cx="146" cy="244" rx="12" ry="20" fill="#2E7D5C"></ellipse> <rect x="144" y="256" width="4" height="12" fill="#5E4A36"></rect> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-fritid" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <rect x="250" y="96" width="70" height="120" fill="#FBFAF6"></rect> <path d="M268 96 L268 60 L285 36 L302 60 L302 96 Z" fill="#FBFAF6"></path> <path d="M268 62 L285 36 L302 62" fill="#52625A"></path> <path d="M285 36 L285 18 M279 24 L291 24" stroke="#2A2620" stroke-width="2.4"></path> <path d="M244 100 L285 70 L326 100 Z" fill="#52625A"></path> <rect x="279" y="74" width="12" height="16" rx="6" fill="#2A2620"></rect> <rect x="16" y="88" width="230" height="140" fill="#E9E2D3"></rect> <rect x="10" y="80" width="242" height="12" fill="#1B4D3E"></rect> <rect x="30" y="108" width="140" height="96" fill="#BFD0E6"></rect> <g><rect x="38" y="116" width="124" height="4" fill="#8C6A2C"></rect><rect x="38" y="150" width="124" height="4" fill="#8C6A2C"></rect><rect x="38" y="184" width="124" height="4" fill="#8C6A2C"></rect></g> <g fill="#B84A1E"><rect x="42" y="128" width="7" height="22"></rect><rect x="74" y="130" width="8" height="20"></rect><rect x="116" y="126" width="7" height="24"></rect><rect x="58" y="162" width="8" height="22"></rect><rect x="136" y="164" width="7" height="20"></rect></g> <g fill="#1E4A8C"><rect x="50" y="130" width="8" height="20"></rect><rect x="96" y="128" width="7" height="22"></rect><rect x="146" y="130" width="8" height="20"></rect><rect x="84" y="162" width="7" height="22"></rect><rect x="110" y="164" width="8" height="20"></rect></g> <g fill="#C8973A"><rect x="60" y="132" width="7" height="18"></rect><rect x="104" y="132" width="8" height="18"></rect><rect x="128" y="128" width="7" height="22"></rect><rect x="44" y="164" width="7" height="20"></rect><rect x="96" y="166" width="7" height="18"></rect><rect x="120" y="162" width="7" height="22"></rect></g> <path d="M100 108 V204" stroke="#FBFAF6" stroke-width="4"></path> <rect x="186" y="150" width="44" height="78" fill="#2E7D5C"></rect> <path d="M0 228 L360 224 L360 300 L0 300 Z" fill="#9DB8A6"></path> <circle cx="282" cy="262" r="17" fill="#FBFAF6"></circle> <path d="M282 252 L291 258 L288 269 H276 L273 258 Z" fill="#2A2620"></path> <path d="M282 245 V252 M291 258 L298 255 M288 269 L292 276 M276 269 L272 276 M273 258 L266 255" stroke="#2A2620" stroke-width="1.6"></path> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-ranta" viewBox="0 0 360 300"><rect width="360" height="300" fill="#E9E2D3"></rect> <g filter="url(#ilSh)"> <path d="M0 236 L360 232 L360 300 L0 300 Z" fill="#D8CDB8"></path> <g fill="#C8973A"><ellipse cx="60" cy="226" rx="30" ry="9"></ellipse><ellipse cx="60" cy="214" rx="30" ry="9"></ellipse><ellipse cx="60" cy="202" rx="30" ry="9"></ellipse></g> <g fill="#C8973A"><ellipse cx="128" cy="226" rx="30" ry="9"></ellipse><ellipse cx="128" cy="214" rx="30" ry="9"></ellipse><ellipse cx="128" cy="202" rx="30" ry="9"></ellipse><ellipse cx="128" cy="190" rx="30" ry="9"></ellipse><ellipse cx="128" cy="178" rx="30" ry="9"></ellipse></g> <g fill="#C8973A"><ellipse cx="196" cy="226" rx="30" ry="9"></ellipse><ellipse cx="196" cy="214" rx="30" ry="9"></ellipse><ellipse cx="196" cy="202" rx="30" ry="9"></ellipse><ellipse cx="196" cy="190" rx="30" ry="9"></ellipse><ellipse cx="196" cy="178" rx="30" ry="9"></ellipse><ellipse cx="196" cy="166" rx="30" ry="9"></ellipse><ellipse cx="196" cy="154" rx="30" ry="9"></ellipse></g> <g stroke="#8C6A2C" stroke-width="1.6" fill="none"><path d="M30 202 C30 207 90 207 90 202 M98 178 C98 183 158 183 158 178 M166 154 C166 159 226 159 226 154"></path></g> <ellipse cx="60" cy="199" rx="18" ry="4.5" fill="#E3C27E"></ellipse> <ellipse cx="128" cy="175" rx="18" ry="4.5" fill="#E3C27E"></ellipse> <ellipse cx="196" cy="151" rx="18" ry="4.5" fill="#E3C27E"></ellipse> <circle cx="270" cy="88" r="26" fill="#B84A1E"></circle> <circle cx="270" cy="88" r="11" fill="#E9E2D3"></circle> <circle cx="324" cy="196" r="26" fill="#B84A1E"></circle> <circle cx="324" cy="196" r="11" fill="#E9E2D3"></circle> <path d="M336 70 L346 80 L258 214 L248 204 Z" fill="#B84A1E"></path> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-kommun" viewBox="0 0 360 300"><rect width="360" height="300" fill="#DCE5EE"></rect> <g filter="url(#ilSh)"> <path d="M0 236 L360 232 L360 300 L0 300 Z" fill="#9DB8A6"></path> <path d="M18 140 L80 112 L142 140 Z" fill="#C9BFAE"></path> <rect x="24" y="140" width="112" height="96" fill="#E9E2D3"></rect> <g fill="#C9BFAE"><rect x="34" y="150" width="12" height="70"></rect><rect x="58" y="150" width="12" height="70"></rect><rect x="90" y="150" width="12" height="70"></rect><rect x="114" y="150" width="12" height="70"></rect></g> <rect x="18" y="220" width="124" height="16" fill="#C9BFAE"></rect> <rect x="262" y="72" width="40" height="70" fill="#B84A1E"></rect> <path d="M256 74 L282 46 L308 74 Z" fill="#8E3816"></path> <circle cx="282" cy="98" r="11" fill="#FBFAF6"></circle> <path d="M282 91 L282 98 L287 101" stroke="#2A2620" stroke-width="2" fill="none" stroke-linecap="round"></path> <rect x="216" y="140" width="132" height="96" fill="#B84A1E"></rect> <g fill="#FBFAF6"><rect x="230" y="156" width="18" height="22"></rect><rect x="316" y="156" width="18" height="22"></rect><rect x="230" y="194" width="18" height="22"></rect><rect x="316" y="194" width="18" height="22"></rect></g> <rect x="268" y="190" width="28" height="46" fill="#FBFAF6"></rect> <path d="M100 104 C150 30 230 30 262 70" fill="none" stroke="#1E4A8C" stroke-width="2.6" stroke-dasharray="6 6" stroke-linecap="round"></path> <g transform="rotate(14 186 54)"><rect x="160" y="38" width="52" height="34" rx="2" fill="#FBFAF6"></rect><path d="M160 40 L186 58 L212 40" stroke="#C9BFAE" stroke-width="2" fill="none"></path><circle cx="186" cy="58" r="5" fill="#B84A1E"></circle></g> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-eu" viewBox="0 0 360 300"><rect width="360" height="300" fill="#E9E2D3"></rect> <g filter="url(#ilSh)"> <path d="M0 236 L360 232 L360 300 L0 300 Z" fill="#D8CDB8"></path> <circle cx="110" cy="128" r="80" fill="#1E4A8C"></circle> <g fill="#EBD77A"> <circle cx="110" cy="80" r="6"></circle><circle cx="134" cy="86.4" r="6"></circle><circle cx="151.6" cy="104" r="6"></circle><circle cx="158" cy="128" r="6"></circle><circle cx="151.6" cy="152" r="6"></circle><circle cx="134" cy="169.6" r="6"></circle><circle cx="110" cy="176" r="6"></circle><circle cx="86" cy="169.6" r="6"></circle><circle cx="68.4" cy="152" r="6"></circle><circle cx="62" cy="128" r="6"></circle><circle cx="68.4" cy="104" r="6"></circle><circle cx="86" cy="86.4" r="6"></circle> </g> <rect x="210" y="224" width="130" height="12" fill="#8C6A2C"></rect> <rect x="214" y="176" width="58" height="48" fill="#C9A46A"></rect> <rect x="276" y="176" width="58" height="48" fill="#B8925A"></rect> <rect x="244" y="128" width="58" height="48" fill="#C9A46A"></rect> <path d="M214 196 H272 M276 196 H334 M244 148 H302" stroke="#8C6A2C" stroke-width="3"></path> <rect x="304" y="140" width="26" height="36" rx="5" fill="#BFD0E6"></rect> <rect x="312" y="132" width="10" height="9" rx="2" fill="#1E4A8C"></rect> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+<symbol id="il-arbete" viewBox="0 0 360 300"><rect width="360" height="300" fill="#E9E2D3"></rect> <g filter="url(#ilSh)"> <path d="M0 240 L360 236 L360 300 L0 300 Z" fill="#D8CDB8"></path> <rect x="40" y="40" width="210" height="140" rx="4" fill="#C9A46A"></rect> <rect x="48" y="48" width="194" height="124" fill="#B8925A"></rect> <g fill="#FBFAF6"><rect x="60" y="58" width="48" height="56" transform="rotate(-3 84 86)"></rect><rect x="120" y="62" width="52" height="44"></rect><rect x="184" y="56" width="46" height="60" transform="rotate(4 207 86)"></rect><rect x="74" y="124" width="56" height="40" transform="rotate(2 102 144)"></rect><rect x="144" y="118" width="48" height="46"></rect></g> <g fill="#B84A1E"><circle cx="84" cy="60" r="4"></circle><circle cx="146" cy="64" r="4"></circle><circle cx="207" cy="58" r="4"></circle><circle cx="102" cy="126" r="4"></circle><circle cx="168" cy="120" r="4"></circle></g> <g stroke="#8C877E" stroke-width="2" stroke-linecap="round"><path d="M68 76 H100 M68 86 H94 M68 96 H98 M128 78 H164 M128 88 H156 M192 76 H222 M192 86 H216 M192 96 H220 M84 140 H120 M84 150 H112 M152 134 H184 M152 144 H176"></path></g> <rect x="140" y="180" width="10" height="60" fill="#8C6A2C"></rect> <path d="M226 240 C226 206 240 192 258 192 C276 192 290 206 290 240 Z" fill="#2E7D5C"></path> <rect x="240" y="196" width="36" height="40" rx="6" fill="#C8973A"></rect> <path d="M244 198 C246 192 270 192 272 198" stroke="#B07B24" stroke-width="4" fill="none"></path> <circle cx="258" cy="174" r="15" fill="#5E4A36"></circle> <rect x="226" y="240" width="64" height="12" rx="4" fill="#2A2620"></rect> <rect x="300" y="226" width="56" height="8" rx="2" fill="#8C6A2C"></rect> <path d="M306 226 C306 210 316 202 328 202 C340 202 350 210 350 226 Z" fill="#EBD77A"></path> <rect x="302" y="222" width="52" height="5" rx="2" fill="#C8973A"></rect> </g> <rect width="360" height="300" filter="url(#ilGr)" opacity=".09" style="mix-blend-mode: multiply"></rect></symbol>
+</defs></svg>
+
 
 <a href="#" class="skip-link" onclick="event.preventDefault();const m=document.querySelector('main');m.tabIndex=-1;m.focus();">Hoppa till innehåll</a>
 
@@ -1085,10 +1173,6 @@ html{scroll-padding-top:72px}
         <div class="hsk-prislapp-eyebrow">Vad svensk skatt köper · kostnad och källa per prislapp</div>
         <h2 class="hsk-prislapp-heading" id="hskHeading">Prislappar: vad det kostar och vem som betalar</h2>
 
-        <div class="hsk-toggle" role="tablist" aria-label="Byt vy">
-          <button type="button" class="hsk-tg on" onclick="setHeroMode('pris',this)">Prislappar</button>
-          <button type="button" class="hsk-tg" onclick="setHeroMode('hundra',this)">Din 100-lapp</button>
-        </div>
 
         <div class="hsk-prislapp-stage" id="hskPrislappStage" aria-live="off">
           <span class="hsk-prislapp-cat" id="hskPrislappCat">Utbildning</span>
@@ -1102,17 +1186,41 @@ html{scroll-padding-top:72px}
 
         <div class="hsk-prislapp-dots" id="hskPrislappDots" role="tablist" aria-label="Prislapps-navigation"></div>
 
-        <!-- Vy 2: Din 100-lapp — animerad fördelning (COFOG 2024) -->
-        <div class="hsk-100" id="hsk100" style="display:none">
-          <div class="hsk-100-sub">Av varje <strong>100-lapp</strong> i skatt går, 2024 (en prick = en krona):</div>
-          <div class="hsk-100-rows" id="hsk100rows"></div>
-        </div>
-
         <div class="hsk-prislapp-foot">
           <a href="#pristabell">Hela prislistan (<span data-cards-total>35</span> prislappar) →</a>
           <span style="opacity:.5;margin:0 .3rem">·</span>
           <a href="#budget">Vart pengarna går →</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- HUNDRALAPPEN (variant A): sedel med tårta, lista och scen. Data i HL100 (JS). -->
+<section class="section hl100" id="hundralapp" aria-label="Din hundralapp">
+  <div class="cw">
+    <div class="hl100-head">
+      <div>
+        <p class="s-eye">Din hundralapp</p>
+        <h2 class="s-title" id="hl100-rubrik">Vart går varje hundralapp?</h2>
+        <p class="s-sub" id="hl100-ingress" style="margin-bottom:0">Så fördelas varje hundralapp som den offentliga sektorn gör av med. Tryck på en bit för att se vad den betalar.</p>
+      </div>
+      <div class="hl100-toggle" role="group" aria-label="Underlag">
+        <button type="button" data-set="2024" aria-pressed="true">Hela offentliga sektorn, 2024</button>
+        <button type="button" data-set="2026" aria-pressed="false">Statsbudgeten 2026</button>
+      </div>
+    </div>
+    <div class="hl100-grid">
+      <div class="hl100-note">
+        <div id="hl100-sedel"></div>
+        <p class="hl100-why" id="hl100-why" hidden></p>
+        <p class="hl100-src" id="hl100-src"></p>
+      </div>
+      <div class="hl100-side">
+        <div class="hl100-list" id="hl100-lista" role="group" aria-label="Kategorier"></div>
+        <article class="hl100-card" id="hl100-kort" aria-live="polite"></article>
       </div>
     </div>
   </div>
@@ -2482,12 +2590,14 @@ html{scroll-padding-top:72px}
         </div>
 
         <!-- Ditt skattekvitto -->
-        <div class="annual-card" id="receipt-card" style="display:none">
-          <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
-          <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
-          <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.72);line-height:1.5">
-            Fördelningen följer den offentliga sektorns utgifter 2024 (Eurostat, COFOG): 3 223 Mdkr utom inkomstpensionen (cirka 400 Mdkr), som betalas med pensionsavgiften och inte med skatt. Din skatt fördelas i samma proportioner.
+        <div id="receipt-card" style="display:none">
+          <div class="card-label">Ditt skattekvitto, vart går dina pengar?</div>
+          <div class="kvitto-wrap">
+            <figure class="kvitto" id="kvitto" aria-label="Ditt skattekvitto" style="margin:0"></figure>
           </div>
+          <p class="kvitto-not">
+            Fördelningen följer den offentliga sektorns utgifter 2024 (Eurostat, COFOG): 3 223 Mdkr utom inkomstpensionen (cirka 400 Mdkr), som betalas med pensionsavgiften och inte med skatt. Din skatt fördelas i samma proportioner. Beloppen är uppskattningar, inte ett riktigt kvitto.
+          </p>
         </div>
 
         <!-- Delbart resultatkort (modal ligger på body-nivå, se #sc-overlay) -->
@@ -2932,7 +3042,7 @@ html{scroll-padding-top:72px}
 // ═══════════════════════════════════════════════════════════════════
 const SAJT_UPPDATERAD = '28 oktober 2026';
 const VYER = [
-  {id:'start',       namn:'Start',               hash:'',          delar:['hero','tldr','snabbfakta','vem-gor-vad']},
+  {id:'start',       namn:'Start',               hash:'',          delar:['hero','hundralapp','tldr','snabbfakta','vem-gor-vad']},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','scenarion','livslopp','skatter','sparande'], led:{tal:'4 484 kr', text:'i skatt per månad på en lön på 25 000 kronor. Kvar blir 20 516 kronor.', kalla:'Skatteverket, skattetabell 32, 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget','skuld-forsvar'], led:{tal:'1 542 Mdkr', text:'är statens utgifter 2026, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
   {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
@@ -4200,36 +4310,117 @@ const HERO_100 = [  // Eurostat COFOG 2024, andel av 3 223 Mdkr, avrundat till h
   {k:'Försvar',           v:4,  c:'#6E8A58'},
   {k:'Övrigt',            v:10, c:'#5E6166'},   // rätt, kultur, bostäder, miljö, räntor
 ];
-let heroMode = 'pris';
-function buildHundra(){
-  // Isotyp: 100 prickar, en per krona. Kolumnvis fyllning ger ett band per kategori.
-  const el = document.getElementById('hsk100rows'); if(!el) return;
-  let k = 0;
-  const dots = HERO_100.map(d => Array.from({length:d.v}, () => `<i style="background:${d.c};transition-delay:${(k++ * 0.012).toFixed(3)}s"></i>`).join('')).join('');
-  el.innerHTML =
-    `<div class="iso100" role="img" aria-label="${HERO_100.map(d=>d.k+' '+d.v+' kronor').join(', ')}">${dots}</div>` +
-    `<div class="iso100-leg">${HERO_100.map(d=>`<span><i style="background:${d.c}"></i>${d.k}<b>${d.v} kr</b></span>`).join('')}</div>`;
+// ── Hundralappen (variant A) ───────────────────────────────────────────
+// 2024: Eurostat/SCB COFOG, 3 223 Mdkr (HERO_100). 2026: statsbudgeten 1 542 Mdkr (BDATA, prop. 2025/26:1).
+const HL100 = {
+  '2024': {
+    rubrik:'Vart går varje hundralapp?', titel:'Din hundralapp i offentliga utgifter', rad:'2024 · 3 223 miljarder kronor',
+    ingress:'Så fördelas varje hundralapp som den offentliga sektorn gör av med: stat, kommuner och regioner. Tryck på en bit för att se vad den betalar.',
+    src:'Källa: Eurostat och SCB, offentliga utgifter efter ändamål (COFOG), 2024. Andelar av 3 223 miljarder kronor, avrundade till hela kronor. Sedeln är en egen illustration, inte en avbildning av en riktig sedel.',
+    why:'',
+    d:[
+      {k:'soc',  n:'Socialt skydd', v:38, mdkr:1224, c:'#5B3F8C', l:'#E7DFF2', pk:'soc', il:'soc', sub:'', t:'Pensioner, äldreomsorg, sjuk- och föräldraersättning, barnbidrag och arbetslöshetsersättning.', lapp:'Hemtjänst, ett år'},
+      {k:'vard', n:'Hälso- och sjukvård', v:15, mdkr:474, c:'#2E7D5C', l:'#D9EDE2', pk:'vard', il:'vard', sub:'', t:'Sjukhus, vårdcentraler, ambulanser, tandvård för unga och läkemedel.', lapp:'Ambulansutryckning'},
+      {k:'utb',  n:'Utbildning', v:14, mdkr:465, c:'#1E4A8C', l:'#DCE6F4', pk:'utb', il:'utb', sub:'', t:'Förskola, grundskola, gymnasium och högskola.', lapp:'Ett år i grundskolan'},
+      {k:'infra',n:'Näringsliv och infrastruktur', v:10, mdkr:308, c:'#B07B24', l:'#F3E6C8', pk:'infra', il:'infra', sub:'COFOG: Näringslivsfrågor', t:'Vägar, järnvägar, kollektivtrafik och stöd till näringslivet.', lapp:'Underhåll av 1 km riksväg per år'},
+      {k:'forv', n:'Förvaltning', v:9, mdkr:301, c:'#66615A', l:'#E6E2DA', pk:'forv', il:'forv', sub:'COFOG: Allmän offentlig förvaltning', t:'Myndigheter, skatteuppbörd, EU-avgift och bistånd. Räntorna räknas under Övrigt.', lapp:''},
+      {k:'forsv',n:'Försvar', v:4, mdkr:125, c:'#1B4D3E', l:'#D3E1DA', pk:'forsv', il:'forsv', sub:'', t:'Försvarsmakten, materiel och krisberedskap. År 2026 är försvaret statsbudgetens största område.', lapp:'Försvaret per invånare, 2026'},
+      {k:'ovr',  n:'Övrigt', v:10, mdkr:327, c:'#B84A1E', l:'#F4DDD2', pk:'ovrigt', il:'ratt', sub:'Samhällsskydd och rättskipning, miljö, bostäder, fritid och kultur, räntor', t:'Polis, domstolar och räddningstjänst, kultur och fritid, bostäder, miljö och räntor på statsskulden.', lapp:'Kriminalvård, per intagen och år'},
+    ]
+  },
+  '2026': {
+    rubrik:'Vart går varje hundralapp i statens budget?', titel:'Din hundralapp i statens budget', rad:'2026 · 1 542 miljarder kronor',
+    ingress:'Så fördelas varje hundralapp i statsbudgeten för 2026. Bara staten: kommuner och regioner har egna budgetar. Tryck på en bit.',
+    src:'Källa: Budgetpropositionen för 2026 (prop. 2025/26:1), riksdagens beslut i november 2025. Andelar av 1 542 miljarder kronor per utgiftsområde, avrundade till hela kronor.',
+    why:'Varför ser vård och skola små ut? De betalas mest av regioner och kommuner med kommunalskatt. Statens del går till stor del via Bidrag till kommuner och regioner.',
+    d:[
+      {k:'soc',   n:'Socialt skydd', v:19, mdkr:291.4, c:'#5B3F8C', l:'#E7DFF2', pk:'soc', il:'soc', sub:'Utgiftsområde 10–13', t:'Sjukförsäkring, föräldrapenning, barnbidrag, garantipension och bostadstillägg.', lapp:'Hemtjänst, ett år'},
+      {k:'forsv', n:'Försvar', v:15, mdkr:225.0, c:'#1B4D3E', l:'#D3E1DA', pk:'forsv', il:'forsv', sub:'Utgiftsområde 6', t:'Försvar och samhällets krisberedskap, statsbudgetens största område 2026.', lapp:'Försvaret per invånare, 2026'},
+      {k:'kommun',n:'Bidrag till kommuner och regioner', v:12, mdkr:180.7, c:'#B84A1E', l:'#F4DDD2', pk:'kommun', il:'kommun', sub:'Utgiftsområde 25', t:'Generella statsbidrag och utjämning. Pengarna går vidare till skola, vård och omsorg.', lapp:''},
+      {k:'ovr',   n:'Övrigt', v:11, mdkr:174.8, c:'#66615A', l:'#E6E2DA', pk:'ovrigt', il:'ranta', sub:'Räntor, migration, kultur, miljö m.m.', t:'Räntor på statsskulden, migration, kultur, miljö, energi, näringsliv och statens myndigheter.', lapp:''},
+      {k:'utb',   n:'Utbildning och studiestöd', v:9, mdkr:142.7, c:'#1E4A8C', l:'#DCE6F4', pk:'utb', il:'utb', sub:'Utgiftsområde 15–16', t:'Universitet och högskolor, forskning och studiestöd.', lapp:'Ett år på högskola / universitetet'},
+      {k:'vard',  n:'Vård och omsorg', v:8, mdkr:127.7, c:'#2E7D5C', l:'#D9EDE2', pk:'vard', il:'vard', sub:'Utgiftsområde 9', t:'Statens del av vården och omsorgen, bland annat läkemedelsförmånen.', lapp:''},
+      {k:'infra', n:'Vägar, järnväg och bostäder', v:7, mdkr:113.4, c:'#B07B24', l:'#F3E6C8', pk:'infra', il:'infra', sub:'Utgiftsområde 18, 19 och 22', t:'Statliga vägar och järnvägar, regional utveckling och bostäder.', lapp:'Underhåll av 1 km riksväg per år'},
+      {k:'eu',    n:'EU-avgift och bistånd', v:7, mdkr:100.4, c:'#3E6FB0', l:'#DCE6F4', pk:'eu', il:'eu', sub:'Utgiftsområde 5, 7 och 27', t:'Avgiften till EU och internationellt bistånd.', lapp:''},
+      {k:'ratt',  n:'Rättsväsendet', v:6, mdkr:94.7, c:'#8E3816', l:'#F4DDD2', pk:'ratt', il:'ratt', sub:'Utgiftsområde 4', t:'Polis, åklagare, domstolar och kriminalvård.', lapp:'Polisen per invånare och år'},
+      {k:'arbete',n:'Arbetsmarknad', v:6, mdkr:91.2, c:'#4E7A63', l:'#D9EDE2', pk:'arbete', il:'arbete', sub:'Utgiftsområde 14', t:'Arbetsförmedlingen, arbetslöshetsersättning och arbetsmarknadspolitik.', lapp:''},
+    ]
+  }
+};
+let hlSet = '2024', hlSel = 0;
+function hlNote(set, sel, portrait){
+  const S = HL100[set], W = portrait ? 342 : 760, H = portrait ? 520 : 400;
+  const cx = portrait ? 171 : 590, cy = portrait ? 351 : 200, R = 150, r = 58;
+  const pt = (rad, ang, dx, dy) => { const t = ang * Math.PI / 180; return [(cx + dx + rad * Math.cos(t)).toFixed(1), (cy + dy + rad * Math.sin(t)).toFixed(1)]; };
+  let a = -90, slices = '';
+  S.d.forEach((d, i) => {
+    const a2 = a + d.v * 3.6, m = (a + a2) / 2 * Math.PI / 180, lift = i === sel ? 12 : 0;
+    const dx = lift * Math.cos(m), dy = lift * Math.sin(m), g = .8, A1 = a + g, A2 = a2 - g, big = (A2 - A1) > 180 ? 1 : 0;
+    const [x1, y1] = pt(R, A1, dx, dy), [x2, y2] = pt(R, A2, dx, dy), [x3, y3] = pt(r, A2, dx, dy), [x4, y4] = pt(r, A1, dx, dy);
+    const [px, py] = pt((R + r) / 2, (a + a2) / 2, dx, dy), sz = d.v >= 8 ? 30 : 20;
+    slices += `<g class="slice" tabindex="0" role="button" data-i="${i}" aria-label="${d.n}, ${d.v} kronor" aria-pressed="${i === sel}">` +
+      `<path d="M${x1} ${y1} A${R} ${R} 0 ${big} 1 ${x2} ${y2} L${x3} ${y3} A${r} ${r} 0 ${big} 0 ${x4} ${y4} Z" fill="${d.c}"${i === sel ? ' filter="url(#pkSh)"' : ''}></path>` +
+      `<use href="#pk-${d.pk}" x="${(px - sz / 2).toFixed(1)}" y="${(py - sz / 2).toFixed(1)}" width="${sz}" height="${sz}" fill="#FBFAF6" color="#FBFAF6"></use></g>`;
+    a = a2;
+  });
+  const serif = "'Source Serif 4', Georgia, serif";
+  const text = portrait
+    ? `<text x="26" y="98" font-family="${serif}" font-weight="700" font-size="84" fill="#1E4A8C" letter-spacing="-2">100</text>
+       <text x="30" y="126" font-family="Inter, sans-serif" font-weight="600" font-size="15" letter-spacing="6" fill="#1E4A8C">KRONOR</text>
+       <text x="30" y="152" font-family="${serif}" font-style="italic" font-size="14" fill="#2A2620">${S.titel.replace('Din hundralapp ', '')}</text>
+       <text x="316" y="36" text-anchor="end" font-family="Inter, sans-serif" font-size="7.5" letter-spacing="1.8" fill="#1E4A8C" fill-opacity=".75">ILLUSTRATION · EJ BETALMEDEL</text>`
+    : `<text x="30" y="34" font-family="Inter, sans-serif" font-size="8" letter-spacing="2.5" fill="#1E4A8C" fill-opacity=".55">SKATTEPLATTFORMEN · HUNDRA KRONOR · ILLUSTRATION</text>
+       <text x="44" y="174" font-family="${serif}" font-weight="700" font-size="150" fill="#1E4A8C" letter-spacing="-4">100</text>
+       <text x="50" y="220" font-family="Inter, sans-serif" font-weight="600" font-size="24" letter-spacing="10" fill="#1E4A8C">KRONOR</text>
+       <text x="50" y="262" font-family="${serif}" font-style="italic" font-size="19" fill="#2A2620">${S.titel}</text>
+       <text x="50" y="286" font-family="Inter, sans-serif" font-size="13" fill="#4A4640">${S.rad}</text>
+       <rect x="50" y="326" width="252" height="28" rx="2" fill="none" stroke="#1E4A8C" stroke-opacity=".5"></rect>
+       <text x="177" y="345" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" letter-spacing="2.4" fill="#1E4A8C">ILLUSTRATION · EJ BETALMEDEL</text>
+       <text x="736" y="382" text-anchor="end" font-family="${serif}" font-weight="700" font-size="22" fill="#1E4A8C">100</text>`;
+  const ringar = portrait ? [50, 72, 94, 116].map(x => `<ellipse cx="90" cy="86" rx="${x}" ry="${x * .72}"></ellipse>`).join('')
+                          : [60, 82, 104, 126, 148, 170, 192, 214].map(x => `<ellipse cx="150" cy="200" rx="${x}" ry="${x * .76}"></ellipse>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="Tecknad hundrakronorssedel med en tårta: ${S.d.map(d => d.n + ' ' + d.v + ' kronor').join(', ')}.">
+    <rect x="0" y="0" width="${W}" height="${H}" rx="${portrait ? 14 : 16}" fill="#DCE6EA"></rect>
+    <clipPath id="hl-klipp"><rect width="${W}" height="${H}" rx="${portrait ? 14 : 16}"></rect></clipPath><g clip-path="url(#hl-klipp)" fill="none" stroke="#1E4A8C" stroke-opacity=".09" stroke-width="1.2">${ringar}</g>
+    <rect x="${portrait ? 10 : 12}" y="${portrait ? 10 : 12}" width="${W - (portrait ? 20 : 24)}" height="${H - (portrait ? 20 : 24)}" rx="10" fill="none" stroke="#1E4A8C" stroke-opacity=".28"></rect>
+    ${text}
+    <circle cx="${cx}" cy="${cy}" r="164" fill="#FBFAF6" stroke="#1E4A8C" stroke-opacity=".25" stroke-width="1.5"></circle>
+    ${slices}
+    <text x="${cx}" y="${cy + 3}" text-anchor="middle" font-family="${serif}" font-weight="700" font-size="26" fill="#1A1813" aria-hidden="true">100 kr</text>
+    <text x="${cx}" y="${cy + 20}" text-anchor="middle" font-family="Inter, sans-serif" font-size="8.5" letter-spacing="1.2" fill="#4A4640" aria-hidden="true">PER HUNDRALAPP</text>
+  </svg>`;
 }
-function animateHundra(){
-  const g = document.querySelector('#hsk100rows .iso100'); if(!g) return;
-  g.classList.remove('on');
-  requestAnimationFrame(() => requestAnimationFrame(() => g.classList.add('on')));
+function hlRender(){
+  const S = HL100[hlSet], box = document.getElementById('hl100-sedel'); if(!box) return;
+  const portrait = box.clientWidth > 0 && box.clientWidth < 560;
+  box.innerHTML = hlNote(hlSet, hlSel, portrait);
+  document.getElementById('hl100-rubrik').textContent = S.rubrik;
+  document.getElementById('hl100-ingress').textContent = S.ingress;
+  document.getElementById('hl100-src').textContent = S.src;
+  const why = document.getElementById('hl100-why'); why.textContent = S.why; why.hidden = !S.why;
+  document.getElementById('hl100-lista').innerHTML = S.d.map((d, i) =>
+    `<button type="button" data-i="${i}" aria-pressed="${i === hlSel}" style="--sel:${d.l}"><svg viewBox="0 0 48 48" width="22" height="22" fill="${d.c}" color="${d.c}" aria-hidden="true"><use href="#pk-${d.pk}"></use></svg><span>${d.n}</span><b>${d.v} kr</b></button>`).join('');
+  const d = S.d[hlSel], kort = (typeof CARDS !== 'undefined' && d.lapp) ? CARDS.find(c => c.title === d.lapp) : null;
+  const mdkr = d.mdkr.toLocaleString('sv-SE', {maximumFractionDigits: 1});
+  document.getElementById('hl100-kort').innerHTML =
+    `<svg viewBox="0 0 360 300" role="img" aria-label="Illustration: ${d.n}"><use href="#il-${d.il}"></use></svg>
+     <div class="amt"><b style="color:${d.c}">${d.v} kr</b><span>${d.n}</span></div>
+     ${d.sub ? `<span class="mdkr">${d.sub}</span>` : ''}
+     <p>${d.t}</p>
+     <span class="mdkr">${hlSet === '2024' ? 'Cirka ' : ''}${mdkr} miljarder kronor ${hlSet}</span>
+     ${kort ? `<a class="hl100-lapp" href="#pristabell">${kort.title} · ${kort.amount.toLocaleString('sv-SE')} ${kort.suf}</a>` : ''}`;
 }
-function setHeroMode(mode, btn){
-  heroMode = mode;
-  document.querySelectorAll('.hsk-tg').forEach(b => b.classList.toggle('on', b === btn));
-  const pris = mode === 'pris';
-  const stage = document.getElementById('hskPrislappStage');
-  const dots  = document.getElementById('hskPrislappDots');
-  const hundra = document.getElementById('hsk100');
-  const head  = document.getElementById('hskHeading');
-  if(stage) stage.style.display = pris ? '' : 'none';
-  if(dots)  dots.style.display  = pris ? '' : 'none';
-  if(hundra) hundra.style.display = pris ? 'none' : '';
-  if(head) head.textContent = pris ? 'Prislappar: vad det kostar och vem som betalar'
-                                   : 'Vart går din 100-lapp?';
-  if(!pris){ buildHundra(); animateHundra(); }
-}
+(function initHundralapp(){
+  const sek = document.getElementById('hundralapp'); if(!sek) return;
+  const valj = i => { hlSel = +i; hlRender(); };
+  sek.addEventListener('click', e => {
+    const t = e.target.closest('[data-set]'); if(t){ hlSet = t.dataset.set; hlSel = 0; sek.querySelectorAll('[data-set]').forEach(b => b.setAttribute('aria-pressed', b === t)); hlRender(); return; }
+    const s = e.target.closest('[data-i]'); if(s) valj(s.dataset.i);
+  });
+  sek.addEventListener('keydown', e => { const s = e.target.closest('.slice'); if(s && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); valj(s.dataset.i); } });
+  let w = 0; window.addEventListener('resize', () => { const nw = window.innerWidth; if(Math.abs(nw - w) > 40){ w = nw; hlRender(); } });
+  hlRender();
+})();
 
 (function initHeroPrislappar(){
   const stage   = document.getElementById('hskPrislappStage');
@@ -4996,28 +5187,51 @@ function updateCalc(){
       {namn:'Räntor på statsskulden',                         andel:0.0177, col:'rgba(255,255,255,.3)', icon:'percent'},
       {namn:'Miljöskydd',                                     andel:0.0124, col:'#2E8B57', icon:'leaf'},
     ];
-    const maxKr = totalSkatt * Math.max(...cofogItems.map(c => c.andel));
-    let receiptHTML = '';
-    cofogItems.forEach(c => {
-      const kr = Math.round(totalSkatt * c.andel);
-      if(kr <= 0) return;
-      const pct = (c.andel * 100).toFixed(1);
-      const barW = Math.round(kr / maxKr * 88);
-      receiptHTML += `<div style="display:flex;align-items:center;gap:.5rem">
-        <span style="font-size:.9rem;width:1.2rem;text-align:center;color:${c.col.startsWith('rgba')?'rgba(242,239,232,.6)':c.col}">${ico(c.icon)}</span>
-        <div style="flex:1;min-width:0">
-          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(242,239,232,.72);margin-bottom:.2rem">
-            <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.namn}</span>
-            <span style="font-family:var(--mono);white-space:nowrap;margin-left:.5rem">${kr.toLocaleString('sv-SE')} tkr</span>
-          </div>
-          <div style="height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden">
-            <div style="height:100%;width:${barW}%;background:${c.col};border-radius:3px;transition:width .4s"></div>
-          </div>
-        </div>
-        <span style="font-size:.65rem;color:rgba(242,239,232,.72);font-family:var(--mono);width:2.8rem;text-align:right">${pct}%</span>
-      </div>`;
-    });
-    document.getElementById('receipt-bars').innerHTML = receiptHTML;
+    // Termokvitto: belopp per månad i kronor, pictogram ur spriten (pk-…)
+    const pkMap = {cross:'vard',cap:'utb',elder:'aldre',train:'infra',gov:'forv',pulse:'sjuk',family:'soc',shield:'forsv',scales:'ratt',mask:'fritid',clipboard:'arbete',home:'ovrigt',houses:'bostad',percent:'ranta',leaf:'miljo'};
+    const kort = {'Utbildning (förskola → universitet)':'Utbildning','Äldreomsorg, garantipension m.m.':'Äldreomsorg, pension','Sjukdom och funktionsnedsättning':'Sjukdom, funktionsneds.','Rättsväsendet och samhällsskydd':'Rättsväsende','Fritid, kultur och religion':'Fritid och kultur','Övrigt socialt skydd (bostadsbidrag, ekonomiskt bistånd)':'Övrigt socialt skydd','Bostäder och samhällsutveckling':'Bostäder','Räntor på statsskulden':'Räntor statsskulden'};
+    const kr2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
+    const totMan = totalSkatt * 1000 / 12;
+    const dK = skattDelar(age, inc);
+    const lonMan = Math.max(0, (dK.komm + dK.stat - dK.jsa) * 1000 / 12);
+    const kapMan = kapSkatt * 1000 / 12;
+    const indMan = Math.max(0, totMan - lonMan - kapMan);
+    const nu = new Date(), pad = n => String(n).padStart(2, '0');
+    const kvNr = String(1000 + (Math.round(inc * 7 + age * 13) % 9000));
+    const rader = cofogItems.map(c => {
+      const v = Math.round(totMan * c.andel);
+      return `<div class="kv-rad"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${pkMap[c.icon]}"></use></svg><span>${kort[c.namn] || c.namn}</span><span>${kr2(v)}</span></div>`;
+    }).join('');
+    const kant = upp => `<svg class="kvitto-kant" viewBox="0 0 360 10" preserveAspectRatio="none" aria-hidden="true"><path d="${upp ? 'M0 10' : 'M0 0'} ${Array.from({length:36}, (_, i) => `L${i * 10 + 5} ${upp ? 0 : 10} L${i * 10 + 10} ${upp ? 10 : 0}`).join(' ')} Z" fill="#FCFBF7"></path></svg>`;
+    const streck = Array.from({length:46}, (_, i) => { const w = [1, 2, 1, 3, 1, 1, 2][(i * 5 + inc) % 7]; return `<rect x="${i * 4.3}" y="0" width="${w}" height="36"></rect>`; }).join('');
+    document.getElementById('kvitto').innerHTML = `${kant(true)}<div class="kvitto-papper">
+      <div class="kv-huvud">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="#2E2C28" aria-hidden="true"><path d="M14 18h20v4h4a5 5 0 0 1 0 10h-4.6A12 12 0 0 1 24 40h0a12 12 0 0 1-10-10Zm20 8v2h4a1 1 0 0 0 0-2ZM19 6c-2 3 2 5 0 8M25 6c-2 3 2 5 0 8" fill-rule="evenodd" stroke="#2E2C28" stroke-width="2" stroke-linecap="round"></path></svg>
+        <strong>Skatteplattformen</strong>
+        <span>KVITTO · DIN SKATT 2026</span>
+        <span class="kv-liten">${nu.toLocaleDateString('sv-SE')} ${pad(nu.getHours())}:${pad(nu.getMinutes())} · KVITTO ${kvNr} · KASSA 1</span>
+      </div>
+      <hr class="kv-streck">
+      <div class="kv-del"><span>LÖN</span><span>${Math.round(inc * 1000 / 12).toLocaleString('sv-SE')} KR/MÅN</span></div>
+      <div class="kv-del"><span>ÅLDER · KOMMUNALSKATT</span><span>${age} ÅR · ${(dK.ks * 100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2})} %</span></div>
+      <hr class="kv-streck">
+      <div class="kv-rader">${rader}</div>
+      <hr class="kv-streck">
+      <div class="kv-del"><span>ANTAL ARTIKLAR</span><span>${cofogItems.length}</span></div>
+      <div class="kv-sum"><span>TOTALT PER MÅNAD</span><b>${kr2(Math.round(totMan))}</b></div>
+      <div class="kv-del"><span>varav dras från lönen</span><span>${kr2(Math.round(lonMan))}</span></div>
+      ${kapMan > 0 ? `<div class="kv-del"><span>varav skatt på kapital</span><span>${kr2(Math.round(kapMan))}</span></div>` : ''}
+      <div class="kv-del"><span>varav arbetsgivaravgift och moms</span><span>${kr2(Math.round(indMan))}</span></div>
+      <div class="kv-del"><span>PER ÅR</span><span>${totalSkatt.toLocaleString('sv-SE')} TKR</span></div>
+      <hr class="kv-streck">
+      <div class="kv-fot">
+        <span>BETALT MED: LÖN</span>
+        <span>INGET BYTE · INGEN RETUR</span>
+        <svg viewBox="0 0 198 36" fill="#2E2C28" aria-hidden="true">${streck}</svg>
+        <span>wilhelm-wg.github.io/skatteplattformen</span>
+      </div>
+    </div>${kant(false)}`;
+    document.getElementById('kvitto').setAttribute('aria-label', `Ditt skattekvitto: totalt ${Math.round(totMan).toLocaleString('sv-SE')} kronor per månad, varav ${Math.round(lonMan).toLocaleString('sv-SE')} kronor dras från lönen.`);
   } else {
     receiptCard.style.display = 'none';
   }

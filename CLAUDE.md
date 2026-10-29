@@ -104,6 +104,11 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
+- Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). "Varav dras från lönen" räknas med `skattDelar` (modellens kommunalskatt), så det kan skilja några tior från skattetabellen i Din ekonomis topp.
+
+**Hundralappen (`#hundralapp`):**
+- Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.
+- Andelarna 2024 ska stämma med `HERO_100`, och 2026 med `BDATA`.
 - 15 poster ur Eurostat COFOG 2024 utan avgiftsfinansierad pension (2 823 Mdkr), eftersom pensionsavgiften inte räknas som skatt; `HERO_100` på startsidan använder hela 3 223 Mdkr. Andelarna ska summera till 1 (kontrolleras)
 - "Socialt skydd" uppdelat i 5 underkategorier (pension, sjukdom, familj, arbetslöshet, övrigt)
 

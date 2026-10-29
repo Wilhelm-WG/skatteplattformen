@@ -10,6 +10,22 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-10-29) — Hundralappen och termokvittot
+
+- **Hundralappen** (`#hundralapp`) direkt efter startsidans topp: en tecknad
+  hundrakronorssedel med en tårta. Välj Hela offentliga sektorn 2024 (COFOG,
+  3 223 Mdkr) eller Statsbudgeten 2026 (1 542 Mdkr). Tryck på en bit för att se
+  en illustration, beloppet och en prislapp. Sedeln står på högkant under 560 px.
+- **Illustrationer**: 14 scener i papperssnitt (`il-…`) och 17 pictogram
+  (`pk-…`) som inline-SVG efter ikonserien.
+- **Skattekvittot** i Din ekonomi är nu ett termokvitto med 15 rader i kronor per
+  månad, totalsumma och uppdelning på skatt från lönen respektive
+  arbetsgivaravgift och moms.
+
+### Removed (2026-10-29)
+
+- Fliken "Din 100-lapp" i prislappsrutan på startsidan, som ersätts av Hundralappen.
+
 ### Changed (2026-10-29) — Helhetsgenomgången steg 4: struktur
 
 - **Menyordning** efter läsarens frågor: Start, Din ekonomi, Budgeten,
