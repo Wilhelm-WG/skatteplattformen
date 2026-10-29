@@ -6,6 +6,8 @@
 // 1. Skattemodellen (sajtens egen kod) mot Skatteverkets skattetabell 32 för 2026, kolumn 1–3.
 // 2. NYCKELTAL: inga kvarvarande "gamla" värden någonstans på sidan.
 // 3. Källkatalogen: giltiga länkar; prislappar och faktakort har källa (och år).
+// 3b. Kvittona: andelar, grupper, jämförelser, arbetsgivaravgifter och beloppen i texten mot modellen.
+// 3c. Länkar och id: inga dubbla id, alla interna länkar har mål.
 // 4. Modellens robusthet: inga NaN, negativa värden eller orimliga hopp.
 // 5. Information: skillnader mot data/livsfaser_v2.json (Python-modellen).
 
@@ -130,15 +132,72 @@ lösa.length ? lösa.forEach(t => FEL(`DETAILS["${t}"] matchar ingen prislapp`))
 const HERO_100 = vm.runInNewContext('(' + literal('const HERO_100 = [').text + ')');
 const h100 = HERO_100.reduce((a, x) => a + x.v, 0);
 h100 === 100 ? OK('Hundralappen summerar till 100 kr') : FEL(`Hundralappen summerar till ${h100} kr, inte 100`);
-const COFOG = vm.runInNewContext('(' + literal('const cofogItems = [').text + ')');
-const cSum = COFOG.reduce((a, x) => a + x.andel, 0);
-Math.abs(cSum - 1) < 0.002 ? OK(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}`) : FEL(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}, inte 1`);
+const KVA = vm.runInNewContext('(' + literal('const KVITTO_ANDELAR = {').text + ')');
+const cSum = Object.values(KVA).reduce((a, x) => a + x, 0);
+Math.abs(cSum - 1) < 0.0005 ? OK(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}`) : FEL(`Skattekvittots andelar summerar till ${cSum.toFixed(4)}, inte 1`);
+{ // Kvittot i Din ekonomi ska använda alla 15 andelar exakt en gång
+  const anv = (literal('const cofogItems = [').text.match(/KVITTO_ANDELAR\.(\w+)/g) || []).map(x => x.split('.')[1]);
+  const fel15 = Object.keys(KVA).filter(x => anv.filter(y => y === x).length !== 1);
+  fel15.length ? FEL(`Kvittot i Din ekonomi använder inte andelarna exakt en gång: ${fel15.join(', ')}`) : OK('Kvittot i Din ekonomi använder alla 15 andelar en gång');
+}
 // Gamla värden som inte hör till ett nyckeltal men har rättats (se #rattelser)
 for (const g of ['181,8 tkr', '135 400', '2 950 kr', 'max 113 tkr', '1 116 kr 2024', '3 011', 'Max 1 100 kr', 'oförändrat sedan 2006', 'i nivå med en anstaltsplats', '23 700 lärare'])
   if (utanKatalog.includes(g)) FEL(`Rättat värde "${g}" finns kvar (ungefär rad ${utanKatalog.slice(0, utanKatalog.indexOf(g)).split('\n').length})`);
 OK('Inga tidigare rättade värden har kommit tillbaka');
 const titlar = CARDS.map(k => k.title), dubbla = titlar.filter((t, i) => titlar.indexOf(t) !== i);
 dubbla.length ? dubbla.forEach(t => FEL(`Prislappen "${t}" finns två gånger`)) : OK('Inga dubbletter i prislistan');
+
+// ── 3b. Kvittona och jämförelserna ─────────────────────────────────────────
+rubrik('3b. Kvittona och jämförelserna');
+{
+  const kv = vm.createContext({ Math, KVITTO_ANDELAR: KVA });
+  vm.runInContext(literal('const START_JMF = {').text.replace(/^/, 'var START_JMF = '), kv);
+  const rad = n => { const a = html.indexOf(`function ${n}(`); return html.slice(a, html.indexOf('\n', a)); };
+  vm.runInContext(rad('svTal'), kv);
+  vm.runInContext(func('svAndel'), kv);
+  vm.runInContext('var START_GRUPPER = ' + literal('const START_GRUPPER = [').text, kv);
+  const G = vm.runInContext('START_GRUPPER', kv);
+  // Grupperna ska täcka varje andel exakt en gång
+  const gtext = literal('const START_GRUPPER = [').text, anv = (gtext.match(/KVITTO_ANDELAR\.(\w+)/g) || []).map(x => x.split('.')[1]);
+  const fel7 = Object.keys(KVA).filter(x => anv.filter(y => y === x).length !== 1);
+  fel7.length ? FEL(`Startkvittots grupper täcker inte andelarna exakt en gång: ${fel7.join(', ')}`) : OK(`Startkvittots ${G.length} grupper täcker alla 15 andelar en gång`);
+  // Jämförelserna ska ge läsbar text för alla belopp
+  const dåliga = [];
+  for (const g of G) for (const kr of [1, 37, 120, 480, 900, 2200, 6000, 18000, 60000, 200000]) {
+    const t = g.j(kr); if (!t || /NaN|undefined|Infinity|null/.test(t) || !t.startsWith('≈ ')) dåliga.push(`${g.n}, ${kr} kr: "${t}"`);
+  }
+  dåliga.length ? dåliga.slice(0, 5).forEach(d => FEL('Jämförelse: ' + d)) : OK('Jämförelserna ger läsbar text för belopp från 1 kr till 200 000 kr');
+  // Jämförelsernas belopp ska stämma med prislapparna och de angivna källorna
+  const J = vm.runInContext('START_JMF', kv), kort = t => (CARDS.find(c => c.title === t) || {}).amount;
+  const par = [['hemtjanstAr', kort('Hemtjänst, ett år')], ['ivaDygn', kort('Ett dygn på IVA')], ['grundskolaLasar', kort('Ett år i grundskolan')], ['riksvagKm', kort('Underhåll av 1 km riksväg per år')]];
+  const avv = par.filter(([k, v]) => J[k] !== v);
+  avv.length ? avv.forEach(([k, v]) => FEL(`START_JMF.${k} = ${J[k]}, men prislappen säger ${v}`)) : OK('Startkvittots jämförelser stämmer med prislapparna');
+  for (const [k, txt] of [['polislon', '43 900'], ['riksdagsarvode', '81 400']]) if (!html.includes(txt)) FEL(`Källuppgiften för ${k} (${txt}) saknas i texten`);
+  // Arbetsgivaravgifterna 2026
+  const AG = vm.runInNewContext('(' + literal('const AG_AVG = [').text + ')'), agSum = AG.reduce((a, r) => a + r[1], 0);
+  Math.abs(agSum - 0.3142) < 1e-9 ? OK('Arbetsgivaravgifternas delar summerar till 31,42 %') : FEL(`Arbetsgivaravgifternas delar summerar till ${(agSum * 100).toFixed(2)} %, inte 31,42 %`);
+  // Beloppen i text och faktakort ska stämma med modellen (rikssnittet 32,38 %, under 66 år)
+  const skatt = lon => { const d = vm.runInContext(`skattDelar(40, ${lon * 12 / 1000}, {ksOverride:0.3238})`, ctx); return Math.round((d.komm + d.stat - d.jsa) * 1000 / 12); };
+  const sv = n => n.toLocaleString('sv-SE').replace(/\u00a0/g, ' ');
+  for (const lon of [25000, 38300]) {
+    const s = skatt(lon), txt = sv(s) + ' kr', kvar = sv(lon - s);
+    html.includes(`tal:'${txt}'`) && html.includes(kvar) ? OK(`${sv(lon)} kr i månaden: skatt ${txt} och ${kvar} kr kvar, som i texten`) : FEL(`${sv(lon)} kr i månaden: modellen ger ${txt} (kvar ${kvar}), men texten säger något annat`);
+  }
+}
+
+// ── 3c. Länkar och id ─────────────────────────────────────────────────────
+rubrik('3c. Länkar och id');
+{
+  const statisk = html.replace(/<script[\s\S]*?<\/script>/g, '');
+  const ids = [...statisk.matchAll(/\sid="([^"$]+)"/g)].map(m => m[1]);
+  const dubbla = [...new Set(ids.filter((x, i) => ids.indexOf(x) !== i))];
+  dubbla.length ? dubbla.forEach(d => FEL(`id="${d}" finns flera gånger`)) : OK(`${ids.length} id:n i HTML-koden, inga dubbletter`);
+  const allaId = new Set([...html.matchAll(/id="([\w-]+)"/g)].map(m => m[1]).concat([...html.matchAll(/id=\\?'([\w-]+)\\?'/g)].map(m => m[1])));
+  const dyn = /^(fakta-\d+|kapitel-\d+|gissa|ordlista|nyckeltal|i-|pk-|il-|vh-|kl-)/;
+  const mal = [...new Set([...html.matchAll(/href="#([\w-]+)"/g)].map(m => m[1]))];
+  const saknas = mal.filter(m => !allaId.has(m) && !dyn.test(m));
+  saknas.length ? saknas.forEach(m => FEL(`Länken #${m} har inget mål`)) : OK(`Alla ${mal.length} interna länkar har ett mål`);
+}
 
 // ── 4. Modellens robusthet ────────────────────────────────────────────────
 rubrik('4. Modellens robusthet');
@@ -166,8 +225,8 @@ function livsfaser() {
 // SCB, folkmängd 31 dec 2024 per livsfas (summerat från ettårsklasser; 75+ inkluderar 86 år och äldre)
 const BEF = { barn: 777888, elev: 1127415, gymn: 375030, student: 841992, ung_arb: 1274949, barnfamilj: 1397451,
   mitt_karriar: 1305718, senior: 1280779, pensionar: 1055599, aldri: 1150889 };
-// Mdkr 2024: sj = COFOG GF07; oms = Kolada N20043; soc = GF10 − äldreomsorg − avgiftsfinansierad pension (≈400); koll = övriga funktioner
-const MAL = { sj: 473.7, oms: 165.5, soc: 657.5, koll: 1061.3 }; // koll = COFOG GF01–06 + GF08
+// Mdkr 2024: sj = COFOG GF07; oms = Kolada N20043; soc = GF10 − äldreomsorg − inkomst- och tilläggspension (363,7, Orange rapport 2024); koll = övriga funktioner
+const MAL = { sj: 473.7, oms: 165.5, soc: 693.8, koll: 1061.3 }; // koll = COFOG GF01–06 + GF08
 {
   const LV = livsfaser();
   for (const [k, mal] of Object.entries(MAL)) {

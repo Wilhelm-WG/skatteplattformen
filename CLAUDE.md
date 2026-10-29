@@ -1,7 +1,7 @@
 # Skatteplattformen
 
 ## Projektöversikt
-Oberoende, partipolitiskt neutral webbplats som visar hur svenska skattepengar används — per krona, per tjänst, per ålder. Byggd som en **enda HTML-fil** (`index.html`, ~4600 rader) med all CSS och JS inline. Ingen build-kedja, inga externa beroenden.
+Oberoende, partipolitiskt neutral webbplats som visar hur svenska skattepengar används — per krona, per tjänst, per ålder. Byggd som en **enda HTML-fil** (`index.html`, cirka 6 500 rader) med all CSS och JS inline. Ingen build-kedja, inga externa beroenden.
 
 **Ägare:** Wilhelm Wennergren (wennergrenf@gmail.com)
 **Repo:** https://github.com/Wilhelm-WG/skatteplattformen.git
@@ -23,10 +23,15 @@ data/
   arkiv/                      ← Inaktuella filer (se data/README.md)
 scripts/
   kontroll.mjs                ← Kontroll före publicering (node scripts/kontroll.mjs)
+  lankar.mjs                  ← Prövar alla externa länkar (node scripts/lankar.mjs, kräver nätverk)
+  kontrast.js                 ← Kontrastmätning, körs i webbläsarens konsol
 docs/
   skatteplattformen_metodrapport_v2.docx  ← Akademisk metodrapport (v2.0; v1 kvar som historik)
   MODELLFIX_PLAN.md           ← Teknisk fix-plan
   UTVECKLINGSPLAN_V3.md       ← Utvecklingsplan v3
+  FILM_MANUS.md               ← Talmanus till filmen
+  FOTON_ARKIV.md              ← De borttagna vyfotona: var de låg och hur de återställs
+  PROMPT_ART_DIRECTOR.md      ← Prompt för art director-analys av bildspråket
 correspondence/
   SCB_bestallning_utkast.txt  ← Utkast till SCB-beställning
 ```
@@ -35,7 +40,7 @@ correspondence/
 
 **Skatteberäkning:**
 - `annualTax(age, inc, opts)` → returnerar `{komm, stat, avg, moms, jsa, tot}`
-  - `opts.ksOverride` — alternativ kommunalskattesats (default 0.3237)
+  - `opts.ksOverride` — alternativ kommunalskattesats (standard `currentKs`, rikssnittet 0,3238)
   - Ålder <19 → noll skatt
   - Delarna räknas i `skattDelar(age, inc, opts)` (oavrundat); `opts.pension` (standard: från 65 år) = pensionsinkomst → inget jobbskatteavdrag, ingen arbetsgivaravgift
   - 19–23 år (född 2003–2007): tillfälligt sänkt arbetsgivaravgift 20,81 % på lön upp till 300 tkr/år (april 2026–september 2027)
@@ -55,7 +60,6 @@ correspondence/
 
 **Snabbfakta (`#snabbfakta`):**
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år, `bild:{tal, rad}`). Direktlänk `#fakta-N`; `faktaBild(i, 'post'|'story')` ritar delningsbild 1080×1350 eller 1080×1920 med den stora siffran och en mening. Lägg bara in siffror med källa
-- `forstaLon()` (länken "Vad händer med min första lön?" i heron) sätter kalkylatorn till 19 år och 300 tkr och öppnar vyn Din ekonomi
 
 **Bildspråk och designsystem (2026-10-29):**
 - Ett bildspråk: scener i papperssnitt (`vh-…` vyhuvuden och Sex vägar in, `il-…` kategoriscener), fyllda pictogram (`pk-…`) för allt som är en kategori, linjeikoner (`i-…`) bara för knappar och gränssnitt. Inga ikoner i cirklar, inga foton. Alla symboler ligger i spriten direkt efter `<body>`; filtren får inte ligga i `display:none`. Alt-text för vyhuvudena i `VY_SCEN`
@@ -64,7 +68,7 @@ correspondence/
 - Ytor: ljust överallt. Kort = papper, `--r`, `--shadow-sm`, ingen färgad kant. Notisruta = `--bg2`, `--r-sm`, ingen kant. Enda mörka ytan är det gröna citatbandet i Metod. Aktiva flikar och knappar är gröna
 - Kalkylatorn (`.calc-wrap`) var tidigare mörk; inline-stilar i dess JS använder nu `var(--ink…)`, `var(--bg2)` och `var(--border)`. Skriv inte nya `rgba(242,239,232,…)`
 - Filmen "Så går samhället runt" har egna färger för stat, region och kommun och följer inte kategoripaletten
-- `img/foton/` används inte längre av sidan (finns kvar i repot). Ankaret `#bildkrediter` är kvar men sektionen heter Illustrationerna
+- Fotona i `img/foton/` togs bort 2026-10-29, se `docs/FOTON_ARKIV.md`. Ankaret `#bildkrediter` är kvar men sektionen heter Illustrationerna
 
 **Tillgänglighet (steg 6, 2026-10-29):**
 - Kör axe-core i webbläsaren på alla sju vyer före större ändringar (ladda axe från cdnjs i en lokal kopia, ta bort filen efteråt). Mål: inga fel för `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` och `best-practice`
@@ -82,33 +86,12 @@ correspondence/
 
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
-- Kalibrerade 2026-10-29: summan över befolkningen 2024 (SCB) = faktiska utgifter (sj COFOG GF07 473,7; oms Kolada 165,5; soc 657,5; koll GF01–06+08 1 061,3 Mdkr). `KOLL_PER_INV` = 100 tkr per invånare visas separat och ingår **inte** i `STAGES.w` eller i jämförelsen förmåner–skatt (skattesidan saknar bolagsskatt, punktskatter, avgifter och lån). Ändras ett värde: kör kontrollen (avsnitt 4b)
+- Kalibrerade 2026-10-29: summan över befolkningen 2024 (SCB) = faktiska utgifter (sj COFOG GF07 473,7; oms Kolada 165,5; soc 693,8 = GF10 − äldreomsorg − inkomst- och tilläggspension 363,7; koll GF01–06+08 1 061,3 Mdkr). `KOLL_PER_INV` = 100 tkr per invånare visas separat och ingår **inte** i `STAGES.w` eller i jämförelsen förmåner–skatt (skattesidan saknar bolagsskatt, punktskatter, avgifter och lån). Ändras ett värde: kör kontrollen (avsnitt 4b)
 - `getStage(age)` ger genomsnittet för åldern; hushålls- och inkomstjusteringar togs bort 2026-10-29
 - `LIVSLOPP_BEF` + `renderLifecycle(inc)`: befolkningsdiagram, netto per invånare och åldersgrupp 2024 (modellens skatt på SCB HE0110-inkomster), med punkt för läsaren. Räknas om när modellen ändras
 
-**Hushållstyper:**
-- `currentHousehold` — global variabel: 'ensam' | 'par' | 'familj' | 'ensam_barn'
-- `HOUSEHOLD_MULT` — multiplikatorer per hushållstyp per förmånskategori (schabloner); utb är alltid 1,0
-- `setHousehold(btn, type)` — UI-callback
-
-**Inkomstgradient:**
-- `incomeGradient(inc)` → `{sjukvård: float, socialt: float}`
-- Decil-baserad: låginkomst (<200 tkr) får multiplikator >1, höginkomst (>800 tkr) <1
-
-**Karriärprofiler:**
-- `currentProfile` — global: 'standard' | 'kort_utb' | 'lang_utb' | 'avbruten'
-- `INCOME_PROFILES` — fyra profiler med `.fn(age, peak)` funktioner
-- `lifecycleIncome(age, peakInc)` — använder vald profil, fallback till standard
-- `setLcProfile(key, btn)` — UI-callback
-
-**Livscykelberäkning:**
-- `calcCumulativeNet(toAge, peakInc)` — ackumulerad netto med 2% real diskontering
-- `calcLifecycle(peakInc, discount)` — full livscykelberäkning
-
 **Kapitalinkomst:**
-- Slider `#s-kapital` (0–1000 tkr)
-- Platt 30% skatt, adderas till `tax.tot` som `kapSkatt`
-- Visas separat i skattekvittot som "Kapitalskatt (30%)"
+- Reglaget togs bort 2026-10-29. Koden läser `#s-kapital` och URL-parametern `kapital` om de finns (annars 0) och visar då skatt på kapital som egen rad i arbetstagarens kvitto
 
 **COFOG-skattekvitto:**
 - Ritas som termokvitto i `#kvitto` (belopp per månad, pictogram `pk-…` via `pkMap`). Raderna summerar exakt till totalen (avrundningsresten läggs på största raden). Toppen i Din ekonomi, kalkylatorn och kvittot räknar alla med `skattDelar` och vald kommunalskatt (rikssnitt 32,38 %): 4 466 kr på 25 000 kr. Startkvittot och faktakorten räknar likadant. Filmens lönebesked visar också 7 692 kr
@@ -123,12 +106,12 @@ correspondence/
 **Hundralappen (`#hundralapp`):**
 - Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.
 - Andelarna 2024 ska stämma med `HERO_100`, och 2026 med `BDATA`.
-- 15 poster ur Eurostat COFOG 2024 utan avgiftsfinansierad pension (2 823 Mdkr), eftersom pensionsavgiften inte räknas som skatt; `HERO_100` på startsidan använder hela 3 223 Mdkr. Andelarna ska summera till 1 (kontrolleras)
+- Kvittonas andelar: `KVITTO_ANDELAR`, 15 poster ur Eurostat COFOG 2024 utan inkomst- och tilläggspensionen (363,7 Mdkr, Orange rapport 2024; premiepensionen ligger utanför offentlig sektor), bas 2 859 Mdkr. `HERO_100` och hundralappen använder hela 3 223 Mdkr. Andelarna och grupperna kontrolleras
 - "Socialt skydd" uppdelat i 5 underkategorier (pension, sjukdom, familj, arbetslöshet, övrigt)
 
 **URL-delning:**
-- `buildShareURL()` / `readURLParams()` / `shareCurrentState()`
-- Parametrar: age, inc, pension, hh (hushåll), profile, kapital
+- `buildShareURL()` / `readURLParams()` / `shareSkatt()`
+- Parametrar: age, inc, pension, ks, kapital (gamla länkar med hh eller profile fungerar, parametrarna ignoreras)
 
 **Ikonserie:**
 - Inline-SVG-sprite direkt efter `<body>` (`<symbol id="i-namn">`, 24×24, linjeikoner)
@@ -155,17 +138,15 @@ correspondence/
 - `SAJT_UPPDATERAD` = datum under vyrubrikerna
 - `VYER[*].led = {tal, text, kalla}` = ledsiffran överst i vyn. Bara siffror som finns med källa på sajten
 - `#sparande` (Din ekonomi): skatt på ISK. Se över varje år när statslåneräntan 30 november och budgetpropositionen är kända (räntan styr nästa års skattesats)
-- Heron visar `.hero-lon`: skatt och kvar efter skatt för 25/50/75/100 tkr i månaden ur skattetabell 32 (statisk HTML; uppdatera varje år med nya tabeller)
 - Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
 **Sensitivitetsanalys (`#sensitivitet`, i vyn Metod):**
-- Tornado-diagram som varierar kommunalskatt ±3 procentenheter
+- Tornado-diagram som varierar lönen ±15 %, förmånerna ±25 %, momsen ±2 och kommunalskatten ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader
 
 ## Tillgänglighet
 - Färger för text: `--ink2`/`--ink3` på ljus bakgrund, `--amber-t`/`--red-t` för ockra och röd text. `--amber`/`--red` bara för ytor och stora siffror på mörk bakgrund
-- Kalkylatorn (`.calc-wrap`) har mörk bakgrund och egna värden för `--ink2`/`--ink3`; grön text där är `#6FC29B`
 - SVG-diagram: `class="chart-svg"`, bredd via `chartW(w)` (smalare på mobil), etiketter som får krocka på mobil får `class="m-hide"`. Axeltext `#66615A`, stödlinjer `rgba(26,24,19,.09)`
 - Klickbara kort ska ha en riktig `<button>`; dialoger flyttar fokus in och tillbaka. Automatiskt roterande innehåll har `aria-live="off"`
 - Mät kontrasten med `scripts/kontrast.js` i webbläsarens konsol efter större färgändringar (mål: under 10 fall)
@@ -186,7 +167,7 @@ faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
 
 ## Datakällor och metodik
 - **Eurostat COFOG 2024 (gov_10a_exp)** — 3 223 Mdkr total offentlig sektor
-- **Skolverket 2024** — enhetskostnader per skolform
+- **Skolverket 2025** — enhetskostnader per skolform (Kostnader för skolväsendet, oktober 2026)
 - **SCB ESSPROS 2022** — socialt skydd per funktion
 - **NTA-metodik (UN 2013)** — åldersprofil sjukvård
 - **AGENTA NTA 2010** — nordisk kalibrering
@@ -194,12 +175,11 @@ faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
 
 ## Kända begränsningar
 1. Sjukvårdsprofil baseras på NTA-vikter, ej faktisk SKR KPP per åldersår
-2. Inkomst- och tilläggspension (~384 Mdkr 2025, Orange rapport) ingår inte (avgiftsbaserad, ej skattesubvention)
+2. Inkomst- och tilläggspension (363,7 Mdkr 2024, Orange rapport 2024 tabell 2.1) ingår inte (avgiftsbaserad, ej skattesubvention)
 3. NTA-data för Norden från 2010 (senast tillgängliga)
-4. Hushållsmultiplikatorer är förenklade (SCB FASIT ger mer granulär data)
-5. Inkomstgradienten är schablonbaserad, ej empiriskt skattad per decil
-6. Skattereduktion för förvärvsinkomst (max 1 500 kr/år) och public service-avgift (max 1 184 kr/år) ingår inte i `annualTax` (nettoeffekt ≈ −300 kr/år)
-7. Inkomster efter 65 år antas vara pension i kalkylatorn och livsloppet (lön för äldre kan anges via `opts.pension:false`)
+4. Förmånerna beror bara på ålder, inte på inkomst eller hushåll
+5. Skattereduktion för förvärvsinkomst (max 1 500 kr/år) och public service-avgift (max 1 184 kr/år) ingår inte i `annualTax` (nettoeffekt ≈ −300 kr/år)
+6. Inkomster efter 65 år antas vara pension i kalkylatorn och livsloppet (lön för äldre kan anges via `opts.pension:false`)
 
 ## Konfidensintervall
 | Kategori | Osäkerhet | Källa |
@@ -220,8 +200,6 @@ faktakort har källa, och modellens robusthet. Avslutar med kod 1 vid fel.
 Från modellgranskning och tidigare sessioner:
 - Val 2026-sektion
 - KPI-deflator-toggle (visa reala vs nominella belopp)
-- Flytta Prislista före Livslopp i sektionsordningen
-- Omstrukturering av hero-snabbkollen
 - Ytterligare modellgranskningspunkter (se Modellgranskning_Skatteplattformen.docx)
 
 ## Granskningsdokument

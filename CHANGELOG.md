@@ -10,6 +10,29 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-10-29) — Städning och noggrannhet
+
+- **Inkomstpensionen:** uppskattningen cirka 400 Mdkr är ersatt med 363,7 Mdkr
+  (inkomst- och tilläggspension 2024, Orange rapport 2024). Kvittonas andelar
+  ligger nu i en konstant (`KVITTO_ANDELAR`) som båda kvittona använder.
+  Förmånerna för 65+ är omkalibrerade (socialt skydd 693,8 Mdkr).
+- **Arbetsgivarens kvitto** visar inga avgifter när inkomsten är pension, och
+  arbetstagarens kvitto skriver då "Pension" i stället för "Lön".
+- **Länkar:** fyra trasiga källänkar (ESV, som numera är Statskontoret,
+  Försäkringskassan, Kriminalvården och Riksgälden) och fyra trasiga
+  OECD-länkar är ersatta. Nytt skript `scripts/lankar.mjs` prövar alla externa
+  länkar.
+- **Kontrollskriptet** prövar också kvittona (andelar, grupper, jämförelser,
+  arbetsgivaravgifter och beloppen i texten mot modellen), dubbla id och att
+  alla interna länkar har ett mål.
+
+### Removed (2026-10-29)
+
+- Fotona i `img/foton/` (se `docs/FOTON_ARKIV.md` för att återställa dem).
+- Död kod: hushållstyper, inkomstgradient, karriärprofiler, de gamla
+  livscykelberäkningarna, medellivslängdstabellen och data för det borttagna
+  prislappskortet.
+
 ### Changed (2026-10-29) — Filmens lönebesked
 
 - Lönebeskedet i filmen "Hur skattepengarna går runt" visar samma skatt som
