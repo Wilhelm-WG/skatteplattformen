@@ -128,7 +128,8 @@ correspondence/
 - Regler: en källa och ett år per diagram, inga värderande omdömen, minst 5 av 7 länder (kontrolleras av `scripts/kontroll.mjs`)
 
 **Vyer (`initVyer`, script direkt efter `</main>`):**
-- `VYER` listar sju vyer med namn, hash och vilka sektions-id som ingår (`delar`). Varje barn till `<main>` får `data-vy`; avdelare (`hr`) hör till nästa sektion
+- `VYER` listar sju vyer i menyordning (Start, Din ekonomi, Budgeten, Prislistan, Jämförelser, Framtid och historik, Metod) med namn, hash och vilka sektions-id som ingår (`delar`). Ordningen styr också knappen Nästa. Inom en vy visas sektionerna i DOM-ordning, så en flyttad sektion flyttas både i `delar` och i HTML-koden.
+- Placering sedan 2026-10-29: `#skatter` (Skatter i korthet) i Din ekonomi före `#sparande`; `#skuld-forsvar` (försvar, statsskuld, statsskuldens historik) i Budgeten; Framtid och historik är en sektion (`#framtid`, ankare `#historik`) med en flik per ämne: Befolkning, Vård, Skola, Skatter, Personal, Investeringar, Inkomstskillnader, Sjukfrånvaro (paneler `ft-<ämne>`, `showFt`). De gamla id:na (`hist-skatt`, `ft-demo` m.fl.) finns kvar som ankare i panelerna. Varje uppgift visas en gång; Investeringar visar bara myndigheters och kommunsektorns egna planer. Direktlänk till en flikpanel öppnar fliken. Varje barn till `<main>` får `data-vy`; avdelare (`hr`) hör till nästa sektion
 - Router på `hashchange`: id → vyn som innehåller elementet; `VY_PREFIX` för id som skapas av JS (`#fakta-N`, `#kapitel-N`, `#gissa-…`, `#ordlista`/`#nyckeltal`)
 - Vyns egen hash (t.ex. `#budget`) visar vyn överst; andra id scrollar dit. `window.aktivVy` = aktuell vy
 - Ny sektion: lägg till dess id i rätt vy i `VYER`. Länkar mellan vyer är vanliga `#id`-länkar

@@ -10,6 +10,37 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Helhetsgenomgången steg 4: struktur
+
+- **Menyordning** efter läsarens frågor: Start, Din ekonomi, Budgeten,
+  Prislistan, Jämförelser, Framtid, Metod (även knappen Nästa och startsidans
+  fotokort).
+- **Skatter i korthet** flyttad från startsidan till Din ekonomi, före Skatt på
+  sparande.
+- **Kapitalreglaget** borttaget ur kalkylatorn; hänvisning till Skatt på
+  sparande i stället.
+- **Försvaret och statsskulden** (inkl. statsskuldens historik 1980–2026)
+  samlade i en ny sektion i Budgeten (`#skuld-forsvar`); flikarna togs bort ur
+  Framtid och Historik.
+- **Vårdens väntetider** (vårdgarantin, inhemsk statistik) flyttade från
+  Jämförelser till en egen flik i Historik.
+- **"Så hittar skatten fram" och myt-rutan** borttagna ur Vem gör vad (upprepade
+  filmen).
+- **Rättelser:** de fem senaste visas, resten fälls ut.
+- **Framtid och historik** är en sektion med en flik per ämne (Befolkning,
+  Vård, Skola, Skatter, Personal, Investeringar, Inkomstskillnader,
+  Sjukfrånvaro). Dubbletter borttagna: 80-åringarna, försörjningskvoten (nu
+  0,78 år 2025 på båda ställen → ett), sjukvårdens BNP-andel, lönekostnaderna,
+  lärarbristen och skattekvoten. Två gamla modellsiffror utan stöd borttagna
+  (636 000 kr per 80-åring, 240 000 kr per extra levnadsår). Medellivslängden
+  kontrollerad mot SCB (85,6/82,5 år 2025).
+- **Investeringar** visar bara Trafikverkets plan och kommunsektorns
+  bedömning; vatten och avlopp (Svenskt Vatten), elnät (Energiföretagen) och
+  bostadsbyggande (behov, inte offentlig plan) borttagna.
+- **Riktade statsbidrag** (163 st., Statskontoret) flyttade till Budgeten.
+- Direktlänk till en flikpanel öppnar rätt flik. Hundralappen ligger kvar på
+  startsidan (planerad som startsidans hjälte).
+
 ### Changed (2026-10-29) — Helhetsgenomgången steg 3: Din ekonomi
 
 - **Förmånsmodellen kalibrerad** mot faktiska utgifter 2024: sjukvård 474 Mdkr
