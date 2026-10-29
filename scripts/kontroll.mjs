@@ -157,11 +157,31 @@ for (let age = 0; age <= 100; age++) {
 }
 problem.length ? problem.slice(0, 10).forEach(p => FEL('Robusthet: ' + p)) : OK('Ingen NaN, inga negativa värden och inga hopp > 30 tkr per 5 tkr inkomst (ålder 0–100, inkomst 0–2 000 tkr)');
 
+// ── 4b. Förmånsmodellen mot faktiska utgifter ──────────────────────────────
+rubrik('4b. Förmånsmodellen summerad över befolkningen 2024');
+function livsfaser() {
+  const koll = (html.match(/const KOLL_PER_INV = ([\d.]+);/) || [])[1];
+  return vm.runInNewContext(`const KOLL_PER_INV=${koll};(` + literal('const LIVSFASER_V2 = [').text + ')');
+}
+// SCB, folkmängd 31 dec 2024 per livsfas (summerat från ettårsklasser; 75+ inkluderar 86 år och äldre)
+const BEF = { barn: 777888, elev: 1127415, gymn: 375030, student: 841992, ung_arb: 1274949, barnfamilj: 1397451,
+  mitt_karriar: 1305718, senior: 1280779, pensionar: 1055599, aldri: 1150889 };
+// Mdkr 2024: sj = COFOG GF07; oms = Kolada N20043; soc = GF10 − äldreomsorg − avgiftsfinansierad pension (≈400); koll = övriga funktioner
+const MAL = { sj: 473.7, oms: 165.5, soc: 657.5, koll: 1061.3 }; // koll = COFOG GF01–06 + GF08
+{
+  const LV = livsfaser();
+  for (const [k, mal] of Object.entries(MAL)) {
+    const sum = LV.reduce((a, f) => a + f.f[k] * (BEF[f.id] || 0), 0) / 1e6;
+    Math.abs(sum / mal - 1) <= 0.03 ? OK(`${k}: modellen ger ${sum.toFixed(1)} Mdkr, faktiskt ${mal} Mdkr`)
+      : FEL(`${k}: modellen summerar till ${sum.toFixed(1)} Mdkr, men faktiska utgifter är ${mal} Mdkr (mer än 3 % fel)`);
+  }
+}
+
 // ── 5. Python-modellens datafil (information) ────────────────────────────
 rubrik('5. Python-modellen (data/livsfaser_v2.json) jämfört med sajten');
 const jsonPath = join(ROOT, 'data', 'livsfaser_v2.json');
 if (existsSync(jsonPath)) {
-  const LV = vm.runInNewContext('(' + literal('const LIVSFASER_V2 = [').text + ')');
+  const LV = livsfaser();
   const J = JSON.parse(readFileSync(jsonPath, 'utf8'));
   const map = { utb: 'utbildning' };
   let diff = 0;

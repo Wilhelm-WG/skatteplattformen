@@ -2364,16 +2364,6 @@ html{scroll-padding-top:72px}
           <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Total kommunalskatt (kommun + region). Källa: SCB Kommunalskatterna 2026.</span>
         </div>
 
-        <div>
-          <label>Hushållstyp</label>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:.35rem">
-            <button class="hh-btn on" onclick="setHousehold(this,'ensam')" data-hh="ensam" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-person"/></svg>Ensamstående</button>
-            <button class="hh-btn" onclick="setHousehold(this,'par')" data-hh="par" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-couple"/></svg>Par utan barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'familj')" data-hh="familj" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-family"/></svg>Par med barn</button>
-            <button class="hh-btn" onclick="setHousehold(this,'ensam_barn')" data-hh="ensam_barn" style="font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:transparent;color:rgba(255,255,255,.72);cursor:pointer;font-family:var(--sans);transition:all .15s"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-parentchild"/></svg>Ensamstående m barn</button>
-          </div>
-          <span style="color:var(--ink3);font-size:.62rem;line-height:1.3;display:block;margin-top:.3rem">Hushållstyp påverkar förmånsberäkningen. Källa: SCB FASIT 2022.</span>
-        </div>
 
         <div style="margin-top:.75rem;padding:.6rem .8rem;background:rgba(255,255,255,.07);border-radius:6px;font-size:.8rem;display:flex;flex-direction:column;gap:.4rem">
           <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--ink2)">
@@ -2410,12 +2400,17 @@ html{scroll-padding-top:72px}
 
         <!-- Annual welfare bars -->
         <div class="annual-card">
-          <div class="card-label" id="annual-label">Offentliga förmåner i år — 35 år (tkr, 2024 års priser)</div>
+          <div class="card-label" id="annual-label">Offentliga tjänster och förmåner i år, genomsnitt för 22 år (tkr)</div>
           <div class="welfare-bars" id="welfare-bars"></div>
           <div class="w-total">
-            <span class="wt-l">Totalt värde offentliga tjänster &amp; förmåner</span>
+            <span class="wt-l">Totalt</span>
             <span class="wt-v" id="w-total">— tkr</span>
           </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;margin-top:.7rem;padding:.55rem .7rem;border:1px dashed rgba(255,255,255,.18);border-radius:4px;font-size:.74rem;color:rgba(242,239,232,.72)">
+            <span>Därtill det alla delar på: försvar, polis, vägar, förvaltning m.m. Ingår inte i jämförelsen.</span>
+            <span style="font-family:var(--mono);white-space:nowrap">≈ <span id="koll-val">100</span> tkr/person</span>
+          </div>
+          <div style="margin-top:.6rem;font-size:.62rem;color:rgba(242,239,232,.5);line-height:1.5">Genomsnitt för alla i samma ålder. Summerat över befolkningen stämmer beloppen med den offentliga sektorns utgifter 2024 (Eurostat COFOG, Kolada). Utbildning: Skolverket och UKÄ 2025. Det gemensamma är COFOG:s övriga funktioner (1 061 Mdkr) delat på alla invånare.</div>
         </div>
 
         <!-- Annual tax context -->
@@ -2429,7 +2424,7 @@ html{scroll-padding-top:72px}
           <div class="card-label">Ditt skattekvitto — vart går dina pengar?</div>
           <div id="receipt-bars" style="display:flex;flex-direction:column;gap:.45rem"></div>
           <div style="margin-top:.85rem;font-size:.68rem;color:rgba(242,239,232,.72);line-height:1.5">
-            Fördelningen följer Eurostats COFOG 2024 (3 223 Mdkr). Alla skatter (kommunal, statlig, moms, arbetsgivaravgifter minus jobbskatteavdrag) fördelas proportionellt.
+            Fördelningen följer den offentliga sektorns utgifter 2024 (Eurostat, COFOG): 3 223 Mdkr utom inkomstpensionen (cirka 400 Mdkr), som betalas med pensionsavgiften och inte med skatt. Din skatt fördelas i samma proportioner.
           </div>
         </div>
 
@@ -2442,70 +2437,25 @@ html{scroll-padding-top:72px}
           <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
           <div style="margin-top:.65rem;font-size:.62rem;color:rgba(242,239,232,.72);line-height:1.55">
             <strong>Marginalskatt</strong> = skatten på din nästa intjänade krona, räknad direkt ur skattemodellen. Upp till cirka 478 000 kr/år växer jobbskatteavdraget med lönen, så marginalskatten blir cirka 24 % (vid medianlön). Därefter är den cirka 32 % (kommunalskatt), och över brytpunkten, cirka 660 000 kr/år, tillkommer 20 % statlig skatt: cirka 52 %.
-            Arbetsgivaravgiften (21-31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
+            Arbetsgivaravgiften (21–31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
           </div>
         </div>
 
         <!-- Lifecycle bar + solidarity -->
         <div class="contract-card">
-          <div class="card-label">Livsloppet: var befinner du dig?</div>
-          <div class="lifecycle-bar" id="lc-bar">
-            <div class="lc-seg lc-taker" id="lcseg-taker1" style="width:22%">Barn &amp; elev</div>
-            <div class="lc-seg lc-payer" id="lcseg-payer" style="width:54%">Arbetsför ålder</div>
-            <div class="lc-seg lc-taker" id="lcseg-taker2" style="width:24%">Senior &amp; pensionär</div>
-            <div class="lc-marker" id="lc-marker" style="left:0%"></div>
-          </div>
-          <div class="lc-legend">
-            <div class="lc-leg"><div class="lc-dot" style="background:rgba(46,125,92,.55)"></div>Tar emot mer än man betalar</div>
-            <div class="lc-leg"><div class="lc-dot" style="background:rgba(200,151,58,.45)"></div>Betalar mer än man tar emot</div>
-          </div>
+          <div class="card-label">Var i livet befinner du dig?</div>
           <div style="margin-top:1.25rem" id="lifecycle-text"></div>
         </div>
 
-        <!-- Solidarity quote — normativ tolkning, ej empirisk fakta -->
+        <!-- Kort saklig text per livsfas -->
         <div class="solidarity-box">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Perspektiv</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><span style="font-size:.55rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.12);padding:1px 6px;border-radius:2px">Så fungerar det</span></div>
           <p class="solidarity-text" id="solidarity-text"></p>
         </div>
 
-        <!-- Jämförelse -->
-        <div style="margin-top:.75rem;border:1px dashed var(--border);border-radius:5px;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap">
-          <div>
-            <div style="font-size:.72rem;font-weight:500;color:var(--ink2)">Jämför med en annan profil</div>
-            <div style="font-size:.63rem;color:var(--ink3)">Ställ din profil mot t.ex. en pensionär eller ett barn</div>
-          </div>
-          <button onclick="toggleCompare()" id="compare-toggle-btn" style="font-size:.72rem;padding:6px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap">Öppna jämförelse ↓</button>
-        </div>
-        <div id="compare-panel" style="display:none;margin-top:1rem">
-          <div class="annual-card">
-            <div class="card-label">Jämför — ange en annan profil</div>
-            <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.75rem">
-              <label style="font-size:.72rem;color:rgba(242,239,232,.72)">
-                Ålder <span id="d-age2" style="font-family:var(--mono);color:var(--amber)">65 år</span>
-                <input type="range" id="s-age2" min="0" max="85" value="65" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
-              </label>
-              <label style="font-size:.72rem;color:rgba(242,239,232,.72)">
-                Inkomst <span id="d-inc2" style="font-family:var(--mono);color:var(--amber)">300 tkr</span>
-                <input type="range" id="s-inc2" min="0" max="1500" step="10" value="300" oninput="updateCompare()" style="width:120px;display:block;margin-top:4px">
-              </label>
-            </div>
-            <div id="compare-result"></div>
-          </div>
-        </div>
 
       </div>
     </div>
-  </div>
-</section>
-
-<!-- SENSITIVITETSANALYS / TORNADO -->
-<section class="section" id="sensitivitet" aria-label="Sensitivitetsanalys" style="padding:2.5rem 0;background:var(--bg2)">
-  <div class="cw">
-    <p class="s-eye">Känslighet</p>
-    <h2 class="s-title">Hur säker är beräkningen?</h2>
-    <p class="s-sub">Diagrammet visar hur resultatet ändras om de viktigaste antagandena ändras inom rimliga gränser. Utgångsläge: 35 år och medianlön (38 300 kronor i månaden), ensamstående.</p>
-    <div id="tornado-chart" style="margin-top:1.5rem"></div>
-    <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar hur resultatet ändras om ett antagande ändras och resten är oförändrat. Stapeln anger ändringen i tusentals kronor per år. Kommunalskatten varieras ±3 procentenheter kring rikssnittet och den effektiva momsen ±2 procentenheter.</p>
   </div>
 </section>
 
@@ -2536,57 +2486,43 @@ html{scroll-padding-top:72px}
      OECD-jämförelse och framtidens utmaningar är starkare öppningsargument. -->
 <section class="section" id="livslopp" aria-label="Livsloppsdiagram">
   <div class="cw">
-    <p class="s-eye">Djupdyk · ålder 0–85</p>
+    <p class="s-eye">Ålder 0–85</p>
     <h2 class="s-title">Livsloppet: vad man tar emot och betalar under ett liv</h2>
     <svg class="illu" viewBox="0 0 600 112" aria-hidden="true" focusable="false"><line x1="56" y1="56" x2="544" y2="56" class="illu-lin"/><circle cx="60" cy="56" r="44" class="illu-c"/><use href="#i-backpack" x="34" y="30" width="52" height="52" class="illu-i"/><circle cx="180" cy="56" r="44" class="illu-c"/><use href="#i-cap" x="154" y="30" width="52" height="52" class="illu-i"/><circle cx="300" cy="56" r="44" class="illu-c"/><use href="#i-brief" x="274" y="30" width="52" height="52" class="illu-i"/><circle cx="420" cy="56" r="44" class="illu-c"/><use href="#i-family" x="394" y="30" width="52" height="52" class="illu-i"/><circle cx="540" cy="56" r="44" class="illu-c"/><use href="#i-elder" x="514" y="30" width="52" height="52" class="illu-i"/></svg>
-    <p class="s-sub">Diagrammet visar <strong>mönstret</strong> i välfärden: mottagare som barn → bidragsgivare i yrkeslivet → mottagare som äldre. Det <strong>visar inte din individuella balans</strong> — de absoluta beloppen är populationsmedel med stor osäkerhet.</p>
+    <p class="s-sub">Som barn tar man emot mer än man betalar, under arbetslivet tvärtom, och som äldre vänder det igen. Så ser det ut för hela befolkningen 2024.</p>
 
-    <!-- Skarp disclaimer ovan diagrammet -->
-    <div style="margin:1rem 0 1.5rem;padding:1rem 1.2rem;background:rgba(184,74,30,.06);border-left:3px solid rgba(184,74,30,.45);border-radius:0 4px 4px 0;font-size:.78rem;color:var(--ink2);line-height:1.65">
-      <strong style="color:var(--red-t)">Modellen visar mönstret, inte beloppet.</strong>
-      Diagrammet visar <strong>vad du tar emot och betalar varje år</strong>, inte en summa över hela livet. Beloppen är genomsnitt för alla i samma ålder (osäkerhet ±20–25 % för förmåner och ±10–15 % för skatt). De visar hur välfärden fördelas över ett liv, inte din egen balans. Fler osäkerheter:
-      <ul style="margin:.5rem 0 .3rem 1.2rem;padding:0;line-height:1.55">
-        <li>Diagrammet antar <strong>2026 års skatte- och pensionsregler i 85 år</strong> — historiskt har dessa ändrats varje decennium.</li>
-        <li><strong>Dödligheten</strong> är bara markerad. Flödena är inte justerade för att alla inte lever lika länge.</li>
-        <li>Förmånerna är <strong>genomsnitt</strong>. En person med kronisk sjukdom kan använda flera gånger så mycket vård som en frisk person i samma ålder.</li>
-        <li>Inkomstpensionen <strong>räknas inte med</strong>, eftersom den betalas med egna avgifter och inte med skatt. Det är därför 65+ inte ser "rikare" ut än de skulle göra med tjänstepensionen inräknad.</li>
-      </ul>
-      <span style="color:var(--ink3)">Använd diagrammet för att förstå formen, inte för att räkna ut din egen "vinst" eller "förlust" mot systemet.</span>
-    </div>
+    <p style="font-size:.78rem;color:var(--ink2);line-height:1.6;margin:.8rem 0 0">Förmånerna är skola, vård, omsorg och ersättningar. Skatten är inkomstskatt, arbetsgivaravgift och moms. Gemensamma utgifter som försvar och vägar ingår inte, och inte heller inkomstpensionen, som betalas med egna avgifter.</p>
 
-    <!-- Statisk illustration vid 460 tkr (medianlön), standardprofil,
-         nominellt, ingen mortalitetsmarkering. Tidigare interaktiva sliders/
-         toggles borttagna 2026-05-31: modellen var pedagogiskt vilseledande
-         som personlig kalkylator. Behåller renderad SVG som strukturillustration. -->
-    <div id="lifecycle-chart" style="margin:1.2rem 0"></div>
+    <!-- Livsloppet: befolkningsdiagram per åldersgrupp (LIVSLOPP_BEF), punkt för läsaren. -->
+    <div id="lifecycle-chart" style="margin:1.2rem 0 .4rem"></div>
+    <p id="lc-caption" style="font-size:.78rem;color:var(--ink2);line-height:1.6;margin-bottom:1rem"></p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-top:1rem">
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Barn (0–18 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Tar emot mer</div>
-        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Skola, sjukvård, omsorg — finansierat av de som arbetar.</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Cirka 180 000 kr per år i skola, vård och barnomsorg, i genomsnitt.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (19–64 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Betalar mer</div>
-        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar mer i skatt än konsumerar i tjänster. Vid medianlön sker det runt 26 års ålder.</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 80 000–185 000 kr mer i skatt än man tar emot per år.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Tar emot mer igen</div>
-        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Sjukvård och äldreomsorg konsumeras intensivast 75–85 år. Finansierat av nästa generations skatter.</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Efter 75 år cirka 260 000 kr mer per år än man betalar, mest vård och omsorg.</div>
       </div>
     </div>
-    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånsvärden ±20–25 %, skatteberäkning ±10–15 %. <span style="font-size:.62rem;color:var(--ink3)">Förmåner i 2024 års priser (COFOG), skatt enligt 2026 års regler. Nominella, ej diskonterade.</span></p>
+    <p style="font-size:.68rem;color:var(--ink3);margin-top:.8rem"><strong>Osäkerhet:</strong> förmånerna ungefär ±20–25 % (bedömning); inkomstskatten följer Skatteverkets regler, momsen är en uppskattning. <span style="font-size:.62rem;color:var(--ink3)">Förmåner i 2024 års priser (COFOG), skatt enligt 2026 års regler. Nominella, ej diskonterade.</span></p>
     <details style="margin-top:.4rem">
       <summary style="font-size:.65rem;color:var(--green);cursor:pointer;font-weight:500">Visa fullständig metod och antaganden ▾</summary>
       <div style="font-size:.62rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
-        <strong>Modell:</strong> Förmåner från LIVSFASER_V2 (SCB FASIT/NTA-vikter, COFOG 2024: 3 223 Mdkr (Eurostat)). Skatt: kommunalskatt 32,38 % (rikssnitt 2026, SKR), statlig skatt 20 % över 643 tkr (2026), arbetsgivaravgift 21,21 % exkl. pensionsavgift (reducerad 10,21 % för 66+), moms ~15 % av konsumtion (inkomstberoende sparkvot 5–25 %, effektiv moms 14,5–18,5 %).<br><br>
-        <strong>Inkomstprofil:</strong> 0 (0–18), 20% av topp (19–22, student/deltid), linjär uppgång (23–26), platå (27–64). Pension <strong>inkomstdifferentierad</strong>: 65–74 ~80 % av slutlön vid låg inkomst → ~55 % över inkomstpensionstaket; 75+ ca 18 pp lägre (garantipensionen skyddar låg inkomst).<br><br>
-        <strong>Pensionsantagande:</strong> kompensationsgraden = inkomstpension (~40% av slutlön vid full karriär) + tjänstepension ITP/SAF-LO (~15–20%) + övriga inkomster. Modellen differentierar efter inkomst (Pensionsmyndighetens typfall): låginkomsttagare skyddas av garantipensionen, höginkomsttagare tappar över taket (~600 tkr).<br><br>
-        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag på pension. Modellen antar att inkomsten efter 65 är pension. Lön efter 66 ger ett förhöjt jobbskatteavdrag, som modellen räknar med när inkomsten anges som lön. Kumulativa livstidsbelopp (calcCumulativeNet) diskonteras till nuvärde med 2 % real; livscykeldiagrammet visar årsflöden, inte en nominell summa.<br><br>
-        <strong>Källor:</strong> SCB HE0110 / IoT 2024. Osäkerhetskällor: momsapproximation (konsumtionsmix), kommunalskattespridning (28,9–35,7%), individuell förmånskonsumtion vs genomsnitt.<br><br>
-        <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). ±10–15 % på skatt speglar kommunalskattespridningen (28,9–35,7 %, ±~5 % kring rikssnittet 32,38 %) plus grundavdrags- och jobbskatteavdragsapproximationer. Intervallen är en <strong>bedömt osäkerhetsspann</strong> — inte formella konfidensintervall; en Monte Carlo-simulering (10 000 dragningar per parameter, med korrelation mellan sjukvård och äldreomsorg) återstår och skulle ge kvantitativt stöd.
+        <strong>Modell:</strong> Förmånerna är genomsnitt per åldersgrupp. Sjukvård, socialt skydd och äldreomsorg är kalibrerade så att summan över befolkningen 2024 stämmer med de faktiska utgifterna (Eurostat COFOG: hälso- och sjukvård 474 Mdkr; Kolada: äldreomsorg 166 Mdkr; socialt skydd utom äldreomsorg och inkomstpension cirka 658 Mdkr). Åldersprofilen för sjukvård följer NTA-metoden. Utbildning bygger på kostnad per elev och student (Skolverket, UKÄ 2025). Skatt: Skatteverkets regler 2026 med kommunalskatt 32,38 % (rikssnitt), statlig skatt 20 % över brytpunkten, arbetsgivaravgift 21,21 % utan pensionsavgift (10,21 % från 66 år), moms cirka 15 % av konsumtionen (antagande: sparkvot 5–25 % beroende på inkomst).<br><br>
+        <strong>Pensionärsskatt:</strong> förhöjt grundavdrag (+40%), reducerad arbetsgivaravgift (10,21%), inget jobbskatteavdrag på pension. Modellen antar att inkomsten efter 65 är pension. Lön efter 66 ger ett förhöjt jobbskatteavdrag, som modellen räknar med när inkomsten anges som lön. <br><br>
+        <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 729 Mdkr och skatter 1 575 Mdkr; skillnaden beror främst på att momsen är en försiktig uppskattning.<br><br>
+        <strong>Osäkerhet:</strong> momsen (konsumtionen är ett antagande), kommunalskatten (28,9–35,7 % beroende på kommun) och framför allt att förmånerna är genomsnitt.<br><br>
+        <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). Inkomstskatten följer Skatteverkets regler och stämmer med skattetabell 32 på någon krona när; momsen är en uppskattning. Intervallen är en <strong>bedömning</strong>, inte formella konfidensintervall.
       </div>
     </details>
   </div>
@@ -2954,6 +2890,19 @@ html{scroll-padding-top:72px}
   </div>
 </section>
 
+<hr class="div">
+
+<!-- SENSITIVITETSANALYS / TORNADO -->
+<section class="section" id="sensitivitet" aria-label="Sensitivitetsanalys" style="padding:2.5rem 0;background:var(--bg2)">
+  <div class="cw">
+    <p class="s-eye">Känslighet</p>
+    <h2 class="s-title">Hur säker är beräkningen?</h2>
+    <p class="s-sub">Diagrammet visar hur resultatet ändras om de viktigaste antagandena ändras inom rimliga gränser. Utgångsläge: 35 år och medianlön (38 300 kronor i månaden), ensamstående.</p>
+    <div id="tornado-chart" style="margin-top:1.5rem"></div>
+    <p style="font-size:.62rem;color:var(--ink3);margin-top:.8rem">Varje stapel visar hur resultatet ändras om ett antagande ändras och resten är oförändrat. Stapeln anger ändringen i tusentals kronor per år. Kommunalskatten varieras ±3 procentenheter kring rikssnittet och den effektiva momsen ±2 procentenheter.</p>
+  </div>
+</section>
+
 
 <section class="quote-section" id="citat">
   <div class="container">
@@ -3006,6 +2955,7 @@ html{scroll-padding-top:72px}
     <h2 class="s-title">Rättelser</h2>
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
+      <li><time datetime="2026-10-29">29 okt 2026</time><div><b>Förmånsmodellen i Din ekonomi</b>Modellens sjukvård summerade till cirka 940 miljarder kronor över befolkningen, men de faktiska utgifterna för hälso- och sjukvård var 474 miljarder 2024 (Eurostat). Äldreomsorgen summerade till cirka 366 miljarder mot 166 miljarder (Kolada). Nivåerna är nu kalibrerade mot de faktiska utgifterna, Gemensamma utgifter (försvar, vägar, förvaltning m.m., cirka 100 000 kr per invånare) räknades tidigare in med en schablon på 50 000 kr, trots att skattesidan bara har personens egna skatter. Nu visas de separat. Livsloppsdiagrammet bygger på svenskarnas verkliga inkomster i stället för en påhittad inkomstbana. Skattekvittot räknar inte längre inkomstpensionen, som betalas med pensionsavgiften. Scenariot Barnfamilj räknade barnbidraget två gånger.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Offentliga sektorns utgifter</b>Totalen angavs som 3 011 Mdkr. Eurostat anger 3 223 Mdkr för 2024 (gov_10a_exp). Hundralappen, skattekvittots andelar, rutan om hela offentliga sektorn och delningsbilden är uppdaterade. Rutans uppdelning på stat, kommuner och regioner saknade källa och följer nu Eurostats delsektorer.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skatteutgifterna</b>Summan angavs som cirka 385 miljarder kronor. Det går inte att härleda ur skrivelsen, och de elva posterna i diagrammet summerar ensamma till 461,5 Mdkr. Alla poster summerar till drygt 600 Mdkr 2026, cirka 565 Mdkr efter skattesanktioner. Källa: skr. 2025/26:98.</div></li>
       <li><time datetime="2026-10-28">28 okt 2026</time><div><b>Skattekvoten, två serier</b>Sverige-uppgifterna blandade OECD:s serie (2000 och 2024) med SCB:s (2025). Framtid använder nu SCB:s serie (48,6 % år 2000, 40,8 % år 2024, 40,5 % år 2025), och jämförelsen med OECD-snittet använder OECD:s serie.</div></li>
@@ -3098,9 +3048,9 @@ const VYER = [
   {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 37 verkliga prislappar med källa.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget'], led:{tal:'1 542 Mdkr', text:'är statens utgifter 2026, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], led:{tal:'11,2 %', text:'av BNP lägger Sverige på hälso- och sjukvård, mest i Norden.', kalla:'Världsbanken, 2023'}, ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
-  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','sensitivitet','scenarion','livslopp','sparande'], led:{tal:'4 484 kr', text:'i skatt per månad på en lön på 25 000 kronor. Kvar blir 20 516 kronor.', kalla:'Skatteverket, skattetabell 32, 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
+  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','scenarion','livslopp','sparande'], led:{tal:'4 484 kr', text:'i skatt per månad på en lön på 25 000 kronor. Kvar blir 20 516 kronor.', kalla:'Skatteverket, skattetabell 32, 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid','historik'], led:{tal:'+25 %', text:'fler personer över 80 år 2030 än 2024, den grupp som behöver mest vård och omsorg.', kalla:'SCB, befolkningsframskrivning'}, ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
-  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], led:{tal:'Källa + år', text:'för varje siffra, och en öppen logg över allt som har rättats.', kalla:'Så arbetar vi'}, ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
+  {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','sensitivitet','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], led:{tal:'Källa + år', text:'för varje siffra, och en öppen logg över allt som har rättats.', kalla:'Så arbetar vi'}, ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
 ];
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
 // Foton i vyhuvudena (Wikimedia Commons, se img/foton/KREDITER.md). Tonas i sajtens grönt med CSS.
@@ -4685,55 +4635,67 @@ renderSkatteChart();
 // Fördelningsproportioner: COFOG-funktioner → individnivå per fas.
 // Alla belopp tkr/år i 2024 års priser.
 // ═══════════════════════════════════════════════════════════════════
-// ── Livsfaser v2.0 — sajtens kanoniska förmånsvärden ────
-// Python-modellen (data/livsfaser_v2.json) använder delvis andra definitioner; scripts/kontroll.mjs redovisar skillnaderna.
+// ── Livsfaser v3 — sajtens kanoniska förmånsvärden (tkr per person och år, genomsnitt i åldersgruppen) ──
+// Kalibrering (2026-10-29): sjukvård, socialt och äldreomsorg är skalade så att summan över befolkningen
+// 2024 (SCB, 10 587 710 inv., per ettårsålder) blir lika med de faktiska utgifterna:
+//   sj   = hälso- och sjukvård, Eurostat COFOG GF07 2024: 473,7 Mdkr (åldersprofil: NTA)
+//   oms  = kommunal äldreomsorg, Kolada N20043 2024: 15 686 kr/inv ≈ 165,5 Mdkr
+//   soc  = socialt skydd GF10 1 223,5 Mdkr − äldreomsorg 165,5 − avgiftsfinansierad pension ≈ 400 (uppskattning:
+//          inkomst-, tilläggs- och premiepension 381 Mdkr 2023 och 418 Mdkr 2025, Pensionsmyndigheten) ≈ 657,5 Mdkr
+//   utb  = enhetskostnader (Skolverket 2025, UKÄ 2025), summa ≈ 434 Mdkr; COFOG GF09 464,7 Mdkr inkluderar även annat
+//   koll = gemensamma utgifter lika per invånare: COFOG GF01–06 och GF08 2024 (förvaltning inkl. räntor, försvar,
+//          rättsväsende, näringsliv och transporter, miljö, bostäder, kultur) = 1 061,3 Mdkr / 10 587 710 ≈ 100 tkr (NTA-metoden)
+// scripts/kontroll.mjs kontrollerar att summorna stämmer (±3 %).
+// Python-modellen (data/livsfaser_v2.json) använder äldre värden; kontrollen redovisar skillnaderna.
+const KOLL_PER_INV = 100;
 const LIVSFASER_V2 = [
   {id:'barn',       icon:'blocks', label:'Spädbarn & förskola',      min:0,  max:6,
-   f:{utb:121, sj:40, soc:38, koll:50, oms:0},
-   källa:'Skolverket 2025: förskola 199,2 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 ≈ 121 tkr i åldersmedel. NTA-profil 0–6. FK barnbidrag+föräldrapenning.',
-   note:'Förskola cirka 199 tkr/inskrivet barn/år men 0-åringar och 6-åringar går inte → åldersmedel cirka 121 tkr. BVC, vaccinationer ~40 tkr. Föräldrapenning + barnbidrag ~38 tkr.'},
+   f:{utb:121, sj:20, soc:43, koll:KOLL_PER_INV, oms:0},
+   källa:'Skolverket 2025: förskola 199,2 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 ≈ 121 tkr i åldersmedel. Sjukvård och socialt: kalibrerat mot COFOG 2024 (se ovan).',
+   note:'Förskola cirka 199 tkr per inskrivet barn, men 0- och 6-åringar går inte → åldersmedel cirka 121 tkr. Barnavård och vaccinationer, föräldrapenning och barnbidrag.'},
   {id:'elev',       icon:'backpack', label:'Grundskoleelev',           min:7,  max:15,
-   f:{utb:143, sj:18, soc:25, koll:50, oms:0},
-   källa:'Skolverket 2025: grundskola cirka 143 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa och lokaler.',
-   note:'Grundskola cirka 143 tkr/elev/år inkl. skolmat, elevhälsa och lokaler. Barnbidrag, fritids.'},
+   f:{utb:143, sj:9, soc:28, koll:KOLL_PER_INV, oms:0},
+   källa:'Skolverket 2025: grundskola cirka 143 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa och lokaler. Sjukvård och socialt: kalibrerat.',
+   note:'Grundskola cirka 143 tkr per elev och år. Barnbidrag, fritidshem.'},
   {id:'gymn',       icon:'book', label:'Gymnasieelev',             min:16, max:18,
-   f:{utb:148, sj:20, soc:26, koll:50, oms:0},
-   källa:'Skolverket 2025: gymnasieskola 148,1 tkr/elev, alla huvudmän.',
-   note:'Gymnasiet cirka 148 tkr/elev/år. Kostnaden varierar mellan program.'},
+   f:{utb:148, sj:10, soc:29, koll:KOLL_PER_INV, oms:0},
+   källa:'Skolverket 2025: gymnasieskola 148,1 tkr/elev, alla huvudmän. Sjukvård och socialt: kalibrerat.',
+   note:'Gymnasiet cirka 148 tkr per elev och år. Kostnaden varierar mellan program.'},
   {id:'student',    icon:'cap', label:'Student / ung vuxen',      min:19, max:25,
-   f:{utb:51, sj:25, soc:37, koll:50, oms:0},
-   källa:'UKÄ 2025: 114 tkr/helårsstudent (utbildning) × 45% studerar = ~51 tkr genomsnitt. CSN studiebidrag ~36 tkr/år.',
-   note:'Högskola ~114 tkr/helårsstudent men inte alla studerar → snitt ~51 tkr. CSN-lån, bostadsbidrag.'},
+   f:{utb:51, sj:13, soc:42, koll:KOLL_PER_INV, oms:0},
+   källa:'UKÄ 2025: 114 tkr/helårsstudent (utbildning) × 45 % studerar = ~51 tkr i åldersmedel. Sjukvård och socialt: kalibrerat.',
+   note:'Högskola cirka 114 tkr per helårsstudent, men alla studerar inte → snitt cirka 51 tkr. Studiebidrag, bostadsbidrag.'},
   {id:'ung_arb',    icon:'brief', label:'Ung förvärvsarbetande',    min:26, max:34,
-   f:{utb:6,  sj:30, soc:42, koll:50, oms:0},
-   källa:'FK 2024: sjukförsäkring 12 tkr. Barnbidrag+föräldrapenning 30 tkr (de med barn). SCB AKU.',
-   note:'Du betalar betydligt mer i skatt än du tar emot. Du finansierar barns skola, äldres vård, och kollektiv trygghet.'},
+   f:{utb:6,  sj:15, soc:47, koll:KOLL_PER_INV, oms:0},
+   källa:'Åldersprofil: Försäkringskassan (sjukförsäkring, föräldrapenning), NTA (sjukvård). Nivåer kalibrerade mot COFOG 2024.',
+   note:'Föräldrapenning, barnbidrag, sjukförsäkring.'},
   {id:'barnfamilj', icon:'family', label:'Barnfamiljsfas',          min:35, max:44,
-   f:{utb:42, sj:52, soc:85, koll:50, oms:2},
-   källa:'FK 2024: sjukdagar toppar 35–44. Barnbidrag+VAB+föräldrapenning. NTA-profil sjukvård 35–44.',
-   note:'Höga sociala transfereringar: barnbidrag, föräldrapenning, VAB, bostadsbidrag. Fortfarande nettobidragsgivare.'},
+   f:{utb:42, sj:26, soc:96, koll:KOLL_PER_INV, oms:1},
+   källa:'Åldersprofil: Försäkringskassan (barnbidrag, föräldrapenning, VAB, sjukpenning), NTA (sjukvård). Nivåer kalibrerade mot COFOG 2024.',
+   note:'Barnbidrag, föräldrapenning, VAB och bostadsbidrag är vanligast i den här åldern. Genomsnitt för alla i åldern, med eller utan barn.'},
   {id:'mitt_karriar',icon:'office', label:'Mitt i karriären',         min:45, max:54,
-   f:{utb:5,  sj:78, soc:52, koll:50, oms:4},
-   källa:'NTA-profil 45–54 + Socialstyrelsen. Sjukvård märkbart stigande. FK: sjukpenningdagar per åldersgrupp.',
-   note:'Stigande sjukvårdskonsumtion. Sjukförsäkring, A-kassa. Dina skatter finansierar ungdomars utbildning och äldres omsorg.'},
+   f:{utb:5,  sj:39, soc:59, koll:KOLL_PER_INV, oms:2},
+   källa:'Åldersprofil: NTA (sjukvård), Försäkringskassan (sjukpenning per åldersgrupp). Nivåer kalibrerade mot COFOG 2024.',
+   note:'Sjukvården ökar med åldern. Sjukförsäkring, arbetslöshetsersättning.'},
   {id:'senior',     icon:'home', label:'Senior förvärvsarbetande', min:55, max:64,
-   f:{utb:3,  sj:110, soc:65, koll:50, oms:10},
-   källa:'NTA-profil 55–64 + Socialstyrelsen patientregistret. Sjukvård nära dubbelt mot 45–54.',
-   note:'Hög sjukvård. Sjukersättning, sjukpenning. Ungefär vid balans: mottagna tjänster ≈ betald skatt.'},
+   f:{utb:3,  sj:55, soc:73, koll:KOLL_PER_INV, oms:5},
+   källa:'Åldersprofil: NTA (sjukvård), Försäkringskassan (sjukersättning). Nivåer kalibrerade mot COFOG 2024.',
+   note:'Mer sjukvård. Sjukersättning och sjukpenning.'},
   {id:'pensionar',  icon:'sun', label:'Ny pensionär',             min:65, max:74,
-   f:{utb:2,  sj:175, soc:65, koll:50, oms:65},
-   källa:'Socialstyrelsen + SKR 2024: garantipension ~34 tkr i åldersmedel (högsta garantipension 143,9 tkr per år 2026). Bostadstillägg ~15 tkr (snitt). Hemtjänst ~385 tkr per person med hemtjänst × ~7 % av alla över 65 = ~26 tkr. Totalt soc ~65 tkr. Osäkerhet ±20%.',
-   note:'Nu nettotagare. Garantipension, bostadstillägg, äldreförsörjningsstöd. Inkomstpension är avgiftsbaserad och ingår ej (se metod steg 05).'},
+   f:{utb:2,  sj:88, soc:73, koll:KOLL_PER_INV, oms:29},
+   källa:'Garantipension, bostadstillägg (Pensionsmyndigheten); äldreomsorg (Kolada 2024); sjukvård (NTA). Nivåer kalibrerade mot COFOG 2024 och Kolada. Inkomstpensionen ingår inte.',
+   note:'Garantipension, bostadstillägg, hemtjänst. Inkomstpensionen betalas med egna avgifter och ingår inte (se metod steg 05).'},
   {id:'aldri',      icon:'care', label:'Senior pensionär',         min:75, max:85,
-   f:{utb:1,  sj:280, soc:80, koll:50, oms:240},
-   källa:'SKR 2024: hemtjänst+särskilt boende vägt 240 tkr. NTA-profil 75+ sjukvård. Osäkerhet ±25%.',
-   note:'Mycket hög konsumtion: specialiserad sjukvård, hemtjänst/särskilt boende. Systemet levererar vad du betalat in i 45 år.'},
+   f:{utb:1,  sj:141, soc:90, koll:KOLL_PER_INV, oms:109},
+   källa:'Äldreomsorg: Kolada 2024 (15 686 kr per invånare, totalt cirka 166 Mdkr), fördelad efter ålder. Sjukvård: NTA, kalibrerad mot COFOG 2024.',
+   note:'Mest sjukvård och omsorg: hemtjänst och särskilt boende. Genomsnitt för alla över 75, även de som inte har omsorg.'},
 ];
 
 // Bygg STAGES från LIVSFASER_V2 (bakåtkompatibelt format)
 const STAGES = LIVSFASER_V2.map(f => ({
   min:f.min, max:f.max, id:f.id, icon:f.icon, label:f.label, note:f.note,
-  w:{utb:f.f.utb, sjukvård:f.f.sj, socialt:f.f.soc, koll:f.f.koll, omsorg:f.f.oms}
+  // Gemensamma utgifter (koll) ingår inte i personens förmåner; de visas separat (beslut 2026-10-29)
+  w:{utb:f.f.utb, sjukvård:f.f.sj, socialt:f.f.soc, omsorg:f.f.oms}
 }));
 
 const WBAR_COLORS = {utb:'#1E4A8C',sjukvård:'#2E7D5C',socialt:'#5B3F8C',koll:'#8A8D94',omsorg:'#C8973A'};
@@ -4754,9 +4716,10 @@ let currentHousehold = 'ensam';
 let currentKs = 0.3238; // vald kommunalskattesats (default rikssnitt 2026, SCB: 32,38 %)
 const HOUSEHOLD_MULT = {
   ensam:      { utb: 1.0, sjukvård: 1.05, socialt: 0.75, koll: 1.0, omsorg: 1.0 },
-  par:        { utb: 0.5, sjukvård: 0.95, socialt: 0.45, koll: 1.0, omsorg: 0.8 },
-  familj:     { utb: 1.8, sjukvård: 1.10, socialt: 1.65, koll: 1.0, omsorg: 0.9 },
-  ensam_barn: { utb: 1.4, sjukvård: 1.10, socialt: 2.10, koll: 1.0, omsorg: 1.0 },
+  par:        { utb: 1.0, sjukvård: 0.95, socialt: 0.45, koll: 1.0, omsorg: 0.8 },
+  familj:     { utb: 1.0, sjukvård: 1.10, socialt: 1.65, koll: 1.0, omsorg: 0.9 },
+  ensam_barn: { utb: 1.0, sjukvård: 1.10, socialt: 2.10, koll: 1.0, omsorg: 1.0 },
+  // utb = personens egen utbildning. Barnens skola räknas på barnen, inte på föräldern (ändrat 2026-10-29).
 };
 
 function setHousehold(btn, type) {
@@ -4855,26 +4818,9 @@ function getStage(age, inc){
   for(const s of STAGES) if(age>=s.min && age<=s.max){ stage = s; break; }
   if(!stage) stage = STAGES[STAGES.length-1];
 
-  // Om ingen inkomst angiven, eller under 19 år, returnera ojusterad.
-  // Hushållstyp och inkomstgradient gäller personen som vuxen, inte den egna barndomen.
-  if(typeof inc === 'undefined' || inc === null || age < 19) return stage;
-
-  // Applicera hushållsmultiplikator
-  const hm = HOUSEHOLD_MULT[currentHousehold] || HOUSEHOLD_MULT.ensam;
-  // Applicera inkomstgradient
-  const ig = incomeGradient(inc);
-
-  // Bygg justerade förmåner
-  const w = {};
-  for(const [k, v] of Object.entries(stage.w)) {
-    let mult = hm[k] || 1.0;
-    // Sjukvård och socialt får även inkomstgradient
-    if(k === 'sjukvård') mult *= ig.sjukvård;
-    if(k === 'socialt') mult *= ig.socialt;
-    w[k] = Math.round(v * mult);
-  }
-
-  return { ...stage, w };
+  // Genomsnitt för åldern. Hushålls- och inkomstjusteringarna togs bort 2026-10-29 (saknade källa
+  // och bröt kalibreringen mot de faktiska utgifterna). inc tas emot för bakåtkompatibilitet.
+  return stage;
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -5030,7 +4976,7 @@ function updateCalc(){
 
   // Annual welfare label
   document.getElementById('annual-label').textContent =
-    `Offentliga förmåner du konsumerar i år — ${age} år (tkr, 2024 års priser)`;
+    `Offentliga tjänster och förmåner i år, genomsnitt för ${age} år (tkr)`;
 
   // Welfare bars
   const mx = Math.max(...Object.values(w));
@@ -5051,28 +4997,41 @@ function updateCalc(){
   document.getElementById('tax-inc-label').textContent = inc.toLocaleString('sv-SE') + (kapitalInc > 0 ? ' + ' + kapitalInc.toLocaleString('sv-SE') + ' tkr kapital' : '');
   let taxHTML = '';
   if(totalSkatt > 0){
-    const items = [
-      ['Kommunalskatt (' + (currentKs*100).toFixed(2).replace('.',',') + '%)', tax.komm],
+    const pensionPa = document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked;
+    const direkt = [
+      ['Kommunalskatt (' + (currentKs*100).toFixed(2).replace('.',',') + ' %)', tax.komm],
       ['Statlig inkomstskatt', tax.stat],
-      [(document.getElementById('pension-toggle') && document.getElementById('pension-toggle').checked) ? 'Arbetsgivaravgifter (med pensionsavgift 10,21 %)' : 'Arbetsgivaravgifter (utan pensionsavgift)', tax.avg],
-      ['Effektiv moms (konsumtion)', tax.moms],
       ['Jobbskatteavdrag', -tax.jsa],
     ];
-    if(kapSkatt > 0) items.push(['Kapitalskatt (30 % på direktägt — ISK/KF beskattas annars)', kapSkatt]);
-    taxHTML = items.filter(([,v])=>v!==0).map(([l,v])=>{
+    if(kapSkatt > 0) direkt.push(['Kapitalskatt (30 % på direktägt sparande)', kapSkatt]);
+    const indirekt = [
+      [pensionPa ? 'Arbetsgivaravgift (med pensionsavgift 10,21 %)' : 'Arbetsgivaravgift (utan pensionsavgift)', tax.avg],
+      ['Moms när du handlar (uppskattning)', tax.moms],
+    ];
+    const rad = ([l,v]) => {
       const isNeg = v < 0;
-      const col = isNeg ? '#6FC29B' : 'rgba(242,239,232,.78)';
-      const prefix = isNeg ? '−' : '';
-      const abs = Math.abs(v);
-      return `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:${col}">
+      return `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:${isNeg ? '#6FC29B' : 'rgba(242,239,232,.78)'}">
         <span>${l}</span>
-        <span style="font-family:var(--mono)">${prefix}${abs.toLocaleString('sv-SE')} tkr</span>
+        <span style="font-family:var(--mono)">${isNeg ? '−' : ''}${Math.abs(v).toLocaleString('sv-SE')} tkr</span>
       </div>`;
-    }).join('') + `
+    };
+    const rubr = t => `<div style="font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,239,232,.55);margin-top:.35rem">${t}</div>`;
+    const summa = (l, v) => `<div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(242,239,232,.85);padding-top:.3rem;border-top:1px dashed rgba(255,255,255,.1)">
+        <span>${l}</span><span style="font-family:var(--mono)">${v.toLocaleString('sv-SE')} tkr</span></div>`;
+    const sumDirekt = direkt.reduce((x,[,v])=>x+v,0), sumIndirekt = indirekt.reduce((x,[,v])=>x+v,0);
+    const dExakt = skattDelar(age, inc); // oavrundat, så att månadsbeloppet stämmer med skattetabellen
+    const perMan = Math.round((dExakt.komm + dExakt.stat - dExakt.jsa + kapSkatt) * 1000 / 12 / 10) * 10;
+    taxHTML = rubr('Dras från lönen')
+      + direkt.filter(([,v])=>v!==0).map(rad).join('')
+      + summa(`Summa, cirka ${perMan.toLocaleString('sv-SE')} kr i månaden`, sumDirekt)
+      + rubr('Betalas också, men syns inte på lönebeskedet')
+      + indirekt.filter(([,v])=>v!==0).map(rad).join('')
+      + summa('Summa', sumIndirekt) + `
       <div style="display:flex;justify-content:space-between;font-size:.9rem;color:rgba(242,239,232,.85);font-weight:500;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.07);margin-top:.4rem">
         <span>Totalt per år</span>
         <span style="font-family:var(--mono)">${totalSkatt.toLocaleString('sv-SE')} tkr</span>
-      </div>`;
+      </div>
+      <div style="font-size:.62rem;color:rgba(242,239,232,.5);line-height:1.5">Skatten räknas med Skatteverkets regler 2026 och stämmer med skattetabell 32 på någon krona när. Arbetsgivaravgiften betalar arbetsgivaren utöver lönen. Momsen är en uppskattning utifrån hur mycket som sparas och konsumeras (SCB).</div>`;
     // Modell-not: vad förhållandet säger om välfärdslogiken (inte personlig vinst/förlust)
     const balance = total - totalSkatt;
     const isNegative = balance < 0;
@@ -5081,38 +5040,30 @@ function updateCalc(){
       ${isNegative
         ? `en genomsnittlig person i din ålder och inkomstgrupp betalar cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än den tar emot i offentliga tjänster <em>i år</em>. Skillnaden går till barn, äldre och sådant alla delar på, som vägar och försvar.`
         : `en genomsnittlig person i din ålder och inkomstgrupp tar emot cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i offentliga tjänster än den betalar i skatt <em>i år</em>. Skillnaden betalas av skatt från dem som arbetar.`}
-      <span style="display:block;margin-top:.3rem;font-size:.65rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Hur mycket vård och omsorg en person använder skiljer sig mycket, även mellan jämnåriga.</span>
+      <span style="display:block;margin-top:.3rem;font-size:.65rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Jämförelsen gäller det personen själv använder (skola, vård, omsorg, ersättningar) och de skatter personen själv betalar. Det gemensamma, som försvar och vägar, betalas därutöver också av bolagsskatt, punktskatter, avgifter och lån.</span>
     </div>`;
   } else {
     taxHTML = `<div style="font-size:.78rem;color:rgba(242,239,232,.72);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
   }
   document.getElementById('tax-breakdown').innerHTML = taxHTML;
 
-  // Lifecycle bar position + active segment highlight
-  const maxAge = 85;
-  const markerPct = (age / maxAge * 100).toFixed(1);
-  document.getElementById('lc-marker').style.left = markerPct + '%';
-  const inPayer = age >= 19 && age <= 64;
-  const inTaker2 = age >= 65;
-  ['lcseg-taker1','lcseg-payer','lcseg-taker2'].forEach(id => {
-    const seg = document.getElementById(id);
-    if(seg) seg.style.opacity = '0.45';
-  });
-  const activeSeg = inTaker2 ? 'lcseg-taker2' : inPayer ? 'lcseg-payer' : 'lcseg-taker1';
-  const activeEl = document.getElementById(activeSeg);
-  if(activeEl) activeEl.style.opacity = '1';
 
-  // Lifecycle text
-  const isTaker = age <= 18 || age >= 55;
-  let lcText = '';
+  // Livscykeltext: styrs av modellens resultat (förmåner − skatt), inte bara av åldern
+  const netto = total - totalSkatt; // > 0: tar emot mer än betalar
+  const P = t => `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">${t}</p>`;
+  let lcText;
   if(age <= 18){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Under uppväxten tar du emot skola, vård och barnomsorg som betalas med skatt från dem som arbetar.</p>`;
-  } else if(age <= 54){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Under arbetslivet betalar de flesta mer i skatt än de tar emot, men inte alla år. Skatten går just nu till bland annat förskola och skola, äldres vård och pension, vägar och försvar.</p>`;
-  } else if(age <= 64){
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">Nu närmar sig de flesta balansen. Vården ökar med åldern, och pensionen är inte långt borta.</p>`;
+    lcText = P('Under uppväxten tar du emot skola, vård och barnomsorg som betalas med skatt från dem som arbetar.');
+  } else if(age >= 65){
+    lcText = P(netto > 0
+      ? 'I den här åldern tar de flesta emot mer i vård, omsorg och pension än de betalar i skatt. Det betalas av dem som arbetar i dag, på samma sätt som du under arbetslivet betalade för andra.'
+      : 'Med den här inkomsten betalar en genomsnittlig person i din ålder fortfarande mer i skatt än den tar emot. Med åren ökar vården och omsorgen, och då vänder det för de flesta.');
+  } else if(netto > 0){
+    lcText = P(age <= 25
+      ? 'Unga vuxna tar ofta emot mer än de betalar, eftersom många studerar och lönen ofta är lägre i början. När lönen stiger vänder det för de flesta.'
+      : 'Med den här lönen tar en genomsnittlig person i din ålder emot mer än den betalar i skatt. Det vänder när lönen stiger.');
   } else {
-    lcText = `<p style="font-size:.75rem;color:rgba(242,239,232,.72);line-height:1.65">I den här åldern tar de flesta emot mer i pension, vård och omsorg än de betalar i skatt. Det betalas av dem som arbetar i dag, på samma sätt som du under arbetslivet betalade för andra.</p>`;
+    lcText = P('Med den här lönen betalar en genomsnittlig person i din ålder mer i skatt än den tar emot. Skatten går just nu till bland annat förskola och skola, äldres vård och pension, vägar och försvar.');
   }
   document.getElementById('lifecycle-text').innerHTML = lcText;
 
@@ -5139,24 +5090,25 @@ function updateCalc(){
     receiptCard.style.display = '';
     // COFOG 2024, andelar av 3 223 Mdkr (Eurostat gov_10a_exp, hämtat 2026-10-28)
     const cofogItems = [
-      // Socialt skydd uppdelat (totalt 38,0 %); ålderspension omfattar även det avgiftsfinansierade pensionssystemet
-      {namn:'Ålderspension och efterlevande',     andel:0.2202, col:'#7B5FBC', icon:'elder'},
-      {namn:'Sjukdom och funktionsnedsättning',   andel:0.0709, col:'#9B6FCC', icon:'pulse'},
-      {namn:'Familj och barn',                     andel:0.0457, col:'#A87FD4', icon:'family'},
-      {namn:'Arbetslöshet',                      andel:0.0214, col:'#B490DA', icon:'clipboard'},
-      {namn:'Övrigt socialt skydd (bostadsbidrag, ekonomiskt bistånd)',andel:0.0215, col:'#C4A6E2', icon:'home'},
-      {namn:'Hälso- och sjukvård',                            andel:0.1470, col:'#2E7D5C', icon:'cross'},
-      {namn:'Utbildning (förskola → universitet)',          andel:0.1442, col:'#1E4A8C', icon:'cap'},
-      {namn:'Näringsliv och transporter',  andel:0.0956, col:'#C8973A', icon:'train'},
-      {namn:'Allmän offentlig förvaltning',                  andel:0.0932, col:'#888780', icon:'gov'},
-      {namn:'Försvar',                                       andel:0.0389, col:'#4A6741', icon:'shield'},
-      {namn:'Rättsväsendet och samhällsskydd',                 andel:0.0316, col:'#B84A1E', icon:'scales'},
-      {namn:'Fritid, kultur och religion',                     andel:0.0277, col:'#D4A03A', icon:'mask'},
-      {namn:'Bostäder och samhällsutveckling',                 andel:0.0158, col:'#6B8E4E', icon:'houses'},
-      {namn:'Räntor på statsskulden',                        andel:0.0155, col:'rgba(255,255,255,.3)', icon:'percent'},
-      {namn:'Miljöskydd',                                    andel:0.0109, col:'#2E8B57', icon:'leaf'},
+      // Eurostat COFOG 2024 (gov_10a_exp), andelar av 2823 Mdkr: 3 223 Mdkr utan avgiftsfinansierad pension
+      // (inkomst-, tilläggs- och premiepension, cirka 400 Mdkr), eftersom kalkylatorn inte räknar pensionsavgiften som skatt.
+      {namn:'Hälso- och sjukvård',                            andel:0.1678, col:'#2E7D5C', icon:'cross'},
+      {namn:'Utbildning (förskola → universitet)',          andel:0.1646, col:'#1E4A8C', icon:'cap'},
+      {namn:'Äldreomsorg, garantipension m.m.',               andel:0.1097, col:'#7B5FBC', icon:'elder'},
+      {namn:'Näringsliv och transporter',                     andel:0.1092, col:'#C8973A', icon:'train'},
+      {namn:'Allmän offentlig förvaltning',                   andel:0.1065, col:'#888780', icon:'gov'},
+      {namn:'Sjukdom och funktionsnedsättning',               andel:0.0809, col:'#9B6FCC', icon:'pulse'},
+      {namn:'Familj och barn',                                andel:0.0521, col:'#A87FD4', icon:'family'},
+      {namn:'Försvar',                                        andel:0.0444, col:'#4A6741', icon:'shield'},
+      {namn:'Rättsväsendet och samhällsskydd',                andel:0.0361, col:'#B84A1E', icon:'scales'},
+      {namn:'Fritid, kultur och religion',                    andel:0.0316, col:'#D4A03A', icon:'mask'},
+      {namn:'Arbetslöshet',                                   andel:0.0245, col:'#B490DA', icon:'clipboard'},
+      {namn:'Övrigt socialt skydd (bostadsbidrag, ekonomiskt bistånd)',andel:0.0245, col:'#C4A6E2', icon:'home'},
+      {namn:'Bostäder och samhällsutveckling',                andel:0.018, col:'#6B8E4E', icon:'houses'},
+      {namn:'Räntor på statsskulden',                         andel:0.0177, col:'rgba(255,255,255,.3)', icon:'percent'},
+      {namn:'Miljöskydd',                                     andel:0.0124, col:'#2E8B57', icon:'leaf'},
     ];
-    const maxKr = totalSkatt * cofogItems[0].andel;
+    const maxKr = totalSkatt * Math.max(...cofogItems.map(c => c.andel));
     let receiptHTML = '';
     cofogItems.forEach(c => {
       const kr = Math.round(totalSkatt * c.andel);
@@ -5764,27 +5716,28 @@ const SCENARIER = {
   barnfamilj: {
     title:'Barnfamilj med 2 barn',
     icon:'family',
+    personer: 4,
     profil:'Par, 37 år, 2 barn (5 och 9 år). Sammanlagd bruttoinkomst 750 tkr/år (375 tkr var).',
     inc: 750,
     age: 37,
-    barnbonus: 2,   // antal barn → extra utbildning + barnbidrag
     kronisk: 0,
     beräkning(){
-      const stage = getStage(this.age);
-      // Två vuxna: båda föräldrarnas egna förmåner
-      const w = {}; Object.keys(stage.w).forEach(k=>w[k]=stage.w[k]*2);
-      // Två barn: en i förskola, en i grundskola (belopp ur prislistan) + barnbidrag
-      w.utb = (w.utb||0) + cardTkr('Förskola, ett år',185) + cardTkr('Ett år i grundskolan',152);
-      w.socialt = (w.socialt||0) + 30; // barnbidrag 2 × 15 000 kr
+      // Hushållet = summan av fyra personer, var och en med genomsnittet för sin ålder.
+      // Barnbidrag och föräldrapenning ingår redan i åldersgenomsnitten och läggs inte till igen.
+      const vuxen = getStage(this.age).w, barn5 = getStage(5).w, barn9 = getStage(9).w;
+      const w = {};
+      Object.keys(vuxen).forEach(k => w[k] = vuxen[k]*2 + barn5[k] + barn9[k]);
+      // Barnens skola: verklig kostnad per barn (prislistan) i stället för åldersgenomsnittet
+      w.utb = vuxen.utb*2 + cardTkr('Förskola, ett år',199) + cardTkr('Ett år i grundskolan',143);
       const tot_forman = Object.values(w).reduce((s,v)=>s+v,0);
       const tax = taxForSalaries(this.age, [this.inc/2, this.inc/2]);  // två löner à 375 tkr
       return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
     },
     noter:[
-      'Skatten räknas på två löner à 375 tkr; förmånerna gäller båda föräldrarna',
-      'Ett barn i förskola och ett i grundskola (kostnad per barn enligt prislistan)',
-      'Barnbidrag 2 × 15 000 = 30 000 kr/år',
-      'VAB, föräldraförsäkring och bostadsbidrag ingår inte. Nettot gäller ett enskilt år; över livet jämnas flödena ut (se Livsloppet)'
+      'Skatten räknas på två löner à 375 tkr',
+      'Förmånerna gäller alla fyra: föräldrarna och barnen, var och en med genomsnittet för sin ålder. Det gemensamma, som försvar och vägar, räknas separat',
+      'Ett barn i förskola och ett i grundskola, med kostnaden per barn i prislistan',
+      'Nettot gäller ett enskilt år. Över livet jämnas flödena ut (se Livsloppet)'
     ]
   },
   ensamstaende: {
@@ -5802,10 +5755,9 @@ const SCENARIER = {
       return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
     },
     noter:[
-      'Ingen barnförmån — men full sjukförsäkring, A-kassa och kollektiva nyttigheter',
-      'Vid medianinkomst är denna person en av systemets nettobidragsgivare',
-      'Ensamstående har sämre skydd vid skilsmässa/separation — ingen delad försörjning',
-      'Bostadsbidrag: möjligt om hyra >30% av inkomst (ej inkluderat)'
+      'Inga barn, alltså inget barnbidrag eller föräldrapenning',
+      'Sjukförsäkring och arbetslöshetsersättning finns om det behövs',
+      'Bostadsbidrag för personer utan barn finns bara för 18–28-åringar (Försäkringskassan) och ingår inte'
     ]
   },
   kronisk: {
@@ -5814,7 +5766,7 @@ const SCENARIER = {
     profil:'Man, 44 år, diagnostiserad MS sedan 3 år. Bruttoinkomst 420 tkr/år (arbetar deltid).',
     inc: 420,
     age: 44,
-    kronisk: 380, // extra sjukvård tkr/år (biologiska läkemedel + uppföljning)
+    kronisk: cardTkr('MS (multipel skleros) — vård per år', 380), // extra sjukvård, tkr/år (prislistan)
     beräkning(){
       const stage = getStage(this.age);
       const w = {...stage.w};
@@ -5825,10 +5777,9 @@ const SCENARIER = {
       return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
     },
     noter:[
-      'MS-behandling (biologiska DMT-läkemedel): ~380 000 kr/år — patienten betalar max 3 800 kr/år',
-      'Systemet bär 99% av behandlingskostnaden via landstingen',
-      'Utan högkostnadsskydd: en månads behandling kostar mer än en genomsnittslön',
-      'Rehabilitering, sjukskrivning, hjälpmedel tillkommer (ej inkluderade)'
+      'MS-vård med biologiska läkemedel: cirka 380 000 kr per år i genomsnitt, men det varierar mycket mellan läkemedel (se prislistan)',
+      'Patienten betalar högst 3 800 kr per år för läkemedel (högkostnadsskyddet). Resten betalar regionen',
+      'Rehabilitering, sjukskrivning och hjälpmedel ingår inte'
     ]
   },
   anhorigvardare: {
@@ -5838,23 +5789,19 @@ const SCENARIER = {
     inc: 240,
     age: 57,
     kronisk: 0,
-    anhorigbonus: 175, // hemtjänst-/anhörigstöd som annars hade krävt hemtjänst
     beräkning(){
       const stage = getStage(this.age);
       const w = {...stage.w};
-      // Lägre inkomst → lägre skatt, men full rätt till sjukvård och trygghet
-      // Anhörigstöd: anhorig ersätter offentlig hemtjänst värd ~175 tkr/år
-      w.soc_not = 'Anhörigbidrag/anhöriganställning ~8 tkr/år (Socialtjänstlagen)';
-      const tot_forman = Object.values(w).reduce((s,v)=>s+(typeof v==='number'?v:0),0);
+      const tot_forman = Object.values(w).reduce((s,v)=>s+v,0);
       const tax = annualTax(this.age, this.inc);
-      const oavlönatArbete = this.anhorigbonus;
-      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax, oavlönatArbete};
+      // Som jämförelse: vad hemtjänst för en person kostar i genomsnitt (prislistan, Kolada 2025)
+      const hemtjanst = cardTkr('Hemtjänst, ett år', 385);
+      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax, hemtjanst};
     },
     noter:[
-      'Anhörigvårdare utför oavlönat arbete värt ~25 Mdkr/år totalt (Socialstyrelsen 2024)',
-      'Systemet sparar ~175 tkr/år i hemtjänstkostnader för varje anhörig som vårdar hemma',
-      'Anhörigbidrag (kommunalt): 0–8 000 kr/mån beroende på kommun',
-      'Lägre inkomst → lägre pensionsrätt: anhörigvård syns inte i pensionssystemet'
+      'Makens vård och omsorg räknas på maken, inte här',
+      'Som jämförelse kostar hemtjänst i genomsnitt cirka 385 000 kr per person och år (Kolada 2025)',
+      'Lägre lön ger lägre skatt men också lägre pension, eftersom anhörigvård inte ger pensionsrätt'
     ]
   }
 };
@@ -5888,13 +5835,19 @@ function renderScen(key){
     </div>`;
   }).join('');
 
-  const oavlönat = r.oavlönatArbete ? `
+  const oavlönat = r.hemtjanst ? `
     <div class="scen-row">
-      <span class="scen-lbl">Oavlönat anhörigarbete (marknadsvärde)</span>
-      <span class="scen-val" style="color:var(--amber-t)">≈ ${r.oavlönatArbete} tkr/år</span>
+      <span class="scen-lbl">Jämförelse: hemtjänst för en person</span>
+      <span class="scen-val" style="color:var(--amber-t)">≈ ${Math.round(r.hemtjanst)} tkr/år</span>
     </div>` : '';
 
   const noterHtml = s.noter.map(n=>`<div style="margin-bottom:.3rem">· ${n}</div>`).join('');
+  const pers = s.personer || 1;
+  const gemensamt = `
+    <div class="scen-row">
+      <span class="scen-lbl">Därtill det alla delar på (försvar, vägar m.m.), ingår inte i nettot</span>
+      <span class="scen-val" style="color:var(--ink3)">≈ ${(pers*KOLL_PER_INV).toLocaleString('sv-SE')} tkr/år</span>
+    </div>`;
 
   document.getElementById('scen-panels').innerHTML = `
     <div class="scen-panel on">
@@ -5908,6 +5861,7 @@ function renderScen(key){
           <div class="scen-row"><span class="scen-lbl">Offentliga förmåner totalt</span><span class="scen-val" style="color:var(--green)">${Math.round(r.forman).toLocaleString('sv-SE')} tkr/år</span></div>
           <div class="scen-row"><span class="scen-lbl">Skatt totalt, inklusive avgifter</span><span class="scen-val" style="color:var(--red-t)">${Math.round(r.skatt).toLocaleString('sv-SE')} tkr/år</span></div>
           ${oavlönat}
+          ${gemensamt}
           <div class="scen-netto ${nettoPos?'pos':'neg'}">
             ${nettoPos ? 'Tar emot mer än betalar' : 'Betalar mer än tar emot'}: ${fmtT(r.netto)} tkr/år
           </div>
@@ -5916,7 +5870,7 @@ function renderScen(key){
         <div>
           <div style="font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">Förmåner per kategori (tkr/år)</div>
           ${barsHtml}
-          <div style="font-size:.68rem;color:var(--ink3);margin-top:1rem">Källa: SCB FASIT-vikter + COFOG 2024 (Eurostat) + livsfas-modell. Kronisk sjukdom: Socialstyrelsen/TLV 2024.</div>
+          <div style="font-size:.68rem;color:var(--ink3);margin-top:1rem">Förmånerna är genomsnittet för varje persons ålder i modellen (kalibrerad mot Eurostat COFOG 2024 och Kolada 2024). Gemensamma utgifter ingår inte i nettot. Skolkostnad och MS-vård enligt prislistan. Skatt enligt Skatteverkets regler 2026.</div>
         </div>
       </div>
     </div>`;
@@ -6061,7 +6015,8 @@ function setLcInc(btn, inc){
 function updateLifecycle(){
   // Clear preset selection if slider moved manually
   document.querySelectorAll('.lc-preset').forEach(b=>b.classList.remove('on'));
-  const inc = parseInt(document.getElementById('lc-inc-slider')?.value||460);
+  // Livsloppet följer lönen i kalkylatorn (som lön i arbetslivet)
+  const inc = parseInt(document.getElementById('s-inc')?.value || 460);
   const valEl = document.getElementById('lc-inc-val');
   if(valEl) valEl.textContent = inc.toLocaleString('sv-SE') + ' tkr';
   const ctx = document.getElementById('lc-inc-context');
@@ -6072,136 +6027,66 @@ function updateLifecycle(){
 // Linjediagram ritas smalare på mobil så att texten inte skalas ner till oläslig storlek
 function chartW(w){ return window.innerWidth <= 640 ? Math.round(w * 0.6) : w; }
 
+// Livsloppet: hela befolkningen per åldersgrupp 2024 (ändrat 2026-10-29).
+// f = personliga förmåner per invånare (modellen, kalibrerad mot COFOG/Kolada; utan gemensamma utgifter),
+// s = skatt per invånare: modellens inkomstskatt, arbetsgivaravgift och moms på SCB:s faktiska inkomster 2024
+// (sammanräknad förvärvsinkomst per ettårsålder och inkomstklass, HE0110), delat på alla invånare i gruppen (BE0101).
+// Summor: förmåner 1 729 Mdkr, skatter 1 575 Mdkr. Räknat 2026-10-29.
+const LIVSLOPP_BEF = [
+  {g:'0–6',  a0:0,  a1:6,   f:184, s:0},   {g:'7–15', a0:7,  a1:15,  f:180, s:0},
+  {g:'16–18',a0:16, a1:18,  f:187, s:0},   {g:'19–25',a0:19, a1:25,  f:106, s:77},
+  {g:'26–34',a0:26, a1:34,  f:68,  s:184}, {g:'35–44',a0:35, a1:44,  f:165, s:243},
+  {g:'45–54',a0:45, a1:54,  f:105, s:290}, {g:'55–64',a0:55, a1:64,  f:136, s:263},
+  {g:'65–74',a0:65, a1:74,  f:192, s:122}, {g:'75+',  a0:75, a1:120, f:341, s:79},
+];
 function renderLifecycle(inc){
-  const discountEl = document.getElementById('lc-discount');
-  const discount = discountEl ? discountEl.checked : false;
-  const noteEl = document.getElementById('lc-discount-note');
-  if(noteEl) noteEl.style.display = discount ? 'inline' : 'none';
-  // Läs hushållstyp + kapital från grundkalkylen (samma rutiner som annual-vyn använder)
-  // så att livscykelvyn reflekterar samma profil som användaren ställt in ovanför.
-  const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
-
-  const {pts, crossovers} = calcLifecycle(inc, discount, kapitalInc);
   const el = document.getElementById('lifecycle-chart');
   if(!el) return;
-
-  const W=chartW(720), H=280, p={t:24,r:20,b:36,l:68};
-  const iw=W-p.l-p.r, ih=H-p.t-p.b;
-  // Skala inkl. osäkerhetsbanden (+22% förmån / +12% skatt) så de inte klipps.
-  const rawMax = Math.max(...pts.map(d=>Math.max(d.forman*1.22, d.skatt*1.12)));
-  const niceMax = Math.max(100, Math.ceil(rawMax/100)*100);
-  const sx=a=>p.l+(a/85)*iw;
-  const sy=v=>p.t+(1-(v/niceMax))*ih;
-
-  let svg=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Livscykeldiagram: årliga förmåner och årlig skatt per ålder (0–85 år) vid medianlön. Visar mönstret i välfärden — mottagare som barn, nettobidragsgivare under yrkeslivet, mottagare igen som pensionär." style="width:100%;max-width:${W}px;height:auto;font-family:var(--mono)">`;
-
-  // Grid (årliga tkr)
-  const gridVals = [0,0.25,0.5,0.75,1].map(f=>Math.round(niceMax*f));
-  gridVals.forEach(v=>{
-    const y=sy(v);
-    const lbl = v.toLocaleString('sv-SE');
-    svg+=`<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="rgba(26,24,19,.09)" stroke-width="1"/>`;
-    svg+=`<text x="${p.l-5}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="9">${lbl}</text>`;
-  });
-  svg+=`<text x="${p.l-5}" y="${p.t-8}" text-anchor="end" fill="#66615A" font-size="8">tkr/år</text>`;
-
-  // X axis labels
-  [0,10,20,30,40,50,60,70,80,85].forEach(a=>{
-    svg+=`<text x="${sx(a)}" y="${H-6}" text-anchor="middle" fill="#66615A" font-size="9">${a}</text>`;
-  });
-  svg+=`<text class="m-hide" x="${W/2}" y="${H}" text-anchor="middle" fill="#66615A" font-size="9">Ålder</text>`;
-
-  // Livsfas-bakgrundsband
-  const bands=[{min:0,max:18,col:'rgba(30,74,140,.08)',lbl:'Barn/\nUngdom'},{min:19,max:64,col:'rgba(46,125,92,.08)',lbl:'Yrkesliv'},{min:65,max:85,col:'rgba(200,151,58,.08)',lbl:'Pension'}];
-  bands.forEach(b=>{
-    svg+=`<rect x="${sx(b.min)}" y="${p.t}" width="${sx(b.max)-sx(b.min)}" height="${ih}" fill="${b.col}" rx="0"/>`;
-    svg+=`<text class="m-hide" x="${(sx(b.min)+sx(b.max))/2}" y="${p.t+10}" text-anchor="middle" fill="#66615A" font-size="8">${b.lbl}</text>`;
-  });
-
-  // Mortalitets-overlay: dimma område efter förväntad livslängd (om vald)
-  const mortAge = currentMortality && LIVSLANGD[currentMortality]
-    ? LIVSLANGD[currentMortality].ålder : null;
-  if(mortAge !== null && mortAge < 85){
-    // Mörk dim-mask över området efter förväntad livslängd
-    svg+=`<rect x="${sx(mortAge)}" y="${p.t}" width="${sx(85)-sx(mortAge)}" height="${ih}" fill="rgba(0,0,0,.42)" rx="0"/>`;
+  const age = +(document.getElementById('s-age')?.value || 22);
+  const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
+  // Läsarens egen punkt: genomsnittliga förmåner för åldern minus skatt på den angivna lönen
+  const du = Object.values(getStage(age, inc).w).reduce((x,y)=>x+y,0) - (annualTax(age, inc).tot + Math.round(kapitalInc*0.30));
+  const W = chartW(720), H = 300, p = {t:28, r:16, b:40, l:52};
+  const iw = W-p.l-p.r, ih = H-p.t-p.b;
+  const vals = LIVSLOPP_BEF.map(d => d.f - d.s).concat([du]);
+  const top = Math.max(300, Math.ceil(Math.max(...vals)/100)*100), bot = Math.min(-300, Math.floor(Math.min(...vals)/100)*100);
+  const sy = v => p.t + (top - v) / (top - bot) * ih;
+  const n = LIVSLOPP_BEF.length, slot = iw / n, bw = slot * 0.66;
+  let svg = `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Stapeldiagram: netto per invånare och åldersgrupp, hela befolkningen 2024. Barn och äldre tar emot mer än de betalar, 26–64-åringar betalar mer. Punkten visar din ålder och lön: ${du >= 0 ? 'tar emot' : 'betalar'} cirka ${Math.abs(du)} tusen kronor mer." style="width:100%;max-width:${W}px;height:auto;font-family:var(--sans)">`;
+  for(let v = bot; v <= top; v += 100){
+    const y = sy(v);
+    svg += `<line x1="${p.l}" y1="${y}" x2="${W-p.r}" y2="${y}" stroke="${v===0?'#66615A':'rgba(26,24,19,.09)'}" stroke-width="1"/>`;
+    svg += `<text x="${p.l-6}" y="${y+4}" text-anchor="end" fill="#66615A" font-size="10">${v>0?'+':v<0?'−':''}${Math.abs(v)}</text>`;
   }
-
-  // Area between lines
-  const fPath = `M${sx(0)},${sy(pts[0].forman)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.forman)}`).join('');
-  const sPath = `M${sx(0)},${sy(pts[0].skatt)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.skatt)}`).join('');
-
-  // Shaded area
-  const clipArea = fPath + ` L${sx(85)},${H-p.b} L${sx(0)},${H-p.b} Z`;
-  svg+=`<path d="${clipArea}" fill="var(--green)" opacity=".06"/>`;
-  const clipSkatt = sPath + ` L${sx(85)},${H-p.b} L${sx(0)},${H-p.b} Z`;
-  svg+=`<path d="${clipSkatt}" fill="#B84A1E" opacity=".06"/>`;
-
-  // Uncertainty bands (±22% förmåner, ±12% skatt)
-  const fBandUp = `M${sx(0)},${sy(pts[0].forman*1.22)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.forman*1.22)}`).join('');
-  const fBandDn = pts.slice().reverse().map(d=>`L${sx(d.a)},${sy(d.forman*0.78)}`).join('');
-  svg+=`<path d="${fBandUp}${fBandDn}Z" fill="var(--green)" opacity=".07"/>`;
-  const sBandUp = `M${sx(0)},${sy(pts[0].skatt*1.12)}` + pts.slice(1).map(d=>`L${sx(d.a)},${sy(d.skatt*1.12)}`).join('');
-  const sBandDn = pts.slice().reverse().map(d=>`L${sx(d.a)},${sy(d.skatt*0.88)}`).join('');
-  svg+=`<path d="${sBandUp}${sBandDn}Z" fill="#B84A1E" opacity=".07"/>`;
-
-  // Lines
-  svg+=`<path d="${fPath}" fill="none" stroke="var(--green)" stroke-width="2.5"/>`;
-  svg+=`<path d="${sPath}" fill="none" stroke="#B84A1E" stroke-width="2.5"/>`;
-
-  // Korsningspunkter — där årlig skatt och förmån byter plats.
-  // 'bidrag' = blir nettobidragsgivare (yrkesliv), 'mottag' = blir mottagare igen (pension).
-  crossovers.forEach(c=>{
-    const cx = sx(c.a);
-    const cp = pts[c.a];
-    svg+=`<line x1="${cx}" y1="${p.t}" x2="${cx}" y2="${H-p.b}" stroke="rgba(200,151,58,.55)" stroke-width="1.5" stroke-dasharray="4,3"/>`;
-    const lx = cx + (cx > W * 0.7 ? -6 : 6);
-    const anchor = cx > W * 0.7 ? 'end' : 'start';
-    const lbl = c.dir === 'bidrag' ? 'Blir' : 'Åter';
-    const lbl2 = c.dir === 'bidrag' ? 'bidragsgivare' : 'mottagare';
-    svg+=`<text class="m-hide" text-anchor="${anchor}" fill="#7A5916" font-size="9">` +
-         `<tspan x="${lx}" y="${p.t+14}">${lbl}</tspan>` +
-         `<tspan x="${lx}" dy="11">${lbl2}</tspan>` +
-         `<tspan x="${lx}" dy="11">~${c.a} år</tspan></text>`;
-    const kY = sy(cp.forman);
-    svg+=`<circle cx="${cx}" cy="${kY}" r="5" fill="rgba(200,151,58,.2)" stroke="rgba(200,151,58,.7)" stroke-width="1.5"/>`;
-  });
-
-  // End labels — bara linjenamn, inga Mkr-siffror (modellen visar mönster, inte belopp)
-  const lastF = pts[85];
-  svg+=`<circle cx="${sx(85)}" cy="${sy(lastF.forman)}" r="4" fill="var(--green)"/>`;
-  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.forman)-6}" text-anchor="end" fill="var(--green)" font-size="10" font-weight="500">Förmåner</text>`;
-  svg+=`<circle cx="${sx(85)}" cy="${sy(lastF.skatt)}" r="4" fill="#B84A1E"/>`;
-  svg+=`<text x="${sx(85)-8}" y="${sy(lastF.skatt)+14}" text-anchor="end" fill="#B84A1E" font-size="10" font-weight="500">Skatt</text>`;
-
-  // Mortalitets-markering: vertikal streckad linje + label (ritas ovanpå allt)
-  if(mortAge !== null){
-    const mx = sx(mortAge);
-    svg+=`<line x1="${mx}" y1="${p.t}" x2="${mx}" y2="${H-p.b}" stroke="rgba(26,24,19,.45)" stroke-width="1.5" stroke-dasharray="3,3"/>`;
-    // Label placering: vänster om linjen om den är nära höger kant, annars höger
-    const labelLeft = mortAge > 70;
-    const lx = mx + (labelLeft ? -5 : 5);
-    const anch = labelLeft ? 'end' : 'start';
-    svg+=`<text text-anchor="${anch}" fill="#1A1813" font-size="9" font-weight="500">` +
-         `<tspan x="${lx}" y="${p.t+24}">Förv. livslängd</tspan>` +
-         `<tspan x="${lx}" dy="11">${mortAge} år</tspan>` +
-         `</text>`;
-    // Punkter på kurvorna vid mortAge
-    const mp = pts[mortAge];
-    if(mp){
-      svg+=`<circle cx="${mx}" cy="${sy(mp.forman)}" r="3.5" fill="var(--green)" stroke="#FBFAF6" stroke-width="1"/>`;
-      svg+=`<circle cx="${mx}" cy="${sy(mp.skatt)}" r="3.5" fill="#B84A1E" stroke="#FBFAF6" stroke-width="1"/>`;
+  svg += `<text x="${p.l-6}" y="${p.t-12}" text-anchor="end" fill="#66615A" font-size="10">tkr/år</text>`;
+  LIVSLOPP_BEF.forEach((d,i) => {
+    const v = d.f - d.s, x = p.l + i*slot + (slot-bw)/2, y = v >= 0 ? sy(v) : sy(0), h = Math.abs(sy(v) - sy(0));
+    const mitt = age >= d.a0 && age <= d.a1;
+    svg += `<rect x="${x}" y="${y}" width="${bw}" height="${h}" rx="2" fill="${v>=0?'#2E7D5C':'#B84A1E'}" opacity="${mitt?1:.55}"/>`;
+    svg += `<text x="${x+bw/2}" y="${v>=0 ? y-5 : y+h+12}" text-anchor="middle" fill="#3A3833" font-size="10" class="m-hide">${v>0?'+':'−'}${Math.abs(v)}</text>`;
+    const etikett = W < 520 ? (d.a0 >= 75 ? '75+' : String(d.a0)) : d.g; // smal skärm: bara startåldern
+    svg += `<text x="${x+bw/2}" y="${H-p.b+16}" text-anchor="middle" fill="${mitt?'#1A1813':'#66615A'}" font-size="10" font-weight="${mitt?600:400}">${etikett}</text>`;
+    if(mitt){
+      const cy = sy(Math.max(bot, Math.min(top, du)));
+      svg += `<circle cx="${x+bw/2}" cy="${cy}" r="6" fill="#1A1813" stroke="#FBFAF6" stroke-width="2"/>`;
+      svg += `<text x="${x+bw/2 + (i > n-3 ? -10 : 10)}" y="${cy+4}" text-anchor="${i > n-3 ? 'end' : 'start'}" fill="#1A1813" font-size="11" font-weight="600">Du</text>`;
     }
-  }
-
-  svg+=`</svg>`;
+  });
+  svg += `<text x="${p.l}" y="${H-4}" fill="#66615A" font-size="10">${W < 520 ? 'Ålder (från)' : 'Ålder'}</text></svg>`;
   el.innerHTML = svg;
+  const cap = document.getElementById('lc-caption');
+  if(cap){
+    const kr = Math.round(inc*1000/12/100)*100;
+    cap.innerHTML = `Staplarna är genomsnittet per invånare i varje åldersgrupp 2024, för hela befolkningen och med svenskarnas verkliga inkomster. Punkten är du: en genomsnittlig ${age}-åring med ${kr.toLocaleString('sv-SE')} kr i månaden ${du >= 0 ? 'tar emot' : 'betalar'} cirka <strong>${Math.abs(du).toLocaleString('sv-SE')} tkr mer</strong> än ${du >= 0 ? 'den betalar' : 'den tar emot'} i år.`;
+  }
 }
 
-// Init lifecycle chart — startar på medianlön 460 tkr
+// Init lifecycle chart — följer kalkylatorns lön
 (function(){
+  const inc = parseInt(document.getElementById('s-inc')?.value || 460);
   const ctx = document.getElementById('lc-inc-context');
-  if(ctx) ctx.textContent = lcContext(460);
-  renderLifecycle(460);
+  if(ctx) ctx.textContent = lcContext(inc);
+  renderLifecycle(inc);
 })();
 
 // ═══════════════════════════════════════════════════════════════════
@@ -6432,8 +6317,8 @@ function drawShareCard(){
   const kr = n => n.toLocaleString('sv-SE');
   // Vertikala ankare per format (story har mer luft)
   const y = story
-    ? { wm:160, badge:205, head:560, prof:630, b1:860, b1l:922, t1:1160, t1l:1222, rule:1320, net:1420, netsub:1472 }
-    : { wm:120, badge:158, head:270, prof:322, b1:500, b1l:548, t1:710,  t1l:758,  rule:812,  net:882,  netsub:924 };
+    ? { wm:160, badge:205, head:560, prof:630, b1:860, b1l:922, t1:1160, t1l:1222, rule:1320, net:1420, netsub:1472, res:1540 }
+    : { wm:120, badge:158, head:270, prof:322, b1:500, b1l:548, t1:710,  t1l:758,  rule:812,  net:882,  netsub:924, res:966 };
 
   x.fillStyle = '#F4F1EA'; x.fillRect(0, 0, W, H);
   x.fillStyle = '#1B4D3E'; x.fillRect(0, 0, W, 14);
@@ -6451,7 +6336,7 @@ function drawShareCard(){
   x.fillStyle = '#2E7D5C'; x.font = '700 104px Georgia, serif';
   x.fillText(kr(s.benefits) + ' tkr', M, y.b1);
   x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText('offentliga tjänster jag använder i år', M, y.b1l);
+  x.fillText('offentliga tjänster i år, snitt för min ålder och lön', M, y.b1l);
   // Skatt
   x.fillStyle = '#B84A1E'; x.font = '700 104px Georgia, serif';
   x.fillText(kr(s.tax) + ' tkr', M, y.t1);
@@ -6464,8 +6349,9 @@ function drawShareCard(){
   x.fillText(neg ? 'Betalar mer än tar emot i år' : 'Tar emot mer än betalar i år', M, y.net);
   x.fillStyle = '#4A4A46'; x.font = '400 27px Arial';
   const d = kr(Math.abs(s.net));
-  x.fillText(neg ? `Jag betalar ${d} tkr mer än jag använder — normalt i arbetsför ålder.`
-                 : `Jag använder ${d} tkr mer än jag betalar — så är välfärden tänkt att fungera över ett liv.`, M, y.netsub);
+  x.fillText(`Skillnaden: ${d} tkr. Försvar, vägar m.m. som alla delar på ingår inte.`, M, y.netsub);
+  x.fillStyle = '#8A8D94'; x.font = '400 22px Arial';
+  x.fillText('Genomsnitt i en modell, inte en exakt beräkning för en person.', M, y.res);
   // Footer
   x.fillStyle = '#1B4D3E'; x.fillRect(0, H - 92, W, 92);
   x.fillStyle = '#FFFFFF'; x.font = '600 32px Arial';
@@ -6498,49 +6384,6 @@ function shareShareCard(){
 // ═══════════════════════════════════════════════════════════════════
 // JÄMFÖRELSEFUNKTION — visa två profiler sida vid sida
 // ═══════════════════════════════════════════════════════════════════
-function toggleCompare(){
-  const panel = document.getElementById('compare-panel');
-  const btn = document.getElementById('compare-toggle-btn');
-  const open = panel.style.display === 'none';
-  panel.style.display = open ? '' : 'none';
-  if(btn) btn.textContent = open ? 'Stäng jämförelse ↑' : 'Öppna jämförelse ↓';
-  if(open) updateCompare();
-}
-function updateCompare(){
-  const age2 = +document.getElementById('s-age2').value;
-  const inc2 = +document.getElementById('s-inc2').value;
-  document.getElementById('d-age2').textContent = age2 + ' år';
-  document.getElementById('d-inc2').textContent = inc2.toLocaleString('sv-SE') + ' tkr';
-
-  const age1 = +document.getElementById('s-age').value;
-  const inc1 = +document.getElementById('s-inc').value;
-
-  const stage1 = getStage(age1, inc1), stage2 = getStage(age2, inc2);
-  const t1 = Object.values(stage1.w).reduce((a,b)=>a+b,0);
-  const t2 = Object.values(stage2.w).reduce((a,b)=>a+b,0);
-  const tax1 = annualTax(age1, inc1), tax2 = annualTax(age2, inc2);
-
-  const rows = [
-    {l:'Offentliga tjänster', v1:t1, v2:t2, unit:'tkr/år'},
-    {l:'Total skatt', v1:tax1.tot, v2:tax2.tot, unit:'tkr/år'},
-    {l:'Netto (tjänster − skatt)', v1:t1-tax1.tot, v2:t2-tax2.tot, unit:'tkr/år'},
-    {l:'Effektiv skattesats', v1:inc1>0?Math.round(tax1.tot/inc1*100):0, v2:inc2>0?Math.round(tax2.tot/inc2*100):0, unit:'%'},
-  ];
-
-  let html = `<div style="display:grid;grid-template-columns:1fr 90px 90px;gap:.3rem .5rem;font-size:.72rem;color:rgba(242,239,232,.72)">
-    <div style="font-weight:500;color:rgba(242,239,232,.72)"></div>
-    <div style="text-align:right;font-weight:500;color:var(--green)">${age1} år</div>
-    <div style="text-align:right;font-weight:500;color:var(--amber)">${age2} år</div>`;
-  rows.forEach(r => {
-    const c1 = r.v1 < 0 ? '#C8973A' : 'rgba(242,239,232,.6)';
-    const c2 = r.v2 < 0 ? '#C8973A' : 'rgba(242,239,232,.6)';
-    html += `<div>${r.l}</div>
-      <div style="text-align:right;font-family:var(--mono);color:${c1}">${r.v1.toLocaleString('sv-SE')} ${r.unit}</div>
-      <div style="text-align:right;font-family:var(--mono);color:${c2}">${r.v2.toLocaleString('sv-SE')} ${r.unit}</div>`;
-  });
-  html += '</div>';
-  document.getElementById('compare-result').innerHTML = html;
-}
 
 // ═══════════════════════════════════════════════════════════════════
 // TRANSPARENCY — Download all assumptions as JSON

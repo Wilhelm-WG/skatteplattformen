@@ -10,6 +10,39 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-29) — Helhetsgenomgången steg 3: Din ekonomi
+
+- **Förmånsmodellen kalibrerad** mot faktiska utgifter 2024: sjukvård 474 Mdkr
+  (COFOG GF07), äldreomsorg 166 Mdkr (Kolada N20043), socialt skydd utom
+  äldreomsorg och avgiftsfinansierad pension cirka 658 Mdkr. Tidigare
+  summerade modellen till cirka 940 respektive 366 Mdkr. Befolkning per
+  ettårsklass från SCB 2024. `kontroll.mjs` kontrollerar summorna (±3 %).
+- **Gemensamma utgifter** (COFOG GF01–06, GF08: 1 061 Mdkr, cirka 100 tkr per
+  invånare, `KOLL_PER_INV`) visas separat och ingår inte i jämförelsen
+  förmåner–skatt. Skäl: skattesidan har bara personens egna skatter (summa
+  1 575 Mdkr), medan bolagsskatt, punktskatter, avgifter och lån också
+  finansierar det gemensamma. Med det gemensamma inräknat såg nästan alla ut
+  att ta emot cirka 115 tkr mer än de betalade.
+- **Hushålls- och inkomstjusteringarna borttagna** (schabloner utan källa som
+  bröt kalibreringen). Hushållsvalet i kalkylatorn är borttaget.
+- **Livsloppet** är ett befolkningsdiagram: netto per invånare och åldersgrupp
+  2024 med modellens skatt på SCB:s faktiska inkomster (HE0110) och modellens
+  förmåner (`LIVSLOPP_BEF`), plus en punkt för läsarens ålder och lön. Den
+  påhittade inkomstbanan, korsningsetiketterna och livscykelstapeln i
+  kalkylatorn är borttagna. Varningsrutan är en mening.
+- **Texterna följer modellens resultat**, inte åldern (22-åringen får inte
+  längre "betalar mer" bredvid en siffra som visar motsatsen).
+- **Skattekortet** delas i "Dras från lönen" (med belopp per månad) och
+  "Betalas också, men syns inte på lönebeskedet", med källrad.
+- **Skattekvittot** räknar inte inkomstpensionen (cirka 400 Mdkr), eftersom
+  pensionsavgiften inte räknas som skatt; andelar av 2 823 Mdkr.
+- **Delningsbilden** har förbehållet "Genomsnitt i en modell".
+- **Scenarierna:** Barnfamilj räknar fyra personer utan dubbelräkning; MS och
+  anhörigvårdare utan obelagda påståenden; ensamstående utan felaktiga
+  påståenden om skilsmässa och bostadsbidrag.
+- **Flyttat/borttaget:** känslighetsanalysen till Metod; "Jämför med en annan
+  profil" borttagen; metodtexten utan kodnamn.
+
 ### Changed (2026-10-29) — Helhetsgenomgången steg 2: neutralt språk och klarspråk
 
 Neutralt i sak, men tonen och rubriken "Vad fan får vi för pengarna?" är kvar.

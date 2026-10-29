@@ -75,13 +75,13 @@ correspondence/
 
 **Livsfaser & förmåner:**
 - `LIVSFASER_V2` / `STAGES` — 10 livsfaser med förmånskategorier: utb, sjukvård, socialt, koll, omsorg
-- `getStage(age, inc)` — returnerar livsfas med **hushålls- och inkomstjusterade** förmåner
-  - Utan `inc`-parameter: returnerar ojusterad fas (bakåtkompatibelt)
-  - Med `inc`: applicerar `HOUSEHOLD_MULT` × `incomeGradient(inc)`
+- Kalibrerade 2026-10-29: summan över befolkningen 2024 (SCB) = faktiska utgifter (sj COFOG GF07 473,7; oms Kolada 165,5; soc 657,5; koll GF01–06+08 1 061,3 Mdkr). `KOLL_PER_INV` = 100 tkr per invånare visas separat och ingår **inte** i `STAGES.w` eller i jämförelsen förmåner–skatt (skattesidan saknar bolagsskatt, punktskatter, avgifter och lån). Ändras ett värde: kör kontrollen (avsnitt 4b)
+- `getStage(age)` ger genomsnittet för åldern; hushålls- och inkomstjusteringar togs bort 2026-10-29
+- `LIVSLOPP_BEF` + `renderLifecycle(inc)`: befolkningsdiagram, netto per invånare och åldersgrupp 2024 (modellens skatt på SCB HE0110-inkomster), med punkt för läsaren. Räknas om när modellen ändras
 
 **Hushållstyper:**
 - `currentHousehold` — global variabel: 'ensam' | 'par' | 'familj' | 'ensam_barn'
-- `HOUSEHOLD_MULT` — multiplikatorer per hushållstyp per förmånskategori (SCB FASIT-baserade)
+- `HOUSEHOLD_MULT` — multiplikatorer per hushållstyp per förmånskategori (schabloner); utb är alltid 1,0
 - `setHousehold(btn, type)` — UI-callback
 
 **Inkomstgradient:**
@@ -104,7 +104,7 @@ correspondence/
 - Visas separat i skattekvittot som "Kapitalskatt (30%)"
 
 **COFOG-skattekvitto:**
-- 15 poster baserade på Eurostat COFOG 2024 (gov_10a_exp, 3 223 Mdkr total offentlig sektor); `HERO_100` på startsidan använder samma källa. Andelarna ska summera till 1 (kontrolleras)
+- 15 poster ur Eurostat COFOG 2024 utan avgiftsfinansierad pension (2 823 Mdkr), eftersom pensionsavgiften inte räknas som skatt; `HERO_100` på startsidan använder hela 3 223 Mdkr. Andelarna ska summera till 1 (kontrolleras)
 - "Socialt skydd" uppdelat i 5 underkategorier (pension, sjukdom, familj, arbetslöshet, övrigt)
 
 **URL-delning:**
@@ -139,7 +139,7 @@ correspondence/
 - Kalkylatorns standard: 22 år, 25 000 kr/mån; `#s-man` = lön per månad
 - Rättade sakfel läggs överst i `#rattelser` (datum, vad som var fel, källa). Kontrollskriptet hoppar över den sektionen
 
-**Sensitivitetsanalys:**
+**Sensitivitetsanalys (`#sensitivitet`, i vyn Metod):**
 - Tornado-diagram som varierar kommunalskatt ±3 procentenheter
 - Använder `annualTax(age, inc, {ksOverride: x})` för att beräkna skillnader
 
