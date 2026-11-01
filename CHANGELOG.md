@@ -10,6 +10,16 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-10-30) — Hundralappen med sedeltryck (art director-förslag 3)
+
+- Sedeln är ritad som ett tryck: guillochevågor och rosetter, ett djuptryckt
+  100 med ljus kant, ett vattenmärkesfält med ett björklöv, mikrotext längs
+  ramen och runt tårtan, serienummer med växande siffror (SP 2024 03223 efter
+  3 223 miljarder, SP 2026 01542 efter 1 542 miljarder), säkerhetstråd och en
+  ring med 100 streck runt tårtan, ett per krona. Tårtbitarna har gravyrlinjer.
+- På mobil är sedeln enklare: utan mikrotext, säkerhetstråd och vattenmärke,
+  som bara blev brus i liten storlek.
+
 ### Changed (2026-10-29) — Typografi och termokvitto (art director-förslag 1 och 2)
 
 - **Typografi:** en typskala i sju steg (variabler `--fs-…`), minsta

@@ -112,6 +112,7 @@ correspondence/
 **Hundralappen (`#hundralapp`):**
 - Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.
 - Andelarna 2024 ska stämma med `HERO_100`, och 2026 med `BDATA`.
+- Sedeltrycket (2026-10-30): `hlMonster(portrait)` räknar ut guilloche, rosetter, streckring och säkerhetstråd en gång per format (`HL_MONSTER`); `hlNote` lägger till tårtbitar, text och serienummer. Mobilen (stående, under 560 px) saknar mikrotext, tråd och vattenmärke
 - Kvittonas andelar: `KVITTO_ANDELAR`, 15 poster ur Eurostat COFOG 2024 utan inkomst- och tilläggspensionen (363,7 Mdkr, Orange rapport 2024; premiepensionen ligger utanför offentlig sektor), bas 2 859 Mdkr. `HERO_100` och hundralappen använder hela 3 223 Mdkr. Andelarna och grupperna kontrolleras
 - "Socialt skydd" uppdelat i 5 underkategorier (pension, sjukdom, familj, arbetslöshet, övrigt)
 
