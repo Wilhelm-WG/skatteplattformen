@@ -10,6 +10,24 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-11-04) — Försvaret i statsbudgeten och sifferformat
+
+- **Utgiftsområde 6:** 225 miljarder kronor är anslagen till Försvar och
+  samhällets krisberedskap, inte "försvarsbudgeten". Rubrik, nyckeltal, kortet
+  (med uppdelning: försvar 214,3 varav Ukrainastöd 39,7, krisberedskap 10,1,
+  strålsäkerhet 0,7 mdkr), prislappen (nu "Försvar och krisberedskap per
+  invånare"), hundralappen 2026, ordlistan och antagandefilen är rättade.
+- Diagrammet över anslagen till utgiftsområde 6 visar inte längre Natos mål för
+  2030 som en stapel, och rutan "Totalförsvarets ökning +83 mdkr/år" (Natomålet
+  minus anslaget 2025) är ersatt med Natomålet för sig, eftersom de räknas med
+  olika definitioner.
+- "Statens utgifter" heter nu "statens anslag" där det gäller budgetens
+  anslag. Hundralappens "Socialt skydd 2026" säger att utgiftsområde 13
+  (jämställdhet och nyanländas etablering) ingår.
+- **Format:** "~" och "≈" i synlig text (cirka 95 ställen) är ersatta med "ca"
+  eller "= ca". "×" i löptext skrivs "gånger" och "10,55M" "10,55 miljoner".
+  Ett ogrundat påstående ("största enskilda årsökningen någonsin") är borttaget.
+
 ### Changed (2026-11-04) — Kategorifärger som går att skilja åt
 
 - Nya kategorifärger där grannar skiljs åt i både kulör och ljushet: vård är
