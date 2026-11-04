@@ -10,6 +10,17 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-04) — Vyhuvudena i samma snitt
+
+- De sex vyhuvudena (Din ekonomi, Budgeten, Prislistan, Jämförelser, Framtid
+  och historik, Metod och källor) är omritade i samma stil och ögonhöjd som
+  kategoriscenerna. Motiven ligger i mitten så att de håller både i vyhuvudet
+  (4:3) och som kort i Sex vägar in (16:9). Nya alt-texter i `VY_SCEN`.
+
+### Fixed (2026-11-04)
+
+- Enheten i vyernas ledsiffra (till exempel "mdkr") hamnade på en egen rad.
+
 ### Changed (2026-11-04) — Alla kategoriscener i samma snitt
 
 - De elva övriga kategoriscenerna är omritade i samma stil som vård,
