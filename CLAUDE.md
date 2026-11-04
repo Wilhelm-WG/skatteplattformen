@@ -56,12 +56,12 @@ correspondence/
 - Samlad mobil-CSS (`≤ 640 px`) sist i första `<style>` ("MOBILANPASSNING"). Klassen `m-swipe` gör en kortgrupp till svepbar rad på mobil. Prislistan begränsas (6/12) via `pgridShowAll`. Kontrollera sidhöjd och överspill vid 390 px efter större ändringar
 
 **Ordlista (`#ordlista`):**
-- `ORDLISTA` (term, regex, definition). `initOrdlista` markerar första förekomsten per `section[id]` i löptext med `<button class="term">` och visar förklaring vid hovring/tryck. Rubriker, länkar, siffror och källrader hoppas över (`SKIP`). Skriv "miljarder kronor" i ingresser, "Mdkr" i tabeller och diagram
+- `ORDLISTA` (term, regex, definition). `initOrdlista` markerar första förekomsten per `section[id]` i löptext med `<button class="term">` och visar förklaring vid hovring/tryck. Rubriker, länkar, siffror och källrader hoppas över (`SKIP`). Skriv "miljarder kronor" i ingresser, "mdkr" (och "mnkr") i tabeller och diagram
 
 **Snabbfakta (`#snabbfakta`):**
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år, `bild:{tal, rad}`). Direktlänk `#fakta-N`; `faktaBild(i, 'post'|'story')` ritar delningsbild 1080×1350 eller 1080×1920 med den stora siffran och en mening. Lägg bara in siffror med källa
 
-**Bildspråk och designsystem (2026-10-29):**
+**Bildspråk och designsystem (2026-10-29, pictogram och tre scener omritade 2026-11-04):**
 - Ett bildspråk: scener i papperssnitt (`vh-…` vyhuvuden och Sex vägar in, `il-…` kategoriscener), fyllda pictogram (`pk-…`) för allt som är en kategori, linjeikoner (`i-…`) bara för knappar och gränssnitt. Inga ikoner i cirklar, inga foton. Alla symboler ligger i spriten direkt efter `<body>`; filtren får inte ligga i `display:none`. Alt-text för vyhuvudena i `VY_SCEN`
 - Kategorifärger som variabler i `:root` (`--k-soc`, `--k-vard`, `--k-utb`, `--k-infra`, `--k-forv`, `--k-forsv`, `--k-kommun`, `--k-ratt`, `--k-eu`, `--k-arbete`, `--k-ranta`, `--k-ovrigt`, `--k-fritid`). Samma färg och pictogram i hundralappen, kvittot, kalkylatorn, Vem gör vad och Malmö-diagrammet. I SVG-attribut och `HL100` står hexvärdena utskrivna; ändras en färg ska båda ändras
 - Diagramregel: övriga staplar `--d-neutral2` (eller `--d-neutral`), det texten handlar om `--d-mark` (grönt), prognos randig (`.ft-bar-fill.prognos`, `--d-prognos`). Tar emot `--emot` (grönt), skatt/betalar `--skatt` (sand). Grönt betyder aldrig en kategori
@@ -72,7 +72,7 @@ correspondence/
 
 **Typografi och kvitton (art director-förslag 1 och 2, 2026-10-29):**
 - Typskala i `:root`: `--fs-hjalte` 64, `--fs-avsnitt` 40, `--fs-under` 28, `--fs-ingress` 20, `--fs-brod` 16, `--fs-liten` 13, `--fs-etikett` 11 px. Ingen text under 11 px. En etikettstil (Inter 600, 11 px, 0,12 em, versaler) för `.s-eye`, `.card-label` m.fl.; kvittot och sedeln har egen typografi
-- `svSiffror` (sist i sista scriptet) sätter smalt hårt mellanslag i tusental, hårt mellanslag före enheter, riktigt minus och smalt mellanslag efter ≈ i all text, även den som ritas av JS. Skriv vanliga mellanslag i källan
+- `svSiffror` (sist i sista scriptet) sätter hårt mellanslag (U+00A0) i tusental och före enheter, riktigt minus och binder ≈ till talet i all text, även den som ritas av JS. Skriv vanliga mellanslag i källan. U+202F och ≈ saknas i Inter, Source Serif 4 och IBM Plex Mono: använd inte U+202F, och skriv "ca" i kvitton
 - Kvitton byggs med `KV` (`KV.kant` ojämn rivkant, `KV.huvud` logotyp och kassarader, `KV.kod` streckkod, `KV.flik` perforerad flik). Logotypen är symbolen `kv-logo`. Termobrus och slitna stråk är `::before`/`::after` på `.kvitto-papper` (inga SVG-filter på HTML, för Safari). `.kv-hog` = dubbel höjd
 - Ingen `<nav>` för annat än menyn: den globala regeln `nav{position:sticky…}` gäller alla nav-element
 

@@ -10,6 +10,20 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-04) — Nya pictogram och scener från designduken
+
+- **Pictogrammen:** alla femton kategoritecken är omritade på samma rutnät
+  (48, ytan 40 × 40) med en linjevikt på 3 px, glipor på minst 2 px och samma
+  hörnregler. De fungerar ned till 16 px och på grön botten.
+- **Tre scener** är omritade med tre djupplan och verkliga proportioner:
+  vård (ambulans enligt Socialstyrelsens föreskrift, 70-talssjukhus),
+  infrastruktur (tåg på banvall med kontaktledning, vägvisare utan text) och
+  socialt skydd (hemtjänst och barnvagn framför ett 50-talslamellhus).
+- **Typografi, rättat:** tusental skrivs med vanligt hårt mellanslag eftersom
+  det smala (U+202F) saknas i typsnitten. Kvittots jämförelser börjar med "ca"
+  i stället för ≈, som också saknas i typsnitten. "mdkr" och "mnkr" skrivs med
+  gemener enligt Myndigheternas skrivregler.
+
 ### Changed (2026-10-30) — Hundralappen med sedeltryck (art director-förslag 3)
 
 - Sedeln är ritad som ett tryck: guillochevågor och rosetter, ett djuptryckt

@@ -164,7 +164,7 @@ rubrik('3b. Kvittona och jämförelserna');
   // Jämförelserna ska ge läsbar text för alla belopp
   const dåliga = [];
   for (const g of G) for (const kr of [1, 37, 120, 480, 900, 2200, 6000, 18000, 60000, 200000]) {
-    const t = g.j(kr); if (!t || /NaN|undefined|Infinity|null/.test(t) || !t.startsWith('≈ ')) dåliga.push(`${g.n}, ${kr} kr: "${t}"`);
+    const t = g.j(kr); if (!t || /NaN|undefined|Infinity|null/.test(t) || !t.startsWith('ca ')) dåliga.push(`${g.n}, ${kr} kr: "${t}"`);
   }
   dåliga.length ? dåliga.slice(0, 5).forEach(d => FEL('Jämförelse: ' + d)) : OK('Jämförelserna ger läsbar text för belopp från 1 kr till 200 000 kr');
   // Jämförelsernas belopp ska stämma med prislapparna och de angivna källorna
@@ -225,14 +225,14 @@ function livsfaser() {
 // SCB, folkmängd 31 dec 2024 per livsfas (summerat från ettårsklasser; 75+ inkluderar 86 år och äldre)
 const BEF = { barn: 777888, elev: 1127415, gymn: 375030, student: 841992, ung_arb: 1274949, barnfamilj: 1397451,
   mitt_karriar: 1305718, senior: 1280779, pensionar: 1055599, aldri: 1150889 };
-// Mdkr 2024: sj = COFOG GF07; oms = Kolada N20043; soc = GF10 − äldreomsorg − inkomst- och tilläggspension (363,7, Orange rapport 2024); koll = övriga funktioner
+// mdkr 2024: sj = COFOG GF07; oms = Kolada N20043; soc = GF10 − äldreomsorg − inkomst- och tilläggspension (363,7, Orange rapport 2024); koll = övriga funktioner
 const MAL = { sj: 473.7, oms: 165.5, soc: 693.8, koll: 1061.3 }; // koll = COFOG GF01–06 + GF08
 {
   const LV = livsfaser();
   for (const [k, mal] of Object.entries(MAL)) {
     const sum = LV.reduce((a, f) => a + f.f[k] * (BEF[f.id] || 0), 0) / 1e6;
-    Math.abs(sum / mal - 1) <= 0.03 ? OK(`${k}: modellen ger ${sum.toFixed(1)} Mdkr, faktiskt ${mal} Mdkr`)
-      : FEL(`${k}: modellen summerar till ${sum.toFixed(1)} Mdkr, men faktiska utgifter är ${mal} Mdkr (mer än 3 % fel)`);
+    Math.abs(sum / mal - 1) <= 0.03 ? OK(`${k}: modellen ger ${sum.toFixed(1)} mdkr, faktiskt ${mal} mdkr`)
+      : FEL(`${k}: modellen summerar till ${sum.toFixed(1)} mdkr, men faktiska utgifter är ${mal} mdkr (mer än 3 % fel)`);
   }
 }
 
