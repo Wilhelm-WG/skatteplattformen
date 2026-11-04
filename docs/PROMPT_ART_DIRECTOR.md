@@ -86,7 +86,7 @@ Du är art director för Skatteplattformen. Det är en oberoende svensk sajt som
      | Hälso- och sjukvård | 1 291 | ≈ 37 minuter på intensiven |
      | Utbildning | 1 266 | ≈ 1½ skoldagar för en elev |
      | Polis, kultur, miljö, räntor | 891 | ≈ 1/49 av en polis månadslön |
-     | Vägar, järnväg, näringsliv | 840 | ≈ 5 meter riksväg underhålls ett år |
+     | Vägar, järnväg, näringsliv | 840 | ≈ 5 meter statlig väg underhålls ett år |
      | Förvaltning | 819 | ≈ en hundradel av en riksdagsledamots månadsarvode |
      | Försvar | 342 | ≈ en 300 000-del av en Archer-pjäs |
 

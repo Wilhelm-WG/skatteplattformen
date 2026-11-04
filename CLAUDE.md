@@ -104,7 +104,7 @@ correspondence/
 
 **Startkvittot (heron):**
 - Lönerutan `#start-lon` → `startKvitto()` ritar `#start-kvitto`: skatt på lönen (`skattDelar(40, …, {ksOverride:0.3238})`), fördelad på `START_GRUPPER` (summor av kvittots 15 COFOG-andelar). Raderna summerar exakt
-- Jämförelserna i `START_JMF`: hemtjänst, IVA-dygn, grundskola (178 skoldagar), riksväg ur `CARDS`; polisens medellön 43 900 kr (SCB 2025), riksdagsarvode 81 400 kr (riksdagen 2026), Archer 5 Mdkr/48 (FMV 2023). Uppdatera när källorna uppdateras. Bråk formuleras av `svAndel()`
+- Jämförelserna i `START_JMF`: hemtjänst, IVA-dygn, grundskola (178 skoldagar), statlig väg ur `CARDS`; polisens medellön 43 900 kr (SCB 2025), riksdagsarvode 81 400 kr (riksdagen 2026), Archer 5 Mdkr/48 (FMV 2023). Uppdatera när källorna uppdateras. Bråk formuleras av `svAndel()`
 - Knappen "Hela kvittot" för över lönen till kalkylatorns reglage
 
 **Två kvitton i Din ekonomi (`#receipt-card`, `.kvitto-par`):** arbetstagarens (`#kvitto`, skatt på lön och kapital) och arbetsgivarens (`#kvitto-ag`, `agKvitto()`, satserna i `AG_AVG`, 31,42 % 2026, nedsättning för 19–23 år).

@@ -10,6 +10,39 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-11-04) — Statistikgranskningen, 60 rättelser
+
+En systematisk granskning av alla vyer (98 fynd) följdes av rättelser av alla
+höga och medelallvarliga fynd. Nya siffror är hämtade ur primärkällor.
+
+- **Din ekonomi:** arbetsgivaravgiftens delar 2026 (efterlevandepension 0,30 %,
+  allmän löneavgift 12,62 %). Åldersgränser i födelseår: förhöjt grundavdrag
+  för född 1959 eller tidigare (`is66` = ålder 67+), lägre arbetsgivaravgift för
+  född 1958 eller tidigare (ny `agAldre` = ålder 68+). Metodtexter om pension,
+  socialt skydd 694 mdkr, yrkesliv 26–64, 3 223 mdkr, kalkylatorns texter om
+  hushåll och inkomst. Livsloppets rubrik säger att skatten följer 2026 års regler.
+- **Budgeten:** UO6-diagrammet visar utfall 2020 (63) och 2024 (128) och budget
+  2025–2026. +76 % från 2024. Natos mål 2035 och Sveriges mål 2030, prop.
+  2024/25:34. UO9 +6 %. Räntor 2024 utan Riksbanksåterställningen. Statsskuldens
+  historik från SCB/Riksgälden (1980 39 %, 1985 61 %), x-axel efter år, prognos
+  streckad. UO13 och UO20 med nya namn. 1 542 mdkr kallas statsbudgetens utgifter.
+- **Prislistan:** föräldrapenning per barn ca 345 000 kr, SiS 18 200 kr/dygn,
+  diabetesläkemedel ca 5 700 kr, demens (Kolada 2025), sophantering (Avfall
+  Sverige), högskolans finansiering för utbildningen, garantipension, helårs-
+  studenter, maxtaxa, värnplikt, högkostnadsskydden, avgiftsandelar ("Så
+  finansieras det, ungefär"), "statlig väg" i stället för "riksväg".
+- **Jämförelser:** vårdplatser 1 191 per dag 2025, Läkarförbundets enkät 2026,
+  OECD-snitt 6,5/7,7 %, referenslinjen beskrivs rätt, undvikbar dödlighet före
+  75 år, USA 3,21 % i Natodiagrammet.
+- **Framtid och Metod:** sjukpenningtalet 2000–2025 (Kolada N00938), sjukpenning
+  46 mdkr, diagnoser för pågående sjukfall; Gini 2011–2024 ur SCB (kapitalvinster);
+  medianförmögenhet 89 000 USD; personaldiagrammet ersatt med en lista över fyra
+  mått; undersköterskelön 33 500 kr; regionernas resultat 2025; poliser 24 746;
+  transportplanen; medellivslängd mot OECD-länderna 80,4; momsen i
+  känslighetsanalysen räknas på konsumtionen; metodsteg 05 om UO11.
+- Startvyn: statens kort utan pensionssystemet, temat "Offentlig skuld",
+  hundralappen 2024 länkar inte längre försvaret till prislappen för 2026.
+
 ### Fixed (2026-11-04) — Försvaret i statsbudgeten och sifferformat
 
 - **Utgiftsområde 6:** 225 miljarder kronor är anslagen till Försvar och
