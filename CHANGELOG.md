@@ -10,6 +10,15 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-04) — Alla kategoriscener i samma snitt
+
+- De elva övriga kategoriscenerna är omritade i samma stil som vård,
+  infrastruktur och socialt skydd: tre djupplan, människor sju huvuden höga
+  utan ansikten, svenska detaljer utan text och kategorifärgen som bär scenen.
+  Utbildning, förvaltning, bidrag till kommuner, bostäder, försvar (utan vapen),
+  rättsväsende, EU och bistånd (utan flaggor), arbetsmarknad, miljö, fritid och
+  räntor. Sidan växer med cirka 330 kB.
+
 ### Changed (2026-11-04) — Nya pictogram och scener från designduken
 
 - **Pictogrammen:** alla femton kategoritecken är omritade på samma rutnät

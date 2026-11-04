@@ -61,7 +61,7 @@ correspondence/
 **Snabbfakta (`#snabbfakta`):**
 - Faktakort ur `FAKTA` (rubrik, diagram `stack`/`bars`, text, källa, år, `bild:{tal, rad}`). Direktlänk `#fakta-N`; `faktaBild(i, 'post'|'story')` ritar delningsbild 1080×1350 eller 1080×1920 med den stora siffran och en mening. Lägg bara in siffror med källa
 
-**Bildspråk och designsystem (2026-10-29, pictogram och tre scener omritade 2026-11-04):**
+**Bildspråk och designsystem (2026-10-29; pictogram och alla 14 kategoriscener omritade 2026-11-04):**
 - Ett bildspråk: scener i papperssnitt (`vh-…` vyhuvuden och Sex vägar in, `il-…` kategoriscener), fyllda pictogram (`pk-…`) för allt som är en kategori, linjeikoner (`i-…`) bara för knappar och gränssnitt. Inga ikoner i cirklar, inga foton. Alla symboler ligger i spriten direkt efter `<body>`; filtren får inte ligga i `display:none`. Alt-text för vyhuvudena i `VY_SCEN`
 - Kategorifärger som variabler i `:root` (`--k-soc`, `--k-vard`, `--k-utb`, `--k-infra`, `--k-forv`, `--k-forsv`, `--k-kommun`, `--k-ratt`, `--k-eu`, `--k-arbete`, `--k-ranta`, `--k-ovrigt`, `--k-fritid`). Samma färg och pictogram i hundralappen, kvittot, kalkylatorn, Vem gör vad och Malmö-diagrammet. I SVG-attribut och `HL100` står hexvärdena utskrivna; ändras en färg ska båda ändras
 - Diagramregel: övriga staplar `--d-neutral2` (eller `--d-neutral`), det texten handlar om `--d-mark` (grönt), prognos randig (`.ft-bar-fill.prognos`, `--d-prognos`). Tar emot `--emot` (grönt), skatt/betalar `--skatt` (sand). Grönt betyder aldrig en kategori
