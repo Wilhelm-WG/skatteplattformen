@@ -10,6 +10,21 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-04) — Kategorifärger som går att skilja åt
+
+- Nya kategorifärger där grannar skiljs åt i både kulör och ljushet: vård är
+  petrol (#1E7471) och inte längre samma gröna som "tar emot", EU ljusblå
+  (#4A87B5) i stället för nästan samma blå som utbildning, arbetsmarknad
+  dovt rosa (#A85F72) i stället för grönt, rättsväsende vinrött (#7D2B3B) intill
+  kommunbidragens rost, socialt skydd något ljusare lila (#6B4A9E), försvar
+  (#34586E), förvaltning (#5E5A54) och övrigt (#8A857C).
+- Minsta färgavstånd mellan bitar i statsbudgetens hundralapp ökar från
+  ΔE 12 till 21. Vita pictogram har minst 3,5:1 mot varje färg.
+- Hundralappen, kvittona, Vem gör vad, Malmö-diagrammet, prislistans
+  kategorietiketter och scenerna för socialt skydd, försvar, EU, arbetsmarknad
+  och rättsväsende följer de nya färgerna. Räntornas ockra och vårdscenens
+  ambulansgrönt är oförändrade.
+
 ### Changed (2026-11-04) — Vyhuvudena i samma snitt
 
 - De sex vyhuvudena (Din ekonomi, Budgeten, Prislistan, Jämförelser, Framtid
