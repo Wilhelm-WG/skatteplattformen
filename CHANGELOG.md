@@ -10,6 +10,26 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Fixed (2026-11-05) — Statistikgranskningen, låga fynd
+
+- Eurostat oktober 2026 (EU-skuld 81,5 %, Finland 88,4, Tyskland 62,8,
+  Danmark 27,2), CPI 2025 (OECD-snitt 64,7), Statskontoret 2026:25 (190 riktade
+  statsbidrag), SCB:s framskrivning 2026–2070 (817 000 över 80 år 2030, +26 %,
+  försörjningskvot 0,77), Eurostat sjukhussängar 2024, boendekostnader EU 7,6.
+- Personalkostnader 45 % (SKR), statlig skatt 11–13 % av de skattskyldiga,
+  sjuksköterskor utan arbete 12 100 (Socialstyrelsen 2023), barnvaccination
+  (12 sjukdomar, regionerna betalar, beloppet märkt som uppskattning), IVA-källa,
+  flerbarnstillägg, UO12 104,2 mdkr, polisens anslag, UO26 −6 %.
+- Prislappen för KOL är borttagen (beloppen gick inte att belägga).
+- Ungdomsnedsättningen räknas för 9 av 12 månader 2026 i årsberäkningen.
+- Filtret "Välfärdsområden": UO13 och UO14 med, UO22 utan.
+- Filmen: "Skatt (beräknad)", cirka 7 700 kr, läkemedelsbidraget nämns;
+  docs/FILM_MANUS.md scen 2 uppdaterad.
+- Formuleringar och källor: hundralappen 2026 (1 543 mdkr, beslut nov–dec),
+  startkvittots metodrad, kollektivtrafiken, kalkylatorns metodnot,
+  arbetsgivaravgiften, kommunalskattens källa, ISK, försvarskortets tabell,
+  läkartäthet, vårdgaranti, EAG 2025.
+
 ### Fixed (2026-11-04) — Statistikgranskningen, 60 rättelser
 
 En systematisk granskning av alla vyer (98 fynd) följdes av rättelser av alla
