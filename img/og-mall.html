@@ -1,32 +1,19 @@
 <!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-html,body{margin:0;width:1200px;height:630px;overflow:hidden}
-body{background:#F4F1EA;font-family:Inter,sans-serif;color:#1A1813;position:relative}
-.k{position:absolute;left:80px;top:72px;font-size:26px;letter-spacing:.02em}
-.k b{font-weight:600}.k i{font-family:'Source Serif 4',serif;color:#1B4D3E}
-h1{position:absolute;left:80px;top:150px;margin:0;font-family:'Source Serif 4',serif;font-weight:600;font-size:96px;line-height:1.02;letter-spacing:-.02em}
-h1 em{color:#1B4D3E}
-p{position:absolute;left:80px;top:388px;margin:0;font-size:30px;line-height:1.4;color:#4A4640;max-width:640px}
-.u{position:absolute;left:80px;bottom:60px;font-size:22px;color:#4A4640;font-family:'IBM Plex Mono',monospace}
-.bars{position:absolute;right:70px;top:140px;width:400px}
-.cap{font-size:19px;color:#4A4640;margin:0 0 20px 0}.cap b{color:#1A1813;font-weight:600}
-.r div,.r span{flex-shrink:0}.r em{white-space:nowrap;font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:19px;color:#1A1813}
-.r{display:flex;align-items:center;gap:14px;margin-bottom:16px;font-size:20px;color:#4A4640}
-.r span{width:140px;text-align:right;white-space:nowrap}.r div{height:30px;border-radius:3px}
-.side{position:absolute;right:0;top:0;bottom:0;width:18px;background:#1B4D3E}
-</style></head><body>
-<div class="k"><b>Skatte</b><i>plattformen</i></div>
-<h1>Vad <em>fan</em> får vi<br>för pengarna?</h1>
-<p>Vart skattepengarna går, i kronor och ören. Oberoende och partipolitiskt neutral.</p>
-<div class="bars"><div class="cap"><b>Av varje hundralapp i offentliga utgifter</b><br>går så här mycket till …</div>
-<div class="r"><span>Socialt skydd</span><div style="width:190px;background:#5B3F8C"></div><em>38 kr</em></div>
-<div class="r"><span>Vård</span><div style="width:75px;background:#2E7D5C"></div><em>15 kr</em></div>
-<div class="r"><span>Utbildning</span><div style="width:70px;background:#1E4A8C"></div><em>14 kr</em></div>
-<div class="r"><span>Infrastruktur</span><div style="width:50px;background:#C8973A"></div><em>10 kr</em></div>
-<div class="r"><span>Förvaltning</span><div style="width:45px;background:#8A857C"></div><em>9 kr</em></div>
-<div class="r"><span>Försvar</span><div style="width:20px;background:#B84A1E"></div><em>4 kr</em></div>
-</div>
-<div class="u">wilhelm-wg.github.io/skatteplattformen</div><div style="position:absolute;right:70px;bottom:60px;font-size:17px;color:#8A857C">Källa: Eurostat, COFOG 2024</div>
-<div class="side"></div>
+<!-- Länkbilden (og.png, 1200×630) ritas av sajtens egen kod (ritaKvittoBild i index.html) med medianlönen 38 300 kr.
+     Kräver en lokal server, eftersom sidan läser index.html i en iframe:
+     python3 -m http.server 8765
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=8000 --screenshot=img/og.png http://localhost:8765/img/og-mall.html -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#1B4D3E}canvas{display:block}iframe{position:absolute;left:-9999px;width:1200px;height:800px;border:0}</style>
+</head><body>
+<canvas id="og" width="1200" height="630"></canvas>
+<iframe id="sajt" src="../index.html"></iframe>
+<script>
+document.getElementById('sajt').addEventListener('load', async e => {
+  const w = e.target.contentWindow;
+  // Canvasen ligger i den här sidan, så typsnitten måste laddas här
+  await Promise.all(['500 24px "IBM Plex Mono"','400 24px "IBM Plex Mono"','600 84px "Source Serif 4"','italic 600 84px "Source Serif 4"','500 26px Inter','400 28px Inter'].map(f => document.fonts.load(f)));
+  await w.ritaKvittoBild(document.getElementById('og'), 'og', 38300);
+});
+</script>
 </body></html>

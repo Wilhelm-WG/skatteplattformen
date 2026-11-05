@@ -10,6 +10,21 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-11-05) — Dela kvittot
+
+- **Kvittobild:** knappen "Dela kvittot som bild" under startkvittot ritar
+  kvittot för den inskrivna lönen som bild (4:5 för inlägg, 9:16 för story)
+  med sajtens typsnitt, pictogram och citatet. `ritaKvittoBild()` använder
+  samma beräkning som sidan (`startKvittoData()`).
+- **Länk med lön:** `?lon=38300#start` fyller i lönen. Delning från startsidan
+  (bilden och menyns Dela) skickar med lönen.
+- **Resultatkortet** i Din ekonomi använder sajtens typsnitt och färger (skatt i
+  sand, det man tar emot i grönt). Texten "snitt för min ålder och lön" är
+  rättad till "snitt för min ålder", eftersom förmånerna bara beror på ålder.
+- **Länkbilden** (`img/og.png`) visar kvittot för medianlönen och ritas av
+  samma kod via `img/og-mall.html`. Ny alt-text och `?v=2` för att tömma
+  cachen hos sociala medier.
+
 ### Fixed (2026-11-05) — Statistikgranskningen, låga fynd
 
 - Eurostat oktober 2026 (EU-skuld 81,5 %, Finland 88,4, Tyskland 62,8,

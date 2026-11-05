@@ -84,7 +84,7 @@ correspondence/
 **Licens:** text, siffror, diagram och illustrationer CC BY 4.0; kod MIT.
 
 **Delningsbild och ikoner (`img/`):**
-- `og.png` (1200×630) skapas från `og-mall.html` med Chrome headless: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=4000 --screenshot=img/og.png img/og-mall.html`. Uppdatera siffrorna i mallen när COFOG-fördelningen ändras
+- `og.png` (1200×630) ritas av sajtens egen kod (`ritaKvittoBild(canvas, 'og', 38300)`) via `img/og-mall.html`. Starta `python3 -m http.server 8765` i repot och kör `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=10000 --screenshot=img/og.png http://localhost:8765/img/og-mall.html`. Gör om bilden när kvittots siffror ändras, och höj `?v=` på `og:image`
 - `favicon.svg`, `apple-touch-icon.png` (180×180)
 
 **Gissa först (`#gissa`):**

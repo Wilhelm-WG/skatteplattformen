@@ -17,15 +17,15 @@
 <meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
 <meta property="og:site_name" content="Skatteplattformen">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png">
+<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Av varje hundralapp i offentliga utgifter går 38 kr till socialt skydd, 15 kr till hälsa och vård och 14 kr till utbildning.">
+<meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Ett skattekvitto för medianlönen 38 300 kr: skatten 7 692 kr i månaden fördelad på socialt skydd, vård, utbildning, polis, vägar, förvaltning och försvar.">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
 <meta name="twitter:description" content="Se vart skattepengarna går, med källa för varje siffra. Partipolitiskt oberoende. Data från SCB, OECD, SKR.">
-<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png">
+<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=2">
 <!-- Ikoner -->
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -957,6 +957,9 @@ html{scroll-padding-top:72px}
 .start-kv .kvitto{max-width:400px}
 .start-kv-citat{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.45;color:var(--green);text-align:center;max-width:24rem;margin:.4rem 0 0;text-wrap:balance}
 .start-kv-not a{color:var(--green)}
+.start-dela{display:inline-flex;align-items:center;gap:.45em;padding:.6rem 1.1rem;border:1px solid var(--green);background:transparent;color:var(--green);border-radius:var(--r-sm);font:600 .82rem/1 var(--sans);cursor:pointer}
+.start-dela:hover{background:var(--green);color:#fff}
+.start-dela:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .start-kv-not{font-size:.74rem;color:var(--ink3);line-height:1.55;text-align:center;max-width:26rem;margin:0}
 .start-kv-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .kv-rad.tva{grid-template-columns:14px minmax(0,1fr) auto;row-gap:1px;align-items:baseline}
@@ -1154,6 +1157,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       <div class="start-kv fu fu4">
         <figure class="kvitto" id="start-kvitto" style="margin:0" aria-label="Skattekvitto"></figure>
         <p class="start-kv-citat">Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.</p>
+        <button type="button" class="start-dela" id="start-dela" onclick="openShareCard('kvitto')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg>Dela kvittot som bild</button>
         <p class="start-kv-not" id="start-kv-not"></p>
         <p class="start-kv-live" aria-live="polite" id="start-kv-live"></p>
       </div>
@@ -4221,14 +4225,19 @@ function svAndel(r, sak){
   else { const sig = Math.pow(10, Math.floor(Math.log10(N)) - 1); b = `en ${(Math.round(N/sig)*sig).toLocaleString('sv-SE')}-del`; }
   return `${b} av ${sak}`;
 }
-function startKvitto(){
-  const inp = document.getElementById('start-lon'), fig = document.getElementById('start-kvitto'); if(!inp || !fig) return;
-  const lon = Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0);
+// Startkvittots siffror för en månadslön: skatt, sju rader i fallande ordning och vad de räcker till.
+function startKvittoData(lon){
   const d = lon > 0 ? skattDelar(40, lon*12/1000, {ksOverride:0.3238}) : null;
   const skatt = d ? Math.round((d.komm + d.stat - d.jsa) * 1000 / 12) : 0;
   const kr = START_GRUPPER.map(g => Math.round(skatt * g.a)); const iMax = kr.indexOf(Math.max(...kr));
   kr[iMax] += skatt - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
   const ordning = START_GRUPPER.map((g, i) => i).sort((x, y) => kr[y] - kr[x]);
+  return {lon, skatt, kr, ordning, rader: skatt > 0 ? ordning.map(i => ({n:START_GRUPPER[i].n, pk:START_GRUPPER[i].pk, c:START_GRUPPER[i].c, kr:kr[i], j:START_GRUPPER[i].j(kr[i])})) : []};
+}
+function startKvitto(){
+  const inp = document.getElementById('start-lon'), fig = document.getElementById('start-kvitto'); if(!inp || !fig) return;
+  const lon = Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0);
+  const {skatt, kr, ordning} = startKvittoData(lon);
   const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
   const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
     : '<div class="kv-del"><span>Ingen skatt på den lönen.</span><span></span></div>';
@@ -4257,6 +4266,136 @@ function startKvitto(){
   });
   startKvitto();
 })();
+
+// ── Kvittobilden: startkvittot som delbar bild ─────────────────────────
+// Ritas på canvas med sajtens typsnitt och pictogram. Format: 'post' 1080×1350 (4:5),
+// 'story' 1080×1920 (9:16) och 'og' 1200×630 (länkbilden, img/og-mall.html).
+const KB_FARG = {gron:'#1B4D3E', papper:'#F8F6EF', black:'#2B2925', gra:'#5E5A54', ljus:'#F4F1EA', ljus2:'rgba(244,241,234,.72)'};
+const kbBilder = {};
+// En SVG-symbol ur spriten som bild, i en given färg
+function kbSymbol(id, farg){
+  const k = id + farg; if(kbBilder[k]) return kbBilder[k];
+  const s = document.getElementById(id); if(!s) return Promise.resolve(null);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${s.getAttribute('viewBox')}" fill="${farg}"${id === 'kv-logo' ? ' shape-rendering="crispEdges"' : ''}>${s.innerHTML}</svg>`;
+  return kbBilder[k] = new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+}
+async function kbTypsnitt(){
+  if(!document.fonts) return;
+  try{ await Promise.all(['500 24px "IBM Plex Mono"', '400 24px "IBM Plex Mono"', '600 40px "Source Serif 4"', 'italic 500 32px "Source Serif 4"', '500 24px Inter'].map(f => document.fonts.load(f))); }catch(e){}
+}
+// Radbrytning efter bredd
+function kbRader(x, text, bredd){
+  const ord = text.split(' '), ut = []; let rad = '';
+  for(const o of ord){ const t = rad ? rad + ' ' + o : o; if(x.measureText(t).width > bredd && rad){ ut.push(rad); rad = o; } else rad = t; }
+  if(rad) ut.push(rad); return ut;
+}
+// Själva kvittot, ritat med övre vänstra hörnet i (0,0) och bredden RW. Returnerar höjden.
+// Med rita=false mäts bara höjden.
+function kbKvitto(x, data, RW, bild, rita){
+  const P = 46, inner = RW - 2*P, M = '"IBM Plex Mono", monospace';
+  const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
+  let y = 34;
+  const text = (t, tx, ty, font, farg, just) => { if(!rita) return; x.font = font; x.fillStyle = farg || KB_FARG.black; x.textAlign = just || 'left'; x.fillText(t, tx, ty); };
+  const streck = (dubbel) => { if(rita){ x.fillStyle = KB_FARG.black; x.globalAlpha = .7; for(let sx = P; sx < RW - P; sx += 13){ x.fillRect(sx, y, 7, 2); if(dubbel) x.fillRect(sx, y + 6, 7, 2); } x.globalAlpha = 1; } y += dubbel ? 26 : 20; };
+  // Huvud
+  if(rita && bild.logo) x.drawImage(bild.logo, RW/2 - 36, y, 72, 72);
+  y += 72 + 44;
+  if(rita){ x.save(); x.translate(RW/2, y); x.scale(1, 1.8); text('SKATTEPLATTFORMEN', 0, 0, `600 30px ${M}`, KB_FARG.black, 'center'); x.restore(); }
+  y += 34; text('KVITTO · DIN SKATT 2026', RW/2, y, `400 22px ${M}`, KB_FARG.black, 'center');
+  const nu = new Date();
+  y += 40; text('KASSA 01', P, y, `400 20px ${M}`); text(`KVITTO NR ${String(data.lon).padStart(7, '0')}`, RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
+  y += 28; text(nu.toLocaleDateString('sv-SE'), P, y, `400 20px ${M}`); text('KASSÖR: ARBETSGIVAREN', RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
+  y += 28; text(`LÖN ${data.lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %`, P, y, `400 20px ${M}`);
+  y += 18; streck(false);
+  // Rader: pictogram, namn och belopp, och under dem vad beloppet räcker till
+  for(const r of data.rader){
+    y += 30;
+    if(rita && bild.pk[r.pk]) x.drawImage(bild.pk[r.pk], P, y - 26, 32, 32);
+    text(r.n, P + 46, y, `500 24px ${M}`);
+    text(k2(r.kr), RW - P, y, `500 24px ${M}`, KB_FARG.black, 'right');
+    if(rita) x.font = `400 20px ${M}`;
+    else x.font = `400 20px ${M}`;
+    for(const rad of kbRader(x, r.j, inner - 46)){ y += 27; text(rad, P + 46, y, `400 20px ${M}`, KB_FARG.gra); }
+    y += 12;
+  }
+  if(!data.rader.length){ y += 30; text('Ingen skatt på den lönen.', P, y, `400 22px ${M}`); y += 12; }
+  streck(false);
+  // Summa i dubbel höjd
+  y += 52; text('SKATT/MÅN', P, y, `600 26px ${M}`);
+  if(rita){ x.save(); x.translate(RW - P, y); x.scale(1, 1.9); text(k2(data.skatt), 0, 0, `600 30px ${M}`, KB_FARG.black, 'right'); x.restore(); }
+  y += 38; text('KVAR EFTER SKATT', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(Math.max(0, data.lon - data.skatt)), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right');
+  y += 20; streck(true);
+  // Streckkod
+  y += 8;
+  if(rita){ x.fillStyle = KB_FARG.black; const siffror = (String(data.lon).padStart(7, '0') + '2026' + '7319').repeat(3); let bx = RW/2 - 170, i = 0; for(const ch of siffror){ const w = [2, 3, 4, 6][(+ch + i++) % 4]; if(bx + w > RW/2 + 170) break; x.fillRect(bx, y, w, 56); bx += w + 2.6 + ((+ch) % 3); } }
+  y += 56 + 30; text('VÄLKOMMEN ÅTER NÄSTA LÖNEDAG', RW/2, y, `400 20px ${M}`, '#3F3C36', 'center');
+  return y + 34;
+}
+// Rivkant som path längs en kant av kvittot
+function kbKant(x, RW, yKant, upp, fro){
+  let r = (fro * 7919) % 233280; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+  x.lineTo(0, yKant); let sx = 0;
+  while(sx < RW){ const w = 9 + rnd() * 9, h = 4 + rnd() * 11; x.lineTo(Math.min(RW, sx + w/2), upp ? yKant - h : yKant + h); x.lineTo(Math.min(RW, sx + w), yKant); sx += w; }
+}
+async function ritaKvittoBild(canvas, format, lon){
+  await kbTypsnitt();
+  const data = startKvittoData(lon);
+  const bild = {logo: await kbSymbol('kv-logo', KB_FARG.black), pk:{}};
+  for(const g of START_GRUPPER) bild.pk[g.pk] = await kbSymbol('pk-' + g.pk, g.c);
+  const og = format === 'og', story = format === 'story';
+  const W = og ? 1200 : 1080, H = og ? 630 : (story ? 1920 : 1350);
+  canvas.width = W; canvas.height = H;
+  const x = canvas.getContext('2d');
+  x.fillStyle = KB_FARG.gron; x.fillRect(0, 0, W, H);
+  const RW = 780;
+  const naturlig = kbKvitto(x, data, RW, bild, false);
+  // Text runt kvittot
+  const S = '"Source Serif 4", Georgia, serif', I = 'Inter, system-ui, sans-serif', M = '"IBM Plex Mono", monospace';
+  const citat = 'Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.';
+  let ky, skala, kx;
+  if(og){
+    x.textAlign = 'left'; x.fillStyle = KB_FARG.ljus2; x.font = `500 26px ${I}`; x.fillText('Skatteplattformen', 72, 92);
+    x.fillStyle = KB_FARG.ljus; x.font = `600 84px ${S}`; x.fillText('Vad', 72, 210);
+    x.font = `600 84px ${S}`; const bVad2 = x.measureText('Vad ').width;
+    x.font = `italic 600 84px ${S}`; x.fillStyle = '#C9A66B'; x.fillText('fan', 72 + bVad2, 210);
+    const bFan = x.measureText('fan ').width; x.font = `600 84px ${S}`; x.fillStyle = KB_FARG.ljus; x.fillText('får vi', 72 + bVad2 + bFan, 210);
+    x.fillText('för pengarna?', 72, 302);
+    x.font = `400 28px ${I}`; x.fillStyle = KB_FARG.ljus2;
+    kbRader(x, 'Skriv in din lön och se vad skatten betalar varje månad, med källa för varje siffra.', 560).forEach((r, i) => x.fillText(r, 72, 384 + i*40));
+    x.font = `400 22px ${M}`; x.fillText('wilhelm-wg.github.io/skatteplattformen', 72, 566);
+    skala = 0.62; kx = 1200 - 64 - RW*skala; ky = 46; // kvittot fortsätter utanför bildens nederkant
+  } else {
+    const M0 = story ? 150 : 80;
+    x.textAlign = 'center'; x.fillStyle = KB_FARG.ljus2; x.font = `500 ${story ? 30 : 26}px ${I}`; x.fillText('Skatteplattformen', W/2, M0);
+    x.fillStyle = KB_FARG.ljus; x.font = `600 ${story ? 64 : 52}px ${S}`; x.fillText('Vad fan får vi för pengarna?', W/2, M0 + (story ? 84 : 70));
+    x.font = `italic 500 ${story ? 34 : 29}px ${S}`;
+    const citRader = kbRader(x, citat, story ? 860 : 900);
+    const fot = story ? 170 : 96, citH = citRader.length * (story ? 48 : 40);
+    const topp = M0 + (story ? 140 : 112), luft = story ? 60 : 36;
+    const plats = H - topp - fot - citH - luft*2;
+    skala = Math.min(story ? 1.12 : 1, plats / naturlig); kx = (W - RW*skala)/2; ky = topp + Math.max(0, (plats - naturlig*skala)/2);
+    x.fillStyle = KB_FARG.ljus;
+    citRader.forEach((r, i) => x.fillText(r, W/2, ky + naturlig*skala + luft + (story ? 34 : 28) + i*(story ? 48 : 40)));
+    x.font = `400 ${story ? 26 : 22}px ${M}`; x.fillStyle = KB_FARG.ljus2;
+    x.fillText('Räkna på din egen lön: wilhelm-wg.github.io/skatteplattformen', W/2, H - fot/2 + 4);
+  }
+  // Kvittopapperet med skugga, rivkanter och en lätt lutning
+  x.save();
+  x.translate(kx + RW*skala/2, ky + naturlig*skala/2); x.rotate(-0.006); x.scale(skala, skala); x.translate(-RW/2, -naturlig/2);
+  x.shadowColor = 'rgba(0,0,0,.32)'; x.shadowBlur = 40; x.shadowOffsetY = 18;
+  x.beginPath(); x.moveTo(0, 10); kbKant(x, RW, 10, true, 3); x.lineTo(RW, naturlig - 10); x.lineTo(RW, naturlig - 10);
+  // nedre kanten baklänges
+  let r = (5 * 7919) % 233280; const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280; let sx = RW;
+  while(sx > 0){ const w = 9 + rnd() * 9, h = 4 + rnd() * 11; x.lineTo(Math.max(0, sx - w/2), naturlig - 10 + h); x.lineTo(Math.max(0, sx - w), naturlig - 10); sx -= w; }
+  x.closePath();
+  const g = x.createLinearGradient(0, 0, RW, 0); g.addColorStop(0, '#F2EFE6'); g.addColorStop(.06, '#F8F6EF'); g.addColorStop(.5, '#FAF8F2'); g.addColorStop(.93, '#F6F3EB'); g.addColorStop(1, '#ECE8DD');
+  x.fillStyle = g; x.fill();
+  x.shadowColor = 'transparent';
+  kbKvitto(x, data, RW, bild, true);
+  x.restore();
+  x.textAlign = 'left';
+  return data;
+}
 
 // ── Hundralappen (variant A) ───────────────────────────────────────────
 // 2024: Eurostat/SCB COFOG, 3 223 mdkr (HERO_100). 2026: statsbudgeten 1 542 mdkr (BDATA, prop. 2025/26:1).
@@ -4472,6 +4611,9 @@ function hlRender(){
 
 function readURLParams(){
   const p = new URLSearchParams(window.location.search);
+  // Delat kvitto: ?lon=38300 fyller i lönen på startsidan
+  const lonP = parseInt(p.get('lon'));
+  if(!isNaN(lonP) && lonP > 0 && lonP <= 1000000){ const inp = document.getElementById('start-lon'); if(inp){ inp.value = lonP.toLocaleString('sv-SE'); startKvitto(); } }
   // Delad länk med fler inställningar: visa dem utfällda
   if(p.get('hh') || p.get('kapital') || p.get('ks')){ const m = document.querySelector('.calc-mer'); if(m) m.open = true; }
   const age = parseInt(p.get('age'));
@@ -6059,7 +6201,8 @@ function shareSkatt(e){
   if(e) e.preventDefault();
   // Utanför Din ekonomi delas den vy man står på
   if(window.aktivVy && window.aktivVy !== 'din-ekonomi'){
-    const url = location.href.split('?')[0];
+    // På startsidan följer lönen med, så att mottagaren ser samma kvitto
+    const url = window.aktivVy === 'start' && scStartLon() ? location.origin + location.pathname + '?lon=' + scStartLon() + '#start' : location.href.split('?')[0];
     const btn = document.querySelector('.nav-pill');
     const flash = msg => { if(!btn) return; const o = btn.textContent; btn.textContent = msg; setTimeout(() => { btn.textContent = o; }, 2000); };
     if(navigator.share) navigator.share({title: document.title, url}).catch(() => {});
@@ -6112,69 +6255,80 @@ function scState(){
   return { age, inc, kommun, benefits, tax, net: benefits - tax };
 }
 
-let scFormat = 'square';
+let scFormat = 'square';   // 'square' = inlägg (kvittot 4:5, profilen 1:1), 'story' = 9:16
+let scLage = 'profil';     // 'profil' (Din ekonomi) eller 'kvitto' (startkvittot)
 function setScFormat(btn, fmt){
   scFormat = fmt;
-  document.querySelectorAll('.sc-fmt').forEach(b => b.classList.toggle('on', b === btn));
+  document.querySelectorAll('.sc-fmt').forEach(b => { b.classList.toggle('on', b === btn); b.setAttribute('aria-pressed', b === btn); });
   drawShareCard();
 }
+function scStartLon(){ const inp = document.getElementById('start-lon'); return inp ? Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0) : 38300; }
 
-function drawShareCard(){
-  const c = document.getElementById('sc-canvas'); if(!c) return;
+// Resultatkortet för Din ekonomi, i sajtens typsnitt och färger
+async function drawProfilKort(c){
+  await kbTypsnitt();
   const s = scState();
   const story = scFormat === 'story';
   const W = 1080, H = story ? 1920 : 1080, M = 90;
   c.width = W; c.height = H;
   const x = c.getContext('2d');
   const kr = n => n.toLocaleString('sv-SE');
-  // Vertikala ankare per format (story har mer luft)
+  const S = '"Source Serif 4", Georgia, serif', I = 'Inter, system-ui, sans-serif', MO = '"IBM Plex Mono", monospace';
   const y = story
-    ? { wm:160, badge:205, head:560, prof:630, b1:860, b1l:922, t1:1160, t1l:1222, rule:1320, net:1420, netsub:1472, res:1540 }
-    : { wm:120, badge:158, head:270, prof:322, b1:500, b1l:548, t1:710,  t1l:758,  rule:812,  net:882,  netsub:924, res:966 };
-
+    ? { wm:170, head:520, prof:590, b1:820, b1l:880, t1:1110, t1l:1170, rule:1270, net:1360, netsub:1412, res:1470 }
+    : { wm:130, head:270, prof:325, b1:500, b1l:552, t1:705,  t1l:757,  rule:812,  net:880,  netsub:926, res:968 };
   x.fillStyle = '#F4F1EA'; x.fillRect(0, 0, W, H);
-  x.fillStyle = '#1B4D3E'; x.fillRect(0, 0, W, 14);
-  // Wordmark + badge
-  x.fillStyle = '#1B4D3E'; x.font = '600 42px Georgia, serif';
-  x.fillText('Skatteplattformen', M, y.wm);
-  x.fillStyle = '#8A8D94'; x.font = '500 21px Arial';
-  x.fillText('ÖPPEN DATA · PARTIPOLITISKT OBEROENDE · 2026', M, y.badge);
-  // Headline
-  x.fillStyle = '#1A1814'; x.font = 'italic 700 70px Georgia, serif';
-  x.fillText('Min ekonomi', M, y.head);
-  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
+  x.fillStyle = '#1B4D3E'; x.font = `500 30px ${I}`; x.fillText('Skatteplattformen', M, y.wm);
+  x.fillStyle = '#1A1813'; x.font = `600 76px ${S}`; x.fillText('Min ekonomi', M, y.head);
+  x.fillStyle = '#4A4640'; x.font = `400 30px ${I}`;
   x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, y.prof);
-  // Förmåner
-  x.fillStyle = '#2E7D5C'; x.font = '700 104px Georgia, serif';
-  x.fillText(kr(s.benefits) + ' tkr', M, y.b1);
-  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText('offentliga tjänster i år, snitt för min ålder och lön', M, y.b1l);
-  // Skatt
-  x.fillStyle = '#B84A1E'; x.font = '700 104px Georgia, serif';
-  x.fillText(kr(s.tax) + ' tkr', M, y.t1);
-  x.fillStyle = '#4A4A46'; x.font = '400 31px Arial';
-  x.fillText('skatt jag betalar i år', M, y.t1l);
-  // Netto
-  const neg = s.net < 0;
-  x.fillStyle = neg ? '#B84A1E' : '#2E7D5C'; x.fillRect(M, y.rule, W - 2*M, 4);
-  x.font = '700 42px Arial'; x.fillStyle = neg ? '#B84A1E' : '#2E7D5C';
-  x.fillText(neg ? 'Betalar mer än tar emot i år' : 'Tar emot mer än betalar i år', M, y.net);
-  x.fillStyle = '#4A4A46'; x.font = '400 27px Arial';
-  const d = kr(Math.abs(s.net));
-  x.fillText(`Skillnaden: ${d} tkr. Försvar, vägar m.m. som alla delar på ingår inte.`, M, y.netsub);
-  x.fillStyle = '#8A8D94'; x.font = '400 22px Arial';
+  x.fillStyle = '#2E7D5C'; x.font = `600 104px ${S}`; x.fillText(kr(s.benefits) + ' tkr', M, y.b1);
+  x.fillStyle = '#4A4640'; x.font = `400 30px ${I}`; x.fillText('offentliga tjänster i år, snitt för min ålder', M, y.b1l);
+  x.fillStyle = '#8C6A2C'; x.font = `600 104px ${S}`; x.fillText(kr(s.tax) + ' tkr', M, y.t1);
+  x.fillStyle = '#4A4640'; x.font = `400 30px ${I}`; x.fillText('skatt jag betalar i år', M, y.t1l);
+  const neg = s.net < 0, farg = neg ? '#8C6A2C' : '#2E7D5C';
+  x.fillStyle = farg; x.fillRect(M, y.rule, W - 2*M, 3);
+  x.font = `600 40px ${I}`; x.fillText(neg ? 'Betalar mer än tar emot i år' : 'Tar emot mer än betalar i år', M, y.net);
+  x.fillStyle = '#4A4640'; x.font = `400 26px ${I}`;
+  x.fillText(`Skillnaden: ${kr(Math.abs(s.net))} tkr. Försvar, vägar och annat gemensamt ingår inte.`, M, y.netsub);
+  x.fillStyle = '#6B665E'; x.font = `400 22px ${MO}`;
   x.fillText('Genomsnitt i en modell, inte en exakt beräkning för en person.', M, y.res);
-  // Footer
-  x.fillStyle = '#1B4D3E'; x.fillRect(0, H - 92, W, 92);
-  x.fillStyle = '#FFFFFF'; x.font = '600 32px Arial';
-  x.fillText('Räkna ut din egen  →', M, H - 36);
-  x.textAlign = 'right'; x.fillStyle = 'rgba(255,255,255,.78)'; x.font = '400 26px Arial';
-  x.fillText('wilhelm-wg.github.io/skatteplattformen', W - M, H - 36);
+  x.fillStyle = '#1B4D3E'; x.fillRect(0, H - 96, W, 96);
+  x.fillStyle = '#F4F1EA'; x.font = `500 30px ${I}`; x.fillText('Räkna ut din egen →', M, H - 38);
+  x.textAlign = 'right'; x.fillStyle = 'rgba(244,241,234,.75)'; x.font = `400 24px ${MO}`;
+  x.fillText('wilhelm-wg.github.io/skatteplattformen', W - M, H - 38);
   x.textAlign = 'left';
 }
-
+let scRitning = 0;
+async function drawShareCard(){
+  const c = document.getElementById('sc-canvas'); if(!c) return;
+  const nr = ++scRitning;
+  // Rita på en egen canvas och kopiera när den är klar, så att ett snabbt formatbyte inte blandar två bilder
+  const tmp = document.createElement('canvas');
+  if(scLage === 'kvitto') await ritaKvittoBild(tmp, scFormat === 'story' ? 'story' : 'post', scStartLon());
+  else await drawProfilKort(tmp);
+  if(nr !== scRitning) return;
+  c.width = tmp.width; c.height = tmp.height; c.getContext('2d').drawImage(tmp, 0, 0);
+}
+function scLank(){
+  if(scLage === 'kvitto') return location.origin + location.pathname + '?lon=' + scStartLon() + '#start';
+  return buildShareURL();
+}
 let scTillbaka = null;
-function openShareCard(){ drawShareCard(); const o = document.getElementById('sc-overlay'); if(!o) return; scTillbaka = document.activeElement; o.classList.add('on'); document.body.style.overflow = 'hidden'; o.querySelector('.sc-close').focus(); }
+function openShareCard(lage){
+  scLage = lage === 'kvitto' ? 'kvitto' : 'profil';
+  const o = document.getElementById('sc-overlay'); if(!o) return;
+  const kv = scLage === 'kvitto';
+  o.querySelector('.sc-modal').setAttribute('aria-label', kv ? 'Dela kvittot som bild' : 'Spara din profil som bild');
+  const f = o.querySelectorAll('.sc-fmt');
+  if(f[0]) f[0].textContent = kv ? 'Inlägg (4:5)' : 'Inlägg (1:1)';
+  if(f[1]) f[1].textContent = 'Story (9:16)';
+  const hint = o.querySelector('.sc-hint');
+  if(hint) hint.textContent = kv ? 'Bilden visar kvittot för lönen du skrev in. Länken öppnar sajten med samma lön.' : 'Bilden visar din beräkning. Länken öppnar sajten med samma inställningar.';
+  scFormat = 'square'; f.forEach((b, i) => { b.classList.toggle('on', i === 0); b.setAttribute('aria-pressed', i === 0); });
+  drawShareCard();
+  scTillbaka = document.activeElement; o.classList.add('on'); document.body.style.overflow = 'hidden'; o.querySelector('.sc-close').focus();
+}
 function closeShareCard(){ const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return; o.classList.remove('on'); document.body.style.overflow = ''; if(scTillbaka && scTillbaka.focus) scTillbaka.focus(); }
 document.addEventListener('keydown', e => {
   const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return;
@@ -6184,20 +6338,27 @@ document.addEventListener('keydown', e => {
   if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
   else if(!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
 });
+function scFilnamn(){ return scLage === 'kvitto' ? 'mitt-skattekvitto.png' : 'min-valfardsprofil.png'; }
 function downloadShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
   const a = document.createElement('a');
-  a.download = 'min-valfardsprofil.png'; a.href = c.toDataURL('image/png'); a.click();
+  a.download = scFilnamn(); a.href = c.toDataURL('image/png'); a.click();
 }
 function shareShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
+  const url = scLank();
+  let text = 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.';
+  if(scLage === 'kvitto'){ const d = startKvittoData(scStartLon()); text = `Min skatt är ${d.skatt.toLocaleString('sv-SE')} kr i månaden. Så här räcker den. Räkna på din egen lön:`; }
   c.toBlob(blob => {
-    const file = new File([blob], 'min-valfardsprofil.png', { type: 'image/png' });
-    const payload = { title: 'Min ekonomi', text: 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.' };
+    const file = new File([blob], scFilnamn(), { type: 'image/png' });
+    const payload = { title: scLage === 'kvitto' ? 'Mitt skattekvitto' : 'Min ekonomi', text, url };
     if(navigator.canShare && navigator.canShare({ files: [file] })){
       navigator.share(Object.assign({ files: [file] }, payload)).catch(()=>{});
+    } else if(navigator.share){
+      navigator.share(payload).catch(()=>{});
     } else {
       downloadShareCard();
+      if(navigator.clipboard) navigator.clipboard.writeText(url).catch(()=>{});
     }
   }, 'image/png');
 }
