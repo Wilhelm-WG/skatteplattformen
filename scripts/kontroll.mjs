@@ -169,7 +169,7 @@ rubrik('3b. Kvittona och jämförelserna');
   dåliga.length ? dåliga.slice(0, 5).forEach(d => FEL('Jämförelse: ' + d)) : OK('Jämförelserna ger läsbar text för belopp från 1 kr till 200 000 kr');
   // Jämförelsernas belopp ska stämma med prislapparna och de angivna källorna
   const J = vm.runInContext('START_JMF', kv), kort = t => (CARDS.find(c => c.title === t) || {}).amount;
-  const par = [['hemtjanstAr', kort('Hemtjänst, ett år')], ['ivaDygn', kort('Ett dygn på IVA')], ['grundskolaLasar', kort('Ett år i grundskolan')], ['riksvagKm', kort('Underhåll av 1 km statlig väg per år')]];
+  const par = [['hemtjanstAr', kort('Hemtjänst, ett år')], ['ivaDygn', kort('Ett dygn på IVA')], ['grundskolaLasar', kort('Ett år i grundskolan')], ['riksvagKm', kort('Underhåll av 1 km statlig väg per år')], ['barnbidragAr', kort('Barnbidrag per år')]];
   const avv = par.filter(([k, v]) => J[k] !== v);
   avv.length ? avv.forEach(([k, v]) => FEL(`START_JMF.${k} = ${J[k]}, men prislappen säger ${v}`)) : OK('Startkvittots jämförelser stämmer med prislapparna');
   for (const [k, txt] of [['polislon', '43 900'], ['riksdagsarvode', '81 400']]) if (!html.includes(txt)) FEL(`Källuppgiften för ${k} (${txt}) saknas i texten`);

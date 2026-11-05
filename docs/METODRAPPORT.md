@@ -30,7 +30,7 @@ Sedan v2.0 har modellen ändrats på flera viktiga punkter. Totalen för offentl
 ### 1.1 Vad modellen visar
 
 - **Skatten på en lön** med 2026 års regler: kommunalskatt, statlig inkomstskatt, jobbskatteavdrag, arbetsgivaravgift och en uppskattad moms. Kommunalskatten är rikssnittet 32,38 % om läsaren inte väljer en kommun.
-- **Vad skatten går till**, fördelat som den offentliga sektorns utgifter 2024 (Eurostat COFOG). Startkvittot har sju rader. Kvittot i Din ekonomi har femton.
+- **Vad skatten går till**, fördelat som den offentliga sektorns utgifter 2024 (Eurostat COFOG). Startkvittot har åtta rader. Kvittot i Din ekonomi har femton.
 - **Vad arbetsgivaren betalar** ovanpå lönen, uppdelat på arbetsgivaravgiftens sju delar.
 - **Genomsnittliga förmåner per år och åldersgrupp** i fyra kategorier: utbildning, hälso- och sjukvård, socialt skydd och äldreomsorg, i 2024 års priser.
 - **Livsloppet**: netto per invånare i tio åldersgrupper för hela befolkningen 2024, och en punkt för läsarens ålder och lön.
@@ -114,7 +114,7 @@ Skatten fördelas med andelarna i `KVITTO_ANDELAR`. De är Eurostats COFOG-utgif
 | Räntor | 1,75 % |
 | Miljöskydd | 1,22 % |
 
-Startkvittot slår ihop de femton posterna till sju grupper (`START_GRUPPER`): socialt skydd 30,07 %, hälso- och sjukvård 16,58 %, utbildning 16,25 %, polis, kultur, miljö och räntor 11,43 %, vägar, järnväg och näringsliv 10,78 %, förvaltning 10,51 % och försvar 4,38 %. Kontrollskriptet prövar att varje andel används exakt en gång.
+Startkvittot slår ihop de femton posterna till åtta grupper (`START_GRUPPER`): sjukdom, barn och arbetslöshet 17,97 % (jämförs med barnbidraget, 1 250 kr i månaden), äldre: omsorg och garantipension 12,10 % (jämförs med hemtjänst; fram till 5 november 2026 var de två en rad, socialt skydd 30,07 %), hälso- och sjukvård 16,58 %, utbildning 16,25 %, polis, kultur, miljö och räntor 11,43 %, vägar, järnväg och näringsliv 10,78 %, förvaltning 10,51 % och försvar 4,38 %. Kontrollskriptet prövar att varje andel används exakt en gång.
 
 Raderna avrundas till hela kronor. Avrundningsresten läggs på den största raden, så att raderna summerar exakt till skatten.
 
@@ -346,6 +346,10 @@ Förmånerna (utan gemensamma utgifter) summerar till cirka 1 713 mdkr. Före ka
 COFOG-funktionerna 01–06 och 08 (allmän förvaltning inklusive räntor, försvar, samhällsskydd och rättsskipning, näringsliv och transporter, miljöskydd, bostäder och samhällsutveckling, fritid och kultur) var 1 061,3 mdkr 2024. Delat lika på 10 587 710 invånare blir det cirka 100 tkr per person. Lika fördelning per invånare följer NTA-metoden för kollektiva nyttigheter.
 
 ---
+
+### 7.6 Arbetar eller studerar (från 5 november 2026)
+
+Kalkylatorn har för 19–64 år ett val: "Vet inte" (förvalt), "Arbetar" eller "Studerar". "Vet inte" ger åldersgruppens snitt, som livsloppet och kalibreringen bygger på. "Arbetar" sätter utbildningen till 5 tkr (egen vuxenutbildning). "Studerar" sätter den till 155 tkr: högskola 114 tkr per helårsstudent (UKÄ 2025) och studiebidrag 1 030 kr per vecka i 40 veckor, cirka 41 tkr (CSN 2026). COFOG räknar bidrag till studerande som utbildning. Studielånet räknas inte, eftersom det betalas tillbaka. Valet påverkar bara den enskilda beräkningen.
 
 ## 8. Livsloppet
 

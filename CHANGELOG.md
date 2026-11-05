@@ -10,6 +10,17 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-05) — Arbetar eller studerar, socialt skydd i två rader
+
+- **Din ekonomi:** valet "Vet inte / Arbetar / Studerar" för 19–64 år. Arbetar
+  ger 5 tkr i utbildning, Studerar 155 tkr (UKÄ 114 tkr + CSN:s studiebidrag
+  cirka 41 tkr). Hjälptexten för lönen och resultatkortet följer valet, och
+  länken tar med `syss=`.
+- **Startkvittot:** socialt skydd är delat i "Sjukdom, barn och arbetslöshet"
+  (jämförs med barnbidraget) och "Äldre: omsorg och garantipension" (jämförs
+  med hemtjänst). Kvittot har åtta rader. `START_JMF.barnbidragAr` kontrolleras
+  mot prislappen. Länkbilden är omgjord (`og.png?v=3`).
+
 ### Changed (2026-11-05) — Genomsnittsskatt bredvid satserna
 
 - **"Hur stor del av lönen går till skatt?"** ersätter marginalskattekortet i Din

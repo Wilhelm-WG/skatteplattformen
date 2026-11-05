@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
 <meta property="og:site_name" content="Skatteplattformen">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=2">
+<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Ett skattekvitto för medianlönen 38 300 kr: skatten 7 692 kr i månaden fördelad på socialt skydd, vård, utbildning, polis, vägar, förvaltning och försvar.">
@@ -25,7 +25,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
 <meta name="twitter:description" content="Skriv in din lön och få ett kvitto på vad skatten betalar. Källa och år för varje siffra. Partipolitiskt oberoende.">
-<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=2">
+<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=3">
 <!-- Ikoner -->
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -39,7 +39,7 @@
   "description": "Partipolitiskt oberoende sajt om svenska skatter och välfärd: ett skattekvitto för din lön, vad du tar emot i olika åldrar, statsbudgeten 2026, vad offentliga tjänster kostar och jämförelser med andra länder. Källa och år för varje siffra.",
   "applicationCategory": "EducationalApplication",
   "dateModified": "2026-11-05",
-  "image": "https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=2",
+  "image": "https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=3",
   "operatingSystem": "Web",
   "inLanguage": "sv",
   "isAccessibleForFree": true,
@@ -769,6 +769,12 @@ i.snitt-kontur{box-shadow:inset 0 0 0 1.5px #8C6A2C;background:transparent}
 .snitt-v{font-family:var(--mono);white-space:nowrap;text-align:right}
 .snitt-v b{color:var(--ink);font-weight:600}
 .snitt-not{font-size:.75rem;color:var(--ink2);line-height:1.55;margin:.75rem 0 0}
+.syss{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:.6rem 0 .2rem}
+.syss span{font-size:.78rem;color:var(--ink2);margin-right:.2rem}
+.syss button{font:500 .8rem/1 var(--sans);padding:.45rem .7rem;min-height:34px;border:1px solid var(--border);border-radius:99px;background:var(--paper);color:var(--ink);cursor:pointer}
+.syss[hidden]{display:none}
+.syss button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.syss button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .calc-hjalp{font-size:.78rem;color:var(--ink2);line-height:1.5;margin:.3rem 0 0}
 .barn-val{width:100%;margin-top:.35rem;padding:7px 10px;font:500 .85rem var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;min-height:38px}
 .barn-ruta{background:var(--green-ll);border-radius:var(--r-sm,6px);padding:.9rem 1rem;font-size:.85rem;line-height:1.55;color:var(--ink);margin:0 0 1rem}
@@ -1175,7 +1181,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         </div>
         <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas för den som är under 66 år, pension för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Kvittot fördelar skatten i samma proportioner som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter. I verkligheten går kommunalskatten till kommun och region, men alla skatter tillsammans betalar alla utgifter.</p>
       </div>
-      <!-- STARTKVITTOT: skatten på lönen, fördelad på sju grupper, med vad den räcker till (START_GRUPPER i JS). -->
+      <!-- STARTKVITTOT: skatten på lönen, fördelad på åtta grupper, med vad den räcker till (START_GRUPPER i JS). -->
       <div class="start-kv fu fu4">
         <figure class="kvitto" id="start-kvitto" style="margin:0" aria-label="Skattekvitto"></figure>
         <p class="start-kv-citat">Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.</p>
@@ -2474,6 +2480,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
             <input type="range" min="0" max="85" value="22" id="s-age" step="1" aria-label="Din ålder" aria-valuemin="0" aria-valuemax="85" aria-valuenow="22" aria-valuetext="22 år">
             <span class="sl-val" id="d-age">22 år</span>
           </div>
+          <div class="syss" id="syss-rad" role="group" aria-label="Vad gör du?"><span>Vad gör du?</span><button type="button" data-syss="vet" aria-pressed="true" onclick="setSyssla('vet')">Vet inte</button><button type="button" data-syss="arbetar" aria-pressed="false" onclick="setSyssla('arbetar')">Arbetar</button><button type="button" data-syss="studerar" aria-pressed="false" onclick="setSyssla('studerar')">Studerar</button></div>
           <div class="stage-chip" id="stage-chip"><span class="stage-icon" id="stage-icon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-office"/></svg></span><span id="stage-label">Mitt i arbetslivet</span></div>
         </div>
 
@@ -2484,7 +2491,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
             <input type="range" min="0" max="1200" value="300" id="s-inc" step="1" aria-label="Lön före skatt per år i tusen kronor" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="300" aria-valuetext="300 000 kronor per år">
             <span class="sl-val" id="d-inc">300 tkr/år</span>
           </div>
-          <p class="calc-hjalp">Räknat som om du har lönen hela året. Jobbar du bara en del av året, till exempel på sommaren, får du ofta tillbaka skatt i deklarationen.</p>
+          <p class="calc-hjalp" id="inc-hjalp">Räknat som om du har lönen hela året. Jobbar du bara en del av året, till exempel på sommaren, får du ofta tillbaka skatt i deklarationen.</p>
         </div>
 
         <div>
@@ -4238,12 +4245,14 @@ function agKvitto(age, inc, _, kr2){
 }
 // ── Startkvittot ───────────────────────────────────────────────────────
 // Skatten på lönen (kommunalskatt + statlig skatt − jobbskatteavdrag, rikssnittet 32,38 %, under 66 år),
-// fördelad som skattekvittots 15 poster (COFOG 2024 utan inkomstpensionen) i sju grupper.
+// fördelad som skattekvittots 15 poster (COFOG 2024 utan inkomstpensionen) i åtta grupper.
 // Jämförelserna: prislapparna i CARDS samt Archer (FMV 2023: 48 pjäser för cirka 5 mdkr),
 // polisens medellön (SCB 2025: 43 900 kr/mån) och riksdagsledamöternas arvode (riksdagen 2026: 81 400 kr/mån).
-const START_JMF = {hemtjanstAr:385000, ivaDygn:50000, grundskolaLasar:143000, skoldagar:178, riksvagKm:163000, polislon:43900, riksdagsarvode:81400, archer:5e9/48};
+const START_JMF = {barnbidragAr:15000, hemtjanstAr:385000, ivaDygn:50000, grundskolaLasar:143000, skoldagar:178, riksvagKm:163000, polislon:43900, riksdagsarvode:81400, archer:5e9/48};
 const START_GRUPPER = [
-  {n:'Socialt skydd', pk:'soc', c:'#6B4A9E', a:KVITTO_ANDELAR.aldre+KVITTO_ANDELAR.sjuk+KVITTO_ANDELAR.familj+KVITTO_ANDELAR.arbetsl+KVITTO_ANDELAR.ovrsoc, j:kr => { const d = kr / (START_JMF.hemtjanstAr/365); return d >= 1 ? `ca ${svTal(d)} ${d < 1.25 ? 'dags' : 'dagars'} hemtjänst för en äldre` : `ca ${Math.max(1, Math.round(d*24))} timmars hemtjänst för en äldre`; }},
+  // Socialt skydd i två rader (2026-11-05): äldre (ålderdom utan inkomstpension, mest omsorg och garantipension) och resten.
+  {n:'Äldre: omsorg och garantipension', pk:'aldre', c:'#6B4A9E', a:KVITTO_ANDELAR.aldre, j:kr => { const d = kr / (START_JMF.hemtjanstAr/365); return d >= 1 ? `ca ${svTal(d)} ${d < 1.25 ? 'dags' : 'dagars'} hemtjänst för en äldre` : `ca ${Math.max(1, Math.round(d*24))} timmars hemtjänst för en äldre`; }},
+  {n:'Sjukdom, barn och arbetslöshet', pk:'soc', c:'#6B4A9E', a:KVITTO_ANDELAR.sjuk+KVITTO_ANDELAR.familj+KVITTO_ANDELAR.arbetsl+KVITTO_ANDELAR.ovrsoc, j:kr => { const m = kr / (START_JMF.barnbidragAr/12); return m >= .75 ? `ca ${m < 1.25 ? 'en månads' : svTal(m) + ' månaders'} barnbidrag för ett barn` : `ca ${Math.max(1, Math.round(m*30))} dagars barnbidrag för ett barn`; }},
   {n:'Hälso- och sjukvård', pk:'vard', c:'#1E7471', a:KVITTO_ANDELAR.vard, j:kr => { const m = kr / (START_JMF.ivaDygn/1440); return m < 90 ? `ca ${Math.max(1, Math.round(m))} minuter på intensiven` : `ca ${svTal(m/60)} timmar på intensiven`; }},
   {n:'Utbildning', pk:'utb', c:'#1E4A8C', a:KVITTO_ANDELAR.utb, j:kr => { const d = kr / (START_JMF.grundskolaLasar/START_JMF.skoldagar); return d >= 1 ? `ca ${svTal(d)} ${d < 1.25 ? 'skoldag' : 'skoldagar'} för en elev` : `ca ${svAndel(d, 'en skoldag för en elev')}`; }},
   {n:'Polis, kultur, miljö, räntor', pk:'ratt', c:'#8A857C', a:KVITTO_ANDELAR.ratt+KVITTO_ANDELAR.fritid+KVITTO_ANDELAR.bostad+KVITTO_ANDELAR.ranta+KVITTO_ANDELAR.miljo, j:kr => `ca ${svAndel(kr / START_JMF.polislon, 'en polis månadslön')}`},
@@ -4344,7 +4353,7 @@ function egenavgifter(oversk){
   for(let i = 0; i < 40; i++){ const u = Math.max(0, oversk - x); x = Math.max(0, EGENAVG*u - Math.min(EGENAVG_NED*u, EGENAVG_NED_MAX)); }
   return Math.round(x);
 }
-// Startkvittots siffror: skatt, sju rader i fallande ordning och vad de räcker till.
+// Startkvittots siffror: skatt, åtta rader i fallande ordning och vad de räcker till.
 // Lön: under 66 år. Pension: född 1959 eller tidigare (förhöjt grundavdrag, inget jobbskatteavdrag).
 // Egen firma: inkomstskatt på överskottet efter egenavgifter (aktiv näringsverksamhet ger jobbskatteavdrag).
 function startKvittoData(lon, typ = 'lon', ks = 0.3238){
@@ -4380,7 +4389,7 @@ function startKvitto(){
     <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT MED: ${D.betalt} · INGET BYTE</span>${KV.kod(lon)}<span>${D.valkommen}</span></div>
   </div>${KV.flik(`SPARA: SKATTEN ÄR ${(lon > 0 ? skatt / lon * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % ${D.av}`)}${KV.kant(false, 5)}`;
   fig.setAttribute('aria-label', `Skattekvitto för ${kr0(lon)} kronor i månaden: skatt ${kr0(skatt)} kronor${D.egenavg ? `, egenavgifter ${kr0(D.egenavg)} kronor` : ''}, kvar ${kr0(D.kvar)} kronor.`);
-  const jmf = 'Jämförelserna bygger på prislapparna, polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.';
+  const jmf = 'Jämförelserna bygger på prislapparna (hemtjänst, IVA, skola, barnbidrag, väg), polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.';
   let not = '';
   if(lon > 0 && startTyp === 'lon') not = `Dessutom betalar arbetsgivaren ${kr0(Math.round(lon * 0.3142))} kr i arbetsgivaravgift (mindre om du är född 2003–2007), och du betalar moms när du handlar. Kvittot räknar som om du har lönen hela året; sommarjobbar du får du ofta tillbaka skatt i deklarationen. <a href="#kalkylator">Båda kvittona finns i Din ekonomi</a>.`;
   if(lon > 0 && startTyp === 'pension') not = `På pension betalas ingen arbetsgivaravgift och inget jobbskatteavdrag. Kvittot räknar med det högre grundavdraget för den som är född 1959 eller tidigare. Du betalar moms när du handlar. <a href="#kalkylator">Pensionärskvittot finns i Din ekonomi</a>.`;
@@ -4795,6 +4804,8 @@ function readURLParams(){
     const toggle = document.getElementById('pension-toggle');
     if(toggle){ toggle.checked = pension === '1'; if(typeof updateCalc === 'function') updateCalc(); }
   }
+  // Arbetar eller studerar.
+  if(['arbetar','studerar'].includes(p.get('syss'))) setSyssla(p.get('syss'));
   // Barn i hushållet.
   const barnP = parseInt(p.get('barn')); if(barnP >= 1 && barnP <= 5){ const sb = document.getElementById('s-barn'); if(sb){ sb.value = barnP; if(typeof updateCalc === 'function') updateCalc(); } }
   // Kapitalinkomst.
@@ -4826,6 +4837,7 @@ function buildShareURL(){
   if(typeof currentKs === 'number' && Math.abs(currentKs - 0.3238) > 1e-6) params.set('ks', currentKs);
   if(kap > 0) params.set('kapital', kap);
   const barn = parseInt(document.getElementById('s-barn')?.value || 0, 10); if(barn > 0) params.set('barn', barn);
+  if(syssla !== 'vet') params.set('syss', syssla);
   return window.location.origin + window.location.pathname + '?' + params.toString() + '#kalkylator';
 }
 // Läs URL-parametrar vid laddning
@@ -5033,10 +5045,22 @@ function setKommun(sel) {
 }
 
 // ── Förmåner per ålder: genomsnittet för livsfasen (LIVSFASER_V2) ──
+// Arbetar eller studerar (19–64 år). "Vet inte" ger åldersgruppens snitt, som livsloppet och kalibreringen bygger på.
+// Arbetar: egen vuxenutbildning 5 tkr. Studerar: högskola 114 tkr per helårsstudent (UKÄ 2025) plus studiebidrag
+// 1 030 kr/vecka × 40 veckor ≈ 41 tkr (CSN 2026; COFOG räknar bidrag till studerande som utbildning). Studielånet räknas inte.
+let syssla = 'vet';
+const SYSS_UTB = {arbetar:5, studerar:114 + 41};
+function setSyssla(v){
+  if(!(v in SYSS_UTB) && v !== 'vet') return;
+  syssla = v;
+  document.querySelectorAll('#syss-rad button').forEach(b => b.setAttribute('aria-pressed', b.dataset.syss === v));
+  updateCalc();
+}
 function getStage(age, inc){
   let stage = null;
   for(const s of STAGES) if(age>=s.min && age<=s.max){ stage = s; break; }
   if(!stage) stage = STAGES[STAGES.length-1];
+  if(syssla !== 'vet' && age >= 19 && age <= 64) return {...stage, w:{...stage.w, utb: SYSS_UTB[syssla]}};
 
   // Genomsnitt för åldern. Hushålls- och inkomstjusteringarna togs bort 2026-10-29 (saknade källa
   // och bröt kalibreringen mot de faktiska utgifterna). inc tas emot för bakåtkompatibilitet.
@@ -5200,6 +5224,11 @@ function updateCalc(){
   const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
   document.getElementById('d-age').textContent = age + ' år';
   const ageMan = document.getElementById('s-age-man'); if(ageMan && document.activeElement !== ageMan) ageMan.value = age;
+  const syssRad = document.getElementById('syss-rad'); if(syssRad) syssRad.hidden = age < 19 || age > 64;
+  const incHjalp = document.getElementById('inc-hjalp');
+  if(incHjalp) incHjalp.textContent = syssla === 'studerar' && age >= 19 && age <= 64
+    ? 'Lönen är det du tjänar vid sidan av studierna, räknat på hela året. Studiebidraget räknas som utbildning, inte som lön. Studielånet ingår inte, eftersom det betalas tillbaka.'
+    : 'Räknat som om du har lönen hela året. Jobbar du bara en del av året, till exempel på sommaren, får du ofta tillbaka skatt i deklarationen.';
   document.getElementById('d-inc').textContent = inc.toLocaleString('sv-SE') + ' tkr/år';
   const man = document.getElementById('s-man');
   if(man && document.activeElement !== man) man.value = Math.round(inc * 1000 / 12 / 100 * 100).toLocaleString('sv-SE');
@@ -6468,7 +6497,7 @@ async function drawProfilKort(c){
   x.fillStyle = '#1B4D3E'; x.font = `500 30px ${I}`; x.fillText('Skatteplattformen', M, y.wm);
   x.fillStyle = '#1A1813'; x.font = `600 76px ${S}`; x.fillText('Min ekonomi', M, y.head);
   x.fillStyle = '#4A4640'; x.font = `400 30px ${I}`;
-  x.fillText(`${s.age} år · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, y.prof);
+  x.fillText(`${s.age} år${syssla !== 'vet' && s.age >= 19 && s.age <= 64 ? ' · ' + syssla : ''} · ${kr(s.inc)} tkr/år · ${s.kommun}`, M, y.prof);
   x.fillStyle = '#2E7D5C'; x.font = `600 104px ${S}`; x.fillText(kr(s.benefits) + ' tkr', M, y.b1);
   x.fillStyle = '#4A4640'; x.font = `400 30px ${I}`; x.fillText('offentliga tjänster i år, snitt för min ålder', M, y.b1l);
   x.fillStyle = '#8C6A2C'; x.font = `600 104px ${S}`; x.fillText(kr(s.tax) + ' tkr', M, y.t1);
@@ -6587,7 +6616,7 @@ function downloadTransparencyJSON(){
     },
     kvitton: {
       skatt_på_lön: 'Kommunalskatt + statlig skatt − jobbskatteavdrag. Startkvittot: rikssnittet 32,38 %, under 66 år. Arbetsgivaravgift och moms ingår inte.',
-      fördelning: 'Som den offentliga sektorns utgifter 2024 (COFOG) utan inkomstpensionen, i sju grupper på startsidan och 15 rader i Din ekonomi',
+      fördelning: 'Som den offentliga sektorns utgifter 2024 (COFOG) utan inkomstpensionen, i åtta grupper på startsidan och 15 rader i Din ekonomi',
       grupper: START_GRUPPER.map(g => ({grupp: g.n, andel: Math.round(g.a*10000)/10000})),
       jämförelser_kr: START_JMF,
       jämförelser_källor: 'Prislapparna (hemtjänst, IVA-dygn, grundskola 178 skoldagar, statlig väg), SCB lönestatistik 2025 (polis 43 900 kr), riksdagen 2026 (arvode 81 400 kr), FMV 2023 (48 Archer för cirka 5 mdkr)',
