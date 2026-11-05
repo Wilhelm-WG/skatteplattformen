@@ -10,6 +10,21 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-05) — Mindre förslag från användartestet
+
+- **Barn i Din ekonomi:** val "Barn under 18 år hemma" (0–5). En ruta visar
+  vad barnen tar emot (snitt för 0–18 år ur `LIVSFASER_V2`), vad hushållet tar
+  emot tillsammans och barnbidraget med flerbarnstillägg. Barnen läggs inte i
+  den vuxnes staplar, så inget räknas två gånger. Länken tar med `barn=`.
+- **Ålder som siffra:** ett fält bredvid åldersreglaget, lättare på mobil.
+- **Sommarjobb:** startsidan och Din ekonomi säger att lönen räknas för hela
+  året och att den som jobbar en del av året ofta får tillbaka skatt.
+- **Ordlistan:** mnkr, Kolada, Eurostat och förvärvsarbetande. "Nominella, ej
+  diskonterade" är omskrivet i klarspråk.
+- **Läsbarhet:** liten text 11 → 12 px (`.6875rem` och `.7rem` → `.75rem`) och
+  mörkare grå (`--ink3` #5C574F). Menyknappen visar ordet "Meny" och har
+  `aria-expanded`.
+
 ### Added (2026-11-05) — Pension, egen firma och alla kommuner på startsidan
 
 - **Startkvittot** har ett val mellan Lön, Pension och Egen firma.
