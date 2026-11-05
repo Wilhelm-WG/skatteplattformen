@@ -10,6 +10,24 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-05) — Sidvikt, metadata, metodrapport och användartest
+
+- **Sidvikt:** scenerna (`il-`) och vyhuvudena (`vh-`) med filter ligger i
+  `img/scener.svg`, som förladdas och läggs in i sidan av ett litet skript.
+  `index.html` gick från 1 064 kB till 549 kB (komprimerat 242 → 155 kB).
+- **Metadata:** ny beskrivning för sökmotorer, Open Graph och Twitter om
+  skattekvittot; JSON-LD med upphovsperson, `dateModified` och bild; vyns
+  ingress blir beskrivning när man byter vy. Uppdaterad 5 november 2026.
+- **Metodrapport v3.0:** `docs/METODRAPPORT.md`, länkad från Metod och sidfoten.
+  Rättat samtidigt: metodsteg 01–02 och "Vad mäts här?", momsens beskrivning,
+  kontrollintervallet, lagrum (63/65/67 kap. IL), hundralappen 2024 nämner
+  pensionssystemet, arbetsgivarkvittots avrundning (12 034 kr på medianlönen),
+  antagandefilens beskrivning av pensionärsskatten.
+- **Användartest:** fem testpersoner, rapporter och sammanfattning i
+  `docs/anvandartest/`. Rättat direkt: Din ekonomis exempel på 25 000 kr märkt
+  som exempel, ungdomars lägre arbetsgivaravgift på startsidan, "Förifyllt med
+  medianlönen" bara vid 38 300 kr, "Sjuksköterskor utan arbete".
+
 ### Added (2026-11-05) — Dela kvittot
 
 - **Kvittobild:** knappen "Dela kvittot som bild" under startkvittot ritar

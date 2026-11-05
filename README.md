@@ -14,7 +14,7 @@ Oberoende, partipolitiskt neutral databas som visar hur svenska skattepengar anv
 |-----|-------------|
 | `index.html` | Komplett webbplats — prislista, kalkylator, budgetdiagram |
 | `skatteplattformen_data.xlsx` | Excel-modell: ESV-tidsserier 2010–2025, FASIT-analys, KPI-justering |
-| `docs/skatteplattformen_metodrapport_v2.docx` | Akademisk metodrapport v2.0 (v1 kvar som historik) |
+| `docs/METODRAPPORT.md` | Metodrapport v3.0, 5 november 2026 (v1 och v2 kvar som historik i .docx) |
 | `data/nta_profil_v2.json` | NTA-åldersprofil: 86 åldersår × 4 kategorier × konfidensintervall |
 | `data/fasit_full.json` | FASIT-rekonstruktion: förmåner och skatt per 5-årsåldersgrupp |
 | `data/fasit_analys.json` | Kalibrerad fördelningsanalys 2022 |
@@ -29,7 +29,7 @@ Modellen kombinerar:
 - **NTA-metodik (UN 2013)** — åldersprofil sjukvård, kalibrerad mot AGENTA NTA 2010
 - **Eurostat gov_10a_exp 2022** — EU-ranking per utgiftskategori
 
-Fullständig metoddokumentation: se `METODRAPPORT.docx`.
+Fullständig metoddokumentation: se `docs/METODRAPPORT.md`.
 
 ## Konfidensintervall
 

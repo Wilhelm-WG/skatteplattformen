@@ -26,7 +26,7 @@ scripts/
   lankar.mjs                  ← Prövar alla externa länkar (node scripts/lankar.mjs, kräver nätverk)
   kontrast.js                 ← Kontrastmätning, körs i webbläsarens konsol
 docs/
-  skatteplattformen_metodrapport_v2.docx  ← Akademisk metodrapport (v2.0; v1 kvar som historik)
+  METODRAPPORT.md                         ← Metodrapport v3.0 (v1 och v2 kvar som .docx)
   MODELLFIX_PLAN.md           ← Teknisk fix-plan
   UTVECKLINGSPLAN_V3.md       ← Utvecklingsplan v3
   FILM_MANUS.md               ← Talmanus till filmen
@@ -44,7 +44,7 @@ correspondence/
   - Ålder <19 → noll skatt
   - Delarna räknas i `skattDelar(age, inc, opts)` (oavrundat); `opts.pension` (standard: från 65 år) = pensionsinkomst → inget jobbskatteavdrag, ingen arbetsgivaravgift
   - 19–23 år (född 2003–2007): tillfälligt sänkt arbetsgivaravgift 20,81 % på lön upp till 300 tkr/år (april 2026–september 2027)
-  - Från 66 år: förhöjt grundavdrag (`forhojtGrundavdrag2026`), lön ger förhöjt jobbskatteavdrag (`jobbskatteavdrag66`) och 10,21 % arbetsgivaravgift
+  - Ålder i modellen = 2026 − födelseår. Från 67 år (född 1959 eller tidigare, `is66`): förhöjt grundavdrag (`forhojtGrundavdrag2026`) och förhöjt jobbskatteavdrag på lön (`jobbskatteavdrag66`). Från 68 år (född 1958 eller tidigare, `agAldre`): bara ålderspensionsavgiften 10,21 % i arbetsgivaravgift
   - Allmän pensionsavgift (7 %) avräknas före jobbskatteavdraget; ej avräknad rest läggs på kommunalskatten
   - Verifierat mot skattetabell 32 kolumn 1–3 (±1 kr, 10 000–60 000 kr/mån)
 - `grundavdrag2024(inc)` — grundavdrag enligt 2024 års regler
@@ -110,7 +110,7 @@ correspondence/
 **Två kvitton i Din ekonomi (`#receipt-card`, `.kvitto-par`):** arbetstagarens (`#kvitto`, skatt på lön och kapital) och arbetsgivarens (`#kvitto-ag`, `agKvitto()`, satserna i `AG_AVG`, 31,42 % 2026, nedsättning för 19–23 år).
 
 **Hundralappen (`#hundralapp`):**
-- Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Scener `il-…` och pictogram `pk-…` ligger i spriten efter ikonserien; filtren får inte ligga i `display:none`.
+- Data i `HL100` (2024 COFOG, 2026 statsbudgeten), ritas av `hlNote()`/`hlRender()`. Prislappen hämtas ur `CARDS` efter exakt titel (`lapp`). Pictogram `pk-…` och kassalogotypen `kv-logo` ligger i spriten efter ikonserien. Scenerna `il-…`, vyhuvudena `vh-…` och deras filter (`ilSh`, `ilGr`, `mSh`, `vSh`, `vGr`) ligger i `img/scener.svg` (cirka 500 kB), som förladdas i `<head>` och läggs in i sidan av ett litet skript direkt efter spriten. Referenserna är oförändrade (`<use href="#il-namn">`). Nya scener läggs i `img/scener.svg`; filtren får inte ligga i `display:none`.
 - Andelarna 2024 ska stämma med `HERO_100`, och 2026 med `BDATA`.
 - Sedeltrycket (2026-10-30): `hlMonster(portrait)` räknar ut guilloche, rosetter, streckring och säkerhetstråd en gång per format (`HL_MONSTER`); `hlNote` lägger till tårtbitar, text och serienummer. Mobilen (stående, under 560 px) saknar mikrotext, tråd och vattenmärke
 - Kvittonas andelar: `KVITTO_ANDELAR`, 15 poster ur Eurostat COFOG 2024 utan inkomst- och tilläggspensionen (363,7 Mdkr, Orange rapport 2024; premiepensionen ligger utanför offentlig sektor), bas 2 859 Mdkr. `HERO_100` och hundralappen använder hela 3 223 Mdkr. Andelarna och grupperna kontrolleras
