@@ -244,10 +244,10 @@
       "befolkning_approx": 1400000,
       "förmåner_tkr_per_år": {
         "utbildning": {
-          "värde": 42,
+          "värde": 5,
           "ki_pct": 20,
-          "källa": "Genomsnittlig barnfamilj med 1,7 barn. Skola ~148 tkr × 1,7 barn × andel skolålder ~17%. Förskola för yngre barn.",
-          "not": "Inkluderar barnens skolgång, inte den vuxnes utbildning."
+          "källa": "Egen vuxenutbildning, som för 26–34 och 45–54 år. Barnens skolgång räknas hos barnen (0–18 år).",
+          "not": "Rättat 2026-11-05: tidigare 42 tkr, som var barnens skolgång och räknades två gånger."
         },
         "sjukvård": {
           "värde": 52,

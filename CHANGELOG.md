@@ -10,6 +10,27 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-11-05) — Pension, egen firma och alla kommuner på startsidan
+
+- **Startkvittot** har ett val mellan Lön, Pension och Egen firma.
+  Pension räknas med förhöjt grundavdrag (född 1959 eller tidigare) och utan
+  jobbskatteavdrag och arbetsgivaravgift. Egen firma räknar egenavgifter 28,97 %
+  med nedsättningen 7,5 % (högst 15 000 kr/år) och inkomstskatt på överskottet
+  efter egenavgifter. Kassör, rader och hälsning följer valet, i kvittot och i
+  kvittobilden.
+- **Kommunval** på startsidan och alla 290 kommuner i båda kommunvalen
+  (`KOMMUNER`, SCB Kommunalskatterna 2026), sorterade i svensk ordning.
+- **Länken** återskapar belopp, typ och kommun: `?lon=22000&typ=pension&ks=0.3388#start`.
+  "Hela kvittot" för över typ, belopp och kommun till Din ekonomi.
+- "ca 1/1 av en skoldag" visas som "ungefär en skoldag".
+
+### Fixed (2026-11-05) — Dubbelräknad utbildning
+
+- 35–44 år hade 42 tkr i utbildning, vilket var barnens skolgång. Nu 5 tkr.
+  Utbildningens summa cirka 382 mdkr, livsloppets förmåner 1 713 mdkr,
+  35–44-åringarnas förmåner 128 tkr (tidigare 165). `data/livsfaser_v2.json`
+  och metodrapporten uppdaterade.
+
 ### Changed (2026-11-05) — Sidvikt, metadata, metodrapport och användartest
 
 - **Sidvikt:** scenerna (`il-`) och vyhuvudena (`vh-`) med filter ligger i

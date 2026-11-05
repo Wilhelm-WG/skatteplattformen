@@ -147,6 +147,13 @@ Hundralappen för 2024 räknar med inkomstpensionen. Kvittona gör det inte. Dä
 
 ---
 
+### 3.5 Pension och egen firma (från 5 november 2026)
+
+Startkvittot har ett val mellan lön, pension och egen firma, och ett kommunval med alla 290 kommuner (SCB, Kommunalskatterna 2026).
+
+- **Pension** räknas som för en person som är född 1959 eller tidigare: förhöjt grundavdrag, inget jobbskatteavdrag och ingen arbetsgivaravgift (`skattDelar(70, …, {pension:true})`).
+- **Egen firma** gäller överskott i enskild firma. Egenavgifterna är 28,97 % av överskottet efter avdrag för egenavgifterna, minus nedsättningen 7,5 % av underlaget, högst 15 000 kr per år (Skatteverket 2026, SFS 2022:889). Avgifterna löses ut så att avdraget och avgiften stämmer med varandra (`egenavgifter()`). Inkomstskatten räknas på överskottet efter egenavgifter, med jobbskatteavdrag eftersom aktiv näringsverksamhet räknas som arbetsinkomst. Exempel: överskott 40 000 kr i månaden ger cirka 8 016 kr i egenavgifter och 6 160 kr i skatt. Sjukförsäkringsavgiften förutsätter 7 dagars karens. Moms på det man säljer ingår inte.
+
 ## 4. Skattemodellen
 
 Skatten räknas i funktionerna `skattDelar` (inkomstskattens delar, oavrundade) och `annualTax` (alla delar, avrundade till tkr). Alla belopp är i tusen kronor per år. Prisbasbeloppet (PBB) är 59 200 kr 2026.
@@ -312,9 +319,9 @@ Utbildning bygger på kostnad per elev och student, omräknad till ett genomsnit
 - **7–15 år:** grundskola 143 tkr per elev, alla huvudmän (Skolverket 2025).
 - **16–18 år:** gymnasium 148,1 tkr per elev (Skolverket 2025).
 - **19–25 år:** högskola 114 tkr per helårsstudent × 45 % som studerar = cirka 51 tkr (UKÄ 2025).
-- **35–44 år:** 42 tkr. Sajten anger ingen källa för beloppet. I Python-modellens datafil står att det avser barnens skolgång (se avsnitt 13.2).
+- **35–44 år:** 5 tkr, egen vuxenutbildning som för grannåldrarna. Fram till 5 november 2026 stod här 42 tkr, som var barnens skolgång och räknades två gånger (cirka 52 mdkr).
 
-Summerat över befolkningen blir utbildning 433,8 mdkr. COFOG GF09 är 464,7 mdkr 2024. Koden säger att GF09 innehåller mer än enhetskostnaderna. Utbildning är inte kalibrerad mot GF09.
+Summerat över befolkningen blir utbildning cirka 382 mdkr. COFOG GF09 är 464,7 mdkr 2024. Koden säger att GF09 innehåller mer än enhetskostnaderna. Utbildning är inte kalibrerad mot GF09.
 
 ### 7.3 Hälso- och sjukvård, socialt skydd och äldreomsorg
 
@@ -330,9 +337,9 @@ Befolkningen är SCB:s folkmängd 31 december 2024 per ettårsklass, summerad pe
 | Äldreomsorg | 165,5 mdkr | Kolada N20043 2024 (15 686 kr per invånare) | 166,5 mdkr | +0,6 % |
 | Socialt skydd utom äldreomsorg och inkomstpension | 693,8 mdkr | GF10 1 223,5 − äldreomsorg 165,5 − inkomst- och tilläggspension 363,7 | 691,8 mdkr | −0,3 % |
 | Gemensamma utgifter | 1 061,3 mdkr | COFOG GF01–06 och GF08 2024 | 1 058,8 mdkr | −0,2 % |
-| Utbildning | (ingen kalibrering) | Skolverket och UKÄ 2025; COFOG GF09 464,7 mdkr | 433,8 mdkr | −6,6 % mot GF09 |
+| Utbildning | (ingen kalibrering) | Skolverket och UKÄ 2025; COFOG GF09 464,7 mdkr | cirka 382 mdkr | −18 % mot GF09 |
 
-Förmånerna (utan gemensamma utgifter) summerar till cirka 1 765 mdkr. Före kalibreringen 29 oktober summerade modellen till cirka 940 mdkr för sjukvård och cirka 366 mdkr för äldreomsorg.
+Förmånerna (utan gemensamma utgifter) summerar till cirka 1 713 mdkr. Före kalibreringen 29 oktober summerade modellen till cirka 940 mdkr för sjukvård och cirka 366 mdkr för äldreomsorg.
 
 ### 7.5 Gemensamma utgifter
 
@@ -360,7 +367,7 @@ Livsloppsdiagrammet visar netto per invånare i tio åldersgrupper för hela bef
 | 65–74 | 208 | 122 | +86 |
 | 75+ | 357 | 79 | +278 |
 
-Plus betyder att gruppen tar emot mer än den betalar. Summerat är förmånerna 1 765 mdkr och skatterna 1 575 mdkr. Sajten skriver att skillnaden främst beror på att momsen är en försiktig uppskattning.
+Plus betyder att gruppen tar emot mer än den betalar. Summerat är förmånerna 1 713 mdkr och skatterna 1 575 mdkr. Sajten skriver att skillnaden främst beror på att momsen är en försiktig uppskattning.
 
 Läsarens punkt räknas med `getStage` för åldern och `annualTax` för lönen. Efter 65 år räknas inkomsten som pension.
 
@@ -491,7 +498,7 @@ En granskning av alla vyer gav 98 fynd. Alla höga och medelallvarliga fynd rät
 
 1. **Sjukvårdens åldersprofil** bygger på NTA-vikter, inte på registerdata om kostnad per patient och ålder. Det är den största osäkerheten (±25 %).
 2. **Förmånerna beror bara på ålder.** Inkomst, hushåll och bostadsort påverkar bara skatten.
-3. **Utbildning är inte kalibrerad.** Modellen summerar till 433,8 mdkr mot COFOG GF09 464,7 mdkr.
+3. **Utbildning är inte kalibrerad.** Modellen summerar till cirka 382 mdkr mot COFOG GF09 464,7 mdkr. Skillnaden är bland annat vuxenutbildning och administration som inte fördelas på ålder.
 4. **Momsen är en uppskattning** med antagna sparkvoter och momssatser i fyra inkomstklasser.
 5. **Skattemodellen saknar** skattereduktion för förvärvsinkomst, public service-avgift, begravningsavgift, kyrkoavgift och andra avdrag.
 6. **Inkomst efter 65 år räknas som pension.** Lön efter 65 kan bara räknas med `opts.pension:false` i koden.
@@ -513,7 +520,7 @@ Arbetet med rapporten hittade tolv ställen där koden och texten på sajten int
 
 Kvar:
 
-1. **Utbildning 35–44 år (42 tkr per person och år).** Python-modellens datafil säger att beloppet är barnens skolgång ("skola ~148 tkr × 1,7 barn × andel skolålder"). Barnens skolgång räknas redan i livsfaserna 0–18 år, så beloppet räknas troligen två gånger, cirka 58 mdkr över befolkningen. Grannfaserna har 6 och 5 tkr. Om beloppet sänks till samma nivå blir utbildningens summa cirka 380 mdkr mot COFOG:s 464,7 mdkr; skillnaden behöver då förklaras (vuxenutbildning, forskning, administration) eller kalibreras. Beslut behövs eftersom det ändrar kalkylatorn och livsloppet för 35–44-åringar.
+1. **Utbildning 35–44 år** var 42 tkr per person och år, vilket var barnens skolgång och räknades två gånger (cirka 52 mdkr). Rättat 5 november 2026 till 5 tkr. Utbildningens summa blev cirka 382 mdkr och livsloppets förmåner 1 713 mdkr; 35–44-åringarna betalar nu i snitt cirka 115 000 kr mer än de tar emot.
 2. **Inaktuella kodkommentarer** i förmånsmodellen ("kalibrerade mot en äldre total … omkalibreras i steg 3", "snitt 285 tkr/inv/år") och vid grundavdraget (2024 års prisbasbelopp). De syns inte för läsaren.
 3. **Antal invånare** skiljer sig mellan prislapparna (10,55 miljoner för försvaret, 10,6 miljoner för polisen) och förmånsmodellen (10 587 710).
 
@@ -521,7 +528,6 @@ Kvar:
 
 - Beställa en tabell från SCB med välfärdstjänster per åldersgrupp och COFOG-kategori (utkast i `correspondence/`).
 - Ersätta NTA-vikterna med registerdata om kostnad per patient och ålder.
-- Klargöra utbildningsbeloppet för 35–44 år (avsnitt 13.2).
 - Inarbeta budgetpropositionen 2027 (prop. 2026/27:1) och statslåneräntan 30 november 2026 (skatten på ISK).
 - Ta fram formella osäkerhetsintervall.
 - Stämma av Python-modellen mot sajten eller tydligt märka den som äldre.

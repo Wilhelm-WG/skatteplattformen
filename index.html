@@ -956,6 +956,14 @@ html{scroll-padding-top:72px}
 .start-lon input:focus-visible{outline:3px solid rgba(27,77,62,.3);outline-offset:1px}
 .start-lon-rad span{font-size:.95rem;color:var(--ink2)}
 .start-lon p{font-size:.78rem;color:var(--ink3);margin:0}
+.start-typ{display:inline-flex;border:1px solid var(--green);border-radius:7px;overflow:hidden;align-self:flex-start;margin-bottom:.35rem}
+.start-typ button{font:600 .82rem/1 var(--sans);padding:.55rem .9rem;border:0;background:transparent;color:var(--green);cursor:pointer;min-height:40px}
+.start-typ button+button{border-left:1px solid var(--green)}
+.start-typ button[aria-pressed="true"]{background:var(--green);color:#fff}
+.start-typ button:focus-visible{outline:3px solid rgba(27,77,62,.3);outline-offset:-3px}
+.start-kommun{display:flex;align-items:center;gap:.6rem;margin-top:.15rem}
+.start-lon .start-kommun label{font-size:.78rem;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink2)}
+.start-kommun select{font:500 .82rem var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:.4rem .5rem;max-width:15rem;min-height:36px}
 .start-metod{font-size:.76rem;color:var(--ink3);line-height:1.55;max-width:36em;margin-top:1.2rem}
 .start-kv{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding-top:.4rem}
 .start-kv .kvitto{max-width:400px}
@@ -1130,17 +1138,19 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
           <span class="e-text">Uppdaterad 5 november 2026 · källa och år på allt</span>
         </div>
         <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
-        <p class="start-lead fu fu2">Skriv in din lön. Kvittot visar vad skatten på din lön betalar varje månad, och vad det räcker till.</p>
+        <p class="start-lead fu fu2">Skriv in din lön eller pension. Kvittot visar vad skatten betalar varje månad, och vad det räcker till.</p>
         <form class="start-lon fu fu2" id="start-lon-form" onsubmit="event.preventDefault()">
-          <label for="start-lon">Din lön före skatt</label>
+          <div class="start-typ" role="group" aria-label="Vad räknar du på?"><button type="button" data-typ="lon" aria-pressed="true" onclick="setStartTyp('lon')">Lön</button><button type="button" data-typ="pension" aria-pressed="false" onclick="setStartTyp('pension')">Pension</button><button type="button" data-typ="firma" aria-pressed="false" onclick="setStartTyp('firma')">Egen firma</button></div>
+          <label for="start-lon" id="start-lon-etikett">Din lön före skatt</label>
           <div class="start-lon-rad"><input id="start-lon" type="text" inputmode="numeric" autocomplete="off" value="38 300" aria-describedby="start-lon-hjalp"><span>kr i månaden</span></div>
+          <div class="start-kommun"><label for="start-kommun">Kommun</label><select id="start-kommun" onchange="setStartKommun(this)"><option value="0.3238">Rikssnitt — 32,38 %</option></select></div>
           <p id="start-lon-hjalp">Förifyllt med medianlönen (SCB, 2025). Inget sparas eller skickas.</p>
         </form>
         <div class="actions fu fu3">
           <a href="#kalkylator" class="btn-p" id="start-till-ekonomi">Hela kvittot och vad du får tillbaka →</a>
           <a href="#pristabell" class="btn-g">Se vad saker kostar</a>
         </div>
-        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och rikssnittet för kommunalskatt (32,38 %), för den som är under 66 år. Skatten fördelas som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter.</p>
+        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas för den som är under 66 år, pension för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Skatten fördelas som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter.</p>
       </div>
       <!-- STARTKVITTOT: skatten på lönen, fördelad på sju grupper, med vad den räcker till (START_GRUPPER i JS). -->
       <div class="start-kv fu fu4">
@@ -2605,7 +2615,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (26–64 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Betalar mer</div>
-        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 80 000–185 000 kr mer i skatt än man tar emot per år. 19–25-åringar tar i snitt emot lite mer än de betalar.</div>
+        <div style="font-size:.7rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 115 000–185 000 kr mer i skatt än man tar emot per år. 19–25-åringar tar i snitt emot lite mer än de betalar.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
@@ -2619,7 +2629,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       <div style="font-size:.6875rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
         <strong>Modell:</strong> Förmånerna är genomsnitt per åldersgrupp. Sjukvård, socialt skydd och äldreomsorg är kalibrerade så att summan över befolkningen 2024 stämmer med de faktiska utgifterna (Eurostat COFOG: hälso- och sjukvård 474 mdkr; Kolada: äldreomsorg 166 mdkr; socialt skydd utom äldreomsorg och inkomstpension cirka 694 mdkr). Åldersprofilen för sjukvård följer NTA-metoden. Utbildning bygger på kostnad per elev och student (Skolverket, UKÄ 2025). Skatt: Skatteverkets regler 2026 med kommunalskatt 32,38 % (rikssnitt), statlig skatt 20 % över brytpunkten, arbetsgivaravgift 21,21 % utan pensionsavgift (för den som är född 1958 eller tidigare betalas bara pensionsavgiften, som inte räknas som skatt här), moms cirka 13–16 % av det man handlar för (antagande: sparkvot 5–25 % och effektiv momssats 14,5–18,5 % beroende på inkomst).<br><br>
         <strong>Pensionärsskatt:</strong> förhöjt grundavdrag och inget jobbskatteavdrag på pension. På pension betalas ingen arbetsgivaravgift. Modellen antar att inkomsten efter 65 är pension. Den som är född 1959 eller tidigare får ett förhöjt jobbskatteavdrag på lön, som modellen räknar med när inkomsten anges som lön. <br><br>
-        <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 765 mdkr och skatter 1 575 mdkr; skillnaden beror främst på att momsen är en försiktig uppskattning.<br><br>
+        <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 713 mdkr och skatter 1 575 mdkr; skillnaden beror främst på att momsen är en försiktig uppskattning.<br><br>
         <strong>Osäkerhet:</strong> momsen (konsumtionen är ett antagande), kommunalskatten (28,9–35,7 % beroende på kommun) och framför allt att förmånerna är genomsnitt.<br><br>
         <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). Inkomstskatten följer Skatteverkets regler och stämmer med skattetabell 32 på någon krona när; momsen är en uppskattning. Intervallen är en <strong>bedömning</strong>, inte formella konfidensintervall.
       </div>
@@ -2876,6 +2886,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
     <h2 class="s-title">Rättelser</h2>
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
+      <li><time datetime="2026-11-05">5 nov 2026</time><div><b>Utbildning för 35–44-åringar</b>Modellen gav 35–44-åringar 42 000 kr per år i utbildning. Det var deras barns skolgång, som redan räknas hos barnen, så cirka 52 miljarder kronor räknades två gånger. Nu är beloppet 5 000 kr, egen vuxenutbildning som för grannåldrarna. I livsloppet tar 35–44-åringar emot 128 000 kr per person och år i stället för 165 000, och de betalar i snitt cirka 115 000 kr mer än de tar emot.</div></li>
       <li><time datetime="2026-11-05">5 nov 2026</time><div><b>Statistikgranskningen, andra svepet</b>Mindre rättelser i alla vyer. EU:s skuld är 81,5 % av BNP 2025 (Eurostat oktober 2026). 190 riktade statsbidrag 2025, inte 163. Korruptionsindex 2025. Befolkningsframskrivningen 2026: cirka 817 000 personer över 80 år 2030 (+26 %). Personalkostnaderna är 45 % av regionernas kostnader, inte 65 %. Cirka 11–13 % av de skattskyldiga betalar statlig skatt, inte 15 % av löntagarna. Sjuksköterskor: cirka 12 100 under pensionsåldern arbetade inte 2023; "13 000 utanför vården" gick inte att belägga. Barnvaccinationen skyddar mot 12 sjukdomar och betalas av regionerna. Flerbarnstillägget är ett belopp per familj. Prislappen för KOL är borttagen eftersom beloppen inte gick att belägga. Räntorna minskar 6 % budget mot budget, inte 12 %. Ungdomsnedsättningen av arbetsgivaravgiften räknas från april. Filtret "Välfärdsområden" tar med arbetsmarknad men inte vägar.</div></li>
       <li><time datetime="2026-11-04">4 nov 2026</time><div><b>Statistikgranskningen: Din ekonomi</b>Arbetsgivaravgiftens delar 2026: efterlevandepension 0,30 % (inte 0,60) och allmän löneavgift 12,62 % (inte 12,32); summan 31,42 % var rätt. Den lägre avgiften gäller den som är född 1958 eller tidigare, inte från 66 år. Metodtexten sa att pension belastas med arbetsgivaravgift, vilket den inte gör. Yrkeslivet som betalar mer är 26–64 år, inte 19–64. Offentliga sektorns utgifter är 3 223 miljarder, inte "cirka 3 000". Kalkylatorn sa att hushåll och inkomst påverkar förmånerna, vilket modellen inte längre gör.</div></li>
       <li><time datetime="2026-11-04">4 nov 2026</time><div><b>Statistikgranskningen: Budgeten och försvaret</b>Diagrammet över utgiftsområde 6 visade Natos mått för 2024 (146) och ett okänt värde för 2020 (66); nu utfall 128 och 63. Ökningen från 2024 är +76 %, inte +54 %. Natos mål på 3,5 % gäller till 2035; 2030 är Sveriges eget mål. Försvarsbeslutet är prop. 2024/25:34. Vård och omsorg ökar 6 %, inte 25 %. Räntekostnaden 2024 på 45 miljarder innehöll 25 miljarder till Riksbankens kapital; räntorna var 20 miljarder. Statsskulden var 39 % av BNP 1980 och 61 % 1985, inte 16 och 34 %, och diagrammet visar nu åren med rätt avstånd. Två utgiftsområden hade gamla namn.</div></li>
@@ -4208,7 +4219,7 @@ const START_GRUPPER = [
 function svTal(x){ if(x >= 10) return Math.round(x).toLocaleString('sv-SE'); const h = Math.round(x*2)/2; return (Math.floor(h) || '') + (h % 1 ? '½' : '') || '½'; }
 // Andel som bråk: "en tiondel av …", "1/49 av …", "en 300 000-del av …", eller "2 gånger …" om större än 1
 function svAndel(r, sak){
-  if(r >= .9) return r < 1.25 ? `ungefär ${sak}` : `${svTal(r)} gånger ${sak}`;
+  if(r >= .75) return r < 1.25 ? `ungefär ${sak}` : `${svTal(r)} gånger ${sak}`; // 1/1 blir "ungefär"
   const N = 1 / r, n = Math.round(N), ord = {2:'en halv',3:'en tredjedel',4:'en fjärdedel',5:'en femtedel',6:'en sjättedel',7:'en sjundedel',8:'en åttondel',9:'en niondel',10:'en tiondel'};
   let b;
   if(ord[n]) b = ord[n];
@@ -4218,46 +4229,156 @@ function svAndel(r, sak){
   else { const sig = Math.pow(10, Math.floor(Math.log10(N)) - 1); b = `en ${(Math.round(N/sig)*sig).toLocaleString('sv-SE')}-del`; }
   return `${b} av ${sak}`;
 }
-// Startkvittots siffror för en månadslön: skatt, sju rader i fallande ordning och vad de räcker till.
-function startKvittoData(lon){
-  const d = lon > 0 ? skattDelar(40, lon*12/1000, {ksOverride:0.3238}) : null;
+// Kommunalskatt 2026 (kommun + region) för alla 290 kommuner. Källa: SCB, Kommunalskatterna 2026 (OE0101, Kommunalskatter2000). Rikssnitt 32,38 %.
+const KOMMUNER = [
+  ["Ale", 32.8], ["Alingsås", 32.84], ["Alvesta", 33.42], ["Aneby", 33.85], ["Arboga", 33.29], ["Arjeplog", 34.84],
+  ["Arvidsjaur", 34.14], ["Arvika", 34.03], ["Askersund", 34.15], ["Avesta", 33.95], ["Bengtsfors", 34.4], ["Berg", 34.22],
+  ["Bjurholm", 35.0], ["Bjuv", 32.17], ["Boden", 33.94], ["Bollebygd", 33.07], ["Bollnäs", 33.37], ["Borgholm", 33.44],
+  ["Borlänge", 34.4], ["Borås", 32.79], ["Botkyrka", 32.23], ["Boxholm", 33.37], ["Bromölla", 33.74], ["Bräcke", 35.09],
+  ["Burlöv", 31.27], ["Båstad", 31.41], ["Dals-Ed", 34.69], ["Danderyd", 30.58], ["Degerfors", 35.3], ["Dorotea", 35.65],
+  ["Eda", 34.55], ["Ekerö", 31.45], ["Eksjö", 34.02], ["Emmaboda", 33.82], ["Enköping", 33.05], ["Eskilstuna", 32.85],
+  ["Eslöv", 31.72], ["Essunga", 33.05], ["Fagersta", 32.99], ["Falkenberg", 32.5], ["Falköping", 33.43], ["Falun", 34.05],
+  ["Filipstad", 34.55], ["Finspång", 33.7], ["Flen", 33.1], ["Forshaga", 34.63], ["Färgelanda", 34.39], ["Gagnef", 34.27],
+  ["Gislaved", 33.75], ["Gnesta", 32.95], ["Gnosjö", 34.0], ["Gotland", 33.6], ["Grums", 34.78], ["Grästorp", 33.47],
+  ["Gullspång", 33.97], ["Gällivare", 33.89], ["Gävle", 33.77], ["Göteborg", 32.6], ["Götene", 33.6], ["Habo", 33.93],
+  ["Hagfors", 34.3], ["Hallsberg", 33.85], ["Hallstahammar", 32.69], ["Halmstad", 32.38], ["Hammarö", 35.05], ["Haninge", 31.28],
+  ["Haparanda", 33.84], ["Heby", 34.21], ["Hedemora", 34.15], ["Helsingborg", 31.39], ["Herrljunga", 33.62], ["Hjo", 33.48],
+  ["Hofors", 34.37], ["Huddinge", 31.71], ["Hudiksvall", 33.12], ["Hultsfred", 33.77], ["Hylte", 33.85], ["Hällefors", 34.35],
+  ["Härjedalen", 34.17], ["Härnösand", 34.63], ["Härryda", 31.98], ["Hässleholm", 32.38], ["Håbo", 33.3], ["Höganäs", 30.91],
+  ["Högsby", 34.07], ["Hörby", 32.26], ["Höör", 32.63], ["Jokkmokk", 34.29], ["Järfälla", 31.52], ["Jönköping", 33.4],
+  ["Kalix", 33.89], ["Kalmar", 33.67], ["Karlsborg", 32.8], ["Karlshamn", 33.8], ["Karlskoga", 34.3], ["Karlskrona", 33.69],
+  ["Karlstad", 33.55], ["Katrineholm", 32.95], ["Kil", 34.63], ["Kinda", 33.0], ["Kiruna", 34.39], ["Klippan", 31.93],
+  ["Knivsta", 32.62], ["Kramfors", 34.43], ["Kristianstad", 32.64], ["Kristinehamn", 34.25], ["Krokom", 33.87], ["Kumla", 33.84],
+  ["Kungsbacka", 32.58], ["Kungsör", 32.91], ["Kungälv", 32.92], ["Kävlinge", 29.59], ["Köping", 33.04], ["Laholm", 32.8],
+  ["Landskrona", 31.42], ["Laxå", 35.0], ["Lekeberg", 33.73], ["Leksand", 33.8], ["Lerum", 32.03], ["Lessebo", 33.81],
+  ["Lidingö", 29.67], ["Lidköping", 32.74], ["Lilla Edet", 33.85], ["Lindesberg", 34.6], ["Linköping", 31.75], ["Ljungby", 33.07],
+  ["Ljusdal", 33.87], ["Ljusnarsberg", 33.8], ["Lomma", 30.72], ["Ludvika", 34.05], ["Luleå", 33.84], ["Lund", 32.42],
+  ["Lycksele", 34.9], ["Lysekil", 33.94], ["Malmö", 32.42], ["Malung-Sälen", 34.45], ["Malå", 35.2], ["Mariestad", 32.74],
+  ["Mark", 32.99], ["Markaryd", 33.31], ["Mellerud", 34.08], ["Mjölby", 33.45], ["Mora", 34.32], ["Motala", 33.25],
+  ["Mullsjö", 34.1], ["Munkedal", 34.86], ["Munkfors", 34.3], ["Mölndal", 31.99], ["Mönsterås", 34.07], ["Mörbylånga", 34.07],
+  ["Nacka", 30.11], ["Nora", 34.55], ["Norberg", 33.54], ["Nordanstig", 34.02], ["Nordmaling", 35.1], ["Norrköping", 33.3],
+  ["Norrtälje", 32.05], ["Norsjö", 35.2], ["Nybro", 34.19], ["Nykvarn", 32.3], ["Nyköping", 32.25], ["Nynäshamn", 32.18],
+  ["Nässjö", 34.3], ["Ockelbo", 34.27], ["Olofström", 33.75], ["Orsa", 34.3], ["Orust", 33.69], ["Osby", 33.99],
+  ["Oskarshamn", 34.21], ["Ovanåker", 33.37], ["Oxelösund", 33.05], ["Pajala", 34.74], ["Partille", 31.36], ["Perstorp", 31.99],
+  ["Piteå", 33.59], ["Ragunda", 34.92], ["Robertsfors", 35.0], ["Ronneby", 33.68], ["Rättvik", 33.8], ["Sala", 33.19],
+  ["Salem", 32.0], ["Sandviken", 33.12], ["Sigtuna", 31.83], ["Simrishamn", 31.69], ["Sjöbo", 32.1], ["Skara", 33.38],
+  ["Skellefteå", 34.45], ["Skinnskatteberg", 33.34], ["Skurup", 31.6], ["Skövde", 33.09], ["Smedjebacken", 34.44], ["Sollefteå", 34.68],
+  ["Sollentuna", 30.45], ["Solna", 29.7], ["Sorsele", 35.45], ["Sotenäs", 33.47], ["Staffanstorp", 30.12], ["Stenungsund", 33.12],
+  ["Stockholm", 30.55], ["Storfors", 34.98], ["Storuman", 34.95], ["Strängnäs", 32.5], ["Strömstad", 33.39], ["Strömsund", 34.92],
+  ["Sundbyberg", 31.58], ["Sundsvall", 33.88], ["Sunne", 33.75], ["Surahammar", 33.19], ["Svalöv", 31.92], ["Svedala", 31.42],
+  ["Svenljunga", 33.53], ["Säffle", 33.8], ["Säter", 34.3], ["Sävsjö", 33.68], ["Söderhamn", 33.17], ["Söderköping", 33.53],
+  ["Södertälje", 32.38], ["Sölvesborg", 33.86], ["Tanum", 33.04], ["Tibro", 33.19], ["Tidaholm", 33.55], ["Tierp", 33.0],
+  ["Timrå", 34.38], ["Tingsryd", 34.0], ["Tjörn", 33.19], ["Tomelilla", 31.79], ["Torsby", 34.3], ["Torsås", 33.79],
+  ["Tranemo", 32.98], ["Tranås", 33.77], ["Trelleborg", 31.58], ["Trollhättan", 33.84], ["Trosa", 32.03], ["Tyresö", 31.83],
+  ["Täby", 29.88], ["Töreboda", 33.2], ["Uddevalla", 33.64], ["Ulricehamn", 32.53], ["Umeå", 34.65], ["Upplands Väsby", 31.75],
+  ["Upplands-Bro", 31.73], ["Uppsala", 32.85], ["Uppvidinge", 33.8], ["Vadstena", 34.35], ["Vaggeryd", 33.25], ["Valdemarsvik", 34.03],
+  ["Vallentuna", 31.23], ["Vansbro", 34.28], ["Vara", 33.25], ["Varberg", 31.73], ["Vaxholm", 31.63], ["Vellinge", 29.68],
+  ["Vetlanda", 33.77], ["Vilhelmina", 35.5], ["Vimmerby", 34.22], ["Vindeln", 35.2], ["Vingåker", 33.5], ["Vänersborg", 33.69],
+  ["Vännäs", 35.2], ["Värmdö", 31.31], ["Värnamo", 33.28], ["Västervik", 33.02], ["Västerås", 31.24], ["Växjö", 32.19],
+  ["Vårgårda", 33.09], ["Ydre", 34.1], ["Ystad", 31.29], ["Älmhult", 33.86], ["Älvdalen", 34.77], ["Älvkarleby", 34.4],
+  ["Älvsbyn", 33.79], ["Ängelholm", 31.35], ["Åmål", 33.94], ["Ånge", 34.62], ["Åre", 33.92], ["Årjäng", 34.25],
+  ["Åsele", 35.45], ["Åstorp", 31.47], ["Åtvidaberg", 33.94], ["Öckerö", 33.04], ["Ödeshög", 33.95], ["Örebro", 33.65],
+  ["Örkelljunga", 30.24], ["Örnsköldsvik", 33.85], ["Östersund", 33.72], ["Österåker", 28.93], ["Östhammar", 33.3], ["Östra Göinge", 32.17],
+  ["Överkalix", 34.14], ["Övertorneå", 33.84]
+];
+// Kommunval: fyller ett <select> med rikssnittet och alla kommuner i svensk ordning.
+// Värdet är skattesatsen som andel ("0.3055|Stockholm"); parseFloat ger satsen.
+function kommunVal(sel, valdKs){
+  if(!sel) return;
+  const pct = s => s.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' %';
+  const min = Math.min(...KOMMUNER.map(k => k[1])), max = Math.max(...KOMMUNER.map(k => k[1]));
+  const lista = KOMMUNER.slice().sort((a, b) => a[0].localeCompare(b[0], 'sv'));
+  sel.innerHTML = `<option value="0.3238">Rikssnitt — 32,38 %</option>` + lista.map(([n, s]) =>
+    `<option value="${(s/100).toFixed(4)}|${n}">${n}${s === min ? ' (lägst)' : s === max ? ' (högst)' : ''} — ${pct(s)}</option>`).join('');
+  if(valdKs){ const o = [...sel.options].find(o => Math.abs(parseFloat(o.value) - valdKs) < 1e-6); if(o) sel.value = o.value; }
+}
+
+// Startkvittot kan räkna på lön, pension eller överskott i enskild firma.
+const START_TYP = {
+  lon:     {etikett:'Din lön före skatt', ord:'LÖN', kassor:'ARBETSGIVAREN', betalt:'LÖN', valkommen:'VÄLKOMMEN ÅTER NÄSTA LÖNEDAG', av:'AV LÖNEN'},
+  pension: {etikett:'Din pension före skatt', ord:'PENSION', kassor:'PENSIONSMYNDIGHETEN', betalt:'PENSION', valkommen:'VÄLKOMMEN ÅTER NÄSTA UTBETALNING', av:'AV PENSIONEN'},
+  firma:   {etikett:'Ditt överskott i firman per månad', ord:'ÖVERSKOTT', kassor:'DU SJÄLV (F-SKATT)', betalt:'F-SKATT', valkommen:'VÄLKOMMEN ÅTER NÄSTA SKATTEINBETALNING', av:'AV ÖVERSKOTTET'},
+};
+let startTyp = 'lon', startKs = 0.3238;
+// Egenavgifter 2026 (Skatteverket): 28,97 % av överskottet efter avdrag för egenavgifterna,
+// minus nedsättningen 7,5 % av underlaget (högst 15 000 kr per år, SFS 2022:889). Per månad.
+const EGENAVG = 0.2897, EGENAVG_NED = 0.075, EGENAVG_NED_MAX = 15000/12;
+function egenavgifter(oversk){
+  let x = oversk * 0.2;
+  for(let i = 0; i < 40; i++){ const u = Math.max(0, oversk - x); x = Math.max(0, EGENAVG*u - Math.min(EGENAVG_NED*u, EGENAVG_NED_MAX)); }
+  return Math.round(x);
+}
+// Startkvittots siffror: skatt, sju rader i fallande ordning och vad de räcker till.
+// Lön: under 66 år. Pension: född 1959 eller tidigare (förhöjt grundavdrag, inget jobbskatteavdrag).
+// Egen firma: inkomstskatt på överskottet efter egenavgifter (aktiv näringsverksamhet ger jobbskatteavdrag).
+function startKvittoData(lon, typ = 'lon', ks = 0.3238){
+  const egenavg = typ === 'firma' && lon > 0 ? egenavgifter(lon) : 0;
+  const bas = lon - egenavg;
+  const d = bas > 0 ? skattDelar(typ === 'pension' ? 70 : 40, bas*12/1000, {ksOverride:ks, pension: typ === 'pension'}) : null;
   const skatt = d ? Math.round((d.komm + d.stat - d.jsa) * 1000 / 12) : 0;
   const kr = START_GRUPPER.map(g => Math.round(skatt * g.a)); const iMax = kr.indexOf(Math.max(...kr));
   kr[iMax] += skatt - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
   const ordning = START_GRUPPER.map((g, i) => i).sort((x, y) => kr[y] - kr[x]);
-  return {lon, skatt, kr, ordning, rader: skatt > 0 ? ordning.map(i => ({n:START_GRUPPER[i].n, pk:START_GRUPPER[i].pk, c:START_GRUPPER[i].c, kr:kr[i], j:START_GRUPPER[i].j(kr[i])})) : []};
+  const T = START_TYP[typ] || START_TYP.lon;
+  const ksTxt = (ks*100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
+  return {lon, typ, ks, skatt, egenavg, kvar: Math.max(0, lon - skatt - egenavg), kr, ordning,
+    kassor: T.kassor, rad: `${T.ord} ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT ${ksTxt} %`, betalt: T.betalt, valkommen: T.valkommen, av: T.av,
+    rader: skatt > 0 ? ordning.map(i => ({n:START_GRUPPER[i].n, pk:START_GRUPPER[i].pk, c:START_GRUPPER[i].c, kr:kr[i], j:START_GRUPPER[i].j(kr[i])})) : []};
 }
+function startLon(){ const inp = document.getElementById('start-lon'); return inp ? Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0) : 0; }
 function startKvitto(){
   const inp = document.getElementById('start-lon'), fig = document.getElementById('start-kvitto'); if(!inp || !fig) return;
-  const lon = Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0);
-  const {skatt, kr, ordning} = startKvittoData(lon);
+  const lon = startLon();
+  const D = startKvittoData(lon, startTyp, startKs), {skatt, kr, ordning} = D;
   const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const kr0 = v => v.toLocaleString('sv-SE');
   const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
-    : '<div class="kv-del"><span>Ingen skatt på den lönen.</span><span></span></div>';
+    : '<div class="kv-del"><span>Ingen skatt på det beloppet.</span><span></span></div>';
   fig.innerHTML = `${KV.kant(true, 3)}<div class="kvitto-papper">
-    ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lon, 'ARBETSGIVAREN', `LÖN ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %`)}
+    ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lon, D.kassor, D.rad)}
     <hr class="kv-streck"><div class="kv-rader">${rader}</div><hr class="kv-streck">
     <div class="kv-sum"><span>SKATT/MÅN</span><b><span class="kv-hog">${k2(skatt)}</span></b></div>
-    <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${k2(Math.max(0, lon - skatt))}</span></div>
+    ${D.egenavg ? `<div class="kv-del"><span>EGENAVGIFTER</span><span>${k2(D.egenavg)}</span></div>` : ''}
+    <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${k2(D.kvar)}</span></div>
     <div class="kv-del"><span>ANTAL RADER</span><span>${skatt > 0 ? START_GRUPPER.length : 0}</span></div>
-    <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT MED: LÖN · INGET BYTE</span>${KV.kod(lon)}<span>VÄLKOMMEN ÅTER NÄSTA LÖNEDAG</span></div>
-  </div>${KV.flik(`SPARA: SKATTEN ÄR ${((lon) > 0 ? (skatt) / (lon) * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % AV LÖNEN`)}${KV.kant(false, 5)}`;
-  fig.setAttribute('aria-label', `Skattekvitto för ${lon.toLocaleString('sv-SE')} kronor i månaden: skatt ${skatt.toLocaleString('sv-SE')} kronor, kvar ${Math.max(0, lon - skatt).toLocaleString('sv-SE')} kronor.`);
-  const ag = Math.round(lon * 0.3142);
-  document.getElementById('start-kv-not').innerHTML = lon > 0 ? `Dessutom betalar arbetsgivaren ${ag.toLocaleString('sv-SE')} kr i arbetsgivaravgift (mindre om du är född 2003–2007), och du betalar moms när du handlar. <a href="#kalkylator">Båda kvittona finns i Din ekonomi</a>.<br>Jämförelserna bygger på prislapparna, polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.` : '';
-  const hjalp = document.getElementById('start-lon-hjalp'); // "förifyllt" bara när det är medianlönen
-  if(hjalp) hjalp.textContent = lon === 38300 ? 'Förifyllt med medianlönen (SCB, 2025). Inget sparas eller skickas.' : 'Medianlönen är 38 300 kr (SCB, 2025). Inget sparas eller skickas.';
-  document.getElementById('start-kv-live').textContent = lon > 0 ? `Skatt ${skatt.toLocaleString('sv-SE')} kronor i månaden, kvar ${Math.max(0, lon - skatt).toLocaleString('sv-SE')} kronor.` : '';
+    <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT MED: ${D.betalt} · INGET BYTE</span>${KV.kod(lon)}<span>${D.valkommen}</span></div>
+  </div>${KV.flik(`SPARA: SKATTEN ÄR ${(lon > 0 ? skatt / lon * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % ${D.av}`)}${KV.kant(false, 5)}`;
+  fig.setAttribute('aria-label', `Skattekvitto för ${kr0(lon)} kronor i månaden: skatt ${kr0(skatt)} kronor${D.egenavg ? `, egenavgifter ${kr0(D.egenavg)} kronor` : ''}, kvar ${kr0(D.kvar)} kronor.`);
+  const jmf = 'Jämförelserna bygger på prislapparna, polisens medellön (SCB), riksdagens arvode och FMV:s köp av 48 Archer-pjäser för 5 miljarder kronor.';
+  let not = '';
+  if(lon > 0 && startTyp === 'lon') not = `Dessutom betalar arbetsgivaren ${kr0(Math.round(lon * 0.3142))} kr i arbetsgivaravgift (mindre om du är född 2003–2007), och du betalar moms när du handlar. <a href="#kalkylator">Båda kvittona finns i Din ekonomi</a>.`;
+  if(lon > 0 && startTyp === 'pension') not = `På pension betalas ingen arbetsgivaravgift och inget jobbskatteavdrag. Kvittot räknar med det högre grundavdraget för den som är född 1959 eller tidigare. Du betalar moms när du handlar. <a href="#kalkylator">Pensionärskvittot finns i Din ekonomi</a>.`;
+  if(lon > 0 && startTyp === 'firma') not = `I enskild firma betalar du själv egenavgifter i stället för arbetsgivaravgift: cirka ${kr0(D.egenavg)} kr i månaden (28,97 % med nedsättningen på 7,5 %, Skatteverket 2026). Cirka ${kr0(Math.round((lon - D.egenavg) * 0.1021))} kr av dem är ålderspensionsavgift som blir din pension. Egenavgifterna dras av innan skatten räknas. Moms på det du säljer ingår inte.`;
+  document.getElementById('start-kv-not').innerHTML = not ? not + '<br>' + jmf : '';
+  const hjalp = document.getElementById('start-lon-hjalp');
+  if(hjalp) hjalp.textContent = startTyp === 'pension' ? 'Pension före skatt, till exempel inkomstpension och tjänstepension tillsammans. Inget sparas eller skickas.'
+    : startTyp === 'firma' ? 'Överskottet i enskild firma före skatt och egenavgifter, per månad. Inget sparas eller skickas.'
+    : lon === 38300 ? 'Förifyllt med medianlönen (SCB, 2025). Inget sparas eller skickas.' : 'Medianlönen är 38 300 kr (SCB, 2025). Inget sparas eller skickas.';
+  document.getElementById('start-kv-live').textContent = lon > 0 ? `Skatt ${kr0(skatt)} kronor i månaden, kvar ${kr0(D.kvar)} kronor.` : '';
   return lon;
 }
+function setStartTyp(typ){
+  if(!START_TYP[typ]) return;
+  startTyp = typ;
+  document.querySelectorAll('.start-typ button').forEach(b => b.setAttribute('aria-pressed', b.dataset.typ === typ));
+  const et = document.getElementById('start-lon-etikett'); if(et) et.textContent = START_TYP[typ].etikett;
+  startKvitto();
+}
+function setStartKommun(sel){ const v = parseFloat(sel.value); if(!isNaN(v)) startKs = v; startKvitto(); }
 (function initStartKvitto(){
   const inp = document.getElementById('start-lon'); if(!inp) return;
+  kommunVal(document.getElementById('start-kommun'), startKs);
+  kommunVal(document.getElementById('s-kommun'), 0.3238); // currentKs deklareras längre ned
   let t; inp.addEventListener('input', () => { clearTimeout(t); t = setTimeout(startKvitto, 120); });
   inp.addEventListener('blur', () => { const v = parseInt(inp.value.replace(/\D/g, ''), 10); if(v) inp.value = v.toLocaleString('sv-SE'); });
   const knapp = document.getElementById('start-till-ekonomi');
-  if(knapp) knapp.addEventListener('click', () => { // för över lönen till kalkylatorn
-    const lon = parseInt(inp.value.replace(/\D/g, ''), 10); const sl = document.getElementById('s-inc');
-    if(lon && sl){ sl.value = Math.round(lon*12/1000); sl.dispatchEvent(new Event('input', {bubbles:true})); }
+  if(knapp) knapp.addEventListener('click', () => { // för över belopp, typ och kommun till kalkylatorn
+    const lon = startLon(), sl = document.getElementById('s-inc'), ag = document.getElementById('s-age');
+    const bas = startTyp === 'firma' ? lon - egenavgifter(lon) : lon;
+    if(startTyp === 'pension' && ag && +ag.value < 67){ ag.value = 70; ag.dispatchEvent(new Event('input', {bubbles:true})); }
+    if(startTyp !== 'pension' && ag && +ag.value >= 65){ ag.value = 40; ag.dispatchEvent(new Event('input', {bubbles:true})); }
+    const ks = document.getElementById('s-kommun'); if(ks){ kommunVal(ks, startKs); setKommun(ks); }
+    if(bas && sl){ sl.value = Math.round(bas*12/1000); sl.dispatchEvent(new Event('input', {bubbles:true})); }
   });
   startKvitto();
 })();
@@ -4299,8 +4420,8 @@ function kbKvitto(x, data, RW, bild, rita){
   y += 34; text('KVITTO · DIN SKATT 2026', RW/2, y, `400 22px ${M}`, KB_FARG.black, 'center');
   const nu = new Date();
   y += 40; text('KASSA 01', P, y, `400 20px ${M}`); text(`KVITTO NR ${String(data.lon).padStart(7, '0')}`, RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
-  y += 28; text(nu.toLocaleDateString('sv-SE'), P, y, `400 20px ${M}`); text('KASSÖR: ARBETSGIVAREN', RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
-  y += 28; text(`LÖN ${data.lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT 32,38 %`, P, y, `400 20px ${M}`);
+  y += 28; text(nu.toLocaleDateString('sv-SE'), P, y, `400 20px ${M}`); text(`KASSÖR: ${data.kassor || 'ARBETSGIVAREN'}`, RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
+  y += 28; text(data.rad, P, y, `400 20px ${M}`);
   y += 18; streck(false);
   // Rader: pictogram, namn och belopp, och under dem vad beloppet räcker till
   for(const r of data.rader){
@@ -4318,12 +4439,13 @@ function kbKvitto(x, data, RW, bild, rita){
   // Summa i dubbel höjd
   y += 52; text('SKATT/MÅN', P, y, `600 26px ${M}`);
   if(rita){ x.save(); x.translate(RW - P, y); x.scale(1, 1.9); text(k2(data.skatt), 0, 0, `600 30px ${M}`, KB_FARG.black, 'right'); x.restore(); }
-  y += 38; text('KVAR EFTER SKATT', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(Math.max(0, data.lon - data.skatt)), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right');
+  if(data.egenavg){ y += 38; text('EGENAVGIFTER', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(data.egenavg), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right'); y -= 8; }
+  y += 38; text('KVAR EFTER SKATT', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(data.kvar), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right');
   y += 20; streck(true);
   // Streckkod
   y += 8;
   if(rita){ x.fillStyle = KB_FARG.black; const siffror = (String(data.lon).padStart(7, '0') + '2026' + '7319').repeat(3); let bx = RW/2 - 170, i = 0; for(const ch of siffror){ const w = [2, 3, 4, 6][(+ch + i++) % 4]; if(bx + w > RW/2 + 170) break; x.fillRect(bx, y, w, 56); bx += w + 2.6 + ((+ch) % 3); } }
-  y += 56 + 30; text('VÄLKOMMEN ÅTER NÄSTA LÖNEDAG', RW/2, y, `400 20px ${M}`, '#3F3C36', 'center');
+  y += 56 + 30; text(data.valkommen, RW/2, y, `400 20px ${M}`, '#3F3C36', 'center');
   return y + 34;
 }
 // Rivkant som path längs en kant av kvittot
@@ -4332,9 +4454,9 @@ function kbKant(x, RW, yKant, upp, fro){
   x.lineTo(0, yKant); let sx = 0;
   while(sx < RW){ const w = 9 + rnd() * 9, h = 4 + rnd() * 11; x.lineTo(Math.min(RW, sx + w/2), upp ? yKant - h : yKant + h); x.lineTo(Math.min(RW, sx + w), yKant); sx += w; }
 }
-async function ritaKvittoBild(canvas, format, lon){
+async function ritaKvittoBild(canvas, format, lon, typ = 'lon', ks = 0.3238){
   await kbTypsnitt();
-  const data = startKvittoData(lon);
+  const data = startKvittoData(lon, typ, ks);
   const bild = {logo: await kbSymbol('kv-logo', KB_FARG.black), pk:{}};
   for(const g of START_GRUPPER) bild.pk[g.pk] = await kbSymbol('pk-' + g.pk, g.c);
   const og = format === 'og', story = format === 'story';
@@ -4372,7 +4494,7 @@ async function ritaKvittoBild(canvas, format, lon){
     x.fillStyle = KB_FARG.ljus;
     citRader.forEach((r, i) => x.fillText(r, W/2, ky + naturlig*skala + luft + (story ? 34 : 28) + i*(story ? 48 : 40)));
     x.font = `400 ${story ? 26 : 22}px ${M}`; x.fillStyle = KB_FARG.ljus2;
-    x.fillText('Räkna på din egen lön: wilhelm-wg.github.io/skatteplattformen', W/2, H - fot/2 + 4);
+    x.fillText(`Räkna på din egen ${typ === 'pension' ? 'pension' : 'lön'}: wilhelm-wg.github.io/skatteplattformen`, W/2, H - fot/2 + 4);
   }
   // Kvittopapperet med skugga, rivkanter och en lätt lutning
   x.save();
@@ -4609,6 +4731,8 @@ function readURLParams(){
   // Delat kvitto: ?lon=38300 fyller i lönen på startsidan
   const lonP = parseInt(p.get('lon'));
   if(!isNaN(lonP) && lonP > 0 && lonP <= 1000000){ const inp = document.getElementById('start-lon'); if(inp){ inp.value = lonP.toLocaleString('sv-SE'); startKvitto(); } }
+  const ksP = parseFloat(p.get('ks')); if(!isNaN(ksP) && ksP > 0.2 && ksP < 0.4){ startKs = ksP; kommunVal(document.getElementById('start-kommun'), ksP); startKvitto(); }
+  if(START_TYP[p.get('typ')]) setStartTyp(p.get('typ'));
   // Delad länk med fler inställningar: visa dem utfällda
   if(p.get('hh') || p.get('kapital') || p.get('ks')){ const m = document.querySelector('.calc-mer'); if(m) m.open = true; }
   const age = parseInt(p.get('age'));
@@ -4787,7 +4911,9 @@ renderSkatteChart();
 //   soc  = socialt skydd GF10 1 223,5 mdkr − äldreomsorg 165,5 − inkomst- och tilläggspension 363,7
 //          (Pensionsmyndigheten, Orange rapport 2024, tabell 2.1; premiepensionen ligger utanför offentlig sektor) = 693,8 mdkr
 //          Socialt skydd för 65+ (pensionar, aldri) höjdes med 16 tkr per person 2026-10-30 för att summan ska stämma
-//   utb  = enhetskostnader (Skolverket 2025, UKÄ 2025), summa ≈ 434 mdkr; COFOG GF09 464,7 mdkr inkluderar även annat
+//   utb  = enhetskostnader (Skolverket 2025, UKÄ 2025), summa ≈ 382 mdkr; COFOG GF09 464,7 mdkr inkluderar även annat,
+//          till exempel vuxenutbildning och administration, som inte fördelas på ålder här. 35–44 år hade tidigare 42 tkr,
+//          som var barnens skolgång och räknades två gånger (cirka 52 mdkr); rättat 2026-11-05.
 //   koll = gemensamma utgifter lika per invånare: COFOG GF01–06 och GF08 2024 (förvaltning inkl. räntor, försvar,
 //          rättsväsende, näringsliv och transporter, miljö, bostäder, kultur) = 1 061,3 mdkr / 10 587 710 ≈ 100 tkr (NTA-metoden)
 // scripts/kontroll.mjs kontrollerar att summorna stämmer (±3 %).
@@ -4815,7 +4941,7 @@ const LIVSFASER_V2 = [
    källa:'Åldersprofil: Försäkringskassan (sjukförsäkring, föräldrapenning), NTA (sjukvård). Nivåer kalibrerade mot COFOG 2024.',
    note:'Föräldrapenning, barnbidrag, sjukförsäkring.'},
   {id:'barnfamilj', icon:'family', label:'Barnfamiljsfas',          min:35, max:44,
-   f:{utb:42, sj:26, soc:96, koll:KOLL_PER_INV, oms:1},
+   f:{utb:5,  sj:26, soc:96, koll:KOLL_PER_INV, oms:1}, // utb: egen vuxenutbildning; barnens skola räknas hos barnen (rättat 2026-11-05)
    källa:'Åldersprofil: Försäkringskassan (barnbidrag, föräldrapenning, VAB, sjukpenning), NTA (sjukvård). Nivåer kalibrerade mot COFOG 2024.',
    note:'Barnbidrag, föräldrapenning, VAB och bostadsbidrag är vanligast i den här åldern. Genomsnitt för alla i åldern, med eller utan barn.'},
   {id:'mitt_karriar',icon:'office', label:'Mitt i karriären',         min:45, max:54,
@@ -5979,11 +6105,11 @@ function chartW(w){ return window.innerWidth <= 640 ? Math.round(w * 0.6) : w; }
 // f = personliga förmåner per invånare (modellen, kalibrerad mot COFOG/Kolada; utan gemensamma utgifter),
 // s = skatt per invånare: modellens inkomstskatt, arbetsgivaravgift och moms på SCB:s faktiska inkomster 2024
 // (sammanräknad förvärvsinkomst per ettårsålder och inkomstklass, HE0110), delat på alla invånare i gruppen (BE0101).
-// Summor: förmåner 1 765 mdkr, skatter 1 575 mdkr. Räknat 2026-10-29; socialt skydd 65+ omkalibrerat samma dag (inkomstpension 363,7 mdkr i stället för cirka 400).
+// Summor: förmåner 1 713 mdkr, skatter 1 575 mdkr (35–44 år utan dubbelräknad skola 2026-11-05). Räknat 2026-10-29; socialt skydd 65+ omkalibrerat samma dag (inkomstpension 363,7 mdkr i stället för cirka 400).
 const LIVSLOPP_BEF = [
   {g:'0–6',  a0:0,  a1:6,   f:184, s:0},   {g:'7–15', a0:7,  a1:15,  f:180, s:0},
   {g:'16–18',a0:16, a1:18,  f:187, s:0},   {g:'19–25',a0:19, a1:25,  f:106, s:77},
-  {g:'26–34',a0:26, a1:34,  f:68,  s:184}, {g:'35–44',a0:35, a1:44,  f:165, s:243},
+  {g:'26–34',a0:26, a1:34,  f:68,  s:184}, {g:'35–44',a0:35, a1:44,  f:128, s:243},
   {g:'45–54',a0:45, a1:54,  f:105, s:290}, {g:'55–64',a0:55, a1:64,  f:136, s:263},
   {g:'65–74',a0:65, a1:74,  f:208, s:122}, {g:'75+',  a0:75, a1:120, f:357, s:79},
 ];
@@ -6197,7 +6323,7 @@ function shareSkatt(e){
   // Utanför Din ekonomi delas den vy man står på
   if(window.aktivVy && window.aktivVy !== 'din-ekonomi'){
     // På startsidan följer lönen med, så att mottagaren ser samma kvitto
-    const url = window.aktivVy === 'start' && scStartLon() ? location.origin + location.pathname + '?lon=' + scStartLon() + '#start' : location.href.split('?')[0];
+    const url = window.aktivVy === 'start' && scStartLon() ? startDelLank() : location.href.split('?')[0];
     const btn = document.querySelector('.nav-pill');
     const flash = msg => { if(!btn) return; const o = btn.textContent; btn.textContent = msg; setTimeout(() => { btn.textContent = o; }, 2000); };
     if(navigator.share) navigator.share({title: document.title, url}).catch(() => {});
@@ -6257,6 +6383,13 @@ function setScFormat(btn, fmt){
   document.querySelectorAll('.sc-fmt').forEach(b => { b.classList.toggle('on', b === btn); b.setAttribute('aria-pressed', b === btn); });
   drawShareCard();
 }
+// Länk som återskapar startkvittot: belopp, typ och kommun
+function startDelLank(){
+  const p = new URLSearchParams({lon: scStartLon()});
+  if(startTyp !== 'lon') p.set('typ', startTyp);
+  if(Math.abs(startKs - 0.3238) > 1e-6) p.set('ks', startKs.toFixed(4));
+  return location.origin + location.pathname + '?' + p.toString() + '#start';
+}
 function scStartLon(){ const inp = document.getElementById('start-lon'); return inp ? Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0) : 38300; }
 
 // Resultatkortet för Din ekonomi, i sajtens typsnitt och färger
@@ -6300,13 +6433,13 @@ async function drawShareCard(){
   const nr = ++scRitning;
   // Rita på en egen canvas och kopiera när den är klar, så att ett snabbt formatbyte inte blandar två bilder
   const tmp = document.createElement('canvas');
-  if(scLage === 'kvitto') await ritaKvittoBild(tmp, scFormat === 'story' ? 'story' : 'post', scStartLon());
+  if(scLage === 'kvitto') await ritaKvittoBild(tmp, scFormat === 'story' ? 'story' : 'post', scStartLon(), startTyp, startKs);
   else await drawProfilKort(tmp);
   if(nr !== scRitning) return;
   c.width = tmp.width; c.height = tmp.height; c.getContext('2d').drawImage(tmp, 0, 0);
 }
 function scLank(){
-  if(scLage === 'kvitto') return location.origin + location.pathname + '?lon=' + scStartLon() + '#start';
+  if(scLage === 'kvitto') return startDelLank();
   return buildShareURL();
 }
 let scTillbaka = null;
@@ -6343,7 +6476,7 @@ function shareShareCard(){
   const c = document.getElementById('sc-canvas'); if(!c) return;
   const url = scLank();
   let text = 'Vad får jag för pengarna? Räkna ut din egen på Skatteplattformen.';
-  if(scLage === 'kvitto'){ const d = startKvittoData(scStartLon()); text = `Min skatt är ${d.skatt.toLocaleString('sv-SE')} kr i månaden. Så här räcker den. Räkna på din egen lön:`; }
+  if(scLage === 'kvitto'){ const d = startKvittoData(scStartLon(), startTyp, startKs); text = `Min skatt är ${d.skatt.toLocaleString('sv-SE')} kr i månaden. Så här räcker den. Räkna på din egen ${startTyp === 'pension' ? 'pension' : 'lön'}:`; }
   c.toBlob(blob => {
     const file = new File([blob], scFilnamn(), { type: 'image/png' });
     const payload = { title: scLage === 'kvitto' ? 'Mitt skattekvitto' : 'Min ekonomi', text, url };
