@@ -10,6 +10,27 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-05) — Genomsnittsskatt bredvid satserna
+
+- **"Hur stor del av lönen går till skatt?"** ersätter marginalskattekortet i Din
+  ekonomi: din egen andel av hela lönen och skatten på nästa hundralapp, och
+  för sju lönenivåer genomsnitt (fylld stapel) och marginal (kontur).
+- **Skatter i korthet** ligger direkt efter kalkylatorn. Första kortet är "Så
+  mycket av lönen går till skatt" (20 % på medianlönen, cirka 30 % med moms).
+  Kommunalskatt, statlig skatt, moms (20 % av priset i kassan) och
+  arbetsgivaravgift (24 % av den totala lönekostnaden) har fått en rad om vad
+  satsen betyder i praktiken.
+- Skattekortets summa visar andelen av lönen; totalen heter "Totalt med
+  arbetsgivaravgift och moms".
+- **Andra möjliga missförstånd** (genomgång i `docs/MISSFORSTAND_2026-11.md`):
+  försvaret är "största enskilda" utgiftsområde (socialförsäkringarna UO10–12
+  är 285 mdkr tillsammans); Malmöexemplet gäller kommunens del; "Vem gör vad"
+  förklarar att måtten skiljer sig; skattekvoten nämner att ersättningar
+  beskattas; "Två trender" säger att intäkterna ökat i kronor; sjukfrånvarons
+  +68 % räknas från bottenåret; startkvittot förklarar att fördelningen är
+  proportionell; hundralappen 2024 innehåller inkomstpensionen; sjukvård per
+  invånare; filmens 26–64 år; prislistans skattetid.
+
 ### Changed (2026-11-05) — Mindre förslag från användartestet
 
 - **Barn i Din ekonomi:** val "Barn under 18 år hemma" (0–5). En ruta visar

@@ -751,6 +751,24 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .man-rad input{width:9rem;font:600 1.4rem/1.2 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:.35rem .6rem}
 .man-rad input:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .man-rad span{font-size:.85rem;color:var(--ink2)}
+.kpi.kpi-snitt{border:1.5px solid var(--green);background:var(--green-ll)}
+.snitt-du{font-size:.92rem;line-height:1.5;color:var(--ink);margin:.2rem 0 .8rem}
+.snitt-du b{font-variant-numeric:tabular-nums}
+.snitt-tecken{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-size:.75rem;color:var(--ink2);margin-bottom:.5rem}
+.snitt-tecken span{display:inline-flex;align-items:center;gap:.35rem}
+.snitt-tecken i{display:inline-block;width:18px;height:9px;border-radius:2px}
+.snitt-rader{display:flex;flex-direction:column;gap:.35rem}
+.snitt-rad{display:grid;grid-template-columns:7.4rem minmax(0,1fr) 5.6rem;gap:.55rem;align-items:center;font-size:.78rem;color:var(--ink2);padding:2px 4px;margin:0 -4px;border-radius:3px}
+.snitt-rad.akt{background:var(--bg2);color:var(--ink)}
+.snitt-lon{font-family:var(--mono);text-align:right;white-space:nowrap}
+.snitt-lon small{font-family:var(--sans);font-size:.75rem;color:var(--ink3)}
+.snitt-spar{position:relative;height:12px;background:var(--bg2);border-radius:3px}
+.snitt-spar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+i.snitt-fylld{background:var(--skatt,#C9A66B)}
+i.snitt-kontur{box-shadow:inset 0 0 0 1.5px #8C6A2C;background:transparent}
+.snitt-v{font-family:var(--mono);white-space:nowrap;text-align:right}
+.snitt-v b{color:var(--ink);font-weight:600}
+.snitt-not{font-size:.75rem;color:var(--ink2);line-height:1.55;margin:.75rem 0 0}
 .calc-hjalp{font-size:.78rem;color:var(--ink2);line-height:1.5;margin:.3rem 0 0}
 .barn-val{width:100%;margin-top:.35rem;padding:7px 10px;font:500 .85rem var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;min-height:38px}
 .barn-ruta{background:var(--green-ll);border-radius:var(--r-sm,6px);padding:.9rem 1rem;font-size:.85rem;line-height:1.55;color:var(--ink);margin:0 0 1rem}
@@ -1155,7 +1173,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
           <a href="#kalkylator" class="btn-p" id="start-till-ekonomi">Hela kvittot och vad du får tillbaka →</a>
           <a href="#pristabell" class="btn-g">Se vad saker kostar</a>
         </div>
-        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas för den som är under 66 år, pension för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Skatten fördelas som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter.</p>
+        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas för den som är under 66 år, pension för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Kvittot fördelar skatten i samma proportioner som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter. I verkligheten går kommunalskatten till kommun och region, men alla skatter tillsammans betalar alla utgifter.</p>
       </div>
       <!-- STARTKVITTOT: skatten på lönen, fördelad på sju grupper, med vad den räcker till (START_GRUPPER i JS). -->
       <div class="start-kv fu fu4">
@@ -1325,7 +1343,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
           <rect x="390" y="500" width="330" height="10" rx="0" fill="var(--accent)"/>
           <rect x="720" y="500" width="180" height="10" rx="5" fill="var(--reg-l)" stroke="var(--reg)"/>
           <text class="node-s" x="230" y="528">0 år · tar emot</text>
-          <text class="node-s" x="555" y="528" text-anchor="middle">20–65 år · betalar in mer än du får</text>
+          <text class="node-s" x="555" y="528" text-anchor="middle">26–64 år · betalar in mer än du får</text>
           <text class="node-s" x="900" y="528" text-anchor="end">tar emot · 85 år</text>
         </g>
 
@@ -1635,8 +1653,8 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       </div>
       <div class="vgv-panel">
         <div class="vgv-lbl">Exempel: Malmö stad 2025</div>
-        <h3>Så används 100 kr i kommunalskatt</h3>
-        <p>Fördelningen skiljer sig mellan kommuner, men skolan är nästan alltid störst.</p>
+        <h3>Så använder kommunen 100 kr</h3>
+        <p>Exempel: Malmö stad 2025. Det gäller kommunens del; ungefär en tredjedel av kommunalskatten går till regionen. Fördelningen skiljer sig mellan kommuner, men skolan är nästan alltid störst.</p>
         <div class="vgv-hund" role="img" aria-label="Malmö stad 2025, av 100 kronor: 45 till utbildning, 26 till äldreomsorg och funktionsstöd, 16 till individ- och familjeomsorg, 6 till kultur och fritid, 5 till gator, parker och räddningstjänst, 2 övrigt.">
           <div style="--k:var(--k-utb)"><svg class="pk" viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-utb);color:var(--k-utb)"><use href="#pk-utb"/></svg><span>Utbildning</span><i style="width:100%"></i><em>45 kr</em></div>
           <div style="--k:var(--k-soc)"><svg class="pk" viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-soc);color:var(--k-soc)"><use href="#pk-aldre"/></svg><span>Äldreomsorg, funktionsstöd</span><i style="width:58%"></i><em>26 kr</em></div>
@@ -1648,7 +1666,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       </div>
     </div>
 
-    <p class="vgv-src">Källor: SCB, Kommunalskatterna 2026 · SCB, Kommunernas och regionernas preliminära bokslut 2025 (skatteintäkter, generella statsbidrag och utjämning, intäktsandelar) · Skatteverket, Utbetalning av skatt till kommuner och regioner · Regeringen.se, Så styrs Sverige (ansvarsfördelning, regionernas sjukvårdsandel) · Ekonomifakta, Kommunernas kostnader 2025 · Malmö stad, Så används dina skattepengar 2025 · Budgetpropositionen 2026. SCB:s generella statsbidrag omfattar mer än anslaget för kommunalekonomisk utjämning i statsbudgeten, bland annat läkemedelsbidraget.</p>
+    <p class="vgv-src">Källor: SCB, Kommunalskatterna 2026 · SCB, Kommunernas och regionernas preliminära bokslut 2025 (skatteintäkter, generella statsbidrag och utjämning, intäktsandelar) · Skatteverket, Utbetalning av skatt till kommuner och regioner · Regeringen.se, Så styrs Sverige (ansvarsfördelning, regionernas sjukvårdsandel) · Ekonomifakta, Kommunernas kostnader 2025 · Malmö stad, Så används dina skattepengar 2025 · Budgetpropositionen 2026. Måtten skiljer sig: staten visar budgetens utgifter 2026, kommunerna och regionerna sina skatteintäkter 2025. Statens utgifter innehåller bidragen till kommuner och regioner, så beloppen ska inte läggas ihop. SCB:s generella statsbidrag omfattar mer än anslaget för kommunalekonomisk utjämning i statsbudgeten, bland annat läkemedelsbidraget.</p>
   </div>
 </section>
 
@@ -1725,8 +1743,8 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
   <div class="cw">
     <div style="max-width:1080px">
       <p class="s-eye">Statsbudgeten 2026: vart går pengarna?</p>
-      <h2 class="s-title">Försvar och krisberedskap är statens största utgiftsområde 2026</h2>
-      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 miljarder kronor</strong> fördelat på 27 utgiftsområden — inkomster 1 375 miljarder, budgetsaldo <strong>−167 miljarder</strong>. Den offentliga sektorns samlade utgifter är cirka 3 200 miljarder kronor (2024); en del av statsbudgeten förs vidare till kommuner och regioner. Stora förändringar 2026 jämfört med 2025: <strong>försvar och samhällets krisberedskap +33 %</strong> (utgiftsområde 6, varav knappt 40 miljarder är militärt stöd till Ukraina), hälsovård, sjukvård och social omsorg +6 % (utgiftsområde 9, från 120,5 till 127,7 miljarder), räntor på statsskulden −6 % (utgiftsområde 26, budget mot budget). Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
+      <h2 class="s-title">Försvar och krisberedskap är statsbudgetens största enskilda utgiftsområde 2026</h2>
+      <p class="s-sub">Statsbudgeten 2026: <strong>1 542 miljarder kronor</strong> fördelat på 27 utgiftsområden — inkomster 1 375 miljarder, budgetsaldo <strong>−167 miljarder</strong>. Socialförsäkringarna är uppdelade på tre utgiftsområden (10–12); tillsammans är de större än försvaret, 285 miljarder. Den offentliga sektorns samlade utgifter är cirka 3 200 miljarder kronor (2024); en del av statsbudgeten förs vidare till kommuner och regioner. Stora förändringar 2026 jämfört med 2025: <strong>försvar och samhällets krisberedskap +33 %</strong> (utgiftsområde 6, varav knappt 40 miljarder är militärt stöd till Ukraina), hälsovård, sjukvård och social omsorg +6 % (utgiftsområde 9, från 120,5 till 127,7 miljarder), räntor på statsskulden −6 % (utgiftsområde 26, budget mot budget). Källa: Budgetpropositionen 2026 (prop. 2025/26:1), riksdagsbeslut nov 2025.</p>
     </div>
     <div class="budget-kpi">
       <div class="kpi"><div class="kpi-tal">1 542 <small>mdkr</small></div><div class="kpi-lbl">Statsbudgetens utgifter 2026 (riksdagens beslut)</div></div>
@@ -2136,7 +2154,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       </div>
 
       <div class="ft-quote">
-        <strong>Två trender möts:</strong> skattekvoten har sjunkit med cirka 2,6 procentenheter sedan 2010, samtidigt som antalet personer över 80 år väntas öka med cirka 26 % till 2030. Det kan hanteras med högre skatteuttag, prioriteringar, effektivisering eller en kombination.
+        <strong>Två trender möts:</strong> skattekvoten har sjunkit med cirka 2,6 procentenheter sedan 2010, samtidigt som antalet personer över 80 år väntas öka med cirka 26 % till 2030. I kronor har skatteintäkterna ökat; det är andelen av BNP som har sjunkit. Det kan hanteras med högre skatteuttag, prioriteringar, effektivisering eller en kombination.
       </div>
 
       <p class="ft-source">Källor: SCB Befolkningsframskrivning 2026–2070, SCB nationalräkenskaperna.</p>
@@ -2157,7 +2175,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         <div class="ft-card">
           <div class="ft-card-title">Sjukvårdsutgifter (% av BNP)</div>
           <div class="ft-big">11,2%<sub> (2023)</sub></div>
-          <div class="ft-desc">Sverige lägger 11,2% av BNP på hälso- och sjukvård — högst i Norden.</div>
+          <div class="ft-desc">Sverige lägger 11,2% av BNP på hälso- och sjukvård — högst i Norden som andel av BNP. Per invånare lägger Norge mer.</div>
         </div>
         <div class="ft-card">
           <div class="ft-card-title">Personalkostnader</div>
@@ -2221,7 +2239,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         <div class="ft-card">
           <div class="ft-card-title">Jämförelse: Sverige vs OECD</div>
           <div class="ft-big">41,4 %<sub> mot 34,1 % (2024)</sub></div>
-          <div class="ft-desc">Enligt OECD:s beräkning, som skiljer sig något från SCB:s: Sverige 41,4 %, OECD-snittet 34,1 % och Danmark 45,2 % år 2024. Skillnaden mot OECD-snittet har minskat från cirka 15 procentenheter år 2000.</div>
+          <div class="ft-desc">Enligt OECD:s beräkning, som skiljer sig något från SCB:s: Sverige 41,4 %, OECD-snittet 34,1 % och Danmark 45,2 % år 2024. Skillnaden mot OECD-snittet har minskat från cirka 15 procentenheter år 2000. Kvoten blir högre i Sverige också för att pension, sjukpenning och andra ersättningar beskattas, och för att pensionsavgiften räknas som skatt; i många länder är ersättningarna skattefria.</div>
         </div>
       </div>
       <div id="hist-skatt-chart" style="margin-top:1.5rem"></div>
@@ -2411,7 +2429,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
       <div class="ft-stat-row" style="margin-top:1rem">
         <div class="ft-stat"><div class="ft-stat-val">10,1 dagar</div><div class="ft-stat-lbl">Sjukpenningtalet 2025</div></div>
         <div class="ft-stat"><div class="ft-stat-val">46 mdkr</div><div class="ft-stat-lbl">Utbetald sjukpenning 2024</div></div>
-        <div class="ft-stat"><div class="ft-stat-val">+68 %</div><div class="ft-stat-lbl">Ökning 2010–2025</div></div>
+        <div class="ft-stat"><div class="ft-stat-val">+68 %</div><div class="ft-stat-lbl">Ökning från bottenåret 2010 till 2025; mot toppen 2002 är det 46 % lägre</div></div>
         <div class="ft-stat"><div class="ft-stat-val">ca 49 %</div><div class="ft-stat-lbl">Pågående sjukfall med psykisk diagnos, dec 2024</div></div>
       </div>
       <div style="margin-top:1.2rem">
@@ -2542,14 +2560,13 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         <!-- Delbart resultatkort (modal ligger på body-nivå, se #sc-overlay) -->
         <button type="button" class="sharecard-btn" onclick="openShareCard()"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg>Spara &amp; dela din profil som bild</button>
 
-        <!-- Marginalskatt-visualisering -->
+        <!-- Genomsnittsskatt och marginalskatt -->
         <div class="annual-card" id="marginal-card" style="display:none">
-          <div class="card-label">Marginalskatt på bruttolön — vad din nästa intjänade krona kostar</div>
-          <div id="marginal-bars" style="display:flex;flex-direction:column;gap:.3rem"></div>
-          <div style="margin-top:.65rem;font-size:.75rem;color:var(--ink2);line-height:1.55">
-            <strong>Marginalskatt</strong> = skatten på din nästa intjänade krona, räknad direkt ur skattemodellen. Upp till cirka 478 000 kr/år växer jobbskatteavdraget med lönen, så marginalskatten blir cirka 24 % (vid medianlön). Därefter är den cirka 32 % (kommunalskatt), och över brytpunkten, cirka 660 000 kr/år, tillkommer 20 % statlig skatt: cirka 52 %.
-            Arbetsgivaravgiften (21–31 %) ingår <em>inte</em> i marginalskatt här — den är arbetsgivarens kostnad och innehåller pensionsavgift som ger dig individuell pensionsrätt.
-          </div>
+          <div class="card-label">Hur stor del av lönen går till skatt?</div>
+          <p class="snitt-du" id="snitt-du"></p>
+          <div class="snitt-tecken" aria-hidden="true"><span><i class="snitt-fylld"></i>av hela lönen</span><span><i class="snitt-kontur"></i>på nästa hundralapp</span></div>
+          <div id="marginal-bars" class="snitt-rader"></div>
+          <p class="snitt-not">Skatten på hela lönen är lägre än satsen, eftersom grundavdraget gör de första kronorna skattefria och jobbskatteavdraget sänker skatten. Därför ökar andelen av hela lönen långsamt. Skatten på nästa hundralapp (marginalskatten) är högre: cirka 24 % upp till cirka 40 000 kr i månaden, 32 % därefter och 52 % på den del av lönen som är över cirka 55 000 kr, där statlig skatt tillkommer. Inkomstskatt enligt Skatteverkets regler 2026 och vald kommunalskatt; moms och arbetsgivaravgift ingår inte.</p>
         </div>
 
         <!-- Lifecycle bar + solidarity -->
@@ -2578,6 +2595,70 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         <div><h4>Arbetsgivarens kvitto</h4><div class="kvitto-wrap"><figure class="kvitto" id="kvitto-ag" aria-label="Arbetsgivarens kvitto" style="margin:0"></figure></div></div>
       </div>
       <p class="kvitto-not" id="kvitto-not" style="align-self:center"></p>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SKATTER I KORTHET (direkt efter kalkylatorn sedan 2026-11-05) -->
+<section class="section" id="skatter" aria-label="Skatter i korthet" style="padding:2.5rem 0">
+  <div class="cw">
+    <p class="s-eye">Grunden</p>
+    <h2 class="s-title">Skatter i korthet</h2>
+    <p class="s-sub">De största skatterna: vad de är, vem som betalar och hur stora de är. Satserna är inte samma sak som hur stor del av lönen som går till skatt; det visar det första kortet. Alla skatter tillsammans motsvarar <strong>cirka 41 % av BNP</strong> (SCB, 2024). <span style="color:var(--ink3)">2026 års värden enligt Skatteverket.</span></p>
+
+    <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
+
+      <div class="kpi kpi-snitt">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Så mycket av lönen går till skatt</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">20 <span style="font-size:.85rem">% av medianlönen</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">På medianlönen <strong>38 300 kr i månaden</strong> blir inkomstskatten <strong>7 692 kr</strong>, alltså 20 % av lönen. Kommunalskatten är 32 %, men grundavdraget och jobbskatteavdraget gör att skatten på hela lönen blir lägre än satsen. Räknar man med momsen när du handlar, uppskattningsvis 3 800 kr i månaden, blir det cirka 30 %. <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna på din lön</a></div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Egen beräkning med Skatteverkets regler 2026 och SCB:s medianlön 2025</div>
+      </div>
+
+      <div class="kpi">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension — finansierar både <strong>kommun och region</strong> (skola, omsorg, sjukvård, kollektivtrafik). <strong>Rikssnitt 2026: 32,38 %</strong>, varierar 28,9 % (Österåker) till 35,7 % (Dorotea) mellan kommuner. Satsen gäller inte hela lönen: grundavdraget och jobbskatteavdraget sänker skatten, så på medianlönen blir inkomstskatten 20 % av lönen.</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: SCB, Kommunalskatterna 2026</div>
+      </div>
+
+      <div class="kpi">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">20 <span style="font-size:.85rem">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på lön <strong>över cirka 660 000 kr/år</strong> (cirka 55 000 kr/mån), den så kallade brytpunkten 2026. Skiktgränsen 643 000 kr gäller den beskattningsbara inkomsten efter grundavdrag. Den gäller bara den del av lönen som är över brytpunkten: den som tjänar 60 000 kr i månaden betalar statlig skatt på cirka 5 000 kr av dem. Cirka <strong>11–13 %</strong> av de skattskyldiga betalar statlig skatt (Finansdepartementet 2023).</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 65 kap. inkomstskattelagen</div>
+      </div>
+
+      <div class="kpi">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> hotell och restaurang. <strong>6 %</strong> livsmedel (tillfälligt 1 april 2026–31 december 2027), böcker, tidningar, kollektivtrafik och kultur. Satsen räknas på priset utan moms, så av det du betalar i kassan är momsen 20 % vid 25 % moms.</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200), prop. 2025/26:55 (sänkt moms på livsmedel)</div>
+      </div>
+
+      <div class="kpi">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. Cirka 10 procentenheter är pensionsavgift som ger dig egen pension. Resten, cirka 21 procentenheter, är avgifter till socialförsäkringarna och allmän löneavgift (12,62 %), som räknas som skatt i skattekvoten. Är du född 1958 eller tidigare betalar arbetsgivaren bara pensionsavgiften. Räknat på vad anställningen kostar totalt, lön plus avgift, är avgiften 24 %.</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: socialavgiftslagen (2000:980), Skatteverket 2026</div>
+      </div>
+
+      <div class="kpi">
+        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
+        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">30 <span style="font-size:.85rem">%</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">30 % på <strong>utdelning, ränta och realiserad vinst</strong> vid direktägt sparande. <strong>ISK och kapitalförsäkring beskattas i stället med en årlig schablonskatt: 1,065 % av värdet 2026, och de första 300 000 kr är skattefria.</strong> <a href="#sparande" style="color:var(--green)">Mer om skatt på sparande</a></div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
+      </div>
+
+
+    </div>
+
+    <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
+      <strong style="color:var(--ink)">Skatteintäkterna 2026 fördelas så här:</strong>
+      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt, moms och arbetsgivaravgifterna utom ålderspensionsavgiften finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Ålderspensionsavgiften går till pensionssystemet. Den offentliga sektorns samlade utgifter var <strong>3 223 miljarder kronor</strong> 2024 (Eurostat, COFOG). Statsbudgeten 2026 är 1 542 miljarder, men en del av den förs vidare till kommuner och regioner och ska inte räknas två gånger.
+      <a href="#vem-gor-vad" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem;margin-right:1.2rem">→ Vem gör vad: stat, region och kommun</a><a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
     </div>
   </div>
 </section>
@@ -2648,69 +2729,6 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
         <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). Inkomstskatten följer Skatteverkets regler och stämmer med skattetabell 32 på någon krona när; momsen är en uppskattning. Intervallen är en <strong>bedömning</strong>, inte formella konfidensintervall.
       </div>
     </details>
-  </div>
-</section>
-
-<hr class="div">
-
-<!-- SKATTER I KORTHET (flyttad från startsidan 2026-10-29) -->
-<section class="section" id="skatter" aria-label="Skatter i korthet" style="padding:2.5rem 0">
-  <div class="cw">
-    <p class="s-eye">Grunden</p>
-    <h2 class="s-title">Skatter i korthet</h2>
-    <p class="s-sub">De största skatterna: vad de är, vem som betalar och hur stora de är. Alla skatter tillsammans motsvarar <strong>cirka 41 % av BNP</strong> (SCB, 2024). <span style="color:var(--ink3)">2026 års värden enligt Skatteverket.</span></p>
-
-    <div class="m-swipe" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem">
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kommunalskatt</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">32,4 <span style="font-size:.85rem">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Sveriges största skatt på lön och pension — finansierar både <strong>kommun och region</strong> (skola, omsorg, sjukvård, kollektivtrafik). <strong>Rikssnitt 2026: 32,38 %</strong>, varierar 28,9 % (Österåker) till 35,7 % (Dorotea) mellan kommuner.</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: SCB, Kommunalskatterna 2026</div>
-      </div>
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Statlig inkomstskatt</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">20 <span style="font-size:.85rem">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Läggs på lön <strong>över cirka 660 000 kr/år</strong> (cirka 55 000 kr/mån), den så kallade brytpunkten 2026. Skiktgränsen 643 000 kr gäller den beskattningsbara inkomsten efter grundavdrag. Cirka <strong>11–13 %</strong> av de skattskyldiga betalar statlig skatt (Finansdepartementet 2023).</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: Skatteverket 2026, 65 kap. inkomstskattelagen</div>
-      </div>
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Moms (mervärdesskatt)</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">25 <span style="font-size:.85rem">/ 12 / 6 %</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5"><strong>25 %</strong> standard. <strong>12 %</strong> hotell och restaurang. <strong>6 %</strong> livsmedel (tillfälligt 1 april 2026–31 december 2027), böcker, tidningar, kollektivtrafik och kultur.</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: Mervärdesskattelagen (2023:200), prop. 2025/26:55 (sänkt moms på livsmedel)</div>
-      </div>
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Arbetsgivaravgift</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">31,42 <span style="font-size:.85rem">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Arbetsgivaren betalar <strong>utöver din lön</strong>. Cirka 10 procentenheter är pensionsavgift som ger dig egen pension. Resten, cirka 21 procentenheter, är avgifter till socialförsäkringarna och allmän löneavgift (12,62 %), som räknas som skatt i skattekvoten. Är du född 1958 eller tidigare betalar arbetsgivaren bara pensionsavgiften.</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: socialavgiftslagen (2000:980), Skatteverket 2026</div>
-      </div>
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Kapitalskatt</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">30 <span style="font-size:.85rem">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">30 % på <strong>utdelning, ränta och realiserad vinst</strong> vid direktägt sparande. <strong>ISK och kapitalförsäkring beskattas i stället med en årlig schablonskatt: 1,065 % av värdet 2026, och de första 300 000 kr är skattefria.</strong> <a href="#sparande" style="color:var(--green)">Mer om skatt på sparande</a></div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Källa: 42 kap inkomstskattelagen</div>
-      </div>
-
-      <div class="kpi">
-        <div style="font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Effektiv inkomstskatt — medianlön</div>
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">ca 20 <span style="font-size:.85rem">%</span></div>
-        <div style="font-size:.78rem;color:var(--ink2);margin-top:.5rem;line-height:1.5">Vid <strong>medianlön 38 300 kr/mån (ca 460 tkr/år)</strong>: kommunalskatt 143 tkr − jobbskatteavdrag 51 tkr = <strong>ca 92 tkr i direkt inkomstskatt</strong> (20 % av brutto). Plus moms ca 46 tkr = ca 30 % av brutto. Plus arbetsgivaravgiften utöver pensionsavgiften (21,21 %, ca 98 tkr). Totalt ca 236 tkr, cirka 42 % av lönen plus den avgiften (558 tkr). <a href="#kalkylator" style="color:var(--green);text-decoration:none;font-weight:500">→ Räkna själv</a></div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.5rem">Egen beräkning enligt Skatteverkets skatteregler 2026 + SCB medianlön 2025 (lönestrukturstatistiken) + SCB:s hushållsundersökning (sparande och konsumtion)</div>
-      </div>
-
-    </div>
-
-    <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
-      <strong style="color:var(--ink)">Skatteintäkterna 2026 fördelas så här:</strong>
-      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt, moms och arbetsgivaravgifterna utom ålderspensionsavgiften finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Ålderspensionsavgiften går till pensionssystemet. Den offentliga sektorns samlade utgifter var <strong>3 223 miljarder kronor</strong> 2024 (Eurostat, COFOG). Statsbudgeten 2026 är 1 542 miljarder, men en del av den förs vidare till kommuner och regioner och ska inte räknas två gånger.
-      <a href="#vem-gor-vad" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem;margin-right:1.2rem">→ Vem gör vad: stat, region och kommun</a><a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
-    </div>
   </div>
 </section>
 
@@ -3001,7 +3019,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
 const SAJT_UPPDATERAD = '5 november 2026';
 const VYER = [
   {id:'start',       namn:'Start',               hash:'',          delar:['hero','tldr','hundralapp','snabbfakta','vem-gor-vad']},
-  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','scenarion','livslopp','skatter','sparande'], led:{tal:'4 466 kr', text:'i skatt per månad på en lön på 25 000 kronor, som exempel. Räkna på din egen lön och ålder nedan.', kalla:'Skattemodellen, Skatteverkets regler 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
+  {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','skatter','scenarion','livslopp','sparande'], led:{tal:'4 466 kr', text:'i skatt per månad på en lön på 25 000 kronor, som exempel. Räkna på din egen lön och ålder nedan.', kalla:'Skattemodellen, Skatteverkets regler 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget','skuld-forsvar'], led:{tal:'1 542 mdkr', text:'är statsbudgetens utgifter 2026 enligt riksdagens beslut, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
   {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 34 verkliga prislappar med källa.'},
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], led:{tal:'11,2 %', text:'av BNP lägger Sverige på hälso- och sjukvård, mest i Norden.', kalla:'Världsbanken, 2023'}, ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
@@ -3669,7 +3687,7 @@ function applyPgridFilters(){
       <div class="pc-unit">${c.unit}</div>
       <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
       <div class="pc-vs">${c.vs}</div>
-      ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Motsvarar inkomstskatten från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
+      ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Lika mycket som all inkomstskatt från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
       <details class="pc-src" onclick="event.stopPropagation()"><summary>Källa och beräkning</summary><p>${c.src}</p></details>
     </div>`).join('') + (d.length < total ? `<button type="button" class="pg-more" onclick="pgridShowAll=true;applyPgridFilters()">Visa alla ${total} prislappar <span aria-hidden="true">↓</span></button>` : '');
   try { linkaKallor(grid); } catch(e) { /* källkatalogen laddas senare i skriptet; länkas vid start */ }
@@ -3889,7 +3907,7 @@ const FK_C = {green:'#1B4D3E', green2:'#2E7D5C', blue:'#1E4A8C', amber:'#C8973A'
 const FAKTA = [
   {tema:'Kommunalskatten', bild:{tal:'32,38 %', rad:'är kommunalskatten i snitt 2026. Två tredjedelar går till kommunen, resten till regionen.'}, h:'Nästan två tredjedelar av kommunalskatten går till kommunen',
    chart:{type:'stack', unit:'%', parts:[{l:'Kommunen',v:20.69,c:'amber',txt:'20,69 %'},{l:'Regionen',v:11.69,c:'green2',txt:'11,69 %'}]},
-   p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket.',
+   p:'Kommunalskatten på lönebeskedet är i snitt 32,38 % år 2026. Den är egentligen två skatter: en till kommunen, som betalar skola och omsorg, och en till regionen, som betalar vård och kollektivtrafik. Båda betalas till Skatteverket. Satsen gäller inte hela lönen: grundavdraget och jobbskatteavdraget gör att den som har medianlönen betalar cirka 20 % av lönen i inkomstskatt.',
    kalla:'SCB, Kommunalskatterna 2026', ar:'2026'},
   {tema:'Din första lön', bild:{tal:'4 466 kr', rad:'i skatt per månad på en lön på 25 000 kr. Kvar blir 20 534 kr.'}, h:'På en lön på 25 000 kronor blir skatten 4 466 kronor i månaden',
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4466,c:'red'},{l:'Kvar efter skatt',v:20534,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, rikssnittet för kommunalskatt (32,38 %)'},
@@ -4078,7 +4096,7 @@ async function faktaBild(i, format){
       '<p class="gq-res '+cls+'">'+txt+'</p>'+
       '<div class="gq-cmp"><div>Din gissning<b>'+kr(g)+'</b></div><div class="right">Rätt svar<b>'+kr(c.amount)+'</b></div></div>'+
       '<p class="gq-info">'+c.vs+'</p>'+
-      (c.amount>=200 ? '<p class="gq-info">'+ico('clock')+'Motsvarar inkomstskatten från en medianlön under <b>'+skattetid(c.amount)+'</b>.</p>' : '');
+      (c.amount>=200 ? '<p class="gq-info">'+ico('clock')+'Lika mycket som all inkomstskatt från en medianlön under <b>'+skattetid(c.amount)+'</b>.</p>' : '');
     show('gq-guess',false); show('gq-ans',true); show('gq-nav',true);
     $('gq-next').focus({preventScroll:true});
   }
@@ -4537,7 +4555,7 @@ async function ritaKvittoBild(canvas, format, lon, typ = 'lon', ks = 0.3238){
 const HL100 = {
   '2024': {
     rubrik:'Vart går varje hundralapp?', titel:'Din hundralapp i offentliga utgifter', rad:'2024 · 3 223 miljarder kronor',
-    ingress:'Så fördelas varje hundralapp som den offentliga sektorn gör av med: stat, kommuner, regioner och pensionssystemet. Tryck på en bit för att se vad den betalar.',
+    ingress:'Så fördelas varje hundralapp som den offentliga sektorn gör av med: stat, kommuner, regioner och pensionssystemet. Inkomstpensionen ingår, så socialt skydd är större här än på kvittot. Tryck på en bit för att se vad den betalar.',
     src:'Källa: Eurostat och SCB, offentliga utgifter efter ändamål (COFOG), 2024. Andelar av 3 223 miljarder kronor, avrundade till hela kronor.',
     why:'',
     d:[
@@ -5246,12 +5264,12 @@ function updateCalc(){
     const perMan = Math.round((dExakt.komm + dExakt.stat - dExakt.jsa + kapSkatt) * 1000 / 12);
     taxHTML = rubr('Dras från lönen')
       + direkt.filter(([,v])=>v!==0).map(rad).join('')
-      + summa(`Summa, ${perMan.toLocaleString('sv-SE')} kr i månaden`, sumDirekt)
+      + summa(`Summa, ${perMan.toLocaleString('sv-SE')} kr i månaden (${inc > 0 ? Math.round((dExakt.komm + dExakt.stat - dExakt.jsa) / inc * 100) : 0} % av ${dExakt.pension ? 'pensionen' : 'lönen'})`, sumDirekt)
       + rubr('Betalas också, men syns inte på lönebeskedet')
       + indirekt.filter(([,v])=>v!==0).map(rad).join('')
       + summa('Summa', sumIndirekt) + `
       <div style="display:flex;justify-content:space-between;font-size:.9rem;color:var(--ink);font-weight:500;padding-top:.6rem;border-top:1px solid var(--border);margin-top:.4rem">
-        <span>Totalt per år</span>
+        <span>Totalt med arbetsgivaravgift och moms</span>
         <span style="font-family:var(--mono)">${totalSkatt.toLocaleString('sv-SE')} tkr</span>
       </div>
       <div style="font-size:.75rem;color:var(--ink3);line-height:1.5">Skatten räknas med Skatteverkets regler 2026 och den kommunalskatt du har valt (rikssnittet 32,38 % om du inte valt kommun). Skattetabellen kan skilja några tior, eftersom den räknar med hela procent. Arbetsgivaravgiften betalar arbetsgivaren utöver lönen. Momsen är en uppskattning utifrån hur mycket som sparas och konsumeras (SCB).</div>`;
@@ -5368,39 +5386,34 @@ function updateCalc(){
     receiptCard.style.display = 'none';
   }
 
-  // ─── MARGINALSKATT ──────────────────────────────────────────────
+  // ─── GENOMSNITTSSKATT OCH MARGINALSKATT ───────────────────────────
+  // Genomsnitt = inkomstskatten som andel av hela lönen. Marginal = skatten på nästa
+  // hundralapp (skillnad när lönen ökar ±5 tkr/år). Direkt ur skattemodellen (skattDelar).
+  // Arbetsgivaravgift och moms ingår inte.
   const margCard = document.getElementById('marginal-card');
   const margBars = document.getElementById('marginal-bars');
   if(margCard && margBars && totalSkatt > 0 && age >= 19){
     margCard.style.display = '';
-    // Marginalskatt vid olika inkomstpunkter — räknat på BRUTTOLÖN, direkt ur
-    // skattemodellen (annualTax): skatteskillnad när lönen ökar ±5 tkr.
-    // Följer därmed jobbskatteavdragets och grundavdragets faktiska regler.
-    // Arbetsgivaravgift ingår inte (innehåller pensionsavgift som ger egen pensionsrätt).
-    // Oavrundad inkomstskatt (annualTax avrundar till hela tkr, för grovt för en derivata)
     const incTax = p => { const d = skattDelar(age, p); return d.komm + d.stat - d.jsa; };
-    const points = [200, 350, MEDIAN_LON_MAN*12/1000, 600, 700, 900].map(p => {
-      const ga = grundavdrag2024(p);
-      const hasStatlig = (p - ga) > 643.0;
-      const marg = (incTax(p + 5) - incTax(p - 5)) / 10;
-      return {inc: Math.round(p), marg: Math.round(marg * 100), hasStatlig};
-    });
-    const maxM = Math.max(...points.map(p=>p.marg));
-    const currentP = points.reduce((prev, curr) =>
-      Math.abs(curr.inc - inc) < Math.abs(prev.inc - inc) ? curr : prev
-    );
-    margBars.innerHTML = points.map(p => {
-      const isActive = p.inc === currentP.inc;
-      const col = p.hasStatlig ? 'var(--skatt)' : 'var(--d-neutral2)';
-      return `<div style="display:flex;align-items:center;gap:.5rem;${isActive?'background:var(--bg2);border-radius:3px;padding:2px 4px;margin:-2px -4px':''}">
-        <span style="font-size:.75rem;color:var(--ink2);width:52px;text-align:right;font-family:var(--mono)">${p.inc} tkr</span>
-        <div style="flex:1;height:8px;background:var(--bg2);border-radius:3px;overflow:hidden">
-          <div style="height:100%;width:${Math.round(p.marg/maxM*90)}%;background:${col};border-radius:3px;transition:width .3s"></div>
-        </div>
-        <span style="font-size:.72rem;font-family:var(--mono);color:${isActive?'var(--ink)':'var(--ink3)'};width:36px;text-align:right;font-weight:${isActive?'600':'400'}">${p.marg}%</span>
-        ${p.hasStatlig ? '<span style="font-size:.75rem;color:var(--amber-t)">+statlig</span>' : ''}
+    const snitt = p => p > 0 ? incTax(p) / p * 100 : 0;
+    const marg = p => (incTax(p + 5) - incTax(p - 5)) / 10 * 100;
+    const pens = skattDelar(age, inc).pension, ord = pens ? 'pension' : 'lön';
+    const egenMan = Math.round(inc * 1000 / 12);
+    const du = document.getElementById('snitt-du');
+    if(du) du.innerHTML = `Av din ${ord} på <b>${egenMan.toLocaleString('sv-SE')} kr</b> i månaden går <b>${Math.round(snitt(inc))} %</b> till inkomstskatt. På nästa hundralapp du får betalar du <b>${Math.round(marg(inc))} kr</b>.`;
+    const nivaer = [20000, 30000, MEDIAN_LON_MAN, 45000, 60000, 75000, 100000];
+    const rader = nivaer.map(m => ({m, p: m * 12 / 1000})).map(r => ({...r, s: Math.round(snitt(r.p)), g: Math.round(marg(r.p))}));
+    const narmast = rader.reduce((a, b) => Math.abs(b.p - inc) < Math.abs(a.p - inc) ? b : a);
+    margBars.innerHTML = rader.map(r => {
+      const akt = r === narmast;
+      return `<div class="snitt-rad${akt ? ' akt' : ''}">
+        <span class="snitt-lon">${r.m.toLocaleString('sv-SE')} kr${r.m === MEDIAN_LON_MAN ? '<small> median</small>' : ''}</span>
+        <span class="snitt-spar"><i class="snitt-kontur" style="width:${r.g}%"></i><i class="snitt-fylld" style="width:${r.s}%"></i></span>
+        <span class="snitt-v"><b>${r.s} %</b> · ${r.g} %</span>
       </div>`;
     }).join('');
+    margBars.setAttribute('aria-label', 'Skatt av hela lönen och på nästa hundralapp: ' + rader.map(r => `${r.m.toLocaleString('sv-SE')} kr i månaden, ${r.s} procent av hela lönen och ${r.g} procent på nästa hundralapp`).join('; ') + '.');
+    margBars.setAttribute('role', 'img');
   } else if(margCard) {
     margCard.style.display = 'none';
   }
