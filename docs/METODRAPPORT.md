@@ -114,7 +114,7 @@ Skatten fördelas med andelarna i `KVITTO_ANDELAR`. De är Eurostats COFOG-utgif
 | Räntor | 1,75 % |
 | Miljöskydd | 1,22 % |
 
-Startkvittot slår ihop de femton posterna till åtta grupper (`START_GRUPPER`): sjukdom, barn och arbetslöshet 17,97 % (jämförs med barnbidraget, 1 250 kr i månaden), äldre: omsorg och garantipension 12,10 % (jämförs med hemtjänst; fram till 5 november 2026 var de två en rad, socialt skydd 30,07 %), hälso- och sjukvård 16,58 %, utbildning 16,25 %, polis, kultur, miljö och räntor 11,43 %, vägar, järnväg och näringsliv 10,78 %, förvaltning 10,51 % och försvar 4,38 %. Kontrollskriptet prövar att varje andel används exakt en gång.
+Startkvittot slår ihop de femton posterna till åtta grupper (`START_GRUPPER`): sjukdom, barn och arbetslöshet 17,97 % (jämförs med dagar hemma med ett sjukt barn, vab; fram till 6 november 2026 med barnbidraget, 1 250 kr i månaden), äldre: omsorg och garantipension 12,10 % (jämförs med hemtjänst; fram till 5 november 2026 var de två en rad, socialt skydd 30,07 %), hälso- och sjukvård 16,58 %, utbildning 16,25 %, polis, kultur, miljö och räntor 11,43 %, vägar, järnväg och näringsliv 10,78 %, förvaltning 10,51 % och försvar 4,38 %. Kontrollskriptet prövar att varje andel används exakt en gång.
 
 Raderna avrundas till hela kronor. Avrundningsresten läggs på den största raden, så att raderna summerar exakt till skatten.
 
@@ -124,7 +124,8 @@ Varje rad säger vad beloppet räcker till. Beloppen står i `START_JMF`:
 
 | Rad | Jämförelse | Belopp | Källa |
 |---|---|---|---|
-| Socialt skydd | Hemtjänst för en äldre | 385 000 kr per år | Prislistan (Kolada 2025) |
+| Sjukdom, barn och arbetslöshet | Dagar hemma med ett sjukt barn (vab) | 1 185 kr per dag (7,7 mdkr / 6,5 miljoner dagar 2025); under 0,75 dag räknas timmar, 8 timmar per dag | Försäkringskassan, Socialförsäkringen i siffror 2026 (tillfällig föräldrapenning för vård av barn) |
+| Äldre: omsorg och garantipension | Hemtjänst för en äldre | 385 000 kr per år | Prislistan (Kolada 2025) |
 | Hälso- och sjukvård | Minuter på intensiven | 50 000 kr per dygn | Prislistan (Svenska Intensivvårdsregistret) |
 | Utbildning | Skoldagar för en elev | 143 000 kr per läsår / 178 skoldagar | Prislistan (Skolverket 2025) |
 | Polis, kultur, miljö, räntor | Andel av en polis månadslön | 43 900 kr | SCB 2025 |
@@ -132,7 +133,9 @@ Varje rad säger vad beloppet räcker till. Beloppen står i `START_JMF`:
 | Förvaltning | Andel av en riksdagsledamots arvode | 81 400 kr per månad | Riksdagen 2026 |
 | Försvar | Andel av en Archer-pjäs | 5 mdkr / 48 | FMV 2023 |
 
-Exempel med medianlönen (7 692 kr): socialt skydd 2 314 kr ger "ca 2 dagars hemtjänst", vård 1 275 kr "ca 37 minuter på intensiven", utbildning 1 250 kr "ca 1½ skoldagar", försvar 337 kr "en 310 000-del av en Archer-pjäs". Kontrollskriptet prövar att beloppen i `START_JMF` är desamma som i prislistan.
+Exempel med medianlönen (7 692 kr): sjukdom, barn och arbetslöshet 1 383 kr ger "ca en dag hemma med ett sjukt barn", äldre 931 kr "ca 21 timmars hemtjänst", vård 1 275 kr "ca 37 minuter på intensiven", utbildning 1 250 kr "ca 1½ skoldagar", försvar 337 kr "en 310 000-del av en Archer-pjäs". Kontrollskriptet prövar att beloppen i `START_JMF` är desamma som i prislistan, och att källuppgifterna för polislönen, arvodet och vab-dagen (1 185 kr) står i sajtens text.
+
+Vab valdes 2026-11-06 i stället för barnbidraget. Raden rymmer sjukförsäkring, föräldraförsäkring, barnbidrag och arbetslöshet, och en dag hemma med ett sjukt barn är något de flesta känner igen. Beloppet är ett snitt för alla vab-dagar 2025; den högsta ersättningen 2026 är cirka 1 325 kr per dag. Föräldrapenningen (cirka 765 kr per dag i snitt) och sjukpenningen (cirka 740 kr per dag 2025) prövades också.
 
 ### 3.4 Kvittot i Din ekonomi och hundralappen
 

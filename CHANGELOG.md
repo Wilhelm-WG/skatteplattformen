@@ -10,6 +10,24 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-06) — Filmen ombyggd, vab på kvittot
+
+- **Filmen** har nio kapitel. Skärmtexten är högst cirka 25 ord per kapitel och
+  detaljerna står i "Läs filmen som text". Filmen räknar på lönen från
+  startsidans kvitto (annars medianlönen) och visar fördelningen till kommun,
+  region, stat och pension i kronor; flödena är lika tjocka som beloppen.
+  Nytt kapitel om att staten lånar det som fattas (167 mdkr 2026) och en nod
+  för pensionssystemet. Livslinjen och kapitel 8 har tal ur livsloppet.
+  Slutet visar citatet och en knapp till kvittot. Pictogram i stället för
+  linjeikoner, kameran zoomar in på de tre första kapitlen, kapitelnamnet står
+  i kontrollraden och lönebeskedet klipps inte längre. Talmanuset
+  (`docs/FILM_MANUS.md`) har nio kapitel.
+- **Startkvittot:** raden "Sjukdom, barn och arbetslöshet" jämförs med vab,
+  1 185 kr per dag (Socialförsäkringen i siffror 2026): "ca en dag hemma med
+  ett sjukt barn" vid medianlönen. Länkbilden är omgjord (`og.png?v=4`).
+- **Prislappen för sjukpenning:** 741 kr per dag 2025 (44,4 mdkr på cirka 60
+  miljoner dagar), inte 920.
+
 ### Changed (2026-11-05) — Arbetar eller studerar, socialt skydd i två rader
 
 - **Din ekonomi:** valet "Vet inte / Arbetar / Studerar" för 19–64 år. Arbetar
