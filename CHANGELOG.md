@@ -10,6 +10,21 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Added (2026-11-13) — Vårdens utfall
+
+- Åtta nya diagram i Jämförelser, sjukvård (index 8–15, efter de befintliga):
+  åtgärdbar dödlighet (Eurostat 2023), undvikbara inläggningar för diabetes
+  (OECD Health at a Glance 2025), femårsöverlevnad i bröst-, tjocktarms-,
+  ändtarms- och lungcancer (OECD/CONCORD-3, diagnos 2010–2014; snitten för
+  tjocktarm, ändtarm och lunga är egen beräkning av 34 OECD-länder) och
+  cancerdödlighet totalt och för kvinnor (Eurostat 2023). Fyra av dem visas
+  också i fliken Utfall vid sjukdom.
+- Rättat: rubriken ("bland de lägsta dödstalen som vården kan förhindra"),
+  hjärtinfarkt och stroke förklarar olänkade och länkade data, bröstcancerns
+  svenska siffra hålls isär från OECD:s, undvikbar dödlighet förklarar
+  förebyggbar och åtgärdbar del. Axeltexten säger "%" för procentdiagram.
+- Underlag: `docs/VARDUTFALL_2026-11.md` (cancer och övriga utfall).
+
 ### Changed (2026-11-13) — Jämförelser omgjord efter skisserna
 
 - **Ingången** (`#oecd`): rubriken är en fråga, "Hur står sig Sverige mot
