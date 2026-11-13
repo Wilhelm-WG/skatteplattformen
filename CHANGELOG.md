@@ -10,6 +10,45 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-13) — Jämförelser omgjord efter skisserna
+
+- **Ingången** (`#oecd`): rubriken är en fråga, "Hur står sig Sverige mot
+  grannländerna?", och ingressen är två meningar. Överst står en
+  sammanfattning som räknas fram ur `JMF_DATA`: i 16 av 28 mått finns en
+  riktning, och där ligger Sverige på den bättre sidan av snittet i 11,
+  ungefär som snittet (inom 2 %) i 2 (PISA matematik och naturvetenskap) och
+  på den sämre sidan i 3 (höga boendekostnader, dödligt våld,
+  materialåtervinning av hushållsavfall). Ingen sammanvägning görs.
+- **Ämneskort** med kategorins scen och pictogram för de fem ämnena, med
+  måttet där Sverige skiljer sig mest från snittet. Flikarna har samma
+  pictogram och antalet mått.
+- **Alla mått i en bild**: placeringsprickarna är ersatta av en värdeskala
+  per mått där länderna står efter sitt värde, Sverige som en större grön
+  prick och snittet streckat. Bättre ligger alltid till höger.
+- **Diagramkortet**: rubrik som fråga (nytt fält `q`), Sveriges värde stort
+  och en mening som räknas fram (skillnad mot snittet och placering).
+  Länderna står i fast ordning. Medellivslängd, PISA, PIAAC, korruptionsindex
+  och rättsstatsindex ritas som punkter på en axel som inte börjar på noll
+  (`form:'punkt'`, "Axeln börjar på …" i källraden); belopp och andelar är
+  kvar som staplar från noll. Man kan välja ett land att jämföra med. Nio
+  diagram har en prislapp ur Prislistan (`pris`) som öppnar prislappens
+  detaljruta. Varje diagram har en direktlänk, `#jmf-<flik>-<n>` (n från 1),
+  och `#jmf-<flik>` öppnar en flik. Alla diagram i en flik visas under
+  varandra; bläddringen är borta.
+- **Sjukvården** (`#sjukvard`): scenen står bredvid rubriken, nyckeltalen
+  (andel av BNP, medellivslängd, undvikbar dödlighet, sjukhussängar) ritas ur
+  `JMF_DATA` med en liten värdeskala och länkar till diagrammen, och
+  tillgängligheten är en egen flik (vårdgarantin och väntetid till
+  höftledsoperation). Prislapparna IVA-dygn, läkarbesök och höftled är knappar
+  under flikarna. Landssiffror som stod i löptext bredvid ett diagram med samma
+  uppgifter är borttagna.
+- **Ny kategorifärg** `--k-miljo` (#4F6B7D, dämpad blågrå) för Klimat och
+  energi. Kontrast 5,4:1 mot papper och 4,5:1 mot `--bg2`.
+- `scripts/kontroll.mjs` godkänner länkar till `#jmf-…` bara om fliken och
+  diagrammet finns, och kontrollerar att varje mått har `q`, giltig `bast` och
+  `form` och att prislappen i `pris` finns i Prislistan.
+- Inga siffror eller källor i `JMF_DATA` är ändrade.
+
 ### Changed (2026-11-06) — Filmen ombyggd, vab på kvittot
 
 - **Filmen** har nio kapitel. Skärmtexten är högst cirka 25 ord per kapitel och

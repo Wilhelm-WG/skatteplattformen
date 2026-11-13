@@ -81,7 +81,7 @@
   --fs-hjalte:4rem;--fs-avsnitt:2.5rem;--fs-under:1.75rem;--fs-ingress:1.25rem;--fs-brod:1rem;--fs-liten:.8125rem;--fs-etikett:.6875rem;
   /* Kategorifärger: samma färg och pictogram (pk-…) i hundralappen, kvittot, kalkylatorn, diagram och prislistan */
   --k-soc:#6B4A9E;--k-vard:#1E7471;--k-utb:#1E4A8C;--k-infra:#B07B24;--k-forv:#5E5A54;--k-forsv:#34586E;
-  --k-kommun:#B84A1E;--k-ratt:#7D2B3B;--k-eu:#4A87B5;--k-arbete:#A85F72;--k-ranta:#8C6A2C;--k-ovrigt:#8A857C;--k-fritid:#B07B24;
+  --k-kommun:#B84A1E;--k-ratt:#7D2B3B;--k-eu:#4A87B5;--k-arbete:#A85F72;--k-ranta:#8C6A2C;--k-ovrigt:#8A857C;--k-fritid:#B07B24;--k-miljo:#4F6B7D;
   /* Diagram: grått för det mesta, grönt för det texten handlar om, randigt för prognos. Tar emot grönt, skatt sand. */
   --d-neutral:#D2CBBE;--d-neutral2:#A39C8F;--d-mark:var(--green);--emot:#2E7D5C;--skatt:#C9A66B;
   --d-prognos:repeating-linear-gradient(135deg,var(--green) 0 3px,transparent 3px 7px);
@@ -599,47 +599,239 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .fu{animation:fadeUp .55s ease both}
 .fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}.fu4{animation-delay:.42s}
-/* ══ OECD COMPARISON ══════════════════════════════════ */
+/* ══ JÄMFÖRELSER (#oecd, #sjukvard) — omgjord 2026-11-13 ══════════════════
+   Sammanfattning, ämneskort med scener, värdeskala per mått, diagramkort med fråga och Sveriges siffra.
+   Diagramregeln: Sverige --d-mark, övriga Norden --d-neutral2, Tyskland och USA --d-neutral, referensen streckad. */
 .oecd-section{padding:72px 0;background:var(--bg2)}
-.oecd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2rem 0 1.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.oecd-tabs::-webkit-scrollbar{display:none}
-.oecd-tab{font-size:.72rem;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.jmf-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.oecd-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:1.8rem 0 1.4rem}
+.oecd-tab{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--border);background:var(--paper);color:var(--ink2);font:500 .875rem/1 var(--sans);cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
+.oecd-tab:has(.pk){padding-left:10px}
+.oecd-tab .pk{width:18px;height:18px;flex:none}
+.oecd-tab small{font:500 .75rem/1 var(--mono);color:var(--ink3)}
+.oecd-tab:hover{border-color:var(--ink3)}
 .oecd-tab.on{background:var(--green);color:#fff;border-color:var(--green)}
+.oecd-tab.on .pk{color:#fff!important}
+.oecd-tab.on small{color:#fff}
 .oecd-panel{display:none}
 .oecd-panel.active{display:block}
+.jmf-panel-intro,.ov-intro{font-size:var(--fs-liten);color:var(--ink2);margin:0 0 14px;max-width:44rem;line-height:1.55}
+/* Sammanfattningen */
+.jmf-summa{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:22px;align-items:start;padding:22px 24px;margin:0 0 26px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+.js-lead{font:500 1.15rem/1.4 var(--serif);color:var(--ink);margin:0}
+.js-lead small{display:block;font:400 var(--fs-liten)/1.5 var(--sans);color:var(--ink3);margin-top:8px}
+.js-tal{font:600 2.6rem/1 var(--serif);font-variant-numeric:tabular-nums lining-nums;color:var(--ink);margin:0}
+.js-tal span{font:500 1rem var(--sans);color:var(--ink3)}
+.js-txt{font-size:var(--fs-liten);color:var(--ink2);margin:6px 0 0;line-height:1.45}
+.js-txt a{color:var(--ink);text-decoration:underline;text-decoration-color:rgba(26,24,19,.35);text-underline-offset:2px}
+.js-txt a:hover{text-decoration-color:var(--green);color:var(--green)}
+.js-rutor{display:flex;flex-wrap:wrap;gap:3px;margin-top:10px}
+.js-rutor i{width:12px;height:12px;border-radius:2px;background:var(--ink2)}
+.js-rutor i.nara{background:linear-gradient(90deg,var(--ink2) 50%,var(--bg3) 50%)}
+.js-rutor i.av{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink3)}
+/* Ämneskorten */
+.jmf-amnen{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:0 0 44px}
+.jmf-amne{display:flex;flex-direction:column;padding:0;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm);overflow:hidden;cursor:pointer;transition:box-shadow .15s,transform .15s}
+.jmf-amne:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.jmf-amne:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.jmf-amne-scen{display:block;width:100%;height:auto;aspect-ratio:16/10;background:#DCE3EA}
+.jmf-amne-k{display:flex;flex-direction:column;gap:6px;flex:1;padding:12px 14px 14px}
+.jmf-amne-h{display:flex;align-items:center;gap:8px;font:600 1rem/1.2 var(--serif)}
+.jmf-amne-h .pk{width:22px;height:22px;flex:none}
+.jmf-amne-n{font:600 var(--fs-etikett)/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.jmf-amne-f{font-size:var(--fs-liten);line-height:1.4;color:var(--ink2);margin-top:auto;padding-top:4px}
+.jmf-amne-f b{color:var(--ink);font-weight:600}
+/* Alla mått i en bild */
+.jmf-alla-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap;margin:0 0 6px}
+.jmf-alla-h h3{font:600 var(--fs-under)/1.2 var(--serif);margin:0;color:var(--ink)}
+.jmf-nyckel{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center;font-size:var(--fs-liten);color:var(--ink2)}
+.jmf-nyckel span{display:inline-flex;align-items:center;gap:6px}
+.jmf-nyckel .d{width:12px;height:12px;border-radius:50%;background:var(--d-mark)}
+.jmf-nyckel .d.o{width:9px;height:9px;background:var(--d-neutral2)}
+.jmf-nyckel .r{width:0;height:14px;border-left:2px dashed var(--ink2)}
+.ov-grupp{margin-top:26px}
+.ov-h{display:flex;align-items:center;gap:10px;margin:0 0 8px;font:600 1.15rem/1.2 var(--serif);color:var(--ink)}
+.ov-h .pk{width:22px;height:22px;flex:none}
+.ov-h small{font:400 var(--fs-liten) var(--sans);color:var(--ink3)}
+.ov-lista{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm);overflow:hidden}
+.ov-rad{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 8.5rem;gap:22px;align-items:center;padding:14px 16px;border-top:1px solid var(--border2);color:var(--ink);text-decoration:none}
+.ov-rad:first-child{border-top:0}
+.ov-rad:hover{background:var(--green-ll)}
+.ov-rad:focus-visible{outline:2px solid var(--green);outline-offset:-2px;border-radius:var(--r)}
+.ov-t{font-size:.9rem;font-weight:500;line-height:1.3}
+.ov-t small{display:block;font-size:.75rem;font-weight:400;color:var(--ink3);margin-top:2px}
+.ov-v{text-align:right;font:500 var(--fs-liten)/1.35 var(--mono);color:var(--ink2);white-space:nowrap}
+.ov-v b{display:block;font:600 1.05rem/1.2 var(--serif);color:var(--ink)}
+.ov-om{margin:22px 0 0;font-size:var(--fs-liten);color:var(--ink2);line-height:1.6;max-width:44rem}
+.ov-om b{color:var(--ink)}
+/* Värdeskalan (översikten och sjukvårdens nyckeltal) */
+.vs{position:relative;display:block;height:44px}
+.vs-bana{position:absolute;left:48px;right:48px;top:0;bottom:0}
+.vs-spar{position:absolute;left:0;right:0;top:25px;height:2px;background:var(--bg3);border-radius:1px}
+.vs-ref{position:absolute;top:15px;height:22px;border-left:2px dashed var(--ink2)}
+.vs-p{position:absolute;top:22px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--d-neutral2);box-shadow:0 0 0 2px var(--paper)}
+.vs-p.se{top:19px;width:14px;height:14px;margin-left:-7px;background:var(--d-mark);z-index:2}
+.vs-se{position:absolute;top:0;transform:translateX(-50%);font:600 11px/1 var(--sans);color:var(--green);white-space:nowrap}
+.vs-a{position:absolute;top:20px;font:500 11px/1 var(--sans);color:var(--ink3)}
+.vs-a.v{left:0}.vs-a.h{right:0}
+.vs.mini{height:42px;margin:12px 4px 0}
+.vs.mini .vs-bana{left:0;right:0}
+.vs.mini .vs-spar{top:12px}
+.vs.mini .vs-ref{top:3px;height:20px}
+.vs.mini .vs-p{top:9px;width:8px;height:8px;margin-left:-4px}
+.vs.mini .vs-p.se{top:6px;width:14px;height:14px;margin-left:-7px}
+.vs.mini .vs-a{top:28px}
+/* Diagramkortet */
+.jk{padding:26px 28px 16px;margin-bottom:22px}
+.jk-g{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px}
+.jk-q{font:600 var(--fs-under)/1.15 var(--serif);letter-spacing:-.01em;color:var(--ink);margin:0 0 6px}
+.jk-m{font-size:var(--fs-liten);color:var(--ink3);margin:0 0 20px;line-height:1.45}
+.jk-tal{font:600 3.4rem/1 var(--serif);color:var(--green);font-variant-numeric:tabular-nums lining-nums;margin:0}
+.jk-tal span{font:500 1.05rem var(--sans);color:var(--ink3);margin-left:6px}
+.jk-lede{font-size:var(--fs-brod);color:var(--ink2);line-height:1.5;margin:12px 0 0;max-width:24rem}
+.jk-lede b{color:var(--ink);font-weight:600}
+.jk-riktn{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 8px;font:600 var(--fs-etikett)/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--border);border-radius:4px}
+.jd{position:relative;--jd-l:5.4rem;--jd-v:4.8rem;--jd-g:10px}
+.jd-topp{height:22px}
+.jd-rad,.jd-axel{display:grid;grid-template-columns:var(--jd-l) minmax(0,1fr) var(--jd-v);gap:var(--jd-g);align-items:center}
+.jd-rad{height:30px}
+.jd-land{font-size:var(--fs-liten);color:var(--ink2);text-align:right;white-space:nowrap}
+.jd-rad.se .jd-land,.jd-rad.se .jd-v,.jd-rad.val .jd-land,.jd-rad.val .jd-v{color:var(--ink);font-weight:600}
+.jd-spar{position:relative;height:100%}
+.jd-punkt .jd-spar::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dotted rgba(26,24,19,.22)}
+.jd-pt{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--d-neutral2)}
+.jd-rad.se .jd-pt{width:16px;height:16px;margin:-8px 0 0 -8px;background:var(--d-mark);z-index:1}
+.jd-rad.val .jd-pt{width:15px;height:15px;margin:-7.5px 0 0 -7.5px;background:var(--paper);box-shadow:inset 0 0 0 3px var(--ink2)}
+.jd-bar{position:absolute;left:0;top:6px;bottom:6px;max-width:100%;border-radius:2px;background:var(--d-neutral);transition:width .5s ease}
+.jd-rad.norden .jd-bar{background:var(--d-neutral2)}
+.jd-rad.se .jd-bar{background:var(--d-mark)}
+.jd-rad.val .jd-bar{outline:2px solid var(--ink2);outline-offset:1px}
+.jd-v{font:500 var(--fs-liten) var(--mono);color:var(--ink2);text-align:right;white-space:nowrap}
+.jd-v.na{font:italic 400 .75rem var(--sans);color:var(--ink3)}
+.jd-axel{height:20px;margin-top:2px}
+.jd-ax{position:relative;height:100%;border-top:1px solid var(--border)}
+.jd-ax i{position:absolute;top:3px;transform:translateX(-50%);font:400 11px/1 var(--mono);font-style:normal;color:#66615A;white-space:nowrap}
+.jd-refl{position:absolute;top:0;bottom:22px;left:calc(var(--jd-l) + var(--jd-g));right:calc(var(--jd-v) + var(--jd-g));pointer-events:none}
+.jd-ref{position:absolute;top:0;bottom:0;border-left:2px dashed var(--ink2)}
+.jd-ref span{position:absolute;top:2px;left:5px;padding-right:4px;font:500 11px/1.2 var(--sans);color:var(--ink2);white-space:nowrap;background:var(--paper)}
+.jd-ref.v span{left:auto;right:5px;padding:0 0 0 4px}
+.jk-val{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:16px;padding-top:12px;border-top:1px solid var(--border2)}
+.jk-val-l{margin-right:4px;font:600 var(--fs-etikett)/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.jk-chip{min-height:40px;padding:0 13px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--ink2);font:500 var(--fs-liten)/1 var(--sans);cursor:pointer}
+.jk-chip:hover{border-color:var(--ink3)}
+.jk-chip[aria-pressed="true"]{border-color:var(--ink2);background:var(--bg2);color:var(--ink);font-weight:600}
+.jk-jamfor{font-size:.875rem;color:var(--ink2);margin:8px 0 0;min-height:1.4em}
+.jk-jamfor b{color:var(--ink)}
+.jk-tips{color:var(--ink3)}
+.jk-pris{display:flex;align-items:center;gap:14px;width:100%;margin-top:14px;padding:12px 14px;border:0;border-radius:var(--r-sm);background:var(--bg2);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.jk-pris:hover{background:var(--bg3)}
+.jk-pris .pk{width:24px;height:24px;flex:none}
+.jk-pris-tal{font:600 1.35rem/1 var(--serif);white-space:nowrap;font-variant-numeric:tabular-nums lining-nums}
+.jk-pris-tal small{font:500 var(--fs-liten) var(--sans);color:var(--ink3)}
+.jk-pris-t{min-width:0;font-size:var(--fs-liten);color:var(--ink2);line-height:1.4}
+.jk-pris-t small{display:block;font:600 var(--fs-etikett)/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.jk-pris-t b{display:block;font-size:.875rem;font-weight:600;color:var(--ink)}
+.jk-pris-pil{margin-left:auto;font:500 var(--fs-liten) var(--sans);color:var(--green);white-space:nowrap}
+.jk-fot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 16px;margin-top:16px;padding-top:6px;border-top:1px solid var(--border2)}
+.jk-fot .oecd-src{flex:1 1 20rem;margin:0;line-height:1.5}
+.jk-fot-h{display:flex;align-items:center;gap:16px}
+.jk-om-knapp,.jk-lank{display:inline-flex;align-items:center;min-height:40px;padding:0 2px;border:0;background:none;color:var(--green);font:500 var(--fs-liten)/1 var(--sans);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.jk-om{margin:4px 0 6px;padding:12px 14px;border-radius:var(--r-sm);background:var(--bg2);font-size:var(--fs-liten);color:var(--ink2);line-height:1.6}
+/* Kompakt kort (detaljpanelen, data-jmf) */
 .oecd-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1rem;box-shadow:var(--shadow-sm)}
-.oecd-card-title{font-size:.88rem;font-weight:500;color:var(--ink);margin-bottom:.25rem}
-.oecd-card-sub{font-size:.75rem;color:var(--ink3);margin-bottom:1rem}
-.oecd-row{display:grid;grid-template-columns:90px 1fr 70px;gap:10px;align-items:center;margin-bottom:6px}
-.oecd-country{font-size:.74rem;color:var(--ink2);text-align:right}
-.oecd-bar-bg{height:20px;background:var(--bg2);border-radius:2px;position:relative}
-.oecd-bar-fill{max-width:100%}
-.oecd-bar-fill{height:100%;border-radius:2px;transition:width .6s ease}
-.oecd-bar-fill{background:var(--d-neutral)}
-.oecd-bar-fill.norden{background:var(--d-neutral2)}
-.oecd-bar-fill.se{background:var(--green)}
-.oecd-row.se .oecd-country,.oecd-row.se .oecd-val{color:var(--ink);font-weight:600}
-.jmf-ref{position:absolute;top:-3px;bottom:-3px;width:0;border-left:2px dashed var(--ink2);pointer-events:none}
-.oecd-val.na{font-family:var(--sans);font-style:italic;color:var(--ink3);font-size:.75rem}
-.jmf-leg{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--ink2);margin-top:.6rem}
-.jmf-leg{flex-wrap:wrap;gap:.35rem 1rem}
+.oecd-card-title{font:600 1.05rem/1.3 var(--serif);color:var(--ink);margin-bottom:.25rem}
+.oecd-card-sub{font-size:.75rem;color:var(--ink3);margin-bottom:.4rem}
+.jmf-kompakt .jd{--jd-l:4.8rem;--jd-v:4.6rem}
+.jmf-leg{display:flex;align-items:center;flex-wrap:wrap;gap:.35rem 1rem;font-size:.75rem;color:var(--ink2);margin-top:.6rem}
 .jmf-key{display:inline-flex;align-items:center;gap:.35rem}
 .jmf-key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.jmf-key i.k-rund{border-radius:50%}
 .k-se{background:var(--d-mark)}.k-no{background:var(--d-neutral2)}.k-ov{background:var(--d-neutral)}
 .jmf-ref-d{display:inline-block;width:0;height:12px;border-left:2px dashed var(--ink2)}
-.jmf-nav{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-bottom:1rem}
-.jmf-steg{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--paper);font-size:1.3rem;line-height:1;color:var(--ink);cursor:pointer}
-.jmf-steg:hover{border-color:var(--green);color:var(--green)}
-.jmf-pos{font-family:var(--mono);font-size:.78rem;color:var(--ink2);min-width:4.5em;text-align:center}
-.jmf-lista{display:flex;flex-wrap:wrap;gap:.35rem;flex-basis:100%;margin-top:.2rem}
-.jmf-hopp{font:inherit;font-size:.74rem;padding:5px 11px;border-radius:16px;border:1px solid var(--border);background:transparent;color:var(--ink2);cursor:pointer}
-.jmf-hopp.on{background:var(--green);color:#fff;border-color:var(--green)}
-.jmf-steg:focus-visible,.jmf-hopp:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-@media(max-width:640px){.jmf-lista{display:none}}
-.jmf-plats{font-size:.76rem;color:var(--ink);margin-top:.35rem;font-weight:500}
-.jmf-not{font-size:.72rem;color:var(--ink2);line-height:1.55;margin-top:.35rem}
-.oecd-val{font-family:var(--mono);font-size:.74rem;color:var(--ink2);text-align:right}
+.jmf-plats{font-size:.8125rem;color:var(--ink);margin-top:.35rem;font-weight:500}
+.jmf-not{font-size:.75rem;color:var(--ink2);line-height:1.55;margin-top:.35rem}
 .oecd-src{font-size:.75rem;color:var(--ink3);margin-top:.75rem;font-family:var(--mono)}
+.oecd-src a{color:var(--green)}
+/* Sjukvården */
+.sv-topp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+.sv-ingress{font-size:1.05rem;color:var(--ink2);line-height:1.6;margin:0;max-width:34rem}
+.sv-ingress b{color:var(--ink);font-weight:600}
+.sv-scen{display:block;width:100%;height:auto;border-radius:var(--r);box-shadow:var(--shadow-md);background:#DCE3EA}
+.sv-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:34px 0 30px}
+.sv-kpi{display:flex;flex-direction:column;padding:16px 16px 12px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm);color:var(--ink);text-decoration:none;transition:box-shadow .15s,transform .15s}
+.sv-kpi:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.sv-kpi:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.svk-l{min-height:2.6em;font:600 var(--fs-etikett)/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.svk-t{margin-top:8px;font:600 2.2rem/1 var(--serif);font-variant-numeric:tabular-nums lining-nums}
+.svk-t small{margin-left:4px;font:500 .875rem var(--sans);color:var(--ink3)}
+.svk-s{flex:1;margin-top:6px;font-size:var(--fs-liten);line-height:1.4;color:var(--ink2)}
+.svk-k{margin-top:8px;padding-top:8px;border-top:1px solid var(--border2);font:400 11px/1.3 var(--mono);color:var(--ink3)}
+.sv-tabs{margin:0 0 16px}
+.sv-tabs .ft-tab{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 16px;font-size:.875rem;background:var(--paper)}
+.sv-tabs .ft-tab.on{background:var(--green)}
+.sv-tabs .ft-tab .ico{width:16px;height:16px}
+.sv-intro{font-size:.95rem;color:var(--ink2);line-height:1.6;max-width:46rem;margin:0 0 16px}
+.sv-par{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px;padding:20px 22px;margin-bottom:16px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+.sv-par.sv-par4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sv-par h4{font:600 1.05rem/1.3 var(--serif);color:var(--ink);margin:0}
+.sv-st{margin:8px 0 6px;font:600 1.8rem/1.05 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
+.sv-st small{font:500 var(--fs-liten) var(--sans);color:var(--ink3)}
+.sv-par p:not(.sv-st){margin:0;font-size:var(--fs-liten);line-height:1.55;color:var(--ink2)}
+.sv-par a{color:var(--green)}
+#sjukvard .ft-source a{color:var(--green)}
+.sv-mer{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.sv-lapp{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:0;border-radius:var(--r-sm);background:var(--bg2);color:var(--ink);font:500 .875rem/1.2 var(--sans);text-decoration:none;cursor:pointer}
+.sv-lapp:hover{background:var(--bg3)}
+.sv-lapp .pk{width:18px;height:18px;flex:none}
+@media(max-width:960px){
+  .jmf-amnen{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .jmf-summa{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .js-lead{grid-column:1/-1}
+  .sv-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sv-par.sv-par4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .jk-g{grid-template-columns:minmax(0,1fr);gap:20px}
+}
+@media(max-width:640px){
+  .oecd-section{padding:48px 0}
+  .oecd-tabs{gap:6px}
+  .oecd-tab{font-size:.8125rem;padding:0 12px}
+  .oecd-tab:has(.pk){padding-left:9px}
+  .jmf-summa{grid-template-columns:minmax(0,1fr);gap:16px;padding:18px 16px}
+  .js-lead{font-size:1.05rem}
+  .js-del{display:grid;grid-template-columns:4.4rem minmax(0,1fr);column-gap:12px;align-items:start}
+  .js-del .js-tal{grid-row:1/3;font-size:2.1rem}
+  .js-del .js-tal span{display:block;font-size:.8125rem;margin-top:4px}
+  .js-del .js-txt{margin:2px 0 0}
+  .js-del .js-rutor{grid-column:2;margin-top:6px}
+  .jmf-amnen.m-swipe{grid-auto-columns:66%!important;margin-bottom:36px}
+  .jmf-alla-h h3{font-size:1.4rem}
+  .ov-rad{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px}
+  .ov-rad .vs{grid-column:1/-1;grid-row:2}
+  .vs-bana{left:42px;right:42px}
+  .jk{padding:20px 16px 10px}
+  .jk-q{font-size:1.4rem}
+  .jk-tal{font-size:2.6rem}
+  .jd{--jd-l:4.4rem;--jd-v:4.4rem;--jd-g:8px}
+  .jmf-kompakt .jd{--jd-l:4.2rem;--jd-v:4.3rem}
+  .jd-ax i.m-udda{display:none}
+  .jmf-kompakt .jd-ax i:not(:first-child):not(.m-sista){display:none}
+  .jk-pris{flex-wrap:wrap;gap:8px 12px}
+  .jk-pris-t{flex:1 1 10rem}
+  .jk-pris-pil{flex-basis:100%;margin-left:0}
+  .jk-fot-h{gap:12px}
+  .oecd-card.jmf-kompakt{padding:1rem}
+  .sv-topp{grid-template-columns:minmax(0,1fr);gap:18px}
+  .sv-scen{order:-1}
+  .sv-kpis{gap:10px;margin:24px 0}
+  .sv-kpi{padding:14px 12px 10px}
+  .svk-t{font-size:1.75rem}
+  .svk-t small{font-size:.75rem}
+  .sv-par,.sv-par.sv-par4{grid-template-columns:minmax(0,1fr);padding:16px}
+  .sv-tabs .ft-tab{font-size:.8125rem;padding:0 13px}
+}
+@media(prefers-reduced-motion:reduce){.jmf-amne,.sv-kpi,.jd-bar{transition:none}.jmf-amne:hover,.sv-kpi:hover{transform:none}}
 
 
 @media(max-width:900px){
@@ -650,7 +842,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .nav-links{display:none}
   .nav-hamburger{display:flex}
   nav .container{position:relative}
-  .oecd-row{grid-template-columns:70px 1fr 55px}
   .ft-grid{grid-template-columns:1fr 1fr}
   .s-title{font-size:1.5rem}
   section{padding:48px 0}
@@ -660,8 +851,6 @@ footer{border-top:1px solid var(--border);padding:36px 0}
   .ft-grid{grid-template-columns:1fr}
   .ft-tabs{gap:4px}
   .ft-tab{font-size:.75rem;padding:6px 12px}
-  .oecd-tabs{gap:4px}
-  .oecd-tab{font-size:.75rem;padding:6px 10px}
   .ft-big{font-size:1.3rem}
   .ft-bar-label{width:90px;font-size:.75rem}
   .s-title{font-size:1.25rem}
@@ -834,22 +1023,6 @@ i.snitt-kontur{box-shadow:inset 0 0 0 1.5px #8C6A2C;background:transparent}
 /* Stora tal: en stil överallt (serif, tabellsiffror) */
 .vgv-big,.pc-amount,.ft-big,.ft-stat-val,.wt-v,.t-num{font-family:var(--serif)!important;font-weight:600!important;letter-spacing:-.01em!important;font-variant-numeric:tabular-nums}
 /* Översikt över jämförelserna */
-.ov-intro{font-size:.88rem;color:var(--ink2);margin:0 0 1rem;max-width:44rem}
-.ov-grupp{margin-bottom:1.4rem}
-.ov-h{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:0 0 .4rem;color:var(--ink)}
-.ov-rad{display:grid;grid-template-columns:minmax(0,1.4fr) auto 7.5rem;align-items:center;gap:1rem;width:100%;padding:.55rem .8rem;margin:0;background:var(--paper);border:1px solid var(--border);border-bottom-width:0;font:inherit;text-align:left;cursor:pointer;color:var(--ink)}
-.ov-grupp .ov-rad:first-of-type{border-radius:8px 8px 0 0}
-.ov-grupp .ov-rad:last-of-type{border-bottom-width:1px;border-radius:0 0 8px 8px}
-.ov-rad:hover{background:var(--green-ll)}
-.ov-rad:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
-.ov-t{font-size:.88rem;font-weight:500;line-height:1.3}
-.ov-t small{display:block;font-size:.75rem;font-weight:400;color:var(--ink3);margin-top:.1rem}
-.ov-skala{display:inline-flex;align-items:center;gap:6px}
-.ov-skala i{width:12px;height:12px;border-radius:50%;background:#D8D2C5;display:block}
-.ov-skala i.se{background:var(--green);box-shadow:0 0 0 3px var(--green-ll)}
-.ov-ande{font-size:.75rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
-.ov-p{font-size:.8rem;font-weight:600;color:var(--ink);text-align:right;white-space:nowrap}
-@media(max-width:640px){.ov-rad{grid-template-columns:1fr auto;gap:.3rem .8rem}.ov-skala{grid-column:1/-1;grid-row:2}.ov-ande{display:none}}
 /* ═══ VYER ═══ */
 html{scroll-padding-top:72px}
 .vy-dold{display:none!important}
@@ -888,7 +1061,7 @@ html{scroll-padding-top:72px}
 .pg-more{grid-column:1/-1;justify-self:center;margin-top:.4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--green);background:var(--paper);border:1px solid var(--green);border-radius:99px;padding:.7rem 1.4rem;cursor:pointer}
 .pg-more:hover{background:var(--green-ll)}
 .pg-more:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-.ft-bar-val,.oecd-val{white-space:nowrap}
+.ft-bar-val{white-space:nowrap}
 @media(max-width:640px){
   /* Diagramtext minst cirka 11 px på mobil */
   .chart-svg text{font-size:12.5px}
@@ -896,8 +1069,6 @@ html{scroll-padding-top:72px}
   .m-swipe{display:grid!important;grid-template-columns:none!important;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem!important;padding:.2rem .1rem .8rem;margin-left:-.1rem;scrollbar-width:thin;overscroll-behavior-x:contain}
   .m-swipe > *{scroll-snap-align:start;min-width:0}
   .ft-bar-val{width:auto;min-width:56px}
-  .oecd-row{grid-template-columns:70px 1fr 64px}
-  .oecd-val.na{white-space:normal;line-height:1.15;font-size:.75rem}
   .pc{padding:1.1rem 1.15rem}
   .pc-cat{font-size:.75rem}
   .pc-src p,.pc-src{font-size:.75rem}
@@ -906,7 +1077,7 @@ html{scroll-padding-top:72px}
   .fk-act button{padding:.55rem 0;font-size:.76rem}
   .oecd-src{font-size:.75rem}
   .ft-bar-label{font-size:.72rem}
-  .ft-tab,.oecd-tab{font-size:.74rem;padding:8px 14px}
+  .ft-tab{font-size:.74rem;padding:8px 14px}
   .src-badge{font-size:.75rem}
   
   
@@ -1031,7 +1202,7 @@ html{scroll-padding-top:72px}
 .s-eye,.card-label,.vgv-lbl,.fc-h,.calc-ctrl label,.start-lon label,.kvitto-par h4,.lab,.hl100-head .s-eye,.dp-section-title,.ctt-eye{font-family:var(--sans);font-size:var(--fs-etikett);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 /* Tabellsiffror i versalhöjd där tal står under varandra eller ändras */
 body{font-variant-numeric:lining-nums}
-table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-del,.kv-sum,.pc-amount,.vgv-big,.ft-big,.ft-stat-val,.kpi,.hl100-list b,.hl100-card .amt b,.vy-led b,.t-num,.mr b,.vgv-hund em,.isk-tbl,.nt-tbl,.start-lon input,.man-rad input,.sl-val,.lc-caption,.dp-amount,.dp-bar-val{font-variant-numeric:tabular-nums lining-nums}
+table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum,.pc-amount,.vgv-big,.ft-big,.ft-stat-val,.kpi,.hl100-list b,.hl100-card .amt b,.vy-led b,.t-num,.mr b,.vgv-hund em,.isk-tbl,.nt-tbl,.start-lon input,.man-rad input,.sl-val,.lc-caption,.dp-amount,.dp-bar-val{font-variant-numeric:tabular-nums lining-nums}
 /* Enheten i stora tal: ett steg mindre och grå */
 .vy-led b small,.enhet{display:inline;font-family:var(--sans);font-size:.42em;font-weight:500;color:var(--ink3);letter-spacing:0;margin-left:.15em}
 </style>
@@ -2026,20 +2197,20 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
   </div>
 </section>
 
-<!-- OECD JÄMFÖRELSE -->
-<section class="oecd-section" id="oecd" aria-label="Sverige jämfört med andra länder">
+<!-- OECD JÄMFÖRELSE (#oecd). Innehållet ritas av initOecd ur JMF_DATA: sammanfattning, ämneskort, alla mått i en bild och ett diagramkort per mått (#jmf-<flik>-<n>). -->
+<section class="oecd-section" id="oecd" aria-label="Internationell jämförelse">
   <div class="container">
     <p class="s-eye">Internationell jämförelse</p>
-    <h2 class="s-title">Sverige jämfört med andra länder</h2>
-    <p class="s-sub">Samma sju länder i varje diagram: Sverige, Norge, Danmark, Finland, Island, Tyskland och USA. Den streckade linjen visar ett referensvärde, oftast snittet för OECD:s medlemsländer. I några diagram är det EU-snittet eller ett annat värde, vilket anges under diagrammet. Varje diagram bygger på en källa och ett år, och anger om högre eller lägre värden är bättre.</p>
+    <h2 class="s-title">Hur står sig Sverige mot grannländerna?</h2>
+    <p class="s-sub"><span data-jmf-antal>28</span> mått, samma sju länder i varje: Sverige, Norge, Danmark, Finland, Island, Tyskland och USA. Sverige är grönt. Den streckade linjen är OECD- eller EU-snittet.</p>
 
     <div class="oecd-tabs">
-      <button class="oecd-tab on" onclick="showOecd(this,'oversikt')">Översikt</button>
-      <button class="oecd-tab" onclick="showOecd(this,'sjukvard')">Sjukvård</button>
-      <button class="oecd-tab" onclick="showOecd(this,'utbildning')">Utbildning</button>
-      <button class="oecd-tab" onclick="showOecd(this,'socialt')">Socialt skydd och omsorg</button>
-      <button class="oecd-tab" onclick="showOecd(this,'samhalle')">Samhälle</button>
-      <button class="oecd-tab" onclick="showOecd(this,'miljo')">Klimat och energi</button>
+      <button class="oecd-tab on" id="oecd-tab-oversikt" data-k="oversikt" aria-controls="jmf-oversikt" onclick="showOecd(this,'oversikt')">Översikt</button>
+      <button class="oecd-tab" id="oecd-tab-sjukvard" data-k="sjukvard" aria-controls="jmf-sjukvard" onclick="showOecd(this,'sjukvard')"><svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:var(--k-vard)" aria-hidden="true" focusable="false"><use href="#pk-vard"/></svg>Sjukvård</button>
+      <button class="oecd-tab" id="oecd-tab-utbildning" data-k="utbildning" aria-controls="jmf-utbildning" onclick="showOecd(this,'utbildning')"><svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:var(--k-utb)" aria-hidden="true" focusable="false"><use href="#pk-utb"/></svg>Utbildning</button>
+      <button class="oecd-tab" id="oecd-tab-socialt" data-k="socialt" aria-controls="jmf-socialt" onclick="showOecd(this,'socialt')"><svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:var(--k-soc)" aria-hidden="true" focusable="false"><use href="#pk-soc"/></svg>Socialt skydd</button>
+      <button class="oecd-tab" id="oecd-tab-samhalle" data-k="samhalle" aria-controls="jmf-samhalle" onclick="showOecd(this,'samhalle')"><svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:var(--k-ratt)" aria-hidden="true" focusable="false"><use href="#pk-ratt"/></svg>Samhälle</button>
+      <button class="oecd-tab" id="oecd-tab-miljo" data-k="miljo" aria-controls="jmf-miljo" onclick="showOecd(this,'miljo')"><svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:var(--k-miljo)" aria-hidden="true" focusable="false"><use href="#pk-miljo"/></svg>Klimat och energi</button>
     </div>
 
     <div id="oecd-panels"></div>
@@ -2048,120 +2219,76 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.oecd-val,.kv-rad,.kv-d
 
 <hr class="div">
 
-<!-- SVENSK SJUKVÅRD — UTFALL
-     Egen sektion eftersom sjukvård är 20% av offentliga utgifter och har
-     starka utfallsmått (cancer/hjärta i världstopp, kapacitet bland EU:s
-     svagaste) som förtjänar mer plats än en flik under #oecd. -->
-<section class="framtid-section" id="sjukvard" aria-label="Svensk sjukvård — utfall" data-toc="Sjukvården">
+<!-- SVENSK SJUKVÅRD
+     Egen sektion eftersom sjukvård är 20% av offentliga utgifter. Nyckeltalen (data-jmf-kpi) ritas ur JMF_DATA
+     med en liten värdeskala och länkar till diagrammen i #oecd. Tre flikar: kapacitet, utfall, tillgänglighet. -->
+<section class="framtid-section" id="sjukvard" aria-label="Svensk sjukvård" data-toc="Sjukvården">
   <div class="container">
-    <p class="s-eye">Hälso- och sjukvård</p>
-    <h2 class="s-title">Sverige lägger störst andel av BNP på vård i Norden, men har minst antal vårdplatser</h2>
-    <svg class="illu-scen" viewBox="0 0 360 300" aria-hidden="true" focusable="false"><use href="#il-vard"/></svg>
-    <p class="s-sub">Sverige lade <strong>11,2 % av BNP</strong> på hälso- och sjukvård 2023. Det är mest i Norden, men mindre än Tyskland (11,7 %) och USA (16,7 %). Här visas tre sidor av vården: <em>kapacitet</em>, <em>utfall vid sjukdom</em> och <em>tillgänglighet</em>.</p>
-
-    <!-- Snabbfakta-rad -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1.5rem 0 2rem">
-      <div class="kpi">
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">84,1<span style="font-size:.85rem"> år</span></div>
-        <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Medellivslängd</div>
-        <div style="font-size:.75rem;color:var(--ink2);margin-top:.2rem">OECD-länderna: 80,4 år (2024)</div>
+    <div class="sv-topp">
+      <div>
+        <p class="s-eye">Hälso- och sjukvård</p>
+        <h2 class="s-title">Sverige lägger störst andel av BNP på vård i Norden, och har längst medellivslängd och lägst undvikbar dödlighet</h2>
+        <p class="sv-ingress">Medellivslängden är 84,1 år, längst av de sju länderna, och spädbarnsdödligheten är bland de lägsta. Samtidigt har Sverige minst antal vårdplatser per invånare i EU. Tre sidor av vården: <b>kapacitet</b>, <b>utfall vid sjukdom</b> och <b>tillgänglighet</b>. I varje nyckeltal är Sverige den gröna pricken bland sju länder. Tryck på ett nyckeltal för att se hela diagrammet.</p>
       </div>
-      <div class="kpi">
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">164</div>
-        <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Undvikbar dödlighet</div>
-        <div style="font-size:.75rem;color:var(--ink2);margin-top:.2rem">Dödsfall före 75 år per 100 000 invånare. EU-snittet: 238 (2023)</div>
-      </div>
-      <div class="kpi">
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">1,9<span style="font-size:.85rem"> /1000</span></div>
-        <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdplatser per invånare</div>
-        <div style="font-size:.75rem;color:var(--ink2);margin-top:.2rem">OECD-snittet: 4,4 (2022)</div>
-      </div>
-      <div class="kpi">
-        <div style="font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1">91<span style="font-size:.85rem"> %</span></div>
-        <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-top:.3rem">Vårdgaranti primärvård</div>
-        <div style="font-size:.75rem;color:var(--ink2);margin-top:.2rem">Bedömning inom 3 dagar (aug 2026, Socialstyrelsen)</div>
-      </div>
+      <svg class="sv-scen" viewBox="0 0 360 300" aria-hidden="true" focusable="false"><use href="#il-vard"/></svg>
     </div>
 
-    <!-- TRE TEMATISKA BLOCK -->
-    <div class="ft-tabs">
+    <div class="sv-kpis">
+      <a class="sv-kpi" href="#jmf-sjukvard-2" data-jmf-kpi data-l="Hälsoutgifter, andel av BNP">Hälsoutgifter som andel av BNP</a>
+      <a class="sv-kpi" href="#jmf-sjukvard-3" data-jmf-kpi data-l="Medellivslängd">Medellivslängd vid födseln</a>
+      <a class="sv-kpi" href="#jmf-sjukvard-5" data-jmf-kpi data-l="Undvikbar dödlighet, per 100 000" data-u="">Undvikbar dödlighet</a>
+      <a class="sv-kpi" href="#jmf-sjukvard-8" data-jmf-kpi data-l="Sjukhussängar per 1 000 invånare" data-u="">Sjukhussängar per 1 000 invånare</a>
+    </div>
+
+    <div class="ft-tabs sv-tabs">
       <button class="ft-tab on" onclick="showSjukv(this,'kapacitet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bed"/></svg>Kapacitet</button>
       <button class="ft-tab" onclick="showSjukv(this,'utfall')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pulse"/></svg>Utfall vid sjukdom</button>
+      <button class="ft-tab" onclick="showSjukv(this,'tillganglighet')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>Tillgänglighet</button>
     </div>
 
     <!-- KAPACITET -->
     <div class="ft-panel on" id="sjukv-kapacitet">
-      <p class="ft-intro">Sedan 1990-talet har mer vård flyttats från sjukhus till öppenvård och hemsjukvård. Sverige har minst antal vårdplatser per invånare av de sju länder som jämförs här.</p>
-
-      <div class="ft-grid">
-        <div class="ft-card">
-          <div class="ft-card-title">Vårdplatser per 1 000 invånare</div>
-          <div class="ft-big">1,9<sub> (2022)</sub></div>
-          <div class="ft-desc">År 2000: 3,6. År 2022: 1,9 (Världsbanken). Sverige hade lägst antal sjukhussängar per invånare i EU även 2024 (Eurostat: 1,9, EU-snittet 5,1). Norge 3,4 · Finland 2,6 · Danmark 2,5 · USA 2,7 · Tyskland 7,6 · OECD-snitt 4,4 (Världsbanken, 2022).</div>
-        </div>
-        <div class="ft-card">
-          <div class="ft-card-title">Vårdplatser som saknas</div>
-          <div class="ft-big">1 191<sub> per dag (2025)</sub></div>
-          <div class="ft-desc">Enligt Socialstyrelsen saknades i genomsnitt 1 191 vårdplatser per dag i den somatiska vården 2025, eller 7,6 procent. Året innan var bristen 12,3 procent. Antalet intensivvårdsplatser räckte i stort sett för behovet. Främsta orsaken till bristen är brist på sjuksköterskor, inte lokaler. I Läkarförbundets enkät till medlemmar (mars 2026) uppgav nära var fjärde läkare att de varje vecka skriver ut patienter för tidigt på grund av vårdplatsbrist.</div>
-        </div>
-        <div class="ft-card">
-          <div class="ft-card-title">Läkare per 1 000 invånare</div>
-          <div class="ft-big">4,7<sub> (2024, Eurostat)</sub></div>
-          <div class="ft-desc">I internationell jämförelse (Världsbanken, 2021) hade Sverige 4,4 läkare per 1 000 invånare, mot OECD-snittet 3,8. Läkartätheten skiljer sig mellan regionerna: den är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</div>
-        </div>
+      <p class="sv-intro">Sedan 1990-talet har mer vård flyttats från sjukhus till öppenvård och hemsjukvård. Sverige har minst antal vårdplatser per invånare av de sju länder som jämförs här. Fler sängar betyder inte bättre vård i sig, men med färre finns mindre marginal när behovet toppar, till exempel under covid-pandemin och influensasäsonger.</p>
+      <div class="sv-par">
+        <div><h4>Vårdplatser som saknas</h4><p class="sv-st">1 191 <small>per dag, 2025</small></p><p>Enligt Socialstyrelsen saknades i genomsnitt 1 191 vårdplatser per dag i den somatiska vården 2025, eller 7,6 procent. Året innan var bristen 12,3 procent. Antalet intensivvårdsplatser räckte i stort sett för behovet. Främsta orsaken till bristen är brist på sjuksköterskor, inte lokaler. I Läkarförbundets enkät till medlemmar (mars 2026) uppgav nära var fjärde läkare att de varje vecka skriver ut patienter för tidigt på grund av vårdplatsbrist.</p></div>
+        <div><h4>Vårdplatser över tid</h4><p class="sv-st">3,6 → 1,9 <small>per 1 000, 2000–2022</small></p><p>Världsbanken. Sverige hade lägst antal sjukhussängar per invånare i EU även 2024 (Eurostat: 1,9, EU-snittet 5,1).</p></div>
+        <div><h4>Läkare per 1 000 invånare</h4><p class="sv-st">4,7 <small>2024, Eurostat</small></p><p>I den internationella jämförelsen (Världsbanken, 2021) hade Sverige 4,4 läkare per 1 000 invånare, mot OECD-snittet 3,8. Läkartätheten är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</p></div>
       </div>
-
       <div data-jmf="sjukvard:7"></div>
-
-      <div class="ft-callout" style="margin-top:1.2rem">
-        <strong>Bakgrund:</strong> Sedan 1990-talet har vård flyttats från sjukhus till primärvård, hemsjukvård och öppenvård. Med färre vårdplatser per invånare finns mindre marginal när behovet toppar, till exempel under covid-pandemin och influensasäsonger.
-      </div>
       <p class="ft-source">Källor: Eurostat (vårdplatser och läkare), Världsbanken WDI, Socialstyrelsen (Nationell analys av riktvärden och målsatta mått, juni 2026; tillgång till vårdpersonal, mars 2024), Läkarförbundet (enkät om vårdplatsbrist, mars 2026), IVO.</p>
     </div>
 
     <!-- UTFALL VID SJUKDOM -->
     <div class="ft-panel" id="sjukv-utfall">
-      <p class="ft-intro">Här jämförs hur det går för patienter med allvarliga sjukdomar. På sjukhus är dödligheten vid hjärtinfarkt och stroke lägre i Sverige än OECD-snittet, och den undvikbara dödligheten är lägre än EU-snittet.</p>
-
-      <div class="ft-grid">
-        <div class="ft-card">
-          <div class="ft-card-title">Bröstcancer 5-årsöverlevnad</div>
-          <div class="ft-big">93 %<sub> (2020)</sub></div>
-          <div class="ft-desc">Relativ femårsöverlevnad. Upptäcks cancern i stadium I överlever drygt 99 procent, i stadium IV cirka 29 procent. Alla regioner erbjuder mammografi till kvinnor 40–74 år. I OECD:s jämförelse (diagnos 2010–2014) låg Sverige på 88,8 procent och OECD-snittet på 84,3.</div>
-        </div>
-        <div class="ft-card">
-          <div class="ft-card-title">Hjärtinfarkt — dödlighet inom 30 dagar</div>
-          <div class="ft-big">3,4 %<sub> (2023)</sub></div>
-          <div class="ft-desc">Dödsfall inom 30 dagar under samma sjukhusvistelse, personer 45 år och äldre. OECD-snitt 6,5 procent (Health at a Glance 2025). Räknas även de som dör innan de når sjukhus avled 21 procent inom 28 dagar (Socialstyrelsen, 2024).</div>
-        </div>
-        <div class="ft-card">
-          <div class="ft-card-title">Stroke — dödlighet inom 30 dagar</div>
-          <div class="ft-big">4,9 %<sub> (2023)</sub></div>
-          <div class="ft-desc">Ischemisk stroke, dödsfall inom 30 dagar på sjukhus. OECD-snitt 7,7 procent (Health at a Glance 2025). Räknas alla strokefall in, även dödsfall utanför sjukhus, avled 22 procent inom 28 dagar 2024 (Socialstyrelsen).</div>
-        </div>
-        <div class="ft-card">
-          <div class="ft-card-title">Spädbarnsdödlighet</div>
-          <div class="ft-big">2,0<sub> per 1 000 (2024)</sub></div>
-          <div class="ft-desc">Norge 2,0, Finland 1,9, Danmark 3,5, Tyskland 3,1 och USA 5,5 per 1 000 levande födda (FN:s IGME via Världsbanken, 2024).</div>
-        </div>
+      <p class="sv-intro">Här jämförs hur det går för patienter med allvarliga sjukdomar. På sjukhus är dödligheten vid hjärtinfarkt och stroke lägre i Sverige än OECD-snittet, och den undvikbara dödligheten är lägre än EU-snittet. Dödlighet påverkas inte bara av vården utan också av levnadsvanor, ålder och inkomster i befolkningen.</p>
+      <div class="sv-par sv-par4">
+        <div><h4>Bröstcancer, överlevnad efter fem år</h4><p class="sv-st">93 % <small>2020</small></p><p>Relativ femårsöverlevnad. Upptäcks cancern i stadium I överlever drygt 99 procent, i stadium IV cirka 29 procent. Alla regioner erbjuder mammografi till kvinnor 40–74 år. I OECD:s jämförelse (diagnos 2010–2014) låg Sverige på 88,8 procent och OECD-snittet på 84,3.</p></div>
+        <div><h4>Hjärtinfarkt, dödlighet inom 30 dagar</h4><p class="sv-st">3,4 % <small>2023</small></p><p>Dödsfall inom 30 dagar under samma sjukhusvistelse, personer 45 år och äldre. OECD-snitt 6,5 procent (Health at a Glance 2025). Räknas även de som dör innan de når sjukhus avled 21 procent inom 28 dagar (Socialstyrelsen, 2024).</p></div>
+        <div><h4>Stroke, dödlighet inom 30 dagar</h4><p class="sv-st">4,9 % <small>2023</small></p><p>Ischemisk stroke, dödsfall inom 30 dagar på sjukhus. OECD-snitt 7,7 procent (Health at a Glance 2025). Räknas alla strokefall in, även dödsfall utanför sjukhus, avled 22 procent inom 28 dagar 2024 (Socialstyrelsen).</p></div>
+        <div><h4>Spädbarnsdödlighet</h4><p class="sv-st">2,0 <small>per 1 000 levande födda, 2024</small></p><p>Döda före ett års ålder (FN:s IGME via Världsbanken). <a href="#jmf-sjukvard-4">Jämförelsen med de sex andra länderna</a> finns i jämförelsen ovan.</p></div>
       </div>
-
       <div data-jmf="sjukvard:4"></div>
-
-      <div class="ft-callout" style="margin-top:1.2rem">
-        <strong>Att tänka på:</strong> Dödlighet påverkas inte bara av vården utan också av levnadsvanor, ålder och inkomster i befolkningen. Väntetider och hur patienter upplever vården syns inte i de här måtten.
-      </div>
-      <p class="ft-source">Källor: Socialstyrelsen (statistik om bröstcancer 2023, hjärtinfarkter 2024 och stroke 2024), OECD Health Care Quality Indicators (via DBnomics), Världsbanken WDI. OECD-snitten är OECD:s egna, ur Health at a Glance 2025.</p>
+      <p class="ft-source">Källor: Socialstyrelsen (statistik om bröstcancer 2023, hjärtinfarkter 2024 och stroke 2024), OECD Health Care Quality Indicators (via DBnomics), Världsbanken WDI. OECD-snitten är OECD:s egna, ur Health at a Glance 2025. Väntetider och hur patienter upplever vården syns inte i de här måtten.</p>
     </div>
 
     <!-- TILLGÄNGLIGHET -->
-    <div style="margin-top:2rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
-      <strong>Mer om vården:</strong>
-      <a href="#pristabell" style="color:var(--green);text-decoration:none;font-weight:500;margin-left:.4rem">→ Prislistan: 17 prislappar om vård och kroniska sjukdomar</a>
-      <span style="opacity:.5;margin:0 .4rem">·</span>
-      <a href="#oecd" style="color:var(--green);text-decoration:none;font-weight:500">→ Hela den internationella jämförelsen</a>
-      <span style="opacity:.5;margin:0 .4rem">·</span>
-      <a href="#ft-personal" style="color:var(--green);text-decoration:none;font-weight:500">→ Personalbehov i vård och omsorg</a>
+    <div class="ft-panel" id="sjukv-tillganglighet">
+      <p class="sv-intro">Vårdgarantin anger 0–3–90–90: kontakt med vården samma dag, medicinsk bedömning i primärvården inom 3 dagar, besök i den specialiserade vården inom 90 dagar och behandling inom 90 dagar efter beslut. Länderna mäter väntetider på olika sätt, så här jämförs bara de som mäter likadant.</p>
+      <div class="sv-par">
+        <div><h4>Medicinsk bedömning i primärvården inom 3 dagar</h4><p class="sv-st">91 % <small>aug 2026</small></p><p>Andel av patienterna som fick en medicinsk bedömning inom vårdgarantins tre dagar, hela landet (Socialstyrelsen).</p></div>
+        <div><h4>Operation eller åtgärd inom 90 dagar</h4><p class="sv-st">63 % <small>aug 2026</small></p><p>Andel operationer och åtgärder som genomfördes inom 90 dagar efter beslut. Resten, drygt en av tre, väntade längre än garantin anger (Socialstyrelsen).</p></div>
+        <div><h4>Väntetid till höftledsoperation</h4><p class="sv-st">82 dagar <small>median, 2023</small></p><p>Från specialistbedömning till operation. Danmark 49, Finland 134 och Norge 176 dagar. Tyskland och USA mäter inte på samma sätt (OECD Health Statistics).</p></div>
+      </div>
+      <p class="ft-source">Källor: Socialstyrelsen, <a href="https://socialstyrelsen.se/statistik-och-data/statistik/alla-statistikamnen/lagesbild-och-statistik-tillganglighet-vantetider-och-vardgaranti-i-halso-och-sjukvard/" target="_blank" rel="noopener">Lägesbild och statistik – tillgänglighet, väntetider och vårdgaranti</a> (augusti 2026); OECD Health Statistics (väntetider för planerade operationer). Mer om väntetiderna i <a href="#hist-vardidag">Framtid och historik</a>.</p>
+    </div>
+
+    <div class="sv-mer">
+      <button type="button" class="sv-lapp" data-pris="Ett dygn på IVA">Ett dygn på IVA</button>
+      <button type="button" class="sv-lapp" data-pris="Läkarbesök, primärvård" data-namn="Läkarbesök i primärvården">Läkarbesök i primärvården</button>
+      <button type="button" class="sv-lapp" data-pris="En höftledsoperation (primär)" data-namn="En höftledsoperation">En höftledsoperation</button>
+      <a class="sv-lapp" href="#jmf-sjukvard"><span>Alla <span data-jmf-antal="sjukvard">8</span> vårdmått i jämförelsen</span><span aria-hidden="true">→</span></a>
+      <a class="sv-lapp" href="#pristabell">Prislistan <span aria-hidden="true">→</span></a>
+      <a class="sv-lapp" href="#ft-personal">Personalbehov i vård och omsorg <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -3092,7 +3219,7 @@ const VYER = [
 // [mönster, vy, element att scrolla till om id:t inte finns ännu]
 // Scener i vyhuvudena (papperssnitt, symbolerna vh-… i spriten). Alt-text per vy.
 const VY_SCEN = {"start": "En tecknad hundralapp på ett bord, riven i sju färgade remsor som glider isär. Bredvid en kaffekopp.", "din-ekonomi": "En kvinna sitter vid ett köksbord och läser sitt lönebesked, med kaffekopp, miniräknare och kuvert på bordet och utsikt mot ett bostadsområde genom fönstret.", "budgeten": "En monumental stenbyggnad med pelare ligger på en holme mitt i vattnet, med stenbroar åt båda håll, en turbåt och människor som promenerar på kajen i förgrunden.", "prislistan": "En gata med en skola, en vårdcentral och en ambulans där allt har hängande prislappar, och ett barn som sträcker sig efter prislappen på en lyktstolpe.", "jamforelser": "Sju olika hus står sida vid sida längs en kaj, med ett falurött trähus i mitten en bit framför de andra, människor på trottoaren och en mås på en pollare vid vattnet.", "framtid": "En gata där en låg skola från 1980-talet i dämpade färger till vänster övergår i ett nybyggt äldreboende i trä till höger, och människor i olika åldrar går och cyklar åt samma håll.", "metod": "En person sitter bakifrån vid ett skrivbord under ett fönster och håller ett förstoringsglas mot ett stapeldiagram på skärmen, bredvid en hylla full av pärmar och statistikpublikationer."};
-const VY_PREFIX = [[/^fakta-\d+$/,'start','snabbfakta'],[/^kapitel-\d+$/,'start','kretslopp'],[/^gissa/,'prislistan','gissa'],[/^(ordlista|nyckeltal)$/,'metod','metod']];
+const VY_PREFIX = [[/^fakta-\d+$/,'start','snabbfakta'],[/^jmf-/,'jamforelser','oecd'],[/^kapitel-\d+$/,'start','kretslopp'],[/^gissa/,'prislistan','gissa'],[/^(ordlista|nyckeltal)$/,'metod','metod']];
 const BAS_TITEL = document.title;
 const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.content || '';
 
@@ -5524,6 +5651,8 @@ updateCalc();
 // OECD-snitt = ovägt medel av medlemsländerna (egen beräkning) om inget annat anges.
 // v: [Sverige, Norge, Danmark, Finland, Island, Tyskland, USA], null = uppgift saknas.
 // bast: 'hogre' | 'lagre' | null (null = varken högre eller lägre är självklart bättre)
+// q: rubrik som fråga i diagramkortet. form:'punkt' = punktdiagram på en axel som inte börjar på noll (index och poäng).
+// per: kort enhet till Sveriges stora siffra när unit saknas. pris: titel på en prislapp i CARDS. kort: kort namn i sammanfattningen.
 // ═══════════════════════════════════════════════════════════════════
 const JMF_LAND = ['Sverige','Norge','Danmark','Finland','Island','Tyskland','USA'];
 const WDI = 'https://databank.worldbank.org/source/world-development-indicators';
@@ -5531,79 +5660,79 @@ const JMF_DATA = {
   sjukvard: {
     title: 'Hälso- och sjukvård',
     charts: [
-      {t:'Hälsoutgifter per invånare', enh:'US-dollar, köpkraftsjusterat', ar:2023, bast:null, unit:' $',
+      {t:'Hälsoutgifter per invånare', q:'Hur mycket kostar vården per invånare?', enh:'US-dollar, köpkraftsjusterat', ar:2023, bast:null, unit:' $',
        v:[7512,9523,7098,6433,6618,8306,13473], ref:{v:5642,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (WHO Global Health Expenditure)', url:WDI},
-      {t:'Hälsoutgifter som andel av BNP', enh:'procent', ar:2023, bast:null, unit:' %', dec:1,
+      {t:'Hälsoutgifter som andel av BNP', q:'Hur stor del av ekonomin går till vården?', enh:'procent', ar:2023, bast:null, unit:' %', dec:1,
        v:[11.2,9.4,9.6,10.5,8.7,11.7,16.7], ref:{v:9.1,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (WHO Global Health Expenditure)', url:WDI},
-      {t:'Medellivslängd vid födseln', enh:'år', ar:2024, bast:'hogre', unit:' år', dec:1,
+      {t:'Medellivslängd vid födseln', q:'Hur länge lever man?', form:'punkt', enh:'år', ar:2024, bast:'hogre', unit:' år', dec:1,
        v:[84.1,83.2,82.3,82.3,82.8,80.8,78.9], ref:{v:80.4,lbl:'OECD-länderna'},
        kalla:'Världsbanken, WDI', url:WDI},
-      {t:'Spädbarnsdödlighet', enh:'döda per 1 000 levande födda', ar:2024, bast:'lagre', dec:1,
+      {t:'Spädbarnsdödlighet', q:'Hur många spädbarn dör under det första året?', per:'per 1 000 födda', enh:'döda per 1 000 levande födda', ar:2024, bast:'lagre', dec:1,
        v:[2.0,2.0,3.5,1.9,2.1,3.1,5.5], ref:{v:3.8,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (FN:s IGME)', url:'https://data.worldbank.org/indicator/SP.DYN.IMRT.IN'},
-      {t:'Undvikbar dödlighet', enh:'dödsfall före 75 års ålder per 100 000 invånare som hade kunnat undvikas med förebyggande arbete eller vård, åldersstandardiserat', ar:2023, bast:'lagre', dec:0,
+      {t:'Undvikbar dödlighet', q:'Hur många dör i förtid av orsaker som går att undvika?', per:'per 100 000 invånare', enh:'dödsfall före 75 års ålder per 100 000 invånare som hade kunnat undvikas med förebyggande arbete eller vård, åldersstandardiserat', ar:2023, bast:'lagre', dec:0,
        v:[164.1,170.9,205.3,223.1,180.7,240.4,null], ref:{v:237.7,lbl:'EU-snitt'},
        kalla:'Eurostat, undvikbar dödlighet (hlth_cd_apr)', url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_cd_apr/default/table',
        not:'Eurostat redovisar inte USA och inget OECD-snitt.'},
-      {t:'Läkare per 1 000 invånare', enh:'antal', ar:2021, bast:null, dec:1,
+      {t:'Läkare per 1 000 invånare', q:'Hur många läkare finns det?', per:'per 1 000 invånare', pris:'Läkarbesök, primärvård', enh:'antal', ar:2021, bast:null, dec:1,
        v:[4.4,4.8,4.5,3.6,4.4,4.5,3.6], ref:{v:3.8,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (WHO)', url:WDI},
-      {t:'Läkemedelsutgifter per invånare', enh:'US-dollar, köpkraftsjusterat, läkemedel i öppenvård', ar:2022, bast:null, unit:' $', dec:0,
+      {t:'Läkemedelsutgifter per invånare', q:'Hur mycket kostar läkemedlen per invånare?', enh:'US-dollar, köpkraftsjusterat, läkemedel i öppenvård', ar:2022, bast:null, unit:' $', dec:0,
        v:[666,609,426,666,650,1166,1558], ref:{v:711,lbl:'OECD-snitt (35 länder)'},
        kalla:'OECD Health Statistics, hälsoräkenskaper (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_SHA@DF_SHA',
        not:'Läkemedel som ges på sjukhus ingår inte, vilket gör att länder där mycket ges på sjukhus, som Danmark, får lägre värden.'},
-      {t:'Sjukhussängar per 1 000 invånare', enh:'antal', ar:2022, bast:null, dec:1,
+      {t:'Sjukhussängar per 1 000 invånare', q:'Hur många sjukhussängar finns det?', per:'per 1 000 invånare', pris:'Ett dygn på IVA', enh:'antal', ar:2022, bast:null, dec:1,
        v:[1.9,3.4,2.5,2.6,null,7.6,2.7], ref:{v:4.4,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (OECD/WHO)', url:WDI,
        not:'Fler sängar betyder inte bättre vård i sig. Länder som Sverige har flyttat vård till öppenvården.'}
     ]
   },
   utbildning: { title: 'Utbildning', charts: [
-      {t:'PISA 2025, matematik', enh:'medelpoäng för 15-åringar', ar:2025, bast:'hogre', dec:0,
+      {t:'PISA 2025, matematik', q:'Hur bra är 15-åringar på matematik?', kort:'PISA matematik', form:'punkt', per:'poäng', enh:'medelpoäng för 15-åringar', ar:2025, bast:'hogre', dec:0,
        v:[464,452,471,469,450,464,463], ref:{v:463,lbl:'OECD-snitt'},
        kalla:'OECD PISA 2025, Volume I', url:'https://stat.link/mrq53f',
        not:'OECD anger att Norge och USA inte klarade alla krav på urvalet, så deras resultat är osäkrare. Skillnader på några poäng är inte statistiskt säkra.'},
-      {t:'PISA 2025, naturvetenskap', enh:'medelpoäng för 15-åringar', ar:2025, bast:'hogre', dec:0,
+      {t:'PISA 2025, naturvetenskap', q:'Hur bra är 15-åringar på naturvetenskap?', kort:'PISA naturvetenskap', form:'punkt', per:'poäng', enh:'medelpoäng för 15-åringar', ar:2025, bast:'hogre', dec:0,
        v:[485,470,478,504,441,486,502], ref:{v:482,lbl:'OECD-snitt'},
        kalla:'OECD PISA 2025, Volume I', url:'https://stat.link/mrq53f',
        not:'Samma osäkerhet om Norge och USA som för matematik.'},
-      {t:'Utgifter för utbildning', enh:'procent av BNP, från grundskola till högskola, offentliga och privata', ar:2022, bast:null, unit:' %', dec:1,
+      {t:'Utgifter för utbildning', q:'Hur stor del av ekonomin går till utbildning?', enh:'procent av BNP, från grundskola till högskola, offentliga och privata', ar:2022, bast:null, unit:' %', dec:1,
        v:[5.31,6.25,5.25,5.20,5.58,4.38,null], ref:{v:4.7,lbl:'OECD-snitt'},
        kalla:'OECD Education at a Glance', url:'https://www.oecd.org/en/publications/2025/09/education-at-a-glance-2025_c58fc9ae.html',
        not:'USA saknas för 2022. Hämtat via DBnomics spegling av OECD:s databas.'},
-      {t:'Eftergymnasial utbildning', enh:'procent av befolkningen 25–64 år', ar:2023, bast:null, unit:' %', dec:0,
+      {t:'Eftergymnasial utbildning', q:'Hur många vuxna har läst vidare efter gymnasiet?', pris:'Ett år på högskola / universitetet', enh:'procent av befolkningen 25–64 år', ar:2023, bast:null, unit:' %', dec:0,
        v:[49.4,48.8,42.9,42.5,44.5,33.4,50.7], ref:{v:40.9,lbl:'OECD-snitt'},
        kalla:'OECD Education at a Glance', url:'https://www.oecd.org/en/publications/2025/09/education-at-a-glance-2025_c58fc9ae.html',
        not:'Högskola, universitet och kortare eftergymnasiala utbildningar. Tyskland har en stor yrkesutbildning som inte räknas hit.'},
-      {t:'Vuxnas läsförmåga (PIAAC)', enh:'medelpoäng för 16–65-åringar', ar:2023, bast:'hogre', dec:0,
+      {t:'Vuxnas läsförmåga (PIAAC)', q:'Hur bra läser vuxna?', form:'punkt', per:'poäng', enh:'medelpoäng för 16–65-åringar', ar:2023, bast:'hogre', dec:0,
        v:[284,281,273,296,null,266,258], ref:{v:260,lbl:'OECD-snitt'},
        kalla:'OECD Survey of Adult Skills 2023 (via CSO Irland)', url:'https://www.cso.ie/en/releasesandpublications/ep/p-piaac/programmefortheinternationalassessmentofadultcompetenciespiaac2023/internationalcomparison/',
        not:'Island deltog inte i undersökningen.'},
-      {t:'Utgifter per elev och student', enh:'US-dollar per heltidsstudent, köpkraftsjusterat, grundskola till högskola', ar:2022, bast:null, unit:' $', dec:0,
+      {t:'Utgifter per elev och student', q:'Vad kostar en elev per år?', pris:'Ett år i grundskolan', enh:'US-dollar per heltidsstudent, köpkraftsjusterat, grundskola till högskola', ar:2022, bast:null, unit:' $', dec:0,
        v:[17804,22558,19229,15000,18707,17960,null], ref:{v:14865,lbl:'OECD-snitt'},
        kalla:'OECD Education at a Glance (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_EAG_UOE_FIN@DF_UOE_INDIC_FIN_PERSTUD',
        not:'Inklusive forskning vid universitet och högskolor. USA saknas för 2022.'}
     ] },
   socialt: { title: 'Socialt skydd och omsorg', charts: [
-      {t:'Inkomstskillnader (Gini-koefficient)', enh:'disponibel inkomst efter skatter och bidrag, 0 = alla har lika mycket', ar:2022, bast:null, dec:2,
+      {t:'Inkomstskillnader (Gini-koefficient)', q:'Hur jämnt är inkomsterna fördelade?', enh:'disponibel inkomst efter skatter och bidrag, 0 = alla har lika mycket', ar:2022, bast:null, dec:2,
        v:[0.290,0.262,0.276,0.274,null,0.309,0.396], ref:{v:0.319,lbl:'OECD-snitt (33 länder)'},
        kalla:'OECD Income Distribution Database', url:'https://www.oecd.org/en/data/datasets/income-and-wealth-distribution-database.html',
        not:'Lägre värde betyder jämnare fördelning. SCB:s eget mått för Sverige ger ett något högre värde, eftersom inkomsterna mäts på ett annat sätt. Island saknas efter 2019.'},
-      {t:'Barn i hushåll med låg inkomst', enh:'procent av barnen, under 50 % av medianinkomsten', ar:2022, bast:'lagre', unit:' %', dec:1,
+      {t:'Barn i hushåll med låg inkomst', q:'Hur många barn lever i hushåll med låg inkomst?', enh:'procent av barnen, under 50 % av medianinkomsten', ar:2022, bast:'lagre', unit:' %', dec:1,
        v:[8.5,7.0,4.2,3.8,null,12.4,20.8], ref:{v:12.6,lbl:'OECD-snitt (33 länder)'},
        kalla:'OECD Income Distribution Database', url:'https://www.oecd.org/en/data/datasets/income-and-wealth-distribution-database.html',
        not:'Med EU:s gräns, 60 % av medianinkomsten, blir andelen högre i alla länder. Island saknas efter 2019.'},
-      {t:'Friska levnadsår vid 65', enh:'förväntat antal år utan funktionsnedsättning', ar:2024, bast:'hogre', unit:' år', dec:1,
+      {t:'Friska levnadsår vid 65', q:'Hur många friska år har en 65-åring kvar?', enh:'förväntat antal år utan funktionsnedsättning', ar:2024, bast:'hogre', unit:' år', dec:1,
        v:[14.2,14.0,11.3,9.6,null,8.6,null], ref:{v:10.3,lbl:'EU-snitt'},
        kalla:'Eurostat, friska levnadsår (hlth_hlye)', url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_hlye/default/table',
        not:'Bygger på hur människor själva bedömer sin hälsa, vilket gör jämförelser mellan länder osäkra. USA och Island saknas.'},
-      {t:'Anställda i äldreomsorgen', enh:'per 100 invånare som är 65 år eller äldre', ar:2021, bast:null, dec:1,
+      {t:'Anställda i äldreomsorgen', q:'Hur många arbetar i äldreomsorgen?', per:'per 100 personer över 65', pris:'Hemtjänst, ett år', enh:'per 100 invånare som är 65 år eller äldre', ar:2021, bast:null, dec:1,
        v:[11.7,13.3,7.2,4.1,null,5.5,4.5], ref:{v:5.0,lbl:'OECD-snitt (25 länder)'},
        kalla:'OECD Health Statistics, långvarig vård', url:'https://www.oecd.org/en/topics/sub-issues/ageing-and-long-term-care.html',
        not:'Antal personer, inte heltidstjänster. Senaste året med uppgifter för de flesta länderna. Island saknas.'},
-      {t:'Höga boendekostnader', enh:'andel av befolkningen som lägger mer än 40 procent av den disponibla inkomsten på boendet', ar:2025, bast:'lagre', unit:' %', dec:1,
+      {t:'Höga boendekostnader', q:'Hur många har höga boendekostnader?', enh:'andel av befolkningen som lägger mer än 40 procent av den disponibla inkomsten på boendet', ar:2025, bast:'lagre', unit:' %', dec:1,
        v:[10.8,13.5,14.7,4.7,null,11.2,null], ref:{v:7.6,lbl:'EU-snitt'},
        kalla:'Eurostat, EU-SILC (ilc_lvho07a)', url:'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a/default/table',
        not:'Eurostat redovisar inte USA och Island. Danmark har ett tidsseriebrott 2025.'}
@@ -5611,26 +5740,26 @@ const JMF_DATA = {
   samhalle: {
     title: 'Samhälle',
     charts: [
-      {t:'Döda i vägtrafiken per miljon invånare', enh:'antal', ar:2024, bast:'lagre', dec:0,
+      {t:'Döda i vägtrafiken per miljon invånare', q:'Hur många dör i trafiken?', per:'per miljon invånare', pris:'Underhåll av 1 km statlig väg per år', enh:'antal', ar:2024, bast:'lagre', dec:0,
        v:[20,16,24,32,34,33,null], ref:{v:44,lbl:'EU-snitt'},
        kalla:'Eurostat, döda i vägtrafiken (sdg_11_40)', url:'https://ec.europa.eu/eurostat/databrowser/view/sdg_11_40/default/table',
        not:'Preliminära siffror. Eurostat redovisar inte USA. Isländska siffror varierar mycket mellan åren eftersom befolkningen är liten.'},
-      {t:'Korruptionsindex (CPI)', enh:'poäng 0–100, där 100 betyder ingen upplevd korruption', ar:2025, bast:'hogre', dec:0,
+      {t:'Korruptionsindex (CPI)', q:'Hur utbredd upplevs korruptionen?', form:'punkt', per:'poäng av 100', enh:'poäng 0–100, där 100 betyder ingen upplevd korruption', ar:2025, bast:'hogre', dec:0,
        v:[80,81,89,88,77,77,64], ref:{v:64.7,lbl:'OECD-snitt'},
        kalla:'Transparency International, Corruption Perceptions Index', url:'https://www.transparency.org/en/cpi/2025'},
-      {t:'Rättsstatsindex', enh:'poäng 0–1', ar:2026, bast:'hogre', dec:2,
+      {t:'Rättsstatsindex', q:'Hur väl fungerar rättsstaten?', form:'punkt', per:'poäng av 1', enh:'poäng 0–1', ar:2026, bast:'hogre', dec:2,
        v:[0.857,0.890,0.898,0.870,null,0.830,0.668], ref:{v:0.7225,lbl:'OECD-snitt (35 länder)'},
        kalla:'World Justice Project, Rule of Law Index', url:'https://worldjusticeproject.org/rule-of-law-index/',
        not:'Island ingår inte i indexet. Plats i världen 2026: Danmark 1, Norge 2, Finland 3, Sverige 4, Tyskland 6, USA 30 (av 143).'},
-      {t:'Förtroende för regeringen', enh:'procent som har högt eller ganska högt förtroende för den nationella regeringen', ar:2023, bast:null, unit:' %', dec:0,
+      {t:'Förtroende för regeringen', q:'Hur många litar på regeringen?', enh:'procent som har högt eller ganska högt förtroende för den nationella regeringen', ar:2023, bast:null, unit:' %', dec:0,
        v:[42.9,47.6,44.0,47.0,36.4,36.0,null], ref:{v:39.3,lbl:'OECD-snitt (30 länder)'},
        kalla:'OECD Trust Survey 2023, Government at a Glance 2025 (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_GOV_INT@DF_GOV_TDG_2025',
        not:'USA deltog inte i undersökningen.'},
-      {t:'Dödligt våld', enh:'avsiktligt dödande per 100 000 invånare', ar:2023, bast:'lagre', dec:2,
+      {t:'Dödligt våld', q:'Hur vanligt är dödligt våld?', per:'per 100 000 invånare', pris:'Polisen per invånare och år', enh:'avsiktligt dödande per 100 000 invånare', ar:2023, bast:'lagre', dec:2,
        v:[1.15,0.72,0.84,0.98,1.29,0.91,5.76], ref:{v:0.89,lbl:'OECD-median (32 länder)'},
        kalla:'UNODC via Världsbanken, WDI', url:'https://data.worldbank.org/indicator/VC.IHR.PSRC.P5',
        not:'Medianen används som referens eftersom några länder med mycket höga tal drar upp medelvärdet (3,41). Islands siffra bygger på mycket få fall och varierar mellan åren.'},
-      {t:'Försvarsutgifter', enh:'procent av BNP, Natos definition', ar:2024, bast:null, unit:' %', dec:1,
+      {t:'Försvarsutgifter', q:'Hur stor del av ekonomin går till försvaret?', pris:'Försvar och krisberedskap per invånare, 2026', enh:'procent av BNP, Natos definition', ar:2024, bast:null, unit:' %', dec:1,
        v:[2.31,2.27,2.27,2.40,null,2.00,3.21], ref:{v:2.61,lbl:'Nato totalt'},
        kalla:'Nato, Defence Expenditure of NATO Countries 2014–2025', url:'https://www.nato.int/content/dam/nato/webready/documents/finance/def-exp-2025-en.pdf',
        not:'Uppskattning för 2024. Island har ingen försvarsmakt. Nato totalt är vägt efter BNP och domineras av USA; ovägt snitt för medlemsländerna är 2,15. Sverige beräknas nå 2,8 procent 2026 och har som mål 3,5 procent till 2030 (regeringen).'}
@@ -5639,14 +5768,14 @@ const JMF_DATA = {
   miljo: {
     title: 'Klimat och energi',
     charts: [
-      {t:'Koldioxidutsläpp per invånare', enh:'ton CO₂ från fossila bränslen och cement, inom landets gränser', ar:2024, bast:'lagre', unit:' t', dec:1,
+      {t:'Koldioxidutsläpp per invånare', q:'Hur mycket koldioxid släpper varje invånare ut?', per:'ton per invånare', enh:'ton CO₂ från fossila bränslen och cement, inom landets gränser', ar:2024, bast:'lagre', unit:' t', dec:1,
        v:[3.59,6.67,4.75,5.30,9.67,6.77,14.20], ref:{v:6.24,lbl:'OECD-snitt'},
        kalla:'Global Carbon Project via Our World in Data', url:'https://ourworldindata.org/co2-emissions'},
-      {t:'Förnybar energi', enh:'procent av den slutliga energianvändningen', ar:2021, bast:'hogre', unit:' %', dec:0,
+      {t:'Förnybar energi', q:'Hur stor del av energin är förnybar?', enh:'procent av den slutliga energianvändningen', ar:2021, bast:'hogre', unit:' %', dec:0,
        v:[57.9,61.4,39.5,50.2,82.4,17.6,10.9], ref:{v:25.3,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (FN:s mål 7.2.1)', url:'https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS',
        not:'Senaste år med uppgifter för alla länder. Måttet skiljer sig från EU:s förnybarhetsmål, där Sveriges andel är högre.'},
-      {t:'Materialåtervinning av hushållsavfall', enh:'procent av det kommunala avfallet', ar:2024, bast:'hogre', unit:' %', dec:0,
+      {t:'Materialåtervinning av hushållsavfall', q:'Hur mycket av hushållsavfallet återvinns?', pris:'Sophantering, ett hushåll per år', enh:'procent av det kommunala avfallet', ar:2024, bast:'hogre', unit:' %', dec:0,
        v:[46.1,46.9,46.2,47.9,44.7,69.0,null], ref:{v:49.4,lbl:'EU-snitt'},
        kalla:'Eurostat, återvinning av kommunalt avfall (cei_wm011)', url:'https://ec.europa.eu/eurostat/databrowser/view/cei_wm011/default/table',
        not:'Eurostat redovisar inte USA. Sveriges siffra för 2024 bygger på en ny mätmetod (2023: 39 %).'}
@@ -5654,100 +5783,288 @@ const JMF_DATA = {
   }
 };
 
+// Ämnen: pictogram, kategorifärg och scen per flik (samma som i resten av sajten)
+const JMF_AMNE = {
+  sjukvard:   {pk:'vard',  c:'var(--k-vard)',  il:'il-vard',  kort:'Sjukvård'},
+  utbildning: {pk:'utb',   c:'var(--k-utb)',   il:'il-utb',   kort:'Utbildning'},
+  socialt:    {pk:'soc',   c:'var(--k-soc)',   il:'il-soc',   kort:'Socialt skydd'},
+  samhalle:   {pk:'ratt',  c:'var(--k-ratt)',  il:'il-ratt',  kort:'Samhälle'},
+  miljo:      {pk:'miljo', c:'var(--k-miljo)', il:'il-miljo', kort:'Klimat och energi'}
+};
+const JMF_NARA = 0.02;   // inom 2 % av referensvärdet räknas som "ungefär som snittet"
+const JMF_ANTAL = ['noll','ett','två','tre','fyra','fem','sex','sju'];
+const JMF_ORDN = ['', '', 'Näst', 'Tredje', 'Fjärde', 'Femte', 'Sjätte', 'Sjunde'];
+const JMF_ABS = {' %':'procentenheter', ' år':'år', ' t':'ton'}; // skillnader i dessa enheter anges i enheten, övriga i procent
+const JMF_PRIS_PK = {helse:'vard', utb:'utb', infra:'infra', social:'soc', trygghet:'ratt', kronisk:'vard'};
+let jmfVal = 0; // valt land att jämföra med (index i JMF_LAND), 0 = inget
+
 function jmfTal(v, ch){
   const d = ch.dec ?? 0;
   return v.toLocaleString('sv-SE', {minimumFractionDigits:d, maximumFractionDigits:d});
 }
+const jmfPk = (n, c) => `<svg class="pk" viewBox="0 0 48 48" fill="currentColor" style="color:${c}" aria-hidden="true" focusable="false"><use href="#pk-${n}"/></svg>`;
+const jmfLista = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' och ' + a[a.length - 1];
+const jmfNamn = ch => (ch.kort || (/^[A-ZÅÄÖ]{2}/.test(ch.t) ? ch.t : ch.t[0].toLowerCase() + ch.t.slice(1))).replace(/ \(.*\)$/, '');
+const jmfRefKort = ch => ch.ref.lbl.replace(/ \(.*\)/, '');
+const jmfRefFras = lbl => lbl.replace(/^OECD-snitt/, 'OECD-snittet').replace(/^EU-snitt/, 'EU-snittet').replace(/^OECD-median/, 'OECD-medianen')
+  .replace(/^OECD-länderna/, 'genomsnittet i OECD-länderna').replace(/^Nato totalt/, 'Nato som helhet');
+const jmfMedEnhet = (v, ch) => jmfTal(v, ch) + (ch.unit || (ch.per ? ' ' + ch.per : ''));
+const jmfRiktn = ch => ch.bast === 'hogre' ? 'högre är bättre' : ch.bast === 'lagre' ? 'lägre är bättre' : 'ingen självklar riktning';
 
-function jmfKort(ch){
-  const vals = ch.v.filter(v => v !== null);
-  const max = Math.max(...vals, ch.ref ? ch.ref.v : 0) * 1.08;
-  const se = ch.v[0], n = vals.length;
-  // Placering: antal länder med ett strikt "bättre" (eller högre) värde + 1
-  const hogre = ch.bast !== 'lagre';
-  const plats = vals.filter(v => hogre ? v > se : v < se).length + 1;
-  const platsTxt = ch.bast
-    ? `Sverige: plats ${plats} av ${n}`
-    : `Sverige: ${plats === 1 ? 'högst' : plats === n ? 'lägst' : plats + ':e högst'} av ${n}`;
-  const riktning = ch.bast === 'hogre' ? 'Högre är bättre' : ch.bast === 'lagre' ? 'Lägre är bättre' : 'Varken högre eller lägre är självklart bättre';
-  const refPct = ch.ref ? ch.ref.v / max * 100 : null;
-  let h = `<div class="oecd-card"><div class="oecd-card-title">${ch.t}</div><div class="oecd-card-sub">${ch.enh[0].toUpperCase() + ch.enh.slice(1)}, ${ch.ar}</div>`;
-  h += `<div class="jmf-rows" role="img" aria-label="${ch.t}, ${ch.ar}. ${JMF_LAND.map((l,i) => l + ' ' + (ch.v[i] === null ? 'uppgift saknas' : jmfTal(ch.v[i], ch))).join(', ')}${ch.ref ? '. ' + ch.ref.lbl + ' ' + jmfTal(ch.ref.v, ch) : ''}.">`;
+// Axel: punktdiagram (form:'punkt') börjar nära minsta värdet, staplar börjar på noll
+function jmfSteg(x){ const p = Math.pow(10, Math.floor(Math.log10(x))), m = x / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+function jmfAxel(ch){
+  const vals = ch.v.filter(v => v !== null).concat(ch.ref ? [ch.ref.v] : []);
+  const min = Math.min(...vals), max = Math.max(...vals);
+  let lo, hi, st;
+  if(ch.form === 'punkt'){
+    st = jmfSteg((max - min) / 4);
+    lo = Math.floor(min / st) * st; hi = Math.ceil(max / st) * st;
+    if(min - lo < st * .15) lo -= st;
+    if(hi - max < st * .15) hi += st;
+  } else { st = jmfSteg(max / 5); lo = 0; hi = Math.ceil(max * 1.02 / st) * st; }
+  let d = 0; while(d < 4 && Math.abs(Math.round(st * 10 ** d) - st * 10 ** d) > 1e-9) d++;
+  const ticks = []; for(let k = 0; lo + k * st <= hi + st / 2; k++) ticks.push(+(lo + k * st).toFixed(d));
+  return {lo: +lo.toFixed(d), hi: +hi.toFixed(d), ticks, d, x: v => ((v - lo) / (hi - lo) * 100).toFixed(2)};
+}
+const jmfAxelTal = (t, d) => t.toLocaleString('sv-SE', {minimumFractionDigits:d, maximumFractionDigits:d});
+
+// Placering bland länderna med uppgift. Formuleras från det håll som är närmast: "Näst lägst", "Tredje högst"
+function jmfPlats(ch){
+  const vals = ch.v.filter(v => v !== null), se = ch.v[0];
+  return {over: vals.filter(x => x > se).length, under: vals.filter(x => x < se).length, n: vals.length,
+    lika: JMF_LAND.filter((l, j) => j && ch.v[j] === se)};
+}
+function jmfRang(ch, kort){
+  const {over, under, n, lika} = jmfPlats(ch), hog = over <= under, p = (hog ? over : under) + 1;
+  const ord = p === 1 ? (hog ? 'Högst' : 'Lägst') : JMF_ORDN[p] + (hog ? ' högst' : ' lägst');
+  const grupp = kort ? (n === 7 ? 'de sju' : `de ${JMF_ANTAL[n]} med uppgift`) : (n === 7 ? 'de sju länderna' : `de ${JMF_ANTAL[n]} länderna med uppgift`);
+  return `${ord} av ${grupp}${lika.length ? ', lika med ' + jmfLista(lika) : ''}.`;
+}
+// Skillnaden mellan a och b i ord: "3,7 år mer", "20 % mer", "2,1 procentenheter högre", "15 poäng högre". null = ingen skillnad
+function jmfSkillnad(ch, a, b){
+  const ord = ['', ' $', ' år', ' t'].indexOf(ch.unit || '') > 0 ? (a > b ? 'mer' : 'mindre') : (a > b ? 'högre' : 'lägre');
+  const abs = JMF_ABS[ch.unit] || (ch.form === 'punkt' ? 'poäng' : null);
+  if(abs){ // procentenheter med minst en decimal, så att små skillnader inte avrundas bort
+    const s = jmfTal(Math.abs(a - b), ch.unit === ' %' ? {dec: Math.max(ch.dec ?? 0, 1)} : ch);
+    return /[1-9]/.test(s) ? `${s} ${s === '1' && abs === 'procentenheter' ? 'procentenhet' : abs} ${ord}` : null; }
+  const r = Math.round(Math.abs(a / b - 1) * 100);
+  return r ? `${r} % ${ord}` : null;
+}
+// Meningen under Sveriges siffra. Säger bara vad måttet visar: skillnad mot referensen och placering
+function jmfLede(ch){
+  const se = ch.v[0], delar = [];
+  if(ch.ref){
+    const s = jmfSkillnad(ch, se, ch.ref.v), f = jmfRefFras(ch.ref.lbl);
+    delar.push(!s ? `Samma som ${f}.` : Math.abs(se / ch.ref.v - 1) < JMF_NARA ? `Ungefär som ${f}: <b>${s}</b>.` : `<b>${s}</b> än ${f}.`);
+  }
+  delar.push(jmfRang(ch));
+  return delar.join(' ');
+}
+function jmfJamfor(ch, i){
+  if(!i) return '<span class="jk-tips">Välj ett land för att se skillnaden mot Sverige.</span>';
+  const v = ch.v[i], l = JMF_LAND[i];
+  if(v === null) return `<b>${l}:</b> uppgift saknas.`;
+  const s = jmfSkillnad(ch, v, ch.v[0]);
+  return `<b>${l}: ${jmfMedEnhet(v, ch)}</b>. ${s ? s[0].toUpperCase() + s.slice(1) + ' än i Sverige' : 'Samma som i Sverige'}.`;
+}
+function jmfAria(ch){
+  return `${ch.t}, ${ch.ar}. ${JMF_LAND.map((l, i) => l + ' ' + (ch.v[i] === null ? 'uppgift saknas' : jmfTal(ch.v[i], ch) + (ch.unit || ''))).join(', ')}${ch.ref ? '. ' + ch.ref.lbl + ' ' + jmfTal(ch.ref.v, ch) : ''}.`;
+}
+
+// Diagrammet: länderna i fast ordning. Punkter på en axel som inte börjar på noll (form:'punkt') eller staplar från noll
+function jmfDiagram(ch){
+  const ax = jmfAxel(ch), punkt = ch.form === 'punkt';
+  let h = `<div class="jd${punkt ? ' jd-punkt' : ''}" role="img" aria-label="${jmfAria(ch)}${punkt ? ' Axeln börjar på ' + jmfAxelTal(ax.lo, ax.d) + '.' : ''}"><div class="jd-topp"></div>`;
   JMF_LAND.forEach((land, i) => {
-    const v = ch.v[i], se = i === 0;
-    h += `<div class="oecd-row${se ? ' se' : ''}"><span class="oecd-country">${land}</span><div class="oecd-bar-bg">`;
-    if(v !== null) h += `<div class="oecd-bar-fill${se ? ' se' : i <= 4 ? ' norden' : ''}" style="width:${(v / max * 100).toFixed(1)}%"></div>`;
-    if(refPct !== null) h += `<span class="jmf-ref" style="left:${refPct.toFixed(1)}%"></span>`;
-    h += `</div><span class="oecd-val${v === null ? ' na' : ''}">${v === null ? 'uppgift saknas' : jmfTal(v, ch) + (ch.unit || '')}</span></div>`;
+    const v = ch.v[i], cl = i === 0 ? 'se' : i <= 4 ? 'norden' : 'ov';
+    h += `<div class="jd-rad ${cl}${i && i === jmfVal ? ' val' : ''}" data-i="${i}"><span class="jd-land">${land}</span><span class="jd-spar">`;
+    if(v !== null) h += punkt ? `<i class="jd-pt" style="left:${ax.x(v)}%"></i>` : `<i class="jd-bar" style="width:${ax.x(v)}%"></i>`;
+    h += `</span><span class="jd-v${v === null ? ' na' : ''}">${v === null ? 'saknas' : jmfTal(v, ch) + (ch.unit || '')}</span></div>`;
   });
-  h += `</div>`;
-  h += `<div class="jmf-leg"><span class="jmf-key"><i class="k-se"></i>Sverige</span><span class="jmf-key"><i class="k-no"></i>Övriga Norden</span><span class="jmf-key"><i class="k-ov"></i>Tyskland och USA</span>${ch.ref ? `<span class="jmf-key"><span class="jmf-ref-d"></span>${ch.ref.lbl}: ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}</span>` : ''}</div>`;
-  h += `<div class="jmf-plats">${platsTxt}</div>`;
-  if(ch.not) h += `<div class="jmf-not">${ch.not}</div>`;
-  h += `<div class="oecd-src">Källa: <a href="${ch.url}" target="_blank" rel="noopener" class="kalla-lank">${ch.kalla}</a> · ${ch.ar} · ${riktning}</div></div>`;
-  return h;
+  h += `<div class="jd-axel"><span></span><span class="jd-ax">${ax.ticks.map((t, k, a) => `<i${k % 2 ? ' class="m-udda"' : k === (a.length - 1) - ((a.length - 1) % 2) ? ' class="m-sista"' : ''} style="left:${ax.x(t)}%">${jmfAxelTal(t, ax.d)}</i>`).join('')}</span><span></span></div>`;
+  if(ch.ref){ const rx = +ax.x(ch.ref.v); h += `<div class="jd-refl"><span class="jd-ref${rx > 58 ? ' v' : ''}" style="left:${rx}%"><span>${jmfRefKort(ch)} ${jmfTal(ch.ref.v, ch)}</span></span></div>`; }
+  return h + '</div>';
+}
+function jmfKalla(ch){
+  const ax = ch.form === 'punkt' ? jmfAxel(ch) : null;
+  return `Källa: <a href="${ch.url}" target="_blank" rel="noopener" class="kalla-lank">${ch.kalla}</a> · ${ch.ar}${ax ? ` · Axeln börjar på ${jmfAxelTal(ax.lo, ax.d)}${ch.unit === ' år' ? ' år' : ' poäng'}` : ''}`;
+}
+// Prislapp ur Prislistan som hör ihop med måttet (beloppet hämtas ur CARDS, räknas inte om)
+function jmfPris(titel){
+  const c = CARDS.find(x => x.title === titel); if(!c) return '';
+  const pk = JMF_PRIS_PK[c.cat] || 'ovrigt';
+  return `<button type="button" class="jk-pris" data-pris="${titel}">${jmfPk(pk, `var(--k-${pk})`)}<span class="jk-pris-tal">${c.amount.toLocaleString('sv-SE')} <small>${c.suf}</small></span><span class="jk-pris-t"><small>I Sverige kostar</small><b>${c.title}</b>${c.unit}</span><span class="jk-pris-pil">Till prislappen <span aria-hidden="true">→</span></span></button>`;
+}
+
+// jmfKort(ch) = kompakt kort (detaljpanelen, data-jmf). jmfKort(ch, {k, n}) = stort kort i Jämförelser med fråga, siffra, val av land och direktlänk
+function jmfKort(ch, o){
+  if(!o){
+    const legend = ch.form === 'punkt'
+      ? `<span class="jmf-key"><i class="k-se k-rund"></i>Sverige</span><span class="jmf-key"><i class="k-no k-rund"></i>Övriga länder</span>`
+      : `<span class="jmf-key"><i class="k-se"></i>Sverige</span><span class="jmf-key"><i class="k-no"></i>Övriga Norden</span><span class="jmf-key"><i class="k-ov"></i>Tyskland och USA</span>`;
+    return `<div class="oecd-card jmf-kompakt"><div class="oecd-card-title">${ch.t}</div><div class="oecd-card-sub">${ch.enh[0].toUpperCase() + ch.enh.slice(1)}, ${ch.ar}</div>${jmfDiagram(ch)}`
+      + `<div class="jmf-leg">${legend}${ch.ref ? `<span class="jmf-key"><span class="jmf-ref-d"></span>${ch.ref.lbl}: ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}</span>` : ''}</div>`
+      + `<div class="jmf-plats">Sverige: ${jmfRang(ch).replace(/^./, c => c.toLowerCase())}</div>${ch.not ? `<div class="jmf-not">${ch.not}</div>` : ''}`
+      + `<div class="oecd-src">${jmfKalla(ch)} · ${jmfRiktn(ch).replace(/^./, c => c.toUpperCase())}</div></div>`;
+  }
+  const id = `jmf-${o.k}-${o.n + 1}`, se = ch.v[0];
+  const riktn = ch.bast === 'hogre' ? '<span aria-hidden="true">↑</span> Högre är bättre' : ch.bast === 'lagre' ? '<span aria-hidden="true">↓</span> Lägre är bättre' : 'Ingen självklar riktning';
+  const enh = ch.per || (ch.unit || '').trim();
+  const om = [`${ch.enh[0].toUpperCase() + ch.enh.slice(1)}, ${ch.ar}.`, ch.bast ? `Här är ${jmfRiktn(ch)}.` : 'Varken högre eller lägre är självklart bättre.',
+    ch.ref ? `Den streckade linjen: ${ch.ref.lbl}, ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}.` : '', ch.not || ''].filter(Boolean).join(' ');
+  return `<article class="oecd-card jk" id="${id}" data-k="${o.k}" data-n="${o.n}" aria-labelledby="${id}-q">
+  <div class="jk-g">
+    <div class="jk-text">
+      <h3 class="jk-q" id="${id}-q">${ch.q || ch.t}</h3>
+      <p class="jk-m">${ch.t}, ${ch.enh}, ${ch.ar}</p>
+      <p class="jk-tal">${jmfTal(se, ch)}<span>${enh ? enh + ' ' : ''}i Sverige</span></p>
+      <p class="jk-lede">${jmfLede(ch)}</p>
+      <span class="jk-riktn">${riktn}</span>
+    </div>
+    <div class="jk-diagram">
+      ${jmfDiagram(ch)}
+      <div class="jk-val" role="group" aria-label="Jämför Sverige med ett annat land"><span class="jk-val-l" aria-hidden="true">Jämför med</span>${JMF_LAND.slice(1).map((l, j) => `<button type="button" class="jk-chip" data-land="${j + 1}" aria-pressed="${jmfVal === j + 1}">${l}</button>`).join('')}</div>
+      <p class="jk-jamfor">${jmfJamfor(ch, jmfVal)}</p>
+      ${ch.pris ? jmfPris(ch.pris) : ''}
+    </div>
+  </div>
+  <div class="jk-fot"><p class="oecd-src">${jmfKalla(ch)}</p><span class="jk-fot-h"><button type="button" class="jk-om-knapp" aria-expanded="false" aria-controls="${id}-om">Om måttet</button><a class="jk-lank" href="#${id}">Direktlänk</a></span></div>
+  <div class="jk-om" id="${id}-om" hidden>${om}</div>
+</article>`;
+}
+
+// Tunn värdeskala (översikten och sjukvårdens nyckeltal): länderna som prickar efter värde, Sverige större, snittet streckat.
+// Mått med riktning vänds så att "bättre" alltid ligger till höger.
+function jmfSkala(ch, mini){
+  const vals = ch.v.filter(v => v !== null).concat(ch.ref ? [ch.ref.v] : []);
+  const a = Math.min(...vals), b = Math.max(...vals), pad = (b - a) * .06 || 1, lo = a - pad, hi = b + pad, flip = ch.bast === 'lagre';
+  const x = v => { const p = (v - lo) / (hi - lo) * 100; return (flip ? 100 - p : p).toFixed(1); };
+  const ande = ch.bast ? ['sämre', 'bättre'] : ['lägre', 'högre'], xs = +x(ch.v[0]);
+  return `<span class="vs${mini ? ' mini' : ''}" aria-hidden="true"><span class="vs-a v">${ande[0]}</span><span class="vs-a h">${ande[1]}</span><span class="vs-bana"><span class="vs-spar"></span>`
+    + (ch.ref ? `<span class="vs-ref" style="left:${x(ch.ref.v)}%"></span>` : '')
+    + ch.v.map((v, i) => v === null || !i ? '' : `<i class="vs-p" style="left:${x(v)}%"></i>`).join('')
+    + `<i class="vs-p se" style="left:${xs}%"></i>${mini ? '' : `<span class="vs-se" style="left:${Math.min(90, Math.max(10, xs))}%">Sverige</span>`}</span></span>`;
+}
+
+// Sammanfattningen: bara mått med riktning (bast) och referens. Inom 2 % = ungefär som snittet
+function jmfSammanfattning(){
+  const alla = Object.entries(JMF_DATA).flatMap(([k, s]) => s.charts.map((ch, n) => ({k, n, ch})));
+  const bat = [], nara = [], sam = [];
+  alla.forEach(m => {
+    const {ch} = m; if(!ch.bast || !ch.ref) return;
+    const d = (ch.v[0] - ch.ref.v) / ch.ref.v * (ch.bast === 'lagre' ? -1 : 1);
+    (Math.abs(d) < JMF_NARA ? nara : d > 0 ? bat : sam).push(m);
+  });
+  return {alla, bat, nara, sam, med: bat.length + nara.length + sam.length};
 }
 
 function initOecd() {
-  // Ett diagram åt gången per flik, med bläddring
   const box = document.getElementById('oecd-panels');
-  // Översikt: Sveriges placering i alla diagram, en rad per diagram
-  const placering = ch => { const vals = ch.v.filter(v => v !== null), se = ch.v[0];
-    const p = vals.filter(v => ch.bast === 'lagre' ? v < se : v > se).length + 1; return {p, n: vals.length}; };
-  const grupper = Object.entries(JMF_DATA).map(([key, sec]) => `<div class="ov-grupp"><h3 class="ov-h">${sec.title}</h3>${sec.charts.map((ch, j) => {
-    const {p, n} = placering(ch);
-    const prickar = Array.from({length: n}, (_, k) => `<i class="${k + 1 === p ? 'se' : ''}"></i>`).join('');
-    const etikett = ch.bast ? `plats ${p} av ${n}` : `${p === 1 ? 'högst' : p === n ? 'lägst' : p + ':e högst'} av ${n}`;
-    const riktn = ch.bast === 'hogre' ? 'högre är bättre' : ch.bast === 'lagre' ? 'lägre är bättre' : 'ingen självklar riktning';
-    return `<button type="button" class="ov-rad" data-k="${key}" data-j="${j}"><span class="ov-t">${ch.t}<small>${ch.ar} · ${riktn}</small></span><span class="ov-skala" aria-hidden="true"><span class="ov-ande">${ch.bast ? 'Bäst' : 'Högst'}</span>${prickar}<span class="ov-ande">${ch.bast ? 'Sämst' : 'Lägst'}</span></span><span class="ov-p">${etikett}</span></button>`;
-  }).join('')}</div>`).join('');
-  const oversikt = `<div class="oecd-panel active" id="oecd-oversikt"><p class="ov-intro">Sveriges placering bland de sju länderna i varje diagram. Den gröna pricken är Sverige. Länder utan uppgift räknas inte. Tryck på en rad för att se diagrammet.</p>${grupper}</div>`;
-  box.innerHTML = oversikt + Object.entries(JMF_DATA).map(([key, s], i) =>
-    `<div class="oecd-panel" id="oecd-${key}" data-i="0">
-      <div class="jmf-nav" role="group" aria-label="Bläddra bland diagrammen">
-        <button type="button" class="jmf-steg" data-d="-1" aria-label="Föregående diagram">‹</button>
-        <span class="jmf-pos" aria-live="polite">1 av ${s.charts.length}</span>
-        <button type="button" class="jmf-steg" data-d="1" aria-label="Nästa diagram">›</button>
-        <span class="jmf-lista">${s.charts.map((c, j) => `<button type="button" class="jmf-hopp${j === 0 ? ' on' : ''}" data-j="${j}">${c.t}</button>`).join('')}</span>
-      </div>
-      ${s.charts.map((c, j) => `<div class="jmf-slide"${j ? ' hidden' : ''}>${jmfKort(c)}</div>`).join('')}
-    </div>`).join('');
+  const S = jmfSammanfattning(), N = S.alla.length;
+  const lank = m => `<a href="#jmf-${m.k}-${m.n + 1}">${jmfNamn(m.ch)}</a>`;
+  const ovrigaRef = [...S.bat, ...S.nara, ...S.sam].filter(m => !/snitt|OECD-länderna/.test(m.ch.ref.lbl));
+  const summa = `<div class="jmf-summa">
+    <p class="js-lead">I ${S.med} av ${N} mått finns en riktning där högre eller lägre är bättre. Så här ligger Sverige mot snittet i dem.
+      <small>Ingen sammanvägning: måtten är olika viktiga och har olika källor och år.${ovrigaRef.length ? ` Snittet är OECD- eller EU-snittet, för ${jmfLista(ovrigaRef.map(m => jmfNamn(m.ch) + ' ' + jmfRefFras(m.ch.ref.lbl).replace(/ \(.*\)/, '')))}.` : ''}</small></p>
+    <div class="js-del"><p class="js-tal">${S.bat.length}<span> av ${S.med}</span></p><p class="js-txt">på den bättre sidan av snittet</p><span class="js-rutor" aria-hidden="true">${'<i></i>'.repeat(S.bat.length)}</span></div>
+    <div class="js-del"><p class="js-tal">${S.nara.length}</p><p class="js-txt">ungefär som snittet (inom 2 %)${S.nara.length ? ': ' + jmfLista(S.nara.map(lank)) : ''}</p><span class="js-rutor" aria-hidden="true">${'<i class="nara"></i>'.repeat(S.nara.length)}</span></div>
+    <div class="js-del"><p class="js-tal">${S.sam.length}</p><p class="js-txt">på den sämre sidan${S.sam.length ? ': ' + jmfLista(S.sam.map(lank)) : ''}</p><span class="js-rutor" aria-hidden="true">${'<i class="av"></i>'.repeat(S.sam.length)}</span></div>
+  </div>`;
+  // Ämneskort: måttet där Sverige skiljer sig mest från referensen, oavsett riktning
+  const amnen = `<div class="jmf-amnen m-swipe">${Object.entries(JMF_DATA).map(([k, s]) => {
+    const a = JMF_AMNE[k], ch = s.charts.filter(c => c.ref).sort((x, y) => Math.abs(y.v[0] / y.ref.v - 1) - Math.abs(x.v[0] / x.ref.v - 1))[0];
+    return `<button type="button" class="jmf-amne" data-k="${k}"><svg class="jmf-amne-scen" viewBox="0 30 360 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><use href="#${a.il}"/></svg>
+      <span class="jmf-amne-k"><span class="jmf-amne-h">${jmfPk(a.pk, a.c)}${a.kort}</span><span class="jmf-amne-n">${s.charts.length} mått</span>
+      <span class="jmf-amne-f">Störst skillnad mot snittet: <b>${ch.t}</b>, ${jmfTal(ch.v[0], ch)}${ch.unit || ''} (${jmfRefKort(ch)} ${jmfTal(ch.ref.v, ch)})</span></span></button>`;
+  }).join('')}</div>`;
+  // Alla mått i en bild: en rad per mått med värdeskala
+  const grupper = Object.entries(JMF_DATA).map(([k, s]) => `<div class="ov-grupp"><h4 class="ov-h">${jmfPk(JMF_AMNE[k].pk, JMF_AMNE[k].c)}${s.title} <small>${s.charts.length} mått</small></h4><div class="ov-lista">${s.charts.map((ch, n) =>
+    `<a class="ov-rad" href="#jmf-${k}-${n + 1}"><span class="ov-t">${ch.t}<small>${ch.ar} · ${jmfRiktn(ch)}</small></span>${jmfSkala(ch)}<span class="ov-v"><b>${jmfTal(ch.v[0], ch)}${ch.unit || ''}</b>${ch.ref ? `${/median/.test(ch.ref.lbl) ? 'median' : /Nato/.test(ch.ref.lbl) ? 'Nato' : 'snitt'} ${jmfTal(ch.ref.v, ch)}` : ''}</span><span class="jmf-sr">. Sverige: ${jmfRang(ch).replace(/^./, c => c.toLowerCase())}</span></a>`).join('')}</div></div>`).join('');
+  const oversikt = `<div class="oecd-panel active" id="jmf-oversikt" role="tabpanel" aria-labelledby="oecd-tab-oversikt">${summa}${amnen}
+    <div class="jmf-alla-h"><h3>Alla mått i en bild</h3><div class="jmf-nyckel" aria-hidden="true"><span><i class="d"></i>Sverige</span><span><i class="d o"></i>Övriga sex länder</span><span><i class="r"></i>Snittet</span></div></div>
+    <p class="ov-intro">Till höger = bättre, eller högre när ingen riktning är självklar. Skalan är olika för varje rad, så raderna går inte att jämföra med varandra. Tryck på en rad för att se diagrammet.</p>
+    ${grupper}
+    <p class="ov-om"><b>Om måtten.</b> Varje diagram bygger på en källa och ett år, och anger om högre eller lägre värden är bättre när det är självklart. Den streckade linjen är oftast snittet för OECD:s medlemsländer. I några diagram är det EU-snittet eller ett annat värde, vilket anges vid diagrammet. Länder utan uppgift räknas inte.</p></div>`;
+  box.innerHTML = oversikt + Object.entries(JMF_DATA).map(([k, s]) =>
+    `<div class="oecd-panel" id="jmf-${k}" role="tabpanel" aria-labelledby="oecd-tab-${k}"><p class="jmf-panel-intro">${s.title}: ${s.charts.length} mått. Sverige är grönt och länderna står i samma ordning i alla diagram. Välj ett land att jämföra med under diagrammet.</p>
+      ${s.charts.map((c, n) => jmfKort(c, {k, n})).join('')}</div>`).join('') + '<p class="jmf-sr" id="jmf-live" aria-live="polite"></p>';
+  // Antal mått i flikar och text
+  document.querySelectorAll('.oecd-tab[data-k]').forEach(t => { if(JMF_DATA[t.dataset.k] && !t.querySelector('small')) t.insertAdjacentHTML('beforeend', ` <small>${JMF_DATA[t.dataset.k].charts.length}</small>`); });
+  document.querySelectorAll('[data-jmf-antal]').forEach(el => { const k = el.dataset.jmfAntal; el.textContent = k ? JMF_DATA[k].charts.length : N; });
   if(!box.dataset.lyss){
     box.dataset.lyss = '1';
     box.addEventListener('click', e => {
-      const r = e.target.closest('.ov-rad');
-      if(r){
-        const tab = [...document.querySelectorAll('.oecd-tab')].find(t => (t.getAttribute('onclick') || '').includes("'" + r.dataset.k + "'"));
-        if(tab) showOecd(tab, r.dataset.k);
-        const hopp = document.querySelectorAll('#oecd-' + r.dataset.k + ' .jmf-hopp')[+r.dataset.j];
-        if(hopp) hopp.click();
-        document.getElementById('oecd-' + r.dataset.k).scrollIntoView({block:'start'});
-        return;
-      }
-      const b = e.target.closest('.jmf-steg,.jmf-hopp'); if(!b) return;
-      const p = b.closest('.oecd-panel'), slides = [...p.querySelectorAll('.jmf-slide')], n = slides.length;
-      const i = b.dataset.j !== undefined ? +b.dataset.j : (+p.dataset.i + +b.dataset.d + n) % n;
-      p.dataset.i = i;
-      slides.forEach((sl, k) => sl.hidden = k !== i);
-      p.querySelector('.jmf-pos').textContent = (i + 1) + ' av ' + n;
-      p.querySelectorAll('.jmf-hopp').forEach((h, k) => h.classList.toggle('on', k === i));
+      const amne = e.target.closest('.jmf-amne');
+      if(amne){ showOecd(null, amne.dataset.k); const t = document.getElementById('oecd-tab-' + amne.dataset.k); t.focus({preventScroll:true}); document.getElementById('jmf-' + amne.dataset.k).scrollIntoView({block:'start'}); return; }
+      const chip = e.target.closest('.jk-chip');
+      if(chip){ jmfValjLand(+chip.dataset.land, chip.closest('.jk')); return; }
+      const om = e.target.closest('.jk-om-knapp');
+      if(om){ const p = document.getElementById(om.getAttribute('aria-controls')), opp = om.getAttribute('aria-expanded') !== 'true'; p.hidden = !opp; om.setAttribute('aria-expanded', opp); return; }
+      const l = e.target.closest('.jk-lank');
+      if(l && navigator.clipboard){ const url = location.origin + location.pathname + l.getAttribute('href'), o = l.textContent;
+        navigator.clipboard.writeText(url).then(() => { l.textContent = 'Länk kopierad'; setTimeout(() => { l.textContent = o; }, 2000); }).catch(() => {}); }
     });
   }
-  // Enskilda jämförelsediagram på andra ställen: <div data-jmf="sjukvard:6">
+  // Prislappar i jämförelsen och i sjukvårdsdelen öppnar prislistans detaljpanel
+  if(!document.body.dataset.jmfPris){
+    document.body.dataset.jmfPris = '1';
+    document.addEventListener('click', e => { const p = e.target.closest('[data-pris]'); if(p && (p.closest('#oecd') || p.closest('#sjukvard'))) openDetail(p.dataset.pris); });
+  }
+  // Sjukvårdens nyckeltal: <a href="#jmf-sjukvard-3" data-jmf-kpi data-l="…"> fylls med värde, mening och miniskala
+  document.querySelectorAll('[data-jmf-kpi]').forEach(el => {
+    const m = /^#jmf-(\w+)-(\d+)$/.exec(el.getAttribute('href')); if(!m) return;
+    const ch = JMF_DATA[m[1]].charts[m[2] - 1];
+    el.innerHTML = `<span class="svk-l">${el.dataset.l || ch.t}</span><span class="svk-t">${jmfTal(ch.v[0], ch)}<small>${el.dataset.u ?? ((ch.unit || '').trim() || ch.per || '')}</small></span><span class="svk-s">${jmfKpiRad(ch)}</span>${jmfSkala(ch, true)}<span class="svk-k">${ch.ref ? jmfRefKort(ch) + ' ' + jmfTal(ch.ref.v, ch) + ' · ' : ''}${ch.ar}</span><span class="jmf-sr">. Till diagrammet</span>`;
+  });
+  document.querySelectorAll('.sv-lapp[data-pris]').forEach(b => {
+    const c = CARDS.find(x => x.title === b.dataset.pris); if(!c) return;
+    const pk = JMF_PRIS_PK[c.cat] || 'ovrigt';
+    b.innerHTML = `${jmfPk(pk, `var(--k-${pk})`)}${b.dataset.namn || c.title}: ${c.amount.toLocaleString('sv-SE')} ${c.suf}`;
+  });
+  // Enskilda jämförelsediagram på andra ställen: <div data-jmf="sjukvard:6"> (index från 0)
   document.querySelectorAll('[data-jmf]').forEach(el => {
     const [k, n] = el.dataset.jmf.split(':');
     el.innerHTML = jmfKort(JMF_DATA[k].charts[+n]);
   });
 }
+// Nyckeltalens mening: placering, och för det som sticker ut i Norden vilka länder som ligger över eller under
+function jmfKpiRad(ch){
+  const se = ch.v[0], {over, under} = jmfPlats(ch);
+  const nord = ch.v.slice(1, 5).filter(v => v !== null);
+  if(over && under && nord.length){
+    const ovr = i => `${JMF_LAND[i]} (${jmfTal(ch.v[i], ch)})`;
+    const idx = [5, 6].filter(i => ch.v[i] !== null);
+    if(nord.every(v => v < se)) return `Högst i Norden, lägre än ${jmfLista(idx.filter(i => ch.v[i] > se).map(ovr))}`;
+    if(nord.every(v => v > se)) return `Lägst i Norden, högre än ${jmfLista(idx.filter(i => ch.v[i] < se).map(ovr))}`;
+  }
+  return jmfRang(ch, true).replace(/\.$/, '');
+}
+function jmfValjLand(i, kort){
+  jmfVal = jmfVal === i ? 0 : i;
+  document.querySelectorAll('#oecd .jk').forEach(a => {
+    const ch = JMF_DATA[a.dataset.k].charts[+a.dataset.n];
+    a.querySelectorAll('.jd-rad').forEach(r => r.classList.toggle('val', jmfVal > 0 && +r.dataset.i === jmfVal));
+    a.querySelectorAll('.jk-chip').forEach(b => b.setAttribute('aria-pressed', +b.dataset.land === jmfVal));
+    a.querySelector('.jk-jamfor').innerHTML = jmfJamfor(ch, jmfVal);
+  });
+  const live = document.getElementById('jmf-live');
+  if(live && kort) live.textContent = jmfVal ? kort.querySelector('.jk-jamfor').textContent : 'Ingen jämförelse vald.';
+}
 
 function showOecd(btn, key) {
-  document.querySelectorAll('.oecd-tab').forEach(t => t.classList.remove('on'));
-  btn.classList.add('on');
-  document.querySelectorAll('.oecd-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('oecd-' + key).classList.add('active');
+  btn = btn || document.getElementById('oecd-tab-' + key);
+  document.querySelectorAll('.oecd-tab').forEach(t => { const on = t === btn; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+  document.querySelectorAll('#oecd .oecd-panel').forEach(p => p.classList.toggle('active', p.id === 'jmf-' + key));
 }
 
 initOecd();
+// Direktlänkar: #jmf-<flik> öppnar fliken, #jmf-<flik>-<n> (n från 1) öppnar fliken och diagrammet. Vyerna scrollar dit.
+(function jmfFranHash(){
+  const oppna = () => { const m = /^#jmf-([a-z]+)(?:-\d+)?$/.exec(location.hash); if(m && (JMF_DATA[m[1]] || m[1] === 'oversikt')) showOecd(null, m[1]); };
+  window.addEventListener('hashchange', oppna);
+  oppna();
+})();
 
 // ═══════════════════════════════════════════════════════════════════
 // VISSTE DU ATT — rotating hero facts
@@ -6707,7 +7024,7 @@ function downloadTransparencyJSON(){
 // ═══════════════════════════════════════════════════════════════════
 // Växlingsknappar (flikar, filter, format): aria-pressed följer klassen "on", så att skärmläsare hör vilken som är vald
 (function vaxlingsknappar(){
-  const SEL = '.ft-tab,.scen-tab,.jmf-hopp,.pf,.cf2,.hh-btn,.lc-profile-btn,.sc-fmt';
+  const SEL = '.ft-tab,.scen-tab,.pf,.cf2,.hh-btn,.lc-profile-btn,.sc-fmt';
   const synka = () => document.querySelectorAll(SEL).forEach(b => { if(b.getAttribute('role') !== 'tab') b.setAttribute('aria-pressed', b.classList.contains('on')); }); // riktiga flikar har aria-selected
   document.addEventListener('click', e => { if(e.target.closest(SEL)) setTimeout(synka, 0); });
   synka();

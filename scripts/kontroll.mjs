@@ -7,7 +7,7 @@
 // 2. NYCKELTAL: inga kvarvarande "gamla" värden någonstans på sidan.
 // 3. Källkatalogen: giltiga länkar; prislappar och faktakort har källa (och år).
 // 3b. Kvittona: andelar, grupper, jämförelser, arbetsgivaravgifter och beloppen i texten mot modellen.
-// 3c. Länkar och id: inga dubbla id, alla interna länkar har mål.
+// 3c. Länkar och id: inga dubbla id, alla interna länkar har mål (också #jmf-<flik>-<n> mot JMF_DATA).
 // 4. Modellens robusthet: inga NaN, negativa värden eller orimliga hopp.
 // 5. Information: skillnader mot data/livsfaser_v2.json (Python-modellen).
 
@@ -122,6 +122,10 @@ for (const s of Object.values(JMF)) for (const ch of s.charts) {
   else if (ch.v.filter(v => v !== null).length < 5) jmfFel.push(`${ch.t}: färre än 5 länder med uppgift`);
   if (!ch.kalla || !/^https:\/\//.test(ch.url || '') || !ch.ar) jmfFel.push(`${ch.t}: saknar källa, https-länk eller år`);
   if (ch.v && ch.v[0] === null) jmfFel.push(`${ch.t}: Sverige saknar värde`);
+  if (![null, 'hogre', 'lagre'].includes(ch.bast)) jmfFel.push(`${ch.t}: bast ska vara 'hogre', 'lagre' eller null`);
+  if (ch.form !== undefined && ch.form !== 'punkt') jmfFel.push(`${ch.t}: okänd form '${ch.form}'`);
+  if (!ch.q || !ch.q.endsWith('?')) jmfFel.push(`${ch.t}: saknar rubrik som fråga (q)`);
+  if (ch.pris && !CARDS.some(k => k.title === ch.pris)) jmfFel.push(`${ch.t}: prislappen "${ch.pris}" finns inte i CARDS`);
 }
 jmfFel.length ? jmfFel.forEach(f => FEL('Jämförelse: ' + f)) : OK(`Alla ${jmfN} jämförelsediagram har 7 länder (minst 5 med uppgift), källa och år`);
 // Detaljrutor (DETAILS) ska höra till en prislapp med exakt samma titel
@@ -194,8 +198,11 @@ rubrik('3c. Länkar och id');
   dubbla.length ? dubbla.forEach(d => FEL(`id="${d}" finns flera gånger`)) : OK(`${ids.length} id:n i HTML-koden, inga dubbletter`);
   const allaId = new Set([...html.matchAll(/id="([\w-]+)"/g)].map(m => m[1]).concat([...html.matchAll(/id=\\?'([\w-]+)\\?'/g)].map(m => m[1])));
   const dyn = /^(fakta-\d+|kapitel-\d+|gissa|ordlista|nyckeltal|i-|pk-|il-|vh-|kl-)/;
+  // Jämförelsens diagram och flikar ritas av JS: #jmf-oversikt, #jmf-<flik> och #jmf-<flik>-<n> (n från 1) ska finnas i JMF_DATA
+  const jmfMal = m => { const r = /^jmf-([a-z]+)(?:-(\d+))?$/.exec(m); if (!r) return null;
+    return r[1] === 'oversikt' ? !r[2] : !!JMF[r[1]] && (!r[2] || (+r[2] >= 1 && +r[2] <= JMF[r[1]].charts.length)); };
   const mal = [...new Set([...html.matchAll(/href="#([\w-]+)"/g)].map(m => m[1]))];
-  const saknas = mal.filter(m => !allaId.has(m) && !dyn.test(m));
+  const saknas = mal.filter(m => !allaId.has(m) && !dyn.test(m) && jmfMal(m) !== true);
   saknas.length ? saknas.forEach(m => FEL(`Länken #${m} har inget mål`)) : OK(`Alla ${mal.length} interna länkar har ett mål`);
 }
 
