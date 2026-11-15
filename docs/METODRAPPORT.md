@@ -2,11 +2,11 @@
 
 **Beräkningsmodell för skatter, offentliga utgifter och förmåner per ålder**
 
-Version 3.0 · 5 november 2026 · Text och siffror: CC BY 4.0 · Kod: MIT · Partipolitiskt oberoende
+Version 3.1 · 14 november 2026 · Text och siffror: CC BY 4.0 · Kod: MIT · Partipolitiskt oberoende
 
 Sajt: <https://wilhelm-wg.github.io/skatteplattformen/> · Källkod: <https://github.com/Wilhelm-WG/skatteplattformen>
 
-Rapporten ersätter metodrapport v2.0 (27 oktober 2026). Alla siffror är kontrollerade mot `index.html` den 5 november 2026. Där koden och texten på sajten säger olika saker står det i avsnitt 13.
+Rapporten ersätter metodrapport v2.0 (27 oktober 2026). Alla siffror är kontrollerade mot `index.html` den 5 november 2026; ändringarna efter expertgranskningen 14 november 2026 (pensionsavgiften som egen rad, grundskolan med skolskjuts, livsloppets skatt) är införda. Där koden och texten på sajten säger olika saker står det i avsnitt 13.
 
 ---
 
@@ -30,7 +30,7 @@ Sedan v2.0 har modellen ändrats på flera viktiga punkter. Totalen för offentl
 ### 1.1 Vad modellen visar
 
 - **Skatten på en lön** med 2026 års regler: kommunalskatt, statlig inkomstskatt, jobbskatteavdrag, arbetsgivaravgift och en uppskattad moms. Kommunalskatten är rikssnittet 32,38 % om läsaren inte väljer en kommun.
-- **Vad skatten går till**, fördelat som den offentliga sektorns utgifter 2024 (Eurostat COFOG). Startkvittot har åtta rader. Kvittot i Din ekonomi har femton.
+- **Vad skatten går till**: den allmänna pensionsavgiften som egen rad, och resten fördelat som den offentliga sektorns utgifter 2024 (Eurostat COFOG). Startkvittot har nio rader. Kvittot i Din ekonomi har sexton.
 - **Vad arbetsgivaren betalar** ovanpå lönen, uppdelat på arbetsgivaravgiftens sju delar.
 - **Genomsnittliga förmåner per år och åldersgrupp** i fyra kategorier: utbildning, hälso- och sjukvård, socialt skydd och äldreomsorg, i 2024 års priser.
 - **Livsloppet**: netto per invånare i tio åldersgrupper för hela befolkningen 2024, och en punkt för läsarens ålder och lön.
@@ -64,7 +64,7 @@ Förmånerna och kvittonas fördelning gäller 2024. Skatteregler, avgifter och 
 | Skatteverket, teknisk beskrivning SKV 433 (2026) | Grundavdrag, förhöjt grundavdrag, jobbskatteavdrag, skiktgräns 643 000 kr | 2026 |
 | Skatteverket, skattetabell 32 | Kontroll av skattemodellen | 2026 |
 | Skatteverket, arbetsgivaravgifter | 31,42 % och dess sju delar; nedsättning för unga och äldre | 2026 |
-| Skolverket, Kostnader för skolväsendet 2025 | Förskola 199 200 kr per barn (kommunal), grundskola 143 000 kr och gymnasium 148 100 kr per elev | 2025 |
+| Skolverket, Kostnader för skolväsendet 2025 | Förskola 199 200 kr per barn (kommunal), grundskola 146 900 kr och gymnasium 148 100 kr per elev, båda med skolskjuts | 2025 |
 | UKÄ, årsrapport 2026 | Högskola cirka 114 000 kr per helårsstudent | 2025 |
 | Försäkringskassan | Åldersprofil för sjukförsäkring, föräldrapenning och barnbidrag | 2025–2026 |
 | NTA-metoden (FN 2013) | Åldersprofil för hälso- och sjukvård | – |
@@ -94,7 +94,9 @@ Kvittot visar **skatten på lönen**: kommunalskatt plus statlig skatt minus job
 
 ### 3.2 Fördelningen
 
-Skatten fördelas med andelarna i `KVITTO_ANDELAR`. De är Eurostats COFOG-utgifter 2024 utan inkomst- och tilläggspensionen: 3 223 − 363,7 = cirka 2 859 mdkr. Premiepensionen ligger utanför den offentliga sektorn i nationalräkenskaperna och dras inte av.
+Den allmänna pensionsavgiften (7 % av lönen, högst 47 100 kr per år) ingår i skatten på lönen men blir egen pension. Sedan 14 november 2026 står den som en egen rad överst på båda kvittona och fördelas inte (ekonom-01 i expertgranskningen). På 38 300 kr är den 2 683 kr i månaden och resten 5 009 kr; på 25 000 kr är den 1 750 kr. Den räknas inte heller när skatt jämförs med förmåner: kalkylatorns netto, livsloppets punkt, livssituationerna, känslighetsanalysen och skattetiden på prislapparna.
+
+Resten av skatten fördelas med andelarna i `KVITTO_ANDELAR`. De är Eurostats COFOG-utgifter 2024 utan inkomst- och tilläggspensionen: 3 223 − 363,7 = cirka 2 859 mdkr. Premiepensionen ligger utanför den offentliga sektorn i nationalräkenskaperna och dras inte av.
 
 | Post | Andel |
 |---|---|
@@ -127,7 +129,7 @@ Varje rad säger vad beloppet räcker till. Beloppen står i `START_JMF`:
 | Sjukdom, barn och arbetslöshet | Dagar hemma med ett sjukt barn (vab) | 1 185 kr per dag (7,7 mdkr / 6,5 miljoner dagar 2025); under 0,75 dag räknas timmar, 8 timmar per dag | Försäkringskassan, Socialförsäkringen i siffror 2026 (tillfällig föräldrapenning för vård av barn) |
 | Äldre: omsorg och garantipension | Hemtjänst för en äldre | 385 000 kr per år | Prislistan (Kolada 2025) |
 | Hälso- och sjukvård | Minuter på intensiven | 50 000 kr per dygn | Prislistan (Svenska Intensivvårdsregistret) |
-| Utbildning | Skoldagar för en elev | 143 000 kr per läsår / 178 skoldagar | Prislistan (Skolverket 2025) |
+| Utbildning | Skoldagar för en elev | 146 900 kr per läsår / 178 skoldagar | Prislistan (Skolverket 2025) |
 | Polis, kultur, miljö, räntor | Andel av en polis månadslön | 43 900 kr | SCB 2025 |
 | Vägar, järnväg, näringsliv | Meter statlig väg som underhålls ett år | 163 000 kr per km | Prislistan (Trafikverket) |
 | Förvaltning | Andel av en riksdagsledamots arvode | 81 400 kr per månad | Riksdagen 2026 |
@@ -193,7 +195,7 @@ För den som har fyllt 66 vid årets ingång läggs det förhöjda grundavdraget
 
 ### 4.4 Allmän pensionsavgift
 
-Den allmänna pensionsavgiften är 7 % av lönen, avrundad till hundratal kronor. Den avräknas mot kommunal och statlig skatt med en skattereduktion på 100 %. Det som inte ryms läggs på kommunalskatten. Jobbskatteavdraget ryms bara i den kommunalskatt som är kvar efter avräkningen. På pension räknar modellen ingen allmän pensionsavgift.
+Den allmänna pensionsavgiften är 7 % av lönen, avrundad till hundratal kronor, högst 47 100 kr per år (8,07 inkomstbasbelopp 2026). `skattDelar` och `annualTax` returnerar den som `apa`. Den avräknas mot kommunal och statlig skatt med en skattereduktion på 100 %. Det som inte ryms läggs på kommunalskatten. Jobbskatteavdraget ryms bara i den kommunalskatt som är kvar efter avräkningen. På pension räknar modellen ingen allmän pensionsavgift.
 
 ### 4.5 Jobbskatteavdrag
 
@@ -302,11 +304,11 @@ Förmånerna står i `LIVSFASER_V2` i `index.html`. Det är tio åldersgrupper m
 | Ålder | Livsfas | Utbildning | Hälso- och sjukvård | Socialt skydd | Äldreomsorg | Summa |
 |---|---|---|---|---|---|---|
 | 0–6 | Spädbarn och förskola | 121 | 20 | 43 | 0 | 184 |
-| 7–15 | Grundskoleelev | 143 | 9 | 28 | 0 | 180 |
+| 7–15 | Grundskoleelev | 147 | 9 | 28 | 0 | 184 |
 | 16–18 | Gymnasieelev | 148 | 10 | 29 | 0 | 187 |
 | 19–25 | Student / ung vuxen | 51 | 13 | 42 | 0 | 106 |
 | 26–34 | Ung förvärvsarbetande | 6 | 15 | 47 | 0 | 68 |
-| 35–44 | Barnfamiljsfas | 42 | 26 | 96 | 1 | 165 |
+| 35–44 | Barnfamiljsfas | 5 | 26 | 96 | 1 | 128 |
 | 45–54 | Mitt i karriären | 5 | 39 | 59 | 2 | 105 |
 | 55–64 | Senior förvärvsarbetande | 3 | 55 | 73 | 5 | 136 |
 | 65–74 | Ny pensionär | 2 | 88 | 89 | 29 | 208 |
@@ -319,7 +321,7 @@ Varje livsfas har dessutom 100 tkr i gemensamma utgifter (`KOLL_PER_INV`). De in
 Utbildning bygger på kostnad per elev och student, omräknad till ett genomsnitt för åldersgruppen:
 
 - **0–6 år:** förskola 199,2 tkr per inskrivet barn × 85 % av 1–5-åringarna × 5/7 av åldersgruppen = cirka 121 tkr (Skolverket 2025).
-- **7–15 år:** grundskola 143 tkr per elev, alla huvudmän (Skolverket 2025).
+- **7–15 år:** grundskola 147 tkr per elev, alla huvudmän, inklusive skolskjuts (Skolverket 2025, 146 900 kr; samma bas som gymnasiet). Fram till 14 november 2026 stod 143 tkr, utan skolskjuts.
 - **16–18 år:** gymnasium 148,1 tkr per elev (Skolverket 2025).
 - **19–25 år:** högskola 114 tkr per helårsstudent × 45 % som studerar = cirka 51 tkr (UKÄ 2025).
 - **35–44 år:** 5 tkr, egen vuxenutbildning som för grannåldrarna. Fram till 5 november 2026 stod här 42 tkr, som var barnens skolgång och räknades två gånger (cirka 52 mdkr).
@@ -342,7 +344,7 @@ Befolkningen är SCB:s folkmängd 31 december 2024 per ettårsklass, summerad pe
 | Gemensamma utgifter | 1 061,3 mdkr | COFOG GF01–06 och GF08 2024 | 1 058,8 mdkr | −0,2 % |
 | Utbildning | (ingen kalibrering) | Skolverket och UKÄ 2025; COFOG GF09 464,7 mdkr | cirka 382 mdkr | −18 % mot GF09 |
 
-Förmånerna (utan gemensamma utgifter) summerar till cirka 1 713 mdkr. Före kalibreringen 29 oktober summerade modellen till cirka 940 mdkr för sjukvård och cirka 366 mdkr för äldreomsorg.
+Förmånerna (utan gemensamma utgifter) summerar till cirka 1 718 mdkr (1 713 före grundskolans skolskjuts 14 november 2026). Före kalibreringen 29 oktober summerade modellen till cirka 940 mdkr för sjukvård och cirka 366 mdkr för äldreomsorg.
 
 ### 7.5 Gemensamma utgifter
 
@@ -359,26 +361,26 @@ Kalkylatorn har för 19–64 år ett val: "Vet inte" (förvalt), "Arbetar" eller
 Livsloppsdiagrammet visar netto per invånare i tio åldersgrupper för hela befolkningen 2024 (`LIVSLOPP_BEF`).
 
 - **Förmåner (f)** är modellens förmåner per livsfas, utan gemensamma utgifter.
-- **Skatt (s)** är modellens inkomstskatt, arbetsgivaravgift och moms på SCB:s faktiska inkomster 2024 (HE0110, per ettårsålder och inkomstklass), delat på alla invånare i gruppen, även de utan inkomst.
+- **Skatt (s)** är modellens inkomstskatt, arbetsgivaravgift (utan ålderspensionsavgift) och moms på SCB:s faktiska inkomster 2024 (HE0110, per ettårsålder och inkomstklass), delat på alla invånare i gruppen, även de utan inkomst. Sedan 14 november 2026 är den allmänna pensionsavgiften borttagen: 7 % av förvärvsinkomsten per inkomstklass, med taket 673 000 kr och utan avgift under 25 000 kr, för 19–64 år (12,9, 24,7, 29,3, 31,6 och 29,8 tkr per invånare; totalt 160 mdkr). Efter 65 räknas inkomsten som pension, utan avgift.
 
 | Ålder | Förmåner (tkr) | Skatt (tkr) | Netto (tkr) |
 |---|---|---|---|
 | 0–6 | 184 | 0 | +184 |
-| 7–15 | 180 | 0 | +180 |
+| 7–15 | 184 | 0 | +184 |
 | 16–18 | 187 | 0 | +187 |
-| 19–25 | 106 | 77 | +29 |
-| 26–34 | 68 | 184 | −116 |
-| 35–44 | 165 | 243 | −78 |
-| 45–54 | 105 | 290 | −185 |
-| 55–64 | 136 | 263 | −127 |
+| 19–25 | 106 | 64 | +42 |
+| 26–34 | 68 | 159 | −91 |
+| 35–44 | 128 | 214 | −86 |
+| 45–54 | 105 | 258 | −153 |
+| 55–64 | 136 | 233 | −97 |
 | 65–74 | 208 | 122 | +86 |
 | 75+ | 357 | 79 | +278 |
 
-Plus betyder att gruppen tar emot mer än den betalar. Summerat är förmånerna 1 713 mdkr och skatterna 1 575 mdkr. Sajten skriver att skillnaden främst beror på att momsen är en försiktig uppskattning.
+Plus betyder att gruppen tar emot mer än den betalar. Summerat är förmånerna 1 718 mdkr och skatterna 1 415 mdkr. Skillnaden beror på att förmånerna också betalas med skatter som inte finns med (bolagsskatt, punktskatter, kapital- och fastighetsskatt) och att momsen är en försiktig uppskattning.
 
 Läsarens punkt räknas med `getStage` för åldern och `annualTax` för lönen. Efter 65 år räknas inkomsten som pension.
 
-Skatten i diagrammet är räknad med 2026 års regler på 2024 års inkomster. Förmånerna gäller 2024. Beloppen är nominella och inte diskonterade. Värdena i `LIVSLOPP_BEF` räknades 29 oktober 2026 och räknas inte om automatiskt när modellen ändras.
+Skatten i diagrammet är räknad med 2026 års regler på 2024 års inkomster. Förmånerna gäller 2024. Beloppen är nominella och inte diskonterade. Värdena i `LIVSLOPP_BEF` räknades 29 oktober 2026 (skatten justerad 14 november 2026) och räknas inte om automatiskt när modellen ändras.
 
 ---
 
@@ -406,7 +408,7 @@ Prislistan (`CARDS`) har 34 prislappar i sex kategorier:
 | Social trygghet | 5 |
 | Rättsväsende och försvar | 4 |
 
-Varje prislapp har belopp, enhet, källa och beräkning. Exempel: ett år i grundskolan 143 000 kr, ett dygn på IVA 50 000 kr, hemtjänst 385 000 kr per person och år, underhåll av 1 km statlig väg 163 000 kr per år, polisen 4 600 kr per invånare och år, försvar och krisberedskap 21 300 kr per invånare 2026.
+Varje prislapp har belopp, enhet, källa och beräkning. Exempel: ett år i grundskolan 146 900 kr, ett dygn på IVA 50 000 kr, hemtjänst 385 000 kr per person och år, underhåll av 1 km statlig väg 163 000 kr per år, polisen 4 600 kr per invånare och år, försvar och krisberedskap 21 300 kr per invånare 2026.
 
 Några belopp är egna beräkningar (täljare delat med nämnare). Det står då i källraden. Ett belopp, barnvaccinationsprogrammet, är märkt som Skatteplattformens uppskattning.
 
@@ -468,7 +470,7 @@ Rättelseloggen på sajten (`#rattelser`) har 38 poster från 28 oktober till 5 
 - **Offentliga sektorns utgifter:** 3 011 → 3 223 mdkr (Eurostat gov_10a_exp, 2024). Hundralappen, kvittonas andelar och rutan om hela offentliga sektorn är uppdaterade.
 - **Inkomstpensionen:** "cirka 800 mdkr per år" var fel.
 - **Skatteutgifterna:** "cirka 385 mdkr" → drygt 600 mdkr (cirka 565 mdkr efter skattesanktioner), skr. 2025/26:98.
-- **Skolkostnader** (Skolverket 2025): grundskola 143 000 kr, gymnasium 148 100 kr, kommunal förskola 199 200 kr. Högskola 114 000 kr per helårsstudent (UKÄ 2025), inte 240 000.
+- **Skolkostnader** (Skolverket 2025): grundskola 143 000 kr (från 14 november 2026 146 900 kr med skolskjuts), gymnasium 148 100 kr, kommunal förskola 199 200 kr. Högskola 114 000 kr per helårsstudent (UKÄ 2025), inte 240 000.
 - **Prislappar med fel nämnare:** hemtjänst, personlig assistans, ambulans, högskola, väg- och järnvägsunderhåll och föräldrapenning. Räddningstjänsten visas per invånare. Asfalt per km och en rättegång i tingsrätten är borttagna.
 - **Skattemodellen:** jobbskatteavdraget hade en avtrappning som inte finns i lagen. Det följer nu SKV 433 exakt. Pensionärsskatten använder det förhöjda grundavdraget i stället för en schablon (+40 %). Pension ger inte längre arbetsgivaravgift. Arbetsgivaravgiften för unga är nedsatt.
 - **Övrigt:** statsskulden 1 430 mdkr (21 %), skattekvoten (SCB- och OECD-serier hålls isär), vårdgarantin, momsen på livsmedel 6 %, taxor och tak, polisen 4 600 kr per invånare.
@@ -559,7 +561,7 @@ Den 5 november 2026 gav `kontroll.mjs` 0 fel, 45 OK och 5 informationsrader.
 
 - COFOG-totalen 3 011 mdkr och befolkningen 10 550 000.
 - Gemensamma utgifter 50 tkr per person.
-- Utbildning per barn eller student i stället för genomsnitt för åldersgruppen: förskola 175 tkr (sajten 121), grundskola 148 (143), gymnasium 145 (148), högskola 110 (51).
+- Utbildning per barn eller student i stället för genomsnitt för åldersgruppen: förskola 175 tkr (sajten 121), grundskola 148 (147), gymnasium 145 (148), högskola 110 (51).
 - Andra nivåer för sjukvård, socialt skydd och äldreomsorg (före kalibreringen).
 - En förenklad skatt: 32 % kommunalskatt utan grundavdrag, skiktgräns 598 tkr (2024), arbetsgivaravgift 31,42 % och moms 6,5 % av disponibel inkomst.
 

@@ -1,8 +1,9 @@
 <!doctype html><html><head><meta charset="utf-8">
-<!-- Länkbilden (og.png, 1200×630) ritas av sajtens egen kod (ritaKvittoBild i index.html) med medianlönen 38 300 kr.
+<!-- Länkbilden (og.jpg, 1200×630; ritas som PNG och sparas som JPEG kvalitet 75 för storleken) ritas av sajtens egen kod (ritaKvittoBild i index.html) med medianlönen 38 300 kr.
      Kräver en lokal server, eftersom sidan läser index.html i en iframe:
      python3 -m http.server 8765
-     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=8000 --screenshot=img/og.png http://localhost:8765/img/og-mall.html -->
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=8000 --screenshot=/tmp/og.png http://localhost:8765/img/og-mall.html
+     sips -s format jpeg -s formatOptions 75 /tmp/og.png --out img/og.jpg -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#1B4D3E}canvas{display:block}iframe{position:absolute;left:-9999px;width:1200px;height:800px;border:0}</style>
 </head><body>

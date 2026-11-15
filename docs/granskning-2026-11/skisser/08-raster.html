@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skiss 08-1: ett raster</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Skiss från formgivargranskningen 2026-11 (roll 8). Sajtens tokens, oförändrade. */
+:root{--bg:#F4F1EA;--bg2:#EAE6DC;--bg3:#DEDAD0;--paper:#FBFAF6;--ink:#1A1813;--ink2:#4A4640;--ink3:#5C574F;--green:#1B4D3E;--green2:#2E7D5C;
+--border:rgba(26,24,19,.10);--shadow-sm:0 1px 2px rgba(26,24,19,.04),0 1px 3px rgba(26,24,19,.05);--r:8px;--r-sm:5px;
+--fs-avsnitt:2.5rem;--fs-under:1.75rem;--fs-ingress:1.25rem;--fs-brod:1rem;--fs-liten:.8125rem;--fs-etikett:.6875rem;
+--d-neutral:#D2CBBE;--d-neutral2:#A39C8F;--d-mark:var(--green);
+--serif:'Source Serif 4',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace;
+/* FÖRSLAG: ett mått för innehåll, ett för luft mellan avsnitt */
+--sida:1080px;--sida-pad:2rem;--avsnitt-luft:72px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#cfc9bd;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.ram{background:var(--bg);margin:0 auto;container-type:inline-size;position:relative;overflow:hidden}
+body.m .ram{width:390px}
+.sida{max-width:var(--sida);margin:0 auto;padding:0 var(--sida-pad);position:relative}
+@container (max-width:640px){.sida{padding:0 16px}.guide{left:16px}section{padding:48px 0}}
+/* hjälplinjer som visar den gemensamma vänsterkanten */
+.guide{position:absolute;top:0;left:2rem;height:2400px;width:0;border-left:1px dashed #2E7D5C;opacity:.55;z-index:5;pointer-events:none}
+.guide span{position:absolute;top:6px;left:6px;font:600 10px var(--mono);color:#2E7D5C;background:var(--bg);padding:1px 4px;white-space:nowrap}
+nav{border-bottom:1px solid var(--border);padding:18px 0}
+nav .sida{display:flex;align-items:center;justify-content:space-between}
+.logo{font:600 1.2rem var(--serif)}.logo i{color:var(--green);font-weight:500}
+.nl{display:flex;gap:22px;font-size:.88rem;color:var(--ink2)}.nl b{color:var(--green);font-weight:500;border-bottom:2px solid var(--green)}
+@container (max-width:640px){.nl{display:none}}
+.dela{font:600 .75rem var(--sans);letter-spacing:.08em;border:1px solid var(--ink);padding:8px 14px;border-radius:var(--r-sm)}
+.vyh{padding:40px 0 36px;border-bottom:1px solid var(--bg3)}
+.vyh .sida{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+@container (max-width:640px){.vyh .sida{grid-template-columns:1fr;gap:20px}}
+.smula{font-size:.8rem;color:var(--ink3)}.smula a{color:var(--green)}
+h1{font:600 clamp(2.4rem,6cqi,4rem)/1.04 var(--serif);letter-spacing:-.02em;margin:.3rem 0 .7rem}
+.ingress{font-size:var(--fs-ingress);line-height:1.5;color:var(--ink2);max-width:30em}
+.scen{aspect-ratio:4/3;border-radius:var(--r);background:linear-gradient(#DCE3EA 0 55%,#C9C0B0 55% 70%,#B8AE9C 70%);position:relative;box-shadow:0 8px 24px rgba(26,24,19,.08)}
+.scen::after{content:'scen vh-budget';position:absolute;inset:auto 12px 10px auto;font:500 10px var(--mono);color:var(--ink3)}
+@container (max-width:640px){.scen{aspect-ratio:3/1}}
+section{padding:var(--avsnitt-luft) 0}
+section.band{background:var(--bg2)}
+.eye{display:inline-flex;align-items:center;gap:9px;font:600 var(--fs-etikett) var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:.7rem}
+.eye::before{content:'';width:22px;height:2px;background:var(--green)}
+h2{font:600 clamp(1.75rem,4cqi,var(--fs-avsnitt))/1.12 var(--serif);letter-spacing:-.02em;margin-bottom:.9rem;max-width:22em}
+.lead{font-size:var(--fs-brod);line-height:1.7;color:var(--ink2);max-width:36em}
+.kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}
+@container (max-width:640px){.kpi{grid-template-columns:1fr 1fr}.kpi div:first-child{grid-column:1/-1}}
+.kpi div{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:16px 18px}
+.kpi b{font:600 1.9rem var(--serif);display:block}.kpi b small{font:500 .8rem var(--sans);color:var(--ink3);margin-left:.2em}
+.kpi span{font-size:var(--fs-liten);color:var(--ink2)}
+.kort{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:20px}
+.kort h3{font:600 .95rem var(--sans);margin-bottom:14px}
+.rad{display:grid;grid-template-columns:12rem minmax(0,1fr) 3.5rem;gap:12px;align-items:center;font-size:.8rem;color:var(--ink2);margin:7px 0}
+.rad i{display:block;height:14px;background:var(--d-neutral2);border-radius:2px}.rad.mark i{background:var(--d-mark)}
+.rad em{font:500 .78rem var(--mono);font-style:normal;text-align:right;color:var(--ink)}
+@container (max-width:640px){.rad{grid-template-columns:minmax(0,1fr) 3rem;row-gap:3px}.rad span{grid-column:1/-1}}
+.kalla{font-size:.75rem;color:var(--ink3);margin-top:12px}
+.not{position:absolute;right:16px;top:12px;max-width:250px;background:#fff;border-radius:var(--r-sm);box-shadow:0 4px 14px rgba(0,0,0,.12);padding:10px 12px;font-size:.74rem;line-height:1.45;color:var(--ink);z-index:6}
+.not b{display:block;font:600 10px var(--mono);letter-spacing:.06em;color:var(--green2);margin-bottom:3px}
+@container (max-width:640px){.not{position:static;max-width:none;margin:12px 16px 0;box-shadow:none;border:1px dashed var(--green2)}}
+</style></head>
+<body><script>if(location.hash==='#m')document.body.classList.add('m')</script>
+<div class="ram">
+  <div class="not"><b>SKISS 08-1 · ETT RASTER</b>Alla avsnitt i alla vyer läggs i samma <code>.sida</code> (1080 px). Band (<code>--bg2</code>) får gå kant i kant, innehållet gör det aldrig. Luften mellan avsnitt är en token: 72 px dator, 48 px mobil.</div>
+  <div class="sida" style="height:0"><div class="guide"><span>vänsterkant = logotyp = rubriker = diagram</span></div></div>
+  <nav><div class="sida"><div class="logo">Skatte<i>plattformen</i></div><div class="nl"><span>Start</span><span>Din ekonomi</span><b>Budgeten</b><span>Prislistan</span><span>Jämförelser</span><span>Framtid</span></div><div class="dela">DELA</div></div></nav>
+  <div class="vyh"><div class="sida"><div><div class="smula"><a>Start</a> › Budgeten</div><h1>Budgeten</h1><p class="ingress">Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.</p></div><div class="scen"></div></div></div>
+  <section><div class="sida">
+    <div class="eye">Statsbudgeten 2026: vart går pengarna?</div>
+    <h2>Försvar och krisberedskap är statsbudgetens största enskilda utgiftsområde 2026</h2>
+    <p class="lead">Statsbudgeten 2026: 1 542 miljarder kronor fördelat på 27 utgiftsområden. Inkomster 1 375 miljarder, budgetsaldo −167 miljarder.</p>
+    <div class="kpi"><div><b>1 542<small>mdkr</small></b><span>Statsbudgetens utgifter 2026</span></div><div><b>+33 %</b><span>Försvar och krisberedskap (UO6)</span></div><div><b>−167<small>mdkr</small></b><span>Budgetsaldo 2026</span></div></div>
+    <div class="kort"><h3>Statsbudgeten 2026 per utgiftsområde (miljarder kronor)</h3>
+      <div class="rad mark"><span>Försvar och krisberedskap</span><i style="width:100%"></i><em>225,0</em></div>
+      <div class="rad"><span>Bidrag till kommuner</span><i style="width:80.3%"></i><em>180,7</em></div>
+      <div class="rad"><span>Vård och omsorg</span><i style="width:56.8%"></i><em>127,7</em></div>
+      <div class="rad"><span>Sjukdom och funktionsnedsättning</span><i style="width:54.2%"></i><em>122,0</em></div>
+      <p class="kalla">Källa: Budgetpropositionen 2025/26:1, ESV.</p></div>
+  </div></section>
+  <section class="band"><div class="sida">
+    <div class="eye">Tre poster i statens budget</div>
+    <h2>Försvaret, statsskulden och statsbidragen</h2>
+    <p class="lead">I dag ligger det här avsnittet i <code>.container</code> (1080) och avsnittet ovanför i <code>.cw</code> (1280): vänsterkanten hoppar 100 px mellan två avsnitt i samma vy. I skissen delar de kant.</p>
+  </div></section>
+</div>
+</body></html>

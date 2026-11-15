@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skiss 08-3: diagram på mobil</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Skiss från formgivargranskningen 2026-11 (roll 8). Sajtens tokens och diagramregel. */
+:root{--bg:#F4F1EA;--bg2:#EAE6DC;--bg3:#DEDAD0;--paper:#FBFAF6;--ink:#1A1813;--ink2:#4A4640;--ink3:#5C574F;--green:#1B4D3E;
+--shadow-sm:0 1px 2px rgba(26,24,19,.04),0 1px 3px rgba(26,24,19,.05);--r:8px;--fs-etikett:.6875rem;
+--d-neutral2:#A39C8F;--d-mark:var(--green);--emot:#2E7D5C;--skatt:#C9A66B;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#cfc9bd;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.ram{background:var(--bg);margin:0 auto;container-type:inline-size;padding-bottom:28px}
+body.m .ram{width:390px}
+.sida{max-width:1080px;margin:0 auto;padding:0 2rem}
+@container (max-width:640px){.sida{padding:0 16px}}
+h2.rub{font:600 1.5rem var(--serif);padding:26px 0 4px}
+.under{font-size:.85rem;color:var(--ink2);max-width:60em;margin-bottom:18px}
+.kol{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px}
+.kol>div{min-width:0}@container (max-width:900px){.kol{grid-template-columns:1fr}}@container (max-width:640px){.ledruta{grid-template-columns:1fr}}
+.kort{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:18px 18px 14px}
+.kort h3{font:600 .95rem/1.35 var(--sans);margin-bottom:4px}
+.kort .sub{font-size:.8rem;color:var(--ink3);margin-bottom:14px}
+.kalla{font-size:.75rem;color:var(--ink3);margin-top:12px;line-height:1.5}
+/* Stapel: etikett till vänster på dator, ovanför stapeln på mobil. Inget spår till 100 %. */
+.st{display:grid;grid-template-columns:13rem minmax(0,1fr);gap:4px 14px;align-items:center;margin:9px 0}
+.st span{font-size:.82rem;color:var(--ink2);text-align:right;line-height:1.25}
+.st div{display:flex;align-items:center;gap:8px}
+.st i{display:block;height:16px;background:var(--d-neutral2);border-radius:2px;flex:none}
+.st.mark i{background:var(--d-mark)}.st.mark span{color:var(--ink);font-weight:600}
+.st em{font:500 .8rem var(--mono);font-style:normal;color:var(--ink);white-space:nowrap}
+@container (max-width:640px){.st{grid-template-columns:1fr;margin:11px 0}.st span{text-align:left}.st i{height:14px}}
+/* Tornado i HTML i stället för SVG med fast viewBox: texten följer sidans typskala */
+.to{margin:8px 0 4px}
+.to-r{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:4px 14px;align-items:center;margin:12px 0}
+.to-r>span{font-size:.82rem;color:var(--ink2);text-align:right}
+.to-b{position:relative;height:22px}
+.to-b::before{content:'';position:absolute;left:50%;top:-6px;bottom:-6px;border-left:1px dashed var(--ink3)}
+.to-b i{position:absolute;top:3px;height:16px;border-radius:2px}
+.to-b .l{right:50%;background:var(--emot)}.to-b .h{left:50%;background:var(--skatt)}
+.to-b b{position:absolute;top:2px;font:500 .75rem var(--mono);color:var(--ink2);white-space:nowrap}
+.to-ax{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:14px;font-size:.75rem;color:var(--ink3)}
+.to-ax div{display:flex;justify-content:space-between}
+.to-ax div span:nth-child(2){color:var(--ink);font-weight:500}
+@container (max-width:640px){.to-r,.to-ax{grid-template-columns:1fr}.to-r>span{text-align:left}.to-ax>span{display:none}}
+.lg{display:flex;gap:16px;font-size:.75rem;color:var(--ink2);margin-top:6px}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.regler{font-size:.8rem;color:var(--ink2);line-height:1.55;margin:18px 0 0 18px}
+.regler li{margin:3px 0}
+</style></head>
+<body><script>if(location.hash==='#m')document.body.classList.add('m')</script>
+<div class="ram"><div class="sida">
+<h2 class="rub">Skiss 08-3 · Diagram som håller på 390 px</h2>
+<p class="under">Två mönster för alla horisontella diagram. Stapeldiagram: etiketten flyttas ovanför stapeln på mobil så att stapeln får hela bredden, och det ljusa spåret till 100 % tas bort (det antyder ett tak som inte finns). Tornadon: ritas i HTML i stället för en SVG med fast bredd 680, så att texten stannar på minst 12 px i stället för att krympa till cirka 5 px.</p>
+<div class="kol">
+ <div class="kort"><h3>Statsbudgeten 2026 per utgiftsområde</h3><p class="sub">Miljarder kronor, de tio största av 27</p>
+  <div class="st mark"><span>Försvar och krisberedskap</span><div><i style="width:calc(100% - 3.5rem)"></i><em>225,0</em></div></div>
+  <div class="st"><span>Bidrag till kommuner</span><div><i style="width:calc((100% - 3.5rem)*.803)"></i><em>180,7</em></div></div>
+  <div class="st"><span>Vård och omsorg</span><div><i style="width:calc((100% - 3.5rem)*.568)"></i><em>127,7</em></div></div>
+  <div class="st"><span>Sjukdom och funktionsnedsättning</span><div><i style="width:calc((100% - 3.5rem)*.542)"></i><em>122,0</em></div></div>
+  <div class="st"><span>Utbildning och forskning</span><div><i style="width:calc((100% - 3.5rem)*.475)"></i><em>106,9</em></div></div>
+  <div class="st"><span>Transporter och kommunikationer</span><div><i style="width:calc((100% - 3.5rem)*.474)"></i><em>106,7</em></div></div>
+  <div class="st"><span>Familjer och barn</span><div><i style="width:calc((100% - 3.5rem)*.463)"></i><em>104,2</em></div></div>
+  <div class="st"><span>Rättsväsendet</span><div><i style="width:calc((100% - 3.5rem)*.421)"></i><em>94,7</em></div></div>
+  <div class="st"><span>Arbetsmarknad</span><div><i style="width:calc((100% - 3.5rem)*.405)"></i><em>91,2</em></div></div>
+  <div class="st"><span>Ålderdom</span><div><i style="width:calc((100% - 3.5rem)*.264)"></i><em>59,3</em></div></div>
+  <p class="kalla">Källa: Budgetpropositionen 2025/26:1, ESV.</p></div>
+ <div class="kort"><h3>Hur säker är beräkningen?</h3><p class="sub">Ändring i netto per år (tkr) för en 35-åring med medianlönen, när ett antagande ändras</p>
+  <div class="to-ax"><span></span><div><span>betalar mindre</span><span>utgångsläge</span><span>betalar mer</span></div></div>
+  <div class="to">
+   <div class="to-r"><span>Lönen ±15 %</span><div class="to-b"><i class="l" style="width:calc(38/40*38%)"></i><i class="h" style="width:38%"></i><b style="right:calc(50% + 36.1% + 6px)">−38</b><b style="left:calc(50% + 38% + 6px)">+40</b></div></div>
+   <div class="to-r"><span>Förmånerna ±25 %</span><div class="to-b"><i class="l" style="width:calc(32/40*38%)"></i><i class="h" style="width:calc(32/40*38%)"></i><b style="right:calc(50% + 30.4% + 6px)">−32</b><b style="left:calc(50% + 30.4% + 6px)">+32</b></div></div>
+   <div class="to-r"><span>Kommunalskatten ±3 procentenheter</span><div class="to-b"><i class="l" style="width:calc(8/40*38%)"></i><i class="h" style="width:calc(7/40*38%)"></i><b style="right:calc(50% + 7.6% + 6px)">−8</b><b style="left:calc(50% + 6.65% + 6px)">+7</b></div></div>
+   <div class="to-r"><span>Momsen ±2 procentenheter</span><div class="to-b"><i class="l" style="width:calc(5/40*38%)"></i><i class="h" style="width:calc(5/40*38%)"></i><b style="right:calc(50% + 4.75% + 6px)">−5</b><b style="left:calc(50% + 4.75% + 6px)">+5</b></div></div>
+  </div>
+  <div class="lg"><span><i style="background:var(--emot)"></i>du betalar mindre i netto</span><span><i style="background:var(--skatt)"></i>du betalar mer</span></div>
+  <p class="kalla">Värdena är de som visas i dag i #sensitivitet. Teckenförklaringen står vid diagrammet i stället för i en fotnot.</p></div>
+</div>
+<ol class="regler"><li>Diagramregeln oförändrad: grått för övriga, grönt för det texten handlar om, sand och grönt för betalar och tar emot.</li><li>Ingen diagramtext under 11 px på någon bredd. SVG med fast <code>viewBox</code> skalas ned på mobil; ange textstorlek i px efter skalning eller rita i HTML.</li><li>Värdet står direkt vid stapelns ände, inte i en egen kolumn längst bort.</li></ol>
+</div></div>
+</body></html>

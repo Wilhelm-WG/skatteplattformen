@@ -207,6 +207,15 @@ rubrik('3c. Länkar och id');
 }
 
 // ── 4. Modellens robusthet ────────────────────────────────────────────────
+// Ingen lookbehind (?<= / (?<! i koden: stöds inte i Safari före 16.4 och stoppar då hela skriptet
+{ const lb = (html.match(/\(\?<[=!]/g) || []).length; lb ? FEL(`${lb} lookbehind i index.html (stöds inte i Safari före 16.4)`) : OK('Ingen lookbehind i koden (Safari före 16.4)'); }
+
+// Källänkar: ett ensamt organisationsnamn får inte länka till ett enskilt dokument (pdf, pressmeddelande, nedladdning)
+{ const doc = u => /\.pdf($|\?)|\/download\/|products-euro-indicators\/w\/|contentassets/.test(u);
+  const ensam = m => !/[\s,.:()0-9]/.test(m.trim());
+  const brott = Object.entries(KALLOR).flatMap(([id,k]) => doc(k.url) ? k.match.filter(ensam).map(m => `${id}: "${m}"`) : []);
+  brott.length ? FEL(`Källänk med ensamt namn till ett enskilt dokument: ${brott.join(', ')}`) : OK('Källänkar: inga ensamma organisationsnamn som pekar på enskilda dokument'); }
+
 rubrik('4. Modellens robusthet');
 const problem = [];
 for (let age = 0; age <= 100; age++) {

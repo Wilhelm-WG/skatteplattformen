@@ -10,6 +10,86 @@ ackumuleras under `Unreleased` tills nästa namngivna release.
 
 ## [Unreleased]
 
+### Changed (2026-11-14) — Expertgranskningens åtgärdsplan, punkt 1–12 och beslut A–E
+
+Se `docs/granskning-2026-11/SAMMANSTALLNING.md`.
+- **A. Allmän pensionsavgift**: egen rad överst på båda kvittona (nytt
+  pictogram `pk-pension`, `START_PENSION`); bara resten fördelas med
+  `KVITTO_ANDELAR`. `skattDelar` returnerar `apa` (tak 47 100 kr/år),
+  `annualTax` returnerar `apa`. Nettot i Din ekonomi, livsloppets punkt,
+  livssituationerna, känslighetsanalysen och `skattetid` räknas utan avgiften.
+  `LIVSLOPP_BEF` omräknad: skatten minus 7 % av förvärvsinkomsten per
+  åldersgrupp (SCB HE0110 2024, totalt 160 mdkr); summor förmåner 1 718,
+  skatter 1 415 mdkr. Texterna i metodraden, metodstegen och Skatter i korthet.
+- **B. Jämförelsernas sammanfattning**: varje fenomen en gång (`sam:false` för
+  undvikbar dödlighet och cancerdödlighet kvinnor, `grupp` för de fyra
+  canceröverlevnadsmåtten) och urvalsprincip i texten. Nya mått sist i
+  flikarna (direktlänkarna behåller numren): PISA läsning (OECD tabell
+  I.B1.2a.2), arbetslöshet 2025 (Eurostat une_rt_a, USA BLS), skatter och
+  avgifter som andel av BNP 2025 (Eurostat gov_10a_taxag, utan riktning).
+  Resultat: 14 av 21 (var 18 av 24).
+- **C. Citatet**: märkt "Skatteplattformens utgångspunkt" vid startkvittot,
+  citatbandet och kvittobilden; mening om utgångspunkten under Neutralitet;
+  sidfoten "Oberoende fakta om svenska skattepengar, med källa och år".
+- **D. Om oss**: nytt stycke "AI-stöd" i Så arbetar vi; ansvarig för
+  innehållet och att sajten saknar utgivningsbevis.
+  Avsnittet Om oss är tills vidare ersatt av en kort text: ideellt driven
+  sida av Wilhelm Wennergren, skapad med hjälp av AI och granskad löpande.
+- **E. Mobilkvittot**: under 900 px kommer kvittot direkt efter lönefältet,
+  knapparna och metoden efter; metodtexten är hopfälld ("Så räknas kvittot")
+  på mobil och utfälld på dator.
+- **Kvittobild och länkbild**: källrad i kvittot (`KB_KALLA`) och på länkbilden;
+  "INKOMSTSKATT/MÅN" och "DIN INKOMSTSKATT 2026". Länkbilden är nu
+  `img/og.jpg?v=5` (157 kB, var 271 kB PNG) med `twitter:image:alt`.
+- **Nettotext**: "i din ålder, med din lön"; pensionärstexten nämner
+  garantipension och att inkomstpensionen inte räknas.
+
+### Fixed (2026-11-14) — Rättelser före publicering
+
+- **Sjukvårdsrubriken** säger bara "längst medellivslängd"; ingressen säger att
+  dödstalen som vården kan förhindra ligger långt under EU-snittet, i mitten av
+  Norden.
+- **Källänkar** (`KALLOR`): Eurostat pekar på oktobermeddelandet 2026 och
+  länkas inte på ett ensamt "Eurostat"; Skatteverket länkas bara vid SKV 433,
+  ISK och skatteregler till "belopp och procent 2026"; Försäkringskassan
+  skiljer på statistik och årsredovisning; länkarna till SKR:s och Skolverkets
+  startsidor borttagna. Ny kontroll i `kontroll.mjs`.
+- **Räntekostnaden** budget mot budget; **grundskolan** 146 900 kr med
+  skolskjuts (rad "Skolskjuts m.m." i detaljpanelen, utb 147 tkr 7–15 år).
+- **Småfel**: särskilt boende, hemtjänstens nämnare, sjukpenningens faktor,
+  folkmängd 10,6 miljoner, barnbidragets köpkraft, skattekvotens källrad,
+  Danmarks skuld 27,2 %.
+- **Scrollhopp**: sidan scrollar inte till toppen vid `load` om läsaren redan
+  har scrollat.
+- **Delning**: `delaMedReserv` laddar ner bilden eller kopierar länken när
+  delningsrutan inte öppnas. Ny `404.html` som skickar vidare till sajten.
+- **Tillgänglighet**: kvittoraderna radbryts i stället för att kapas; quizets
+  fokus till frågan och synlig fokus i svarsfältet; `h3` i sjukvården och i
+  Framtids kort; ordlistans ruta går att föra pekaren över; reglagens
+  `aria-valuetext` efter delad länk; mobilmenyn (`setMeny`, Escape,
+  `aria-controls`); ISK-tabellerna nås med tangentbord; symboltecken i
+  delningsknapparna dolda för skärmläsare och sidan bakom `inert`.
+
+### Fixed (2026-11-14) — Tydliga fel från expertgranskningen
+
+Rättat medan granskningen pågick (`docs/granskning-2026-11/`):
+- **Filmen** (ekonom-02): kommun och region får hela kommunalskatten; staten
+  betalar jobbskatteavdraget och reduktionen för pensionsavgiften; pensionen
+  får 7 % + 10,21 %. Medianlön: kommun 7 600, region 4 300, stat 5 100,
+  pension 6 600 kr.
+- **Skatt under 19 år** (pedagog-01): `skattDelar`/`annualTax` räknar skatt
+  från 15 år (barn under 15 räknas utan inkomst).
+- **Klarspråk**: "Här är högre är bättre" (alla jämförelsediagram) och
+  prislappens "… medianlön under X" omskrivna.
+- **Texter**: kvittots skatt jämfört med skattetabellen (faktagranskare-01),
+  "jämnas ut över livet" struket och förklaringen om momsen i livsloppet
+  ersatt (ekonom-04, 05), metodraden i födelseår, kollektivtrafikens
+  finansiering, citatet ordagrant i Din ekonomi, äldreboende sökbart.
+- **Tillgänglighet**: fokus in i detaljpanelen, flikarnas `aria-selected` och
+  `tabindex` vid klick och direktlänk, fokus till vyns rubrik vid vybyte,
+  sökfältets fokusmarkering. In-toningen visar avsnitt så fort en del syns.
+- Datum: uppdaterad 14 november 2026. Metodrapportens tabeller för 35–44 år.
+
 ### Added (2026-11-13) — Vårdens utfall
 
 - Åtta nya diagram i Jämförelser, sjukvård (index 8–15, efter de befintliga):

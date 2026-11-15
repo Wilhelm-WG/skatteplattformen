@@ -17,15 +17,17 @@
 <meta property="og:url" content="https://wilhelm-wg.github.io/skatteplattformen/">
 <meta property="og:site_name" content="Skatteplattformen">
 <meta property="og:locale" content="sv_SE">
-<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=4">
+<meta property="og:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.jpg?v=5">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Ett skattekvitto för medianlönen 38 300 kr: skatten 7 692 kr i månaden fördelad på socialt skydd, vård, utbildning, polis, vägar, förvaltning och försvar.">
+<meta property="og:image:alt" content="Skatteplattformen: Vad fan får vi för pengarna? Ett skattekvitto för medianlönen 38 300 kr: inkomstskatten 7 692 kr i månaden, varav 2 683 kr allmän pensionsavgift som blir egen pension och resten fördelat på socialt skydd, vård, utbildning, polis, vägar, förvaltning och försvar.">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Skatteplattformen — Vad fan får vi för pengarna?">
 <meta name="twitter:description" content="Skriv in din lön och få ett kvitto på vad skatten betalar. Källa och år för varje siffra. Partipolitiskt oberoende.">
-<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=4">
+<meta name="twitter:image" content="https://wilhelm-wg.github.io/skatteplattformen/img/og.jpg?v=5">
+<meta name="twitter:image:alt" content="Ett skattekvitto för medianlönen 38 300 kr: inkomstskatten 7 692 kr i månaden, varav 2 683 kr allmän pensionsavgift och resten fördelat på vad skatten betalar.">
 <!-- Ikoner -->
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -38,8 +40,8 @@
   "url": "https://wilhelm-wg.github.io/skatteplattformen/",
   "description": "Partipolitiskt oberoende sajt om svenska skatter och välfärd: ett skattekvitto för din lön, vad du tar emot i olika åldrar, statsbudgeten 2026, vad offentliga tjänster kostar och jämförelser med andra länder. Källa och år för varje siffra.",
   "applicationCategory": "EducationalApplication",
-  "dateModified": "2026-11-05",
-  "image": "https://wilhelm-wg.github.io/skatteplattformen/img/og.png?v=4",
+  "dateModified": "2026-11-14",
+  "image": "https://wilhelm-wg.github.io/skatteplattformen/img/og.jpg?v=5",
   "operatingSystem": "Web",
   "inLanguage": "sv",
   "isAccessibleForFree": true,
@@ -170,6 +172,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offs
 .gq-scale span:nth-child(2){position:absolute;left:46.5%;transform:translateX(-50%)}
 .gq-row{display:flex;align-items:center;gap:.8rem;margin-top:.9rem;flex-wrap:wrap}
 .gq-num{display:flex;align-items:baseline;gap:.4rem;border-bottom:2px solid var(--ink);padding:.1rem .2rem}
+.gq-num:focus-within{outline:2px solid var(--green);outline-offset:4px;border-radius:2px}
 .gq-num input{font-family:var(--mono);font-size:1.6rem;width:9ch;border:0;background:none;color:var(--ink);padding:0;outline:none;text-align:right}
 .gq-num span{font-family:var(--mono);font-size:.8rem;color:var(--ink3)}
 .gq-ans{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2)}
@@ -518,7 +521,7 @@ h3.pc-title{margin-top:0}
 .ft-panel.on{display:block}
 .ft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
 .ft-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-sm);padding:1.2rem;box-shadow:var(--shadow-sm)}
-.ft-card-title{font-size:.78rem;font-weight:500;color:var(--ink);margin-bottom:.5rem}
+.ft-card-title{font-family:inherit;font-size:.78rem;font-weight:500;line-height:inherit;letter-spacing:inherit;color:var(--ink);margin:0 0 .5rem}
 .ft-big{font-family:var(--mono);font-size:1.6rem;font-weight:500;color:var(--ink);line-height:1}
 .ft-big sub{font-size:.75rem;color:var(--ink3)}
 .ft-desc{font-size:.72rem;color:var(--ink2);line-height:1.6;margin-top:.5rem}
@@ -580,6 +583,8 @@ h3.pc-title{margin-top:0}
 .src-desc{font-size:.73rem;color:var(--ink3);line-height:1.5}
 /* QUOTE */
 .quote-section{background:linear-gradient(165deg,#1F5848 0%,#163d31 100%);padding:64px 0;text-align:center}
+.big-q-avs{font:500 .78rem/1.5 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-align:center;margin:0}
+.big-q-avs a{color:inherit;text-transform:none;letter-spacing:0;font-weight:400;margin-left:.35rem;text-decoration:underline;text-underline-offset:3px}
 .big-q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.5rem,3vw,2.15rem);color:#fff;max-width:720px;margin:0 auto 1rem;line-height:1.32;letter-spacing:-.01em}
 
 /* FOOTER */
@@ -773,7 +778,7 @@ footer{border-top:1px solid var(--border);padding:36px 0}
 .sv-intro{font-size:.95rem;color:var(--ink2);line-height:1.6;max-width:46rem;margin:0 0 16px}
 .sv-par{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px;padding:20px 22px;margin-bottom:16px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm)}
 .sv-par.sv-par4{grid-template-columns:repeat(4,minmax(0,1fr))}
-.sv-par h4{font:600 1.05rem/1.3 var(--serif);color:var(--ink);margin:0}
+.sv-par h3{font:600 1.05rem/1.3 var(--serif);color:var(--ink);margin:0}
 .sv-st{margin:8px 0 6px;font:600 1.8rem/1.05 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
 .sv-st small{font:500 var(--fs-liten) var(--sans);color:var(--ink3)}
 .sv-par p:not(.sv-st){margin:0;font-size:var(--fs-liten);line-height:1.55;color:var(--ink2)}
@@ -1137,7 +1142,7 @@ html{scroll-padding-top:72px}
 .kv-streck.dubbel{height:4px;background:repeating-linear-gradient(90deg,#2B2925 0 5px,transparent 5px 9px) top/100% 1px no-repeat,repeating-linear-gradient(90deg,#2B2925 0 5px,transparent 5px 9px) bottom/100% 1px no-repeat}
 .kv-rad{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:.5rem;align-items:center}
 .kv-rad svg{width:13px;height:13px;fill:#2B2925;color:#2B2925}
-.kv-rad span:nth-child(2){text-transform:uppercase;font-size:11.5px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kv-rad span:nth-child(2){text-transform:uppercase;font-size:11.5px;letter-spacing:.02em;line-height:1.25;overflow-wrap:anywhere;hyphens:auto}
 .kv-rader{display:flex;flex-direction:column;gap:3px}
 .kv-sum{display:flex;justify-content:space-between;align-items:flex-end;font-weight:600;padding-top:1.35rem}
 .kv-sum b{font-family:var(--mono);font-size:1.45rem;font-weight:600;color:#2B2925;line-height:1}
@@ -1171,8 +1176,13 @@ html{scroll-padding-top:72px}
 .start-lon .start-kommun label{font-size:.78rem;letter-spacing:0;text-transform:none;font-weight:500;color:var(--ink2)}
 .start-kommun select{font:500 .82rem var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:.4rem .5rem;max-width:15rem;min-height:36px}
 .start-metod{font-size:.76rem;color:var(--ink3);line-height:1.55;max-width:36em;margin-top:1.2rem}
+.start-metod summary{cursor:pointer;color:var(--ink2);font-weight:500;width:max-content;max-width:100%}
+.start-metod p{margin:.5rem 0 0}
+/* Mobil: kvittot direkt efter lönefältet, knapparna och metoden efter kvittot (formgivare-05, förstaintryck-02) */
+@media(max-width:900px){.hero-grid{display:flex;flex-direction:column;gap:0}.hero-grid>div:first-child{display:contents}.hero-grid>.start-kv{order:1}.hero-grid .actions{order:2;margin-top:1.6rem}.hero-grid .start-metod{order:3}}
 .start-kv{display:flex;flex-direction:column;align-items:center;gap:.9rem;padding-top:.4rem}
 .start-kv .kvitto{max-width:400px}
+.citat-avs{display:block;font:500 .66rem/1.4 var(--sans);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:.35rem}
 .start-kv-citat{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.45;color:var(--green);text-align:center;max-width:24rem;margin:.4rem 0 0;text-wrap:balance}
 .start-kv-not a{color:var(--green)}
 .start-dela{display:inline-flex;align-items:center;gap:.45em;padding:.6rem 1.1rem;border:1px solid var(--green);background:transparent;color:var(--green);border-radius:var(--r-sm);font:600 .82rem/1 var(--sans);cursor:pointer}
@@ -1284,7 +1294,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 <symbol id="pk-eu" viewBox="0 0 48 48"><path fill-rule="evenodd" d="M4 24 A20 20 0 1 1 44 24 A20 20 0 1 1 4 24 Z M7 24 A17 17 0 1 0 41 24 A17 17 0 1 0 7 24 Z"/><path fill-rule="evenodd" d="M14.4 24 A9.6 17.6 0 1 1 33.6 24 A9.6 17.6 0 1 1 14.4 24 Z M17.4 24 A6.6 17.6 0 1 1 30.6 24 A6.6 17.6 0 1 1 17.4 24 Z"/><path d="M7.2 22.5 H40.8 V25.5 H7.2 Z"/></symbol>
 <symbol id="pk-arbete" viewBox="0 0 48 48"><path d="M17 7 A2 2 0 0 1 19 5 L29 5 A2 2 0 0 1 31 7 L31 12.6 L28 12.6 L28 8 L20 8 L20 12.6 L17 12.6 Z"/><path fill-rule="evenodd" d="M6 14.6 A2 2 0 0 1 8 12.6 L40 12.6 A2 2 0 0 1 42 14.6 L42 40 A2 2 0 0 1 40 42 L8 42 A2 2 0 0 1 6 40 Z M6 23 V26 H42 V23 Z"/></symbol>
 <symbol id="pk-ovrigt" viewBox="0 0 48 48"><path d="M5.5 24 A5 5 0 1 1 15.5 24 A5 5 0 1 1 5.5 24 Z M19 24 A5 5 0 1 1 29 24 A5 5 0 1 1 19 24 Z M32.5 24 A5 5 0 1 1 42.5 24 A5 5 0 1 1 32.5 24 Z"/></symbol>
-<symbol id="pk-aldre" viewBox="0 0 48 48"><circle cx="22" cy="8" r="5"></circle><path d="M16 15 H27 C29 15 31 17 31 19 L32 30 H28 V43 H24 V33 H22 V43 H18 V30 H14 Z"></path><path d="M33 22 L37 26 L38 43" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
+<symbol id="pk-pension" viewBox="0 0 48 48"><rect x="6" y="36" width="22" height="7" rx="3.5"/><rect x="8" y="27" width="22" height="7" rx="3.5"/><rect x="6" y="18" width="22" height="7" rx="3.5"/><path fill-rule="evenodd" d="M35 6 A9 9 0 1 1 35 24 A9 9 0 1 1 35 6 Z M35 9 A6 6 0 1 0 35 21 A6 6 0 1 0 35 9 Z"/><path d="M33.8 10.5 H36.2 V14.6 L39.2 16.4 L38 18.4 L33.8 15.9 Z"/></symbol><symbol id="pk-aldre" viewBox="0 0 48 48"><circle cx="22" cy="8" r="5"></circle><path d="M16 15 H27 C29 15 31 17 31 19 L32 30 H28 V43 H24 V33 H22 V43 H18 V30 H14 Z"></path><path d="M33 22 L37 26 L38 43" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
       <symbol id="pk-sjuk" viewBox="0 0 48 48"><path d="M24 42 C10 32 4 24 4 16 C4 10 9 6 14 6 C18 6 22 8 24 12 C26 8 30 6 34 6 C39 6 44 10 44 16 C44 24 38 32 24 42 Z"></path></symbol>
 
 
@@ -1309,8 +1319,8 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">Skatte<em>plattformen</em></a>
-      <button class="nav-hamburger" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav-links').classList.toggle('open'))" aria-expanded="false"><span aria-hidden="true">☰</span> Meny</button>
-      <ul class="nav-links" onclick="this.classList.remove('open')">
+      <button class="nav-hamburger" onclick="setMeny(!document.getElementById('nav-lista').classList.contains('open'))" aria-expanded="false" aria-controls="nav-lista"><span aria-hidden="true">☰</span> Meny</button>
+      <ul class="nav-links" id="nav-lista" onclick="if(event.target.closest('a')) setMeny(false)">
         <li><a href="#">Start</a></li>
         <li><a href="#kalkylator">Din ekonomi</a></li>
         <li><a href="#budget">Budgeten</a></li>
@@ -1341,7 +1351,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <div>
         <div class="eyebrow fu">
           <span class="e-dot"></span>
-          <span class="e-text">Uppdaterad 5 november 2026 · källa och år på allt</span>
+          <span class="e-text">Uppdaterad 14 november 2026 · källa och år på allt</span>
         </div>
         <h1 class="fu fu1">Vad <em>fan</em> får vi<br>för pengarna?</h1>
         <p class="start-lead fu fu2">Skriv in din lön eller pension. Kvittot visar vad skatten betalar varje månad, och vad det räcker till.</p>
@@ -1356,12 +1366,12 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
           <a href="#kalkylator" class="btn-p" id="start-till-ekonomi">Hela kvittot och vad du får tillbaka →</a>
           <a href="#pristabell" class="btn-g">Se vad saker kostar</a>
         </div>
-        <p class="start-metod fu fu3">Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas för den som är under 66 år, pension för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Kvittot fördelar skatten i samma proportioner som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter. I verkligheten går kommunalskatten till kommun och region, men alla skatter tillsammans betalar alla utgifter.</p>
+        <details class="start-metod fu fu3" id="start-metod"><summary>Så räknas kvittot</summary><p>Kommunalskatt och statlig skatt minus jobbskatteavdraget, med Skatteverkets regler 2026 och kommunalskatten i den kommun du väljer (rikssnittet 32,38 % om du inte väljer). Lön räknas med de vanliga reglerna, pension med reglerna för den som är född 1959 eller tidigare, och egen firma som överskott i enskild firma efter egenavgifter. Den allmänna pensionsavgiften, 7 % av lönen, dras tillsammans med skatten och blir din egen pension, så den står som en egen rad överst. Resten fördelas i samma proportioner som den offentliga sektorns utgifter 2024, utom inkomstpensionen, som betalas med pensionsavgifter. I verkligheten går kommunalskatten till kommun och region, men alla skatter tillsammans betalar alla utgifter.</p></details>
       </div>
       <!-- STARTKVITTOT: skatten på lönen, fördelad på åtta grupper, med vad den räcker till (START_GRUPPER i JS). -->
       <div class="start-kv fu fu4">
         <figure class="kvitto" id="start-kvitto" style="margin:0" aria-label="Skattekvitto"></figure>
-        <p class="start-kv-citat">Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.</p>
+        <p class="start-kv-citat">Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.<span class="citat-avs">Skatteplattformens utgångspunkt</span></p>
         <button type="button" class="start-dela" id="start-dela" onclick="openShareCard('kvitto')"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-camera"/></svg>Dela kvittot som bild</button>
         <p class="start-kv-not" id="start-kv-not"></p>
         <p class="start-kv-live" aria-live="polite" id="start-kv-live"></p>
@@ -1582,7 +1592,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
      show:["n-sv","l-ag-sv","l-ag-du"], focus:["n-ag","n-du","n-sv","slip","l-ag-sv","l-ag-du"], flows:[["kl-p-ag-sv","--sv"],["kl-p-ag-du","--ink3"]]},
     {h:"När du handlar betalar du moms.", pt:"Momsen ingår i priset och går också till Skatteverket, uppskattningsvis {moms} kronor i månaden.", mer:"Uppskattningen bygger på hur stor del av inkomsten hushåll sparar och vilken moms det de köper har (SCB:s hushållsstatistik).", d:8,
      show:["n-shop","l-shop"], focus:["n-shop","n-sv","l-shop","n-du"], flows:[["kl-p-shop-sv","--sv"]]},
-    {h:"Skatteverket fördelar pengarna.", pt:"Kommunalskatten går till kommunen, {kom} kronor, och regionen, {reg} kronor. Resten går till staten, {stat} kronor, och till pensionen, {pen} kronor.", mer:"Kommunalskatten är i snitt 32,38 %: 20,69 % till kommunen och 11,69 % till regionen. Skatteverket betalar ut den varje månad. Statlig inkomstskatt, moms och arbetsgivaravgifter går till staten; ålderspensionsavgiften går till pensionssystemet.", d:11,
+    {h:"Skatteverket fördelar pengarna.", pt:"Kommunalskatten går till kommunen, {kom} kronor, och regionen, {reg} kronor. Resten går till staten, {stat} kronor, och till pensionen, {pen} kronor.", mer:"Kommunalskatten är i snitt 32,38 %: 20,69 % till kommunen och 11,69 % till regionen, och kommunen och regionen får hela kommunalskatten. Jobbskatteavdraget betalas av staten. Den allmänna pensionsavgiften (7 % av lönen) och arbetsgivarens ålderspensionsavgift går till pensionssystemet. Statlig inkomstskatt, moms och övriga arbetsgivaravgifter går till staten.", d:11,
      show:["n-stat","n-reg","n-kom","n-pen","l-f-stat","l-f-reg","l-f-kom","l-f-pen"], hide:["slip","l-ag-sv","l-ag-du","l-shop"], focus:["n-sv","n-stat","n-reg","n-kom","n-pen","l-f-stat","l-f-reg","l-f-kom","l-f-pen"], flows:[["kl-p-sv-stat","--stat"],["kl-p-sv-reg","--reg"],["kl-p-sv-kom","--kom"],["kl-p-sv-pen","--pen"]]},
     {h:"Staten jämnar ut.", pt:"Statsbidrag och utjämning ger mer pengar där behoven är stora eller skatteinkomsterna små, så att servicen blir likvärdig i hela landet.", mer:"Genom generella statsbidrag och kommunalekonomisk utjämning fick kommunerna 146 och regionerna 91 miljarder kronor 2025 (SCB). Av regionernas del var cirka 40 miljarder bidrag för läkemedel.", d:10,
      show:["l-utj"], hide:["l-f-stat","l-f-reg","l-f-kom","l-f-pen"], focus:["n-stat","n-reg","n-kom","l-utj"], flows:[["kl-p-stat-reg","--stat"],["kl-p-stat-kom","--stat"]]},
@@ -1590,7 +1600,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
      show:["l-lan"], hide:["l-utj"], focus:["n-stat","l-lan"], flows:[]},
     {h:"Pengarna blir verksamhet.", pt:"Kommunen driver förskola, skola och äldreomsorg. Regionen driver sjukvården. Staten står för försvar, polis, högskolor och ersättningar som sjukpenning och pension.", mer:"Kommunen ansvarar också för socialtjänsten. Sjukvården är ungefär 90 % av regionens kostnader; regionen står också för tandvård för unga och i regel kollektivtrafiken. Staten står för domstolar och de flesta ersättningar.", d:10,
      show:["svc-stat","svc-reg","svc-kom"], hide:["l-lan"], focus:["n-stat","n-reg","n-kom","n-pen","svc-stat","svc-reg","svc-kom"], flows:[["kl-p-stat-svc","--stat"],["kl-p-reg-svc","--reg"],["kl-p-kom-svc","--kom"]]},
-    {h:"Och kommer tillbaka till dig, över hela livet.", pt:"Ett barn tar emot cirka 180 000 kronor om året, en person över 75 cirka 360 000. Däremellan betalar de flesta in mer än de får.", mer:"Genomsnitt per invånare 2024 ur livsloppet i Din ekonomi: skola, vård, omsorg och ersättningar. 26–64-åringar betalar i snitt 115 000–185 000 kronor mer i skatt än de tar emot per år.", d:11,
+    {h:"Och kommer tillbaka till dig, över hela livet.", pt:"Ett barn tar emot cirka 185 000 kronor om året, en person över 75 cirka 360 000. Däremellan betalar de flesta in mer än de får.", mer:"Genomsnitt per invånare 2024 ur livsloppet i Din ekonomi: skola, vård, omsorg och ersättningar. 26–64-åringar betalar i snitt 85 000–155 000 kronor mer i skatt än de tar emot per år, utan pensionsavgifterna.", d:11,
      show:["life"], focus:["n-du","svc-stat","svc-reg","svc-kom","life"], flows:[["kl-p-return","--accent"]]},
     {h:"Så går samhället runt.", pt:"Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.", citat:true, mer:"Siffrorna och källorna finns på Skatteplattformen. På startsidan kan du se vad skatten på din egen lön räcker till.", d:9,
      show:["end"], focus:null, flows:[["kl-p-ag-sv","--sv"],["kl-p-shop-sv","--sv"],["kl-p-sv-stat","--stat"],["kl-p-sv-reg","--reg"],["kl-p-sv-kom","--kom"],["kl-p-sv-pen","--pen"],["kl-p-stat-svc","--stat"],["kl-p-reg-svc","--reg"],["kl-p-kom-svc","--kom"],["kl-p-return","--accent"]]}
@@ -1601,14 +1611,16 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
   function filmTal(){
     var lon = 38300, egen = false;
     try{ if(window.startLon && (typeof startTyp === 'undefined' || startTyp === 'lon')){ var l = window.startLon(); if(l >= 5000 && l !== 38300){ lon = l; egen = true; } } }catch(e){}
-    var skatt = 7692, stat = 0, moms = 3800;
+    var skatt = 7692, stat = 0, moms = 3800, kommunal = 11913, jsa = 4221;
     try{
       if(window.startKvittoData){ skatt = window.startKvittoData(lon, 'lon', 0.3238).skatt; }
-      if(window.skattDelar){ stat = window.skattDelar(40, lon*12/1000, {ksOverride:0.3238}).stat * 1000/12; }
+      if(window.skattDelar){ var dd = window.skattDelar(40, lon*12/1000, {ksOverride:0.3238}); stat = dd.stat*1000/12; kommunal = dd.komm*1000/12; jsa = dd.jsa*1000/12; }
       if(window.annualTax){ moms = window.annualTax(40, lon*12/1000).moms * 1000/12; }
     }catch(e){}
-    var avg = Math.round(lon*0.3142), pen = Math.round(lon*0.1021), kommunal = Math.max(0, skatt - stat);
-    var kom = kommunal*20.69/32.38, reg = kommunal - kom, staten = stat + moms + (avg - pen);
+    // Kommun och region får hela kommunalskatten. Staten betalar jobbskatteavdraget och reduktionen för den allmänna pensionsavgiften;
+    // pensionsavgiften (7 % av lönen) och arbetsgivarens ålderspensionsavgift (10,21 %) går till pensionssystemet. Summan = skatt + moms + avgift.
+    var avg = Math.round(lon*0.3142), apa = Math.round(lon*12*0.07/100)*100/12, pen = Math.round(lon*0.1021 + apa);
+    var kom = kommunal*20.69/32.38, reg = kommunal - kom, staten = stat + moms + (avg - Math.round(lon*0.1021)) - jsa - apa;
     TAL = {vem: egen ? 'Din lön' : 'Medianlönen i Sverige', lon: lon.toLocaleString('sv-SE'), skatt: rund(skatt), andel: Math.round(skatt/lon*100), avg: rund(avg), pen: rund(pen), moms: rund(moms), kom: rund(kom), reg: rund(reg), stat: rund(staten),
       netto: rund(lon - skatt), w:{'kl-p-ag-sv': skatt + avg, 'kl-p-shop-sv': moms, 'kl-p-sv-stat': staten, 'kl-p-sv-reg': reg, 'kl-p-sv-kom': kom, 'kl-p-sv-pen': pen, 'kl-p-ag-du': lon - skatt}};
     var fyll = function(t){ return t.replace(/\{(\w+)\}/g, function(m, k){ return TAL[k] !== undefined ? TAL[k] : m; }); };
@@ -1960,7 +1972,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <label for="pgrid-search" style="font-size:.75rem;color:var(--ink3);font-weight:500;letter-spacing:.05em;text-transform:uppercase">Sök i prislistan</label>
       <input type="search" id="pgrid-search" placeholder="t.ex. cancer · skola · fängelse · IVA · ms"
         oninput="searchCards(this.value)"
-        style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);outline:none;transition:border-color .15s"
+        style="flex:1;min-width:200px;max-width:380px;font-size:.85rem;padding:7px 12px;border-radius:4px;border:1px solid var(--border);background:var(--bg2);color:var(--ink);font-family:var(--sans);transition:border-color .15s"
         onfocus="this.style.borderColor='var(--green)'"
         onblur="this.style.borderColor='var(--border)'" />
       <span id="pgrid-count" style="font-size:.75rem;color:var(--ink3);font-family:var(--mono)"></span>
@@ -2047,17 +2059,17 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel on" id="ft-forsvar">
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Försvar och samhällets krisberedskap 2026 (UO6)</div>
+          <h3 class="ft-card-title">Försvar och samhällets krisberedskap 2026 (UO6)</h3>
           <div class="ft-big">225<sub> mdkr</sub></div>
           <div class="ft-desc">Anslagen till utgiftsområde 6 ökar från 168,8 miljarder kronor (2025) till <strong>225,0 miljarder kronor (2026)</strong>, +56,2 miljarder eller +33 %. Av 225,0 miljarder kronor går 214,3 miljarder till försvaret (anslag 1:1–1:14), varav 39,7 miljarder är militärt stöd till Ukraina, 10,1 miljarder till samhällets krisberedskap (bland annat Kustbevakningen och Myndigheten för civilt försvar) och 0,7 miljarder till strålsäkerhet. Beslutat av riksdagen i november–december 2025 (prop. 2025/26:1, utgiftsområde 6, tabell 2.1).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Andel av BNP 2026</div>
+          <h3 class="ft-card-title">Andel av BNP 2026</h3>
           <div class="ft-big">2,8 %<sub> av BNP</sub></div>
           <div class="ft-desc">Försvarsutgifterna beräknas till 2,8 procent av BNP 2026 enligt Natos definition, och 3,1 procent från 2028. Natos mål från toppmötet i Haag 2025 är 3,5 procent av BNP till kärnförsvar senast 2035. Sverige har som mål att nå dit redan 2030. År 2024 låg Sverige på 2,3 procent (Nato).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Sveriges mål till 2030</div>
+          <h3 class="ft-card-title">Sveriges mål till 2030</h3>
           <div class="ft-big">ca 270<sub> mdkr/år</sub></div>
           <div class="ft-desc">Om försvarsutgifterna enligt Natos definition når 3,5 procent av BNP 2030 blir de cirka 270 miljarder kronor per år (grov uppskattning: BNP 2030 antagen till cirka 7 700 miljarder kronor). Natos definition räknar annorlunda än statsbudgetens utgiftsområde 6, så beloppen kan inte jämföras direkt med anslagen ovan.</div>
         </div>
@@ -2096,22 +2108,22 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel on" id="ft-skuld">
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Statsskuld 2026 (prognos)</div>
+          <h3 class="ft-card-title">Statsskuld 2026 (prognos)</h3>
           <div class="ft-big">1 430<sub> mdkr</sub></div>
           <div class="ft-desc">Riksgäldens prognos (maj 2026): skulden uppgår till 1 430 miljarder kronor vid årets slut, 21 % av BNP, från 1 244 miljarder kronor 2025. Prognosen för budgetunderskottet 2026 är 196 miljarder kronor (riksdagens budgetbeslut: 167 miljarder kronor). Per invånare: cirka 135 000 kr.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Räntekostnad 2026 (UO26)</div>
+          <h3 class="ft-card-title">Räntekostnad 2026 (UO26)</h3>
           <div class="ft-big">27<sub> mdkr/år</sub></div>
-          <div class="ft-desc">Utgiftsområde 26 (räntor på statsskulden m.m.) beräknas till 27,0 miljarder kronor 2026, jämfört med 31 miljarder kronor 2025 och 20 miljarder kronor 2024. Utfallet för utgiftsområde 26 var 45 miljarder kronor 2024, men 25 miljarder av det var en engångsbetalning för att återställa Riksbankens kapital.</div>
+          <div class="ft-desc">Utgiftsområde 26 (räntor på statsskulden m.m.) beräknas till 27,0 miljarder kronor 2026 (budget 2025: 28,8 miljarder). Utfallet för räntorna på statsskulden var 30,1 miljarder kronor 2025, högre än normalt eftersom en realobligation förföll, och 20,1 miljarder 2024 (Årsredovisning för staten). Hela utgiftsområde 26 var 45 miljarder kronor 2024, men 25 miljarder av det var en engångsbetalning för att återställa Riksbankens kapital.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Andel av BNP</div>
+          <h3 class="ft-card-title">Andel av BNP</h3>
           <div class="ft-big">21 %<sub> av BNP</sub></div>
           <div class="ft-desc">Statsskulden beräknas till 21 % av BNP vid slutet av 2026 (Riksgäldens prognos, maj 2026). Den offentliga bruttoskulden, som även omfattar kommuner och regioner, var 35,1 % av BNP 2025, mot EU-snittet 81,5 % (Eurostat, oktober 2026).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Räntekänslighetens effekt</div>
+          <h3 class="ft-card-title">Räntekänslighetens effekt</h3>
           <div class="ft-big">+1%<sub> ränta = ca +14 mdkr</sub></div>
           <div class="ft-desc">Varje procentenhets högre ränta kostar på sikt cirka 14 miljarder kronor extra per år vid en skuld på 1 430 miljarder kronor. Budgetåret 1994/95 kostade räntorna på statsskulden 123 miljarder kronor, cirka 6–7 procent av BNP. I slutet av 2025 var de cirka 0,5 procent av BNP (Riksgälden). Riksgälden refinansierar löpande, så effekten dröjer 3–5 år.</div>
         </div>
@@ -2180,7 +2192,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <div class="ft-callout" style="margin-top:1rem">
         <strong>Vad kostar räntan per invånare?</strong> 27 miljarder kronor 2026 motsvarar cirka 2 500 kr per person och år. 2024 var räntorna på statsskulden 20 miljarder kronor.
       </div>
-      <p class="ft-source">Källor: Riksgälden, <a href="https://www.riksgalden.se/contentassets/27fcc0e426c54e508344a41630b84c99/statsupplaning-2026-1.pdf" target="_blank" rel="noopener">Statsupplåning 2026:1</a> (maj 2026); Budgetpropositionen 2026 (UO26); <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-22042026-bp" target="_blank" rel="noopener">Eurostat, offentlig skuld 2025</a> (april 2026).</p>
+      <p class="ft-source">Källor: Riksgälden, <a href="https://www.riksgalden.se/contentassets/27fcc0e426c54e508344a41630b84c99/statsupplaning-2026-1.pdf" target="_blank" rel="noopener">Statsupplåning 2026:1</a> (maj 2026); Budgetpropositionen 2026 (UO26); <a href="https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-21102026-ap" target="_blank" rel="noopener">Eurostat, offentlig skuld 2025</a> (oktober 2026).</p>
     </div>
 
     <!-- ── GINI panel ── -->
@@ -2188,7 +2200,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <h3 class="ft-heading" style="margin-top:2rem">Statsbidragen till kommuner och regioner</h3>
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">190 riktade statsbidrag</div>
+          <h3 class="ft-card-title">190 riktade statsbidrag</h3>
           <div class="ft-big">190<sub> separata bidrag (2025)</sub></div>
           <div class="ft-desc">Utöver de generella statsbidragen fördelade staten 190 riktade statsbidrag till kommuner och regioner 2025, plus 21 kostnadsersättningar (Statskontoret 2026). Kommunerna fick 45 och regionerna 19 miljarder kronor i riktade bidrag. Bidragen administreras av ett 40-tal myndigheter. Statskontoret har pekat på att det stora antalet riktade bidrag gör kommunernas och regionernas planering svårare.</div>
         </div>
@@ -2227,8 +2239,8 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="sv-topp">
       <div>
         <p class="s-eye">Hälso- och sjukvård</p>
-        <h2 class="s-title">Sverige lägger störst andel av BNP på vård i Norden, och har längst medellivslängd och bland de lägsta dödstalen som vården kan förhindra</h2>
-        <p class="sv-ingress">Medellivslängden är 84,1 år, längst av de sju länderna, och spädbarnsdödligheten är bland de lägsta. Samtidigt har Sverige minst antal vårdplatser per invånare i EU. Tre sidor av vården: <b>kapacitet</b>, <b>utfall vid sjukdom</b> och <b>tillgänglighet</b>. I varje nyckeltal är Sverige den gröna pricken bland sju länder. Tryck på ett nyckeltal för att se hela diagrammet.</p>
+        <h2 class="s-title">Sverige lägger störst andel av BNP på vård i Norden, och har längst medellivslängd</h2>
+        <p class="sv-ingress">Medellivslängden är 84,1 år, längst av de sju länderna, och spädbarnsdödligheten är bland de lägsta. Dödstalen som vården kan förhindra ligger långt under EU-snittet, i mitten av Norden. Samtidigt har Sverige minst antal vårdplatser per invånare i EU. Tre sidor av vården: <b>kapacitet</b>, <b>utfall vid sjukdom</b> och <b>tillgänglighet</b>. I varje nyckeltal är Sverige den gröna pricken bland sju länder. Tryck på ett nyckeltal för att se hela diagrammet.</p>
       </div>
       <svg class="sv-scen" viewBox="0 0 360 300" aria-hidden="true" focusable="false"><use href="#il-vard"/></svg>
     </div>
@@ -2250,9 +2262,9 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel on" id="sjukv-kapacitet">
       <p class="sv-intro">Sedan 1990-talet har mer vård flyttats från sjukhus till öppenvård och hemsjukvård. Sverige har minst antal vårdplatser per invånare av de sju länder som jämförs här. Fler sängar betyder inte bättre vård i sig, men med färre finns mindre marginal när behovet toppar, till exempel under covid-pandemin och influensasäsonger.</p>
       <div class="sv-par">
-        <div><h4>Vårdplatser som saknas</h4><p class="sv-st">1 191 <small>per dag, 2025</small></p><p>Enligt Socialstyrelsen saknades i genomsnitt 1 191 vårdplatser per dag i den somatiska vården 2025, eller 7,6 procent. Året innan var bristen 12,3 procent. Antalet intensivvårdsplatser räckte i stort sett för behovet. Främsta orsaken till bristen är brist på sjuksköterskor, inte lokaler. I Läkarförbundets enkät till medlemmar (mars 2026) uppgav nära var fjärde läkare att de varje vecka skriver ut patienter för tidigt på grund av vårdplatsbrist.</p></div>
-        <div><h4>Vårdplatser över tid</h4><p class="sv-st">3,6 → 1,9 <small>per 1 000, 2000–2022</small></p><p>Världsbanken. Sverige hade lägst antal sjukhussängar per invånare i EU även 2024 (Eurostat: 1,9, EU-snittet 5,1).</p></div>
-        <div><h4>Läkare per 1 000 invånare</h4><p class="sv-st">4,7 <small>2024, Eurostat</small></p><p>I den internationella jämförelsen (Världsbanken, 2021) hade Sverige 4,4 läkare per 1 000 invånare, mot OECD-snittet 3,8. Läkartätheten är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</p></div>
+        <div><h3>Vårdplatser som saknas</h3><p class="sv-st">1 191 <small>per dag, 2025</small></p><p>Enligt Socialstyrelsen saknades i genomsnitt 1 191 vårdplatser per dag i den somatiska vården 2025, eller 7,6 procent. Året innan var bristen 12,3 procent. Antalet intensivvårdsplatser räckte i stort sett för behovet. Främsta orsaken till bristen är brist på sjuksköterskor, inte lokaler. I Läkarförbundets enkät till medlemmar (mars 2026) uppgav nära var fjärde läkare att de varje vecka skriver ut patienter för tidigt på grund av vårdplatsbrist.</p></div>
+        <div><h3>Vårdplatser över tid</h3><p class="sv-st">3,6 → 1,9 <small>per 1 000, 2000–2022</small></p><p>Världsbanken. Sverige hade lägst antal sjukhussängar per invånare i EU även 2024 (Eurostat hlth_rs_bds1: 1,9, EU-snittet 5,1).</p></div>
+        <div><h3>Läkare per 1 000 invånare</h3><p class="sv-st">4,7 <small>2024, Eurostat</small></p><p>I den internationella jämförelsen (Världsbanken, 2021) hade Sverige 4,4 läkare per 1 000 invånare, mot OECD-snittet 3,8. Läkartätheten är högst i Uppsala och Västerbotten och lägst i Norrbotten (Socialstyrelsen, 2024).</p></div>
       </div>
       <div data-jmf="sjukvard:7"></div>
       <p class="ft-source">Källor: Eurostat (vårdplatser och läkare), Världsbanken WDI, Socialstyrelsen (Nationell analys av riktvärden och målsatta mått, juni 2026; tillgång till vårdpersonal, mars 2024), Läkarförbundet (enkät om vårdplatsbrist, mars 2026), IVO.</p>
@@ -2262,10 +2274,10 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="sjukv-utfall">
       <p class="sv-intro">Här jämförs hur det går för patienter med allvarliga sjukdomar. Dödligheten vid hjärtinfarkt och stroke är lägre i Sverige än OECD-snittet, och den dödlighet som vården kan förhindra är bland de lägsta i Europa. Överlevnaden i bröst-, tjocktarms- och ändtarmscancer är över OECD-snittet. Dödlighet påverkas inte bara av vården utan också av levnadsvanor, ålder och inkomster i befolkningen.</p>
       <div class="sv-par sv-par4">
-        <div><h4>Bröstcancer, överlevnad efter fem år</h4><p class="sv-st">93 % <small>2020, Socialstyrelsen</small></p><p>Relativ femårsöverlevnad enligt svensk statistik. Upptäcks cancern i stadium I överlever drygt 99 procent, i stadium IV cirka 29 procent. Alla regioner erbjuder mammografi till kvinnor 40–74 år. Den svenska siffran räknas på ett annat sätt än i internationella jämförelser och kan inte ställas mot dem. I OECD:s jämförelse, med samma metod för alla länder (diagnos 2010–2014), låg Sverige på 88,8 procent och OECD-snittet på 84,3; se diagrammen nedan.</p></div>
-        <div><h4>Hjärtinfarkt, dödlighet inom 30 dagar</h4><p class="sv-st">3,4 % <small>2023</small></p><p>Dödsfall inom 30 dagar under samma sjukhusvistelse, personer 45 år och äldre. OECD-snitt 6,5 procent (Health at a Glance 2025). Siffran räknar bara dödsfall på det sjukhus där patienten lades in. Följer man patienten även efter utskrivning dog 6,4 procent i Sverige 2023; Norge och Island låg lägre, Danmark ungefär lika och Finland högre (OECD, länkade data). Räknas även de som dör innan de når sjukhus avled 21 procent inom 28 dagar (Socialstyrelsen, 2024).</p></div>
-        <div><h4>Stroke, dödlighet inom 30 dagar</h4><p class="sv-st">4,9 % <small>2023</small></p><p>Ischemisk stroke, dödsfall inom 30 dagar på sjukhus. OECD-snitt 7,7 procent (Health at a Glance 2025). Följer man patienten även efter utskrivning dog 9,5 procent i Sverige 2023; Norge och Danmark låg lägre och Finland ungefär lika (OECD, länkade data). Räknas alla strokefall in, även dödsfall utanför sjukhus, avled 22 procent inom 28 dagar 2024 (Socialstyrelsen).</p></div>
-        <div><h4>Spädbarnsdödlighet</h4><p class="sv-st">2,0 <small>per 1 000 levande födda, 2024</small></p><p>Döda före ett års ålder (FN:s IGME via Världsbanken). <a href="#jmf-sjukvard-4">Jämförelsen med de sex andra länderna</a> finns i jämförelsen ovan.</p></div>
+        <div><h3>Bröstcancer, överlevnad efter fem år</h3><p class="sv-st">93 % <small>2020, Socialstyrelsen</small></p><p>Relativ femårsöverlevnad enligt svensk statistik. Upptäcks cancern i stadium I överlever drygt 99 procent, i stadium IV cirka 29 procent. Alla regioner erbjuder mammografi till kvinnor 40–74 år. Den svenska siffran räknas på ett annat sätt än i internationella jämförelser och kan inte ställas mot dem. I OECD:s jämförelse, med samma metod för alla länder (diagnos 2010–2014), låg Sverige på 88,8 procent och OECD-snittet på 84,3; se diagrammen nedan.</p></div>
+        <div><h3>Hjärtinfarkt, dödlighet inom 30 dagar</h3><p class="sv-st">3,4 % <small>2023</small></p><p>Dödsfall inom 30 dagar under samma sjukhusvistelse, personer 45 år och äldre. OECD-snitt 6,5 procent (Health at a Glance 2025). Siffran räknar bara dödsfall på det sjukhus där patienten lades in. Följer man patienten även efter utskrivning dog 6,4 procent i Sverige 2023; Norge och Island låg lägre, Danmark ungefär lika och Finland högre (OECD, länkade data). Räknas även de som dör innan de når sjukhus avled 21 procent inom 28 dagar (Socialstyrelsen, 2024).</p></div>
+        <div><h3>Stroke, dödlighet inom 30 dagar</h3><p class="sv-st">4,9 % <small>2023</small></p><p>Ischemisk stroke, dödsfall inom 30 dagar på sjukhus. OECD-snitt 7,7 procent (Health at a Glance 2025). Följer man patienten även efter utskrivning dog 9,5 procent i Sverige 2023; Norge och Danmark låg lägre och Finland ungefär lika (OECD, länkade data). Räknas alla strokefall in, även dödsfall utanför sjukhus, avled 22 procent inom 28 dagar 2024 (Socialstyrelsen).</p></div>
+        <div><h3>Spädbarnsdödlighet</h3><p class="sv-st">2,0 <small>per 1 000 levande födda, 2024</small></p><p>Döda före ett års ålder (FN:s IGME via Världsbanken). <a href="#jmf-sjukvard-4">Jämförelsen med de sex andra länderna</a> finns i jämförelsen ovan.</p></div>
       </div>
       <div data-jmf="sjukvard:4"></div>
       <div data-jmf="sjukvard:8"></div>
@@ -2279,9 +2291,9 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="sjukv-tillganglighet">
       <p class="sv-intro">Vårdgarantin anger 0–3–90–90: kontakt med vården samma dag, medicinsk bedömning i primärvården inom 3 dagar, besök i den specialiserade vården inom 90 dagar och behandling inom 90 dagar efter beslut. Länderna mäter väntetider på olika sätt, så här jämförs bara de som mäter likadant.</p>
       <div class="sv-par">
-        <div><h4>Medicinsk bedömning i primärvården inom 3 dagar</h4><p class="sv-st">91 % <small>aug 2026</small></p><p>Andel av patienterna som fick en medicinsk bedömning inom vårdgarantins tre dagar, hela landet (Socialstyrelsen).</p></div>
-        <div><h4>Operation eller åtgärd inom 90 dagar</h4><p class="sv-st">63 % <small>aug 2026</small></p><p>Andel operationer och åtgärder som genomfördes inom 90 dagar efter beslut. Resten, drygt en av tre, väntade längre än garantin anger (Socialstyrelsen).</p></div>
-        <div><h4>Väntetid till höftledsoperation</h4><p class="sv-st">82 dagar <small>median, 2023</small></p><p>Från specialistbedömning till operation. Danmark 49, Finland 134 och Norge 176 dagar. Tyskland och USA mäter inte på samma sätt (OECD Health Statistics).</p></div>
+        <div><h3>Medicinsk bedömning i primärvården inom 3 dagar</h3><p class="sv-st">91 % <small>aug 2026</small></p><p>Andel av patienterna som fick en medicinsk bedömning inom vårdgarantins tre dagar, hela landet (Socialstyrelsen).</p></div>
+        <div><h3>Operation eller åtgärd inom 90 dagar</h3><p class="sv-st">63 % <small>aug 2026</small></p><p>Andel operationer och åtgärder som genomfördes inom 90 dagar efter beslut. Resten, drygt en av tre, väntade längre än garantin anger (Socialstyrelsen).</p></div>
+        <div><h3>Väntetid till höftledsoperation</h3><p class="sv-st">82 dagar <small>median, 2023</small></p><p>Från specialistbedömning till operation. Danmark 49, Finland 134 och Norge 176 dagar. Tyskland och USA mäter inte på samma sätt (OECD Health Statistics).</p></div>
       </div>
       <p class="ft-source">Källor: Socialstyrelsen, <a href="https://socialstyrelsen.se/statistik-och-data/statistik/alla-statistikamnen/lagesbild-och-statistik-tillganglighet-vantetider-och-vardgaranti-i-halso-och-sjukvard/" target="_blank" rel="noopener">Lägesbild och statistik – tillgänglighet, väntetider och vårdgaranti</a> (augusti 2026); OECD Health Statistics (väntetider för planerade operationer). Mer om väntetiderna i <a href="#hist-vardidag">Framtid och historik</a>.</p>
     </div>
@@ -2320,12 +2332,12 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel on" id="ft-befolkning"><span id="ft-demo"></span><span id="hist-demografi"></span>
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">80+ år: snabb ökning</div>
+          <h3 class="ft-card-title">80+ år: snabb ökning</h3>
           <div class="ft-big">+26 %<sub> till 2030</sub></div>
           <div class="ft-desc">Från cirka 648 000 (2024) till cirka 817 000 (2030). 40-talisterna fyller 80 under 2020-talet, och det är den åldersgrupp som använder mest vård och omsorg. Källa: SCB, Sveriges framtida befolkning 2026–2070.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Försörjningskvoten stiger</div>
+          <h3 class="ft-card-title">Försörjningskvoten stiger</h3>
           <div class="ft-big">0,77 → 0,89<sub> (2025→2070)</sub></div>
           <div class="ft-desc">I dag går det 77 barn och äldre på 100 personer i arbetsför ålder. År 2070 väntas det vara 89 (SCB).</div>
         </div>
@@ -2353,7 +2365,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <p class="ft-source">Källor: SCB Befolkningsframskrivning 2026–2070, SCB nationalräkenskaperna.</p>
           <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Medellivslängd</div>
+          <h3 class="ft-card-title">Medellivslängd</h3>
           <div class="ft-big">85,6 / 82,5<sub> år (kvinnor/män, 2025)</sub></div>
           <div class="ft-desc">Medellivslängden vid födseln 2025 (SCB). Längre liv innebär fler år med vård och omsorg.</div>
         </div>
@@ -2366,17 +2378,17 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="ft-vard"><span id="hist-sjukvard"></span><span id="hist-vardidag"></span>
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Sjukvårdsutgifter (% av BNP)</div>
+          <h3 class="ft-card-title">Sjukvårdsutgifter (% av BNP)</h3>
           <div class="ft-big">11,2%<sub> (2023)</sub></div>
           <div class="ft-desc">Sverige lägger 11,2% av BNP på hälso- och sjukvård — högst i Norden som andel av BNP. Per invånare lägger Norge mer.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Personalkostnader</div>
+          <h3 class="ft-card-title">Personalkostnader</h3>
           <div class="ft-big">45 %<sub> av regionernas kostnader (2024)</sub></div>
           <div class="ft-desc">Löner och andra personalkostnader är 45 % av regionernas verksamhetskostnader, och köpt verksamhet ytterligare 20 % (SKR, Regionen i siffror 2025). När lönerna ökar snabbare än priserna blir vården dyrare att producera.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Vårdplatser per 1 000 inv</div>
+          <h3 class="ft-card-title">Vårdplatser per 1 000 inv</h3>
           <div class="ft-big">1,9<sub> (2022)</sub></div>
           <div class="ft-desc">Lägst i EU. År 2000 hade Sverige 3,6 vårdplatser/1 000 inv. Sedan 1990-talet har mer vård flyttats till öppenvården. Färre platser ger mindre marginal när behovet ökar, till exempel under en pandemi.</div>
         </div>
@@ -2387,12 +2399,12 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Medicinsk bedömning i primärvården inom 3 dagar</div>
+          <h3 class="ft-card-title">Medicinsk bedömning i primärvården inom 3 dagar</h3>
           <div class="ft-big">91 %<sub> (aug 2026)</sub></div>
           <div class="ft-desc">Andel av patienterna som fick en medicinsk bedömning inom vårdgarantins tre dagar, hela landet.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Operation eller åtgärd inom 90 dagar</div>
+          <h3 class="ft-card-title">Operation eller åtgärd inom 90 dagar</h3>
           <div class="ft-big">63 %<sub> (aug 2026)</sub></div>
           <div class="ft-desc">Andel operationer och åtgärder som genomfördes inom 90 dagar efter beslut. Resten, drygt en av tre, väntade längre än garantin anger.</div>
         </div>
@@ -2404,17 +2416,17 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="ft-skola"><span id="hist-utbildning"></span>
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Utbildningsutgifter (% av BNP)</div>
+          <h3 class="ft-card-title">Utbildningsutgifter (% av BNP)</h3>
           <div class="ft-big">5,3 %<sub> (2022, OECD EAG)</sub></div>
-          <div class="ft-desc">Utgifter för utbildningsinstitutioner från grundskola till högskola, alla finansieringskällor (OECD:s definition). OECD-snittet är 4,7 procent, så Sverige ligger cirka 13 procent högre. Med det bredare COFOG-måttet, som även omfattar förskola, låg den offentliga sektorns utbildningsutgifter på 7,2 procent av BNP 2024 (EU-snitt 4,7 procent, Eurostat).</div>
+          <div class="ft-desc">Utgifter för utbildningsinstitutioner från grundskola till högskola, alla finansieringskällor (OECD:s definition). OECD-snittet är 4,7 procent, så Sverige ligger cirka 13 procent högre. Med det bredare COFOG-måttet, som även omfattar förskola, låg den offentliga sektorns utbildningsutgifter på 7,2 procent av BNP 2024 (EU-snitt 4,7 procent, Eurostat gov_10a_exp).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">PISA-trend 2003–2025</div>
+          <h3 class="ft-card-title">PISA-trend 2003–2025</h3>
           <div class="ft-big">464<sub> p matematik (2025)</sub></div>
           <div class="ft-desc">Sverige sjönk kraftigt 2003–2012, återhämtade sig 2015–2018, men föll åter i PISA 2025: matematik −18 poäng och läsning −21 poäng sedan 2022. Det är Sveriges lägsta resultat i PISA hittills (Skolverket). Ligger nu i nivå med OECD-snittet (matematik 463), under Finland (469) och Danmark (471). Nedgången är bred i OECD.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Lärarbrist 2038</div>
+          <h3 class="ft-card-title">Lärarbrist 2038</h3>
           <div class="ft-big">10 600<sub> saknade lärare</sub></div>
           <div class="ft-desc">Skolverkets Lärarprognos 2024: cirka 145 100 lärare och förskollärare behöver examineras 2024–2038, och cirka 134 500 väntas göra det. Underskottet blir cirka 10 600. Störst brist: förskollärare, speciallärare, yrkeslärare och högstadielärare. Lärarutbildningen behöver +1 000 studenter/år (+7 %).</div>
         </div>
@@ -2425,21 +2437,21 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="ft-skatter"><span id="hist-skatt"></span><span id="ft-finansgap"></span>
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Skattekvot (skatt/BNP)</div>
+          <h3 class="ft-card-title">Skattekvot (skatt/BNP)</h3>
           <div class="ft-big">40,5 %<sub> (2025, prel.)</sub></div>
           <div class="ft-desc">Enligt SCB var skattekvoten 48,6 % år 2000, 40,8 % år 2024 och preliminärt 40,5 % år 2025. Under perioden infördes bland annat jobbskatteavdraget, och förmögenhetsskatten slopades. Bolagsskatten och arbetsgivaravgifterna sänktes också.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Jämförelse: Sverige vs OECD</div>
+          <h3 class="ft-card-title">Jämförelse: Sverige vs OECD</h3>
           <div class="ft-big">41,4 %<sub> mot 34,1 % (2024)</sub></div>
           <div class="ft-desc">Enligt OECD:s beräkning, som skiljer sig något från SCB:s: Sverige 41,4 %, OECD-snittet 34,1 % och Danmark 45,2 % år 2024. Skillnaden mot OECD-snittet har minskat från cirka 15 procentenheter år 2000. Kvoten blir högre i Sverige också för att pension, sjukpenning och andra ersättningar beskattas, och för att pensionsavgiften räknas som skatt; i många länder är ersättningarna skattefria.</div>
         </div>
       </div>
       <div id="hist-skatt-chart" style="margin-top:1.5rem"></div>
-      <p class="ft-source">Källor: <a href="https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en.html" target="_blank" rel="noopener">OECD Revenue Statistics 2025</a>; svensk serie via <a href="https://www.ekonomifakta.se/diagram_och_tabeller/skattekvot-over-tid_1208768.html?view=table" target="_blank" rel="noopener">Ekonomifakta</a>; diagrammet visar OECD:s serie för både Sverige och OECD-snittet.</p>
+      <p class="ft-source">Källor: <a href="https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en.html" target="_blank" rel="noopener">OECD Revenue Statistics 2025</a>: linjediagrammet, Sverige och OECD-snittet (OECD:s serie, även hos <a href="https://www.ekonomifakta.se/diagram_och_tabeller/skattekvot-over-tid_1208768.html?view=table" target="_blank" rel="noopener">Ekonomifakta</a>). Stapeldiagrammet och siffran 40,5 %: SCB, nationalräkenskaperna (skattekvot i procent av BNP), 2024–2025 preliminära.</p>
           <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Regionernas resultat</div>
+          <h3 class="ft-card-title">Regionernas resultat</h3>
           <div class="ft-big">+8,3<sub> mdkr (2025, prel.)</sub></div>
           <div class="ft-desc">Efter underskott 2023 och 2024 (cirka 10 miljarder kronor per år) redovisade regionerna ett samlat överskott på 8,3 miljarder kronor 2025, med stora skillnader mellan regionerna (SCB). Hälso- och sjukvården står för cirka 90 % av regionernas kostnader.</div>
         </div>
@@ -2484,17 +2496,17 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="ft-personal">
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Sjuksköterskor utan arbete</div>
+          <h3 class="ft-card-title">Sjuksköterskor utan arbete</h3>
           <div class="ft-big">ca 12 100<sub> utan arbete (2023)</sub></div>
           <div class="ft-desc">Av 146 800 legitimerade sjuksköterskor under pensionsåldern i Sverige arbetade cirka 12 100 inte alls i november 2023 (Socialstyrelsen). Regionerna rapporterar brist på sjuksköterskor i Socialstyrelsens årliga enkät om tillgången på vårdpersonal. Socialstyrelsen bedömde i juni 2026 att det saknades i genomsnitt 1 191 vårdplatser per dag 2025, främst på grund av sjuksköterskebrist.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Äldreomsorg till 2033</div>
+          <h3 class="ft-card-title">Äldreomsorg till 2033</h3>
           <div class="ft-big">65 600<sub> nya behövs</sub></div>
           <div class="ft-desc">Från 204 000 till 270 000 anställda (+32%). Undersköterskor i äldreomsorgen har en medianlön på 33 500 kr i månaden, 4 800 kr under medianlönen för alla anställda (38 300 kr, SCB 2025).</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Poliser vs mål</div>
+          <h3 class="ft-card-title">Poliser vs mål</h3>
           <div class="ft-big">24 746<sub> poliser dec 2025</sub></div>
           <div class="ft-desc">Målet var 26 200 poliser till 2025, så det saknas cirka 1 450. Antalet ökar: 23 844 i december 2024. 1 978 personer började polisutbildningen 2025, flest hittills (Polismyndighetens årsredovisning 2025).</div>
         </div>
@@ -2518,17 +2530,17 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="ft-panel" id="ft-infra">
       <div class="ft-grid">
         <div class="ft-card">
-          <div class="ft-card-title">Järnväg, underhåll (2026–2037)</div>
+          <h3 class="ft-card-title">Järnväg, underhåll (2026–2037)</h3>
           <div class="ft-big">210<sub> mdkr</sub></div>
           <div class="ft-desc">Regeringens fastställda nationella plan 2026–2037. Underhållsskulden är 91 miljarder kronor. Planen åtgärdar cirka en tiondel till 2037, och målet är att hela skulden ska vara åtgärdad 2050.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Vägar, underhåll (2026–2037)</div>
+          <h3 class="ft-card-title">Vägar, underhåll (2026–2037)</h3>
           <div class="ft-big">354<sub> mdkr</sub></div>
           <div class="ft-desc">Statliga vägar. Utöver underhållet finns 607 miljarder kronor för nya investeringar i väg och järnväg tillsammans. Planen ska enligt regeringen räcka till att åtgärda hela underhållsskulden på vägarna till 2037.</div>
         </div>
         <div class="ft-card">
-          <div class="ft-card-title">Kommunal infrastruktur/år</div>
+          <h3 class="ft-card-title">Kommunal infrastruktur/år</h3>
           <div class="ft-big">230<sub> mdkr/år</sub></div>
           <div class="ft-desc">SKR: skolor, äldreboenden, idrottsanläggningar, klimatanpassning. Det är kommuners och regioners investeringar, inte en fastställd plan. Tio år i samma takt blir cirka 2 300 miljarder kronor.</div>
         </div>
@@ -2783,7 +2795,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <div class="kvitto-par" id="receipt-card" style="display:none">
       <p class="s-eye">Samma lön, två kvitton</p>
       <h3>Det du betalar och det arbetsgivaren betalar</h3>
-      <p>Ditt kvitto visar skatten som dras från lönen och vad den går till. Arbetsgivarens kvitto visar avgifterna som betalas ovanpå lönen. De syns inte på lönebeskedet, men är en del av vad ditt arbete kostar. Ålderspensionsavgiften blir din egen allmänna pension.</p>
+      <p>Ditt kvitto visar inkomstskatten på lönen och vad den går till. Skatten som faktiskt dras enligt skattetabellen blir några tiotal kronor högre, eftersom tabellen också tar med begravningsavgift och public service-avgift. Arbetsgivarens kvitto visar avgifterna som betalas ovanpå lönen. De syns inte på lönebeskedet, men är en del av vad ditt arbete kostar. Ålderspensionsavgiften blir din egen allmänna pension.</p>
       <div class="kvitto-par-grid">
         <div><h4>Arbetstagarens kvitto</h4><div class="kvitto-wrap"><figure class="kvitto" id="kvitto" aria-label="Ditt skattekvitto" style="margin:0"></figure></div></div>
         <div><h4>Arbetsgivarens kvitto</h4><div class="kvitto-wrap"><figure class="kvitto" id="kvitto-ag" aria-label="Arbetsgivarens kvitto" style="margin:0"></figure></div></div>
@@ -2851,7 +2863,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 
     <div style="margin-top:1.8rem;padding:1rem 1.2rem;background:var(--bg2);border-radius:6px;font-size:.78rem;color:var(--ink2);line-height:1.6">
       <strong style="color:var(--ink)">Skatteintäkterna 2026 fördelas så här:</strong>
-      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt, moms och arbetsgivaravgifterna utom ålderspensionsavgiften finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Ålderspensionsavgiften går till pensionssystemet. Den offentliga sektorns samlade utgifter var <strong>3 223 miljarder kronor</strong> 2024 (Eurostat, COFOG). Statsbudgeten 2026 är 1 542 miljarder, men en del av den förs vidare till kommuner och regioner och ska inte räknas två gånger.
+      kommunalskatt + statsbidrag finansierar <strong>kommuner</strong> (skola, omsorg, planering) och <strong>regioner</strong> (sjukvård, kollektivtrafik). Statlig inkomstskatt, moms och arbetsgivaravgifterna utom ålderspensionsavgiften finansierar <strong>statsbudgeten</strong> (försvar, rättsväsen, transfereringar, högre utbildning). Ålderspensionsavgiften och den allmänna pensionsavgiften (7 % av lönen, dras tillsammans med skatten) går till pensionssystemet. Den offentliga sektorns samlade utgifter var <strong>3 223 miljarder kronor</strong> 2024 (Eurostat, COFOG). Statsbudgeten 2026 är 1 542 miljarder, men en del av den förs vidare till kommuner och regioner och ska inte räknas två gånger.
       <a href="#vem-gor-vad" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem;margin-right:1.2rem">→ Vem gör vad: stat, region och kommun</a><a href="#budget" style="color:var(--green);text-decoration:none;font-weight:500;display:inline-block;margin-top:.3rem">→ Se hela budgetfördelningen</a>
     </div>
   </div>
@@ -2889,7 +2901,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <ol class="pk-rad" aria-label="Livets faser: barn, studier, arbete, familj, ålderdom"><li><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-utb);color:var(--k-utb)"><use href="#pk-utb"/></svg><span>Barn</span></li><li><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-utb);color:var(--k-utb)"><use href="#pk-utb"/></svg><span>Studier</span></li><li><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-arbete);color:var(--k-arbete)"><use href="#pk-arbete"/></svg><span>Arbete</span></li><li><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-soc);color:var(--k-soc)"><use href="#pk-soc"/></svg><span>Familj</span></li><li><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" style="fill:var(--k-soc);color:var(--k-soc)"><use href="#pk-aldre"/></svg><span>Ålderdom</span></li></ol>
     <p class="s-sub">Som barn tar man emot mer än man betalar, under arbetslivet tvärtom, och som äldre vänder det igen. Förmånerna gäller 2024, och skatten är räknad med 2026 års regler på 2024 års inkomster.</p>
 
-    <p style="font-size:.78rem;color:var(--ink2);line-height:1.6;margin:.8rem 0 0">Förmånerna är skola, vård, omsorg och ersättningar. Skatten är inkomstskatt, arbetsgivaravgift och moms. Gemensamma utgifter som försvar och vägar ingår inte, och inte heller inkomstpensionen, som betalas med egna avgifter.</p>
+    <p style="font-size:.78rem;color:var(--ink2);line-height:1.6;margin:.8rem 0 0">Förmånerna är skola, vård, omsorg och ersättningar. Skatten är inkomstskatt, arbetsgivaravgift och moms, utan pensionsavgifterna. Gemensamma utgifter som försvar och vägar ingår inte, och inte heller inkomstpensionen, som betalas med egna avgifter.</p>
 
     <!-- Livsloppet: befolkningsdiagram per åldersgrupp (LIVSLOPP_BEF), punkt för läsaren. -->
     <div id="lifecycle-chart" style="margin:1.2rem 0 .4rem"></div>
@@ -2899,12 +2911,12 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Barn (0–18 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Tar emot mer</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Cirka 180 000 kr per år i skola, vård och barnomsorg, i genomsnitt.</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Cirka 185 000 kr per år i skola, vård och barnomsorg, i genomsnitt.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Yrkesliv (26–64 år)</div>
         <div style="font-size:.92rem;color:var(--ink);font-weight:500;line-height:1.3">Betalar mer</div>
-        <div style="font-size:.75rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 115 000–185 000 kr mer i skatt än man tar emot per år. 19–25-åringar tar i snitt emot lite mer än de betalar.</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.25rem;line-height:1.45">Betalar i genomsnitt 85 000–155 000 kr mer i skatt än man tar emot per år (utan pensionsavgifterna). 19–25-åringar tar i snitt emot lite mer än de betalar.</div>
       </div>
       <div style="padding:.9rem 1rem;background:var(--bg2);border-radius:5px">
         <div style="font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem">Pension (65+ år)</div>
@@ -2918,9 +2930,9 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       <div style="font-size:.75rem;color:var(--ink3);margin-top:.4rem;padding:.6rem .8rem;background:var(--bg2);border-radius:4px;line-height:1.7">
         <strong>Modell:</strong> Förmånerna är genomsnitt per åldersgrupp. Sjukvård, socialt skydd och äldreomsorg är kalibrerade så att summan över befolkningen 2024 stämmer med de faktiska utgifterna (Eurostat COFOG: hälso- och sjukvård 474 mdkr; Kolada: äldreomsorg 166 mdkr; socialt skydd utom äldreomsorg och inkomstpension cirka 694 mdkr). Åldersprofilen för sjukvård följer NTA-metoden. Utbildning bygger på kostnad per elev och student (Skolverket, UKÄ 2025). Skatt: Skatteverkets regler 2026 med kommunalskatt 32,38 % (rikssnitt), statlig skatt 20 % över brytpunkten, arbetsgivaravgift 21,21 % utan pensionsavgift (för den som är född 1958 eller tidigare betalas bara pensionsavgiften, som inte räknas som skatt här), moms cirka 13–16 % av det man handlar för (antagande: sparkvot 5–25 % och effektiv momssats 14,5–18,5 % beroende på inkomst).<br><br>
         <strong>Pensionärsskatt:</strong> förhöjt grundavdrag och inget jobbskatteavdrag på pension. På pension betalas ingen arbetsgivaravgift. Modellen antar att inkomsten efter 65 är pension. Den som är född 1959 eller tidigare får ett förhöjt jobbskatteavdrag på lön, som modellen räknar med när inkomsten anges som lön. <br><br>
-        <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 713 mdkr och skatter 1 575 mdkr; skillnaden beror främst på att momsen är en försiktig uppskattning.<br><br>
+        <strong>Livsloppsdiagrammet:</strong> modellens skatt på SCB:s faktiska inkomster 2024 (per ettårsålder och inkomstklass) och modellens förmåner, per invånare i varje åldersgrupp. Summa förmåner 1 718 mdkr och skatter 1 415 mdkr; summorna ska inte vara lika stora, eftersom förmånerna också betalas med skatter som inte finns med här (bolagsskatt, punktskatter, kapital- och fastighetsskatt). Den allmänna pensionsavgiften (7 % av lönen, cirka 160 mdkr) är inte med, eftersom den blir egen pension, precis som inkomstpensionen inte räknas som förmån.<br><br>
         <strong>Osäkerhet:</strong> momsen (konsumtionen är ett antagande), kommunalskatten (28,9–35,7 % beroende på kommun) och framför allt att förmånerna är genomsnitt.<br><br>
-        <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). Inkomstskatten följer Skatteverkets regler och stämmer med skattetabell 32 på någon krona när; momsen är en uppskattning. Intervallen är en <strong>bedömning</strong>, inte formella konfidensintervall.
+        <strong>Osäkerhetsintervallens grund:</strong> ±20–25 % på förmåner speglar variationskoefficienten i SCB FASIT:s decildata och SKR KPP:s regionala spridning, dominerad av NTA-viktningen av sjukvård (±25 %). Inkomstskatten följer Skatteverkets regler. Skattetabellens avdrag blir några tiotal kronor högre, eftersom tabellen också tar med begravningsavgift och public service-avgift (modellen själv är kontrollerad mot tabell 32 med de avgifterna inräknade, på en krona när). Momsen är en uppskattning. Intervallen är en <strong>bedömning</strong>, inte formella konfidensintervall.
       </div>
     </details>
   </div>
@@ -2954,7 +2966,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       </div>
       <div>
         <h3 class="isk-h">Vad blir skatten?</h3>
-        <div class="isk-tbl-wrap"><table class="isk-tbl">
+        <div class="isk-tbl-wrap" tabindex="0" role="region" aria-label="Tabell: skatt på ISK, rulla i sidled"><table class="isk-tbl">
           <thead><tr><th>Värde på ISK</th><th>Skatt 2026</th><th>Skatt 2025</th><th>2026 utan skattefri nivå</th></tr></thead>
           <tbody>
             <tr><td>100 000 kr</td><td><b>0 kr</b></td><td>0 kr</td><td>1 065 kr</td></tr>
@@ -2968,7 +2980,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 
     <h3 class="isk-h">Jämförelse: vanlig depå och Danmark</h3>
     <p class="isk-not" style="margin-top:0">Exempel: 300 000 kr i aktier eller aktiefonder som ger 7 % på ett år, alltså 21 000 kr. Egen beräkning. Danska belopp omräknade med 1 DKK = ca 1,49 kr (Riksbanken, oktober 2026).</p>
-    <div class="isk-tbl-wrap"><table class="isk-tbl">
+    <div class="isk-tbl-wrap" tabindex="0" role="region" aria-label="Tabell: ISK jämfört med direktägt sparande, rulla i sidled"><table class="isk-tbl">
       <thead><tr><th>Sparform</th><th>Så beskattas det</th><th>Skatt det året</th></tr></thead>
       <tbody>
         <tr><td>ISK, Sverige</td><td>1,065 % av värdet över 300 000 kr</td><td><b>0 kr</b></td></tr>
@@ -3014,7 +3026,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <p class="s-sub">Alla beräkningar går att göra om. Koden och modellen är öppna på GitHub (MIT-licens).</p>
     <div class="metod-grid">
       <div class="step-list">
-        <div class="step"><span class="step-n">01</span><div><div class="step-t">Vi räknar på hela den offentliga sektorn</div><div class="step-d">Utgångspunkten är allt som stat, kommuner, regioner och pensionssystemet gör av med: 3 223 miljarder kronor 2024 (Eurostat). Inkomstpensionen (364 miljarder) betalas med pensionsavgifter, så kvittona fördelar skatten på resten, 2 859 miljarder. Statens budget för 2026 är 1 542 miljarder kronor.</div></div></div>
+        <div class="step"><span class="step-n">01</span><div><div class="step-t">Vi räknar på hela den offentliga sektorn</div><div class="step-d">Utgångspunkten är allt som stat, kommuner, regioner och pensionssystemet gör av med: 3 223 miljarder kronor 2024 (Eurostat). Inkomstpensionen (364 miljarder) betalas med pensionsavgifter, så kvittona fördelar skatten på resten, 2 859 miljarder. Den allmänna pensionsavgiften, 7 % av lönen, dras tillsammans med skatten men blir egen pension; den står som en egen rad på kvittona och räknas inte in när vi jämför skatt och förmåner. Statens budget för 2026 är 1 542 miljarder kronor.</div></div></div>
         <div class="step"><span class="step-n">02</span><div><div class="step-t">Det du får tillbaka beror bara på din ålder</div><div class="step-d">Beloppen för skola, vård, omsorg och ersättningar bygger på kostnad per elev och student (Skolverket, UKÄ), Försäkringskassans statistik och åldersprofiler för vården. Summerat över hela befolkningen stämmer vård, äldreomsorg och socialt skydd med vad de kostade 2024 (Eurostat och Kolada); utbildningen stämmer ungefär. Alla i samma ålder får samma belopp. Modellen tar inte hänsyn till inkomst, hushåll eller var du bor.</div></div></div>
         <div class="step"><span class="step-n">03</span><div><div class="step-t">Vi visar ett år i taget</div><div class="step-d">Kalkylatorn visar vad du betalar och tar emot under ett år. Livsloppet visar hur det ser ut i olika åldrar, men beloppen är inte justerade för inflation eller ränta. Det visar mönstret, inte en exakt summa.</div></div></div>
         <div class="step"><span class="step-n">04</span><div><div class="step-t">Livsloppet visar ett mönster, inte en skuld</div><div class="step-d">Barn och äldre använder mer skola, vård och omsorg än de som arbetar. Det syns tydligt i SCB:s statistik. Det betyder inte att någon har en skuld till samhället. Välfärden fungerar mer som en gemensam försäkring än som ett sparkonto. Vilka slutsatser man drar av det är en politisk fråga.</div></div></div>
@@ -3025,7 +3037,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
         <div class="src-list">
           <div class="src-card"><div class="src-head"><span class="src-name">SCB, FASIT: vem använder välfärden, 2022</span><span class="src-badge">CC0</span></div><div class="src-desc">Hur skola, vård, omsorg och ersättningar fördelas på olika åldrar. Används för vad du får tillbaka.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">Eurostat, offentliga utgifter efter ändamål (COFOG), 2024</span><span class="src-badge">CC BY 4.0</span></div><div class="src-desc">Vad hela den offentliga sektorn gjorde av med 2024, 3 223 miljarder kronor, uppdelat på socialt skydd, vård, utbildning med mera. Används för kvittona och hundralappen.</div></div>
-          <div class="src-card"><div class="src-head"><span class="src-name">Skolverket, kostnader för skolväsendet 2025</span><span class="src-badge">Offentlig</span></div><div class="src-desc">Ett år i grundskolan kostar 143 000 kr per elev, gymnasiet 148 100 kr och kommunal förskola 199 200 kr per barn. Publicerad i oktober 2026.</div></div>
+          <div class="src-card"><div class="src-head"><span class="src-name">Skolverket, kostnader för skolväsendet 2025</span><span class="src-badge">Offentlig</span></div><div class="src-desc">Ett år i grundskolan kostar 146 900 kr per elev, gymnasiet 148 100 kr och kommunal förskola 199 200 kr per barn. Publicerad i oktober 2026.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">SKR, kostnad per patient och Sektorn i siffror 2024</span><span class="src-badge">Offentlig</span></div><div class="src-desc">Vad vård kostar per patient och behandling, och vad kommuner och regioner lägger på varje verksamhet.</div></div>
           <div class="src-card"><div class="src-head"><span class="src-name">Ekonomistyrningsverket (numera Statskontoret) och budgetpropositionen 2026</span><span class="src-badge">CC0</span></div><div class="src-desc">Vad staten har gett ut per utgiftsområde sedan 1995, och budgeten för 2026 (prop. 2025/26:1). Används för Budgeten.</div></div>
         </div>
@@ -3064,6 +3076,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 <section class="quote-section" id="citat">
   <div class="container">
     <p class="big-q">"Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt."</p>
+    <p class="big-q-avs">Skatteplattformens utgångspunkt. <a href="#sa-arbetar-vi">Så skiljer vi den från siffrorna</a></p>
   </div>
 </section>
 
@@ -3083,11 +3096,15 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       </div>
       <div class="policy-del">
         <h3>Neutralitet</h3>
-        <p>Vi tar inte ställning i politiska frågor och har inga annonsörer eller partibidrag. Vi försöker skriva utan värderande ord. När ett mått kan tolkas på olika sätt förklarar vi hur det mäts. Internationella jämförelser visar alltid samma länder, med en källa och ett år per diagram.</p>
+        <p>Vi tar inte ställning i politiska frågor och har inga annonsörer eller partibidrag. Sajten har en utgångspunkt som vi säger öppet: skatten är gemensam och går till andra än en själv, som i citatet om samhällskontraktet. Hur hög skatten ska vara och vad den ska gå till tar vi inte ställning till. Vi försöker skriva utan värderande ord. När ett mått kan tolkas på olika sätt förklarar vi hur det mäts. Internationella jämförelser visar alltid samma länder, med en källa och ett år per diagram.</p>
       </div>
       <div class="policy-del">
         <h3>Beräkningar</h3>
         <p>Skattemodellen och alla beräkningar är öppna på <a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">GitHub</a>. Före varje publicering kontrolleras skattemodellen mot Skatteverkets skattetabeller, och ett skript letar efter gamla värden och siffror utan källa. Där vi gör egna beräkningar skriver vi det. Hela metoden, med alla regler, källor och kända begränsningar, finns i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/docs/METODRAPPORT.md" target="_blank" rel="noopener">metodrapporten</a>.</p>
+      </div>
+      <div class="policy-del">
+        <h3>AI-stöd</h3>
+        <p>Texter, kod och sammanställningar tas fram med hjälp av en AI-assistent (Claude, från Anthropic). Varje siffra kontrolleras mot den källa som anges, skattemodellen prövas mot Skatteverkets tabeller före varje publicering, och sajten har granskats av experter i olika roller (statistik, ekonomi, neutralitet, tillgänglighet). Ansvaret för innehållet är Wilhelm Wennergrens.</p>
       </div>
       <div class="policy-del">
         <h3>Uppdateringar</h3>
@@ -3099,7 +3116,7 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
       </div>
       <div class="policy-del">
         <h3>Vem står bakom</h3>
-        <p>Skatteplattformen drivs av Wilhelm Wennergren, utan extern finansiering. Text, siffror och diagram får användas fritt med källhänvisning (CC BY 4.0).</p>
+        <p>Skatteplattformen drivs av Wilhelm Wennergren, utan extern finansiering. Wilhelm Wennergren är ansvarig för innehållet; sajten har inget utgivningsbevis. Text, siffror och diagram får användas fritt med källhänvisning (CC BY 4.0).</p>
       </div>
     </div>
   </div>
@@ -3112,6 +3129,8 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
     <h2 class="s-title">Rättelser</h2>
     <p class="s-sub">Fel i siffror eller beräkningar som har rättats, nyast först. Mindre språkliga ändringar redovisas i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">ändringsloggen</a>.</p>
     <ol class="rattelser" reversed>
+      <li><time datetime="2026-11-14">14 nov 2026</time><div><b>Expertgranskningen, rättelser och beslut</b>Den allmänna pensionsavgiften (7 % av lönen) dras tillsammans med skatten men blir egen pension. Den fördelades ändå som om den betalade vård, skola och försvar. Nu står den som en egen rad överst på kvittona, och bara resten fördelas (medianlön: 2 683 kr pension, 5 009 kr fördelat). Den räknas inte heller när skatt jämförs med förmåner (Din ekonomi, livsloppet, livssituationerna, skattetiden); livsloppets skatt per åldersgrupp är omräknad (SCB 2024). Grundskolan kostar 146 900 kr per elev med skolskjuts, samma bas som gymnasiets 148 100 kr (var 143 000 kr utan skolskjuts). Räntekostnaden jämförs budget mot budget (28,8 → 27,0 miljarder); utfallet 2025 var 30,1 miljarder för statsskuldsräntorna. Sjukvårdsrubriken sa "bland de lägsta dödstalen som vården kan förhindra"; Sverige är trea av sex länder med data, så rubriken säger nu bara längst medellivslängd. Källänkar som ledde till fel dokument är rättade (Eurostat april i stället för oktober 2026, Skatteverkets tekniska beskrivning för ISK). Danmarks skuld 27,2 % (var 27,9 %). Småfel: särskilt boende 1 122 400 kr, sjukpenningens faktor 0,97, barnbidragets köpkraft drygt 20 % lägre (var 25 %), skattekvotens källrad. Jämförelsernas sammanfattning räknar varje fenomen en gång och har fått arbetslöshet, skattekvot och PISA läsning.</div></li>
+      <li><time datetime="2026-11-14">14 nov 2026</time><div><b>Expertgranskningen, tydliga fel</b>Filmen fördelade skatten fel: kommunen och regionen får hela kommunalskatten (medianlön: ca 7 600 och 4 300 kr), medan staten betalar jobbskatteavdraget (staten ca 5 100 kr) och den allmänna pensionsavgiften går till pensionen (ca 6 600 kr). Kalkylatorn visade 0 kr i skatt för alla under 19 år; nu räknas skatt från 15 år. Texten om att kvittots skatt "stämmer med skattetabell 32" är förtydligad: tabellen tar också med begravnings- och public service-avgift. "Över livet jämnas flödena ut" är struket, eftersom livsloppet inte visar det. Kollektivtrafikens finansiering och citatets ordalydelse i Din ekonomi är rättade.</div></li>
       <li><time datetime="2026-11-13">13 nov 2026</time><div><b>Vårdens utfall</b>Hjärtinfarkt (3,4 %) och stroke (4,9 %) räknar bara dödsfall på det sjukhus där patienten lades in; följer man patienten även efter utskrivning blir det 6,4 och 9,5 % (OECD). Det står nu i korten. Socialstyrelsens bröstcancersiffra (93 %) räknas på ett annat sätt än OECD:s och ställs inte längre mot OECD-snittet. Sjukvårdens rubrik säger "bland de lägsta dödstalen som vården kan förhindra" i stället för "lägst undvikbar dödlighet", eftersom Sveriges låga undvikbara dödlighet främst beror på den del som kan förebyggas med levnadsvanor.</div></li>
       <li><time datetime="2026-11-05">5 nov 2026</time><div><b>Utbildning för 35–44-åringar</b>Modellen gav 35–44-åringar 42 000 kr per år i utbildning. Det var deras barns skolgång, som redan räknas hos barnen, så cirka 52 miljarder kronor räknades två gånger. Nu är beloppet 5 000 kr, egen vuxenutbildning som för grannåldrarna. I livsloppet tar 35–44-åringar emot 128 000 kr per person och år i stället för 165 000, och de betalar i snitt cirka 115 000 kr mer än de tar emot.</div></li>
       <li><time datetime="2026-11-05">5 nov 2026</time><div><b>Statistikgranskningen, andra svepet</b>Mindre rättelser i alla vyer. EU:s skuld är 81,5 % av BNP 2025 (Eurostat oktober 2026). 190 riktade statsbidrag 2025, inte 163. Korruptionsindex 2025. Befolkningsframskrivningen 2026: cirka 817 000 personer över 80 år 2030 (+26 %). Personalkostnaderna är 45 % av regionernas kostnader, inte 65 %. Cirka 11–13 % av de skattskyldiga betalar statlig skatt, inte 15 % av löntagarna. Sjuksköterskor: cirka 12 100 under pensionsåldern arbetade inte 2023; "13 000 utanför vården" gick inte att belägga. Barnvaccinationen skyddar mot 12 sjukdomar och betalas av regionerna. Flerbarnstillägget är ett belopp per familj. Prislappen för KOL är borttagen eftersom beloppen inte gick att belägga. Räntorna minskar 6 % budget mot budget, inte 12 %. Ungdomsnedsättningen av arbetsgivaravgiften räknas från april. Filtret "Välfärdsområden" tar med arbetsmarknad men inte vägar.</div></li>
@@ -3170,29 +3189,10 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 </section>
 
 <!-- OM OSS -->
-<section id="om-oss" aria-label="Om Skatteplattformen" style="padding:3rem 0;background:var(--bg2)">
+<section id="om-oss" aria-label="Om Skatteplattformen" style="padding:2.5rem 0;background:var(--bg2)">
   <div class="container">
-    <p class="s-eye">Vilka vi är</p>
-    <h2 class="s-title">Om Skatteplattformen</h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:1.5rem">
-      <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span>Syfte</h3>
-        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen visar vad skatten betalar för och vad saker kostar, så att man inte behöver läsa budgetpropositioner för att förstå det. Varje siffra har källa och år.</p>
-      </div>
-      <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-scales"/></svg></span>Oberoende</h3>
-        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Ingen finansiering utifrån, inga annonser och inga partier eller organisationer bakom. Projektet drivs ideellt och koden är öppen. Vi håller isär siffror och tolkningar.</p>
-      </div>
-      <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></span>Vem står bakom</h3>
-        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatteplattformen drivs av Wilhelm Wennergren. Granskning och synpunkter är välkomna, se <a href="#sa-arbetar-vi" style="color:var(--green)">Så arbetar vi</a>.</p>
-      </div>
-      <div style="background:var(--paper);border-radius:var(--r);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-        <h3 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem"><span style="color:var(--green)"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clipboard"/></svg></span>Vilket år gäller siffrorna?</h3>
-        <p style="font-size:.75rem;color:var(--ink2);line-height:1.6">Skatterna gäller 2026: Skatteverkets regler, kommunalskatterna och statens budget för 2026. Utgifterna för hela den offentliga sektorn gäller 2024, det senaste året med färdig statistik. Datumet överst i varje vy visar när den uppdaterades senast. Alla ändringar finns i <a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener" style="color:var(--green)">ändringsloggen</a>.</p>
-      </div>
-    </div>
-    <p style="font-size:.75rem;color:var(--ink3);margin-top:1.5rem;text-align:center">Har du frågor, hittat ett fel eller vill bidra? Skriv ett ärende på GitHub eller mejla <a href="mailto:wennergrenf@gmail.com" style="color:var(--green)">wennergrenf@gmail.com</a>.</p>
+    <h2 class="s-title" style="font-size:1.3rem">Om Skatteplattformen</h2>
+    <p style="font-size:.85rem;color:var(--ink2);line-height:1.65;max-width:40em">Skatteplattformen är en ideellt driven sida av Wilhelm Wennergren. Den är skapad med hjälp av AI och granskas löpande: varje siffra kontrolleras mot källan, och vem som helst kan rapportera fel via <a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener" style="color:var(--green)">GitHub</a> eller <a href="mailto:wennergrenf@gmail.com" style="color:var(--green)">wennergrenf@gmail.com</a>.</p>
   </div>
 </section>
 
@@ -3211,12 +3211,12 @@ table,td,th,.brow-v,.wbar-v,.wt-v,.fk-row em,.ft-bar-val,.kv-rad,.kv-del,.kv-sum
 // och scrollar dit. #fakta-N, #kapitel-N, #gissa-…, #ordlista och #nyckeltal fungerar som förut.
 // Utan JavaScript visas allt på en sida.
 // ═══════════════════════════════════════════════════════════════════
-const SAJT_UPPDATERAD = '5 november 2026';
+const SAJT_UPPDATERAD = '14 november 2026';
 const VYER = [
   {id:'start',       namn:'Start',               hash:'',          delar:['hero','tldr','hundralapp','snabbfakta','vem-gor-vad']},
   {id:'din-ekonomi', namn:'Din ekonomi',         hash:'kalkylator',delar:['kalkylator','skatter','scenarion','livslopp','sparande'], led:{tal:'4 466 kr', text:'i skatt per månad på en lön på 25 000 kronor, som exempel. Räkna på din egen lön och ålder nedan.', kalla:'Skattemodellen, Skatteverkets regler 2026'}, ingress:'Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.'},
   {id:'budgeten',    namn:'Budgeten',            hash:'budget',    delar:['budget','skuld-forsvar'], led:{tal:'1 542 mdkr', text:'är statsbudgetens utgifter 2026 enligt riksdagens beslut, cirka 145 000 kronor per invånare.', kalla:'Budgetpropositionen 2026'}, ingress:'Statens budget 2026 och hela den offentliga sektorns utgifter, fördelade på områden.'},
-  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'143 000 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 34 verkliga prislappar med källa.'},
+  {id:'prislistan',  namn:'Prislistan',          hash:'pristabell',delar:['pristabell'], led:{tal:'146 900 kr', text:'kostar ett år i grundskolan per elev. Familjen betalar 0 kr.', kalla:'Skolverket, 2025'}, ingress:'Vad kostar en skoldag, ett vårddygn eller en polis? 34 verkliga prislappar med källa.'},
   {id:'jamforelser', namn:'Jämförelser',         hash:'oecd',      delar:['oecd','sjukvard'], led:{tal:'11,2 %', text:'av BNP lägger Sverige på hälso- och sjukvård, mest i Norden.', kalla:'Världsbanken, 2023'}, ingress:'Sverige jämfört med Norden, Tyskland, USA och OECD-snittet, och en närmare titt på sjukvården.'},
   {id:'framtid',     namn:'Framtid och historik',hash:'framtid',   delar:['framtid'], led:{tal:'+26 %', text:'fler personer över 80 år 2030 än 2024, den grupp som behöver mest vård och omsorg.', kalla:'SCB, befolkningsframskrivning'}, ingress:'Utmaningarna de kommande tio åren och hur skatter, skuld och välfärd har förändrats sedan 1980.'},
   {id:'metod',       namn:'Metod och källor',    hash:'metod',     delar:['metod','sensitivitet','citat','sa-arbetar-vi','rattelser','bildkrediter','om-oss'], led:{tal:'Källa + år', text:'för varje siffra, och en öppen logg över allt som har rättats.', kalla:'Så arbetar vi'}, ingress:'Hur siffrorna räknas fram, nyckeltalen med källor, ordlistan och vilka vi är.'},
@@ -3293,7 +3293,7 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
   }
 
   function visa(vyId, scrollMal){
-    const byte = vyId !== aktiv;
+    const byte = vyId !== aktiv, forsta = aktiv === null;
     if(byte){
       aktiv = vyId; window.aktivVy = vyId;
       const pill = document.querySelector('.nav-pill');
@@ -3316,6 +3316,8 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
       else if(byte) window.scrollTo(0, 0);
     };
     requestAnimationFrame(scrolla); setTimeout(scrolla, 80);
+    // Vid vybyte (inte vid första laddningen) flyttas fokus till vyns rubrik, så att skärmläsare läser upp den nya vyn
+    if(byte && !forsta && !scrollMal){ const h = main.querySelector(`[data-vy="${vyId}"] h1`); if(h){ h.tabIndex = -1; setTimeout(() => h.focus({preventScroll:true}), 90); } }
   }
 
   function route(){
@@ -3337,7 +3339,10 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
   route();
   // Vid sidladdning hoppar webbläsaren själv till #id efter vår scroll; gör om scrollen när sidan laddats klart.
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.addEventListener('load', () => { aktiv = null; route(); });
+  // Men inte om läsaren redan har börjat scrolla (långsam anslutning): då behåller vi läget.
+  let egenScroll = false;
+  ['wheel','touchmove','keydown'].forEach(t => addEventListener(t, () => { egenScroll = true; }, {once:true, passive:true}));
+  window.addEventListener('load', () => { if(!egenScroll){ aktiv = null; route(); } });
   window.visaVyFor = id => { const vy = vyFor(id); if(vy) visa(vy, null); };
 })();
 </script>
@@ -3347,13 +3352,13 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
   <div class="sc-modal" role="dialog" aria-modal="true" aria-label="Spara din profil som bild">
     <button type="button" class="sc-close" onclick="closeShareCard()" aria-label="Stäng">✕</button>
     <div class="sc-format" role="group" aria-label="Bildformat">
-      <button type="button" class="sc-fmt on" data-fmt="square" onclick="setScFormat(this,'square')">⬛ Inlägg (1:1)</button>
-      <button type="button" class="sc-fmt" data-fmt="story" onclick="setScFormat(this,'story')">▬ Story (9:16)</button>
+      <button type="button" class="sc-fmt on" data-fmt="square" onclick="setScFormat(this,'square')">Inlägg (1:1)</button>
+      <button type="button" class="sc-fmt" data-fmt="story" onclick="setScFormat(this,'story')">Story (9:16)</button>
     </div>
     <canvas id="sc-canvas" width="1080" height="1080"></canvas>
     <div class="sc-actions">
-      <button class="sc-dl" onclick="downloadShareCard()">⬇ Ladda ner</button>
-      <button class="sc-share" onclick="shareShareCard()">↗ Dela</button>
+      <button class="sc-dl" onclick="downloadShareCard()"><span aria-hidden="true">⬇ </span>Ladda ner</button>
+      <button class="sc-share" onclick="shareShareCard()"><span aria-hidden="true">↗ </span>Dela</button>
     </div>
     <p class="sc-hint">Fyrkantig bild redo för Instagram, Snapchat eller att skicka till en vän.</p>
   </div>
@@ -3362,7 +3367,7 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
 <footer role="contentinfo">
   <div class="container">
     <div class="footer-grid">
-      <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar. Ingen agenda. Bara siffror, med källa.</p></div>
+      <div><div class="footer-logo">Skatte<em>plattformen</em></div><p class="footer-tagline">Oberoende fakta om svenska skattepengar, med källa och år.</p></div>
       <div class="fc"><h2 class="fc-h">Vyer</h2><a href="#pristabell">Prislistan</a><a href="#budget">Budgeten</a><a href="#oecd">Jämförelser</a><a href="#kalkylator">Din ekonomi</a><a href="#framtid">Framtid och historik</a></div>
       <div class="fc"><h2 class="fc-h">Metod</h2><a href="#metod">Metod och källor</a><a href="#nyckeltal">Nyckeltal och källor</a><a href="#ordlista">Ordlista</a><a href="#bildkrediter">Bildkrediter</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Ändringslogg</a></div>
       <div class="fc"><h2 class="fc-h">Om projektet</h2><a href="#om-oss">Om oss</a><a href="#sa-arbetar-vi">Så arbetar vi</a><a href="#rattelser">Rättelser</a><a href="mailto:wennergrenf@gmail.com">Kontakt</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/issues/new" target="_blank" rel="noopener">Rapportera fel</a><a href="https://github.com/Wilhelm-WG/skatteplattformen/blob/main/docs/METODRAPPORT.md" target="_blank" rel="noopener">Metodrapport</a><a href="https://github.com/Wilhelm-WG/skatteplattformen" target="_blank" rel="noopener">Källkod på GitHub</a></div>
@@ -3380,7 +3385,7 @@ const BAS_BESKRIVNING = document.querySelector('meta[name="description"]')?.cont
 // Each amount = total_cost / volume directly from official statistics
 // ═══════════════════════════════════════════════════════════════════
 const CARDS = [
-  {cat:'utb',cl:'Utbildning',title:'Ett år i grundskolan',unit:'per elev och läsår (alla kostnadsslag)',amount:143000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis 6–16 år',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): cirka 143 000 kr per elev 2025, alla huvudmän (undervisning 78 700, lokaler 26 200, övrigt 18 400, skolmåltider 8 200, lärverktyg 6 400, elevhälsa 5 100 kr). Kommunal huvudman 145 300 kr, enskild 131 700 kr.'},
+  {cat:'utb',cl:'Utbildning',title:'Ett år i grundskolan',unit:'per elev och läsår (alla kostnadsslag)',amount:146900,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — obligatorisk och gratis 6–16 år',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): 146 900 kr per elev 2025, alla huvudmän, inklusive skolskjuts (tabell 1, samma bas som gymnasiets 148 100 kr). Delkostnaderna: undervisning 78 700, lokaler 26 200, övrigt 18 400, skolmåltider 8 200, lärverktyg 6 400, elevhälsa 5 100 (summa 143 000) och skolskjuts m.m. cirka 3 900 kr. Exklusive skolskjuts: kommunal huvudman 145 300 kr, enskild 131 700 kr.'},
   {cat:'utb',cl:'Utbildning',title:'Ett år i gymnasiet',unit:'per elev och läsår',amount:148100,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> — frivillig men gratis',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): 148 100 kr per elev 2025, alla huvudmän (144 000 kr exklusive skolskjuts m.m.). Kommunal huvudman 148 400 kr, enskild 132 600 kr. Kostnaden varierar mellan program.'},
   {cat:'utb',cl:'Utbildning',title:'Ett år på högskola / universitetet',unit:'per helårsstudent (genomsnitt alla program)',amount:114000,suf:'kr',vs:'Du betalar: <strong>0 kr</strong> i studieavgift (EU/EES)',src:'UKÄ Årsrapport 2026: utbildning på grund- och avancerad nivå 38,95 mdkr 2025 / 340 900 helårsstudenter = ca 114 000 kr. Lärosätenas totala kostnader, inklusive forskning, var 96,2 mdkr. Läkarprogrammet ca 350 tkr, humaniora ca 80 tkr.'},
   {cat:'utb',cl:'Utbildning',title:'Förskola, ett år',unit:'per inskrivet barn och år, kommunal förskola',amount:199200,suf:'kr',vs:'Maxtaxa: max <strong>1 547 kr/mån</strong> från 1 juli 2026 — kommunen betalar resten',src:'Skolverket, Kostnader för skolväsendet 2025 (okt 2026): kommunernas kostnad för egna förskolor 199 200 kr per inskrivet barn 2025. Ersättningen till fristående förskolor var 172 800 kr per barn. Personalen är den största kostnaden.'},
@@ -3395,13 +3400,13 @@ const CARDS = [
   {cat:'infra',cl:'Infrastruktur',title:'Järnvägsunderhåll, 1 km spår/år',unit:'per spårkm och år',amount:1250000,suf:'kr/km/år',pp:false,vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Trafikverkets underhållsplan: drygt 18 mdkr till järnvägsunderhåll 2026 / cirka 14 400 spårkm = ca 1,25 mnkr per km och år.'},
   {cat:'infra',cl:'Infrastruktur',title:'Sophantering, ett hushåll per år',unit:'per hushåll och år (genomsnitt)',amount:2480,suf:'kr',vs:'Du betalar: <strong>hela kostnaden</strong> via avfallstaxan',src:'Avfall Sverige (Svensk avfallshantering 2024): i snitt 6,80 kr per hushåll och dag, ca 2 480 kr per år. Vanligaste avgift 2025: villa 3 013 kr, lägenhet 1 930 kr per år. Hushållsavfallet betalas med avfallstaxan, som får täcka högst kommunens kostnader (miljöbalken 27 kap.).'},
   {cat:'infra',cl:'Infrastruktur',title:'Räddningstjänsten, per invånare och år',unit:'kommunernas kostnad per invånare',amount:1007,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong> vid en utryckning',src:'Kolada 2025 (SCB): kommunernas räddningstjänst kostar cirka 1 007 kr per invånare, totalt cirka 10,7 mdkr. Räddningstjänsten ryckte ut 109 300 gånger 2025 (MCF). Det mesta av kostnaden är beredskap och förebyggande arbete, så en kostnad per utryckning blir missvisande.'},
-  {cat:'social',cl:'Social trygghet',title:'Barnbidrag per år',unit:'per barn 0–15 år (ett barn)',amount:15000,suf:'kr/år',vs:'Du får: <strong>1 250 kr/mån</strong> (oförändrat sedan 2018 — realt -25%)',src:'Försäkringskassan 2024: 1 250 kr/mån = 15 000 kr/år. UO12 104,2 mdkr 2026 (inkl. föräldraförsäkring).'},
+  {cat:'social',cl:'Social trygghet',title:'Barnbidrag per år',unit:'per barn 0–15 år (ett barn)',amount:15000,suf:'kr/år',vs:'Du får: <strong>1 250 kr/mån</strong> (oförändrat sedan 2018, realt drygt 20 % mindre värt)',src:'Försäkringskassan 2024: 1 250 kr/mån = 15 000 kr/år. UO12 104,2 mdkr 2026 (inkl. föräldraförsäkring).'},
   {cat:'social',cl:'Social trygghet',title:'Föräldrapenning, totalt per barn',unit:'per fött barn (utbetalt 2025 delat med antalet födda)',amount:345000,suf:'kr totalt',vs:'Max: <strong>1 259 kr/dag</strong> (80 % av SGI, höjt från 1 116 kr 2023)',src:'Försäkringskassan 2026: max 1 259 kr/dag (80 % av SGI-tak 10 × PBB 59 200). Socialförsäkringen i siffror 2026: 33,7 mdkr i föräldrapenning 2025 (utan tillfällig föräldrapenning), 44 miljoner dagar, i snitt ca 765 kr per dag. SCB: ca 97 500 födda 2025. 33,7 mdkr / 97 500 = ca 345 000 kr per barn. Det är årets utbetalning delad med årets födda, inte en uppföljning av enskilda barn.'},
   {cat:'social',cl:'Social trygghet',title:'Garantipension, per år',unit:'per ogift utan inkomstpension (max 2026)',amount:143856,suf:'kr/år',vs:'Du får: <strong>11 988 kr/mån</strong> ogift, <strong>10 853 kr/mån</strong> gift',src:'Pensionsmyndigheten 2026: max 11 988 kr/mån ogift (143 856 kr/år), 10 853 kr/mån gift (130 236 kr/år). Höjt från 2024 efter reformer. UO11 Garantipension 2026: 29,8 mdkr av totalt 59,3 mdkr i ekonomisk trygghet ålderdom. Cirka 1,2 miljoner pensionärer, ungefär hälften, får någon garantipension. Det fulla beloppet får bara de cirka 20 000 som saknar inkomstpension. Inkomstpension är SEPARAT (avgiftsbaserad).'},
-  {cat:'social',cl:'Social trygghet',title:'Sjukpenning per dag',unit:'genomsnittlig utbetalning per sjukdag (2025)',amount:741,suf:'kr/dag',vs:'Max: <strong>1 259 kr/dag</strong> (80 % av SGI, höjt från 1 116 kr 2023)',src:'FK 2026: max 1 259 kr/dag (80 % × 10 PBB 59,2 tkr / 365). UO10 2026: 122,0 mdkr (Sjukpenning + Aktivitetsersättning + Funktionshinder). Socialförsäkringen i siffror 2026: 44,4 mdkr i sjukpenning 2025 på cirka 60 miljoner dagar, i snitt 741 kr per dag (kvinnor 716, män 775).'},
-  {cat:'social',cl:'Social trygghet',title:'Hemtjänst, ett år',unit:'per brukare med hemtjänst',amount:385000,suf:'kr/år',vs:'Maxtaxa hemtjänst: <strong>2 660 kr/mån</strong> = ca 8 % av kostnaden',src:'Kolada 2025 (SCB): hemtjänsten för äldre kostar cirka 58,9 mdkr, cirka 385 000 kr per person med hemtjänst (384 970 kr, Kolada N21006, räknat på genomsnittligt antal under året). Cirka 155 000 personer över 65 år hade hemtjänst 31 oktober 2025 (Socialstyrelsen). Maxtaxan 2026: 0,5392 × prisbasbeloppet / 12 (SoL 32 kap. 6 §).'},
+  {cat:'social',cl:'Social trygghet',title:'Sjukpenning per dag',unit:'genomsnittlig utbetalning per sjukdag (2025)',amount:741,suf:'kr/dag',vs:'Max: <strong>1 259 kr/dag</strong> (80 % av SGI, höjt från 1 116 kr 2023)',src:'FK 2026: max 1 259 kr/dag (80 % × 0,97 × 10 PBB 59,2 tkr / 365). UO10 2026: 122,0 mdkr (Sjukpenning + Aktivitetsersättning + Funktionshinder). Socialförsäkringen i siffror 2026: 44,4 mdkr i sjukpenning 2025 på cirka 60 miljoner dagar, i snitt 741 kr per dag (kvinnor 716, män 775).'},
+  {cat:'social',cl:'Social trygghet',title:'Hemtjänst, ett år',unit:'per brukare med hemtjänst',amount:385000,suf:'kr/år',vs:'Maxtaxa hemtjänst: <strong>2 660 kr/mån</strong> = ca 8 % av kostnaden',src:'Kolada 2025 (SCB): hemtjänsten för äldre kostar cirka 58,9 mdkr, cirka 385 000 kr per person med hemtjänst (384 970 kr, Kolada N21006, räknat på medianen av årets månader). Cirka 155 000 personer över 65 år hade hemtjänst 31 oktober 2025 (Socialstyrelsen). Maxtaxan 2026: 0,5392 × prisbasbeloppet / 12 (SoL 32 kap. 6 §).'},
   {cat:'trygghet',cl:'Trygghet och säkerhet',title:'Polisen per invånare och år',unit:'enbart polismyndigheten',amount:4600,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Budgetpropositionen 2026, UO4 anslag 1:1 Polismyndigheten: 48,4 mdkr / 10,6 miljoner invånare = ca 4 600 kr per invånare.'},
-  {cat:'trygghet',cl:'Trygghet och säkerhet',title:'Försvar och krisberedskap per invånare, 2026',unit:'per invånare och år',amount:21300,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Utgiftsområde 6 (försvar och samhällets krisberedskap) 2026: 225,0 mdkr / 10,55 miljoner invånare = ca 21 300 kr per invånare. Av det är ca 3 800 kr militärt stöd till Ukraina och ca 1 000 kr krisberedskap. År 2010 var anslaget 4 185 kr per invånare, 2026 alltså 5,1 gånger mer i löpande priser. 2025: 168,8 mdkr (ca 16 000 kr per invånare). Ökningen följer försvarsbeslutet 2025–2030, Sveriges mål att nå 3,5 % av BNP redan 2030 (Natos mål från toppmötet i Haag juni 2025 gäller till 2035) och stödet till Ukraina.'},
+  {cat:'trygghet',cl:'Trygghet och säkerhet',title:'Försvar och krisberedskap per invånare, 2026',unit:'per invånare och år',amount:21300,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Utgiftsområde 6 (försvar och samhällets krisberedskap) 2026: 225,0 mdkr / 10,6 miljoner invånare = ca 21 300 kr per invånare. Av det är ca 3 800 kr militärt stöd till Ukraina och ca 1 000 kr krisberedskap. År 2010 var anslaget 4 185 kr per invånare, 2026 alltså 5,1 gånger mer i löpande priser. 2025: 168,8 mdkr (ca 16 000 kr per invånare). Ökningen följer försvarsbeslutet 2025–2030, Sveriges mål att nå 3,5 % av BNP redan 2030 (Natos mål från toppmötet i Haag juni 2025 gäller till 2035) och stödet till Ukraina.'},
   {cat:'trygghet',cl:'Trygghet och säkerhet',title:'Kriminalvård, per intagen och år',unit:'per plats i anstalt (dygnskostnad × 365)',amount:1500000,suf:'kr/år',vs:'Du betalar: <strong>0 kr direkt</strong>',src:'Kriminalvårdens årsredovisning 2025: vårddygnskostnad i anstalt 4 110 kr (2025) × 365 = ca 1,5 mnkr per år. Kostnaden varierar mellan säkerhetsklasser.'},
   {cat:'trygghet',cl:'Trygghet och säkerhet',title:'Plats på SIS ungdomshem (tvångsvård), ett dygn',unit:'per vårddygn, genomsnitt för ungdomsvården 2025',amount:18200,suf:'kr/dygn',vs:'Du betalar: <strong>0 kr</strong> — kommunen betalar 11 750 kr per dygn',src:'SiS årsredovisning 2025: ungdomsvården (LVU och SoL) kostade 18 172 kr per vårddygn 2025 (15 735 kr 2024). Kommunen betalar 11 750 kr per vårddygn 2026 (SiSFS 2025:1), resten betalas med statens anslag. Ett år blir ca 6,6 mnkr.'},
 
@@ -3415,7 +3420,7 @@ const CARDS = [
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Reumatoid artrit (RA) — biologisk behandling',unit:'per patient och år, TNF-hämmare/JAK-hämmare',amount:160000,suf:'kr/år',vs:'Du betalar: <strong>högst 3 800 kr/år</strong> för läkemedel och <strong>1 450 kr/år</strong> för besök (högkostnadsskydden 2026)',src:'TLV/Reumatikerförbundet 2024: ca 70 000 RA-patienter. Biologiska läkemedel (Humira, Enbrel, JAK-hämmare) kostar 120 000–220 000 kr/år/patient. Biosimilars har sänkt kostnaden ca 40% sedan 2018.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Personlig assistans (LSS § 9:2)',unit:'per assistansberättigad och år',amount:2200000,suf:'kr/år',vs:'Du betalar: <strong>0 kr</strong>',src:'Försäkringskassans årsredovisning 2025: assistansersättning 31,2 mdkr (26,5 mdkr för staten efter kommunernas del) till 14 115 personer = ca 2,2 mnkr per person. Schablonbelopp 2026: 347,70 kr per timme.'},
   {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Ätstörning (AN/BN) — slutenvård',unit:'per inneliggande patient och behandlingsomgång',amount:620000,suf:'kr totalt',vs:'Du betalar: <strong>max 130 kr/dygn</strong>',src:'Socialstyrelsen/Riksät 2024: anorexia nervosa-behandling ca 60–180 dagars slutenvård. Kostnad ca 8 000–10 000 kr/dygn. Svåra fall: 60 dagar × 9 000 kr = 540 000 kr. Utöver det: dagvård, öppenvård, återfall.'},
-  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Demens — vård sista levnadsåren',unit:'per plats i särskilt boende och år',amount:1125650,suf:'kr/år',vs:'Maxtaxa omsorg: <strong>2 660 kr/mån</strong> = ca 3 % av kostnaden, utöver hyra och mat',src:'Kolada (N23009): särskilt boende i äldreomsorgen kostade 1 125 650 kr per brukare 2025. Många med demens bor där i slutet av livet. KI/IHE (Wimo m.fl. 2023): demenssjukdomarnas samhällskostnad var 81,6 mdkr 2019, ca 566 000 kr per person med demens, varav anhörigas oavlönade vård ca 12,5 mdkr.'},
+  {cat:'kronisk',cl:'Kroniska sjukdomar',title:'Demens — vård sista levnadsåren',unit:'per plats i särskilt boende (äldreboende) och år',amount:1125650,suf:'kr/år',vs:'Maxtaxa omsorg: <strong>2 660 kr/mån</strong> = ca 3 % av kostnaden, utöver hyra och mat',src:'Kolada (N23009): särskilt boende i äldreomsorgen kostade 1 122 400 kr per brukare 2025 (hämtat 14 november 2026). Många med demens bor där i slutet av livet. KI/IHE (Wimo m.fl. 2023): demenssjukdomarnas samhällskostnad var 81,6 mdkr 2019, ca 566 000 kr per person med demens, varav anhörigas oavlönade vård ca 12,5 mdkr.'},
 ];
 
 // ═══════════════════════════════════════════════════════════════════
@@ -3437,7 +3442,8 @@ const DETAILS = {
       {label:'Skolmåltider',val:8200},
       {label:'Lärverktyg (läromedel, IT)',val:6400},
       {label:'Elevhälsa',val:5100},
-      {label:'Övrigt (bl.a. skolskjuts, administration)',val:18400}
+      {label:'Övrigt (administration, kompetensutveckling m.m.)',val:18400},
+      {label:'Skolskjuts m.m.',val:3900}
     ],
     fakta: [
       'Den offentliga sektorn lägger <strong>7,2 % av BNP</strong> på utbildning, inklusive förskola (Eurostat, COFOG, 2024). OECD:s smalare mått, grundskola till högskola: 5,3 % (2022)',
@@ -3525,7 +3531,7 @@ const DETAILS = {
     ],
     fakta: [
       '<strong>1 250 kr/mån</strong> per barn — oförändrat sedan 2018',
-      'Justerat för inflation har barnbidraget <strong>tappat ca 25% i köpkraft</strong>',
+      'Justerat för inflation har barnbidraget <strong>tappat drygt 20 % i köpkraft</strong> (KPI mars 2018–oktober 2026, egen beräkning)',
       'Flerbarnstillägg per familj och månad: 150 kr (2 barn), 730 kr (3 barn), 1 740 kr (4 barn), 2 990 kr (5 barn)',
       'Ca <strong>1,9 miljoner barn</strong> har barnbidrag 2024'
     ]
@@ -3801,7 +3807,7 @@ function openDetail(cardTitle) {
   panel.inert = false;
   panel.classList.add('open');
   document.body.style.overflow = 'hidden';
-  panel.querySelector('.dp-close').focus();
+  const dpStang = panel.querySelector('.dp-close'); dpStang.focus(); setTimeout(() => { if(document.activeElement !== dpStang) dpStang.focus({preventScroll:true}); }, 60); // fokus missas annars medan panelen glider in
 }
 let dpTillbaka = null; // elementet som hade fokus innan panelen öppnades
 
@@ -3882,21 +3888,21 @@ function applyPgridFilters(){
       <div class="pc-unit">${c.unit}</div>
       <div class="pc-amount">${fmtN(c.amount)} <span class="pc-suf">${c.suf}</span></div>
       <div class="pc-vs">${c.vs}</div>
-      ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Lika mycket som all inkomstskatt från en medianlön under <b>${skattetid(c.amount)}</b></span></div>` : ''}
+      ${c.amount>=200 ? `<div class="pc-cmp">${ico('clock')}<span>Det är vad en person med medianlön betalar i inkomstskatt, utöver pensionsavgiften, på <b>${skattetid(c.amount)}</b></span></div>` : ''}
       <details class="pc-src" onclick="event.stopPropagation()"><summary>Källa och beräkning</summary><p>${c.src}</p></details>
     </div>`).join('') + (d.length < total ? `<button type="button" class="pg-more" onclick="pgridShowAll=true;applyPgridFilters()">Visa alla ${total} prislappar <span aria-hidden="true">↓</span></button>` : '');
   try { linkaKallor(grid); } catch(e) { /* källkatalogen laddas senare i skriptet; länkas vid start */ }
 }
 
 const ico = (n, cls='') => `<svg class="ico ${cls}" aria-hidden="true" focusable="false"><use href="#i-${n}"/></svg>`;
-// Vardagsjämförelse: hur länge en medianlöntagare betalar inkomstskatt för att täcka ett belopp.
+// Vardagsjämförelse: hur länge en medianlöntagare betalar inkomstskatt (utan pensionsavgiften) för att täcka ett belopp.
 // Medianlön 38 300 kr/mån (SCB lönestrukturstatistik 2025), rikssnitt kommunalskatt 32,38 %.
 const MEDIAN_LON_MAN = 38300;
 let _skattPerDag = null;
 function skattPerDagMedian(){
   if(_skattPerDag) return _skattPerDag;
   const inc = MEDIAN_LON_MAN * 12 / 1000, ks = 0.3238, ga = grundavdrag2024(inc);
-  const skatt = (inc - ga) * ks - jobbskatteavdrag2024(inc, ga, ks);   // tkr/år
+  const skatt = (inc - ga) * ks - jobbskatteavdrag2024(inc, ga, ks) - Math.min(47.1, inc * 0.07);   // tkr/år, utan allmän pensionsavgift (blir egen pension)
   return (_skattPerDag = skatt * 1000 / 365);
 }
 function skattetid(kr){
@@ -3927,25 +3933,26 @@ const KALLOR = {
   scb_cofog:     {namn:'SCB, offentlig sektors utgifter (COFOG)', match:['COFOG'], url:'https://www.scb.se/nr0103'},
   scb_lon:       {namn:'SCB, lönestrukturstatistik', match:['lönestrukturstatistik','lönestruktur'], url:'https://www.scb.se/am0110'},
   scb_befolkning:{namn:'SCB, Sveriges framtida befolkning 2026–2070', match:['Befolkningsframskrivning','befolkningsframskrivning'], url:'https://www.scb.se/hitta-statistik/statistik-efter-amne/befolkning-och-levnadsforhallanden/befolkningens-sammansattning-och-utveckling/befolkningsframskrivningar/produktrelaterat/rapporter/sveriges-framtida-befolkning-2026-2070/'},
-  skatteverket:  {namn:'Skatteverket, teknisk beskrivning SKV 433 (2026)', match:['SKV 433','Skatteverket'], url:'https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf'},
+  skatteverket:  {namn:'Skatteverket, teknisk beskrivning SKV 433 (2026)', match:['SKV 433'], url:'https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf'},
   scb_skattekvot:{namn:'SCB, skattekvot i procent av BNP', match:['nationalräkenskaperna (skattekvot'], url:'https://www.statistikdatabasen.scb.se/goto/sv/ssd/SkattekvotBNP'},
   oecd_rev:      {namn:'OECD Revenue Statistics 2025', match:['Revenue Statistics'], url:'https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en.html'},
   oecd_haag:     {namn:'OECD Health at a Glance 2025', match:['Health at a Glance','OECD Health'], url:'https://doi.org/10.1787/8f9e3f98-en'},
   pisa:          {namn:'OECD PISA 2025', match:['PISA'], url:'https://www.oecd.org/en/publications/2026/09/pisa-2025-results-volume-i_5265bfb1.html'},
   socialstyrelsen:{namn:'Socialstyrelsen, statistik', match:['Socialstyrelsen'], url:'https://www.socialstyrelsen.se/statistik-och-data/'},
-  skolverket:    {namn:'Skolverket', match:['Skolverket'], url:'https://www.skolverket.se/'},
   eurostat_cofog:{namn:'Eurostat, offentliga utgifter efter ändamål (COFOG)', match:['gov_10a_exp','Eurostats COFOG','Eurostat, offentliga utgifter'], url:'https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table'},
-  eurostat:      {namn:'Eurostat, offentlig skuld (april 2026)', match:['Eurostat'], url:'https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-22042026-bp'},
+  eurostat:      {namn:'Eurostat, offentligt underskott och skuld (oktober 2026)', match:['Eurostat oktober 2026','Eurostat, oktober 2026','Eurostat, offentlig skuld'], url:'https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-21102026-ap'},
+  eurostat_bds:  {namn:'Eurostat, sjukhussängar (hlth_rs_bds1)', match:['hlth_rs_bds1'], url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_rs_bds1/default/table'},
   ekonomifakta:  {namn:'Ekonomifakta, skattekvot', match:['Ekonomifakta'], url:'https://www.ekonomifakta.se/diagram_och_tabeller/skattekvot-over-tid_1208768.html?view=table'},
   esv:           {namn:'Statskontoret (tidigare Ekonomistyrningsverket), tidsserier för statens budget', match:['ESV'], url:'https://www.statskontoret.se/analys-och-statistik/officiell-statistik/tidsserier-statens-budget-m.m/'},
   pensionsmyndigheten:{namn:'Pensionsmyndigheten', match:['Pensionsmyndigheten'], url:'https://www.pensionsmyndigheten.se/'},
-  forsakringskassan:{namn:'Försäkringskassan, årsredovisning', match:['Försäkringskassan'], url:'https://www.forsakringskassan.se/download/18.6824ccfb19c0e5392cd73/1771574743917/forsakringskassans-arsredovisning-2025.pdf'},
+  forsakringskassan:{namn:'Försäkringskassan, statistik och analys', match:['Försäkringskassan'], url:'https://www.forsakringskassan.se/statistik-och-analys'},
+  fk_arsred:     {namn:'Försäkringskassan, årsredovisning 2025', match:['Försäkringskassans årsredovisning','Försäkringskassan, årsredovisning'], url:'https://www.forsakringskassan.se/download/18.6824ccfb19c0e5392cd73/1771574743917/forsakringskassans-arsredovisning-2025.pdf'},
   kriminalvarden:{namn:'Kriminalvården, årsredovisning', match:['Kriminalvården'], url:'https://www.kriminalvarden.se/om-oss/publikationer/'},
-  skr:           {namn:'Sveriges Kommuner och Regioner', match:['SKR'], url:'https://skr.se/'},
   regeringen:    {namn:'Regeringen, Så styrs Sverige', match:['Så styrs Sverige'], url:'https://www.regeringen.se/sa-styrs-sverige/'},
-  trafikanalys:  {namn:'Trafikanalys, Regional linjetrafik 2025', match:['Trafikanalys'], url:'https://www.trafa.se/globalassets/statistik/kollektivtrafik/kollektivtrafik/2025/regional-linjetrafik-2025.pdf'},
+  trafikanalys:  {namn:'Trafikanalys, Regional linjetrafik 2025', match:['Trafikanalys, Regional linjetrafik','(Trafikanalys)'], url:'https://www.trafa.se/globalassets/statistik/kollektivtrafik/kollektivtrafik/2025/regional-linjetrafik-2025.pdf'},
   arsred_staten: {namn:'Årsredovisning för staten 2025 (skr. 2025/26:101)', match:['Årsredovisning för staten 2025'], url:'https://www.regeringen.se/contentassets/1f1553b2b7f74ded921df946bd64dba8/arsredovisning-for-staten-2025-skr.-202526101.pdf'},
   skolverket2025:{namn:'Skolverket, Kostnader för skolväsendet 2025', match:['Kostnader för skolväsendet 2025'], url:'https://www.skolverket.se/download/18.615052d71a0adaf499e4b1f6/1790336879514/pdf13436.pdf'},
+  skv_belopp:    {namn:'Skatteverket, belopp och procent 2026', match:['Skatteverket, Skatt på investeringssparkonto','Skatteverket, skatteregler'], url:'https://www.skatteverket.se/privat/skatter/beloppochprocent/2026'},
   skv_tabell:    {namn:'Skatteverket, skattetabeller 2026', match:['skattetabell 32'], url:'https://skatteverket.entryscape.net/rowstore/dataset/88320397-5c32-4c16-ae79-d36d95b17b95/json?%C3%A5r=2026&tabellnr=32'},
   pm_intjaning:  {namn:'Pensionsmyndigheten, Så tjänar du in till din pension', match:['Så tjänar du in till din pension'], url:'https://www.pensionsmyndigheten.se/forsta-din-pension/sa-fungerar-pensionen/sa-tjanar-du-in-till-din-pension'},
   tandvard:      {namn:'1177, kostnader inom tandvård', match:['1177'], url:'https://www.1177.se/Stockholm/sa-fungerar-varden/kostnader-och-ersattningar/kostnader-och-ersattningar-inom-tandvard/'},
@@ -3968,7 +3975,7 @@ const NYCKELTAL = {
   vardgaranti:    {namn:'Medicinsk bedömning i primärvården inom 3 dagar', v:'91 %', ar:'aug 2026', kalla:'socialstyrelsen', gamla:['0–7–90','~50 %<sub> (SKR','Stockholm 62 %']},
   medellivslangd: {namn:'Medellivslängd',                     v:'84,1 år (OECD-länderna 80,4)', ar:'2024', kalla:'varldsbanken', gamla:['83,5 år','80,7','83,4 år','81,1']},
   aldre80:        {namn:'Personer 80 år och äldre',           v:'ca 648 000 (2024) → 817 000 (2030)', ar:'2024 (utfall), 2030 (prognos)', kalla:'scb_befolkning', gamla:['601 000','668 000','895 000','+11 %<sub>','812 000']},
-  grundskola:     {namn:'Grundskola, kostnad per elev',       v:'143 000 kr',    ar:'2025', kalla:'skolverket2025', gamla:['152 000 kr/elev','152 tkr/elev','133 000 kr','133 tkr/elev']},
+  grundskola:     {namn:'Grundskola, kostnad per elev',       v:'146 900 kr',    ar:'2025', kalla:'skolverket2025', gamla:['152 000 kr/elev','152 tkr/elev','133 000 kr','133 tkr/elev','143 000 kr']},
   gymnasium:      {namn:'Gymnasieskola, kostnad per elev',    v:'148 100 kr',    ar:'2025', kalla:'skolverket2025', gamla:['148 000 kr/elev','141 500 kr','141,5 tkr','142 tkr/elev']},
   forskola:       {namn:'Förskola, kostnad per barn (kommunal)', v:'199 200 kr', ar:'2025', kalla:'skolverket2025', gamla:['185 000 kr/barn','181 800 kr']},
 };
@@ -4049,7 +4056,8 @@ const ORDLISTA = [
   if(dl) dl.innerHTML=ORDLISTA.slice().sort((a,b)=>a.t.localeCompare(b.t,'sv')).map(o=>'<dt>'+o.t+'</dt><dd>'+o.d+'</dd>').join('');
   const SKIP='h1,h2,h3,h4,button,a,svg,script,style,input,select,textarea,label,code,summary,.term,nav,.stage-wrap,[aria-hidden="true"],.pc-amount,.gq,.fk-chart,.fk-meta,.fk-act,.fk-eye,.vgv-big,.vgv-meta,.ordlista,.detail-panel,#sc-overlay,.vgv-src,.src,.pc-src,#kl-src,.s-eye,.pc-cat,.hsk-100';
   const L='\\p{L}\\d';
-  const terms=ORDLISTA.map((o,i)=>({i, rx:new RegExp('(?<!['+L+'])(?:'+o.re+')(?![' +L+'])', o.cs?'u':'iu')}));
+  // Ingen lookbehind (Safari före 16.4): tecknet före fångas i grupp 1 och termen i grupp 2
+  const terms=ORDLISTA.map((o,i)=>({i, rx:new RegExp('(^|[^'+L+'])((?:'+o.re+'))(?![' +L+'])', o.cs?'u':'iu')}));
   let pop=null, cur=null;
   function annotate(){
     document.querySelectorAll('section[id]').forEach(sec=>{
@@ -4063,7 +4071,7 @@ const ORDLISTA = [
       const nodes=[]; while(tw.nextNode()) nodes.push(tw.currentNode);
       nodes.forEach(node=>{
         let best=null;
-        terms.forEach(t=>{ if(done.has(t.i)) return; const m=t.rx.exec(node.nodeValue); if(m && (!best || m.index<best.m.index)) best={t,m}; });
+        terms.forEach(t=>{ if(done.has(t.i)) return; const r=t.rx.exec(node.nodeValue); if(!r) return; const m={index:r.index+r[1].length, 0:r[2]}; if(!best || m.index<best.m.index) best={t,m}; });
         if(!best) return;
         done.add(best.t.i);
         const after=node.splitText(best.m.index); after.splitText(best.m[0].length);
@@ -4082,14 +4090,17 @@ const ORDLISTA = [
     if(top+ph>innerHeight-8) top=r.top-ph-8;
     pop.style.left=left+'px'; pop.style.top=top+'px';
   }
-  function hide(){ if(pop) pop.hidden=true; if(cur){ cur.setAttribute('aria-expanded','false'); cur.removeAttribute('aria-describedby'); cur=null; } }
-  document.addEventListener('mouseover',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b) show(b); });
-  document.addEventListener('mouseout',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b && !b.contains(e.relatedTarget)) hide(); });
+  // Rutan ska gå att föra pekaren över (WCAG 1.4.13): dölj med fördröjning, och inte medan pekaren är över rutan.
+  let tHide=0, viaKlick=false;
+  function hide(){ clearTimeout(tHide); viaKlick=false; if(pop) pop.hidden=true; if(cur){ cur.setAttribute('aria-expanded','false'); cur.removeAttribute('aria-describedby'); cur=null; } }
+  const hideSnart=()=>{ clearTimeout(tHide); tHide=setTimeout(hide,300); };
+  document.addEventListener('mouseover',e=>{ const t=e.target.closest&&e.target; if(!t) return; const b=t.closest('.term'); if(b){ clearTimeout(tHide); show(b); } else if(pop && t.closest('#term-pop')) clearTimeout(tHide); });
+  document.addEventListener('mouseout',e=>{ const t=e.target.closest&&e.target; if(!t || viaKlick) return; const b=t.closest('.term'), ip=t.closest('#term-pop'); const till=e.relatedTarget; if((b && !b.contains(till)) || (ip && !(till && till.closest && till.closest('#term-pop')))) hideSnart(); });
   document.addEventListener('focusin',e=>{ if(e.target.classList&&e.target.classList.contains('term')) show(e.target); });
   document.addEventListener('focusout',e=>{ if(e.target.classList&&e.target.classList.contains('term')) hide(); });
-  document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b){ e.stopPropagation(); show(b); } else hide(); }, true);
+  document.addEventListener('click',e=>{ const b=e.target.closest&&e.target.closest('.term'); if(b){ e.stopPropagation(); show(b); viaKlick=true; } else if(!(e.target.closest&&e.target.closest('#term-pop'))) hide(); }, true);
   document.addEventListener('keydown',e=>{ if(e.key==='Escape') hide(); });
-  window.addEventListener('scroll',hide,{passive:true});
+  window.addEventListener('scroll',()=>{ if(!viaKlick) hide(); },{passive:true});
   // Kör när innehåll som ritas med JS (faktakort, Vem gör vad) finns på plats
   if(document.readyState==='complete') setTimeout(annotate,300); else window.addEventListener('load',()=>setTimeout(annotate,300));
 })();
@@ -4108,7 +4119,7 @@ const FAKTA = [
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:25000,c:'green'},{l:'Skatt',v:4466,c:'red'},{l:'Kvar efter skatt',v:20534,c:'green2'},{l:'Arbetsgivaravgift',v:7855,c:'grey'}], note:'kronor per månad, rikssnittet för kommunalskatt (32,38 %)'},
    p:'Skatten dras innan lönen betalas ut, så 20 534 kronor kommer in på kontot. Ovanpå lönen betalar arbetsgivaren 7 855 kronor i arbetsgivaravgift. Är du född 2003–2007 är avgiften tillfälligt lägre, cirka 5 200 kronor, för lön som betalas ut april 2026–september 2027.',
    kalla:'Skatteverket, skatteregler och arbetsgivaravgifter 2026, SCB kommunalskatter', ar:'2026'},
-  {tema:'Medianlönen', bild:{tal:'7 692 kr', rad:'i skatt per månad på medianlönen 38 300 kr, ungefär var femte krona.'}, h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
+  {tema:'Medianlönen', bild:{tal:'7 692 kr', rad:'i inkomstskatt per månad på medianlönen 38 300 kr, ungefär var femte krona. Arbetsgivaren betalar dessutom 12 034 kr.'}, h:'Vid medianlön blir ungefär var femte krona inkomstskatt',
    chart:{type:'bars', unit:' kr', rows:[{l:'Bruttolön',v:38300,c:'green'},{l:'Inkomstskatt',v:7692,c:'red'},{l:'Kvar efter skatt',v:30608,c:'green2'},{l:'Arbetsgivaravgift',v:12034,c:'grey'}]},
    p:'Medianlönen är 38 300 kronor i månaden. Skatten blir 7 692 kronor med rikssnittet för kommunalskatt (32,38 %), alltså ungefär 20 procent. Kommunalskatten är drygt 32 procent, men grundavdraget och jobbskatteavdraget sänker den. Ovanpå lönen betalar arbetsgivaren 12 034 kronor i arbetsgivaravgift, varav 3 910 kronor blir din egen pension.',
    kalla:'SCB lönestruktur 2025, Skatteverket 2026, egen beräkning', ar:'2026'},
@@ -4131,22 +4142,22 @@ const FAKTA = [
   {tema:'Offentlig skuld', bild:{tal:'35,1 %', rad:'av BNP är Sveriges offentliga skuld. EU-snittet är 81,5 %.'}, h:'Sveriges offentliga skuld är mindre än hälften av EU-snittet',
    chart:{type:'bars', unit:' %', rows:[{l:'Sverige',v:35.1,c:'green'},{l:'EU-snitt',v:81.5,c:'grey'}], note:'offentlig bruttoskuld (Maastricht) som andel av BNP'},
    p:'Skulden omfattar stat, regioner, kommuner och pensionssystem. EU:s regler säger att skulden inte bör vara över 60 % av BNP.',
-   kalla:'Eurostat', ar:'2025'},
+   kalla:'Eurostat, oktober 2026', ar:'2025'},
   {tema:'Tandvården', bild:{tal:'0 kr', rad:'kostar tandvården till och med det år du fyller 19.'}, h:'Tandvården är gratis till och med det år du fyller 19',
    chart:{type:'stack', parts:[{l:'Gratis, 0–19 år',v:20,c:'green2',txt:'0–19 år'},{l:'Du betalar själv, med bidrag och högkostnadsskydd',v:20,c:'grey',txt:'20 år →'}]},
    p:'Regionen betalar tandvården för barn och unga med skattepengar. Åldersgränsen sänktes från 23 till 19 år den 1 januari 2025. Efter det betalar du själv, men får ett tandvårdsbidrag och ett högkostnadsskydd från staten.',
    kalla:'1177 och riksdagen (bet. 2024/25:SoU4)', ar:'2026'},
   {tema:'Kollektivtrafiken', bild:{tal:'46 %', rad:'av kollektivtrafiken betalas med biljetter och andra intäkter. Resten är skatt.'}, h:'Biljetterna betalar knappt hälften av kollektivtrafiken',
    chart:{type:'stack', parts:[{l:'Biljetter och andra intäkter',v:46,c:'amber',txt:'46 %'},{l:'Skatt från regioner, kommuner och staten',v:54,c:'green2',txt:'54 %'}]},
-   p:'Den regionala kollektivtrafiken kostade cirka 64,5 miljarder kronor 2025. Resten betalas med skatt från regioner, kommuner och staten, cirka 37 miljarder kronor eller 3 500 kronor per invånare och år (Trafikanalys).',
+   p:'Den regionala kollektivtrafiken kostade cirka 64,5 miljarder kronor 2025. Biljetter och andra intäkter täcker 46 procent. Regioner, kommuner och staten bidrog med drygt 37 miljarder kronor, cirka 3 500 kronor per invånare och år (Trafikanalys).',
    kalla:'Trafikanalys, Regional linjetrafik 2025', ar:'2025'},
   {tema:'Sparande', bild:{tal:'300 000 kr', rad:'kan man spara skattefritt på ISK 2026. Över det är skatten 1,065 % av värdet per år.'}, h:'De första 300 000 kronorna på ett ISK är skattefria',
    chart:{type:'bars', unit:' kr', rows:[{l:'100 000 kr på ISK',v:0,c:'green2'},{l:'300 000 kr på ISK',v:0,c:'green2'},{l:'1 000 000 kr på ISK',v:7455,c:'green'}], note:'skatt per år 2026, egen beräkning'},
    p:'På ett investeringssparkonto betalar man ingen skatt på vinster och utdelningar, utan en årlig skatt på kontots värde: 1,065 % 2026 på det som överstiger 300 000 kronor. Skatten betalas även ett år då kontot går med förlust.',
    kalla:'Skatteverket, Skatt på investeringssparkonto', ar:'2026'},
   {tema:'Förskola och skola', bild:{tal:'199 200 kr', rad:'kostar en plats i kommunal förskola per barn och år.'}, h:'En förskoleplats kostar kommunen 199 200 kronor per år',
-   chart:{type:'bars', unit:' kr', rows:[{l:'Förskola',v:199200,c:'blue'},{l:'Grundskola',v:143000,c:'blue'},{l:'Gymnasium',v:148100,c:'blue'}], note:'kronor per barn eller elev och år'},
-   p:'Kommunen betalar. Förskolan har en avgift med ett tak, grundskolan och gymnasiet är avgiftsfria. Förskolan avser kommunala förskolor, skolorna alla huvudmän.',
+   chart:{type:'bars', unit:' kr', rows:[{l:'Förskola',v:199200,c:'blue'},{l:'Grundskola',v:146900,c:'blue'},{l:'Gymnasium',v:148100,c:'blue'}], note:'kronor per barn eller elev och år'},
+   p:'Kommunen betalar. Förskolan har en avgift med ett tak, grundskolan och gymnasiet är avgiftsfria. Förskolan avser kommunala förskolor, skolorna alla huvudmän, inklusive skolskjuts.',
    kalla:'Kostnader för skolväsendet 2025 (Skolverket)', ar:'2025'},
 ];
 (function initFakta(){
@@ -4235,11 +4246,26 @@ async function faktaBild(i, format){
   x.fillText('wilhelm-wg.github.io/skatteplattformen',P,H-(story?120:80));
   c.toBlob(blob=>{
     const name='snabbfakta-'+(i+1)+(story?'-story':'')+'.png', file=new File([blob],name,{type:'image/png'});
-    if(navigator.canShare && navigator.canShare({files:[file]}) && matchMedia('(pointer:coarse)').matches){
-      navigator.share({files:[file], title:f.h}).catch(()=>{});
-    } else { const a=document.createElement('a'); a.download=name; a.href=URL.createObjectURL(blob); a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); }
+    const ladda = () => { const a=document.createElement('a'); a.download=name; a.href=URL.createObjectURL(blob); a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000); };
+    if(navigator.canShare && navigator.canShare({files:[file]}) && matchMedia('(pointer:coarse)').matches) delaMedReserv({files:[file], title:f.h}, ladda);
+    else ladda();
   },'image/png');
   return c;
+}
+
+// Mobilmenyn: klass och aria-expanded hålls i takt; Escape och klick utanför stänger (tillg-11)
+function setMeny(v, fokus){
+  const l = document.getElementById('nav-lista'), b = document.querySelector('.nav-hamburger'); if(!l || !b) return;
+  l.classList.toggle('open', v); b.setAttribute('aria-expanded', v ? 'true' : 'false');
+  if(!v && fokus) b.focus();
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && document.getElementById('nav-lista')?.classList.contains('open')) setMeny(false, true); });
+document.addEventListener('click', e => { const l = document.getElementById('nav-lista'); if(l && l.classList.contains('open') && !e.target.closest('#nav-lista, .nav-hamburger')) setMeny(false); });
+
+// Delning: om delningsrutan inte öppnas (fel, nekad, typsnitt sena) används reserven. Avbrutet av användaren = inget.
+function delaMedReserv(data, reserv){
+  try{ navigator.share(data).catch(e => { if(!e || e.name !== 'AbortError') reserv(); }); }
+  catch(_){ reserv(); }
 }
 
 // ═══ GISSA FÖRST — quiz på prislistan (inga poäng, ingen lagring) ═══
@@ -4274,6 +4300,7 @@ async function faktaBild(i, format){
     setGuess(10000,false);
     show('gq-guess',true); show('gq-ans',false); show('gq-nav',false);
     $('gq-next').textContent = i<qs.length-1 ? 'Nästa fråga' : 'Se sammanfattning';
+    if(i===0){ const q=$('gq-q'); q.tabIndex=-1; q.focus({preventScroll:true}); } // knappen Börja gissa döljs; fokus till frågan så att den läses upp
   }
   function verdict(g,a){
     const r=g/a;
@@ -4291,7 +4318,7 @@ async function faktaBild(i, format){
       '<p class="gq-res '+cls+'">'+txt+'</p>'+
       '<div class="gq-cmp"><div>Din gissning<b>'+kr(g)+'</b></div><div class="right">Rätt svar<b>'+kr(c.amount)+'</b></div></div>'+
       '<p class="gq-info">'+c.vs+'</p>'+
-      (c.amount>=200 ? '<p class="gq-info">'+ico('clock')+'Lika mycket som all inkomstskatt från en medianlön under <b>'+skattetid(c.amount)+'</b>.</p>' : '');
+      (c.amount>=200 ? '<p class="gq-info">'+ico('clock')+'Det är vad en person med medianlön betalar i inkomstskatt, utöver pensionsavgiften, på <b>'+skattetid(c.amount)+'</b>.</p>' : '');
     show('gq-guess',false); show('gq-ans',true); show('gq-nav',true);
     $('gq-next').focus({preventScroll:true});
   }
@@ -4310,8 +4337,8 @@ async function faktaBild(i, format){
       const n=res.filter(Boolean).length, url=location.origin+location.pathname+'#gissa';
       const text='Jag gissade vad '+n+' saker som skatten betalar kostar och låg nära (±25 %) på '+ok+'. Testa själv:';
       const b=$('gq-dela');
-      if(navigator.share) navigator.share({title:'Gissa vad det kostar',text,url}).catch(()=>{});
-      else if(navigator.clipboard) navigator.clipboard.writeText(text+' '+url).then(()=>{ b.textContent='Kopierat'; setTimeout(()=>{ b.textContent='Dela resultatet'; },2000); });
+      const kopiera = () => { if(navigator.clipboard) navigator.clipboard.writeText(text+' '+url).then(()=>{ b.textContent='Kopierat'; setTimeout(()=>{ b.textContent='Dela resultatet'; },2000); }).catch(()=>{}); };
+      if(navigator.share) delaMedReserv({title:'Gissa vad det kostar',text,url}, kopiera); else kopiera();
     });
   }
   function start(first){
@@ -4438,7 +4465,7 @@ function agKvitto(age, inc, _, kr2){
 // polisens medellön (SCB 2025: 43 900 kr/mån) och riksdagsledamöternas arvode (riksdagen 2026: 81 400 kr/mån).
 // Vab: tillfällig föräldrapenning för vård av barn, 7,7 mdkr för 6,5 miljoner dagar 2025 = ca 1 185 kr per dag
 // (Försäkringskassan, Socialförsäkringen i siffror 2026, s. 28–29). En dag räknas som 8 timmar.
-const START_JMF = {vabDag:1185, hemtjanstAr:385000, ivaDygn:50000, grundskolaLasar:143000, skoldagar:178, riksvagKm:163000, polislon:43900, riksdagsarvode:81400, archer:5e9/48};
+const START_JMF = {vabDag:1185, hemtjanstAr:385000, ivaDygn:50000, grundskolaLasar:146900, skoldagar:178, riksvagKm:163000, polislon:43900, riksdagsarvode:81400, archer:5e9/48};
 const START_GRUPPER = [
   // Socialt skydd i två rader (2026-11-05): äldre (ålderdom utan inkomstpension, mest omsorg och garantipension) och resten.
   {n:'Äldre: omsorg och garantipension', pk:'aldre', c:'#6B4A9E', a:KVITTO_ANDELAR.aldre, j:kr => { const d = kr / (START_JMF.hemtjanstAr/365); return d >= 1 ? `ca ${svTal(d)} ${d < 1.25 ? 'dags' : 'dagars'} hemtjänst för en äldre` : `ca ${Math.max(1, Math.round(d*24))} timmars hemtjänst för en äldre`; }},
@@ -4450,6 +4477,7 @@ const START_GRUPPER = [
   {n:'Förvaltning', pk:'forv', c:'#5E5A54', a:KVITTO_ANDELAR.forv, j:kr => `ca ${svAndel(kr / START_JMF.riksdagsarvode, 'en riksdagsledamots månadsarvode')}`},
   {n:'Försvar', pk:'forsv', c:'#34586E', a:KVITTO_ANDELAR.forsv, j:kr => `ca ${svAndel(kr / START_JMF.archer, 'en Archer-pjäs')}`},
 ];
+const START_PENSION = {n:'Din allmänna pension (7 %)', c:'#1B4D3E', j:'blir pensionsrätt i ditt eget namn'};
 // Tal med halvor: 1, 1½, 2 …
 function svTal(x){ if(x >= 10) return Math.round(x).toLocaleString('sv-SE'); const h = Math.round(x*2)/2; return (Math.floor(h) || '') + (h % 1 ? '½' : '') || '½'; }
 // Andel som bråk: "en tiondel av …", "1/49 av …", "en 300 000-del av …", eller "2 gånger …" om större än 1
@@ -4551,31 +4579,35 @@ function startKvittoData(lon, typ = 'lon', ks = 0.3238){
   const bas = lon - egenavg;
   const d = bas > 0 ? skattDelar(typ === 'pension' ? 70 : 40, bas*12/1000, {ksOverride:ks, pension: typ === 'pension'}) : null;
   const skatt = d ? Math.round((d.komm + d.stat - d.jsa) * 1000 / 12) : 0;
-  const kr = START_GRUPPER.map(g => Math.round(skatt * g.a)); const iMax = kr.indexOf(Math.max(...kr));
-  kr[iMax] += skatt - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
+  // Den allmänna pensionsavgiften (7 %) står som egen rad överst: den blir egen pension, precis som inkomstpensionen
+  // som inte finns med i fördelningen. Bara resten fördelas som de offentliga utgifterna.
+  const apaKr = d && d.apa ? Math.min(skatt, Math.round(d.apa * 1000 / 12)) : 0, rest = skatt - apaKr;
+  const kr = START_GRUPPER.map(g => Math.round(rest * g.a)); const iMax = kr.indexOf(Math.max(...kr));
+  kr[iMax] += rest - kr.reduce((x, y) => x + y, 0); // summan ska stämma exakt
   const ordning = START_GRUPPER.map((g, i) => i).sort((x, y) => kr[y] - kr[x]);
   const T = START_TYP[typ] || START_TYP.lon;
   const ksTxt = (ks*100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
-  return {lon, typ, ks, skatt, egenavg, kvar: Math.max(0, lon - skatt - egenavg), kr, ordning,
+  const pensRad = apaKr > 0 ? {n:START_PENSION.n, pk:'pension', c:START_PENSION.c, kr:apaKr, j:START_PENSION.j} : null;
+  return {lon, typ, ks, skatt, apaKr, rest, egenavg, kvar: Math.max(0, lon - skatt - egenavg), kr, ordning,
     kassor: T.kassor, rad: `${T.ord} ${lon.toLocaleString('sv-SE')} KR/MÅN · KOMMUNALSKATT ${ksTxt} %`, betalt: T.betalt, valkommen: T.valkommen, av: T.av,
-    rader: skatt > 0 ? ordning.map(i => ({n:START_GRUPPER[i].n, pk:START_GRUPPER[i].pk, c:START_GRUPPER[i].c, kr:kr[i], j:START_GRUPPER[i].j(kr[i])})) : []};
+    rader: skatt > 0 ? [pensRad].concat(ordning.map(i => ({n:START_GRUPPER[i].n, pk:START_GRUPPER[i].pk, c:START_GRUPPER[i].c, kr:kr[i], j:START_GRUPPER[i].j(kr[i])}))).filter(Boolean) : []};
 }
 function startLon(){ const inp = document.getElementById('start-lon'); return inp ? Math.min(1000000, parseInt(inp.value.replace(/\D/g, ''), 10) || 0) : 0; }
 function startKvitto(){
   const inp = document.getElementById('start-lon'), fig = document.getElementById('start-kvitto'); if(!inp || !fig) return;
   const lon = startLon();
-  const D = startKvittoData(lon, startTyp, startKs), {skatt, kr, ordning} = D;
+  const D = startKvittoData(lon, startTyp, startKs), {skatt} = D;
   const k2 = v => v.toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2});
   const kr0 = v => v.toLocaleString('sv-SE');
-  const rader = skatt > 0 ? ordning.map(i => { const g = START_GRUPPER[i]; return `<div class="kv-rad tva"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${g.pk}"></use></svg><span>${g.n}</span><span>${k2(kr[i])}</span><span class="kv-ekv">${g.j(kr[i])}</span></div>`; }).join('')
+  const rader = skatt > 0 ? D.rader.map(r => `<div class="kv-rad tva${r.pk === 'pension' ? ' kv-pension' : ''}"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${r.pk}"></use></svg><span>${r.n}</span><span>${k2(r.kr)}</span><span class="kv-ekv">${r.j}</span></div>`).join('')
     : '<div class="kv-del"><span>Ingen skatt på det beloppet.</span><span></span></div>';
   fig.innerHTML = `${KV.kant(true, 3)}<div class="kvitto-papper">
-    ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lon, D.kassor, D.rad)}
+    ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN INKOMSTSKATT 2026', lon, D.kassor, D.rad)}
     <hr class="kv-streck"><div class="kv-rader">${rader}</div><hr class="kv-streck">
-    <div class="kv-sum"><span>SKATT/MÅN</span><b><span class="kv-hog">${k2(skatt)}</span></b></div>
+    <div class="kv-sum"><span>INKOMSTSKATT/MÅN</span><b><span class="kv-hog">${k2(skatt)}</span></b></div>
     ${D.egenavg ? `<div class="kv-del"><span>EGENAVGIFTER</span><span>${k2(D.egenavg)}</span></div>` : ''}
     <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${k2(D.kvar)}</span></div>
-    <div class="kv-del"><span>ANTAL RADER</span><span>${skatt > 0 ? START_GRUPPER.length : 0}</span></div>
+    <div class="kv-del"><span>ANTAL RADER</span><span>${D.rader.length}</span></div>
     <hr class="kv-streck dubbel"><div class="kv-fot"><span>BETALT MED: ${D.betalt} · INGET BYTE</span>${KV.kod(lon)}<span>${D.valkommen}</span></div>
   </div>${KV.flik(`SPARA: SKATTEN ÄR ${(lon > 0 ? skatt / lon * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % ${D.av}`)}${KV.kant(false, 5)}`;
   fig.setAttribute('aria-label', `Skattekvitto för ${kr0(lon)} kronor i månaden: skatt ${kr0(skatt)} kronor${D.egenavg ? `, egenavgifter ${kr0(D.egenavg)} kronor` : ''}, kvar ${kr0(D.kvar)} kronor.`);
@@ -4600,6 +4632,8 @@ function setStartTyp(typ){
   startKvitto();
 }
 function setStartKommun(sel){ const v = parseFloat(sel.value); if(!isNaN(v)) startKs = v; startKvitto(); }
+// Metoden under startkvittot är utfälld på dator och hopfälld på mobil
+{ const d = document.getElementById('start-metod'); if(d && matchMedia('(min-width:901px)').matches) d.open = true; }
 (function initStartKvitto(){
   const inp = document.getElementById('start-lon'); if(!inp) return;
   kommunVal(document.getElementById('start-kommun'), startKs);
@@ -4623,6 +4657,7 @@ function setStartKommun(sel){ const v = parseFloat(sel.value); if(!isNaN(v)) sta
 // 'story' 1080×1920 (9:16) och 'og' 1200×630 (länkbilden, img/og-mall.html).
 const KB_FARG = {gron:'#1B4D3E', papper:'#F8F6EF', black:'#2B2925', gra:'#5E5A54', ljus:'#F4F1EA', ljus2:'rgba(244,241,234,.72)'};
 const kbBilder = {};
+const KB_KALLA = 'Inkomstskatt med Skatteverkets regler 2026. Pensionsavgiften blir egen pension; resten fördelad som de offentliga utgifterna 2024 (Eurostat COFOG, utan inkomstpension).';
 // En SVG-symbol ur spriten som bild, i en given färg
 function kbSymbol(id, farg){
   const k = id + farg; if(kbBilder[k]) return kbBilder[k];
@@ -4652,7 +4687,7 @@ function kbKvitto(x, data, RW, bild, rita){
   if(rita && bild.logo) x.drawImage(bild.logo, RW/2 - 36, y, 72, 72);
   y += 72 + 44;
   if(rita){ x.save(); x.translate(RW/2, y); x.scale(1, 1.8); text('SKATTEPLATTFORMEN', 0, 0, `600 30px ${M}`, KB_FARG.black, 'center'); x.restore(); }
-  y += 34; text('KVITTO · DIN SKATT 2026', RW/2, y, `400 22px ${M}`, KB_FARG.black, 'center');
+  y += 34; text('KVITTO · DIN INKOMSTSKATT 2026', RW/2, y, `400 22px ${M}`, KB_FARG.black, 'center');
   const nu = new Date();
   y += 40; text('KASSA 01', P, y, `400 20px ${M}`); text(`KVITTO NR ${String(data.lon).padStart(7, '0')}`, RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
   y += 28; text(nu.toLocaleDateString('sv-SE'), P, y, `400 20px ${M}`); text(`KASSÖR: ${data.kassor || 'ARBETSGIVAREN'}`, RW - P, y, `400 20px ${M}`, KB_FARG.black, 'right');
@@ -4672,10 +4707,13 @@ function kbKvitto(x, data, RW, bild, rita){
   if(!data.rader.length){ y += 30; text('Ingen skatt på den lönen.', P, y, `400 22px ${M}`); y += 12; }
   streck(false);
   // Summa i dubbel höjd
-  y += 52; text('SKATT/MÅN', P, y, `600 26px ${M}`);
+  y += 52; text('INKOMSTSKATT/MÅN', P, y, `600 26px ${M}`);
   if(rita){ x.save(); x.translate(RW - P, y); x.scale(1, 1.9); text(k2(data.skatt), 0, 0, `600 30px ${M}`, KB_FARG.black, 'right'); x.restore(); }
   if(data.egenavg){ y += 38; text('EGENAVGIFTER', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(data.egenavg), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right'); y -= 8; }
   y += 38; text('KVAR EFTER SKATT', P, y, `400 21px ${M}`, '#3F3C36'); text(k2(data.kvar), RW - P, y, `400 21px ${M}`, '#3F3C36', 'right');
+  // Källa och metod, så att bilden går att förstå utan sajten
+  y += 14; x.font = `400 18px ${M}`;
+  for(const rad of kbRader(x, KB_KALLA, inner)){ y += 25; text(rad, P, y, `400 18px ${M}`, KB_FARG.gra); }
   y += 20; streck(true);
   // Streckkod
   y += 8;
@@ -4694,6 +4732,7 @@ async function ritaKvittoBild(canvas, format, lon, typ = 'lon', ks = 0.3238){
   const data = startKvittoData(lon, typ, ks);
   const bild = {logo: await kbSymbol('kv-logo', KB_FARG.black), pk:{}};
   for(const g of START_GRUPPER) bild.pk[g.pk] = await kbSymbol('pk-' + g.pk, g.c);
+  bild.pk.pension = await kbSymbol('pk-pension', START_PENSION.c);
   const og = format === 'og', story = format === 'story';
   const W = og ? 1200 : 1080, H = og ? 630 : (story ? 1920 : 1350);
   canvas.width = W; canvas.height = H;
@@ -4714,14 +4753,15 @@ async function ritaKvittoBild(canvas, format, lon, typ = 'lon', ks = 0.3238){
     x.fillText('för pengarna?', 72, 302);
     x.font = `400 28px ${I}`; x.fillStyle = KB_FARG.ljus2;
     kbRader(x, 'Skriv in din lön och se vad skatten betalar varje månad, med källa för varje siffra.', 560).forEach((r, i) => x.fillText(r, 72, 384 + i*40));
-    x.font = `400 22px ${M}`; x.fillText('wilhelm-wg.github.io/skatteplattformen', 72, 566);
+    x.font = `400 17px ${M}`; kbRader(x, 'Medianlönen 38 300 kr (SCB 2025). Skatteregler 2026. Fördelat som de offentliga utgifterna 2024 (Eurostat).', 560).forEach((r, i) => x.fillText(r, 72, 492 + i*24));
+    x.font = `400 22px ${M}`; x.fillText('wilhelm-wg.github.io/skatteplattformen', 72, 572);
     skala = 0.62; kx = 1200 - 64 - RW*skala; ky = 46; // kvittot fortsätter utanför bildens nederkant
   } else {
     const M0 = story ? 150 : 80;
     x.textAlign = 'center'; x.fillStyle = KB_FARG.ljus2; x.font = `500 ${story ? 30 : 26}px ${I}`; x.fillText('Skatteplattformen', W/2, M0);
     x.fillStyle = KB_FARG.ljus; x.font = `600 ${story ? 64 : 52}px ${S}`; x.fillText('Vad fan får vi för pengarna?', W/2, M0 + (story ? 84 : 70));
     x.font = `italic 500 ${story ? 34 : 29}px ${S}`;
-    const citRader = kbRader(x, citat, story ? 860 : 900);
+    const citRader = kbRader(x, citat, story ? 860 : 900).concat(['— Skatteplattformens utgångspunkt']);
     const fot = story ? 170 : 96, citH = citRader.length * (story ? 48 : 40);
     const topp = M0 + (story ? 140 : 112), luft = story ? 60 : 36;
     const plats = H - topp - fot - citH - luft*2;
@@ -5173,9 +5213,9 @@ const LIVSFASER_V2 = [
    källa:'Skolverket 2025: förskola 199,2 tkr per inskrivet barn × 85 % täckning bland 1–5-åringar × 5/7 av åldersgruppen 0–6 = ca 121 tkr i åldersmedel. Sjukvård och socialt: kalibrerat mot COFOG 2024 (se ovan).',
    note:'Förskola cirka 199 tkr per inskrivet barn, men 0- och 6-åringar går inte → åldersmedel cirka 121 tkr. Barnavård och vaccinationer, föräldrapenning och barnbidrag.'},
   {id:'elev',       icon:'backpack', label:'Grundskoleelev',           min:7,  max:15,
-   f:{utb:143, sj:9, soc:28, koll:KOLL_PER_INV, oms:0},
-   källa:'Skolverket 2025: grundskola cirka 143 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa och lokaler. Sjukvård och socialt: kalibrerat.',
-   note:'Grundskola cirka 143 tkr per elev och år. Barnbidrag, fritidshem.'},
+   f:{utb:147, sj:9, soc:28, koll:KOLL_PER_INV, oms:0},
+   källa:'Skolverket 2025: grundskola cirka 147 tkr/elev, alla huvudmän, inkl. undervisning, skolmat, elevhälsa, lokaler och skolskjuts. Sjukvård och socialt: kalibrerat.',
+   note:'Grundskola cirka 147 tkr per elev och år. Barnbidrag, fritidshem.'},
   {id:'gymn',       icon:'book', label:'Gymnasieelev',             min:16, max:18,
    f:{utb:148, sj:10, soc:29, koll:KOLL_PER_INV, oms:0},
    källa:'Skolverket 2025: gymnasieskola 148,1 tkr/elev, alla huvudmän. Sjukvård och socialt: kalibrerat.',
@@ -5335,29 +5375,30 @@ function skattDelar(age, inc, opts){
   const pension = (opts && typeof opts.pension === 'boolean') ? opts.pension : age >= 65;
   const is66 = age >= 67;   // fyllt 66 vid årets ingång
   const agAldre = age >= 68; // fyllt 67 vid årets ingång: bara ålderspensionsavgift
-  if(age < 19 || inc <= 0) return {ks, pension, is66, agAldre, ga:0, bb:0, komm:0, stat:0, jsa:0};
+  if(age < 15 || inc <= 0) return {ks, pension, is66, agAldre, ga:0, bb:0, komm:0, stat:0, jsa:0, apa:0}; // barn under 15 räknas utan inkomst; inkomstskatten har ingen åldersgräns
   const ga = Math.min(inc, Math.ceil((grundavdrag2024raw(inc) + (is66 ? forhojtGrundavdrag2026(inc) : 0)) * 10 - 1e-9) / 10);
   const bb = Math.max(0, inc - ga);
   const komm = bb * ks;
   const stat = Math.max(0, bb - 643.0) * 0.20;
-  let jsa = 0, apaRest = 0;
+  let jsa = 0, apaRest = 0, apa = 0;
   if(!pension){
     jsa = is66 ? jobbskatteavdrag66(inc) : jobbskatteavdrag2024(inc, ga, ks);
     // Allmän pensionsavgift 7 % av lönen avräknas först mot skatten (skattereduktion 100 %).
     // Det som inte ryms kvarstår som avgift, och jobbskatteavdraget ryms bara i den kommunalskatt som är kvar.
-    const apa = Math.round(inc * 0.07 * 10) / 10;
+    // Taket: högst 47 100 kr om året (8,07 inkomstbasbelopp 2026, Skatteverket).
+    apa = Math.min(47.1, Math.round(inc * 0.07 * 10) / 10);
     const redApa = Math.min(apa, komm + stat);
     apaRest = apa - redApa;
     jsa = Math.min(jsa, Math.max(0, komm - Math.max(0, redApa - stat)));
   }
   jsa = Math.min(jsa, komm);   // kan aldrig överstiga kommunalskatten
-  return {ks, pension, is66, agAldre, ga, bb, komm: komm + apaRest, stat, jsa, apaRest};
+  return {ks, pension, is66, agAldre, ga, bb, komm: komm + apaRest, stat, jsa, apaRest, apa};
 }
 
 function annualTax(age, inc, opts){
   // inc = bruttoinkomst i tkr/år (pensionsinkomst skickas in redan reducerad av anroparen)
   // opts = {ksOverride: number, pension: boolean}
-  if(age < 19 || inc <= 0) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0};
+  if(age < 15 || inc <= 0) return {komm:0,stat:0,avg:0,moms:0,jsa:0,tot:0,apa:0};
   const d = skattDelar(age, inc, opts);
   const effInc = inc, komm = d.komm, stat = d.stat, jsa = d.jsa;
 
@@ -5388,7 +5429,8 @@ function annualTax(age, inc, opts){
   const tot = komm + stat + avg + moms - jsa;
   return {
     komm:Math.round(komm), stat:Math.round(stat), avg:Math.round(avg),
-    moms:Math.round(moms), jsa:Math.round(jsa), tot:Math.round(tot), konsumtion
+    moms:Math.round(moms), jsa:Math.round(jsa), tot:Math.round(tot), konsumtion,
+    apa: Math.round(d.apa || 0)   // allmän pensionsavgift (ingår i komm/tot, men blir egen pension)
   };
 }
 
@@ -5412,6 +5454,10 @@ function updateCalc(){
   const age = +document.getElementById('s-age').value;
   const inc = +document.getElementById('s-inc').value;
   const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
+  // Reglagens uppläsning följer värdet även efter delad länk (tillg-09)
+  { const a = document.getElementById('s-age'), b = document.getElementById('s-inc');
+    a.setAttribute('aria-valuenow', age); a.setAttribute('aria-valuetext', age + ' år');
+    b.setAttribute('aria-valuenow', inc); b.setAttribute('aria-valuetext', (inc * 1000).toLocaleString('sv-SE') + ' kronor per år'); }
   document.getElementById('d-age').textContent = age + ' år';
   const ageMan = document.getElementById('s-age-man'); if(ageMan && document.activeElement !== ageMan) ageMan.value = age;
   const syssRad = document.getElementById('syss-rad'); if(syssRad) syssRad.hidden = age < 19 || age > 64;
@@ -5484,6 +5530,7 @@ function updateCalc(){
     taxHTML = rubr('Dras från lönen')
       + direkt.filter(([,v])=>v!==0).map(rad).join('')
       + summa(`Summa, ${perMan.toLocaleString('sv-SE')} kr i månaden (${inc > 0 ? Math.round((dExakt.komm + dExakt.stat - dExakt.jsa) / inc * 100) : 0} % av ${dExakt.pension ? 'pensionen' : 'lönen'})`, sumDirekt)
+      + (tax.apa > 0 ? `<div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--ink3)"><span>varav allmän pensionsavgift, 7 % (blir din egen pension)</span><span style="font-family:var(--mono)">${tax.apa.toLocaleString('sv-SE')} tkr</span></div>` : '')
       + rubr('Betalas också, men syns inte på lönebeskedet')
       + indirekt.filter(([,v])=>v!==0).map(rad).join('')
       + summa('Summa', sumIndirekt) + `
@@ -5493,30 +5540,30 @@ function updateCalc(){
       </div>
       <div style="font-size:.75rem;color:var(--ink3);line-height:1.5">Skatten räknas med Skatteverkets regler 2026 och den kommunalskatt du har valt (rikssnittet 32,38 % om du inte valt kommun). Skattetabellen kan skilja några tior, eftersom den räknar med hela procent. Arbetsgivaravgiften betalar arbetsgivaren utöver lönen. Momsen är en uppskattning utifrån hur mycket som sparas och konsumeras (SCB).</div>`;
     // Modell-not: vad förhållandet säger om välfärdslogiken (inte personlig vinst/förlust)
-    const balance = total - totalSkatt;
+    const balance = total - (totalSkatt - (tax.apa || 0)); // pensionsavgiften blir egen pension och räknas inte
     const isNegative = balance < 0;
     taxHTML += `<div style="margin-top:.85rem;padding:.7rem .85rem;background:var(--bg2);border-radius:var(--r-sm);font-size:.72rem;color:var(--ink2);line-height:1.6">
       <strong style="color:var(--ink)">I modellen vid denna ålder:</strong>
       ${isNegative
-        ? `en genomsnittlig person i din ålder och inkomstgrupp betalar cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än den tar emot i offentliga tjänster <em>i år</em>. Skillnaden går till barn, äldre och sådant alla delar på, som vägar och försvar.`
-        : `en genomsnittlig person i din ålder och inkomstgrupp tar emot cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i offentliga tjänster än den betalar i skatt <em>i år</em>. Skillnaden betalas av skatt från dem som arbetar.`}
-      <span style="display:block;margin-top:.3rem;font-size:.75rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Jämförelsen gäller det personen själv använder (skola, vård, omsorg, ersättningar) och de skatter personen själv betalar. Det gemensamma, som försvar och vägar, betalas därutöver också av bolagsskatt, punktskatter, avgifter och lån.</span>
+        ? `en genomsnittlig person i din ålder, med din lön, betalar cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i skatt än den tar emot i offentliga tjänster <em>i år</em>. Skillnaden går till barn, äldre och sådant alla delar på, som vägar och försvar.`
+        : `en genomsnittlig person i din ålder, med din lön, tar emot cirka ${Math.abs(balance).toLocaleString('sv-SE')} tkr mer i offentliga tjänster än den betalar i skatt <em>i år</em>. Skillnaden betalas av skatt från dem som arbetar.`}
+      <span style="display:block;margin-top:.3rem;font-size:.75rem;color:var(--ink3)">Det här är ett genomsnitt, inte din egen balans. Ersättningarna (sjukpenning, a-kassa, föräldrapenning) är snittet för alla i din ålder; för den som arbetar är de främst ett skydd om man blir sjuk eller arbetslös. Jämförelsen gäller det personen själv använder (skola, vård, omsorg, ersättningar) och de skatter personen själv betalar, utom den allmänna pensionsavgiften, som blir egen pension. Det gemensamma, som försvar och vägar, betalas därutöver också av bolagsskatt, punktskatter, avgifter och lån.</span>
     </div>`;
   } else {
-    taxHTML = `<div style="font-size:.78rem;color:var(--ink2);font-style:italic">Under 18 år eller ingen inkomst — inga skattebetalningar.</div>`;
+    taxHTML = `<div style="font-size:.78rem;color:var(--ink2);font-style:italic">Under 15 år eller ingen inkomst — inga skattebetalningar.</div>`;
   }
   document.getElementById('tax-breakdown').innerHTML = taxHTML;
 
 
   // Livscykeltext: styrs av modellens resultat (förmåner − skatt), inte bara av åldern
-  const netto = total - totalSkatt; // > 0: tar emot mer än betalar
+  const netto = total - (totalSkatt - (tax.apa || 0)); // > 0: tar emot mer än betalar (utan pensionsavgiften)
   const P = t => `<p style="font-size:.75rem;color:var(--ink2);line-height:1.65">${t}</p>`;
   let lcText;
   if(age <= 18){
     lcText = P('Under uppväxten tar du emot skola, vård och barnomsorg som betalas med skatt från dem som arbetar.');
   } else if(age >= 65){
     lcText = P(netto > 0
-      ? 'I den här åldern tar de flesta emot mer i vård, omsorg och pension än de betalar i skatt. Det betalas av dem som arbetar i dag, på samma sätt som du under arbetslivet betalade för andra.'
+      ? 'I den här åldern tar de flesta emot mer i vård, omsorg och garantipension än de betalar i skatt. Inkomstpensionen räknas inte här, eftersom den betalas med egna avgifter. Det övriga betalas av dem som arbetar i dag, på samma sätt som du under arbetslivet betalade för andra.'
       : 'Med den här inkomsten betalar en genomsnittlig person i din ålder fortfarande mer i skatt än den tar emot. Med åren ökar vården och omsorgen, och då vänder det för de flesta.');
   } else if(netto > 0){
     lcText = P(age <= 25
@@ -5530,18 +5577,18 @@ function updateCalc(){
   // Solidarity text — varies by life stage
   const solidarityTexts = {
     'barn': 'Förskola, vård och barnbidrag betalas med skatt. Själv har barnet inte betalat en krona i inkomstskatt än.',
-    'elev': 'Din skolgång kostar samhället cirka 143 000 kr per år (se prislistan). Den betalas av dem som arbetar: föräldrar, mor- och farföräldrar och grannar utan barn.',
+    'elev': 'Din skolgång kostar samhället cirka 147 000 kr per år (se prislistan). Den betalas av dem som arbetar: föräldrar, mor- och farföräldrar och grannar utan barn.',
     'gymn': 'Gymnasiet är frivilligt och avgiftsfritt. Ett år kostar cirka 148 000 kr per elev (se prislistan), och det betalas med skatt.',
     'student': 'Ett år på högskolan kostar cirka 114 000 kr per helårsstudent i utbildning (UKÄ, 2025). Studenter från EU/EES betalar ingen studieavgift.',
     'ung_arb': 'Räknat från födseln har de flesta i din ålder tagit emot mer än de betalat, eftersom skola och vård under uppväxten kostar mycket. Det jämnas ut under arbetslivet.',
-    'barnfamilj': 'Barnbidrag, föräldrapenning och barnens förskola och skola tillkommer, samtidigt som skatten är som högst under arbetslivet. Om årets netto blir positivt eller negativt beror på inkomst och antal barn. Över hela livet jämnas flödena ut.',
+    'barnfamilj': 'Barnbidrag, föräldrapenning och barnens förskola och skola tillkommer, samtidigt som skatten är som högst under arbetslivet. Om årets netto blir positivt eller negativt beror på inkomst och antal barn.',
     'mitt_karriar': 'Under de här åren betalar de flesta som mest i skatt. Den går till dem som just nu är barn, sjuka eller gamla, och till sådant alla använder, som vägar och rättsväsende.',
     'senior': 'Skatten brukar sjunka och vården öka i de här åren. Det är samma system som betalade skolan i början av livet, i en annan fas.',
     'pensionar': 'Pension, vård och omsorg betalas nu av dagens skatter och pensionsavgifter, på samma sätt som du under arbetslivet betalade för den tidens pensionärer.',
     'aldri': 'Efter 80 är kostnaden för vård och omsorg som högst, ofta flera hundra tusen kronor om året. Den betalas med skatt från dem som arbetar i dag.',
   };
   document.getElementById('solidarity-text').textContent = solidarityTexts[stage.id] ||
-    'Du finansierar också andras barn, sjukvård och pension, och de finansierar dina. Det är innebörden av ett solidariskt samhällskontrakt.';
+    'Du finansierar också andras barn, sjukvård och pension — det är innebörden av ett solidariskt samhällskontrakt.';
 
   // ─── DITT SKATTEKVITTO ─────────────────────────────────────────
   // Proportional breakdown of user's total tax across COFOG functions
@@ -5577,30 +5624,32 @@ function updateCalc(){
     const kapMan = kapSkatt * 1000 / 12;
     const indMan = Math.max(0, totMan - lonMan - kapMan);
     const lonKr = Math.round(lonMan), kapKr = Math.round(kapMan), totKr = lonKr + kapKr; // skatt på lön (och kapital), inte arbetsgivaravgift eller moms
-    const radKr = cofogItems.map(c => Math.round(totKr * c.andel));
+    // Allmän pensionsavgift överst (blir egen pension); resten fördelas som de offentliga utgifterna
+    const apaKr = Math.min(lonKr, Math.round((dK.apa || 0) * 1000 / 12)), fordela = totKr - apaKr;
+    const radKr = cofogItems.map(c => Math.round(fordela * c.andel));
     const iMax = radKr.indexOf(Math.max(...radKr));
-    radKr[iMax] += totKr - radKr.reduce((a, b) => a + b, 0); // avrundningsresten på största raden, så att summan stämmer
-    const rader = cofogItems.map((c, i) => {
+    radKr[iMax] += fordela - radKr.reduce((a, b) => a + b, 0); // avrundningsresten på största raden, så att summan stämmer
+    const rader = (apaKr > 0 ? `<div class="kv-rad kv-pension"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-pension"></use></svg><span>Din allmänna pension (7 %)</span><span>${kr2(apaKr)}</span></div>` : '') + cofogItems.map((c, i) => {
       const v = radKr[i];
       return `<div class="kv-rad"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#pk-${pkMap[c.icon]}"></use></svg><span>${kort[c.namn] || c.namn}</span><span>${kr2(v)}</span></div>`;
     }).join('');
     const lonManKr = Math.round(inc * 1000 / 12);
     document.getElementById('kvitto').innerHTML = `${KV.kant(true, 7)}<div class="kvitto-papper">
-      ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN SKATT 2026', lonManKr, dK.pension ? 'PENSIONSMYNDIGHETEN' : 'ARBETSGIVAREN', `${dK.pension ? 'PENSION' : 'LÖN'} ${lonManKr.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR · ${(dK.ks * 100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2})} %`)}
+      ${KV.huvud('SKATTEPLATTFORMEN', 'KVITTO · DIN INKOMSTSKATT 2026', lonManKr, dK.pension ? 'PENSIONSMYNDIGHETEN' : 'ARBETSGIVAREN', `${dK.pension ? 'PENSION' : 'LÖN'} ${lonManKr.toLocaleString('sv-SE')} KR/MÅN · ${age} ÅR · ${(dK.ks * 100).toLocaleString('sv-SE', {minimumFractionDigits:2, maximumFractionDigits:2})} %`)}
       <hr class="kv-streck">
       <div class="kv-rader">${rader}</div>
       <hr class="kv-streck">
-      <div class="kv-sum"><span>SKATT/MÅN</span><b><span class="kv-hog">${kr2(totKr)}</span></b></div>
+      <div class="kv-sum"><span>INKOMSTSKATT/MÅN</span><b><span class="kv-hog">${kr2(totKr)}</span></b></div>
       ${kapMan > 0 ? `<div class="kv-del"><span>VARAV SKATT PÅ KAPITAL</span><span>${kr2(kapKr)}</span></div>` : ''}
       <div class="kv-del"><span>KVAR EFTER SKATT</span><span>${kr2(Math.max(0, lonManKr - lonKr))}</span></div>
       <div class="kv-del"><span>PER ÅR</span><span>${kr2(totKr * 12)}</span></div>
-      <div class="kv-del"><span>ANTAL RADER</span><span>${cofogItems.length}</span></div>
+      <div class="kv-del"><span>ANTAL RADER</span><span>${cofogItems.length + (apaKr > 0 ? 1 : 0)}</span></div>
       <hr class="kv-streck dubbel">
       <div class="kv-fot"><span>BETALT MED: ${dK.pension ? 'PENSION' : 'LÖN'} · INGET BYTE</span>${KV.kod(lonManKr)}<span>wilhelm-wg.github.io/skatteplattformen</span></div>
     </div>${KV.flik(`SPARA: SKATTEN ÄR ${((lonManKr) > 0 ? (lonKr) / (lonManKr) * 100 : 0).toLocaleString('sv-SE', {minimumFractionDigits:1, maximumFractionDigits:1})} % AV ${dK.pension ? 'PENSIONEN' : 'LÖNEN'}`)}${KV.kant(false, 11)}`;
     document.getElementById('kvitto').setAttribute('aria-label', `Ditt skattekvitto: ${totKr.toLocaleString('sv-SE')} kronor i skatt per månad.`);
     agKvitto(age, inc, null, kr2);
-    document.getElementById('kvitto-not').textContent = `Skatten fördelas som den offentliga sektorns utgifter 2024 (Eurostat, COFOG), utan inkomstpensionen som betalas med pensionsavgiften. Moms när du handlar kommer till: cirka ${(Math.round(tax.moms * 1000 / 12 / 10) * 10).toLocaleString('sv-SE')} kr i månaden (uppskattning).`;
+    document.getElementById('kvitto-not').textContent = `${apaKr > 0 ? 'Överst står den allmänna pensionsavgiften, 7 % av lönen, som dras tillsammans med skatten och blir din egen pension. ' : ''}${apaKr > 0 ? 'Resten' : 'Skatten'} fördelas som den offentliga sektorns utgifter 2024 (Eurostat, COFOG), utan inkomstpensionen, som betalas med pensionsavgifter. Moms när du handlar kommer till: cirka ${(Math.round(tax.moms * 1000 / 12 / 10) * 10).toLocaleString('sv-SE')} kr i månaden (uppskattning).`;
   } else {
     receiptCard.style.display = 'none';
   }
@@ -5677,7 +5726,7 @@ const JMF_DATA = {
       {t:'Spädbarnsdödlighet', q:'Hur många spädbarn dör under det första året?', per:'per 1 000 födda', enh:'döda per 1 000 levande födda', ar:2024, bast:'lagre', dec:1,
        v:[2.0,2.0,3.5,1.9,2.1,3.1,5.5], ref:{v:3.8,lbl:'OECD-snitt'},
        kalla:'Världsbanken, WDI (FN:s IGME)', url:'https://data.worldbank.org/indicator/SP.DYN.IMRT.IN'},
-      {t:'Undvikbar dödlighet', q:'Hur många dör i förtid av orsaker som går att undvika?', per:'per 100 000 invånare', enh:'dödsfall före 75 års ålder per 100 000 invånare som hade kunnat undvikas med förebyggande arbete eller vård, åldersstandardiserat', ar:2023, bast:'lagre', dec:0,
+      {t:'Undvikbar dödlighet', q:'Hur många dör i förtid av orsaker som går att undvika?', sam:false, per:'per 100 000 invånare', enh:'dödsfall före 75 års ålder per 100 000 invånare som hade kunnat undvikas med förebyggande arbete eller vård, åldersstandardiserat', ar:2023, bast:'lagre', dec:0,
        v:[164.1,170.9,205.3,223.1,180.7,240.4,null], ref:{v:237.7,lbl:'EU-snitt'},
        kalla:'Eurostat, undvikbar dödlighet (hlth_cd_apr)', url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_cd_apr/default/table',
        not:'Undvikbar dödlighet är summan av förebyggbar dödlighet (främst levnadsvanor och folkhälsa, 106 per 100 000 i Sverige) och åtgärdbar dödlighet (vad vården kan behandla, 58). Sverige ligger lägst främst i den förebyggbara delen; se diagrammet över åtgärdbar dödlighet. Eurostat redovisar inte USA och inget OECD-snitt.'},
@@ -5701,19 +5750,19 @@ const JMF_DATA = {
        v:[60,60,90,85,34,180,223], ref:{v:111,lbl:'OECD-snitt'},
        kalla:'OECD Health at a Glance 2025, undvikbara sjukhusinläggningar', url:'https://www.oecd.org/en/publications/2025/11/health-at-a-glance-2025_a894f72e/full-report/avoidable-hospital-admissions_2a8e2482.html',
        not:'Inläggningar som ofta kan undvikas med god uppföljning i primärvården. Antalet påverkas också av hur vanlig sjukdomen är och hur många vårdplatser som finns. USA avser 2022. Islands tal bygger på få fall.'},
-      {t:'Bröstcancer, femårsöverlevnad', q:'Hur många överlever bröstcancer?', kort:'Bröstcancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
+      {t:'Bröstcancer, femårsöverlevnad', grupp:'canceröverlevnad (fyra cancerformer)', q:'Hur många överlever bröstcancer?', kort:'Bröstcancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
        v:[88.8,87.2,86.1,88.5,89.1,86.0,90.2], ref:{v:84.3,lbl:'OECD-snitt'},
        kalla:'OECD Health Care Quality Indicators (CONCORD-3), via DBnomics', url:'https://db.nomics.world/OECD/DSD_HCQO@DF_CC',
        not:'Samma metod för alla länder. Nyare uppgifter (CONCORD-4) väntas. Skillnader på någon procentenhet ligger inom felmarginalen, särskilt för Island.'},
-      {t:'Tjocktarmscancer, femårsöverlevnad', q:'Hur många överlever tjocktarmscancer?', kort:'Tjocktarmscancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
+      {t:'Tjocktarmscancer, femårsöverlevnad', grupp:'canceröverlevnad (fyra cancerformer)', q:'Hur många överlever tjocktarmscancer?', kort:'Tjocktarmscancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
        v:[64.9,64.9,61.6,64.9,68.2,64.8,64.9], ref:{v:61.2,lbl:'OECD-snitt (egen beräkning)'},
        kalla:'OECD Health Care Quality Indicators (CONCORD-3), via DBnomics', url:'https://db.nomics.world/OECD/DSD_HCQO@DF_CC',
        not:'OECD-snittet är ett ovägt medel av 34 OECD-länder, räknat av Skatteplattformen med samma metod som ger OECD:s eget snitt för bröstcancer.'},
-      {t:'Ändtarmscancer, femårsöverlevnad', q:'Hur många överlever ändtarmscancer?', kort:'Ändtarmscancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
+      {t:'Ändtarmscancer, femårsöverlevnad', grupp:'canceröverlevnad (fyra cancerformer)', q:'Hur många överlever ändtarmscancer?', kort:'Ändtarmscancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
        v:[64.7,68.3,64.8,64.4,63.0,62.3,64.1], ref:{v:59.8,lbl:'OECD-snitt (egen beräkning)'},
        kalla:'OECD Health Care Quality Indicators (CONCORD-3), via DBnomics', url:'https://db.nomics.world/OECD/DSD_HCQO@DF_CC',
        not:'OECD-snittet är ett ovägt medel av 34 OECD-länder, räknat av Skatteplattformen.'},
-      {t:'Lungcancer, femårsöverlevnad', q:'Hur många överlever lungcancer?', kort:'Lungcancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
+      {t:'Lungcancer, femårsöverlevnad', grupp:'canceröverlevnad (fyra cancerformer)', q:'Hur många överlever lungcancer?', kort:'Lungcancer', form:'punkt', enh:'procent, åldersstandardiserad femårs nettoöverlevnad', ar:'diagnos 2010–2014', bast:'hogre', unit:' %', dec:1,
        v:[19.5,18.1,16.6,13.0,20.2,18.3,21.2], ref:{v:17.1,lbl:'OECD-snitt (egen beräkning)'},
        kalla:'OECD Health Care Quality Indicators (CONCORD-3), via DBnomics', url:'https://db.nomics.world/OECD/DSD_HCQO@DF_CC',
        not:'OECD-snittet är ett ovägt medel av 34 OECD-länder, räknat av Skatteplattformen. Svenska registersiffror kan överskatta överlevnaden i lungcancer något, enligt Socialstyrelsen.'},
@@ -5721,7 +5770,7 @@ const JMF_DATA = {
        v:[202.6,211.8,262.7,208.0,224.4,234.8,null], ref:{v:233.1,lbl:'EU-snitt'},
        kalla:'Eurostat, dödsorsaker (hlth_cd_asdr2)', url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_cd_asdr2/default/table',
        not:'Dödligheten påverkas både av vården och av hur många som insjuknar. Sveriges låga tal beror till stor del på att få röker, vilket ger låg dödlighet i lungcancer. För kvinnor ligger Sverige nära EU-snittet (181 mot 184). Eurostat redovisar inte USA.'},
-      {t:'Dödlighet i cancer, kvinnor', q:'Hur många kvinnor dör i cancer?', kort:'Cancerdödlighet, kvinnor', per:'per 100 000 kvinnor', enh:'dödsfall i cancer per 100 000 kvinnor, åldersstandardiserat', ar:2023, bast:'lagre', dec:1,
+      {t:'Dödlighet i cancer, kvinnor', q:'Hur många kvinnor dör i cancer?', sam:false, kort:'Cancerdödlighet, kvinnor', per:'per 100 000 kvinnor', enh:'dödsfall i cancer per 100 000 kvinnor, åldersstandardiserat', ar:2023, bast:'lagre', dec:1,
        v:[181.1,185.3,222.2,170.6,195.3,193.4,null], ref:{v:183.7,lbl:'EU-snitt'},
        kalla:'Eurostat, dödsorsaker (hlth_cd_asdr2)', url:'https://ec.europa.eu/eurostat/databrowser/view/hlth_cd_asdr2/default/table',
        not:'Eurostat redovisar inte USA.'}
@@ -5751,7 +5800,11 @@ const JMF_DATA = {
       {t:'Utgifter per elev och student', q:'Vad kostar en elev per år?', pris:'Ett år i grundskolan', enh:'US-dollar per heltidsstudent, köpkraftsjusterat, grundskola till högskola', ar:2022, bast:null, unit:' $', dec:0,
        v:[17804,22558,19229,15000,18707,17960,null], ref:{v:14865,lbl:'OECD-snitt'},
        kalla:'OECD Education at a Glance (via DBnomics)', url:'https://db.nomics.world/OECD/DSD_EAG_UOE_FIN@DF_UOE_INDIC_FIN_PERSTUD',
-       not:'Inklusive forskning vid universitet och högskolor. USA saknas för 2022.'}
+       not:'Inklusive forskning vid universitet och högskolor. USA saknas för 2022.'},
+      {t:'PISA 2025, läsförståelse', q:'Hur bra är 15-åringar på att läsa?', kort:'PISA läsning', form:'punkt', per:'poäng', enh:'medelpoäng för 15-åringar', ar:2025, bast:'hogre', dec:0,
+       v:[466,453,460,474,422,465,490], ref:{v:461,lbl:'OECD-snitt'},
+       kalla:'OECD PISA 2025, Volume I (tabell I.B1.2a.2)', url:'https://stat.link/mrq53f',
+       not:'Sverige har sjunkit 21 poäng sedan 2022 (487 poäng), det största fallet av de tre ämnena. Samma osäkerhet om Norge och USA som för matematik.'}
     ] },
   socialt: { title: 'Socialt skydd och omsorg', charts: [
       {t:'Inkomstskillnader (Gini-koefficient)', q:'Hur jämnt är inkomsterna fördelade?', enh:'disponibel inkomst efter skatter och bidrag, 0 = alla har lika mycket', ar:2022, bast:null, dec:2,
@@ -5773,7 +5826,11 @@ const JMF_DATA = {
       {t:'Höga boendekostnader', q:'Hur många har höga boendekostnader?', enh:'andel av befolkningen som lägger mer än 40 procent av den disponibla inkomsten på boendet', ar:2025, bast:'lagre', unit:' %', dec:1,
        v:[10.8,13.5,14.7,4.7,null,11.2,null], ref:{v:7.6,lbl:'EU-snitt'},
        kalla:'Eurostat, EU-SILC (ilc_lvho07a)', url:'https://ec.europa.eu/eurostat/databrowser/view/ilc_lvho07a/default/table',
-       not:'Eurostat redovisar inte USA och Island. Danmark har ett tidsseriebrott 2025.'}
+       not:'Eurostat redovisar inte USA och Island. Danmark har ett tidsseriebrott 2025.'},
+      {t:'Arbetslöshet', q:'Hur många av dem som vill arbeta saknar jobb?', enh:'procent av arbetskraften, 15–74 år, årsgenomsnitt', ar:2025, bast:'lagre', unit:' %', dec:1,
+       v:[8.8,4.5,6.4,9.7,4.5,3.8,4.3], ref:{v:6.0,lbl:'EU-snitt'},
+       kalla:'Eurostat, arbetslöshet (une_rt_a); USA: Bureau of Labor Statistics', url:'https://ec.europa.eu/eurostat/databrowser/view/une_rt_a/default/table',
+       not:'USA avser 16 år och äldre (BLS, årsgenomsnitt 2025, oktober saknas). Arbetslösheten varierar med konjunkturen; i Sverige räknas heltidsstuderande som söker arbete som arbetslösa, som i EU:s statistik i övrigt.'}
     ] },
   samhalle: {
     title: 'Samhälle',
@@ -5800,7 +5857,11 @@ const JMF_DATA = {
       {t:'Försvarsutgifter', q:'Hur stor del av ekonomin går till försvaret?', pris:'Försvar och krisberedskap per invånare, 2026', enh:'procent av BNP, Natos definition', ar:2024, bast:null, unit:' %', dec:1,
        v:[2.31,2.27,2.27,2.40,null,2.00,3.21], ref:{v:2.61,lbl:'Nato totalt'},
        kalla:'Nato, Defence Expenditure of NATO Countries 2014–2025', url:'https://www.nato.int/content/dam/nato/webready/documents/finance/def-exp-2025-en.pdf',
-       not:'Uppskattning för 2024. Island har ingen försvarsmakt. Nato totalt är vägt efter BNP och domineras av USA; ovägt snitt för medlemsländerna är 2,15. Sverige beräknas nå 2,8 procent 2026 och har som mål 3,5 procent till 2030 (regeringen).'}
+       not:'Uppskattning för 2024. Island har ingen försvarsmakt. Nato totalt är vägt efter BNP och domineras av USA; ovägt snitt för medlemsländerna är 2,15. Sverige beräknas nå 2,8 procent 2026 och har som mål 3,5 procent till 2030 (regeringen).'},
+      {t:'Skatter och avgifter som andel av BNP', q:'Hur stor del av ekonomin tas ut i skatt?', kort:'Skattekvot', enh:'procent av BNP, skatter och sociala avgifter', ar:2025, bast:null, unit:' %', dec:1,
+       v:[41.2,38.9,44.3,42.5,36.5,41.4,null], ref:{v:40.7,lbl:'EU-snitt'},
+       kalla:'Eurostat, skatter och avgifter (gov_10a_taxag)', url:'https://ec.europa.eu/eurostat/databrowser/view/gov_10a_taxag/default/table',
+       not:'Eurostat räknar med imputerade sociala avgifter, därför är Sveriges tal något högre än SCB:s 40,5 %. Eurostat redovisar inte USA. Ingen riktning: hur hög skatten bör vara är en politisk fråga.'}
     ]
   },
   miljo: {
@@ -5949,7 +6010,7 @@ function jmfKort(ch, o){
   const id = `jmf-${o.k}-${o.n + 1}`, se = ch.v[0];
   const riktn = ch.bast === 'hogre' ? '<span aria-hidden="true">↑</span> Högre är bättre' : ch.bast === 'lagre' ? '<span aria-hidden="true">↓</span> Lägre är bättre' : 'Ingen självklar riktning';
   const enh = ch.per || (ch.unit || '').trim();
-  const om = [`${ch.enh[0].toUpperCase() + ch.enh.slice(1)}, ${ch.ar}.`, ch.bast ? `Här är ${jmfRiktn(ch)}.` : 'Varken högre eller lägre är självklart bättre.',
+  const om = [`${ch.enh[0].toUpperCase() + ch.enh.slice(1)}, ${ch.ar}.`, ch.bast ? `${jmfRiktn(ch)[0].toUpperCase() + jmfRiktn(ch).slice(1)}.` : 'Varken högre eller lägre är självklart bättre.',
     ch.ref ? `Den streckade linjen: ${ch.ref.lbl}, ${jmfTal(ch.ref.v, ch)}${ch.unit || ''}.` : '', ch.not || ''].filter(Boolean).join(' ');
   return `<article class="oecd-card jk" id="${id}" data-k="${o.k}" data-n="${o.n}" aria-labelledby="${id}-q">
   <div class="jk-g">
@@ -5985,26 +6046,32 @@ function jmfSkala(ch, mini){
     + `<i class="vs-p se" style="left:${xs}%"></i>${mini ? '' : `<span class="vs-se" style="left:${Math.min(90, Math.max(10, xs))}%">Sverige</span>`}</span></span>`;
 }
 
-// Sammanfattningen: bara mått med riktning (bast) och referens. Inom 2 % = ungefär som snittet
+// Sammanfattningen: bara mått med riktning (bast) och referens. Inom 2 % = ungefär som snittet.
+// Varje fenomen räknas en gång: sam:false hoppas över (överlappar ett annat mått), mått med samma grupp
+// räknas som ett med medelvärdet av avvikelserna (neutralitetsgranskningen 2026-11).
 function jmfSammanfattning(){
   const alla = Object.entries(JMF_DATA).flatMap(([k, s]) => s.charts.map((ch, n) => ({k, n, ch})));
-  const bat = [], nara = [], sam = [];
+  const bat = [], nara = [], sam = [], grupper = {};
+  const sortera = (m, d) => (Math.abs(d) < JMF_NARA ? nara : d > 0 ? bat : sam).push(m);
   alla.forEach(m => {
-    const {ch} = m; if(!ch.bast || !ch.ref) return;
+    const {ch} = m; if(!ch.bast || !ch.ref || ch.sam === false) return;
     const d = (ch.v[0] - ch.ref.v) / ch.ref.v * (ch.bast === 'lagre' ? -1 : 1);
-    (Math.abs(d) < JMF_NARA ? nara : d > 0 ? bat : sam).push(m);
+    if(ch.grupp){ (grupper[ch.grupp] = grupper[ch.grupp] || {m:{...m, namn:ch.grupp}, d:[]}).d.push(d); return; }
+    sortera(m, d);
   });
-  return {alla, bat, nara, sam, med: bat.length + nara.length + sam.length};
+  Object.values(grupper).forEach(g => sortera(g.m, g.d.reduce((a, b) => a + b, 0) / g.d.length));
+  const ejRaknade = alla.filter(m => m.ch.bast && m.ch.ref && m.ch.sam === false);
+  return {alla, bat, nara, sam, med: bat.length + nara.length + sam.length, ejRaknade};
 }
 
 function initOecd() {
   const box = document.getElementById('oecd-panels');
   const S = jmfSammanfattning(), N = S.alla.length;
-  const lank = m => `<a href="#jmf-${m.k}-${m.n + 1}">${jmfNamn(m.ch)}</a>`;
+  const lank = m => `<a href="#jmf-${m.k}-${m.n + 1}">${m.namn || jmfNamn(m.ch)}</a>`;
   const ovrigaRef = [...S.bat, ...S.nara, ...S.sam].filter(m => !/snitt|OECD-länderna/.test(m.ch.ref.lbl));
   const summa = `<div class="jmf-summa">
-    <p class="js-lead">I ${S.med} av ${N} mått finns en riktning där högre eller lägre är bättre. Så här ligger Sverige mot snittet i dem.
-      <small>Ingen sammanvägning: måtten är olika viktiga och har olika källor och år.${ovrigaRef.length ? ` Snittet är OECD- eller EU-snittet, för ${jmfLista(ovrigaRef.map(m => jmfNamn(m.ch) + ' ' + jmfRefFras(m.ch.ref.lbl).replace(/ \(.*\)/, '')))}.` : ''}</small></p>
+    <p class="js-lead">${S.med} av måtten har en riktning där högre eller lägre är bättre, räknat en gång per fenomen. Så här ligger Sverige mot snittet i dem.
+      <small>Ingen sammanvägning: måtten är olika viktiga och har olika källor och år. De fyra måtten för canceröverlevnad räknas som ett, och ${jmfLista(S.ejRaknade.map(m => jmfNamn(m.ch).replace(/^./, c => c.toLowerCase())))} räknas inte, eftersom de överlappar andra mått. Måtten är valda för att täcka det skatten betalar för (vård, skola, socialt skydd, trygghet och miljö) och vad den kostar, inte efter hur Sverige ligger till. <a href="#om-oss">Saknar du ett mått? Skriv till oss.</a>${ovrigaRef.length ? ` Snittet är OECD- eller EU-snittet, för ${jmfLista(ovrigaRef.map(m => jmfNamn(m.ch) + ' ' + jmfRefFras(m.ch.ref.lbl).replace(/ \(.*\)/, '')))}.` : ''}</small></p>
     <div class="js-del"><p class="js-tal">${S.bat.length}<span> av ${S.med}</span></p><p class="js-txt">på den bättre sidan av snittet</p><span class="js-rutor" aria-hidden="true">${'<i></i>'.repeat(S.bat.length)}</span></div>
     <div class="js-del"><p class="js-tal">${S.nara.length}</p><p class="js-txt">ungefär som snittet (inom 2 %)${S.nara.length ? ': ' + jmfLista(S.nara.map(lank)) : ''}</p><span class="js-rutor" aria-hidden="true">${'<i class="nara"></i>'.repeat(S.nara.length)}</span></div>
     <div class="js-del"><p class="js-tal">${S.sam.length}</p><p class="js-txt">på den sämre sidan${S.sam.length ? ': ' + jmfLista(S.sam.map(lank)) : ''}</p><span class="js-rutor" aria-hidden="true">${'<i class="av"></i>'.repeat(S.sam.length)}</span></div>
@@ -6115,22 +6182,20 @@ initOecd();
 function showFt(btn, key){
   // Only toggle tabs within the same parent section
   const section = btn.closest('section');
-  section.querySelectorAll('.ft-tab').forEach(b=>b.classList.remove('on'));
+  section.querySelectorAll('.ft-tab').forEach(b=>{ const on = b === btn; b.classList.toggle('on', on); if(b.getAttribute('role') === 'tab'){ b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; } });
   section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
-  btn.classList.add('on');
   const panel = document.getElementById('ft-'+key);
-  if(panel) panel.classList.add('on');
+  if(panel){ panel.classList.add('on'); panel.setAttribute('role','tabpanel'); }
 }
 
 
 // Samma mönster för #sjukvard-flikarna (kapacitet / utfall / tillganglighet)
 function showSjukv(btn, key){
   const section = btn.closest('section');
-  section.querySelectorAll('.ft-tab').forEach(b=>b.classList.remove('on'));
+  section.querySelectorAll('.ft-tab').forEach(b=>{ const on = b === btn; b.classList.toggle('on', on); if(b.getAttribute('role') === 'tab'){ b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; } });
   section.querySelectorAll('.ft-panel').forEach(p=>p.classList.remove('on'));
-  btn.classList.add('on');
   const panel = document.getElementById('sjukv-'+key);
-  if(panel) panel.classList.add('on');
+  if(panel){ panel.classList.add('on'); panel.setAttribute('role','tabpanel'); }
 }
 
 // Skattekvot timeline chart
@@ -6238,9 +6303,9 @@ function showSjukv(btn, key){
 
   // International comparison bars
   const intl=[
-    // Eurostat, euroindikatorer 22 april 2026 (Maastrichtskuld 2025). Japan/USA borttagna: inte samma mått.
+    // Eurostat, euroindikatorer 21 oktober 2026 (Maastrichtskuld 2025). Japan/USA borttagna: inte samma mått.
     {land:'Finland',v:88.4},{land:'EU-27 snitt',v:81.5},{land:'Tyskland',v:62.8},
-    {land:'Sverige',v:35.1},{land:'Danmark',v:27.9}
+    {land:'Sverige',v:35.1},{land:'Danmark',v:27.2}
   ];
   const el2=document.getElementById('hist-skuld-intl');
   if(!el2) return;
@@ -6405,16 +6470,16 @@ const SCENARIER = {
       const w = {};
       Object.keys(vuxen).forEach(k => w[k] = vuxen[k]*2 + barn5[k] + barn9[k]);
       // Barnens skola: verklig kostnad per barn (prislistan) i stället för åldersgenomsnittet
-      w.utb = vuxen.utb*2 + cardTkr('Förskola, ett år',199) + cardTkr('Ett år i grundskolan',143);
+      w.utb = vuxen.utb*2 + cardTkr('Förskola, ett år',199) + cardTkr('Ett år i grundskolan',147);
       const tot_forman = Object.values(w).reduce((s,v)=>s+v,0);
       const tax = taxForSalaries(this.age, [this.inc/2, this.inc/2]);  // två löner à 375 tkr
-      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
+      return {forman: tot_forman, skatt: tax.tot - tax.apa, netto: tot_forman - (tax.tot - tax.apa), w, tax};
     },
     noter:[
       'Skatten räknas på två löner à 375 tkr',
       'Förmånerna gäller alla fyra: föräldrarna och barnen, var och en med genomsnittet för sin ålder. Det gemensamma, som försvar och vägar, räknas separat',
       'Ett barn i förskola och ett i grundskola, med kostnaden per barn i prislistan',
-      'Nettot gäller ett enskilt år. Över livet jämnas flödena ut (se Livsloppet)'
+      'Nettot gäller ett enskilt år. Under livet växlar det: som barn och äldre tar man emot mer, under arbetslivet betalar man mer (se Livsloppet)'
     ]
   },
   ensamstaende: {
@@ -6429,7 +6494,7 @@ const SCENARIER = {
       const w = {...stage.w};
       const tot_forman = Object.values(w).reduce((s,v)=>s+v,0);
       const tax = annualTax(this.age, this.inc);
-      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
+      return {forman: tot_forman, skatt: tax.tot - tax.apa, netto: tot_forman - (tax.tot - tax.apa), w, tax};
     },
     noter:[
       'Inga barn, alltså inget barnbidrag eller föräldrapenning',
@@ -6451,7 +6516,7 @@ const SCENARIER = {
       w[sjKey] = (w[sjKey] || 0) + this.kronisk; // extra sjukvård för MS (räknas en gång)
       const tot_forman = Object.values(w).reduce((s,v)=>s+v,0);
       const tax = annualTax(this.age, this.inc);
-      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax};
+      return {forman: tot_forman, skatt: tax.tot - tax.apa, netto: tot_forman - (tax.tot - tax.apa), w, tax};
     },
     noter:[
       'MS-vård med biologiska läkemedel: cirka 380 000 kr per år i genomsnitt, men det varierar mycket mellan läkemedel (se prislistan)',
@@ -6473,7 +6538,7 @@ const SCENARIER = {
       const tax = annualTax(this.age, this.inc);
       // Som jämförelse: vad hemtjänst för en person kostar i genomsnitt (prislistan, Kolada 2025)
       const hemtjanst = cardTkr('Hemtjänst, ett år', 385);
-      return {forman: tot_forman, skatt: tax.tot, netto: tot_forman - tax.tot, w, tax, hemtjanst};
+      return {forman: tot_forman, skatt: tax.tot - tax.apa, netto: tot_forman - (tax.tot - tax.apa), w, tax, hemtjanst};
     },
     noter:[
       'Makens vård och omsorg räknas på maken, inte här',
@@ -6536,7 +6601,7 @@ function renderScen(key){
           <div class="scen-row"><span class="scen-lbl">Bruttoinkomst</span><span class="scen-val">${s.inc.toLocaleString('sv-SE')} tkr/år</span></div>
           <div class="scen-row"><span class="scen-lbl">Ålder</span><span class="scen-val">${s.age} år</span></div>
           <div class="scen-row"><span class="scen-lbl">Offentliga förmåner totalt</span><span class="scen-val" style="color:var(--green)">${Math.round(r.forman).toLocaleString('sv-SE')} tkr/år</span></div>
-          <div class="scen-row"><span class="scen-lbl">Skatt totalt, inklusive avgifter</span><span class="scen-val" style="color:var(--red-t)">${Math.round(r.skatt).toLocaleString('sv-SE')} tkr/år</span></div>
+          <div class="scen-row"><span class="scen-lbl">Skatt, arbetsgivaravgift och moms (utan pensionsavgifter)</span><span class="scen-val" style="color:var(--red-t)">${Math.round(r.skatt).toLocaleString('sv-SE')} tkr/år</span></div>
           ${oavlönat}
           ${gemensamt}
           <div class="scen-netto ${nettoPos?'pos':'neg'}">
@@ -6606,12 +6671,12 @@ function chartW(w){ return window.innerWidth <= 640 ? Math.round(w * 0.6) : w; }
 // f = personliga förmåner per invånare (modellen, kalibrerad mot COFOG/Kolada; utan gemensamma utgifter),
 // s = skatt per invånare: modellens inkomstskatt, arbetsgivaravgift och moms på SCB:s faktiska inkomster 2024
 // (sammanräknad förvärvsinkomst per ettårsålder och inkomstklass, HE0110), delat på alla invånare i gruppen (BE0101).
-// Summor: förmåner 1 713 mdkr, skatter 1 575 mdkr (35–44 år utan dubbelräknad skola 2026-11-05). Räknat 2026-10-29; socialt skydd 65+ omkalibrerat samma dag (inkomstpension 363,7 mdkr i stället för cirka 400).
+// Summor: förmåner 1 718 mdkr, skatter 1 415 mdkr (2026-11-14: skatten utan allmän pensionsavgift, 160 mdkr ur SCB HE0110 2024, per ettårsålder och inkomstklass, 7 % med tak 47 100 kr; grundskola 147 tkr). Tidigare 35–44 år utan dubbelräknad skola 2026-11-05. Räknat 2026-10-29; socialt skydd 65+ omkalibrerat samma dag (inkomstpension 363,7 mdkr i stället för cirka 400).
 const LIVSLOPP_BEF = [
-  {g:'0–6',  a0:0,  a1:6,   f:184, s:0},   {g:'7–15', a0:7,  a1:15,  f:180, s:0},
-  {g:'16–18',a0:16, a1:18,  f:187, s:0},   {g:'19–25',a0:19, a1:25,  f:106, s:77},
-  {g:'26–34',a0:26, a1:34,  f:68,  s:184}, {g:'35–44',a0:35, a1:44,  f:128, s:243},
-  {g:'45–54',a0:45, a1:54,  f:105, s:290}, {g:'55–64',a0:55, a1:64,  f:136, s:263},
+  {g:'0–6',  a0:0,  a1:6,   f:184, s:0},   {g:'7–15', a0:7,  a1:15,  f:184, s:0},
+  {g:'16–18',a0:16, a1:18,  f:187, s:0},   {g:'19–25',a0:19, a1:25,  f:106, s:64},
+  {g:'26–34',a0:26, a1:34,  f:68,  s:159}, {g:'35–44',a0:35, a1:44,  f:128, s:214},
+  {g:'45–54',a0:45, a1:54,  f:105, s:258}, {g:'55–64',a0:55, a1:64,  f:136, s:233},
   {g:'65–74',a0:65, a1:74,  f:208, s:122}, {g:'75+',  a0:75, a1:120, f:357, s:79},
 ];
 function renderLifecycle(inc){
@@ -6620,7 +6685,8 @@ function renderLifecycle(inc){
   const age = +(document.getElementById('s-age')?.value || 22);
   const kapitalInc = +(document.getElementById('s-kapital')?.value || 0);
   // Läsarens egen punkt: genomsnittliga förmåner för åldern minus skatt på den angivna lönen
-  const du = Object.values(getStage(age, inc).w).reduce((x,y)=>x+y,0) - (annualTax(age, inc).tot + Math.round(kapitalInc*0.30));
+  const duSkatt = annualTax(age, inc);
+  const du = Object.values(getStage(age, inc).w).reduce((x,y)=>x+y,0) - (duSkatt.tot - duSkatt.apa + Math.round(kapitalInc*0.30));
   const W = chartW(720), H = 300, p = {t:28, r:16, b:40, l:52};
   const iw = W-p.l-p.r, ih = H-p.t-p.b;
   const vals = LIVSLOPP_BEF.map(d => d.f - d.s).concat([du]);
@@ -6676,7 +6742,7 @@ function renderLifecycle(inc){
   // Basfall
   const baseAge = 35, baseInc = Math.round(MEDIAN_LON_MAN * 12 / 1000);   // tkr/år
   const ks0 = (typeof currentKs === 'number') ? currentKs : 0.3238;
-  const totKr = (inc, opts) => annualTax(baseAge, inc, opts).tot * 1000;      // kr/år
+  const totKr = (inc, opts) => { const t = annualTax(baseAge, inc, opts); return (t.tot - t.apa) * 1000; }; // kr/år, utan allmän pensionsavgift
   const baseStage = getStage(baseAge, baseInc);
   const baseForman = baseStage ? Object.values(baseStage.w).reduce((s,v)=>s+v,0)*1000 : 0;
   const baseNet = totKr(baseInc) - baseForman; // positivt = nettobetalare
@@ -6800,7 +6866,7 @@ if('IntersectionObserver' in window){
         observer.unobserve(entry.target);
       }
     });
-  }, {rootMargin:'0px 0px -60px 0px', threshold:0.05});
+  }, {rootMargin:'0px', threshold:0}); // minsta synliga del räcker, så att vyns första avsnitt syns direkt
 
   document.querySelectorAll('section:not(.hero)').forEach(sec => {
     sec.style.opacity = '0';
@@ -6827,8 +6893,8 @@ function shareSkatt(e){
     const url = window.aktivVy === 'start' && scStartLon() ? startDelLank() : location.href.split('?')[0];
     const btn = document.querySelector('.nav-pill');
     const flash = msg => { if(!btn) return; const o = btn.textContent; btn.textContent = msg; setTimeout(() => { btn.textContent = o; }, 2000); };
-    if(navigator.share) navigator.share({title: document.title, url}).catch(() => {});
-    else if(navigator.clipboard) navigator.clipboard.writeText(url).then(() => flash('Länk kopierad!')).catch(() => flash('Kunde ej kopiera'));
+    const kopiera = () => { if(navigator.clipboard) navigator.clipboard.writeText(url).then(() => flash('Länk kopierad!')).catch(() => flash('Kunde ej kopiera')); else flash('Länk i adressfältet'); };
+    if(navigator.share) delaMedReserv({title: document.title, url}, kopiera); else kopiera();
     return;
   }
   // Delar en LÄNK som återskapar vyn (ålder, inkomst, pension, hushåll, kapital)
@@ -6850,13 +6916,8 @@ function shareSkatt(e){
     btn.textContent = msg; btn.style.borderColor='var(--green)'; btn.style.color='var(--green)';
     setTimeout(()=>{btn.textContent=o; btn.style.borderColor=''; btn.style.color='';}, 2000); };
 
-  if(navigator.share){
-    navigator.share({title:'Skatteplattformen', text, url}).catch(()=>{});
-  } else if(navigator.clipboard){
-    navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad!')).catch(()=>flash('Kunde ej kopiera'));
-  } else {
-    flash('Länk i adressfältet');
-  }
+  const kopiera = () => { if(navigator.clipboard) navigator.clipboard.writeText(url).then(()=>flash('Länk kopierad!')).catch(()=>flash('Kunde ej kopiera')); else flash('Länk i adressfältet'); };
+  if(navigator.share) delaMedReserv({title:'Skatteplattformen', text, url}, kopiera); else kopiera();
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -6957,8 +7018,9 @@ function openShareCard(lage){
   scFormat = 'square'; f.forEach((b, i) => { b.classList.toggle('on', i === 0); b.setAttribute('aria-pressed', i === 0); });
   drawShareCard();
   scTillbaka = document.activeElement; o.classList.add('on'); document.body.style.overflow = 'hidden'; o.querySelector('.sc-close').focus();
+  const m = document.querySelector('main'); if(m) m.inert = true; // sidan bakom nås inte medan fönstret är öppet
 }
-function closeShareCard(){ const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return; o.classList.remove('on'); document.body.style.overflow = ''; if(scTillbaka && scTillbaka.focus) scTillbaka.focus(); }
+function closeShareCard(){ const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return; o.classList.remove('on'); document.body.style.overflow = ''; const m = document.querySelector('main'); if(m) m.inert = false; if(scTillbaka && scTillbaka.focus) scTillbaka.focus(); }
 document.addEventListener('keydown', e => {
   const o = document.getElementById('sc-overlay'); if(!o || !o.classList.contains('on')) return;
   if(e.key === 'Escape'){ closeShareCard(); return; }
@@ -6981,14 +7043,10 @@ function shareShareCard(){
   c.toBlob(blob => {
     const file = new File([blob], scFilnamn(), { type: 'image/png' });
     const payload = { title: scLage === 'kvitto' ? 'Mitt skattekvitto' : 'Min ekonomi', text, url };
-    if(navigator.canShare && navigator.canShare({ files: [file] })){
-      navigator.share(Object.assign({ files: [file] }, payload)).catch(()=>{});
-    } else if(navigator.share){
-      navigator.share(payload).catch(()=>{});
-    } else {
-      downloadShareCard();
-      if(navigator.clipboard) navigator.clipboard.writeText(url).catch(()=>{});
-    }
+    const reserv = () => { downloadShareCard(); if(navigator.clipboard) navigator.clipboard.writeText(url).catch(()=>{}); };
+    if(navigator.canShare && navigator.canShare({ files: [file] })) delaMedReserv(Object.assign({ files: [file] }, payload), reserv);
+    else if(navigator.share) delaMedReserv(payload, reserv);
+    else reserv();
   }, 'image/png');
 }
 
@@ -7028,8 +7086,9 @@ function downloadTransparencyJSON(){
       huvudkällor_osäkerhet: ['Momsapproximation (konsumtionsmix varierar)', 'Kommunalskattespridning (28,9–35,7 %)', 'Individuell förmånskonsumtion vs genomsnitt']
     },
     kvitton: {
-      skatt_på_lön: 'Kommunalskatt + statlig skatt − jobbskatteavdrag. Startkvittot: rikssnittet 32,38 %, under 66 år. Arbetsgivaravgift och moms ingår inte.',
-      fördelning: 'Som den offentliga sektorns utgifter 2024 (COFOG) utan inkomstpensionen, i åtta grupper på startsidan och 15 rader i Din ekonomi',
+      skatt_på_lön: 'Kommunalskatt + statlig skatt − jobbskatteavdrag (inklusive den allmänna pensionsavgiften, 7 %, högst 47 100 kr per år). Startkvittot: rikssnittet 32,38 % om ingen kommun är vald. Arbetsgivaravgift och moms ingår inte.',
+      allmän_pensionsavgift: 'Egen rad överst på kvittona; fördelas inte. Räknas inte med i jämförelsen mellan skatt och förmåner (kalkylatorns netto, livsloppet, livssituationerna, känslighetsanalysen, skattetiden).',
+      fördelning: 'Resten av skatten som den offentliga sektorns utgifter 2024 (COFOG) utan inkomstpensionen, i åtta grupper på startsidan och 15 rader i Din ekonomi',
       grupper: START_GRUPPER.map(g => ({grupp: g.n, andel: Math.round(g.a*10000)/10000})),
       jämförelser_kr: START_JMF,
       jämförelser_källor: 'Prislapparna (hemtjänst, IVA-dygn, grundskola 178 skoldagar, statlig väg), SCB lönestatistik 2025 (polis 43 900 kr), riksdagen 2026 (arvode 81 400 kr), FMV 2023 (48 Archer för cirka 5 mdkr)',
@@ -7110,7 +7169,7 @@ function downloadTransparencyJSON(){
         .replace(/(^|[^\w.])(\d+)\.(\d+)(?![\w.])/g, '$1$2,$3')  // 16.8 → 16,8
         .replace(/(\d)%/g, '$1\u00a0%')                             // 16,8% → 16,8 %
         .replace(/CC BY(-SA)? (\d),(\d)/g, 'CC BY$1 $2.$3')         // licensnamn lämnas orörda
-        .replace(/(?<![\d,.])(\d{1,3})((?:[ \u00a0]\d{3})+)(?![\d,]?\d)/g, (m, a, b) => a + b.replace(/ /g, '\u00a0')) // 38 300 → hårt mellanslag (U+202F saknas i typsnitten)
+        .replace(/(^|[^\d,.])(\d{1,3})((?:[ \u00a0]\d{3})+)(?![\d,]?\d)/g, (m, f, a, b) => f + a + b.replace(/ /g, '\u00a0')) // 38 300 → hårt mellanslag (U+202F saknas i typsnitten)
         .replace(/(\d)[ ](kr|tkr|mdkr|mnkr|kronor|%|procent|år\b)/g, '$1\u00a0$2') // talet och enheten bryts aldrig isär
         .replace(/(^|[\s(\u00a0])-(?=\d)/g, '$1\u2212')          // riktigt minustecken
         .replace(/≈ /g, '≈\u00a0');                                  // ≈ binds till talet

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sidan finns inte · Skatteplattformen</title>
+<script>
+// Gissade adresser som /skatteplattformen/kalkylator skickas till sajten med #kalkylator
+(function(){
+  var bas = '/skatteplattformen/';
+  var delar = location.pathname.split('/').filter(Boolean);
+  if(delar[0] === 'skatteplattformen') delar.shift();
+  var sista = delar.pop() || '';
+  sista = sista.replace(/\.html?$/, '').replace(/[^\w\-åäöÅÄÖ]/g, '');
+  var mal = location.hash || (sista && sista !== 'index' ? '#' + sista : '');
+  location.replace(bas + location.search + mal);
+})();
+</script>
+<style>
+  body{margin:0;background:#F5F1E8;color:#1A1813;font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center;min-height:100vh;padding:16px;box-sizing:border-box}
+  a{color:#1B4D3E;font-weight:600}
+</style>
+</head>
+<body>
+<main>
+  <h1 style="font-size:1.4rem;margin:0 0 .5rem">Sidan finns inte</h1>
+  <p>Du skickas vidare till Skatteplattformen. Om inget händer: <a href="/skatteplattformen/">gå till startsidan</a>.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skiss 08-2: vyhuvud</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Skiss från formgivargranskningen 2026-11 (roll 8). Sajtens tokens. */
+:root{--bg:#F4F1EA;--bg2:#EAE6DC;--bg3:#DEDAD0;--paper:#FBFAF6;--ink:#1A1813;--ink2:#4A4640;--ink3:#5C574F;--green:#1B4D3E;--green2:#2E7D5C;
+--border:rgba(26,24,19,.10);--shadow-sm:0 1px 2px rgba(26,24,19,.04),0 1px 3px rgba(26,24,19,.05);--r:8px;--r-sm:5px;
+--fs-hjalte:4rem;--fs-avsnitt:2.5rem;--fs-under:1.75rem;--fs-ingress:1.25rem;--fs-brod:1rem;--fs-liten:.8125rem;--fs-etikett:.6875rem;
+--serif:'Source Serif 4',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#cfc9bd;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.ram{background:var(--bg);margin:0 auto;container-type:inline-size}
+body.m .ram{width:390px}
+.sida{max-width:1080px;margin:0 auto;padding:0 2rem}
+@container (max-width:640px){.sida{padding:0 16px}}
+.kol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.kol>div{min-width:0}@container (max-width:900px){.kol{grid-template-columns:1fr}}@container (max-width:640px){.ledruta{grid-template-columns:1fr}}
+.etik{font:600 var(--fs-etikett) var(--mono);letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;padding:14px 0 8px}
+.panel{background:var(--bg);border:1px dashed rgba(26,24,19,.2);border-radius:var(--r);overflow:hidden}
+/* ===== I dag (återgiven) ===== */
+.idag{padding:22px}
+.idag .sm{font-size:.8rem;color:var(--ink3)}.idag .sm a{color:var(--green);text-decoration:underline}
+.idag h1{font:600 40px/1.05 var(--serif);letter-spacing:-.02em;margin:.3rem 0 .5rem}
+.idag .led b{display:block;font:600 54px/1 var(--serif);color:var(--green);letter-spacing:-.02em}.idag .led b small{font:500 .42em var(--sans);color:var(--ink3);margin-left:.15em}
+.idag .led span{display:block;font-size:1.02rem;margin-top:.3rem;line-height:1.4}.idag .led em{display:block;font:400 .75rem var(--mono);color:var(--ink3);font-style:normal;margin-top:.3rem}
+.idag .ing{font-size:1rem;color:var(--ink2);line-height:1.55;margin:.9rem 0 .3rem}
+.idag .dat{font:400 .75rem var(--mono);color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chips span{font-size:.8rem;border:1px solid var(--border);background:var(--paper);border-radius:99px;padding:7px 13px}
+.anm{position:relative}
+.anm i{position:absolute;font:600 10px var(--mono);font-style:normal;background:#fff;border:1px solid var(--ink3);border-radius:99px;width:18px;height:18px;display:grid;place-items:center;right:-6px}
+.lista{font-size:.78rem;color:var(--ink2);line-height:1.5;padding:12px 22px 20px;border-top:1px solid var(--bg3);background:var(--paper)}
+.lista li{margin:3px 0 3px 18px}
+/* ===== Förslag ===== */
+.nytt{padding:26px 22px 24px}
+.nytt .sm{font-size:.8rem;color:var(--ink3)}.nytt .sm a{color:var(--green);text-decoration:underline}
+.nytt h1{font:600 clamp(2.6rem,7cqi,var(--fs-hjalte))/1.02 var(--serif);letter-spacing:-.025em;margin:.25rem 0 .6rem}
+.nytt .ing{font-size:var(--fs-ingress);line-height:1.5;color:var(--ink2);max-width:28em}
+.ledruta{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:baseline;background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:14px 16px;margin:20px 0 0}
+.ledruta b{font:600 2.25rem/1 var(--serif);color:var(--green);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledruta b small{font:500 .45em var(--sans);color:var(--ink3);margin-left:.15em}
+.ledruta span{font-size:.92rem;line-height:1.4}
+.ledruta em{grid-column:1/-1;font:400 .72rem var(--mono);font-style:normal;color:var(--ink3);border-top:1px solid var(--bg3);padding-top:8px;margin-top:6px}
+.pa{margin-top:20px;border-top:1px solid var(--bg3);padding-top:12px}
+.pa-l{font:600 var(--fs-etikett) var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+.pa ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 20px}
+.pa a{font-size:.9rem;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(27,77,62,.3);display:inline-block;padding:4px 0}
+.pa a::after{content:' ↓';color:var(--ink3)}
+@container (max-width:640px){.pa ol{flex-wrap:nowrap;overflow-x:auto;gap:18px;padding-bottom:4px}.pa a{white-space:nowrap}}
+.nytt .dat{font:400 .72rem var(--mono);color:var(--ink3);margin-top:10px}
+.regler{font-size:.78rem;color:var(--ink2);line-height:1.5;padding:12px 22px 20px;border-top:1px solid var(--bg3);background:var(--paper)}
+.regler li{margin:3px 0 3px 18px}
+h2.rub{font:600 1.5rem var(--serif);padding:26px 0 2px}
+.under{font-size:.85rem;color:var(--ink2);max-width:60em}
+</style></head>
+<body><script>if(location.hash==='#m')document.body.classList.add('m')</script>
+<div class="ram"><div class="sida" style="padding-bottom:28px">
+<h2 class="rub">Skiss 08-2 · Vyhuvudet: en rubrik, en ingress, en ledsiffra</h2>
+<p class="under">Exempel: Din ekonomi. I dag konkurrerar tre element om att vara störst. Förslaget gör vynamnet störst (hjältesteget 64 px, som startsidans rubrik), slår ihop de två ingresserna och lägger ledsiffran i en egen ruta med källan. Scenen till höger behålls oförändrad och visas inte här.</p>
+<div class="kol">
+ <div><div class="etik">I dag</div><div class="panel"><div class="idag">
+   <div class="sm"><a>Start</a> › Din ekonomi</div>
+   <div class="anm"><h1>Din ekonomi</h1><i style="top:8px">1</i></div>
+   <div class="led anm"><b>4 466<small>kr</small></b><i style="top:14px">2</i><span>i skatt per månad på en lön på 25 000 kronor, som exempel. Räkna på din egen lön och ålder nedan.</span><em>Skattemodellen, Skatteverkets regler 2026</em></div>
+   <p class="ing anm">Räkna på din egen skatt, se vad du får tillbaka i olika livsfaser och hur det ser ut över ett helt liv.<i style="top:0">3</i></p>
+   <div class="dat">Uppdaterad 5 november 2026</div>
+   <div class="chips"><span>Din skatt och vad du får tillbaka</span><span>Skatter i korthet</span><span>Fyra livssituationer</span><span>Livsloppet: vad man tar emot och betalar under ett liv</span><span>Skatt på sparande</span></div>
+  </div>
+  <ol class="lista"><li>Vynamnet 40 px, lika stort som nästa avsnittsrubrik.</li><li>Ledsiffran 54 px, störst på sidan, före ingressen.</li><li>Andra ingressen upprepar "Räkna på din egen …". Fem textnivåer och två typsnitt för metadata innan första knappen.</li></ol></div></div>
+ <div><div class="etik">Förslag</div><div class="panel"><div class="nytt">
+   <div class="sm"><a>Start</a> › Din ekonomi</div>
+   <h1>Din ekonomi</h1>
+   <p class="ing">Räkna på din egen skatt och se vad du får tillbaka, i dag och över ett helt liv.</p>
+   <div class="ledruta"><b>4 466<small>kr</small></b><span>i skatt per månad på en lön på 25 000 kronor</span><em>Skattemodellen · Skatteverkets regler 2026 · uppdaterad 5 november 2026</em></div>
+   <nav class="pa" aria-label="På den här sidan"><div class="pa-l">På den här sidan</div><ol><li><a>Din skatt</a></li><li><a>Skatter i korthet</a></li><li><a>Livssituationer</a></li><li><a>Livsloppet</a></li><li><a>Sparande</a></li></ol></nav>
+  </div>
+  <ol class="regler"><li><b>h1</b> = <code>--fs-hjalte</code> i alla vyer (40 px på mobil). Avsnittsrubriker stannar på <code>--fs-avsnitt</code>.</li><li><b>Ledsiffran</b> = <code>--fs-avsnitt</code> i en papperruta; datum och källa på en rad i mono.</li><li><b>Genvägar</b> som en rad korta textlänkar (en rad, svepbar på mobil) i stället för fem lösa piller. Obs: använd inte <code>&lt;nav&gt;</code> i koden (global sticky-regel), utan <code>&lt;div role="navigation"&gt;</code>.</li></ol></div></div>
+</div>
+</div></div>
+</body></html>
